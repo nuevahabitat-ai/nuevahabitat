@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiénes somos · NuevaHabitat Barcelona</title>
+  <meta name="description" content="Conoce al equipo de NuevaHabitat. Expertos inmobiliarios en Barcelona comprometidos con la transparencia y el precio fijo." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo1.png" />
+  <style>
+    .nosotros-hero {
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .nosotros-hero-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+    }
+    .nosotros-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(13,13,13,.88) 40%, rgba(13,13,13,.4) 100%);
+    }
+    .nosotros-hero-content {
+      position: relative; z-index: 2;
+      max-width: 680px;
+      padding: 140px 0 100px;
+    }
+    .nosotros-hero-content h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--blanco);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .nosotros-hero-content p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,.8);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+    .manifesto {
+      padding: 100px 0;
+      background: var(--crema);
+    }
+    .manifesto-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .manifesto-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .manifesto-img img { width:100%;height:100%;object-fit:cover; }
+    .valores-grid {
+      padding: 100px 0;
+      background: var(--negro);
+    }
+    .valores-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .valor-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      transition: var(--transition);
+    }
+    .valor-card:hover {
+      border-color: rgba(184,147,106,.3);
+      background: rgba(184,147,106,.05);
+    }
+    .valor-card-icon {
+      width: 52px; height: 52px;
+      background: rgba(184,147,106,.15);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--oro);
+      margin-bottom: 1.5rem;
+    }
+    .valor-card h3 {
+      font-size: 1.25rem;
+      color: var(--blanco);
+      margin-bottom: .6rem;
+    }
+    .valor-card p { font-size:.875rem; color:rgba(255,255,255,.6); line-height:1.7; }
+    .equipo {
+      padding: 100px 0;
+      background: var(--blanco);
+    }
+    .equipo-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 2.5rem;
+      margin-top: 4rem;
+    }
+    .agente-card {
+      text-align: center;
+    }
+    .agente-foto {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 1.25rem;
+      border: 4px solid var(--crema-dark);
+      transition: border-color var(--transition);
+    }
+    .agente-card:hover .agente-foto { border-color: var(--oro); }
+    .agente-foto img { width:100%;height:100%;object-fit:cover; }
+    .agente-nombre { font-size:1.125rem; font-weight:600; margin-bottom:.25rem; }
+    .agente-rol { font-size:.875rem; color:var(--oro); margin-bottom:.5rem; }
+    .agente-bio { font-size:.875rem; color:var(--gris-texto); line-height:1.65; }
+    .numeros {
+      padding: 80px 0;
+      background: var(--crema);
+    }
+    .numeros-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .numero-item .num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--negro);
+      line-height: 1;
+      margin-bottom: .35rem;
+    }
+    .numero-item .num span { color: var(--oro); }
+    .numero-item p { font-size:.875rem; color:var(--gris-texto); }
+    @media(max-width:1024px) {
+      .manifesto-inner { gap:3rem; }
+      .valores-cards   { grid-template-columns:1fr 1fr; }
+      .equipo-grid     { grid-template-columns:1fr 1fr; }
+      .numeros-grid    { grid-template-columns:1fr 1fr; gap:2.5rem; }
+    }
+    @media(max-width:768px) {
+      .manifesto-inner { grid-template-columns:1fr; }
+      .valores-cards   { grid-template-columns:1fr; }
+      .equipo-grid     { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="imagenes/Logo/logosinfondo1.png" alt="NuevaHabitat" /></a>
+    <ul class="nav-links">
+      <li><a href="vender.html">Vender</a></li>
+      <li><a href="comprar.html">Comprar</a></li>
+      <li><a href="inmuebles.html">Inmuebles</a></li>
+      <li><a href="hipotecas.html">Hipotecas</a></li>
+      <li><a href="nosotros.html" style="color:var(--oro)">Nosotros</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:+34600367742" class="nav-tel">600 367 742</a>
+      <a href="registro.html" class="nav-cta">Empezar ahora</a>
+      <button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="menuClose">✕</button>
+  <a href="vender.html">Vender</a>
+  <a href="comprar.html">Comprar</a>
+  <a href="inmuebles.html">Inmuebles</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="registro.html" style="color:var(--oro)">Empezar ahora →</a>
+</nav>
+
+<!-- HERO -->
+<section class="nosotros-hero">
+  <div class="nosotros-hero-bg" style="background-image:url('imagenes/inmobilarios_con_tablet_Vertical-scaled.jpg')"></div>
+  <div class="nosotros-hero-overlay"></div>
+  <div class="container">
+    <div class="nosotros-hero-content fade-up">
+      <span class="overline">Quiénes somos</span>
+      <h1>Expertos en Barcelona.<br/>Comprometidos contigo.</h1>
+      <p>NuevaHabitat nació para transformar la experiencia inmobiliaria en Barcelona. Tecnología y acompañamiento humano al precio más justo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFIESTO -->
+<section class="manifesto">
+  <div class="container">
+    <div class="manifesto-inner">
+      <div class="manifesto-img fade-up">
+        <img src="imagenes/inmobiliario1.jpg" alt="Equipo NuevaHabitat" loading="lazy" />
+      </div>
+      <div class="fade-up fade-up-delay-1">
+        <span class="overline">Nuestra historia</span>
+        <h2 class="section-title" style="margin-bottom:1.5rem">Nacimos para cambiar<br/>las reglas del sector</h2>
+        <p class="section-subtitle" style="max-width:100%;margin-bottom:1.5rem">
+          Cansados de ver cómo las comisiones porcentuales encarecían injustamente las operaciones inmobiliarias en Barcelona, decidimos crear un modelo diferente: precio fijo, transparente y cobrado solo al éxito.
+        </p>
+        <p style="font-size:.9375rem;color:var(--gris-texto);line-height:1.75;margin-bottom:1.5rem">
+          Combinamos la calidez del acompañamiento humano con la eficiencia de una plataforma digital propia que da al cliente control total sobre su expediente, calendario de visitas y documentación.
+        </p>
+        <p style="font-size:.9375rem;color:var(--gris-texto);line-height:1.75;margin-bottom:2rem">
+          Operamos en Barcelona y su área metropolitana. Cada familia que ayudamos es un paso más hacia un mercado inmobiliario más justo.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="registro.html" class="btn btn-gold">Empieza hoy</a>
+          <a href="tel:+34600367742" class="btn btn-outline">Habla con nosotros</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="numeros">
+  <div class="container">
+    <div class="numeros-grid">
+      <div class="numero-item fade-up">
+        <div class="num">+<span>250</span></div>
+        <p>Familias atendidas en Barcelona</p>
+      </div>
+      <div class="numero-item fade-up fade-up-delay-1">
+        <div class="num"><span>97</span>%</div>
+        <p>Tasa de éxito en cierres</p>
+      </div>
+      <div class="numero-item fade-up fade-up-delay-2">
+        <div class="num"><span>58</span></div>
+        <p>Días de media hasta la escritura</p>
+      </div>
+      <div class="numero-item fade-up fade-up-delay-3">
+        <div class="num"><span>4.9</span>⭐</div>
+        <p>Valoración media de clientes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section class="valores-grid">
+  <div class="container">
+    <div class="text-center">
+      <span class="overline">Lo que nos mueve</span>
+      <h2 class="section-title light">Nuestros valores</h2>
+    </div>
+    <div class="valores-cards">
+      <div class="valor-card fade-up">
+        <div class="valor-card-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>Transparencia</h3>
+        <p>Precio fijo desde el inicio. Sin comisiones ocultas ni revisiones de última hora. Lo que acordamos es lo que cobras.</p>
+      </div>
+      <div class="valor-card fade-up fade-up-delay-1">
+        <div class="valor-card-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <h3>Acompañamiento real</h3>
+        <p>Un agente dedicado desde la primera conversación hasta la firma. No eres un número en una base de datos.</p>
+      </div>
+      <div class="valor-card fade-up fade-up-delay-2">
+        <div class="valor-card-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <h3>Tecnología útil</h3>
+        <p>Nuestro panel digital no es un adorno. Es la herramienta que te da control real sobre tu operación en tiempo real.</p>
+      </div>
+      <div class="valor-card fade-up">
+        <div class="valor-card-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>Precio justo</h3>
+        <p>El precio de una vivienda no debería determinar cuánto pagas a tu inmobiliaria. Precio fijo para todos, siempre.</p>
+      </div>
+      <div class="valor-card fade-up fade-up-delay-1">
+        <div class="valor-card-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <h3>Compromiso</h3>
+        <p>Solo cobramos cuando escrituramos. Nuestro éxito depende del tuyo. Eso alinea perfectamente nuestros incentivos.</p>
+      </div>
+      <div class="valor-card fade-up fade-up-delay-2">
+        <div class="valor-card-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        </div>
+        <h3>Excelencia</h3>
+        <p>Reportaje fotográfico profesional, asesoría jurídica completa y comunicación fluida en cada operación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="equipo">
+  <div class="container">
+    <div class="text-center section-header">
+      <span class="overline">El equipo</span>
+      <h2 class="section-title">Las personas detrás<br/>de NuevaHabitat</h2>
+    </div>
+    <div class="equipo-grid">
+      <div class="agente-card fade-up">
+        <div class="agente-foto">
+          <img src="imagenes/inmobiliario2.jpg" alt="Agente NuevaHabitat" loading="lazy" />
+        </div>
+        <div class="agente-nombre">María García</div>
+        <div class="agente-rol">Directora de operaciones</div>
+        <p class="agente-bio">10 años de experiencia en el mercado inmobiliario barcelonés. Especialista en el segmento residencial de lujo y en negociaciones complejas.</p>
+      </div>
+      <div class="agente-card fade-up fade-up-delay-1">
+        <div class="agente-foto">
+          <img src="imagenes/inmobiliario4.jpg" alt="Agente NuevaHabitat" loading="lazy" />
+        </div>
+        <div class="agente-nombre">Jordi Martínez</div>
+        <div class="agente-rol">Agente senior · Eixample y Gràcia</div>
+        <p class="agente-bio">Nacido en Barcelona, conoce cada barrio como la palma de su mano. Especialista en primera compra y familias en expansión.</p>
+      </div>
+      <div class="agente-card fade-up fade-up-delay-2">
+        <div class="agente-foto">
+          <img src="imagenes/inmobiliario1.jpg" alt="Agentes NuevaHabitat" loading="lazy" />
+        </div>
+        <div class="agente-nombre">Claudia Roca</div>
+        <div class="agente-rol">Agente · Sant Gervasi y Sarrià</div>
+        <p class="agente-bio">Experta en propiedades de alto standing. Antes de unirse a NuevaHabitat trabajó durante 7 años en una firma internacional de lujo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-final">
+  <div class="cta-bg" style="background-image:url('imagenes/interior4.jpg')"></div>
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="cta-content fade-up">
+      <span class="overline" style="color:var(--oro-claro);justify-content:center;display:flex">Hablemos</span>
+      <h2 class="section-title light">¿Tienes alguna pregunta?</h2>
+      <p class="section-subtitle light">Nuestro equipo está disponible de lunes a sábado de 9 a 20h.</p>
+      <div class="cta-buttons">
+        <a href="registro.html" class="btn btn-gold btn-lg">Empezar ahora</a>
+        <a href="tel:+34600367742" class="btn btn-outline-light btn-lg">600 367 742</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top" style="grid-template-columns:2fr 1fr 1fr">
+      <div class="footer-brand">
+        <img src="imagenes/Logo/logosinfondo1.png" alt="NuevaHabitat" />
+        <p>Inmobiliaria tecnológica en Barcelona. Precio fijo y cobro solo en escritura.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="vender.html">Vender</a></li>
+          <li><a href="comprar.html">Comprar</a></li>
+          <li><a href="inmuebles.html">Inmuebles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+34600367742">600 367 742</a></li>
+          <li><a href="mailto:hola@nuevahabitat.com">hola@nuevahabitat.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 NuevaHabitat.</p>
+      <div class="footer-bottom-links">
+        <a href="privacidad.html">Privacidad</a>
+        <a href="aviso-legal.html">Aviso legal</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="whatsapp-float">
+  <div class="whatsapp-tooltip">¿Hablamos?</div>
+  <a href="https://wa.me/34600367742" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NuevaHabitat — Inmobiliaria de Lujo en Barcelona · Precio Fijo</title>
+  <meta name="description" content="Vende o compra tu vivienda en Barcelona con NuevaHabitat. Precio fijo: 3.000€ venta · 5.000€ compra. Sin comisiones. Cobro solo en escritura." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Favicon inline SVG -->
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo1.png" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVEGACIÓN
+════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="imagenes/Logo/logosinfondo1.png" alt="NuevaHabitat" />
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="vender.html">Vender</a></li>
+      <li><a href="comprar.html">Comprar</a></li>
+      <li><a href="inmuebles.html">Inmuebles</a></li>
+      <li><a href="hipotecas.html">Hipotecas</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="tel:+34600367742" class="nav-tel">600 367 742</a>
+      <a href="registro.html" class="nav-cta">Empezar ahora</a>
+      <button class="nav-hamburger" id="menuBtn" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav overlay -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="menuClose">✕</button>
+  <a href="vender.html">Vender</a>
+  <a href="comprar.html">Comprar</a>
+  <a href="inmuebles.html">Inmuebles</a>
+  <a href="hipotecas.html">Hipotecas</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="blog.html">Blog</a>
+  <a href="registro.html" style="color:var(--oro)">Empezar ahora →</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('imagenes/interior2.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('imagenes/3d-contemporary-bedroom-interior.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('imagenes/spacejoy-85pCvDWDMmI-unsplash.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('imagenes/interior4.jpg')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content container">
+    <div class="hero-badge">Barcelona &amp; Área Metropolitana</div>
+
+    <h1 class="hero-title">
+      Tu próximo hogar,<br/>
+      <em>sin complicaciones.</em>
+    </h1>
+
+    <p class="hero-subtitle">
+      La primera inmobiliaria tecnológica de Barcelona con precio fijo y cobro solo en escritura. Nada por adelantado.
+    </p>
+
+    <!-- Search Box -->
+    <div class="hero-search" id="heroSearch">
+      <div class="hero-toggle">
+        <button class="active" id="toggleVender">Vender</button>
+        <button id="toggleComprar">Comprar</button>
+      </div>
+      <input
+        type="text"
+        class="hero-search-input"
+        id="searchInput"
+        placeholder="¿Dónde está tu vivienda? Barrio, municipio..."
+      />
+      <button class="hero-search-btn" onclick="handleSearch()">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        Buscar
+      </button>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">+250</div>
+        <div class="hero-stat-label">Familias atendidas</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.2)"></div>
+      <div>
+        <div class="hero-stat-num">97%</div>
+        <div class="hero-stat-label">Tasa de cierre</div>
+      </div>
+      <div style="width:1px;background:rgba(255,255,255,.2)"></div>
+      <div>
+        <div class="hero-stat-num">58 días</div>
+        <div class="hero-stat-label">Tiempo medio venta</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" data-idx="0"></div>
+    <div class="hero-dot" data-idx="1"></div>
+    <div class="hero-dot" data-idx="2"></div>
+    <div class="hero-dot" data-idx="3"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TRUST BAR
+════════════════════════════════════════════════════════ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        Precio fijo sin sorpresas
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Cobro solo en escritura
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+        </svg>
+        Acompañamiento 100% personal
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+        </svg>
+        Panel de cliente en tiempo real
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        Reportaje fotográfico incluido
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SERVICIOS — TARJETAS CON IMÁGENES
+════════════════════════════════════════════════════════ -->
+<section class="servicios">
+  <div class="container">
+    <div class="section-header">
+      <span class="overline">Nuestros servicios</span>
+      <h2 class="section-title">Todo lo que necesitas<br/>en un solo lugar</h2>
+      <p class="section-subtitle">
+        Desde la primera visita hasta la firma de la escritura, acompañamos cada paso con profesionalidad y tecnología.
+      </p>
+    </div>
+
+    <div class="servicios-grid">
+
+      <!-- Vender -->
+      <div class="servicio-card fade-up">
+        <img src="imagenes/inmobiliario1.jpg" alt="Vender tu vivienda con NuevaHabitat" loading="lazy" />
+        <div class="servicio-card-overlay"></div>
+        <div class="servicio-card-body">
+          <span class="servicio-tag">Vender</span>
+          <h3>Vende tu vivienda</h3>
+          <p>Precio fijo de 3.000&nbsp;€&nbsp;+&nbsp;IVA. Fotografía profesional, difusión entre compradores cualificados y gestión completa del proceso.</p>
+          <a href="vender.html" class="servicio-link">
+            Saber más
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Comprar -->
+      <div class="servicio-card fade-up fade-up-delay-1">
+        <img src="imagenes/familia2.jpg" alt="Comprar vivienda con NuevaHabitat" loading="lazy" />
+        <div class="servicio-card-overlay"></div>
+        <div class="servicio-card-body">
+          <span class="servicio-tag">Comprar</span>
+          <h3>Encuentra tu hogar</h3>
+          <p>Acompañamiento personalizado a 5.000&nbsp;€&nbsp;+&nbsp;IVA. Analizamos tu capacidad financiera y buscamos activamente en nuestra cartera propia.</p>
+          <a href="comprar.html" class="servicio-link">
+            Saber más
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hipotecas -->
+      <div class="servicio-card fade-up fade-up-delay-2">
+        <img src="imagenes/inmobilarios_con_tablet_Vertical-scaled.jpg" alt="Hipotecas y financiación" loading="lazy" />
+        <div class="servicio-card-overlay"></div>
+        <div class="servicio-card-body">
+          <span class="servicio-tag">Hipotecas</span>
+          <h3>Financiación a tu medida</h3>
+          <p>Te conectamos con las mejores condiciones hipotecarias. Análisis previo de viabilidad financiera incluido en el servicio de compra.</p>
+          <a href="hipotecas.html" class="servicio-link">
+            Saber más
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Valoración -->
+      <div class="servicio-card fade-up">
+        <img src="imagenes/interior3.jpg" alt="Valoración de inmuebles" loading="lazy" />
+        <div class="servicio-card-overlay"></div>
+        <div class="servicio-card-body">
+          <span class="servicio-tag">Valoración</span>
+          <h3>¿Cuánto vale tu piso?</h3>
+          <p>Valoración gratuita y sin compromiso basada en datos de mercado reales y la experiencia de nuestros agentes en Barcelona.</p>
+          <a href="vender.html#valorar" class="servicio-link">
+            Valorar gratis
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Panel digital -->
+      <div class="servicio-card fade-up fade-up-delay-1">
+        <img src="imagenes/interior5.jpg" alt="Panel de cliente digital" loading="lazy" />
+        <div class="servicio-card-overlay"></div>
+        <div class="servicio-card-body">
+          <span class="servicio-tag">Panel digital</span>
+          <h3>Sigue tu expediente online</h3>
+          <p>Accede en tiempo real al estado de tu operación, documentos, calendario de visitas y mensajes con tu agente. 24/7.</p>
+          <a href="panel.html" class="servicio-link">
+            Ver panel
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Asesoría jurídica -->
+      <div class="servicio-card fade-up fade-up-delay-2">
+        <img src="imagenes/inmobiliario2.jpg" alt="Asesoría jurídica inmobiliaria" loading="lazy" />
+        <div class="servicio-card-overlay"></div>
+        <div class="servicio-card-body">
+          <span class="servicio-tag">Jurídico</span>
+          <h3>Asesoría legal completa</h3>
+          <p>Contratos de arras, escritura pública y toda la documentación legal gestionada por nuestros especialistas. Sin sorpresas.</p>
+          <a href="nosotros.html" class="servicio-link">
+            Conocer el equipo
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CÓMO FUNCIONA — PROCESO DE VENTA
+════════════════════════════════════════════════════════ -->
+<section class="proceso">
+  <div class="container">
+    <div class="proceso-inner">
+
+      <!-- Imagen izquierda -->
+      <div class="fade-up">
+        <div class="proceso-image">
+          <img src="imagenes/inmobiliario4.jpg" alt="Proceso de venta NuevaHabitat" loading="lazy" />
+          <div class="proceso-image-badge">
+            <div class="badge-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div class="badge-text">
+              <strong>58 días</strong>
+              tiempo medio de venta
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pasos derecha -->
+      <div class="proceso-steps">
+        <span class="overline">Proceso de venta</span>
+        <h2 class="section-title" style="margin-bottom:2rem">Así vendemos<br/>tu vivienda</h2>
+
+        <div class="proceso-step">
+          <div class="paso-num">01</div>
+          <div class="paso-body">
+            <h4>Visita presencial al inmueble</h4>
+            <p>Un agente se desplaza a tu vivienda para conocerla en detalle y elaborar una valoración de mercado precisa y sin compromiso.</p>
+          </div>
+        </div>
+
+        <div class="proceso-step">
+          <div class="paso-num">02</div>
+          <div class="paso-body">
+            <h4>Reportaje fotográfico profesional</h4>
+            <p>Sesión fotográfica de alta calidad incluida en el precio. Las imágenes son clave para atraer compradores cualificados.</p>
+          </div>
+        </div>
+
+        <div class="proceso-step">
+          <div class="paso-num">03</div>
+          <div class="paso-body">
+            <h4>Publicación en nuestra base de datos</h4>
+            <p>Tu inmueble se publica en la plataforma interna de NuevaHabitat, visible para todos nuestros compradores registrados.</p>
+          </div>
+        </div>
+
+        <div class="proceso-step">
+          <div class="paso-num">04</div>
+          <div class="paso-body">
+            <h4>Búsqueda activa de comprador</h4>
+            <p>Activamos la búsqueda entre nuestra cartera propia de compradores con capacidad financiera ya verificada en Barcelona.</p>
+          </div>
+        </div>
+
+        <div class="proceso-step">
+          <div class="paso-num">05</div>
+          <div class="paso-body">
+            <h4>Visitas en tu disponibilidad</h4>
+            <p>Tú marcas los días y horas en tu panel. Las visitas se organizan exclusivamente en esas franjas. Sin interrupciones.</p>
+          </div>
+        </div>
+
+        <div class="proceso-step">
+          <div class="paso-num">06</div>
+          <div class="paso-body">
+            <h4>Oferta y señal al vendedor</h4>
+            <p>Cuando hay acuerdo de precio, la reserva va directamente a tu cuenta. Nosotros gestionamos toda la documentación.</p>
+          </div>
+        </div>
+
+        <div class="proceso-step">
+          <div class="paso-num">07</div>
+          <div class="paso-body">
+            <h4>Arras y escritura pública</h4>
+            <p>Gestionamos el contrato de arras y coordinamos la firma ante notario. Te acompañamos hasta el final.</p>
+          </div>
+        </div>
+
+        <div class="proceso-step">
+          <div class="paso-num">08</div>
+          <div class="paso-body">
+            <h4>Cobramos en escritura, no antes</h4>
+            <p>NuevaHabitat cobra su honorario fijo el día de la firma. Si no hay escritura, no hay ningún coste para ti.</p>
+          </div>
+        </div>
+
+        <div style="padding-top:2rem">
+          <a href="vender.html" class="btn btn-gold btn-lg">Empezar a vender</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PROPIEDADES DESTACADAS
+════════════════════════════════════════════════════════ -->
+<section class="propiedades">
+  <div class="container">
+    <div class="propiedades-header">
+      <div>
+        <span class="overline">Inmuebles destacados</span>
+        <h2 class="section-title mb-0">Últimas propiedades</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:1.5rem">
+        <div class="prop-slider-controls">
+          <button class="prop-arrow" id="propPrev" aria-label="Anterior">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <button class="prop-arrow" id="propNext" aria-label="Siguiente">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+        <a href="inmuebles.html" class="btn btn-outline">Ver todos</a>
+      </div>
+    </div>
+
+    <div class="propiedades-grid" id="propGrid">
+
+      <div class="prop-card fade-up">
+        <div class="prop-card-image">
+          <img src="imagenes/interior2.jpg" alt="Piso en Eixample" loading="lazy" />
+          <span class="prop-badge disponible">Disponible</span>
+          <button class="prop-favorite" aria-label="Guardar">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="prop-card-body">
+          <div class="prop-price">485.000 €</div>
+          <div class="prop-title">Piso reformado con terraza</div>
+          <div class="prop-location">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Eixample, Barcelona
+          </div>
+          <div class="prop-features">
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+              </svg>
+              3 hab.
+            </div>
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+              </svg>
+              2 baños
+            </div>
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+              </svg>
+              92 m²
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prop-card fade-up fade-up-delay-1">
+        <div class="prop-card-image">
+          <img src="imagenes/interior4.jpg" alt="Piso en Gràcia" loading="lazy" />
+          <span class="prop-badge disponible">Disponible</span>
+          <button class="prop-favorite" aria-label="Guardar">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="prop-card-body">
+          <div class="prop-price">380.000 €</div>
+          <div class="prop-title">Piso luminoso con balcón</div>
+          <div class="prop-location">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Gràcia, Barcelona
+          </div>
+          <div class="prop-features">
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+              </svg>
+              2 hab.
+            </div>
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+              </svg>
+              1 baño
+            </div>
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+              </svg>
+              75 m²
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prop-card fade-up fade-up-delay-2">
+        <div class="prop-card-image">
+          <img src="imagenes/3d-contemporary-bedroom-interior.jpg" alt="Ático en Sant Gervasi" loading="lazy" />
+          <span class="prop-badge reservada">Reservada</span>
+          <button class="prop-favorite" aria-label="Guardar">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="prop-card-body">
+          <div class="prop-price">720.000 €</div>
+          <div class="prop-title">Ático con vistas panorámicas</div>
+          <div class="prop-location">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            Sant Gervasi, Barcelona
+          </div>
+          <div class="prop-features">
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+              </svg>
+              4 hab.
+            </div>
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+              </svg>
+              2 baños
+            </div>
+            <div class="prop-feat">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+              </svg>
+              145 m²
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PRECIOS
+════════════════════════════════════════════════════════ -->
+<section class="precios">
+  <div class="container">
+    <div class="text-center">
+      <span class="overline">Precios transparentes</span>
+      <h2 class="section-title light">Sin comisiones.<br/>Precio fijo.</h2>
+      <p class="section-subtitle light" style="margin:1rem auto 0">
+        Conoce exactamente lo que pagarás antes de empezar. Sin letras pequeñas, sin sorpresas.
+      </p>
+    </div>
+
+    <div class="precios-grid">
+
+      <div class="precio-card fade-up">
+        <div class="precio-tipo">Para vendedores</div>
+        <div class="precio-amount">3.000€</div>
+        <div class="precio-iva">+ IVA · Cobro en escritura</div>
+        <div class="precio-desc">
+          Vendemos tu vivienda por un precio fijo. Sin comisión porcentual. Pagas solo cuando firmas la escritura.
+        </div>
+        <ul class="precio-lista">
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Valoración gratuita de tu inmueble
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Reportaje fotográfico profesional
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Publicación en base de datos propia
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Gestión de visitas y calendario
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Contrato de arras y escritura pública
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Panel de seguimiento 24/7
+          </li>
+        </ul>
+        <a href="registro.html?tipo=vender" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">
+          Empezar a vender
+        </a>
+      </div>
+
+      <div class="precio-card featured fade-up fade-up-delay-1">
+        <div class="precio-tipo">Para compradores</div>
+        <div class="precio-amount">5.000€</div>
+        <div class="precio-iva">+ IVA · Cobro en escritura</div>
+        <div class="precio-desc">
+          Te acompañamos activamente en la búsqueda y compra de tu vivienda ideal en Barcelona.
+        </div>
+        <ul class="precio-lista">
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Análisis de capacidad financiera
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Búsqueda activa en cartera propia
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Acceso a inmuebles antes de publicarse
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Asesoría en negociación de precio
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Gestión hipotecaria incluida
+          </li>
+          <li>
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+            </svg>
+            Panel de seguimiento 24/7
+          </li>
+        </ul>
+        <a href="registro.html?tipo=comprar" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;background:var(--negro)">
+          Empezar a comprar
+        </a>
+      </div>
+
+    </div>
+
+    <div class="precio-nota fade-up">
+      <p>
+        <strong>Cobro a éxito garantizado:</strong> Si no escrituramos, no pagas nada.
+        El honorario se factura y cobra únicamente el día de la firma ante notario.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TESTIMONIOS
+════════════════════════════════════════════════════════ -->
+<section class="testimonios">
+  <div class="container">
+    <div class="text-center section-header">
+      <span class="overline">Lo que dicen nuestros clientes</span>
+      <h2 class="section-title">Familias que confiaron<br/>en NuevaHabitat</h2>
+    </div>
+
+    <div class="testimonios-grid">
+
+      <div class="testimonio-card fade-up">
+        <div class="testimonio-stars">
+          ★★★★★
+        </div>
+        <p class="testimonio-text">
+          Vendimos nuestro piso en el Eixample en solo 6 semanas. El proceso fue increíblemente sencillo con el panel digital. Saber en todo momento en qué fase estábamos fue un alivio enorme.
+        </p>
+        <div class="testimonio-autor">
+          <img src="imagenes/familia1.jpg" alt="Laura y Marc" />
+          <div>
+            <div class="testimonio-nombre">Laura y Marc Ferrer</div>
+            <div class="testimonio-rol">Vendedores · Eixample, Barcelona</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card fade-up fade-up-delay-1">
+        <div class="testimonio-stars">
+          ★★★★★
+        </div>
+        <p class="testimonio-text">
+          Llevábamos meses buscando sin éxito. NuevaHabitat nos propuso un piso de su cartera propia que ni siquiera estaba publicado en portales. Exactamente lo que buscábamos.
+        </p>
+        <div class="testimonio-autor">
+          <img src="imagenes/familia2.jpg" alt="Cristina Soler" />
+          <div>
+            <div class="testimonio-nombre">Cristina Soler</div>
+            <div class="testimonio-rol">Compradora · Gràcia, Barcelona</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card fade-up fade-up-delay-2">
+        <div class="testimonio-stars">
+          ★★★★★
+        </div>
+        <p class="testimonio-text">
+          El precio fijo fue lo que nos decidió. Sabíamos exactamente cuánto íbamos a pagar desde el principio. Sin comisiones sorpresa al final. Totalmente recomendable.
+        </p>
+        <div class="testimonio-autor">
+          <img src="imagenes/familia3.jpg" alt="Jordi y Ana Torres" />
+          <div>
+            <div class="testimonio-nombre">Jordi y Ana Torres</div>
+            <div class="testimonio-rol">Vendedores · Sant Gervasi, Barcelona</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     QUIÉNES SOMOS
+════════════════════════════════════════════════════════ -->
+<section class="nosotros">
+  <div class="container">
+    <div class="nosotros-inner">
+
+      <div class="nosotros-images fade-up">
+        <div class="nosotros-img-main">
+          <img src="imagenes/inmobiliario1.jpg" alt="Equipo NuevaHabitat" loading="lazy" />
+        </div>
+        <div class="nosotros-img-secondary">
+          <img src="imagenes/familia1.jpg" alt="Familia feliz con su nuevo hogar" loading="lazy" />
+        </div>
+        <div class="nosotros-badge-float">
+          <span class="float-num">+250</span>
+          <span class="float-label">Familias<br/>ayudadas</span>
+        </div>
+      </div>
+
+      <div class="nosotros-content fade-up fade-up-delay-1">
+        <span class="overline">Quiénes somos</span>
+        <h2 class="section-title">Expertos en Barcelona.<br/>Comprometidos contigo.</h2>
+        <p class="section-subtitle">
+          NuevaHabitat nació para cambiar la forma en que se compran y venden viviendas en Barcelona. Combinamos el acompañamiento personal de los mejores agentes con la transparencia y eficiencia de la tecnología.
+        </p>
+
+        <div class="nosotros-valores">
+          <div class="valor-item">
+            <div class="valor-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div class="valor-body">
+              <h4>Transparencia total</h4>
+              <p>Precio fijo desde el inicio. Sin comisiones ocultas ni sorpresas en la escritura.</p>
+            </div>
+          </div>
+
+          <div class="valor-item">
+            <div class="valor-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+              </svg>
+            </div>
+            <div class="valor-body">
+              <h4>Acompañamiento real</h4>
+              <p>Un agente dedicado para ti desde la primera llamada hasta la firma notarial.</p>
+            </div>
+          </div>
+
+          <div class="valor-item">
+            <div class="valor-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div class="valor-body">
+              <h4>Tecnología al servicio</h4>
+              <p>Panel digital para seguir tu expediente, calendario de visitas y documentación en tiempo real.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="nosotros.html" class="btn btn-outline">Conocer el equipo</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     BLOG
+════════════════════════════════════════════════════════ -->
+<section class="blog">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="overline">Blog inmobiliario</span>
+      <h2 class="section-title">Todo lo que necesitas saber</h2>
+      <p class="section-subtitle">
+        Guías, consejos y análisis del mercado inmobiliario de Barcelona escritos por nuestros expertos.
+      </p>
+    </div>
+
+    <div class="blog-grid">
+
+      <div class="blog-card fade-up">
+        <div class="blog-card-img">
+          <img src="imagenes/interior5.jpg" alt="Cómo valorar tu piso" loading="lazy" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Vender</div>
+          <h3>¿Cuánto vale tu piso en Barcelona en 2026?</h3>
+          <p>Los precios en el mercado inmobiliario barcelonés han subido un 8% de media este año. Te explicamos cómo calcular el precio justo de tu vivienda.</p>
+          <div class="blog-meta">
+            <span>10 jul 2026</span>
+            <span>5 min lectura</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card fade-up fade-up-delay-1">
+        <div class="blog-card-img">
+          <img src="imagenes/modern-styled-small-entryway.jpg" alt="Guía hipotecas Barcelona" loading="lazy" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Comprar</div>
+          <h3>Guía completa de hipotecas en España para 2026</h3>
+          <p>Tipo fijo vs. tipo variable, cuánto puedes pedir y cómo mejorar tus condiciones. Todo lo que debes saber antes de ir al banco.</p>
+          <div class="blog-meta">
+            <span>5 jul 2026</span>
+            <span>8 min lectura</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card fade-up fade-up-delay-2">
+        <div class="blog-card-img">
+          <img src="imagenes/spacejoy-85pCvDWDMmI-unsplash.jpg" alt="Contrato de arras" loading="lazy" />
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Jurídico</div>
+          <h3>Contrato de arras: qué es y cómo protegerte</h3>
+          <p>El contrato de arras es uno de los pasos más importantes en una compraventa. Te explicamos los tipos, plazos y qué pasa si alguien incumple.</p>
+          <div class="blog-meta">
+            <span>28 jun 2026</span>
+            <span>6 min lectura</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="blog.html" class="btn btn-outline">Ver todos los artículos</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════════════════ -->
+<section class="cta-final">
+  <div class="cta-bg" style="background-image:url('imagenes/inmobilarios_con_tablet_Vertical-scaled.jpg')"></div>
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="cta-content fade-up">
+      <span class="overline" style="color:var(--oro-claro);justify-content:center;display:flex">¿Listo para empezar?</span>
+      <h2 class="section-title light">Da el primer paso<br/>hacia tu nuevo hogar</h2>
+      <p class="section-subtitle light">
+        Sin compromisos. Sin adelantos. Habla con un agente hoy mismo y descubre cómo podemos ayudarte.
+      </p>
+      <div class="cta-buttons">
+        <a href="registro.html?tipo=vender" class="btn btn-gold btn-lg">Quiero vender</a>
+        <a href="registro.html?tipo=comprar" class="btn btn-outline-light btn-lg">Quiero comprar</a>
+      </div>
+      <div class="cta-phones">
+        <a href="tel:+34600367742" class="cta-phone">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          600 367 742
+        </a>
+        <a href="tel:+34613640673" class="cta-phone">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          613 640 673
+        </a>
+        <a href="https://wa.me/34600367742" class="cta-phone" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="imagenes/Logo/logosinfondo1.png" alt="NuevaHabitat" />
+        <p>
+          Inmobiliaria tecnológica en Barcelona. Precio fijo y cobro solo en escritura. Tu hogar en buenas manos.
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/34600367742" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="vender.html">Vender mi vivienda</a></li>
+          <li><a href="comprar.html">Comprar vivienda</a></li>
+          <li><a href="hipotecas.html">Hipotecas</a></li>
+          <li><a href="vender.html#valorar">Valorar mi casa</a></li>
+          <li><a href="inmuebles.html">Ver inmuebles</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="nosotros.html">Quiénes somos</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="login.html">Iniciar sesión</a></li>
+          <li><a href="registro.html">Registrarse</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li>
+            <a href="tel:+34600367742">600 367 742</a>
+          </li>
+          <li>
+            <a href="tel:+34613640673">613 640 673</a>
+          </li>
+          <li>
+            <a href="mailto:hola@nuevahabitat.com">hola@nuevahabitat.com</a>
+          </li>
+          <li style="color:rgba(255,255,255,.45);font-size:.8125rem;margin-top:.5rem">
+            Barcelona &amp; Área Metropolitana
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 NuevaHabitat. Todos los derechos reservados.</p>
+      <div class="footer-bottom-links">
+        <a href="privacidad.html">Política de privacidad</a>
+        <a href="aviso-legal.html">Aviso legal</a>
+        <a href="cookies.html">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     WHATSAPP FLOTANTE
+════════════════════════════════════════════════════════ -->
+<div class="whatsapp-float">
+  <div class="whatsapp-tooltip">¿Hablamos por WhatsApp?</div>
+  <a
+    href="https://wa.me/34600367742?text=Hola,%20me%20interesa%20información%20sobre%20NuevaHabitat"
+    class="whatsapp-btn"
+    target="_blank"
+    rel="noopener"
+    aria-label="Contactar por WhatsApp"
+  >
+    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
