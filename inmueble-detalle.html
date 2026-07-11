@@ -90,8 +90,12 @@
     .vs-submit:disabled{opacity:.5;cursor:not-allowed}
     .vs-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;border-radius:6px;padding:.75rem;font-size:.82rem;text-align:center;margin-top:.5rem;display:none}
 
+    /* ── Columna derecha sticky ──────────────────────────────── */
+    .det-right-col{position:sticky;top:88px;max-height:calc(100vh - 100px);overflow-y:auto;display:flex;flex-direction:column;gap:.75rem;scrollbar-width:thin;scrollbar-color:#2e2e2e transparent}
+    .det-right-col::-webkit-scrollbar{width:4px}.det-right-col::-webkit-scrollbar-thumb{background:#2e2e2e;border-radius:4px}
+
     /* Contact card */
-    .det-contact{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;padding:1.5rem;position:sticky;top:90px}
+    .det-contact{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;padding:1.5rem}
     .det-contact h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1.25rem;color:#e8e0d5}
     .det-agent{display:flex;align-items:center;gap:.85rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid #2e2e2e}
     .det-agent img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #b8936a}
@@ -99,12 +103,61 @@
     .det-agent-role{font-size:.72rem;color:#b8936a}
     .det-form input,.det-form textarea{width:100%;background:#242424;border:1px solid #2e2e2e;border-radius:6px;padding:.65rem .85rem;color:#e8e0d5;font-size:.84rem;margin-bottom:.65rem;font-family:'Inter',sans-serif;transition:border .2s}
     .det-form input:focus,.det-form textarea:focus{outline:none;border-color:#b8936a}
-    .det-form textarea{resize:vertical;min-height:80px}
+    .det-form textarea{resize:vertical;min-height:70px}
     .det-btn-primary{width:100%;background:#b8936a;color:#fff;border:none;border-radius:6px;padding:.8rem;font-size:.88rem;font-weight:700;cursor:pointer;margin-bottom:.65rem;transition:background .2s;font-family:'Inter',sans-serif}
     .det-btn-primary:hover{background:#9a7550}
     .det-btn-wa{width:100%;background:#25d366;color:#fff;border:none;border-radius:6px;padding:.75rem;font-size:.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:'Inter',sans-serif}
     .det-btn-wa:hover{background:#1ebe57}
     .det-form-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;border-radius:6px;padding:.65rem;font-size:.8rem;text-align:center;margin-top:.5rem;display:none}
+
+    /* ── Calculadora hipoteca (widget) ───────────────────────── */
+    .hc-widget{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;padding:1.25rem}
+    .hc-widget h3{font-family:'Playfair Display',serif;font-size:.95rem;color:#e8e0d5;margin-bottom:1rem}
+    .hc-price-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.5rem}
+    .hc-price{font-size:1.4rem;font-weight:800;color:#b8936a}
+    .hc-row{margin-bottom:.85rem}
+    .hc-row-lbl{display:flex;justify-content:space-between;font-size:.75rem;color:#888;margin-bottom:.3rem}
+    .hc-row-lbl span:last-child{color:#e8e0d5;font-weight:600}
+    .hc-slider{width:100%;accent-color:#b8936a;cursor:pointer}
+    .hc-tipo{display:flex;gap:.5rem;margin-bottom:.85rem}
+    .hc-tipo-btn{flex:1;background:#242424;border:1px solid #2e2e2e;border-radius:6px;padding:.45rem;font-size:.75rem;color:#888;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+    .hc-tipo-btn.act{background:rgba(184,147,106,.15);border-color:#b8936a;color:#d4b896;font-weight:600}
+    .hc-result{background:#242424;border:1px solid #2e2e2e;border-radius:8px;padding:.85rem;margin-bottom:.75rem}
+    .hc-result-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem}
+    .hc-result-row:last-child{margin:0;padding-top:.35rem;border-top:1px solid #2e2e2e;margin-top:.35rem}
+    .hc-result-lbl{font-size:.76rem;color:#888}
+    .hc-result-val{font-size:1rem;font-weight:700;color:#e8e0d5}
+    .hc-result-main .hc-result-val{font-size:1.3rem;color:#b8936a}
+    .hc-cta{width:100%;background:none;border:1px solid #b8936a;color:#b8936a;border-radius:6px;padding:.65rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+    .hc-cta:hover{background:rgba(184,147,106,.1)}
+    .hc-note{font-size:.65rem;color:#555;margin-top:.5rem;line-height:1.5}
+
+    /* ── Modal hipoteca ──────────────────────────────────────── */
+    #hc-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9998;display:none;align-items:center;justify-content:center;padding:1rem}
+    #hc-modal.open{display:flex}
+    .hc-modal-box{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:16px;padding:2rem;width:100%;max-width:460px;position:relative}
+    .hc-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#888;font-size:1.5rem;cursor:pointer;line-height:1}
+    .hc-modal-close:hover{color:#fff}
+    .hc-modal-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:#e8e0d5;margin-bottom:.35rem}
+    .hc-modal-sub{font-size:.82rem;color:#888;margin-bottom:1.25rem}
+    .hc-modal-result{background:#242424;border:1px solid #2e2e2e;border-radius:8px;padding:1rem;margin-bottom:1.25rem;display:flex;justify-content:space-around;text-align:center}
+    .hc-modal-result div{display:flex;flex-direction:column;gap:.25rem}
+    .hc-modal-result .val{font-size:1.3rem;font-weight:700;color:#b8936a}
+    .hc-modal-result .lbl{font-size:.68rem;color:#888;text-transform:uppercase;letter-spacing:.06em}
+    .hc-modal input{width:100%;background:#242424;border:1px solid #2e2e2e;border-radius:6px;padding:.65rem .85rem;color:#e8e0d5;font-size:.84rem;margin-bottom:.65rem;font-family:'Inter',sans-serif}
+    .hc-modal input:focus{outline:none;border-color:#b8936a}
+    .hc-modal-btn{width:100%;background:#b8936a;color:#fff;border:none;border-radius:8px;padding:.85rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+    .hc-modal-btn:hover{background:#9a7550}
+    .hc-modal-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;border-radius:6px;padding:.75rem;font-size:.82rem;text-align:center;margin-top:.75rem;display:none}
+
+    /* ── Banner vendedores (debajo del mapa) ─────────────────── */
+    .det-sell-banner{background:linear-gradient(135deg,#0d0d0d 60%,rgba(184,147,106,.12));border:1px solid rgba(184,147,106,.3);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .det-sell-banner-icon{font-size:2.2rem;flex-shrink:0}
+    .det-sell-banner-text{flex:1}
+    .det-sell-banner-text h4{font-family:'Playfair Display',serif;font-size:1.1rem;color:#e8e0d5;margin-bottom:.3rem}
+    .det-sell-banner-text p{font-size:.8rem;color:#888;line-height:1.5}
+    .det-sell-banner-btn{background:#b8936a;color:#fff;border:none;border-radius:8px;padding:.65rem 1.25rem;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+    .det-sell-banner-btn:hover{background:#9a7550}
 
     /* Lightbox */
     #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column}
@@ -119,7 +172,7 @@
       .det-gallery{grid-template-columns:1fr;grid-template-rows:260px;height:260px}
       .det-gallery-thumb{display:none}
       .det-body{grid-template-columns:1fr}
-      .det-contact{position:static}
+      .det-right-col{position:static;max-height:none;overflow:visible}
       .det-title{font-size:1.5rem}
     }
   </style>
@@ -235,15 +288,25 @@
 
           <!-- Mapa -->
           <div class="det-section" id="det-map-section">
-            <div class="det-section-title">Ubicación</div>
+            <div class="det-section-title">Ubicación aproximada</div>
             <div class="det-map">
-              <iframe id="det-map-iframe" src="" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa ubicación"></iframe>
+              <iframe id="det-map-iframe" src="" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa ubicación" style="width:100%;height:100%;border:0"></iframe>
             </div>
+          </div>
+
+          <!-- Banner vendedores -->
+          <div class="det-sell-banner">
+            <div class="det-sell-banner-icon">🏠</div>
+            <div class="det-sell-banner-text">
+              <h4>¿Tienes un inmueble que vender?</h4>
+              <p>Valoramos tu propiedad gratis y la publicamos en 24h. Sin comisión por adelantado — solo cobramos en escritura.</p>
+            </div>
+            <a href="vender.html" class="det-sell-banner-btn">Vender gratis →</a>
           </div>
         </div>
 
-        <!-- Columna derecha: contacto -->
-        <div>
+        <!-- Columna derecha sticky -->
+        <div class="det-right-col">
           <div class="det-contact">
             <h3>Solicitar información</h3>
             <div class="det-agent">
@@ -301,9 +364,83 @@
             </button>
             <div class="vs-ok" id="vs-ok">✅ ¡Solicitud recibida! El gestor te contactará para confirmar la visita.</div>
           </div>
-        </div>
+
+          <!-- Widget calculadora hipoteca -->
+          <div class="hc-widget">
+            <h3>🏦 Calcula tu hipoteca</h3>
+            <div class="hc-price-row">
+              <div class="hc-price" id="hc-precio-lbl">– €</div>
+              <span style="font-size:.72rem;color:#888">Precio inmueble</span>
+            </div>
+
+            <div class="hc-row">
+              <div class="hc-row-lbl"><span>Mis ahorros</span><span id="hc-ahorros-lbl">–</span></div>
+              <input type="range" class="hc-slider" id="hc-ahorros-range" min="0" max="100" value="20" oninput="updateCalc()"/>
+              <div class="hc-row-lbl" style="margin-top:.2rem"><span style="font-size:.65rem">0%</span><span style="font-size:.65rem">100%</span></div>
+            </div>
+
+            <div class="hc-row">
+              <div class="hc-row-lbl"><span>Plazo</span><span id="hc-anos-lbl">30 años</span></div>
+              <input type="range" class="hc-slider" id="hc-anos-range" min="5" max="30" value="30" oninput="updateCalc()"/>
+              <div class="hc-row-lbl" style="margin-top:.2rem"><span style="font-size:.65rem">5 años</span><span style="font-size:.65rem">30 años</span></div>
+            </div>
+
+            <div class="hc-row">
+              <div class="hc-row-lbl"><span>Tipo de interés</span><span id="hc-tasa-lbl">2.52%</span></div>
+              <div style="display:flex;align-items:center;gap:.5rem">
+                <div class="hc-tipo">
+                  <button class="hc-tipo-btn act" id="hc-fijo" onclick="setTipo('fijo')">Fijo</button>
+                  <button class="hc-tipo-btn" id="hc-variable" onclick="setTipo('variable')">Variable</button>
+                </div>
+                <div style="display:flex;align-items:center;gap:.3rem;flex:1;justify-content:flex-end">
+                  <button onclick="changeTasa(-0.1)" style="background:#242424;border:1px solid #2e2e2e;color:#e8e0d5;border-radius:4px;width:24px;height:24px;cursor:pointer;font-size:.9rem">−</button>
+                  <span id="hc-tasa-display" style="font-size:.85rem;color:#e8e0d5;min-width:40px;text-align:center">2.52%</span>
+                  <button onclick="changeTasa(0.1)" style="background:#242424;border:1px solid #2e2e2e;color:#e8e0d5;border-radius:4px;width:24px;height:24px;cursor:pointer;font-size:.9rem">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="hc-result">
+              <div class="hc-result-row hc-result-main">
+                <span class="hc-result-lbl">Cuota mensual</span>
+                <span class="hc-result-val" id="hc-cuota">–</span>
+              </div>
+              <div class="hc-result-row">
+                <span class="hc-result-lbl">Préstamo</span>
+                <span class="hc-result-val" id="hc-prestamo">–</span>
+              </div>
+              <div class="hc-result-row">
+                <span class="hc-result-lbl">Coste total</span>
+                <span class="hc-result-val" id="hc-total">–</span>
+              </div>
+            </div>
+
+            <button class="hc-cta" onclick="openHcModal()">📋 Solicitar estudio de hipoteca</button>
+            <div class="hc-note">Los resultados son orientativos. Las condiciones reales dependen de cada entidad financiera.</div>
+          </div>
+
+        </div><!-- fin det-right-col -->
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Modal hipoteca -->
+<div id="hc-modal">
+  <div class="hc-modal-box">
+    <button class="hc-modal-close" onclick="closeHcModal()">✕</button>
+    <div class="hc-modal-title">Estudio de hipoteca gratuito</div>
+    <div class="hc-modal-sub">Te ponemos en contacto con nuestro asesor hipotecario. Sin compromiso.</div>
+    <div class="hc-modal-result">
+      <div><div class="val" id="hc-m-cuota">–</div><div class="lbl">Cuota mensual</div></div>
+      <div><div class="val" id="hc-m-total">–</div><div class="lbl">Coste total</div></div>
+      <div><div class="val" id="hc-m-tasa">–</div><div class="lbl">Interés</div></div>
+    </div>
+    <input type="text"  id="hc-m-nombre"   placeholder="Nombre completo *"/>
+    <input type="tel"   id="hc-m-tel"      placeholder="Teléfono *"/>
+    <input type="email" id="hc-m-email"    placeholder="Email (opcional)"/>
+    <button class="hc-modal-btn" onclick="sendHcLead()">📩 Solicitar estudio gratuito</button>
+    <div class="hc-modal-ok" id="hc-m-ok">✅ Solicitud enviada. Te contactaremos en menos de 24h.</div>
   </div>
 </div>
 
@@ -463,6 +600,8 @@ function renderProperty(p){
 
   // Mapa
   loadMap(p);
+  // Calculadora
+  initCalc(p);
 }
 
 /* ── Lightbox ──────────────────────────────────────────────────── */
@@ -531,13 +670,97 @@ async function concertarVisita(){
   }
 }
 
-/* ── Mapa (OpenStreetMap embed) ───────────────────────────────── */
+/* ── Mapa (Google Maps embed con dirección real) ─────────────── */
 function loadMap(p){
-  const addr = [p.direccion, p.barrio, p.municipio, p.provincia].filter(Boolean).join(', ');
-  if(!addr){ document.getElementById('det-map-section').style.display='none'; return; }
-  const q = encodeURIComponent(addr);
+  const parts = [p.direccion, p.barrio, p.municipio, p.cp, p.provincia].filter(Boolean);
+  if(!parts.length){ document.getElementById('det-map-section').style.display='none'; return; }
+  const q = encodeURIComponent(parts.join(', '));
+  // Usar embed de OpenStreetMap (gratuito, no necesita API key)
   document.getElementById('det-map-iframe').src =
-    `https://www.google.com/maps?q=${q}&output=embed`;
+    `https://maps.google.com/maps?q=${q}&t=m&z=15&ie=UTF8&iwloc=&output=embed`;
+}
+
+/* ── Calculadora hipoteca ─────────────────────────────────────── */
+let hcTasa = 2.52;
+let hcTipoFijo = true;
+
+function setTipo(t){
+  hcTipoFijo = t==='fijo';
+  document.getElementById('hc-fijo').classList.toggle('act', hcTipoFijo);
+  document.getElementById('hc-variable').classList.toggle('act', !hcTipoFijo);
+  hcTasa = hcTipoFijo ? 2.52 : 1.8;
+  document.getElementById('hc-tasa-display').textContent = hcTasa.toFixed(2)+'%';
+  updateCalc();
+}
+
+function changeTasa(delta){
+  hcTasa = Math.max(0.1, Math.min(10, +(hcTasa + delta).toFixed(2)));
+  document.getElementById('hc-tasa-display').textContent = hcTasa.toFixed(2)+'%';
+  updateCalc();
+}
+
+function updateCalc(){
+  const precio = currentProp ? parseFloat(currentProp.precio)||0 : 0;
+  if(!precio) return;
+  const pct     = parseInt(document.getElementById('hc-ahorros-range').value)/100;
+  const ahorros = Math.round(precio * pct);
+  const anos    = parseInt(document.getElementById('hc-anos-range').value);
+  const prestamo= precio - ahorros;
+  const tasaMes = hcTasa / 100 / 12;
+  const n       = anos * 12;
+  const cuota   = tasaMes>0
+    ? Math.round(prestamo * tasaMes / (1 - Math.pow(1+tasaMes, -n)))
+    : Math.round(prestamo / n);
+  const total   = cuota * n;
+
+  document.getElementById('hc-ahorros-lbl').textContent   = ahorros.toLocaleString('es-ES')+' €';
+  document.getElementById('hc-anos-lbl').textContent       = anos+' años';
+  document.getElementById('hc-tasa-lbl').textContent       = hcTasa.toFixed(2)+'%';
+  document.getElementById('hc-cuota').textContent          = cuota.toLocaleString('es-ES')+' €';
+  document.getElementById('hc-prestamo').textContent       = prestamo.toLocaleString('es-ES')+' €';
+  document.getElementById('hc-total').textContent          = total.toLocaleString('es-ES')+' €';
+}
+
+function initCalc(p){
+  const precio = parseFloat(p.precio)||0;
+  document.getElementById('hc-precio-lbl').textContent = precio.toLocaleString('es-ES')+' €';
+  document.getElementById('hc-ahorros-range').max = 100;
+  updateCalc();
+}
+
+/* ── Modal hipoteca ───────────────────────────────────────────── */
+function openHcModal(){
+  const cuota  = document.getElementById('hc-cuota').textContent;
+  const total  = document.getElementById('hc-total').textContent;
+  document.getElementById('hc-m-cuota').textContent = cuota;
+  document.getElementById('hc-m-total').textContent = total;
+  document.getElementById('hc-m-tasa').textContent  = hcTasa.toFixed(2)+'%';
+  document.getElementById('hc-modal').classList.add('open');
+}
+function closeHcModal(){ document.getElementById('hc-modal').classList.remove('open'); }
+
+async function sendHcLead(){
+  const nombre = document.getElementById('hc-m-nombre').value.trim();
+  const tel    = document.getElementById('hc-m-tel').value.trim();
+  const email  = document.getElementById('hc-m-email').value.trim();
+  if(!nombre||!tel){ alert('Nombre y teléfono son obligatorios.'); return; }
+
+  const anos   = document.getElementById('hc-anos-range').value;
+  const cuota  = document.getElementById('hc-cuota').textContent;
+  const ref    = currentProp ? (currentProp.ref||currentProp.id) : '';
+  const titulo = currentProp ? (currentProp.titulo||'') : '';
+
+  const mensaje = `Estudio hipoteca · ${titulo} (${ref}) · Cuota estimada: ${cuota} · Plazo: ${anos} años · Tipo: ${hcTipoFijo?'Fijo':'Variable'} ${hcTasa.toFixed(2)}%`;
+
+  try {
+    await window.nhSupabase.from('leads').insert({
+      nombre, telefono: tel, email: email||null, mensaje, tipo: 'hipoteca'
+    });
+    document.getElementById('hc-m-ok').style.display='block';
+    document.querySelector('.hc-modal-btn').style.display='none';
+  } catch(e){
+    alert('Error: '+(e.message||'Inténtalo de nuevo.'));
+  }
 }
 
 /* ── Formulario contacto ──────────────────────────────────────── */
