@@ -47,18 +47,28 @@ ALTER TABLE inmuebles ADD COLUMN IF NOT EXISTS plano_url             text;
 -- Políticas de Storage para bucket "inmuebles"
 -- ============================================================
 
--- Lectura pública (cualquiera puede ver las imágenes)
+-- Asegurar que el bucket existe y es público
 INSERT INTO storage.buckets (id, name, public, file_size_limit)
 VALUES ('inmuebles', 'inmuebles', true, 52428800)
-ON CONFLICT (id) DO UPDATE SET public=true;
+ON CONFLICT (id) DO UPDATE SET public = true;
 
+-- Eliminar políticas previas si existen (evita error de nombre duplicado)
+DROP POLICY IF EXISTS "Public read inmuebles"  ON storage.objects;
+DROP POLICY IF EXISTS "Auth upload inmuebles"  ON storage.objects;
+DROP POLICY IF EXISTS "Auth delete inmuebles"  ON storage.objects;
+
+-- Lectura pública (cualquiera puede ver las imágenes)
 CREATE POLICY "Public read inmuebles" ON storage.objects
-  FOR SELECT TO public USING (bucket_id = 'inmuebles');
+  FOR SELECT TO public
+  USING (bucket_id = 'inmuebles');
 
--- Solo usuarios autenticados pueden subir/borrar
+-- Solo usuarios autenticados pueden subir
 CREATE POLICY "Auth upload inmuebles" ON storage.objects
-  FOR INSERT TO authenticated USING (bucket_id = 'inmuebles');
+  FOR INSERT TO authenticated
+  WITH CHECK (bucket_id = 'inmuebles');
 
+-- Solo usuarios autenticados pueden borrar
 CREATE POLICY "Auth delete inmuebles" ON storage.objects
-  FOR DELETE TO authenticated USING (bucket_id = 'inmuebles');
+  FOR DELETE TO authenticated
+  USING (bucket_id = 'inmuebles');
 
