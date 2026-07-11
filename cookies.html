@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Política de Cookies · NuevaHabitat</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+  <style>
+    .legal-hero{padding:140px 0 60px;background:var(--negro)}
+    .legal-hero h1{font-family:var(--font-serif);color:var(--blanco);font-size:clamp(2rem,4vw,3rem);margin-bottom:.5rem}
+    .legal-hero p{color:rgba(255,255,255,.55);font-size:.9rem}
+    .legal-body{padding:60px 0 100px;background:var(--crema)}
+    .legal-content{max-width:800px;margin:0 auto;background:var(--blanco);border-radius:var(--radius-lg);padding:3rem;box-shadow:var(--shadow-sm)}
+    .legal-content h2{font-size:1.25rem;margin:2rem 0 .75rem;padding-top:1.5rem;border-top:1px solid var(--crema-dark)}
+    .legal-content h2:first-child{border-top:none;padding-top:0;margin-top:0}
+    .legal-content p,.legal-content li{font-size:.9375rem;color:var(--gris-texto);line-height:1.8;margin-bottom:.75rem}
+    .legal-content ul{padding-left:1.5rem}
+    .legal-content strong{color:var(--negro)}
+    .legal-content a{color:var(--oro)}
+    .cookie-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.875rem}
+    .cookie-table th{background:var(--negro);color:var(--blanco);padding:.75rem 1rem;text-align:left;font-weight:500;font-size:.8125rem}
+    .cookie-table td{padding:.7rem 1rem;border-bottom:1px solid var(--crema-dark);color:var(--gris-texto);vertical-align:top}
+    .cookie-table tr:last-child td{border-bottom:none}
+    .cookie-badge{display:inline-block;padding:.15rem .6rem;border-radius:100px;font-size:.7rem;font-weight:600;text-transform:uppercase}
+    .cb-tecnica{background:#e8f4e8;color:#2d7a2d}
+    .cb-analitica{background:#fff3cd;color:#856404}
+    .cookie-pref-btn{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+<nav id="navbar" class="scrolled" style="background:rgba(13,13,13,.97)">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">Barcelona · Inmobiliaria</span></div></a>
+    <ul class="nav-links"><li><a href="vender.html">Vender</a></li><li><a href="comprar.html">Comprar</a></li><li><a href="inmuebles.html">Inmuebles</a></li><li><a href="hipotecas.html">Hipotecas</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="blog.html">Blog</a></li></ul>
+    <div class="nav-actions"><a href="tel:+34600367742" class="nav-tel">600 367 742</a><a href="registro.html" class="nav-cta">Empezar ahora</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="hipotecas.html">Hipotecas</a><a href="nosotros.html">Nosotros</a><a href="blog.html">Blog</a><a href="registro.html" style="color:var(--oro)">Empezar ahora →</a></nav>
+
+<div class="legal-hero">
+  <div class="container">
+    <span class="overline">Legal</span>
+    <h1>Política de Cookies</h1>
+    <p>Última actualización: 10 de julio de 2026</p>
+  </div>
+</div>
+
+<div class="legal-body">
+  <div class="container">
+    <div class="legal-content">
+
+      <h2>¿Qué son las cookies?</h2>
+      <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Nos permiten recordar tus preferencias, analizar el uso del sitio y mejorar tu experiencia.</p>
+
+      <h2>Cookies que utilizamos</h2>
+      <table class="cookie-table">
+        <thead>
+          <tr><th>Cookie</th><th>Tipo</th><th>Proveedor</th><th>Duración</th><th>Finalidad</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>nh_session</code></td>
+            <td><span class="cookie-badge cb-tecnica">Técnica</span></td>
+            <td>NuevaHabitat</td>
+            <td>Sesión</td>
+            <td>Mantiene la sesión de usuario autenticado</td>
+          </tr>
+          <tr>
+            <td><code>nh_prefs</code></td>
+            <td><span class="cookie-badge cb-tecnica">Técnica</span></td>
+            <td>NuevaHabitat</td>
+            <td>1 año</td>
+            <td>Guarda preferencias del usuario (búsquedas, favoritos)</td>
+          </tr>
+          <tr>
+            <td><code>sb-auth-token</code></td>
+            <td><span class="cookie-badge cb-tecnica">Técnica</span></td>
+            <td>Supabase</td>
+            <td>Sesión</td>
+            <td>Token de autenticación de Supabase Auth</td>
+          </tr>
+          <tr>
+            <td><code>_ga</code></td>
+            <td><span class="cookie-badge cb-analitica">Analítica</span></td>
+            <td>Google Analytics</td>
+            <td>2 años</td>
+            <td>Distingue usuarios únicos para estadísticas de uso</td>
+          </tr>
+          <tr>
+            <td><code>_ga_*</code></td>
+            <td><span class="cookie-badge cb-analitica">Analítica</span></td>
+            <td>Google Analytics</td>
+            <td>2 años</td>
+            <td>Almacena el estado de la sesión para estadísticas</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Cookies técnicas (necesarias)</h2>
+      <p>Son imprescindibles para el funcionamiento del sitio web. Sin ellas no es posible navegar de forma segura ni utilizar las funcionalidades básicas como el inicio de sesión o guardar favoritos. <strong>No requieren tu consentimiento</strong> y no pueden desactivarse.</p>
+
+      <h2>Cookies analíticas (opcionales)</h2>
+      <p>Nos ayudan a entender cómo los visitantes interactúan con el sitio web (páginas visitadas, tiempo de permanencia, origen del tráfico). Los datos se recopilan de forma agregada y anónima. <strong>Solo se activan si das tu consentimiento</strong> a través del banner de cookies.</p>
+
+      <h2>Gestión de cookies</h2>
+      <p>Puedes gestionar o revocar tu consentimiento en cualquier momento:</p>
+      <div class="cookie-pref-btn">
+        <button class="btn btn-gold" onclick="alert('Panel de preferencias de cookies próximamente disponible.')">Gestionar mis preferencias</button>
+        <button class="btn btn-outline" onclick="alert('Cookies analíticas rechazadas. Solo se usarán las técnicas necesarias.')">Solo cookies necesarias</button>
+      </div>
+      <p style="margin-top:1.25rem">También puedes gestionar o bloquear las cookies desde la configuración de tu navegador:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+        <li><a href="https://support.microsoft.com/es-es/windows/eliminar-y-administrar-cookies-168dab11-0753-043d-7c16-ede5947fc64d" target="_blank" rel="noopener">Microsoft Edge</a></li>
+      </ul>
+      <p>Ten en cuenta que bloquear todas las cookies puede afectar al funcionamiento del sitio web.</p>
+
+      <h2>Más información</h2>
+      <p>Para cualquier consulta sobre el uso de cookies: <a href="mailto:privacidad@nuevahabitat.com">privacidad@nuevahabitat.com</a></p>
+      <p>Consulta también nuestra <a href="privacidad.html">Política de Privacidad</a> y el <a href="aviso-legal.html">Aviso Legal</a>.</p>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top" style="grid-template-columns:2fr 1fr 1fr">
+      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona.</p></div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="vender.html">Vender</a></li><li><a href="comprar.html">Comprar</a></li><li><a href="hipotecas.html">Hipotecas</a></li></ul></div>
+      <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacidad.html">Privacidad</a></li><li><a href="aviso-legal.html">Aviso legal</a></li><li><a href="cookies.html">Cookies</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="privacidad.html">Privacidad</a><a href="aviso-legal.html">Aviso legal</a><a href="cookies.html">Cookies</a></div></div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
