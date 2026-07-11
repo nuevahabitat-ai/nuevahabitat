@@ -136,15 +136,18 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  transition: background var(--transition), box-shadow var(--transition);
-  padding: 1.25rem 0;
-}
-
-#navbar.scrolled {
   background: rgba(13,13,13,.97);
   backdrop-filter: blur(12px);
   box-shadow: 0 2px 20px rgba(0,0,0,.3);
-  padding: .85rem 0;
+  transition: padding var(--transition), box-shadow var(--transition);
+  padding: 1.1rem 0;
+}
+
+#navbar.scrolled {
+  background: rgba(13,13,13,.99);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 2px 28px rgba(0,0,0,.45);
+  padding: .75rem 0;
 }
 
 .nav-inner {
@@ -159,40 +162,42 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 .nav-logo { display: flex; align-items: center; gap: 1rem; }
 
 .nav-logo img {
-  height: 68px;
+  height: 76px;
   width: auto;
   mix-blend-mode: screen;
   flex-shrink: 0;
+  filter: brightness(1.15) contrast(1.05);
 }
 
 .nav-logo-divider {
-  width: 1px;
-  height: 36px;
-  background: rgba(184,147,106,.45);
+  width: 1.5px;
+  height: 40px;
+  background: rgba(212,184,150,.55);
   flex-shrink: 0;
 }
 
 .nav-logo .logo-text {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
 }
 
 .nav-logo .logo-name {
   font-family: var(--font-serif);
-  font-size: 1.1875rem;
-  font-weight: 600;
-  letter-spacing: .12em;
-  color: var(--oro-claro);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: #d4aa6e;
   line-height: 1.1;
   text-transform: uppercase;
+  text-shadow: 0 1px 12px rgba(212,170,110,.35);
 }
 
 .nav-logo .logo-sub {
-  font-size: .6rem;
-  font-weight: 400;
-  letter-spacing: .22em;
-  color: rgba(184,147,106,.65);
+  font-size: .625rem;
+  font-weight: 500;
+  letter-spacing: .26em;
+  color: rgba(212,170,110,.75);
   text-transform: uppercase;
 }
 
@@ -284,9 +289,10 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(13,13,13,.85) 0%,
-    rgba(13,13,13,.35) 50%,
-    rgba(13,13,13,.1) 100%
+    rgba(13,13,13,.88) 0%,
+    rgba(13,13,13,.42) 45%,
+    rgba(13,13,13,.18) 75%,
+    rgba(13,13,13,.08) 100%
   );
 }
 
