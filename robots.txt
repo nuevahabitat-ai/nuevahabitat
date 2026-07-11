@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# No indexar páginas de usuario/panel
+Disallow: /panel.html
+Disallow: /login.html
+Disallow: /registro.html
+
+Sitemap: https://www.nuevahabitat.com/sitemap.xml

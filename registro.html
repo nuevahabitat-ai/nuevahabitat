@@ -3,7 +3,22 @@
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Crear cuenta · NuevaHabitat</title>
-  <link rel="stylesheet" href="css/styles.css"/>
+    <meta name="description" content="Crea tu cuenta en NuevaHabitat y empieza a vender o comprar tu vivienda en Barcelona. Registro gratuito y sin compromiso." />
+
+  <!-- SEO & Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://www.nuevahabitat.com/registro.html" />
+  <meta property="og:title"       content="Crear cuenta · NuevaHabitat" />
+  <meta property="og:description" content="Crea tu cuenta en NuevaHabitat y empieza a vender o comprar tu vivienda en Barcelona. Registro gratuito y sin compromiso." />
+  <meta property="og:image"       content="https://www.nuevahabitat.com/imagenes/interior3.jpg" />
+  <meta property="og:locale"      content="es_ES" />
+  <meta property="og:site_name"   content="NuevaHabitat" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="Crear cuenta · NuevaHabitat" />
+  <meta name="twitter:description" content="Crea tu cuenta en NuevaHabitat y empieza a vender o comprar tu vivienda en Barcelona. Registro gratuito y sin compromiso." />
+  <meta name="twitter:image"      content="https://www.nuevahabitat.com/imagenes/interior3.jpg" />
+  <link rel="canonical"           href="https://www.nuevahabitat.com/registro.html" />
+<link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
 </head>
 <body>
@@ -22,59 +37,94 @@
       <span class="overline">Es gratis y sin compromiso</span>
       <h1>Crear cuenta</h1>
       <p>Empieza a vender o comprar tu vivienda hoy mismo.</p>
-      <form onsubmit="return regSubmit(event)">
+      <div id="reg-error" style="display:none;background:#fef2f2;border:1px solid #fca5a5;color:#b91c1c;border-radius:6px;padding:.75rem 1rem;font-size:.875rem;margin-bottom:1rem"></div>
+      <div id="reg-ok"    style="display:none;background:#f0fdf4;border:1px solid #86efac;color:#166534;border-radius:6px;padding:.75rem 1rem;font-size:.875rem;margin-bottom:1rem"></div>
+
+      <form id="regForm">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
-          <div>
-            <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Nombre</label>
-            <input type="text" placeholder="Nombre" required style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+          <div class="form-group" style="margin:0">
+            <label>Nombre</label>
+            <input type="text" id="regNombre" placeholder="Nombre" required />
           </div>
-          <div>
-            <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Apellidos</label>
-            <input type="text" placeholder="Apellidos" required style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+          <div class="form-group" style="margin:0">
+            <label>Apellidos</label>
+            <input type="text" id="regApellidos" placeholder="Apellidos" required />
           </div>
         </div>
-        <div style="margin-bottom:1rem">
-          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Email</label>
-          <input type="email" placeholder="tu@email.com" required style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="regEmail" placeholder="tu@email.com" required />
         </div>
-        <div style="margin-bottom:1rem">
-          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Teléfono</label>
-          <input type="tel" placeholder="600 000 000" required style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" id="regTel" placeholder="600 000 000" required />
         </div>
         <div style="margin-bottom:1rem">
           <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Quiero...</label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
-            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem;transition:border-color var(--transition)" id="optVender">
-              <input type="radio" name="tipo" value="vender" style="accent-color:var(--oro)"/> Vender mi vivienda
+            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
+              <input type="radio" name="tipo" id="tipoVender" value="vender" style="accent-color:var(--oro)"/> Vender
             </label>
-            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem;transition:border-color var(--transition)" id="optComprar">
-              <input type="radio" name="tipo" value="comprar" style="accent-color:var(--oro)"/> Comprar vivienda
+            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
+              <input type="radio" name="tipo" id="tipoComprar" value="comprar" style="accent-color:var(--oro)"/> Comprar
             </label>
           </div>
         </div>
-        <div style="margin-bottom:1rem">
-          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Contraseña</label>
-          <input type="password" placeholder="Mínimo 8 caracteres" required minlength="8" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="regPassword" placeholder="Mínimo 8 caracteres" required minlength="8" />
         </div>
         <div style="display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem;font-size:.8125rem;color:var(--gris-texto)">
-          <input type="checkbox" required style="margin-top:2px;accent-color:var(--oro)"/>
-          <span>Acepto la <a href="privacidad.html" style="color:var(--oro)">política de privacidad</a> y el tratamiento de mis datos para la gestión del servicio.</span>
+          <input type="checkbox" id="regPrivacy" required style="margin-top:2px;accent-color:var(--oro)"/>
+          <span>Acepto la <a href="privacidad.html" style="color:var(--oro)">política de privacidad</a> y el tratamiento de mis datos.</span>
         </div>
-        <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">Crear mi cuenta →</button>
+        <button type="submit" class="btn btn-gold btn-lg" id="regBtn" style="width:100%;justify-content:center">Crear mi cuenta →</button>
       </form>
       <p class="auth-link">¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
     </div>
   </div>
 </div>
+<script src="js/supabase.js"></script>
 <script>
-function regSubmit(e){
-  e.preventDefault();
-  const btn=e.target.querySelector('button[type=submit]');
-  btn.textContent='✓ Cuenta creada — Un agente te llama pronto';
-  btn.style.background='var(--negro)';
-  btn.disabled=true;
-  return false;
-}
+document.addEventListener('supabase:ready', async () => {
+  const session = await nhAuth.getSession();
+  if (session) { window.location.href = 'panel.html'; return; }
+
+  const form   = document.getElementById('regForm');
+  const errBox = document.getElementById('reg-error');
+  const okBox  = document.getElementById('reg-ok');
+  const regBtn = document.getElementById('regBtn');
+
+  function showError(msg) { errBox.textContent = msg; errBox.style.display = 'block'; okBox.style.display = 'none'; }
+  function showOk(msg)    { okBox.textContent  = msg; okBox.style.display  = 'block'; errBox.style.display = 'none'; }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errBox.style.display = 'none';
+    const tipo = document.querySelector('input[name="tipo"]:checked')?.value || 'comprar';
+    const nombre = document.getElementById('regNombre').value.trim() + ' ' + document.getElementById('regApellidos').value.trim();
+
+    regBtn.textContent = 'Creando cuenta…';
+    regBtn.disabled = true;
+
+    const { data, error } = await nhAuth.register({
+      email:    document.getElementById('regEmail').value.trim(),
+      password: document.getElementById('regPassword').value,
+      nombre,
+      tipo
+    });
+
+    if (error) {
+      const msg = error.message.includes('already registered') ? 'Este email ya tiene una cuenta. ¿Quieres iniciar sesión?' : error.message;
+      showError(msg);
+      regBtn.textContent = 'Crear mi cuenta →';
+      regBtn.disabled = false;
+    } else {
+      showOk('¡Cuenta creada! Revisa tu email para confirmar el registro. Un agente te contactará pronto.');
+      form.style.display = 'none';
+    }
+  });
+});
 </script>
 </body>
 </html>

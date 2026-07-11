@@ -285,6 +285,27 @@
 })();
 
 
+/* ── Cookie Banner ──────────────────────────────────────────── */
+(function () {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+
+  if (localStorage.getItem('nh_cookies')) {
+    banner.classList.add('hidden');
+    return;
+  }
+
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem('nh_cookies', 'all');
+    banner.classList.add('hidden');
+  });
+  document.getElementById('cookie-reject').addEventListener('click', () => {
+    localStorage.setItem('nh_cookies', 'necessary');
+    banner.classList.add('hidden');
+  });
+})();
+
+
 /* ── Mobile Search Bar en home ──────────────────────────────── */
 (function () {
   const msb = document.querySelector('.msb-input');
