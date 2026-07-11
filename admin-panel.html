@@ -857,13 +857,14 @@ function buildPreview(){
   const ref    = document.getElementById('w-ref').value;
   const thumb  = mediaFiles.length ? mediaFiles[0].preview : 'imagenes/interior1.jpg';
 
+  const estadoBadgeMap = {disponible:'disponible',reservado:'reservado',vendido:'vendido',no_disponible:'no_disponible'};
   document.getElementById('wiz-preview-card').innerHTML = `
     <div class="pub-card">
       <div class="pub-img"><img src="${thumb}" style="width:100%;height:190px;object-fit:cover"/>
-        <span class="pub-badge badge-${estado}">${estado.replace('_',' ')}</span>
+        <span class="pub-badge badge-${estadoBadgeMap[estado]||'disponible'}">${estado.replace('_',' ')}</span>
       </div>
       <div class="pub-body">
-        <div class="pub-ref">${ref}</div>
+        <div class="pub-ref">${ref} · ${document.getElementById('w-tipo').value.toUpperCase()}</div>
         <div class="pub-title">${title||'Sin título'}</div>
         <div class="pub-price">${precio.toLocaleString('es-ES')} €</div>
         <div class="pub-meta">
@@ -892,16 +893,17 @@ async function publishProperty(){
   document.getElementById('wiz-ok').style.display='none';
 
   try {
-    // 1. Generate temp ID
     const tempId = 'prop_'+Date.now();
     currentPropertyId = tempId;
 
-    // 2. Collect checkboxes
-    const chk = id=>document.getElementById(id).checked;
-    const num = id=>parseFloat(document.getElementById(id).value)||null;
-    const txt = id=>document.getElementById(id).value.trim()||null;
+    // Helpers
+    const v   = id => (document.getElementById(id)?.value||'').trim();
+    const txt = id => v(id) || null;
+    const num = id => parseFloat(v(id)) || null;
+    const int = id => parseInt(v(id))  || null;
+    const chk = id => document.getElementById(id)?.checked || false;
 
-    // 3. Upload images
+    // Upload images
     const imageUrls = [];
     if(mediaFiles.length>0){
       document.getElementById('mo-upload-status').style.display='block';
@@ -916,17 +918,17 @@ async function publishProperty(){
       document.getElementById('mo-bar').style.width='100%';
     }
 
-    // 4. Upload video file (if any)
-    let videoFinalUrl = txt('mo-video-url') || videoUrl || null;
+    // Upload vídeo
+    let videoFinalUrl = txt('mo-video-url') || null;
     const vFile = document.getElementById('mo-video-file').files[0];
     if(vFile){
       document.getElementById('mo-bar-txt').textContent='Subiendo vídeo…';
       videoFinalUrl = await uploadToStorage(vFile, `${tempId}/video-${Date.now()}.mp4`);
     }
 
-    // 5. Upload plano
+    // Upload plano (guardado como tour_virtual_url)
     let planoUrl = null;
-    const pFile = document.getElementById('mo-plano-file').files[0] || planoFile;
+    const pFile = document.getElementById('mo-plano-file').files[0];
     if(pFile){
       document.getElementById('mo-bar-txt').textContent='Subiendo plano…';
       const ext = pFile.name.split('.').pop();
@@ -934,42 +936,48 @@ async function publishProperty(){
     }
     document.getElementById('mo-upload-status').style.display='none';
 
-    // 6. Insert to Supabase
-    const zonaVal = txt('w-zona');
-    const municipioVal = txt('w-municipio');
+    // Mapeo tipo → enum BD (piso,atico,casa,duplex,local,oficina,garaje)
+    const tipoMap = {piso:'piso',casa:'casa',atico:'atico',duplex:'duplex',
+                     local:'local',nave:'local',terreno:'local',garaje:'garaje'};
+    const tipoVal = tipoMap[v('w-tipo')] || 'piso';
+
+    // Mapeo estado → enum BD (disponible,reservado,vendido,retirado)
+    const estadoMap = {disponible:'disponible',reservado:'reservado',
+                       vendido:'vendido',no_disponible:'retirado'};
+    const estadoVal = estadoMap[v('w-estado')] || 'disponible';
+
+    // ref y slug únicos
+    const refVal  = txt('w-ref') || `NH-${Date.now()}`;
+    const slugVal = refVal.toLowerCase().replace(/[^a-z0-9]+/g,'-') + '-' + Date.now();
+
+    // Dirección combinada
+    const direccionVal = [v('w-calle'),v('w-numero'),v('w-pisopuerta')].filter(Boolean).join(' ') || null;
+
+    // Payload usando columnas reales del esquema 001
     const payload = {
-      titulo:               txt('w-titulo'),
-      referencia:           txt('w-ref'),
-      tipo:                 txt('w-tipo'),
-      tipo_operacion:       txt('w-operacion'),
-      precio:               num('w-precio'),
-      estado:               txt('w-estado'),
-      municipio:            zonaVal ? `${municipioVal} – ${zonaVal}` : municipioVal,
-      propietario_nombre:   txt('w-prop-nombre'),
-      propietario_telefono: txt('w-prop-tel'),
-      propietario_email:    txt('w-prop-email'),
-      direccion_calle:      txt('w-calle'),
-      direccion_numero:     txt('w-numero'),
-      direccion_piso:       txt('w-pisopuerta'),
-      cp:                   txt('w-cp'),
-      dormitorios:          num('w-dorm'),
-      banos:                num('w-banos'),
-      aseos:                num('w-aseos'),
-      salon:                chk('w-salon'),
-      terraza:              chk('w-terraza'),
-      balcon:               chk('w-balcon'),
-      garaje:               chk('w-garaje'),
-      trastero:             chk('w-trastero'),
-      ascensor:             chk('w-ascensor'),
-      m2_util:              num('w-m2util'),
-      m2_construido:        num('w-m2const'),
-      m2_terraza:           num('w-m2terr'),
-      m2_parcela:           num('w-m2parc'),
-      descripcion:          txt('w-desc'),
-      imagenes:             imageUrls,
-      video_url:            videoFinalUrl,
-      plano_url:            planoUrl,
-      publicado:            true,
+      ref:             refVal,
+      slug:            slugVal,
+      titulo:          txt('w-titulo'),
+      descripcion:     txt('w-desc'),
+      tipo:            tipoVal,
+      estado:          estadoVal,
+      precio:          num('w-precio'),
+      m2_construidos:  num('w-m2const'),
+      m2_utiles:       num('w-m2util'),
+      m2_terraza:      num('w-m2terr'),
+      habitaciones:    int('w-dorm'),
+      banos:           int('w-banos'),
+      ascensor:        chk('w-ascensor'),
+      trastero:        chk('w-trastero'),
+      barrio:          txt('w-zona'),
+      municipio:       txt('w-municipio'),
+      cp:              txt('w-cp'),
+      direccion:       direccionVal,
+      imagenes:        imageUrls,
+      imagen_principal: imageUrls[0] || null,
+      video_url:        videoFinalUrl,
+      tour_virtual_url: planoUrl,   // plano guardado aquí hasta migración 002
+      cartera_privada:  false,
     };
 
     const { data, error } = await window.nhSupabase.from('inmuebles').insert(payload).select().single();
@@ -1130,7 +1138,7 @@ async function loadPublications(){
   const { data, error } = await window.nhSupabase
     .from('inmuebles')
     .select('*')
-    .eq('publicado', true)
+    .eq('cartera_privada', false)
     .order('created_at', {ascending:false});
 
   const grid = document.getElementById('pub-grid');
@@ -1143,31 +1151,34 @@ async function loadPublications(){
   }
 
   countEl.textContent=`${data.length} publicación(es)`;
+  // Mapeo estado BD → badge CSS
+  const badgeClass = {disponible:'disponible',reservado:'reservado',vendido:'vendido',retirado:'no_disponible'};
+  const badgeLabel = {disponible:'Disponible',reservado:'Reservado',vendido:'Vendido',retirado:'No disponible'};
   grid.innerHTML = data.map(p=>{
-    const imgs = Array.isArray(p.imagenes)&&p.imagenes.length?p.imagenes:['imagenes/interior1.jpg'];
+    const imgs = Array.isArray(p.imagenes)&&p.imagenes.length?p.imagenes:(p.imagen_principal?[p.imagen_principal]:['imagenes/interior1.jpg']);
     const price = p.precio?Number(p.precio).toLocaleString('es-ES')+' €':'–';
     const badge = p.estado||'disponible';
-    const labels={disponible:'Disponible',reservado:'Reservado',vendido:'Vendido',no_disponible:'No disponible'};
+    const zona  = p.barrio ? `${p.municipio||''} · ${p.barrio}` : (p.municipio||'');
     return `
       <div class="pub-card">
         <div class="pub-img">
           <img src="${imgs[0]}" alt="${p.titulo||''}" id="pub-img-${p.id}" onerror="this.src='imagenes/interior1.jpg'"/>
-          <span class="pub-badge badge-${badge}">${labels[badge]||badge}</span>
+          <span class="pub-badge badge-${badgeClass[badge]||'disponible'}">${badgeLabel[badge]||badge}</span>
           ${imgs.length>1?`<div class="pub-img-nav">
-            <button onclick="pubImgPrev('${p.id}',${JSON.stringify(imgs)})">‹</button>
-            <button onclick="pubImgNext('${p.id}',${JSON.stringify(imgs)})">›</button>
+            <button onclick="pubImgPrev('${p.id}',${JSON.stringify(imgs).replace(/'/g,"\\'")})">‹</button>
+            <button onclick="pubImgNext('${p.id}',${JSON.stringify(imgs).replace(/'/g,"\\'")})">›</button>
           </div>
           <span class="pub-img-count">${imgs.length} fotos</span>`:''}
         </div>
         <div class="pub-body">
-          <div class="pub-ref">${p.referencia||'NH'} · ${(p.tipo||'piso').toUpperCase()}</div>
+          <div class="pub-ref">${p.ref||'NH'} · ${(p.tipo||'piso').toUpperCase()}</div>
           <div class="pub-title">${p.titulo||'Sin título'}</div>
           <div class="pub-price">${price}</div>
           <div class="pub-meta">
-            ${p.dormitorios?`<span>🛏 ${p.dormitorios}</span>`:''}
+            ${p.habitaciones?`<span>🛏 ${p.habitaciones}</span>`:''}
             ${p.banos?`<span>🚿 ${p.banos}</span>`:''}
-            ${p.m2_util?`<span>📐 ${p.m2_util} m²</span>`:''}
-            ${p.municipio?`<span>📍 ${p.municipio}</span>`:''}
+            ${p.m2_utiles?`<span>📐 ${p.m2_utiles} m²</span>`:''}
+            ${zona?`<span>📍 ${zona}</span>`:''}
           </div>
           <div class="pub-actions">
             <button class="pub-btn-edit" onclick="editProperty('${p.id}')">✏ Editar</button>
@@ -1208,7 +1219,7 @@ async function loadDashboard(){
   const [leads, clientes, inm, vis] = await Promise.all([
     sb.from('leads').select('*',{count:'exact',head:true}),
     sb.from('perfiles').select('*',{count:'exact',head:true}),
-    sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('publicado',true),
+    sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('cartera_privada',false),
     sb.from('visitas').select('*',{count:'exact',head:true}),
   ]);
   document.getElementById('st-leads').textContent = leads.count??0;
