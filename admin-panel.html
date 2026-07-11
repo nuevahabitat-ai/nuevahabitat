@@ -242,9 +242,13 @@ input,select,textarea{font-family:'Inter',sans-serif}
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 11-6 0"/></svg>
         Nuevos leads
       </div>
-      <div class="adm-nav-item" data-sec="clientes">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M9 7a4 4 0 108 0 4 4 0 00-8 0"/></svg>
-        Clientes
+      <div class="adm-nav-item" data-sec="compradores">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6M17 13l1.5 6M9 19a1 1 0 100 2 1 1 0 000-2zm8 0a1 1 0 100 2 1 1 0 000-2z"/></svg>
+        Compradores
+      </div>
+      <div class="adm-nav-item" data-sec="vendedores">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Vendedores
       </div>
       <div class="adm-nav-group" style="margin-top:.5rem">Inmuebles</div>
       <div class="adm-nav-item" data-sec="inmuebles">
@@ -293,7 +297,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <section class="adm-section active" id="sec-dashboard">
         <div class="adm-stats">
           <div class="stat-card"><div class="stat-num" id="st-leads">–</div><div class="stat-label">Leads nuevos</div></div>
-          <div class="stat-card"><div class="stat-num" id="st-clientes">–</div><div class="stat-label">Clientes</div></div>
+          <div class="stat-card"><div class="stat-num" id="st-clientes" style="font-size:1.1rem">–</div><div class="stat-label">Comp. / Vend.</div></div>
           <div class="stat-card"><div class="stat-num" id="st-inmuebles">–</div><div class="stat-label">Inmuebles</div></div>
           <div class="stat-card"><div class="stat-num" id="st-visitas">–</div><div class="stat-label">Visitas</div></div>
         </div>
@@ -311,11 +315,119 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
       </section>
 
-      <!-- ── Clientes ──────────────────────────────────────────── -->
-      <section class="adm-section" id="sec-clientes">
+      <!-- ══ COMPRADORES ═══════════════════════════════════════ -->
+      <section class="adm-section" id="sec-compradores">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Compradores</div>
+          <button class="adm-btn adm-btn-gold" onclick="openCompForm()">+ Nuevo comprador</button>
+        </div>
+
+        <!-- Formulario comprador -->
+        <div id="comp-form-wrap" style="display:none" class="adm-card">
+          <div class="adm-card-head">
+            <h3 id="comp-form-title">Nuevo comprador</h3>
+            <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeCompForm()">✕ Cancelar</button>
+          </div>
+          <input type="hidden" id="comp-edit-id"/>
+          <div class="wiz-section-label">Datos personales</div>
+          <div class="adm-form-grid">
+            <div class="adm-field adm-form-col-full">
+              <label>Nombre completo *</label>
+              <input type="text" id="c-nombre" placeholder="Juan García Martínez"/>
+            </div>
+            <div class="adm-field"><label>Teléfono</label><input type="tel" id="c-tel" placeholder="+34 600 000 000"/></div>
+            <div class="adm-field"><label>Email</label><input type="email" id="c-email" placeholder="cliente@email.com"/></div>
+            <div class="adm-field"><label>DNI (opcional)</label><input type="text" id="c-dni" placeholder="12345678A"/></div>
+            <div class="adm-field" style="align-items:flex-start;padding-top:.5rem">
+              <label class="adm-field-check"><input type="checkbox" id="c-activo" checked/> Activo en búsqueda</label>
+            </div>
+          </div>
+          <hr class="divider"/>
+          <div class="wiz-section-label">Criterios de búsqueda</div>
+          <div class="adm-form-grid">
+            <div class="adm-field"><label>Presupuesto máximo (€)</label><input type="number" id="c-presupuesto" placeholder="300000"/></div>
+            <div class="adm-field">
+              <label>Tipo de inmueble</label>
+              <select id="c-tipo">
+                <option value="">– Cualquiera –</option>
+                <option value="piso">Piso</option>
+                <option value="casa">Casa</option>
+                <option value="atico">Ático</option>
+                <option value="duplex">Dúplex</option>
+                <option value="local">Local</option>
+                <option value="nave">Nave</option>
+                <option value="terreno">Terreno</option>
+              </select>
+            </div>
+            <div class="adm-field"><label>Habitaciones mínimas</label><input type="number" id="c-hab" min="0" placeholder="2"/></div>
+            <div class="adm-field"><label>Zona buscada</label><input type="text" id="c-zona" placeholder="Eixample, Gràcia…"/></div>
+            <div class="adm-field" style="align-items:flex-start;padding-top:.5rem">
+              <label class="adm-field-check"><input type="checkbox" id="c-ascensor"/> Ascensor indispensable</label>
+            </div>
+          </div>
+          <div class="adm-field">
+            <label>Notas internas</label>
+            <textarea id="c-notas" rows="3" placeholder="Observaciones, seguimiento, preferencias adicionales…"></textarea>
+          </div>
+          <div id="comp-form-err" class="alert-box alert-error" style="display:none"></div>
+          <div class="gap-row" style="margin-top:.5rem">
+            <button class="adm-btn adm-btn-gold" onclick="saveComprador()">💾 Guardar comprador</button>
+            <button class="adm-btn adm-btn-ghost" onclick="closeCompForm()">Cancelar</button>
+          </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="adm-subtabs" style="margin-bottom:1rem">
+          <button class="adm-subtab active" id="ctab-todos"   onclick="filterCompradores('todos')">Todos</button>
+          <button class="adm-subtab"         id="ctab-activos" onclick="filterCompradores('activos')">Activos</button>
+          <button class="adm-subtab"         id="ctab-inactivos" onclick="filterCompradores('inactivos')">Inactivos</button>
+        </div>
+
+        <!-- Grid de compradores -->
+        <div id="comp-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
+      </section>
+
+      <!-- ══ VENDEDORES ════════════════════════════════════════ -->
+      <section class="adm-section" id="sec-vendedores">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Vendedores</div>
+          <button class="adm-btn adm-btn-gold" onclick="openVendForm()">+ Nuevo vendedor</button>
+        </div>
+
+        <!-- Formulario vendedor -->
+        <div id="vend-form-wrap" style="display:none" class="adm-card">
+          <div class="adm-card-head">
+            <h3 id="vend-form-title">Nuevo vendedor</h3>
+            <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendForm()">✕ Cancelar</button>
+          </div>
+          <input type="hidden" id="vend-edit-id"/>
+          <div class="wiz-section-label">Datos del vendedor</div>
+          <div class="adm-form-grid">
+            <div class="adm-field adm-form-col-full">
+              <label>Nombre completo *</label>
+              <input type="text" id="v-nombre" placeholder="María Sánchez López"/>
+            </div>
+            <div class="adm-field"><label>Teléfono</label><input type="tel" id="v-tel" placeholder="+34 600 000 000"/></div>
+            <div class="adm-field"><label>Email</label><input type="email" id="v-email" placeholder="vendedor@email.com"/></div>
+            <div class="adm-field"><label>DNI (opcional)</label><input type="text" id="v-dni" placeholder="12345678A"/></div>
+            <div class="adm-field"><label>Precio mínimo requerido (€)</label><input type="number" id="v-precio-min" placeholder="200000"/></div>
+            <div class="adm-field"><label>Referencia inmueble vinculado</label><input type="text" id="v-ref" placeholder="NH-2026-1234"/></div>
+          </div>
+          <div class="adm-field">
+            <label>Descripción / Notas de seguimiento</label>
+            <textarea id="v-desc" rows="3" placeholder="Estado de la negociación, documentación pendiente, notas…"></textarea>
+          </div>
+          <div id="vend-form-err" class="alert-box alert-error" style="display:none"></div>
+          <div class="gap-row" style="margin-top:.5rem">
+            <button class="adm-btn adm-btn-gold" onclick="saveVendedor()">💾 Guardar vendedor</button>
+            <button class="adm-btn adm-btn-ghost" onclick="closeVendForm()">Cancelar</button>
+          </div>
+        </div>
+
+        <!-- Tabla vendedores -->
         <div class="adm-card">
-          <div class="adm-card-head"><h3>Clientes registrados</h3></div>
-          <div id="clientes-table"><p class="text-muted">Cargando…</p></div>
+          <div class="adm-card-head"><h3>Vendedores registrados</h3><span class="text-muted" id="vend-count"></span></div>
+          <div id="vend-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
@@ -750,13 +862,14 @@ function switchSection(id){
   document.getElementById('sec-'+id).classList.add('active');
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',leads:'Leads',clientes:'Clientes',inmuebles:'Inmuebles',visitas:'Visitas',blog:'Blog',newsletter:'Newsletter'};
+  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Vendedores',inmuebles:'Inmuebles',visitas:'Visitas',blog:'Blog',newsletter:'Newsletter'};
   document.getElementById('adm-section-title').textContent = titles[id]||id;
-  if(id==='leads') loadLeads();
-  if(id==='clientes') loadClientes();
-  if(id==='visitas') loadVisitas();
-  if(id==='blog') loadBlog();
-  if(id==='newsletter') loadNewsletter();
+  if(id==='leads')       loadLeads();
+  if(id==='compradores') loadCompradores();
+  if(id==='vendedores')  loadVendedores();
+  if(id==='visitas')     loadVisitas();
+  if(id==='blog')        loadBlog();
+  if(id==='newsletter')  loadNewsletter();
 }
 
 /* ── Inmuebles sub-tabs ──────────────────────────────────────── */
@@ -982,6 +1095,15 @@ async function publishProperty(){
 
     const { data, error } = await window.nhSupabase.from('inmuebles').insert(payload).select().single();
     if(error) throw error;
+
+    // Auto-crear ficha de vendedor con datos del propietario
+    await autoCreateVendedor(
+      v('w-prop-nombre'),
+      v('w-prop-tel'),
+      v('w-prop-email'),
+      refVal,
+      num('w-precio')
+    );
 
     document.getElementById('wiz-ok').style.display='block';
     btn.innerHTML='✅ Publicado';
@@ -1216,16 +1338,17 @@ function editProperty(id){
    ══════════════════════════════════════════════════════════════ */
 async function loadDashboard(){
   const sb = window.nhSupabase;
-  const [leads, clientes, inm, vis] = await Promise.all([
+  const [leads, compradores, vendedores, inm, vis] = await Promise.all([
     sb.from('leads').select('*',{count:'exact',head:true}),
-    sb.from('perfiles').select('*',{count:'exact',head:true}),
+    sb.from('compradores').select('*',{count:'exact',head:true}),
+    sb.from('vendedores').select('*',{count:'exact',head:true}),
     sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('cartera_privada',false),
     sb.from('visitas').select('*',{count:'exact',head:true}),
   ]);
-  document.getElementById('st-leads').textContent = leads.count??0;
-  document.getElementById('st-clientes').textContent = clientes.count??0;
+  document.getElementById('st-leads').textContent     = leads.count??0;
+  document.getElementById('st-clientes').textContent  = (compradores.count??0)+' / '+(vendedores.count??0);
   document.getElementById('st-inmuebles').textContent = inm.count??0;
-  document.getElementById('st-visitas').textContent = vis.count??0;
+  document.getElementById('st-visitas').textContent   = vis.count??0;
 
   const { data } = await sb.from('leads').select('*').order('created_at',{ascending:false}).limit(5);
   const tbl = document.getElementById('dash-leads-table');
@@ -1245,15 +1368,8 @@ async function loadLeads(){
   }</tbody></table>`;
 }
 
-/* ── Clientes ──────────────────────────────────────────────────── */
-async function loadClientes(){
-  const { data } = await window.nhSupabase.from('perfiles').select('*').order('created_at',{ascending:false});
-  const tbl=document.getElementById('clientes-table');
-  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin clientes.</p>'; return; }
-  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Nombre</th><th>Email</th><th>Tipo</th><th>Registro</th></tr></thead><tbody>${
-    data.map(c=>`<tr><td>${c.nombre||'–'}</td><td>${c.email||'–'}</td><td>${c.tipo||'–'}</td><td>${c.created_at?new Date(c.created_at).toLocaleDateString('es-ES'):'–'}</td></tr>`).join('')
-  }</tbody></table>`;
-}
+/* loadClientes obsoleto — reemplazado por loadCompradores + loadVendedores */
+async function loadClientes(){ /* no-op */ }
 
 /* ── Visitas ────────────────────────────────────────────────────── */
 async function loadVisitas(){
@@ -1288,6 +1404,252 @@ async function deleteBlog(id){
   if(!confirm('¿Eliminar artículo?')) return;
   await window.nhSupabase.from('blog_posts').delete().eq('id',id);
   loadBlog();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPRADORES
+   ══════════════════════════════════════════════════════════════ */
+let _compData = [];
+let _compFilter = 'todos';
+
+async function loadCompradores(){
+  const { data, error } = await window.nhSupabase
+    .from('compradores').select('*').order('created_at',{ascending:false});
+  _compData = data || [];
+  renderCompradores();
+}
+
+function filterCompradores(f){
+  _compFilter = f;
+  ['todos','activos','inactivos'].forEach(k=>{
+    document.getElementById('ctab-'+k).classList.toggle('active', k===f);
+  });
+  renderCompradores();
+}
+
+function renderCompradores(){
+  const grid = document.getElementById('comp-grid');
+  let list = _compData;
+  if(_compFilter==='activos')   list = list.filter(c=>c.activo);
+  if(_compFilter==='inactivos') list = list.filter(c=>!c.activo);
+
+  if(!list.length){
+    grid.innerHTML=`<div class="pub-empty" style="grid-column:1/-1">
+      <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M9 7a4 4 0 108 0 4 4 0 00-8 0"/></svg>
+      <p>No hay compradores${_compFilter!=='todos'?' '+_compFilter:''}.<br>Usa "+ Nuevo comprador" para añadir.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(c=>`
+    <div class="pub-card">
+      <div class="pub-body" style="padding-top:.9rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem">
+          <div class="pub-ref">COMPRADOR</div>
+          <span class="badge ${c.activo?'badge-ok':'badge-warn'}">${c.activo?'Activo':'Inactivo'}</span>
+        </div>
+        <div class="pub-title">${c.nombre}</div>
+        ${c.presupuesto_max?`<div class="pub-price">${Number(c.presupuesto_max).toLocaleString('es-ES')} € máx.</div>`:''}
+        <div class="pub-meta" style="margin-top:.35rem">
+          ${c.tipo_inmueble?`<span>🏠 ${c.tipo_inmueble}</span>`:''}
+          ${c.habitaciones_min?`<span>🛏 min. ${c.habitaciones_min}</span>`:''}
+          ${c.ascensor?`<span>🛗 Ascensor</span>`:''}
+          ${c.zona_buscada?`<span>📍 ${c.zona_buscada}</span>`:''}
+        </div>
+        <div class="pub-meta" style="margin-top:.2rem">
+          ${c.telefono?`<span>📞 ${c.telefono}</span>`:''}
+          ${c.email?`<span>✉ ${c.email}</span>`:''}
+        </div>
+        ${c.notas?`<div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding:.4rem;background:var(--surface2);border-radius:4px;line-height:1.5">${c.notas}</div>`:''}
+        <div class="pub-actions" style="margin-top:.6rem">
+          <button class="pub-btn-edit" onclick="editComprador('${c.id}')">✏ Editar</button>
+          <button class="pub-btn-del"  onclick="deleteComprador('${c.id}')">🗑 Eliminar</button>
+          <button class="pub-btn-web"  onclick="toggleActivoComp('${c.id}',${!c.activo})">${c.activo?'⏸ Pausar':'▶ Activar'}</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function openCompForm(prefill={}){
+  document.getElementById('comp-form-wrap').style.display='block';
+  document.getElementById('comp-form-title').textContent='Nuevo comprador';
+  document.getElementById('comp-edit-id').value='';
+  document.getElementById('c-nombre').value=prefill.nombre||'';
+  document.getElementById('c-tel').value=prefill.telefono||'';
+  document.getElementById('c-email').value=prefill.email||'';
+  document.getElementById('c-dni').value=prefill.dni||'';
+  document.getElementById('c-activo').checked=prefill.activo!==undefined?prefill.activo:true;
+  document.getElementById('c-presupuesto').value=prefill.presupuesto_max||'';
+  document.getElementById('c-tipo').value=prefill.tipo_inmueble||'';
+  document.getElementById('c-hab').value=prefill.habitaciones_min||'';
+  document.getElementById('c-ascensor').checked=prefill.ascensor||false;
+  document.getElementById('c-zona').value=prefill.zona_buscada||'';
+  document.getElementById('c-notas').value=prefill.notas||'';
+  document.getElementById('comp-form-err').style.display='none';
+  document.getElementById('comp-form-wrap').scrollIntoView({behavior:'smooth'});
+}
+
+function closeCompForm(){
+  document.getElementById('comp-form-wrap').style.display='none';
+}
+
+function editComprador(id){
+  const c = _compData.find(x=>x.id===id);
+  if(!c) return;
+  openCompForm(c);
+  document.getElementById('comp-edit-id').value=id;
+  document.getElementById('comp-form-title').textContent='Editar comprador';
+}
+
+async function saveComprador(){
+  const nombre = document.getElementById('c-nombre').value.trim();
+  if(!nombre){ document.getElementById('comp-form-err').textContent='El nombre es obligatorio.'; document.getElementById('comp-form-err').style.display='block'; return; }
+
+  const payload = {
+    nombre,
+    telefono:        document.getElementById('c-tel').value.trim()||null,
+    email:           document.getElementById('c-email').value.trim()||null,
+    dni:             document.getElementById('c-dni').value.trim()||null,
+    activo:          document.getElementById('c-activo').checked,
+    presupuesto_max: parseFloat(document.getElementById('c-presupuesto').value)||null,
+    tipo_inmueble:   document.getElementById('c-tipo').value||null,
+    habitaciones_min:parseInt(document.getElementById('c-hab').value)||null,
+    ascensor:        document.getElementById('c-ascensor').checked,
+    zona_buscada:    document.getElementById('c-zona').value.trim()||null,
+    notas:           document.getElementById('c-notas').value.trim()||null,
+  };
+
+  const editId = document.getElementById('comp-edit-id').value;
+  let error;
+  if(editId){
+    ({ error } = await window.nhSupabase.from('compradores').update(payload).eq('id',editId));
+  } else {
+    ({ error } = await window.nhSupabase.from('compradores').insert(payload));
+  }
+  if(error){ document.getElementById('comp-form-err').textContent='Error: '+error.message; document.getElementById('comp-form-err').style.display='block'; return; }
+  closeCompForm();
+  loadCompradores();
+}
+
+async function deleteComprador(id){
+  if(!confirm('¿Eliminar este comprador?')) return;
+  await window.nhSupabase.from('compradores').delete().eq('id',id);
+  loadCompradores();
+}
+
+async function toggleActivoComp(id, nuevoValor){
+  await window.nhSupabase.from('compradores').update({activo:nuevoValor}).eq('id',id);
+  loadCompradores();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VENDEDORES
+   ══════════════════════════════════════════════════════════════ */
+let _vendData = [];
+
+async function loadVendedores(){
+  const { data } = await window.nhSupabase
+    .from('vendedores').select('*').order('created_at',{ascending:false});
+  _vendData = data || [];
+  renderVendedores();
+}
+
+function renderVendedores(){
+  const tbl = document.getElementById('vend-table');
+  document.getElementById('vend-count').textContent = _vendData.length+' vendedores';
+  if(!_vendData.length){
+    tbl.innerHTML='<p class="text-muted">Sin vendedores. Se crean automáticamente al publicar un inmueble, o puedes añadir uno manualmente.</p>';
+    return;
+  }
+  tbl.innerHTML=`<table class="adm-table">
+    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th><th>Precio mín.</th><th>Inmueble</th><th>Notas</th><th>Fecha</th><th></th></tr></thead>
+    <tbody>${_vendData.map(v=>`
+      <tr>
+        <td style="font-weight:600">${v.nombre}</td>
+        <td>${v.telefono||'–'}</td>
+        <td>${v.email||'–'}</td>
+        <td>${v.precio_minimo?Number(v.precio_minimo).toLocaleString('es-ES')+' €':'–'}</td>
+        <td>${v.inmueble_ref?`<span class="badge badge-new">${v.inmueble_ref}</span>`:'–'}</td>
+        <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v.descripcion||''}">${v.descripcion||'–'}</td>
+        <td>${v.created_at?new Date(v.created_at).toLocaleDateString('es-ES'):'–'}</td>
+        <td>
+          <div class="gap-row">
+            <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editVendedor('${v.id}')">✏</button>
+            <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteVendedor('${v.id}')">🗑</button>
+          </div>
+        </td>
+      </tr>`).join('')}
+    </tbody></table>`;
+}
+
+function openVendForm(prefill={}){
+  document.getElementById('vend-form-wrap').style.display='block';
+  document.getElementById('vend-form-title').textContent='Nuevo vendedor';
+  document.getElementById('vend-edit-id').value='';
+  document.getElementById('v-nombre').value=prefill.nombre||'';
+  document.getElementById('v-tel').value=prefill.telefono||'';
+  document.getElementById('v-email').value=prefill.email||'';
+  document.getElementById('v-dni').value=prefill.dni||'';
+  document.getElementById('v-precio-min').value=prefill.precio_minimo||'';
+  document.getElementById('v-ref').value=prefill.inmueble_ref||'';
+  document.getElementById('v-desc').value=prefill.descripcion||'';
+  document.getElementById('vend-form-err').style.display='none';
+  document.getElementById('vend-form-wrap').scrollIntoView({behavior:'smooth'});
+}
+
+function closeVendForm(){
+  document.getElementById('vend-form-wrap').style.display='none';
+}
+
+function editVendedor(id){
+  const v = _vendData.find(x=>x.id===id);
+  if(!v) return;
+  openVendForm(v);
+  document.getElementById('vend-edit-id').value=id;
+  document.getElementById('vend-form-title').textContent='Editar vendedor';
+}
+
+async function saveVendedor(){
+  const nombre = document.getElementById('v-nombre').value.trim();
+  if(!nombre){ document.getElementById('vend-form-err').textContent='El nombre es obligatorio.'; document.getElementById('vend-form-err').style.display='block'; return; }
+  const payload = {
+    nombre,
+    telefono:      document.getElementById('v-tel').value.trim()||null,
+    email:         document.getElementById('v-email').value.trim()||null,
+    dni:           document.getElementById('v-dni').value.trim()||null,
+    precio_minimo: parseFloat(document.getElementById('v-precio-min').value)||null,
+    inmueble_ref:  document.getElementById('v-ref').value.trim()||null,
+    descripcion:   document.getElementById('v-desc').value.trim()||null,
+  };
+  const editId = document.getElementById('vend-edit-id').value;
+  let error;
+  if(editId){
+    ({ error } = await window.nhSupabase.from('vendedores').update(payload).eq('id',editId));
+  } else {
+    ({ error } = await window.nhSupabase.from('vendedores').insert(payload));
+  }
+  if(error){ document.getElementById('vend-form-err').textContent='Error: '+error.message; document.getElementById('vend-form-err').style.display='block'; return; }
+  closeVendForm();
+  loadVendedores();
+}
+
+async function deleteVendedor(id){
+  if(!confirm('¿Eliminar este vendedor?')) return;
+  await window.nhSupabase.from('vendedores').delete().eq('id',id);
+  loadVendedores();
+}
+
+/* Auto-crear vendedor desde datos del wizard (llamado por publishProperty) */
+async function autoCreateVendedor(propNombre, propTel, propEmail, refInmueble, precio){
+  if(!propNombre) return;
+  await window.nhSupabase.from('vendedores').insert({
+    nombre:        propNombre,
+    telefono:      propTel||null,
+    email:         propEmail||null,
+    precio_minimo: precio||null,
+    inmueble_ref:  refInmueble||null,
+    descripcion:   'Creado automáticamente al publicar el inmueble '+refInmueble,
+  });
 }
 
 /* ── Newsletter ─────────────────────────────────────────────────── */
