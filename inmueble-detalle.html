@@ -15,15 +15,7 @@
     .det-error{text-align:center;padding:4rem 2rem;color:var(--gris-medio)}
     .det-error h2{color:#ef4444;margin-bottom:.5rem}
 
-    /* Galería dinámica */
-    .det-gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:280px 140px;gap:.5rem;border-radius:12px;overflow:hidden;margin-bottom:0}
-    .det-gallery-main{grid-row:1/3;position:relative;cursor:pointer;overflow:hidden}
-    .det-gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
-    .det-gallery-main:hover img{transform:scale(1.03)}
-    .det-gallery-thumb{position:relative;cursor:pointer;overflow:hidden}
-    .det-gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
-    .det-gallery-thumb:hover img{transform:scale(1.05)}
-    .det-gallery-more{position:absolute;inset:0;background:rgba(13,13,13,.55);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem}
+    /* Galería dinámica — reutiliza .prop-gallery de styles.css */
 
     /* Badges estado */
     .badge-disp{background:var(--oro);color:#fff}
@@ -38,6 +30,11 @@
 
     /* Tarjeta del agente dentro del prop-contact-card */
     .prop-contact-card h3{font-size:1.125rem;margin-bottom:1rem}
+
+    /* Ficha técnica: una sola columna, bien legible */
+    #det-specs.prop-specs-grid{grid-template-columns:1fr}
+    #det-specs .prop-spec{gap:1rem}
+    #det-specs .prop-spec-value{text-align:right}
 
     /* ─── Visita scheduler (tema claro) ───────────────────────── */
     .vs-card{background:var(--blanco);border-radius:var(--radius-lg);padding:1.75rem;box-shadow:var(--shadow-md)}
@@ -146,7 +143,7 @@
       <li><a href="blog.html">Blog</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="tel:+34600367742" class="nav-tel" style="display:flex;flex-direction:column;line-height:1.2;align-items:flex-end"><span>600 367 742</span><span style="font-size:.72rem;opacity:.8">675 704 514</span></a>
+      <a href="tel:+34675704514" class="nav-tel">675 704 514</a>
       <a href="registro.html" class="nav-cta">Empezar ahora</a>
       <button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button>
     </div>
@@ -198,18 +195,18 @@
 </div>
 
 <!-- GALERÍA -->
-<div id="det-gallery-wrap" style="display:none;background:var(--negro);padding-top:70px">
-  <div class="container" style="padding-top:1.5rem;padding-bottom:1.5rem">
-    <div class="det-gallery" id="det-gallery">
-      <div class="det-gallery-main" onclick="openLightbox(0)">
+<div id="det-gallery-wrap" style="display:none;background:var(--crema);padding-top:70px">
+  <div class="container" style="padding-top:1.25rem;padding-bottom:1.25rem">
+    <div class="prop-gallery" id="det-gallery">
+      <div class="prop-gallery-main" onclick="openLightbox(0)">
         <img id="det-img-main" src="" alt="Inmueble"/>
       </div>
-      <div class="det-gallery-thumb" onclick="openLightbox(1)">
+      <div class="prop-gallery-thumb" onclick="openLightbox(1)">
         <img id="det-img-t1" src="" alt="Foto 2" onerror="this.parentElement.style.display='none'"/>
       </div>
-      <div class="det-gallery-thumb" onclick="openLightbox(2)" style="position:relative">
+      <div class="prop-gallery-thumb" onclick="openLightbox(2)">
         <img id="det-img-t2" src="" alt="Foto 3" onerror="this.parentElement.style.display='none'"/>
-        <div class="det-gallery-more" id="det-gallery-more" style="display:none"></div>
+        <div class="gallery-count" id="det-gallery-more" style="display:none"></div>
       </div>
     </div>
   </div>
@@ -331,7 +328,7 @@
         <div class="prop-contact-card">
           <h3>Solicitar información</h3>
           <div class="prop-contact-agent">
-            <img id="det-agent-img" src="imagenes/inmobiliario4.jpg" alt="Agente"/>
+            <div style="width:52px;height:52px;border-radius:50%;background:var(--oro);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;color:#fff;flex-shrink:0;font-family:var(--font-serif)">JS</div>
             <div>
               <div class="prop-contact-agent-name" id="det-agent-name">Juan Sebastián</div>
               <div class="prop-contact-agent-role">Agente · NuevaHabitat</div>
@@ -594,18 +591,21 @@ function renderProperty(p){
   }
 
   /* ── Stats row ── */
+  const m2util = p.m2_utiles||null;
+  const m2cons = p.m2_construidos||null;
+  const m2disp = m2util||m2cons;
   const statsData = [
-    {v: m2 ? m2+' m²' : null,         l:'m² construidos'},
-    {v: p.habitaciones||p.dormitorios||null, l:'Habitaciones'},
-    {v: p.banos||p.aseos||null,              l:'Baños'},
+    {v: m2disp ? m2disp+' m²' : null,           l: m2util ? 'Útiles' : 'm² Constr.'},
+    {v: m2cons && m2util ? m2cons+' m²' : null,  l:'Construidos'},
+    {v: p.habitaciones||p.dormitorios||null,      l:'Hab.'},
+    {v: p.banos||p.aseos||null,                   l:'Baños'},
     {v: p.m2_terraza ? p.m2_terraza+' m²' : null, l:'Terraza'},
-    {v: p.planta||null,                      l:'Planta'},
   ].filter(s=>s.v);
   const statsRow = document.getElementById('det-stats-row');
   statsRow.innerHTML = statsData.map(s=>`
-    <div style="text-align:center">
-      <div style="font-size:1.4rem;font-weight:700;font-family:var(--font-serif)">${s.v}</div>
-      <div style="font-size:.75rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.06em">${s.l}</div>
+    <div style="text-align:center;min-width:64px">
+      <div style="font-size:1.55rem;font-weight:700;font-family:var(--font-serif);color:var(--negro)">${s.v}</div>
+      <div style="font-size:.7rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.08em;margin-top:.2rem">${s.l}</div>
     </div>`).join('');
 
   /* ── Descripción ── */
@@ -633,17 +633,24 @@ function renderProperty(p){
 
   /* ── Ficha técnica ── */
   const specs = [
-    ['Referencia',   p.ref||'–'],
-    ['Tipo',         p.tipo||'–'],
-    ['Operación',    p.tipo_operacion||'Venta'],
-    ['Estado',       p.estado||'–'],
-    ['Municipio',    p.municipio||p.barrio||'–'],
-    ['Planta',       p.planta||'–'],
-    ['Año const.',   p.ano_construccion||'–'],
-    ['Comunidad',    p.gastos_comunidad ? p.gastos_comunidad+' €/mes' : '–'],
-    ['IBI',          p.ibi ? '~'+p.ibi+' €/año' : '–'],
-    ['Orientación',  p.orientacion||'–'],
-  ].filter(s=>s[1]&&s[1]!=='–');
+    ['Referencia',    p.ref],
+    ['Tipo',          p.tipo ? p.tipo.charAt(0).toUpperCase()+p.tipo.slice(1) : null],
+    ['Operación',     p.tipo_operacion ? p.tipo_operacion.charAt(0).toUpperCase()+p.tipo_operacion.slice(1) : 'Venta'],
+    ['Estado',        p.estado ? p.estado.charAt(0).toUpperCase()+p.estado.slice(1) : null],
+    ['Barrio',        p.barrio],
+    ['Municipio',     p.municipio],
+    ['CP',            p.cp],
+    ['Habitaciones',  p.habitaciones||p.dormitorios ? (p.habitaciones||p.dormitorios) : null],
+    ['Baños',         p.banos||p.aseos],
+    ['Planta',        p.planta],
+    ['Año const.',    p.ano_construccion],
+    ['Comunidad',     p.gastos_comunidad ? p.gastos_comunidad+' €/mes' : null],
+    ['IBI aprox.',    p.ibi ? '~'+p.ibi+' €/año' : null],
+    ['Orientación',   p.orientacion],
+    ['Ascensor',      p.ascensor === true ? 'Sí' : p.ascensor === false ? 'No' : null],
+    ['Trastero',      p.trastero === true ? 'Sí' : p.trastero === false ? 'No' : null],
+    ['Garaje',        p.garaje === true ? 'Sí' : p.garaje === false ? 'No' : null],
+  ].filter(([,v])=>v!=null&&v!=='');
   document.getElementById('det-specs').innerHTML = specs.map(([l,v])=>`
     <div class="prop-spec"><span class="prop-spec-label">${l}</span><span class="prop-spec-value">${v}</span></div>`).join('');
 
@@ -665,7 +672,6 @@ function renderProperty(p){
 
   /* ── Agente ── */
   document.getElementById('det-agent-name').textContent = 'Juan Sebastián';
-  document.getElementById('det-agent-img').src = 'imagenes/inmobiliario3.jpg';
 
   /* ── Ref ── */
   if(p.ref) document.getElementById('det-ref').textContent = 'Ref. '+p.ref;
