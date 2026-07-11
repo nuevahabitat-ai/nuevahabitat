@@ -1,534 +1,1292 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Panel Administrador · NuevaHabitat</title>
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo1.png" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    /* ═══════════ ADMIN LAYOUT ═══════════ */
-    * { box-sizing: border-box; }
-    body { background: #f4f4f4; padding: 0; font-family: 'Inter', sans-serif; }
-    #admin-guard { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-    #admin-app   { display: none; min-height: 100vh; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>Panel Admin – Nueva Habitat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ─── Variables ──────────────────────────────────────────────── */
+:root{
+  --gold:#b8936a;--gold-light:#d4b896;--gold-dark:#9a7550;
+  --black:#0d0d0d;--surface:#1a1a1a;--surface2:#242424;
+  --border:#2e2e2e;--text:#e8e0d5;--muted:#888;
+  --green:#22c55e;--red:#ef4444;--blue:#3b82f6;--orange:#f97316;
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;background:var(--black);color:var(--text)}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:'Inter',sans-serif}
+input,select,textarea{font-family:'Inter',sans-serif}
 
-    /* Sidebar */
-    .adm-sidebar {
-      position: fixed; top: 0; left: 0; bottom: 0;
-      width: 240px; background: #0d0d0d;
-      display: flex; flex-direction: column;
-      z-index: 100; padding: 0;
-    }
-    .adm-logo {
-      display: flex; align-items: center; gap: .75rem;
-      padding: 1.25rem 1.5rem;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .adm-logo img { height: 40px; mix-blend-mode: screen; }
-    .adm-logo-text { color: #d4aa6e; font-size: .85rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .adm-logo-sub  { color: rgba(255,255,255,.35); font-size: .65rem; display: block; }
+/* ─── Layout ─────────────────────────────────────────────────── */
+#admin-guard{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:1rem}
+#admin-app{display:flex;height:100vh;overflow:hidden}
 
-    .adm-nav { flex: 1; padding: 1rem 0; overflow-y: auto; }
-    .adm-nav-section { padding: .4rem 1.5rem .2rem; font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.25); margin-top: .75rem; }
-    .adm-nav a {
-      display: flex; align-items: center; gap: .75rem;
-      padding: .6rem 1.5rem; color: rgba(255,255,255,.55);
-      font-size: .875rem; font-weight: 500; text-decoration: none;
-      transition: color .15s, background .15s; border-radius: 0;
-      cursor: pointer;
-    }
-    .adm-nav a:hover { color: var(--blanco); background: rgba(255,255,255,.05); }
-    .adm-nav a.active { color: #d4aa6e; background: rgba(212,170,110,.1); border-right: 2.5px solid #d4aa6e; }
-    .adm-nav a svg { width: 17px; height: 17px; flex-shrink: 0; }
+/* ─── Sidebar ─────────────────────────────────────────────────── */
+.adm-sidebar{width:220px;min-width:220px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
+.adm-logo{padding:1.4rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem}
+.adm-logo img{height:36px;mix-blend-mode:screen}
+.adm-logo span{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--gold);letter-spacing:.1em}
+.adm-logo small{display:block;font-size:.62rem;color:var(--muted);letter-spacing:.05em}
+.adm-nav{flex:1;padding:.75rem 0}
+.adm-nav-group{padding:.25rem .75rem .1rem;font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.adm-nav-item{display:flex;align-items:center;gap:.6rem;padding:.55rem 1rem;font-size:.82rem;color:var(--muted);border-radius:6px;margin:.1rem .5rem;transition:all .2s;cursor:pointer}
+.adm-nav-item:hover{background:var(--surface2);color:var(--text)}
+.adm-nav-item.active{background:rgba(184,147,106,.15);color:var(--gold)}
+.adm-nav-item svg{flex-shrink:0}
+.adm-user{padding:1rem;border-top:1px solid var(--border);font-size:.78rem}
+.adm-user-name{font-weight:600;color:var(--text)}
+.adm-user-role{color:var(--gold);font-size:.7rem;letter-spacing:.05em}
+.adm-user-logout{margin-top:.6rem;color:var(--muted);font-size:.72rem;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem}
+.adm-user-logout:hover{color:var(--red)}
 
-    .adm-footer { padding: 1rem 1.5rem; border-top: 1px solid rgba(255,255,255,.08); }
-    .adm-user { display: flex; align-items: center; gap: .65rem; margin-bottom: .75rem; }
-    .adm-user-avatar { width: 32px; height: 32px; border-radius: 50%; background: #d4aa6e; display: flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 700; color: #0d0d0d; flex-shrink: 0; }
-    .adm-user-info { min-width: 0; }
-    .adm-user-name { color: var(--blanco); font-size: .8125rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .adm-user-role { color: #d4aa6e; font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-    .adm-logout { width: 100%; background: rgba(255,255,255,.06); border: none; color: rgba(255,255,255,.5); font-size: .8rem; padding: .5rem; border-radius: 6px; cursor: pointer; font-family: inherit; transition: background .15s; }
-    .adm-logout:hover { background: rgba(255,255,255,.12); color: var(--blanco); }
+/* ─── Main ────────────────────────────────────────────────────── */
+.adm-main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.adm-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.adm-topbar h2{font-size:1rem;font-weight:600}
+.adm-topbar-date{font-size:.75rem;color:var(--muted)}
+.adm-content{flex:1;overflow-y:auto;padding:1.5rem}
+.adm-section{display:none}
+.adm-section.active{display:block}
 
-    /* Main */
-    .adm-main { margin-left: 240px; min-height: 100vh; }
-    .adm-topbar {
-      background: var(--blanco); border-bottom: 1px solid #e5e5e5;
-      padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 50;
-    }
-    .adm-topbar h1 { font-size: 1.25rem; font-weight: 700; color: #0d0d0d; font-family: 'Inter', sans-serif; }
-    .adm-topbar-meta { font-size: .8125rem; color: #888; }
-    .adm-content { padding: 2rem; }
+/* ─── Cards ──────────────────────────────────────────────────── */
+.adm-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem}
+.adm-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.adm-card-head h3{font-size:.92rem;font-weight:600}
+.adm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.25rem}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
+.stat-num{font-size:1.6rem;font-weight:700;color:var(--gold)}
+.stat-label{font-size:.75rem;color:var(--muted);margin-top:.2rem}
 
-    /* Secciones */
-    .adm-section { display: none; }
-    .adm-section.active { display: block; }
+/* ─── Buttons ─────────────────────────────────────────────────── */
+.adm-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;border:none;border-radius:6px;font-size:.8rem;font-weight:500;transition:all .2s}
+.adm-btn-gold{background:var(--gold);color:#fff}.adm-btn-gold:hover{background:var(--gold-dark)}
+.adm-btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border)}.adm-btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.adm-btn-red{background:var(--red);color:#fff}.adm-btn-red:hover{opacity:.85}
+.adm-btn-green{background:var(--green);color:#fff}.adm-btn-green:hover{opacity:.85}
+.adm-btn-blue{background:var(--blue);color:#fff}.adm-btn-blue:hover{opacity:.85}
+.adm-btn-sm{padding:.35rem .7rem;font-size:.72rem}
+.adm-btn-lg{padding:.75rem 1.5rem;font-size:.92rem}
 
-    /* Stats */
-    .adm-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
-    .adm-stat { background: var(--blanco); border-radius: 12px; padding: 1.5rem; border: 1px solid #e8e8e8; }
-    .adm-stat-num { font-size: 2rem; font-weight: 800; color: #0d0d0d; line-height: 1; margin-bottom: .3rem; }
-    .adm-stat-label { font-size: .8125rem; color: #888; font-weight: 500; }
-    .adm-stat-change { font-size: .75rem; margin-top: .5rem; font-weight: 600; }
-    .adm-stat-change.up { color: #16a34a; }
-    .adm-stat-change.neutral { color: #888; }
+/* ─── Form elements ───────────────────────────────────────────── */
+.adm-field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.75rem}
+.adm-field label{font-size:.75rem;color:var(--muted);font-weight:500;letter-spacing:.02em}
+.adm-field input,.adm-field select,.adm-field textarea{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.55rem .8rem;color:var(--text);font-size:.84rem;transition:border .2s}
+.adm-field input:focus,.adm-field select,.adm-field textarea:focus{outline:none;border-color:var(--gold)}
+.adm-field select{cursor:pointer}
+.adm-field textarea{resize:vertical;min-height:80px}
+.adm-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.adm-form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 1rem}
+.adm-form-col-full{grid-column:1/-1}
+.adm-field-check{display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.82rem;color:var(--text)}
+.adm-field-check input{width:16px;height:16px;accent-color:var(--gold)}
+.adm-checks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.5rem;padding:.6rem;background:var(--surface2);border:1px solid var(--border);border-radius:6px}
 
-    /* Tables */
-    .adm-card { background: var(--blanco); border-radius: 12px; border: 1px solid #e8e8e8; overflow: hidden; margin-bottom: 1.5rem; }
-    .adm-card-head { padding: 1.25rem 1.5rem; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; }
-    .adm-card-head h3 { font-size: 1rem; font-weight: 700; color: #0d0d0d; font-family: 'Inter', sans-serif; }
-    .adm-table { width: 100%; border-collapse: collapse; font-size: .8125rem; }
-    .adm-table th { padding: .75rem 1rem; text-align: left; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #888; background: #fafafa; border-bottom: 1px solid #f0f0f0; }
-    .adm-table td { padding: .9rem 1rem; border-bottom: 1px solid #f5f5f5; color: #333; vertical-align: middle; }
-    .adm-table tr:last-child td { border-bottom: none; }
-    .adm-table tr:hover td { background: #fafafa; }
-    .adm-empty { padding: 3rem; text-align: center; color: #aaa; font-size: .9rem; }
+/* ─── Section header / sub-tabs ──────────────────────────────── */
+.adm-section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.adm-section-title{font-size:1.1rem;font-weight:700;font-family:'Playfair Display',serif;color:var(--gold-light)}
+.adm-subtabs{display:flex;gap:.5rem;margin-bottom:1.25rem;border-bottom:1px solid var(--border);padding-bottom:.75rem}
+.adm-subtab{background:none;border:1px solid transparent;border-radius:6px;padding:.45rem .9rem;font-size:.8rem;color:var(--muted);transition:all .2s}
+.adm-subtab.active{border-color:var(--gold);color:var(--gold);background:rgba(184,147,106,.1)}
+.adm-subtab:hover:not(.active){color:var(--text);border-color:var(--border)}
 
-    /* Badges */
-    .badge { display: inline-block; padding: .25rem .65rem; border-radius: 100px; font-size: .7rem; font-weight: 700; }
-    .badge-green  { background: #dcfce7; color: #16a34a; }
-    .badge-gold   { background: #fef9c3; color: #854d0e; }
-    .badge-blue   { background: #dbeafe; color: #1d4ed8; }
-    .badge-gray   { background: #f3f4f6; color: #6b7280; }
-    .badge-red    { background: #fee2e2; color: #b91c1c; }
+/* ─── Wizard ─────────────────────────────────────────────────── */
+.wizard-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.wizard-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.wizard-title{font-size:.95rem;font-weight:600}
+.wizard-steps-bar{display:flex;align-items:center;gap:0;padding:1rem 1.5rem;background:var(--surface2);border-bottom:1px solid var(--border)}
+.wstep{display:flex;align-items:center;gap:.5rem;flex:1}
+.wstep-num{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .3s}
+.wstep.done .wstep-num{background:var(--green);border-color:var(--green);color:#fff}
+.wstep.active .wstep-num{background:var(--gold);border-color:var(--gold);color:#fff}
+.wstep-label{font-size:.73rem;color:var(--muted);white-space:nowrap}
+.wstep.active .wstep-label{color:var(--gold)}
+.wstep.done .wstep-label{color:var(--green)}
+.wstep-line{flex:1;height:2px;background:var(--border);margin:0 .5rem}
+.wstep.done+.wstep-line{background:var(--green)}
+.wizard-body{padding:1.5rem}
+.wizard-step{display:none}
+.wizard-step.active{display:block}
+.wizard-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.wiz-section-label{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;padding-bottom:.35rem;border-bottom:1px solid rgba(184,147,106,.25)}
 
-    /* Forms */
-    .adm-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .adm-field { margin-bottom: 1rem; }
-    .adm-field label { display: block; font-size: .8125rem; font-weight: 600; margin-bottom: .35rem; color: #333; }
-    .adm-field input, .adm-field select, .adm-field textarea {
-      width: 100%; padding: .7rem 1rem; border: 1.5px solid #e5e5e5; border-radius: 8px;
-      font-family: 'Inter', sans-serif; font-size: .9rem; outline: none; transition: border-color .2s;
-    }
-    .adm-field input:focus, .adm-field select:focus, .adm-field textarea:focus { border-color: #d4aa6e; }
-    .adm-field textarea { resize: vertical; min-height: 100px; }
-    .adm-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .65rem 1.25rem; border-radius: 8px; font-size: .875rem; font-weight: 600; font-family: 'Inter', sans-serif; cursor: pointer; border: none; transition: opacity .2s; }
-    .adm-btn-gold  { background: #d4aa6e; color: #0d0d0d; }
-    .adm-btn-black { background: #0d0d0d; color: #fff; }
-    .adm-btn-ghost { background: transparent; border: 1.5px solid #e5e5e5; color: #333; }
-    .adm-btn:hover { opacity: .85; }
+/* ─── Publications grid ──────────────────────────────────────── */
+.pub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.pub-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border .2s}
+.pub-card:hover{border-color:var(--gold)}
+.pub-img{position:relative;height:190px;overflow:hidden;background:var(--surface2)}
+.pub-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.pub-card:hover .pub-img img{transform:scale(1.04)}
+.pub-img-nav{position:absolute;bottom:.5rem;right:.5rem;display:flex;gap:.3rem}
+.pub-img-nav button{background:rgba(0,0,0,.65);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:.75rem;display:flex;align-items:center;justify-content:center}
+.pub-img-count{position:absolute;bottom:.5rem;left:.5rem;background:rgba(0,0,0,.65);color:#fff;font-size:.65rem;padding:.1rem .4rem;border-radius:10px}
+.pub-badge{position:absolute;top:.6rem;left:.6rem;padding:.2rem .6rem;border-radius:20px;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.badge-disponible{background:rgba(34,197,94,.2);color:var(--green);border:1px solid rgba(34,197,94,.4)}
+.badge-reservado{background:rgba(249,115,22,.2);color:var(--orange);border:1px solid rgba(249,115,22,.4)}
+.badge-vendido{background:rgba(239,68,68,.2);color:var(--red);border:1px solid rgba(239,68,68,.4)}
+.badge-no_disponible{background:rgba(100,100,100,.3);color:var(--muted);border:1px solid var(--border)}
+.pub-body{padding:.9rem}
+.pub-ref{font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.pub-title{font-size:.9rem;font-weight:600;margin:.2rem 0 .4rem;line-height:1.3;color:var(--text)}
+.pub-price{font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:.4rem}
+.pub-meta{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--muted);flex-wrap:wrap;margin-bottom:.6rem}
+.pub-meta span{display:flex;align-items:center;gap:.2rem}
+.pub-actions{display:flex;gap:.4rem;border-top:1px solid var(--border);padding-top:.7rem;margin-top:.2rem}
+.pub-actions button{flex:1;padding:.4rem;font-size:.72rem;border-radius:5px;border:none;font-weight:500;transition:all .2s}
+.pub-btn-edit{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3)!important}
+.pub-btn-edit:hover{background:var(--blue);color:#fff}
+.pub-btn-del{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3)!important}
+.pub-btn-del:hover{background:var(--red);color:#fff}
+.pub-btn-web{background:rgba(184,147,106,.15);color:var(--gold);border:1px solid rgba(184,147,106,.3)!important}
+.pub-btn-web:hover{background:var(--gold);color:#fff}
+.pub-empty{text-align:center;padding:3rem;color:var(--muted)}
+.pub-empty svg{margin-bottom:1rem;opacity:.4}
+.pub-empty p{font-size:.85rem}
 
-    /* Loading spinner */
-    .adm-loading { display: flex; align-items: center; justify-content: center; padding: 3rem; gap: .75rem; color: #888; }
-    .adm-spinner { width: 20px; height: 20px; border: 2px solid #e5e5e5; border-top-color: #d4aa6e; border-radius: 50%; animation: spin .7s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+/* ─── Media overlay (full-screen) ────────────────────────────── */
+#media-overlay{position:fixed;inset:0;background:var(--black);z-index:9999;display:none;flex-direction:column;overflow:hidden}
+#media-overlay.open{display:flex}
+.mo-header{background:var(--surface);border-bottom:1px solid var(--border);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mo-header h2{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.1rem}
+.mo-progress{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted)}
+.mo-body{flex:1;overflow-y:auto;padding:1.5rem;display:flex;gap:1.5rem}
+.mo-left{flex:1;min-width:0}
+.mo-right{width:300px;flex-shrink:0}
+.mo-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;margin-bottom:1rem}
+.mo-section h3{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.85rem}
+.mo-drop{border:2px dashed var(--border);border-radius:var(--radius);padding:2rem;text-align:center;cursor:pointer;transition:all .2s;position:relative}
+.mo-drop:hover,.mo-drop.drag-over{border-color:var(--gold);background:rgba(184,147,106,.05)}
+.mo-drop input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.mo-drop svg{margin-bottom:.75rem;color:var(--gold)}
+.mo-drop p{font-size:.82rem;color:var(--muted)}
+.mo-drop small{font-size:.7rem;color:var(--muted);margin-top:.3rem;display:block}
+.mo-count{font-size:.75rem;color:var(--muted);margin:.5rem 0;display:flex;align-items:center;justify-content:space-between}
+.mo-count span{color:var(--gold);font-weight:600}
+.mo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.7rem}
+.mo-thumb{position:relative;border-radius:6px;overflow:hidden;background:var(--surface2);border:2px solid var(--border);cursor:grab;transition:border .2s}
+.mo-thumb:hover{border-color:var(--gold)}
+.mo-thumb.dragging{opacity:.5;border-color:var(--gold);border-style:dashed}
+.mo-thumb.drag-target{border-color:var(--green);border-style:solid}
+.mo-thumb img{width:100%;height:100px;object-fit:cover;display:block}
+.mo-thumb-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .2s;display:flex;align-items:flex-end}
+.mo-thumb:hover .mo-thumb-overlay{background:rgba(0,0,0,.4)}
+.mo-thumb-actions{display:flex;gap:.3rem;padding:.35rem;width:100%;opacity:0;transition:opacity .2s}
+.mo-thumb:hover .mo-thumb-actions{opacity:1}
+.mo-thumb-del{background:var(--red);border:none;color:#fff;border-radius:4px;padding:.2rem .5rem;font-size:.65rem;cursor:pointer}
+.mo-thumb-main{background:var(--gold);border:none;color:#fff;border-radius:4px;padding:.2rem .5rem;font-size:.65rem;cursor:pointer}
+.mo-thumb-idx{position:absolute;top:.3rem;left:.3rem;background:rgba(0,0,0,.7);color:#fff;font-size:.6rem;border-radius:3px;padding:.1rem .3rem;font-weight:700}
+.mo-thumb-star{position:absolute;top:.3rem;right:.3rem;font-size:.75rem}
+.mo-input-row{display:flex;gap:.5rem;align-items:center}
+.mo-input-row input{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.5rem .75rem;color:var(--text);font-size:.82rem}
+.mo-preview-img{width:100%;height:120px;object-fit:cover;border-radius:6px;border:1px solid var(--border);display:none}
+.mo-preview-img.show{display:block}
+.mo-footer{background:var(--surface);border-top:1px solid var(--border);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mo-footer-info{font-size:.78rem;color:var(--muted)}
+.mo-upload-bar{background:var(--surface2);border:1px solid var(--border);border-radius:4px;height:6px;margin-top:.35rem;overflow:hidden}
+.mo-upload-bar-fill{height:100%;background:var(--gold);border-radius:4px;transition:width .3s;width:0%}
 
-    /* Tabs */
-    .adm-tabs { display: flex; gap: .25rem; background: #f4f4f4; padding: .25rem; border-radius: 10px; width: fit-content; margin-bottom: 1.5rem; }
-    .adm-tab { padding: .5rem 1.1rem; border-radius: 8px; font-size: .85rem; font-weight: 600; cursor: pointer; border: none; background: transparent; color: #888; font-family: 'Inter', sans-serif; transition: all .15s; }
-    .adm-tab.active { background: var(--blanco); color: #0d0d0d; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+/* ─── Table ──────────────────────────────────────────────────── */
+.adm-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.adm-table th{text-align:left;padding:.5rem .75rem;color:var(--muted);font-weight:500;border-bottom:1px solid var(--border);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}
+.adm-table td{padding:.6rem .75rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.adm-table tr:last-child td{border:none}
+.adm-table tr:hover td{background:var(--surface2)}
+.badge{display:inline-block;padding:.15rem .55rem;border-radius:10px;font-size:.65rem;font-weight:600;text-transform:uppercase}
+.badge-new{background:rgba(59,130,246,.15);color:var(--blue)}
+.badge-ok{background:rgba(34,197,94,.15);color:var(--green)}
+.badge-warn{background:rgba(249,115,22,.15);color:var(--orange)}
 
-    /* Responsive sidebar */
-    @media (max-width: 900px) {
-      .adm-sidebar { width: 200px; }
-      .adm-main { margin-left: 200px; }
-      .adm-stats { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 640px) {
-      .adm-sidebar { transform: translateX(-100%); transition: transform .3s; }
-      .adm-sidebar.open { transform: translateX(0); }
-      .adm-main { margin-left: 0; }
-      .adm-stats { grid-template-columns: 1fr 1fr; gap: .75rem; }
-      .adm-content { padding: 1rem; }
-      .adm-form-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+/* ─── Utility ────────────────────────────────────────────────── */
+.gap-row{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.text-muted{color:var(--muted);font-size:.8rem}
+.text-gold{color:var(--gold)}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.alert-box{border-radius:6px;padding:.65rem .9rem;font-size:.8rem;margin:.75rem 0}
+.alert-error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171}
+.alert-success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80}
+.divider{border:none;border-top:1px solid var(--border);margin:1rem 0}
+</style>
 </head>
 <body>
 
-<!-- Verificando acceso... -->
-<div id="admin-guard">
-  <div style="text-align:center">
-    <div class="adm-spinner" style="margin:0 auto 1rem"></div>
-    <p style="color:#888;font-size:.9rem">Verificando acceso…</p>
-  </div>
+<!-- ══ Guard (sin sesión) ══════════════════════════════════════ -->
+<div id="admin-guard" style="display:none">
+  <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#ef4444" stroke-width="1.5">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M4.93 4.93l14.14 14.14M12 2a10 10 0 100 20A10 10 0 0012 2z"/>
+  </svg>
+  <p style="color:#f87171;font-weight:600">Acceso restringido</p>
+  <p style="color:var(--muted);font-size:.82rem">Solo accesible para administradores.</p>
+  <a href="login.html" style="color:var(--gold);font-size:.85rem">← Ir al login</a>
 </div>
 
-<!-- Panel de administrador -->
-<div id="admin-app">
+<!-- ══ App ════════════════════════════════════════════════════ -->
+<div id="admin-app" style="display:none">
 
-  <!-- SIDEBAR -->
-  <aside class="adm-sidebar" id="admSidebar">
+  <!-- Sidebar -->
+  <aside class="adm-sidebar">
     <div class="adm-logo">
-      <img src="imagenes/Logo/logosinfondo2.png" alt="NH" />
-      <div>
-        <div class="adm-logo-text">Nueva Habitat</div>
-        <span class="adm-logo-sub">Panel Admin</span>
-      </div>
+      <img src="imagenes/logosinfondo2.png" alt="NH"/>
+      <div><span>NUEVA HABITAT</span><small>Panel Admin</small></div>
     </div>
-
-    <nav class="adm-nav" id="admNav">
-      <div class="adm-nav-section">Principal</div>
-      <a class="active" data-section="dashboard">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    <nav class="adm-nav">
+      <div class="adm-nav-group">Principal</div>
+      <div class="adm-nav-item active" data-sec="dashboard">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
         Dashboard
-      </a>
-      <a data-section="leads">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-        Nuevos leads
-        <span id="leadsBadge" style="margin-left:auto;background:#ef4444;color:#fff;border-radius:100px;font-size:.65rem;font-weight:700;padding:.15rem .45rem;display:none"></span>
-      </a>
-      <a data-section="clientes">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Clientes
-      </a>
-
-      <div class="adm-nav-section">Inmuebles</div>
-      <a data-section="inmuebles">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-        Inmuebles
-      </a>
-      <a data-section="visitas">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-        Visitas
-      </a>
-
-      <div class="adm-nav-section">Contenido</div>
-      <a data-section="blog">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-        Blog
-      </a>
-      <a data-section="newsletter">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-        Newsletter
-      </a>
-
-      <div class="adm-nav-section">Sistema</div>
-      <a href="index.html" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-        Ver web pública
-      </a>
-    </nav>
-
-    <div class="adm-footer">
-      <div class="adm-user">
-        <div class="adm-user-avatar" id="adminAvatar">A</div>
-        <div class="adm-user-info">
-          <div class="adm-user-name" id="adminName">Administrador</div>
-          <div class="adm-user-role">Admin</div>
-        </div>
       </div>
-      <button class="adm-logout" onclick="nhAuth.logout()">Cerrar sesión</button>
+      <div class="adm-nav-item" data-sec="leads">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 11-6 0"/></svg>
+        Nuevos leads
+      </div>
+      <div class="adm-nav-item" data-sec="clientes">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M9 7a4 4 0 108 0 4 4 0 00-8 0"/></svg>
+        Clientes
+      </div>
+      <div class="adm-nav-group" style="margin-top:.5rem">Inmuebles</div>
+      <div class="adm-nav-item" data-sec="inmuebles">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Inmuebles
+      </div>
+      <div class="adm-nav-item" data-sec="visitas">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
+        Visitas
+      </div>
+      <div class="adm-nav-group" style="margin-top:.5rem">Contenido</div>
+      <div class="adm-nav-item" data-sec="blog">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v10a2 2 0 01-2 2z"/></svg>
+        Blog
+      </div>
+      <div class="adm-nav-item" data-sec="newsletter">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M3 8h18v12a1 1 0 01-1 1H4a1 1 0 01-1-1V8z"/></svg>
+        Newsletter
+      </div>
+      <div class="adm-nav-group" style="margin-top:.5rem">Sistema</div>
+      <div class="adm-nav-item" onclick="window.open('index.html','_blank')">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        Ver web pública
+      </div>
+    </nav>
+    <div class="adm-user">
+      <div class="adm-user-name" id="adm-user-name">Administrador</div>
+      <div class="adm-user-role">ADMIN</div>
+      <div class="adm-user-logout" onclick="nhAuth.logout()">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/></svg>
+        Cerrar sesión
+      </div>
     </div>
   </aside>
 
-  <!-- MAIN -->
+  <!-- Main -->
   <main class="adm-main">
     <div class="adm-topbar">
-      <h1 id="admPageTitle">Dashboard</h1>
-      <div class="adm-topbar-meta" id="admDate"></div>
+      <h2 id="adm-section-title">Dashboard</h2>
+      <span class="adm-topbar-date" id="adm-date"></span>
     </div>
 
     <div class="adm-content">
 
-      <!-- ═══ DASHBOARD ═══ -->
+      <!-- ── Dashboard ────────────────────────────────────────── -->
       <section class="adm-section active" id="sec-dashboard">
-        <div class="adm-stats" id="statsGrid">
-          <div class="adm-stat"><div class="adm-stat-num" id="stat-leads">—</div><div class="adm-stat-label">Leads nuevos (7 días)</div><div class="adm-stat-change up" id="stat-leads-change"></div></div>
-          <div class="adm-stat"><div class="adm-stat-num" id="stat-clientes">—</div><div class="adm-stat-label">Clientes registrados</div><div class="adm-stat-change neutral">total acumulado</div></div>
-          <div class="adm-stat"><div class="adm-stat-num" id="stat-inmuebles">—</div><div class="adm-stat-label">Inmuebles activos</div><div class="adm-stat-change up" id="stat-inmuebles-change"></div></div>
-          <div class="adm-stat"><div class="adm-stat-num" id="stat-visitas">—</div><div class="adm-stat-label">Visitas programadas</div><div class="adm-stat-change neutral">próximos 7 días</div></div>
+        <div class="adm-stats">
+          <div class="stat-card"><div class="stat-num" id="st-leads">–</div><div class="stat-label">Leads nuevos</div></div>
+          <div class="stat-card"><div class="stat-num" id="st-clientes">–</div><div class="stat-label">Clientes</div></div>
+          <div class="stat-card"><div class="stat-num" id="st-inmuebles">–</div><div class="stat-label">Inmuebles</div></div>
+          <div class="stat-card"><div class="stat-num" id="st-visitas">–</div><div class="stat-label">Visitas</div></div>
         </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
-          <div class="adm-card">
-            <div class="adm-card-head"><h3>Últimos leads</h3><a data-section="leads" class="adm-nav-link" style="font-size:.8rem;color:#d4aa6e;cursor:pointer">Ver todos</a></div>
-            <div id="dash-leads-table"><div class="adm-loading"><div class="adm-spinner"></div> Cargando…</div></div>
-          </div>
-          <div class="adm-card">
-            <div class="adm-card-head"><h3>Inmuebles recientes</h3><a data-section="inmuebles" class="adm-nav-link" style="font-size:.8rem;color:#d4aa6e;cursor:pointer">Ver todos</a></div>
-            <div id="dash-inmuebles-table"><div class="adm-loading"><div class="adm-spinner"></div> Cargando…</div></div>
-          </div>
+        <div class="adm-card">
+          <div class="adm-card-head"><h3>Últimos leads</h3></div>
+          <div id="dash-leads-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
-      <!-- ═══ LEADS ═══ -->
+      <!-- ── Leads ─────────────────────────────────────────────── -->
       <section class="adm-section" id="sec-leads">
         <div class="adm-card">
-          <div class="adm-card-head"><h3>Todos los leads</h3><span id="leads-count" class="badge badge-blue"></span></div>
-          <div id="leads-table"><div class="adm-loading"><div class="adm-spinner"></div></div></div>
+          <div class="adm-card-head"><h3>Leads recibidos</h3></div>
+          <div id="leads-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
-      <!-- ═══ CLIENTES ═══ -->
+      <!-- ── Clientes ──────────────────────────────────────────── -->
       <section class="adm-section" id="sec-clientes">
         <div class="adm-card">
-          <div class="adm-card-head"><h3>Clientes registrados</h3><span id="clientes-count" class="badge badge-green"></span></div>
-          <div id="clientes-table"><div class="adm-loading"><div class="adm-spinner"></div></div></div>
+          <div class="adm-card-head"><h3>Clientes registrados</h3></div>
+          <div id="clientes-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
-      <!-- ═══ INMUEBLES ═══ -->
+      <!-- ══ INMUEBLES ══════════════════════════════════════════ -->
       <section class="adm-section" id="sec-inmuebles">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
-          <div></div>
-          <button class="adm-btn adm-btn-gold" onclick="showAddInmueble()">+ Publicar inmueble</button>
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Inmuebles</div>
         </div>
 
-        <!-- Formulario nuevo inmueble -->
-        <div class="adm-card" id="formInmueble" style="display:none;margin-bottom:1.5rem">
-          <div class="adm-card-head"><h3>Nuevo inmueble</h3><button class="adm-btn adm-btn-ghost" onclick="document.getElementById('formInmueble').style.display='none'">Cancelar</button></div>
-          <div style="padding:1.5rem">
-            <div class="adm-form-grid">
-              <div class="adm-field"><label>Título</label><input type="text" id="inp-titulo" placeholder="Piso reformado con terraza" /></div>
-              <div class="adm-field"><label>Precio (€)</label><input type="number" id="inp-precio" placeholder="485000" /></div>
-              <div class="adm-field"><label>Barrio / Zona</label><input type="text" id="inp-zona" placeholder="Eixample, Barcelona" /></div>
-              <div class="adm-field"><label>Tipo operación</label><select id="inp-tipo"><option value="venta">Venta</option><option value="alquiler">Alquiler</option></select></div>
-              <div class="adm-field"><label>m²</label><input type="number" id="inp-m2" placeholder="92" /></div>
-              <div class="adm-field"><label>Habitaciones</label><input type="number" id="inp-hab" placeholder="3" /></div>
-              <div class="adm-field"><label>Baños</label><input type="number" id="inp-banos" placeholder="2" /></div>
-              <div class="adm-field"><label>Estado</label><select id="inp-estado"><option value="disponible">Disponible</option><option value="reservado">Reservado</option><option value="vendido">Vendido</option></select></div>
+        <div class="adm-subtabs">
+          <button class="adm-subtab active" id="tab-pub" onclick="showInmTab('pub')">📋 Publicaciones</button>
+          <button class="adm-subtab" id="tab-new" onclick="showInmTab('new')">+ Nuevo inmueble</button>
+        </div>
+
+        <!-- Publicaciones -->
+        <div id="inm-pub">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+            <span class="text-muted" id="pub-count">0 publicaciones</span>
+            <button class="adm-btn adm-btn-gold" onclick="showInmTab('new')">+ Publicar inmueble</button>
+          </div>
+          <div class="pub-grid" id="pub-grid">
+            <div class="pub-empty">
+              <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              <p>No hay inmuebles publicados.<br>Usa el botón "Publicar inmueble".</p>
             </div>
-            <div class="adm-field"><label>Descripción</label><textarea id="inp-desc" placeholder="Descripción del inmueble…"></textarea></div>
-            <div class="adm-field"><label>URL imagen principal</label><input type="text" id="inp-img" placeholder="imagenes/interior2.jpg" /></div>
-            <button class="adm-btn adm-btn-gold" onclick="saveInmueble()">Guardar inmueble</button>
           </div>
         </div>
 
-        <div class="adm-card">
-          <div class="adm-card-head"><h3>Inmuebles publicados</h3><span id="inmuebles-count" class="badge badge-gold"></span></div>
-          <div id="inmuebles-table"><div class="adm-loading"><div class="adm-spinner"></div></div></div>
+        <!-- Wizard -->
+        <div id="inm-new" style="display:none">
+          <div class="wizard-wrap">
+            <div class="wizard-header">
+              <span class="wizard-title">Nuevo inmueble</span>
+              <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="showInmTab('pub')">✕ Cancelar</button>
+            </div>
+
+            <!-- Steps bar -->
+            <div class="wizard-steps-bar">
+              <div class="wstep active" id="ws-1"><div class="wstep-num">1</div><div class="wstep-label">Propietario</div></div>
+              <div class="wstep-line"></div>
+              <div class="wstep" id="ws-2"><div class="wstep-num">2</div><div class="wstep-label">Inmueble</div></div>
+              <div class="wstep-line"></div>
+              <div class="wstep" id="ws-3"><div class="wstep-num">3</div><div class="wstep-label">Medios</div></div>
+              <div class="wstep-line"></div>
+              <div class="wstep" id="ws-4"><div class="wstep-num">4</div><div class="wstep-label">Publicar</div></div>
+            </div>
+
+            <div class="wizard-body">
+
+              <!-- ── Step 1: Propietario ─────────────────────── -->
+              <div class="wizard-step active" id="wiz-step-1">
+                <div class="wiz-section-label">Datos del propietario</div>
+                <div class="adm-form-grid">
+                  <div class="adm-field adm-form-col-full">
+                    <label>Nombre completo *</label>
+                    <input type="text" id="w-prop-nombre" placeholder="Ej: María García López"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Teléfono *</label>
+                    <input type="tel" id="w-prop-tel" placeholder="+34 600 000 000"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Email *</label>
+                    <input type="email" id="w-prop-email" placeholder="propietario@email.com"/>
+                  </div>
+                </div>
+                <div id="wiz-err-1" class="alert-box alert-error" style="display:none"></div>
+              </div>
+
+              <!-- ── Step 2: Datos inmueble ──────────────────── -->
+              <div class="wizard-step" id="wiz-step-2">
+                <div class="wiz-section-label">Identificación</div>
+                <div class="adm-form-grid-3">
+                  <div class="adm-field">
+                    <label>Referencia</label>
+                    <input type="text" id="w-ref" placeholder="Auto-generada"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Tipo *</label>
+                    <select id="w-tipo">
+                      <option value="piso">Piso</option>
+                      <option value="casa">Casa</option>
+                      <option value="atico">Ático</option>
+                      <option value="duplex">Dúplex</option>
+                      <option value="local">Local comercial</option>
+                      <option value="nave">Nave industrial</option>
+                      <option value="terreno">Terreno / Solar</option>
+                      <option value="garaje">Garaje</option>
+                    </select>
+                  </div>
+                  <div class="adm-field">
+                    <label>Operación *</label>
+                    <select id="w-operacion">
+                      <option value="venta">Venta</option>
+                      <option value="alquiler">Alquiler</option>
+                      <option value="alquiler_opcion">Alquiler con opción a compra</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="adm-form-grid-3">
+                  <div class="adm-field">
+                    <label>Precio (€) *</label>
+                    <input type="number" id="w-precio" placeholder="350000"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Estado</label>
+                    <select id="w-estado">
+                      <option value="disponible">Disponible</option>
+                      <option value="reservado">Reservado</option>
+                      <option value="vendido">Vendido</option>
+                      <option value="no_disponible">No disponible</option>
+                    </select>
+                  </div>
+                  <div class="adm-field">
+                    <label>Título *</label>
+                    <input type="text" id="w-titulo" placeholder="Piso luminoso en Eixample"/>
+                  </div>
+                </div>
+
+                <hr class="divider"/>
+                <div class="wiz-section-label">Ubicación</div>
+                <div class="adm-form-grid">
+                  <div class="adm-field">
+                    <label>Calle / Avenida</label>
+                    <input type="text" id="w-calle" placeholder="Carrer de Valencia"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Número</label>
+                    <input type="text" id="w-numero" placeholder="123"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Piso / Puerta</label>
+                    <input type="text" id="w-pisopuerta" placeholder="3º 2ª"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Código Postal</label>
+                    <input type="text" id="w-cp" placeholder="08012"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Municipio *</label>
+                    <input type="text" id="w-municipio" placeholder="Barcelona"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Barrio / Zona</label>
+                    <input type="text" id="w-zona" placeholder="Eixample Dreta"/>
+                  </div>
+                </div>
+
+                <hr class="divider"/>
+                <div class="wiz-section-label">Distribución del inmueble</div>
+                <div class="adm-form-grid-3">
+                  <div class="adm-field">
+                    <label>Dormitorios</label>
+                    <input type="number" id="w-dorm" min="0" placeholder="3"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Baños</label>
+                    <input type="number" id="w-banos" min="0" placeholder="2"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Aseos</label>
+                    <input type="number" id="w-aseos" min="0" placeholder="1"/>
+                  </div>
+                </div>
+                <div class="adm-checks-grid">
+                  <label class="adm-field-check"><input type="checkbox" id="w-salon"/> Salón</label>
+                  <label class="adm-field-check"><input type="checkbox" id="w-terraza"/> Terraza</label>
+                  <label class="adm-field-check"><input type="checkbox" id="w-balcon"/> Balcón</label>
+                  <label class="adm-field-check"><input type="checkbox" id="w-garaje"/> Garaje</label>
+                  <label class="adm-field-check"><input type="checkbox" id="w-trastero"/> Trastero</label>
+                  <label class="adm-field-check"><input type="checkbox" id="w-ascensor"/> Ascensor</label>
+                </div>
+
+                <hr class="divider"/>
+                <div class="wiz-section-label">Superficies (m²)</div>
+                <div class="adm-form-grid" style="grid-template-columns:repeat(4,1fr)">
+                  <div class="adm-field">
+                    <label>Útil</label>
+                    <input type="number" id="w-m2util" placeholder="75"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Construida</label>
+                    <input type="number" id="w-m2const" placeholder="90"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Terraza</label>
+                    <input type="number" id="w-m2terr" placeholder="15"/>
+                  </div>
+                  <div class="adm-field">
+                    <label>Parcela</label>
+                    <input type="number" id="w-m2parc" placeholder="0"/>
+                  </div>
+                </div>
+
+                <hr class="divider"/>
+                <div class="wiz-section-label">Descripción pública</div>
+                <div class="adm-field">
+                  <label>Descripción del inmueble</label>
+                  <textarea id="w-desc" rows="5" placeholder="Describe el inmueble: características, entorno, oportunidad de inversión…"></textarea>
+                </div>
+                <div id="wiz-err-2" class="alert-box alert-error" style="display:none"></div>
+              </div>
+
+              <!-- ── Step 3: Trigger (open overlay) ─────────── -->
+              <div class="wizard-step" id="wiz-step-3">
+                <div style="text-align:center;padding:2rem 0">
+                  <svg width="56" height="56" fill="none" viewBox="0 0 24 24" stroke="var(--gold)" stroke-width="1.2" style="margin-bottom:1rem">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4-4a3 3 0 014 0l4 4M14 14l1.5-1.5a3 3 0 014 0L21 14M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                  </svg>
+                  <p style="font-size:.95rem;font-weight:600;margin-bottom:.5rem">Subir fotos, vídeo y plano</p>
+                  <p class="text-muted" style="font-size:.82rem;margin-bottom:1.5rem">Abrirá el gestor de medios a pantalla completa.<br>Sube hasta 25 imágenes, un vídeo y el plano del inmueble.</p>
+                  <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap">
+                    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.75rem 1.25rem;text-align:center;min-width:110px">
+                      <div style="font-size:1.4rem;font-weight:700;color:var(--gold)" id="mo-count-badge">0</div>
+                      <div class="text-muted" style="font-size:.7rem">Fotos</div>
+                    </div>
+                    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.75rem 1.25rem;text-align:center;min-width:110px">
+                      <div style="font-size:1.1rem;font-weight:600;color:var(--gold)" id="mo-video-badge">–</div>
+                      <div class="text-muted" style="font-size:.7rem">Vídeo</div>
+                    </div>
+                    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.75rem 1.25rem;text-align:center;min-width:110px">
+                      <div style="font-size:1.1rem;font-weight:600;color:var(--gold)" id="mo-plano-badge">–</div>
+                      <div class="text-muted" style="font-size:.7rem">Plano</div>
+                    </div>
+                  </div>
+                  <button class="adm-btn adm-btn-gold adm-btn-lg" onclick="openMediaOverlay()" style="margin-top:1.5rem">
+                    📷 Abrir gestor de medios
+                  </button>
+                </div>
+              </div>
+
+              <!-- ── Step 4: Preview + Publicar ─────────────── -->
+              <div class="wizard-step" id="wiz-step-4">
+                <div class="wiz-section-label">Vista previa y publicación</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start">
+                  <div id="wiz-preview-card"></div>
+                  <div>
+                    <div class="adm-card" style="margin-bottom:0">
+                      <div class="adm-card-head"><h3>Resumen</h3></div>
+                      <div id="wiz-summary" style="font-size:.82rem;line-height:1.8;color:var(--muted)"></div>
+                    </div>
+                    <div class="alert-box alert-success" style="margin-top:.75rem;display:none" id="wiz-ok">
+                      ✅ Inmueble publicado correctamente.
+                    </div>
+                    <div class="alert-box alert-error" style="margin-top:.75rem;display:none" id="wiz-err-4"></div>
+                    <button class="adm-btn adm-btn-gold adm-btn-lg" onclick="publishProperty()" style="width:100%;justify-content:center;margin-top:.75rem" id="btn-publish">
+                      🚀 Publicar inmueble
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- wizard-body -->
+
+            <div class="wizard-footer">
+              <button class="adm-btn adm-btn-ghost" id="btn-wiz-prev" onclick="wizPrev()" style="display:none">← Atrás</button>
+              <div style="flex:1"></div>
+              <button class="adm-btn adm-btn-gold" id="btn-wiz-next" onclick="wizNext()">Siguiente →</button>
+            </div>
+          </div><!-- wizard-wrap -->
         </div>
       </section>
 
-      <!-- ═══ VISITAS ═══ -->
+      <!-- ── Visitas ───────────────────────────────────────────── -->
       <section class="adm-section" id="sec-visitas">
         <div class="adm-card">
           <div class="adm-card-head"><h3>Visitas programadas</h3></div>
-          <div id="visitas-table"><div class="adm-loading"><div class="adm-spinner"></div></div></div>
+          <div id="visitas-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
-      <!-- ═══ BLOG ═══ -->
+      <!-- ── Blog ─────────────────────────────────────────────── -->
       <section class="adm-section" id="sec-blog">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
-          <div></div>
-          <button class="adm-btn adm-btn-gold" onclick="showAddPost()">+ Nuevo artículo</button>
-        </div>
-        <div class="adm-card" id="formPost" style="display:none;margin-bottom:1.5rem">
-          <div class="adm-card-head"><h3>Nuevo artículo</h3><button class="adm-btn adm-btn-ghost" onclick="document.getElementById('formPost').style.display='none'">Cancelar</button></div>
-          <div style="padding:1.5rem">
-            <div class="adm-form-grid">
-              <div class="adm-field"><label>Título</label><input type="text" id="post-titulo" placeholder="Título del artículo" /></div>
-              <div class="adm-field"><label>Categoría</label><select id="post-cat"><option>Vender</option><option>Comprar</option><option>Jurídico</option><option>Mercado</option><option>Hipotecas</option></select></div>
-            </div>
-            <div class="adm-field"><label>Extracto</label><input type="text" id="post-extracto" placeholder="Breve descripción para la lista del blog" /></div>
-            <div class="adm-field"><label>Contenido (HTML o texto)</label><textarea id="post-contenido" style="min-height:200px" placeholder="Escribe el artículo aquí…"></textarea></div>
-            <div class="adm-field"><label>URL imagen</label><input type="text" id="post-img" placeholder="imagenes/interior5.jpg" /></div>
-            <button class="adm-btn adm-btn-gold" onclick="savePost()">Publicar artículo</button>
-          </div>
-        </div>
         <div class="adm-card">
-          <div class="adm-card-head"><h3>Artículos publicados</h3></div>
-          <div id="blog-table"><div class="adm-loading"><div class="adm-spinner"></div></div></div>
+          <div class="adm-card-head">
+            <h3>Artículos del blog</h3>
+            <button class="adm-btn adm-btn-gold adm-btn-sm" onclick="document.getElementById('blog-form').style.display='block'">+ Nuevo artículo</button>
+          </div>
+          <div id="blog-form" style="display:none;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:1rem;margin-bottom:1rem">
+            <div class="adm-form-grid">
+              <div class="adm-field"><label>Título</label><input type="text" id="b-titulo"/></div>
+              <div class="adm-field"><label>Categoría</label><input type="text" id="b-cat" placeholder="Mercado, Consejos…"/></div>
+              <div class="adm-field adm-form-col-full"><label>Extracto</label><textarea id="b-extracto" rows="2"></textarea></div>
+            </div>
+            <div class="gap-row">
+              <button class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveBlog()">Guardar</button>
+              <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="document.getElementById('blog-form').style.display='none'">Cancelar</button>
+            </div>
+          </div>
+          <div id="blog-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
-      <!-- ═══ NEWSLETTER ═══ -->
+      <!-- ── Newsletter ────────────────────────────────────────── -->
       <section class="adm-section" id="sec-newsletter">
         <div class="adm-card">
-          <div class="adm-card-head"><h3>Suscriptores newsletter</h3><span id="newsletter-count" class="badge badge-blue"></span></div>
-          <div id="newsletter-table"><div class="adm-loading"><div class="adm-spinner"></div></div></div>
+          <div class="adm-card-head"><h3>Suscriptores newsletter</h3><span id="nl-count" class="text-muted"></span></div>
+          <div id="nl-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
-    </div><!-- /adm-content -->
+    </div><!-- adm-content -->
   </main>
-</div><!-- /admin-app -->
+</div><!-- admin-app -->
+
+<!-- ══ Media Overlay ══════════════════════════════════════════ -->
+<div id="media-overlay">
+  <div class="mo-header">
+    <div>
+      <h2>Gestor de medios</h2>
+      <div class="mo-progress" id="mo-progress-txt">0 / 25 fotos · vídeo: no · plano: no</div>
+    </div>
+    <div class="gap-row">
+      <button class="adm-btn adm-btn-green" onclick="closeMediaOverlay()">✔ Listo – volver al wizard</button>
+      <button class="adm-btn adm-btn-ghost" onclick="closeMediaOverlay()">✕ Cancelar</button>
+    </div>
+  </div>
+
+  <div class="mo-body">
+    <!-- LEFT: fotos -->
+    <div class="mo-left">
+      <div class="mo-section">
+        <h3>📷 Fotografías del inmueble</h3>
+        <div class="mo-drop" id="mo-drop-zone">
+          <input type="file" id="mo-file-input" multiple accept="image/jpeg,image/jpg,image/png,image/webp,image/gif,image/heic"/>
+          <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/></svg>
+          <p>Arrastra imágenes aquí o haz clic para seleccionar</p>
+          <small>JPG, PNG, WEBP · Máx. 25 fotos · Se comprimen automáticamente</small>
+        </div>
+        <div class="mo-count">
+          <span><span id="mo-count-num">0</span> / 25 fotos</span>
+          <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="clearAllPhotos()" id="btn-clear-photos" style="display:none">🗑 Eliminar todas</button>
+        </div>
+        <div class="mo-grid" id="mo-grid"></div>
+      </div>
+
+      <!-- Upload progress -->
+      <div id="mo-upload-status" style="display:none" class="mo-section">
+        <h3>⬆ Subiendo a Supabase…</h3>
+        <div class="mo-upload-bar"><div class="mo-upload-bar-fill" id="mo-bar"></div></div>
+        <p class="text-muted" style="font-size:.75rem;margin-top:.4rem" id="mo-bar-txt">Preparando…</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: video + plano -->
+    <div class="mo-right">
+      <div class="mo-section">
+        <h3>🎬 Vídeo</h3>
+        <div class="adm-field">
+          <label>URL YouTube / Vimeo (recomendado)</label>
+          <input type="url" id="mo-video-url" placeholder="https://youtube.com/watch?v=…"/>
+        </div>
+        <p style="font-size:.7rem;color:var(--muted);margin-top:.3rem">O sube un archivo de vídeo (MP4, máx. 50 MB):</p>
+        <div class="adm-field" style="margin-top:.5rem">
+          <input type="file" id="mo-video-file" accept="video/mp4,video/quicktime,video/webm" style="font-size:.78rem"/>
+        </div>
+      </div>
+
+      <div class="mo-section">
+        <h3>📐 Plano del inmueble</h3>
+        <div class="adm-field">
+          <label>Imagen del plano (JPG, PNG, PDF)</label>
+          <input type="file" id="mo-plano-file" accept="image/jpeg,image/png,image/webp,application/pdf" style="font-size:.78rem"/>
+        </div>
+        <img id="mo-plano-preview" class="mo-preview-img" alt="Vista previa plano"/>
+      </div>
+
+      <div class="mo-section">
+        <h3>ℹ Instrucciones</h3>
+        <ul style="font-size:.75rem;color:var(--muted);line-height:1.9;padding-left:1rem">
+          <li>Arrastra las fotos para reordenarlas</li>
+          <li>La 1ª foto será la portada</li>
+          <li>Las imágenes se comprimen a 1920px / 82% calidad JPEG</li>
+          <li>Al pulsar "Listo" se subirán a Supabase Storage</li>
+          <li>Al publicar se guardarán las URLs en la base de datos</li>
+        </ul>
+      </div>
+    </div>
+  </div><!-- mo-body -->
+
+  <div class="mo-footer">
+    <span class="mo-footer-info" id="mo-footer-info">Añade imágenes para continuar</span>
+    <button class="adm-btn adm-btn-gold" onclick="closeMediaOverlay()">✔ Confirmar medios</button>
+  </div>
+</div>
 
 <script src="js/supabase.js"></script>
 <script>
-/* ═══ ADMIN LOGIC ═══ */
+/* ═══════════════════════════════════════════════════════════════
+   ADMIN PANEL – NuevaHabitat
+   ══════════════════════════════════════════════════════════════ */
 
-const SECTIONS = {
-  dashboard:  { title: 'Dashboard',           load: loadDashboard },
-  leads:      { title: 'Nuevos leads',         load: loadLeads },
-  clientes:   { title: 'Clientes',             load: loadClientes },
-  inmuebles:  { title: 'Inmuebles',            load: loadInmuebles },
-  visitas:    { title: 'Visitas',              load: loadVisitas },
-  blog:       { title: 'Blog',                 load: loadBlog },
-  newsletter: { title: 'Newsletter',           load: loadNewsletter },
-};
-
+/* ── Globals ─────────────────────────────────────────────────── */
 let currentSection = 'dashboard';
+let wizStep = 1;
+let mediaFiles = [];    // {file, preview, compressed}
+let videoUrl  = '';
+let planoFile = null;
+let currentPropertyId = null;
 
-/* ── Init ── */
+/* ── Date ─────────────────────────────────────────────────────── */
+(function(){
+  const d = new Date();
+  document.getElementById('adm-date').textContent = d.toLocaleDateString('es-ES',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+})();
+
+/* ── Init ─────────────────────────────────────────────────────── */
 document.addEventListener('supabase:ready', async () => {
   const user = await nhAuth.getUser();
-
   if (!user || !nhAuth.isAdmin(user)) {
-    document.getElementById('admin-guard').innerHTML = `
-      <div style="text-align:center;padding:2rem">
-        <p style="color:#b91c1c;font-weight:600;margin-bottom:1rem">Acceso restringido al administrador.</p>
-        <a href="login.html" style="color:#d4aa6e;font-size:.9rem">← Ir al login</a>
-      </div>`;
+    document.getElementById('admin-app').style.display = 'none';
+    document.getElementById('admin-guard').style.display = 'flex';
+    return;
+  }
+  document.getElementById('admin-app').style.display = 'flex';
+  document.getElementById('adm-user-name').textContent = user.email.split('@')[0];
+
+  setupNav();
+  loadDashboard();
+  loadPublications();
+});
+
+/* ── Navigation ──────────────────────────────────────────────── */
+function setupNav(){
+  document.querySelectorAll('.adm-nav-item[data-sec]').forEach(el=>{
+    el.addEventListener('click',()=>{ switchSection(el.dataset.sec); });
+  });
+}
+function switchSection(id){
+  currentSection = id;
+  document.querySelectorAll('.adm-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
+  const titles = {dashboard:'Dashboard',leads:'Leads',clientes:'Clientes',inmuebles:'Inmuebles',visitas:'Visitas',blog:'Blog',newsletter:'Newsletter'};
+  document.getElementById('adm-section-title').textContent = titles[id]||id;
+  if(id==='leads') loadLeads();
+  if(id==='clientes') loadClientes();
+  if(id==='visitas') loadVisitas();
+  if(id==='blog') loadBlog();
+  if(id==='newsletter') loadNewsletter();
+}
+
+/* ── Inmuebles sub-tabs ──────────────────────────────────────── */
+function showInmTab(t){
+  document.getElementById('inm-pub').style.display = t==='pub'?'block':'none';
+  document.getElementById('inm-new').style.display = t==='new'?'block':'none';
+  document.getElementById('tab-pub').classList.toggle('active', t==='pub');
+  document.getElementById('tab-new').classList.toggle('active', t==='new');
+  if(t==='new') resetWizard();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   WIZARD
+   ══════════════════════════════════════════════════════════════ */
+function resetWizard(){
+  wizStep = 1;
+  mediaFiles = [];
+  videoUrl = '';
+  planoFile = null;
+  currentPropertyId = null;
+  updateWizUI();
+  autoGenerateRef();
+  ['wiz-err-1','wiz-err-2','wiz-err-4','wiz-ok'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.style.display='none';el.textContent='';}
+  });
+}
+
+function autoGenerateRef(){
+  const yr = new Date().getFullYear();
+  const rnd = Math.floor(1000+Math.random()*9000);
+  document.getElementById('w-ref').value = `NH-${yr}-${rnd}`;
+}
+
+function updateWizUI(){
+  // Steps
+  for(let i=1;i<=4;i++){
+    const el = document.getElementById('ws-'+i);
+    el.classList.remove('active','done');
+    if(i < wizStep) el.classList.add('done');
+    else if(i===wizStep) el.classList.add('active');
+  }
+  // Step panels
+  document.querySelectorAll('.wizard-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('wiz-step-'+wizStep).classList.add('active');
+  // Buttons
+  document.getElementById('btn-wiz-prev').style.display = wizStep>1?'inline-flex':'none';
+  const nextBtn = document.getElementById('btn-wiz-next');
+  nextBtn.style.display = wizStep===4?'none':'inline-flex';
+  nextBtn.textContent = wizStep===3?'Ver resumen →':'Siguiente →';
+  // Update media badge
+  document.getElementById('mo-count-badge').textContent = mediaFiles.length;
+  document.getElementById('mo-video-badge').textContent = (videoUrl||'')!==''?'✔':'-';
+  document.getElementById('mo-plano-badge').textContent = planoFile?'✔':'-';
+}
+
+function wizNext(){
+  if(wizStep===1 && !validateStep1()) return;
+  if(wizStep===2 && !validateStep2()) return;
+  if(wizStep===3){ buildPreview(); }
+  wizStep = Math.min(4, wizStep+1);
+  updateWizUI();
+  if(wizStep===4) buildPreview();
+}
+function wizPrev(){
+  wizStep = Math.max(1, wizStep-1);
+  updateWizUI();
+}
+
+function validateStep1(){
+  const n=document.getElementById('w-prop-nombre').value.trim();
+  const t=document.getElementById('w-prop-tel').value.trim();
+  const e=document.getElementById('w-prop-email').value.trim();
+  if(!n||!t||!e){ showWizErr(1,'Completa todos los campos del propietario.'); return false; }
+  if(!/\S+@\S+\.\S+/.test(e)){ showWizErr(1,'Email del propietario no válido.'); return false; }
+  hideWizErr(1); return true;
+}
+function validateStep2(){
+  const t=document.getElementById('w-titulo').value.trim();
+  const p=document.getElementById('w-precio').value;
+  const m=document.getElementById('w-municipio').value.trim();
+  if(!t||!p||!m){ showWizErr(2,'Título, precio y municipio son obligatorios.'); return false; }
+  hideWizErr(2); return true;
+}
+function showWizErr(step,msg){ const el=document.getElementById('wiz-err-'+step); el.textContent=msg; el.style.display='block'; }
+function hideWizErr(step){ document.getElementById('wiz-err-'+step).style.display='none'; }
+
+function buildPreview(){
+  const title = document.getElementById('w-titulo').value;
+  const precio = parseFloat(document.getElementById('w-precio').value)||0;
+  const zona   = document.getElementById('w-zona').value || document.getElementById('w-municipio').value;
+  const estado = document.getElementById('w-estado').value;
+  const tipo   = document.getElementById('w-tipo').value;
+  const dorm   = document.getElementById('w-dorm').value;
+  const banos  = document.getElementById('w-banos').value;
+  const m2     = document.getElementById('w-m2util').value;
+  const ref    = document.getElementById('w-ref').value;
+  const thumb  = mediaFiles.length ? mediaFiles[0].preview : 'imagenes/interior1.jpg';
+
+  document.getElementById('wiz-preview-card').innerHTML = `
+    <div class="pub-card">
+      <div class="pub-img"><img src="${thumb}" style="width:100%;height:190px;object-fit:cover"/>
+        <span class="pub-badge badge-${estado}">${estado.replace('_',' ')}</span>
+      </div>
+      <div class="pub-body">
+        <div class="pub-ref">${ref}</div>
+        <div class="pub-title">${title||'Sin título'}</div>
+        <div class="pub-price">${precio.toLocaleString('es-ES')} €</div>
+        <div class="pub-meta">
+          ${dorm?`<span>🛏 ${dorm}</span>`:''}
+          ${banos?`<span>🚿 ${banos}</span>`:''}
+          ${m2?`<span>📐 ${m2} m²</span>`:''}
+          ${zona?`<span>📍 ${zona}</span>`:''}
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById('wiz-summary').innerHTML = `
+    <div><b style="color:var(--text)">Propietario:</b> ${document.getElementById('w-prop-nombre').value}</div>
+    <div><b style="color:var(--text)">Tipo:</b> ${tipo} · ${document.getElementById('w-operacion').value}</div>
+    <div><b style="color:var(--text)">Dirección:</b> ${document.getElementById('w-calle').value} ${document.getElementById('w-numero').value}, ${document.getElementById('w-municipio').value}</div>
+    <div><b style="color:var(--text)">Fotos:</b> ${mediaFiles.length} · Vídeo: ${videoUrl?'Sí':'No'} · Plano: ${planoFile?'Sí':'No'}</div>
+  `;
+}
+
+/* ── Publish property ─────────────────────────────────────────── */
+async function publishProperty(){
+  const btn = document.getElementById('btn-publish');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Publicando…';
+  document.getElementById('wiz-err-4').style.display='none';
+  document.getElementById('wiz-ok').style.display='none';
+
+  try {
+    // 1. Generate temp ID
+    const tempId = 'prop_'+Date.now();
+    currentPropertyId = tempId;
+
+    // 2. Collect checkboxes
+    const chk = id=>document.getElementById(id).checked;
+    const num = id=>parseFloat(document.getElementById(id).value)||null;
+    const txt = id=>document.getElementById(id).value.trim()||null;
+
+    // 3. Upload images
+    const imageUrls = [];
+    if(mediaFiles.length>0){
+      document.getElementById('mo-upload-status').style.display='block';
+      for(let i=0;i<mediaFiles.length;i++){
+        document.getElementById('mo-bar').style.width=((i/mediaFiles.length)*100)+'%';
+        document.getElementById('mo-bar-txt').textContent=`Subiendo foto ${i+1} de ${mediaFiles.length}…`;
+        const compressed = await compressImage(mediaFiles[i].file);
+        const path = `${tempId}/foto-${i+1}-${Date.now()}.jpg`;
+        const url = await uploadToStorage(compressed, path);
+        imageUrls.push(url);
+      }
+      document.getElementById('mo-bar').style.width='100%';
+    }
+
+    // 4. Upload video file (if any)
+    let videoFinalUrl = txt('mo-video-url') || videoUrl || null;
+    const vFile = document.getElementById('mo-video-file').files[0];
+    if(vFile){
+      document.getElementById('mo-bar-txt').textContent='Subiendo vídeo…';
+      videoFinalUrl = await uploadToStorage(vFile, `${tempId}/video-${Date.now()}.mp4`);
+    }
+
+    // 5. Upload plano
+    let planoUrl = null;
+    const pFile = document.getElementById('mo-plano-file').files[0] || planoFile;
+    if(pFile){
+      document.getElementById('mo-bar-txt').textContent='Subiendo plano…';
+      const ext = pFile.name.split('.').pop();
+      planoUrl = await uploadToStorage(pFile, `${tempId}/plano-${Date.now()}.${ext}`);
+    }
+    document.getElementById('mo-upload-status').style.display='none';
+
+    // 6. Insert to Supabase
+    const payload = {
+      titulo:               txt('w-titulo'),
+      referencia:           txt('w-ref'),
+      tipo:                 txt('w-tipo'),
+      tipo_operacion:       txt('w-operacion'),
+      precio:               num('w-precio'),
+      estado:               txt('w-estado'),
+      zona:                 txt('w-zona'),
+      municipio:            txt('w-municipio'),
+      propietario_nombre:   txt('w-prop-nombre'),
+      propietario_telefono: txt('w-prop-tel'),
+      propietario_email:    txt('w-prop-email'),
+      direccion_calle:      txt('w-calle'),
+      direccion_numero:     txt('w-numero'),
+      direccion_piso:       txt('w-pisopuerta'),
+      cp:                   txt('w-cp'),
+      dormitorios:          num('w-dorm'),
+      banos:                num('w-banos'),
+      aseos:                num('w-aseos'),
+      salon:                chk('w-salon'),
+      terraza:              chk('w-terraza'),
+      balcon:               chk('w-balcon'),
+      garaje:               chk('w-garaje'),
+      trastero:             chk('w-trastero'),
+      ascensor:             chk('w-ascensor'),
+      m2_util:              num('w-m2util'),
+      m2_construido:        num('w-m2const'),
+      m2_terraza:           num('w-m2terr'),
+      m2_parcela:           num('w-m2parc'),
+      descripcion:          txt('w-desc'),
+      imagenes:             imageUrls,
+      video_url:            videoFinalUrl,
+      plano_url:            planoUrl,
+      publicado:            true,
+    };
+
+    const { data, error } = await window.nhSupabase.from('inmuebles').insert(payload).select().single();
+    if(error) throw error;
+
+    document.getElementById('wiz-ok').style.display='block';
+    btn.innerHTML='✅ Publicado';
+    setTimeout(()=>{ showInmTab('pub'); loadPublications(); }, 2000);
+
+  } catch(err){
+    console.error(err);
+    const el=document.getElementById('wiz-err-4');
+    el.textContent='Error al publicar: '+(err.message||JSON.stringify(err));
+    el.style.display='block';
+    btn.disabled=false;
+    btn.innerHTML='🚀 Publicar inmueble';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   IMAGE COMPRESSION
+   ══════════════════════════════════════════════════════════════ */
+function compressImage(file, maxWidth=1920, quality=0.82){
+  return new Promise(resolve=>{
+    const reader = new FileReader();
+    reader.onload = e=>{
+      const img = new Image();
+      img.onload = ()=>{
+        let w=img.width, h=img.height;
+        if(w>maxWidth){ h=Math.round(h*maxWidth/w); w=maxWidth; }
+        const canvas=document.createElement('canvas');
+        canvas.width=w; canvas.height=h;
+        canvas.getContext('2d').drawImage(img,0,0,w,h);
+        canvas.toBlob(blob=>{
+          resolve(new File([blob], file.name.replace(/\.[^.]+$/,'.jpg'),{type:'image/jpeg'}));
+        },'image/jpeg',quality);
+      };
+      img.src=e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SUPABASE STORAGE UPLOAD
+   ══════════════════════════════════════════════════════════════ */
+async function uploadToStorage(file, path){
+  const { data, error } = await window.nhSupabase.storage.from('inmuebles').upload(path, file, {upsert:true, contentType:file.type});
+  if(error) throw error;
+  const { data:{ publicUrl } } = window.nhSupabase.storage.from('inmuebles').getPublicUrl(path);
+  return publicUrl;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MEDIA OVERLAY
+   ══════════════════════════════════════════════════════════════ */
+function openMediaOverlay(){
+  document.getElementById('media-overlay').classList.add('open');
+  renderMediaGrid();
+}
+function closeMediaOverlay(){
+  document.getElementById('media-overlay').classList.remove('open');
+  // update badges in wizard step 3
+  document.getElementById('mo-count-badge').textContent = mediaFiles.length;
+  videoUrl = document.getElementById('mo-video-url').value.trim();
+  document.getElementById('mo-video-badge').textContent = videoUrl?'✔':'-';
+  planoFile = document.getElementById('mo-plano-file').files[0]||null;
+  document.getElementById('mo-plano-badge').textContent = planoFile?'✔':'-';
+  updateProgress();
+}
+
+function updateProgress(){
+  const v = (document.getElementById('mo-video-url').value||document.getElementById('mo-video-file').files[0])?'sí':'no';
+  const p = document.getElementById('mo-plano-file').files[0]?'sí':'no';
+  document.getElementById('mo-progress-txt').textContent = `${mediaFiles.length} / 25 fotos · vídeo: ${v} · plano: ${p}`;
+  document.getElementById('mo-footer-info').textContent = `${mediaFiles.length} foto(s) lista(s)`;
+}
+
+/* ── Drop zone ────────────────────────────────────────────────── */
+const dropZone = document.getElementById('mo-drop-zone');
+const fileInput = document.getElementById('mo-file-input');
+
+fileInput.addEventListener('change', e=>{ addFiles(Array.from(e.target.files)); fileInput.value=''; });
+dropZone.addEventListener('dragover', e=>{ e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', ()=>dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e=>{ e.preventDefault(); dropZone.classList.remove('drag-over'); addFiles(Array.from(e.dataTransfer.files)); });
+
+function addFiles(files){
+  const imgs = files.filter(f=>f.type.startsWith('image/'));
+  const remaining = 25 - mediaFiles.length;
+  imgs.slice(0,remaining).forEach(f=>{
+    const preview = URL.createObjectURL(f);
+    mediaFiles.push({file:f, preview});
+  });
+  if(imgs.length>remaining) alert(`Solo se pueden añadir ${remaining} imagen(es) más (máximo 25).`);
+  renderMediaGrid();
+  updateProgress();
+}
+
+function clearAllPhotos(){
+  mediaFiles=[];
+  renderMediaGrid();
+  updateProgress();
+  document.getElementById('btn-clear-photos').style.display='none';
+}
+
+/* ── Grid render + drag-to-reorder ──────────────────────────── */
+let dragIdx = null;
+
+function renderMediaGrid(){
+  const grid = document.getElementById('mo-grid');
+  document.getElementById('mo-count-num').textContent = mediaFiles.length;
+  document.getElementById('btn-clear-photos').style.display = mediaFiles.length?'inline-flex':'none';
+
+  if(!mediaFiles.length){ grid.innerHTML=''; return; }
+
+  grid.innerHTML = mediaFiles.map((m,i)=>`
+    <div class="mo-thumb" draggable="true" data-idx="${i}" ondragstart="onDragStart(${i})" ondragover="onDragOver(event,${i})" ondrop="onDrop(event,${i})" ondragend="onDragEnd()">
+      <img src="${m.preview}" alt="foto ${i+1}"/>
+      <div class="mo-thumb-idx">${i+1}</div>
+      ${i===0?'<div class="mo-thumb-star" title="Portada">⭐</div>':''}
+      <div class="mo-thumb-overlay">
+        <div class="mo-thumb-actions">
+          <button class="mo-thumb-del" onclick="removePhoto(${i})">🗑</button>
+          ${i>0?`<button class="mo-thumb-main" onclick="setMainPhoto(${i})" title="Hacer portada">★</button>`:''}
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function removePhoto(i){ mediaFiles.splice(i,1); renderMediaGrid(); updateProgress(); }
+function setMainPhoto(i){ const m=mediaFiles.splice(i,1)[0]; mediaFiles.unshift(m); renderMediaGrid(); }
+
+function onDragStart(i){ dragIdx=i; setTimeout(()=>{ const els=document.querySelectorAll('.mo-thumb'); if(els[i]) els[i].classList.add('dragging'); },0); }
+function onDragEnd(){ document.querySelectorAll('.mo-thumb').forEach(el=>el.classList.remove('dragging','drag-target')); dragIdx=null; }
+function onDragOver(e,i){ e.preventDefault(); document.querySelectorAll('.mo-thumb').forEach(el=>el.classList.remove('drag-target')); const els=document.querySelectorAll('.mo-thumb'); if(els[i]) els[i].classList.add('drag-target'); }
+function onDrop(e,i){ e.preventDefault(); if(dragIdx===null||dragIdx===i) return; const m=mediaFiles.splice(dragIdx,1)[0]; mediaFiles.splice(i,0,m); renderMediaGrid(); updateProgress(); }
+
+/* ── Plano preview ────────────────────────────────────────────── */
+document.getElementById('mo-plano-file').addEventListener('change', e=>{
+  const f = e.target.files[0];
+  const preview = document.getElementById('mo-plano-preview');
+  if(f && f.type.startsWith('image/')){
+    preview.src = URL.createObjectURL(f);
+    preview.classList.add('show');
+  } else {
+    preview.classList.remove('show');
+  }
+  updateProgress();
+});
+document.getElementById('mo-video-url').addEventListener('input', updateProgress);
+document.getElementById('mo-video-file').addEventListener('change', updateProgress);
+
+/* ═══════════════════════════════════════════════════════════════
+   PUBLICATIONS GRID
+   ══════════════════════════════════════════════════════════════ */
+async function loadPublications(){
+  const { data, error } = await window.nhSupabase
+    .from('inmuebles')
+    .select('*')
+    .eq('publicado', true)
+    .order('created_at', {ascending:false});
+
+  const grid = document.getElementById('pub-grid');
+  const countEl = document.getElementById('pub-count');
+
+  if(error||!data||!data.length){
+    grid.innerHTML=`<div class="pub-empty"><svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><p>No hay inmuebles publicados.<br>Usa el botón "+ Publicar inmueble".</p></div>`;
+    countEl.textContent='0 publicaciones';
     return;
   }
 
-  /* Mostrar panel */
-  document.getElementById('admin-guard').style.display = 'none';
-  document.getElementById('admin-app').style.display  = 'block';
-
-  /* Info usuario */
-  const nombre = user.user_metadata?.nombre || user.email.split('@')[0];
-  document.getElementById('adminName').textContent = nombre;
-  document.getElementById('adminAvatar').textContent = nombre[0].toUpperCase();
-
-  /* Fecha */
-  document.getElementById('admDate').textContent = new Date().toLocaleDateString('es-ES', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-
-  /* Nav clicks */
-  document.querySelectorAll('[data-section]').forEach(el => {
-    el.addEventListener('click', () => switchSection(el.dataset.section));
-  });
-
-  loadDashboard();
-  loadLeadsBadge();
-});
-
-function switchSection(name) {
-  if (!SECTIONS[name]) return;
-  currentSection = name;
-  document.querySelectorAll('.adm-section').forEach(s => s.classList.remove('active'));
-  document.getElementById('sec-' + name).classList.add('active');
-  document.querySelectorAll('.adm-nav a').forEach(a => a.classList.remove('active'));
-  document.querySelectorAll(`[data-section="${name}"]`).forEach(a => a.classList.add('active'));
-  document.getElementById('admPageTitle').textContent = SECTIONS[name].title;
-  SECTIONS[name].load();
+  countEl.textContent=`${data.length} publicación(es)`;
+  grid.innerHTML = data.map(p=>{
+    const imgs = Array.isArray(p.imagenes)&&p.imagenes.length?p.imagenes:['imagenes/interior1.jpg'];
+    const price = p.precio?Number(p.precio).toLocaleString('es-ES')+' €':'–';
+    const badge = p.estado||'disponible';
+    const labels={disponible:'Disponible',reservado:'Reservado',vendido:'Vendido',no_disponible:'No disponible'};
+    return `
+      <div class="pub-card">
+        <div class="pub-img">
+          <img src="${imgs[0]}" alt="${p.titulo||''}" id="pub-img-${p.id}" onerror="this.src='imagenes/interior1.jpg'"/>
+          <span class="pub-badge badge-${badge}">${labels[badge]||badge}</span>
+          ${imgs.length>1?`<div class="pub-img-nav">
+            <button onclick="pubImgPrev('${p.id}',${JSON.stringify(imgs)})">‹</button>
+            <button onclick="pubImgNext('${p.id}',${JSON.stringify(imgs)})">›</button>
+          </div>
+          <span class="pub-img-count">${imgs.length} fotos</span>`:''}
+        </div>
+        <div class="pub-body">
+          <div class="pub-ref">${p.referencia||'NH'} · ${(p.tipo||'piso').toUpperCase()}</div>
+          <div class="pub-title">${p.titulo||'Sin título'}</div>
+          <div class="pub-price">${price}</div>
+          <div class="pub-meta">
+            ${p.dormitorios?`<span>🛏 ${p.dormitorios}</span>`:''}
+            ${p.banos?`<span>🚿 ${p.banos}</span>`:''}
+            ${p.m2_util?`<span>📐 ${p.m2_util} m²</span>`:''}
+            ${(p.zona||p.municipio)?`<span>📍 ${p.zona||p.municipio}</span>`:''}
+          </div>
+          <div class="pub-actions">
+            <button class="pub-btn-edit" onclick="editProperty('${p.id}')">✏ Editar</button>
+            <button class="pub-btn-del" onclick="deleteProperty('${p.id}')">🗑 Eliminar</button>
+            <button class="pub-btn-web" onclick="window.open('inmuebles.html','_blank')">🌐 Web</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
 }
 
-/* ── Dashboard ── */
-async function loadDashboard() {
-  const db = window.nhSupabase;
+/* ── Image slider for pub cards ─────────────────────────────── */
+const pubImgState = {};
+function pubImgNext(id, imgs){
+  pubImgState[id] = ((pubImgState[id]||0)+1)%imgs.length;
+  document.getElementById('pub-img-'+id).src = imgs[pubImgState[id]];
+}
+function pubImgPrev(id, imgs){
+  pubImgState[id] = ((pubImgState[id]||0)-1+imgs.length)%imgs.length;
+  document.getElementById('pub-img-'+id).src = imgs[pubImgState[id]];
+}
 
-  const [{ count: leadsCount }, { count: clientesCount }, { count: inmueblesCount }, { count: visitasCount }] = await Promise.all([
-    db.from('leads').select('*', { count: 'exact', head: true }).gte('created_at', new Date(Date.now() - 7*864e5).toISOString()),
-    db.from('perfiles').select('*', { count: 'exact', head: true }),
-    db.from('inmuebles').select('*', { count: 'exact', head: true }).eq('estado', 'disponible'),
-    db.from('visitas').select('*', { count: 'exact', head: true }).gte('fecha', new Date().toISOString().split('T')[0]).lte('fecha', new Date(Date.now() + 7*864e5).toISOString().split('T')[0]),
+async function deleteProperty(id){
+  if(!confirm('¿Eliminar este inmueble? Esta acción no se puede deshacer.')) return;
+  const { error } = await window.nhSupabase.from('inmuebles').delete().eq('id',id);
+  if(error){ alert('Error: '+error.message); return; }
+  loadPublications();
+}
+function editProperty(id){
+  alert('Función de edición en desarrollo. Por ahora elimina y republica el inmueble.');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DASHBOARD
+   ══════════════════════════════════════════════════════════════ */
+async function loadDashboard(){
+  const sb = window.nhSupabase;
+  const [leads, clientes, inm, vis] = await Promise.all([
+    sb.from('leads').select('*',{count:'exact',head:true}),
+    sb.from('perfiles').select('*',{count:'exact',head:true}),
+    sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('publicado',true),
+    sb.from('visitas').select('*',{count:'exact',head:true}),
   ]);
+  document.getElementById('st-leads').textContent = leads.count??0;
+  document.getElementById('st-clientes').textContent = clientes.count??0;
+  document.getElementById('st-inmuebles').textContent = inm.count??0;
+  document.getElementById('st-visitas').textContent = vis.count??0;
 
-  document.getElementById('stat-leads').textContent     = leadsCount ?? 0;
-  document.getElementById('stat-clientes').textContent  = clientesCount ?? 0;
-  document.getElementById('stat-inmuebles').textContent = inmueblesCount ?? 0;
-  document.getElementById('stat-visitas').textContent   = visitasCount ?? 0;
-
-  /* Últimos leads */
-  const { data: leads } = await db.from('leads').select('nombre,email,tipo,created_at').order('created_at', { ascending: false }).limit(5);
-  document.getElementById('dash-leads-table').innerHTML = leads?.length
-    ? `<table class="adm-table"><thead><tr><th>Nombre</th><th>Tipo</th><th>Fecha</th></tr></thead><tbody>${leads.map(l => `<tr><td><strong>${l.nombre||'—'}</strong><br><span style="color:#888;font-size:.75rem">${l.email||''}</span></td><td><span class="badge ${l.tipo==='vender'?'badge-gold':'badge-blue'}">${l.tipo||'—'}</span></td><td style="color:#888">${fmtDate(l.created_at)}</td></tr>`).join('')}</tbody></table>`
-    : '<div class="adm-empty">Sin leads aún</div>';
-
-  /* Últimos inmuebles */
-  const { data: inms } = await db.from('inmuebles').select('titulo,precio,zona,estado').order('created_at', { ascending: false }).limit(5);
-  document.getElementById('dash-inmuebles-table').innerHTML = inms?.length
-    ? `<table class="adm-table"><thead><tr><th>Inmueble</th><th>Precio</th><th>Estado</th></tr></thead><tbody>${inms.map(i => `<tr><td><strong>${i.titulo||'—'}</strong><br><span style="color:#888;font-size:.75rem">${i.zona||''}</span></td><td>${i.precio?'€'+Number(i.precio).toLocaleString('es-ES'):'—'}</td><td><span class="badge ${badgeEstado(i.estado)}">${i.estado||'—'}</span></td></tr>`).join('')}</tbody></table>`
-    : '<div class="adm-empty">Sin inmuebles publicados aún</div>';
+  const { data } = await sb.from('leads').select('*').order('created_at',{ascending:false}).limit(5);
+  const tbl = document.getElementById('dash-leads-table');
+  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin leads aún.</p>'; return; }
+  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Nombre</th><th>Email</th><th>Mensaje</th><th>Fecha</th></tr></thead><tbody>${
+    data.map(l=>`<tr><td>${l.nombre||'–'}</td><td>${l.email||'–'}</td><td>${(l.mensaje||'').slice(0,50)}</td><td>${l.created_at?new Date(l.created_at).toLocaleDateString('es-ES'):'–'}</td></tr>`).join('')
+  }</tbody></table>`;
 }
 
-/* ── Leads ── */
-async function loadLeads() {
-  const { data, count } = await window.nhSupabase.from('leads').select('*', { count: 'exact' }).order('created_at', { ascending: false });
-  document.getElementById('leads-count').textContent = (count||0) + ' leads';
-  document.getElementById('leads-table').innerHTML = data?.length
-    ? `<table class="adm-table"><thead><tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Tipo</th><th>Mensaje</th><th>Fecha</th></tr></thead><tbody>${data.map(l=>`<tr><td><strong>${l.nombre||'—'}</strong></td><td>${l.email||'—'}</td><td>${l.telefono||'—'}</td><td><span class="badge ${l.tipo==='vender'?'badge-gold':'badge-blue'}">${l.tipo||'consulta'}</span></td><td style="max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${l.mensaje||'—'}</td><td style="color:#888;white-space:nowrap">${fmtDate(l.created_at)}</td></tr>`).join('')}</tbody></table>`
-    : '<div class="adm-empty">No hay leads aún. Cuando alguien rellene un formulario de contacto o valoración aparecerá aquí.</div>';
+/* ── Leads ─────────────────────────────────────────────────────── */
+async function loadLeads(){
+  const { data } = await window.nhSupabase.from('leads').select('*').order('created_at',{ascending:false});
+  const tbl=document.getElementById('leads-table');
+  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin leads.</p>'; return; }
+  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Mensaje</th><th>Fecha</th></tr></thead><tbody>${
+    data.map(l=>`<tr><td>${l.nombre||'–'}</td><td>${l.email||'–'}</td><td>${l.telefono||'–'}</td><td>${(l.mensaje||'').slice(0,60)}</td><td>${l.created_at?new Date(l.created_at).toLocaleDateString('es-ES'):'–'}</td></tr>`).join('')
+  }</tbody></table>`;
 }
 
-async function loadLeadsBadge() {
-  const { count } = await window.nhSupabase.from('leads').select('*', { count: 'exact', head: true }).eq('leido', false);
-  if (count > 0) {
-    const b = document.getElementById('leadsBadge');
-    b.textContent = count; b.style.display = 'inline';
-  }
+/* ── Clientes ──────────────────────────────────────────────────── */
+async function loadClientes(){
+  const { data } = await window.nhSupabase.from('perfiles').select('*').order('created_at',{ascending:false});
+  const tbl=document.getElementById('clientes-table');
+  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin clientes.</p>'; return; }
+  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Nombre</th><th>Email</th><th>Tipo</th><th>Registro</th></tr></thead><tbody>${
+    data.map(c=>`<tr><td>${c.nombre||'–'}</td><td>${c.email||'–'}</td><td>${c.tipo||'–'}</td><td>${c.created_at?new Date(c.created_at).toLocaleDateString('es-ES'):'–'}</td></tr>`).join('')
+  }</tbody></table>`;
 }
 
-/* ── Clientes ── */
-async function loadClientes() {
-  const { data, count } = await window.nhSupabase.from('perfiles').select('*', { count: 'exact' }).order('created_at', { ascending: false });
-  document.getElementById('clientes-count').textContent = (count||0) + ' clientes';
-  document.getElementById('clientes-table').innerHTML = data?.length
-    ? `<table class="adm-table"><thead><tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Tipo</th><th>Alta</th></tr></thead><tbody>${data.map(c=>`<tr><td><strong>${c.nombre||'—'}</strong></td><td>${c.email||'—'}</td><td>${c.telefono||'—'}</td><td><span class="badge ${c.tipo==='vender'?'badge-gold':'badge-blue'}">${c.tipo||'—'}</span></td><td style="color:#888">${fmtDate(c.created_at)}</td></tr>`).join('')}</tbody></table>`
-    : '<div class="adm-empty">No hay clientes registrados aún.</div>';
+/* ── Visitas ────────────────────────────────────────────────────── */
+async function loadVisitas(){
+  const { data } = await window.nhSupabase.from('visitas').select('*').order('created_at',{ascending:false});
+  const tbl=document.getElementById('visitas-table');
+  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin visitas.</p>'; return; }
+  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Inmueble</th><th>Cliente</th><th>Fecha</th><th>Estado</th></tr></thead><tbody>${
+    data.map(v=>`<tr><td>${v.inmueble_id||'–'}</td><td>${v.cliente_email||v.cliente_id||'–'}</td><td>${v.fecha||'–'}</td><td><span class="badge badge-new">${v.estado||'pendiente'}</span></td></tr>`).join('')
+  }</tbody></table>`;
 }
 
-/* ── Inmuebles ── */
-async function loadInmuebles() {
-  const { data, count } = await window.nhSupabase.from('inmuebles').select('*', { count: 'exact' }).order('created_at', { ascending: false });
-  document.getElementById('inmuebles-count').textContent = (count||0) + ' publicados';
-  document.getElementById('inmuebles-table').innerHTML = data?.length
-    ? `<table class="adm-table"><thead><tr><th>Título</th><th>Zona</th><th>Precio</th><th>m²</th><th>Hab.</th><th>Estado</th><th>Tipo op.</th></tr></thead><tbody>${data.map(i=>`<tr><td><strong>${i.titulo||'—'}</strong></td><td>${i.zona||'—'}</td><td>${i.precio?'€'+Number(i.precio).toLocaleString('es-ES'):'—'}</td><td>${i.m2||'—'}</td><td>${i.habitaciones||'—'}</td><td><span class="badge ${badgeEstado(i.estado)}">${i.estado||'—'}</span></td><td><span class="badge badge-gray">${i.tipo_operacion||'venta'}</span></td></tr>`).join('')}</tbody></table>`
-    : '<div class="adm-empty">No hay inmuebles publicados. Usa el botón "Publicar inmueble" para añadir propiedades.</div>';
+/* ── Blog ──────────────────────────────────────────────────────── */
+async function loadBlog(){
+  const { data } = await window.nhSupabase.from('blog_posts').select('*').order('created_at',{ascending:false});
+  const tbl=document.getElementById('blog-table');
+  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin artículos.</p>'; return; }
+  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Título</th><th>Categoría</th><th>Fecha</th><th></th></tr></thead><tbody>${
+    data.map(b=>`<tr><td>${b.titulo||'–'}</td><td>${b.categoria||'–'}</td><td>${b.created_at?new Date(b.created_at).toLocaleDateString('es-ES'):'–'}</td><td><button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteBlog('${b.id}')">Eliminar</button></td></tr>`).join('')
+  }</tbody></table>`;
 }
-
-function showAddInmueble() { document.getElementById('formInmueble').style.display = 'block'; window.scrollTo(0,0); }
-
-async function saveInmueble() {
-  const row = {
-    titulo: document.getElementById('inp-titulo').value,
-    precio: parseInt(document.getElementById('inp-precio').value) || null,
-    zona: document.getElementById('inp-zona').value,
-    tipo_operacion: document.getElementById('inp-tipo').value,
-    m2: parseInt(document.getElementById('inp-m2').value) || null,
-    habitaciones: parseInt(document.getElementById('inp-hab').value) || null,
-    banos: parseInt(document.getElementById('inp-banos').value) || null,
-    estado: document.getElementById('inp-estado').value,
-    descripcion: document.getElementById('inp-desc').value,
-    imagen_principal: document.getElementById('inp-img').value,
-  };
-  const { error } = await window.nhSupabase.from('inmuebles').insert(row);
-  if (error) { alert('Error: ' + error.message); return; }
-  document.getElementById('formInmueble').style.display = 'none';
-  loadInmuebles();
+async function saveBlog(){
+  const titulo=document.getElementById('b-titulo').value.trim();
+  const categoria=document.getElementById('b-cat').value.trim();
+  const extracto=document.getElementById('b-extracto').value.trim();
+  if(!titulo){ alert('El título es obligatorio.'); return; }
+  const { error } = await window.nhSupabase.from('blog_posts').insert({titulo,categoria,extracto,publicado:true});
+  if(error){ alert('Error: '+error.message); return; }
+  document.getElementById('blog-form').style.display='none';
+  loadBlog();
 }
-
-/* ── Visitas ── */
-async function loadVisitas() {
-  const { data } = await window.nhSupabase.from('visitas').select('*,inmuebles(titulo),perfiles(nombre,email)').order('fecha', { ascending: true });
-  document.getElementById('visitas-table').innerHTML = data?.length
-    ? `<table class="adm-table"><thead><tr><th>Inmueble</th><th>Cliente</th><th>Fecha</th><th>Hora</th><th>Estado</th></tr></thead><tbody>${data.map(v=>`<tr><td><strong>${v.inmuebles?.titulo||'—'}</strong></td><td>${v.perfiles?.nombre||'—'}<br><span style="color:#888;font-size:.75rem">${v.perfiles?.email||''}</span></td><td>${v.fecha||'—'}</td><td>${v.hora||'—'}</td><td><span class="badge ${v.estado==='confirmada'?'badge-green':v.estado==='pendiente'?'badge-gold':'badge-gray'}">${v.estado||'pendiente'}</span></td></tr>`).join('')}</tbody></table>`
-    : '<div class="adm-empty">No hay visitas programadas aún.</div>';
-}
-
-/* ── Blog ── */
-async function loadBlog() {
-  const { data } = await window.nhSupabase.from('blog_posts').select('*').order('created_at', { ascending: false });
-  document.getElementById('blog-table').innerHTML = data?.length
-    ? `<table class="adm-table"><thead><tr><th>Título</th><th>Categoría</th><th>Publicado</th><th>Acciones</th></tr></thead><tbody>${data.map(p=>`<tr><td><strong>${p.titulo||'—'}</strong></td><td><span class="badge badge-gray">${p.categoria||'—'}</span></td><td>${fmtDate(p.created_at)}</td><td><button class="adm-btn adm-btn-ghost" style="padding:.3rem .7rem;font-size:.75rem" onclick="deletePost('${p.id}')">Eliminar</button></td></tr>`).join('')}</tbody></table>`
-    : '<div class="adm-empty">No hay artículos publicados vía panel aún.</div>';
-}
-
-function showAddPost() { document.getElementById('formPost').style.display = 'block'; window.scrollTo(0,0); }
-
-async function savePost() {
-  const row = { titulo: document.getElementById('post-titulo').value, categoria: document.getElementById('post-cat').value, extracto: document.getElementById('post-extracto').value, contenido: document.getElementById('post-contenido').value, imagen: document.getElementById('post-img').value, publicado: true };
-  const { error } = await window.nhSupabase.from('blog_posts').insert(row);
-  if (error) { alert('Error: ' + error.message); return; }
-  document.getElementById('formPost').style.display = 'none';
+async function deleteBlog(id){
+  if(!confirm('¿Eliminar artículo?')) return;
+  await window.nhSupabase.from('blog_posts').delete().eq('id',id);
   loadBlog();
 }
 
-async function deletePost(id) {
-  if (!confirm('¿Eliminar este artículo?')) return;
-  await window.nhSupabase.from('blog_posts').delete().eq('id', id);
-  loadBlog();
+/* ── Newsletter ─────────────────────────────────────────────────── */
+async function loadNewsletter(){
+  const { data, count } = await window.nhSupabase.from('newsletter').select('*',{count:'exact'}).order('created_at',{ascending:false});
+  document.getElementById('nl-count').textContent=(count||0)+' suscriptores';
+  const tbl=document.getElementById('nl-table');
+  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin suscriptores.</p>'; return; }
+  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Email</th><th>Fecha</th></tr></thead><tbody>${
+    data.map(n=>`<tr><td>${n.email}</td><td>${n.created_at?new Date(n.created_at).toLocaleDateString('es-ES'):'–'}</td></tr>`).join('')
+  }</tbody></table>`;
 }
-
-/* ── Newsletter ── */
-async function loadNewsletter() {
-  const { data, count } = await window.nhSupabase.from('newsletter').select('*', { count: 'exact' }).order('created_at', { ascending: false });
-  document.getElementById('newsletter-count').textContent = (count||0) + ' suscriptores';
-  document.getElementById('newsletter-table').innerHTML = data?.length
-    ? `<table class="adm-table"><thead><tr><th>Email</th><th>Fecha suscripción</th></tr></thead><tbody>${data.map(n=>`<tr><td>${n.email||'—'}</td><td style="color:#888">${fmtDate(n.created_at)}</td></tr>`).join('')}</tbody></table>`
-    : '<div class="adm-empty">No hay suscriptores aún.</div>';
-}
-
-/* ── Utils ── */
-function fmtDate(d) { return d ? new Date(d).toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' }) : '—'; }
-function badgeEstado(e) { return e==='disponible'?'badge-green':e==='reservado'?'badge-gold':e==='vendido'?'badge-red':'badge-gray'; }
 </script>
 </body>
 </html>
