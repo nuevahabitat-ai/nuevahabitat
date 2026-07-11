@@ -77,7 +77,7 @@
 document.addEventListener('supabase:ready', async () => {
   /* Redirigir si ya hay sesión */
   const session = await nhAuth.getSession();
-  if (session) { window.location.href = 'panel.html'; return; }
+  if (session) { nhAuth.redirectAfterLogin(session.user); return; }
 
   const form     = document.getElementById('loginForm');
   const errBox   = document.getElementById('auth-error');
@@ -111,7 +111,7 @@ document.addEventListener('supabase:ready', async () => {
       loginBtn.textContent = 'Entrar al panel';
       loginBtn.disabled = false;
     } else {
-      window.location.href = 'panel.html';
+      nhAuth.redirectAfterLogin(data.user);
     }
   });
 
