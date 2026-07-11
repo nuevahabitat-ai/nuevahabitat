@@ -365,13 +365,22 @@ input,select,textarea{font-family:'Inter',sans-serif}
               <label class="adm-field-check"><input type="checkbox" id="c-ascensor"/> Ascensor indispensable</label>
             </div>
           </div>
+          <hr class="divider"/>
+          <div class="wiz-section-label">Honorarios</div>
+          <div class="adm-form-grid">
+            <div class="adm-field">
+              <label>Honorarios acordados (€ con IVA)</label>
+              <input type="number" id="c-honorarios" placeholder="6050" value="6050" step="100"/>
+              <small style="font-size:.7rem;color:#888;margin-top:.2rem">Por defecto: 5.000 € + 21% IVA = <strong>6.050 €</strong>. Editable en cualquier momento.</small>
+            </div>
+          </div>
           <div class="adm-field">
             <label>Notas internas</label>
             <textarea id="c-notas" rows="3" placeholder="Observaciones, seguimiento, preferencias adicionales…"></textarea>
           </div>
           <div id="comp-form-err" class="alert-box alert-error" style="display:none"></div>
           <div class="gap-row" style="margin-top:.5rem">
-            <button class="adm-btn adm-btn-gold" onclick="saveComprador()">💾 Guardar comprador</button>
+            <button class="adm-btn adm-btn-gold" onclick="saveComprador()">Guardar comprador</button>
             <button class="adm-btn adm-btn-ghost" onclick="closeCompForm()">Cancelar</button>
           </div>
         </div>
@@ -1281,11 +1290,12 @@ async function loadPublications(){
     const price = p.precio?Number(p.precio).toLocaleString('es-ES')+' €':'–';
     const badge = p.estado||'disponible';
     const zona  = p.barrio ? `${p.municipio||''} · ${p.barrio}` : (p.municipio||'');
+    const badgeColors = {disponible:'#b8936a',reservado:'#f97316',vendido:'#ef4444',retirado:'#888'};
+    const badgeColor  = badgeColors[badge]||'#b8936a';
     return `
       <div class="pub-card">
         <div class="pub-img">
           <img src="${imgs[0]}" alt="${p.titulo||''}" id="pub-img-${p.id}" onerror="this.src='imagenes/interior1.jpg'"/>
-          <span class="pub-badge badge-${badgeClass[badge]||'disponible'}">${badgeLabel[badge]||badge}</span>
           ${imgs.length>1?`<div class="pub-img-nav">
             <button onclick="pubImgPrev('${p.id}',${JSON.stringify(imgs).replace(/'/g,"\\'")})">‹</button>
             <button onclick="pubImgNext('${p.id}',${JSON.stringify(imgs).replace(/'/g,"\\'")})">›</button>
@@ -1295,17 +1305,20 @@ async function loadPublications(){
         <div class="pub-body">
           <div class="pub-ref">${p.ref||'NH'} · ${(p.tipo||'piso').toUpperCase()}</div>
           <div class="pub-title">${p.titulo||'Sin título'}</div>
-          <div class="pub-price">${price}</div>
+          <div style="display:flex;align-items:center;gap:.6rem;margin:.3rem 0 .5rem;flex-wrap:wrap">
+            <div class="pub-price" style="margin:0">${price}</div>
+            <span style="background:${badgeColor};color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px">${badgeLabel[badge]||badge}</span>
+          </div>
           <div class="pub-meta">
-            ${p.habitaciones?`<span>🛏 ${p.habitaciones}</span>`:''}
-            ${p.banos?`<span>🚿 ${p.banos}</span>`:''}
-            ${p.m2_utiles?`<span>📐 ${p.m2_utiles} m²</span>`:''}
-            ${zona?`<span>📍 ${zona}</span>`:''}
+            ${p.habitaciones?`<span>${p.habitaciones} hab.</span>`:''}
+            ${p.banos?`<span>${p.banos} baños</span>`:''}
+            ${p.m2_utiles?`<span>${p.m2_utiles} m²</span>`:''}
+            ${zona?`<span>${zona}</span>`:''}
           </div>
           <div class="pub-actions">
-            <button class="pub-btn-edit" onclick="editProperty('${p.id}')">✏ Editar</button>
-            <button class="pub-btn-del" onclick="deleteProperty('${p.id}')">🗑 Eliminar</button>
-            <button class="pub-btn-web" onclick="window.open('inmueble-detalle.html?id=${p.id}','_blank')">🌐 Web</button>
+            <button class="pub-btn-edit" onclick="editProperty('${p.id}')">Editar</button>
+            <button class="pub-btn-del"  onclick="deleteProperty('${p.id}')">Eliminar</button>
+            <button class="pub-btn-web"  onclick="window.open('inmueble-detalle.html?id=${p.id}','_blank')">Web</button>
           </div>
         </div>
       </div>`;
@@ -1462,9 +1475,9 @@ function renderCompradores(){
         </div>
         ${c.notas?`<div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding:.4rem;background:var(--surface2);border-radius:4px;line-height:1.5">${c.notas}</div>`:''}
         <div class="pub-actions" style="margin-top:.6rem">
-          <button class="pub-btn-edit" onclick="editComprador('${c.id}')">✏ Editar</button>
-          <button class="pub-btn-del"  onclick="deleteComprador('${c.id}')">🗑 Eliminar</button>
-          <button class="pub-btn-web"  onclick="toggleActivoComp('${c.id}',${!c.activo})">${c.activo?'⏸ Pausar':'▶ Activar'}</button>
+          <button class="pub-btn-edit" onclick="editComprador('${c.id}')">Editar</button>
+          <button class="pub-btn-del"  onclick="deleteComprador('${c.id}')">Eliminar</button>
+          <button class="pub-btn-web"  onclick="toggleActivoComp('${c.id}',${!c.activo})">${c.activo?'Pausar':'Activar'}</button>
         </div>
       </div>
     </div>`).join('');
@@ -1484,6 +1497,7 @@ function openCompForm(prefill={}){
   document.getElementById('c-hab').value=prefill.habitaciones_min||'';
   document.getElementById('c-ascensor').checked=prefill.ascensor||false;
   document.getElementById('c-zona').value=prefill.zona_buscada||'';
+  document.getElementById('c-honorarios').value=prefill.honorarios||6050;
   document.getElementById('c-notas').value=prefill.notas||'';
   document.getElementById('comp-form-err').style.display='none';
   document.getElementById('comp-form-wrap').scrollIntoView({behavior:'smooth'});
@@ -1511,12 +1525,13 @@ async function saveComprador(){
     email:           document.getElementById('c-email').value.trim()||null,
     dni:             document.getElementById('c-dni').value.trim()||null,
     activo:          document.getElementById('c-activo').checked,
-    presupuesto_max: parseFloat(document.getElementById('c-presupuesto').value)||null,
-    tipo_inmueble:   document.getElementById('c-tipo').value||null,
-    habitaciones_min:parseInt(document.getElementById('c-hab').value)||null,
-    ascensor:        document.getElementById('c-ascensor').checked,
-    zona_buscada:    document.getElementById('c-zona').value.trim()||null,
-    notas:           document.getElementById('c-notas').value.trim()||null,
+    presupuesto_max:  parseFloat(document.getElementById('c-presupuesto').value)||null,
+    tipo_inmueble:    document.getElementById('c-tipo').value||null,
+    habitaciones_min: parseInt(document.getElementById('c-hab').value)||null,
+    ascensor:         document.getElementById('c-ascensor').checked,
+    zona_buscada:     document.getElementById('c-zona').value.trim()||null,
+    honorarios:       parseFloat(document.getElementById('c-honorarios').value)||6050,
+    notas:            document.getElementById('c-notas').value.trim()||null,
   };
 
   const editId = document.getElementById('comp-edit-id').value;

@@ -902,9 +902,13 @@ document.addEventListener('keydown', e=>{
 function openWA(){}
 
 /* ═══════════════════════════════════════════════════════════════
-   INIT
+   INIT — espera a que el SDK de Supabase esté listo
 ═══════════════════════════════════════════════════════════════ */
-loadProperty();
+if(window.nhSupabase){
+  loadProperty();
+} else {
+  document.addEventListener('supabase:ready', loadProperty);
+}
 </script>
 </body>
 </html>
