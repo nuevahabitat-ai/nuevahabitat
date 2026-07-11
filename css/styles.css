@@ -1638,6 +1638,11 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
   display: none;
 }
 
+/* ── Mobile Search Bar (oculta en escritorio) ─────────────── */
+.mobile-search-bar {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .mbn {
     display: flex;
