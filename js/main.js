@@ -242,3 +242,66 @@
     });
   }, { passive: true });
 })();
+
+
+/* ── Mobile Bottom Nav: auto-detectar tab activo ─────────── */
+(function () {
+  const tabs = document.querySelectorAll('.mbn-tab');
+  if (!tabs.length) return;
+
+  const path = window.location.pathname.toLowerCase();
+  const file = path.split('/').pop() || 'index.html';
+
+  const map = {
+    'index.html': 'inicio',
+    '':           'inicio',
+    'inmuebles.html': 'inmuebles',
+    'vender.html': 'vender',
+    'comprar.html': 'comprar',
+    'login.html': 'cuenta',
+    'registro.html': 'cuenta',
+  };
+
+  // inmueble detail pages → inmuebles tab
+  let active = map[file] || '';
+  if (!active && file.startsWith('inmueble-')) active = 'inmuebles';
+
+  tabs.forEach(tab => {
+    if (tab.dataset.tab === active) tab.classList.add('active');
+  });
+
+  /* Feedback táctil en tap */
+  tabs.forEach(tab => {
+    tab.addEventListener('pointerdown', () => {
+      tab.style.opacity = '.65';
+    });
+    tab.addEventListener('pointerup', () => {
+      tab.style.opacity = '';
+    });
+    tab.addEventListener('pointerleave', () => {
+      tab.style.opacity = '';
+    });
+  });
+})();
+
+
+/* ── Mobile Search Bar en home ──────────────────────────────── */
+(function () {
+  const msb = document.querySelector('.msb-input');
+  if (!msb) return;
+
+  msb.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const val = msb.value.trim();
+      if (val) window.location.href = `inmuebles.html?q=${encodeURIComponent(val)}`;
+    }
+  });
+
+  const btn = document.querySelector('.msb-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const val = msb.value.trim();
+      window.location.href = `inmuebles.html${val ? '?q=' + encodeURIComponent(val) : ''}`;
+    });
+  }
+})();
