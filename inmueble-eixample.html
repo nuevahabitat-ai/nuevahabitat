@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Piso reformado con terraza · Eixample Derecha · 485.000€ · NuevaHabitat</title>
+  <meta name="description" content="Piso de 92 m² reformado con terraza en Eixample Derecha, Barcelona. 3 habitaciones, 2 baños, ascensor. 485.000€. Ficha completa en NuevaHabitat."/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+</head>
+<body>
+
+<!-- NAV sólido -->
+<nav id="navbar" class="scrolled" style="background:rgba(13,13,13,.97)">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">Barcelona · Inmobiliaria</span></div></a>
+    <ul class="nav-links">
+      <li><a href="vender.html">Vender</a></li><li><a href="comprar.html">Comprar</a></li>
+      <li><a href="inmuebles.html" style="color:var(--oro)">Inmuebles</a></li><li><a href="hipotecas.html">Hipotecas</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li><li><a href="blog.html">Blog</a></li>
+    </ul>
+    <div class="nav-actions"><a href="tel:+34600367742" class="nav-tel">600 367 742</a><a href="registro.html" class="nav-cta">Empezar ahora</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="registro.html" style="color:var(--oro)">Empezar →</a></nav>
+
+<!-- STICKY HEADER FICHA -->
+<div class="prop-detail-header" style="top:70px">
+  <div class="container">
+    <div class="prop-detail-header-inner">
+      <nav class="prop-breadcrumb">
+        <a href="index.html">Inicio</a>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <a href="inmuebles.html">Inmuebles</a>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <span>Eixample Derecha</span>
+      </nav>
+      <div class="prop-header-price">485.000 €</div>
+      <div class="prop-header-actions">
+        <button onclick="navigator.share ? navigator.share({title:'Piso Eixample · NuevaHabitat',url:location.href}) : (navigator.clipboard.writeText(location.href),alert('URL copiada'))" title="Compartir">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+        </button>
+        <button id="favBtn" onclick="toggleFav()" title="Guardar">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALERÍA -->
+<div style="background:var(--negro);padding-top:70px">
+  <div class="container" style="padding-top:1.5rem;padding-bottom:1.5rem">
+    <div class="prop-gallery" id="gallery">
+      <div class="prop-gallery-main" onclick="openLightbox(0)">
+        <img src="imagenes/interior2.jpg" alt="Salón principal" id="gMain"/>
+      </div>
+      <div class="prop-gallery-thumb" onclick="openLightbox(1)">
+        <img src="imagenes/interior8.jpg" alt="Comedor" id="gT1"/>
+      </div>
+      <div class="prop-gallery-thumb" onclick="openLightbox(2)" style="position:relative">
+        <img src="imagenes/interior9.jpg" alt="Terraza" id="gT2"/>
+        <div class="gallery-count">+2 fotos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <div class="lightbox-nav">
+    <button class="lightbox-arrow" onclick="lbNav(-1)"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+    <button class="lightbox-arrow" onclick="lbNav(1)"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+  <img id="lbImg" src="" alt=""/>
+  <div class="lightbox-dots" id="lbDots"></div>
+</div>
+
+<!-- BODY FICHA -->
+<section class="prop-detail-body">
+  <div class="container">
+    <div class="prop-detail-grid">
+
+      <!-- COLUMNA PRINCIPAL -->
+      <div class="prop-detail-main">
+
+        <!-- Título + badges -->
+        <div class="prop-section">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+            <div>
+              <span class="prop-badge disponible" style="position:static;margin-bottom:.75rem;display:inline-block">Disponible</span>
+              <h1 style="font-size:1.75rem;margin-bottom:.5rem">Piso reformado con terraza exterior</h1>
+              <div class="prop-location" style="font-size:.9375rem">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Calle Consell de Cent, 280 · Eixample Derecha · Barcelona
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:var(--font-serif);font-size:2.25rem;font-weight:700;color:var(--negro)">485.000 €</div>
+              <div style="font-size:.875rem;color:var(--gris-medio)">5.272 €/m²</div>
+            </div>
+          </div>
+          <!-- Features rápidas -->
+          <div style="display:flex;gap:2rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--crema-dark);flex-wrap:wrap">
+            <div style="text-align:center">
+              <div style="font-size:1.5rem;font-weight:700;font-family:var(--font-serif)">92</div>
+              <div style="font-size:.75rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.06em">m² construidos</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.5rem;font-weight:700;font-family:var(--font-serif)">3</div>
+              <div style="font-size:.75rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.06em">Habitaciones</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.5rem;font-weight:700;font-family:var(--font-serif)">2</div>
+              <div style="font-size:.75rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.06em">Baños</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.5rem;font-weight:700;font-family:var(--font-serif)">4ª</div>
+              <div style="font-size:.75rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.06em">Planta</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:1.5rem;font-weight:700;font-family:var(--font-serif)">12 m²</div>
+              <div style="font-size:.75rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.06em">Terraza</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="prop-section">
+          <h2>Descripción</h2>
+          <p class="prop-description">
+            Espectacular piso completamente reformado en el corazón del Eixample Derecha, uno de los barrios más cotizados de Barcelona. El inmueble se distribuye en un amplio salón-comedor con acceso directo a la terraza, cocina totalmente equipada con electrodomésticos de alta gama, tres habitaciones dobles con amplio espacio y armarios empotrados, y dos baños reformados con acabados de primera calidad.
+          </p>
+          <p class="prop-description" style="margin-top:1rem">
+            La reforma integral realizada en 2022 incluye suelos de parquet de roble natural, carpintería lacada en blanco, doble acristalamiento con aislamiento térmico y acústico, y climatización por conductos. El edificio cuenta con ascensor, portero y zonas comunes en perfecto estado.
+          </p>
+          <p class="prop-description" style="margin-top:1rem">
+            Ubicado a 5 minutos a pie del Passeig de Gràcia, con excelentes comunicaciones en metro y bus, y rodeado de todo tipo de servicios: supermercados, colegios, restaurantes y tiendas.
+          </p>
+        </div>
+
+        <!-- Detalles de la propiedad -->
+        <div class="prop-section">
+          <h2>Detalles de la propiedad</h2>
+          <div class="prop-specs-grid">
+            <div class="prop-spec"><span class="prop-spec-label">Tipo</span><span class="prop-spec-value">Piso</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Superficie construida</span><span class="prop-spec-value">92 m²</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Habitaciones</span><span class="prop-spec-value">3</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Superficie útil</span><span class="prop-spec-value">~78 m²</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Baños</span><span class="prop-spec-value">2</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Terraza</span><span class="prop-spec-value">12 m²</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Planta</span><span class="prop-spec-value">4ª con ascensor</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Orientación</span><span class="prop-spec-value">Sur-Este</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Estado</span><span class="prop-spec-value">Reformado (2022)</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Año construcción</span><span class="prop-spec-value">1965</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Gastos comunidad</span><span class="prop-spec-value">180 €/mes</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">IBI anual</span><span class="prop-spec-value">~680 €</span></div>
+          </div>
+        </div>
+
+        <!-- Equipamiento -->
+        <div class="prop-section">
+          <h2>Equipamiento y extras</h2>
+          <div class="prop-features-tags">
+            <span class="prop-feat-tag">✓ Ascensor</span>
+            <span class="prop-feat-tag">✓ Terraza</span>
+            <span class="prop-feat-tag">✓ Aire acondicionado</span>
+            <span class="prop-feat-tag">✓ Calefacción central</span>
+            <span class="prop-feat-tag">✓ Armarios empotrados</span>
+            <span class="prop-feat-tag">✓ Cocina equipada</span>
+            <span class="prop-feat-tag">✓ Doble cristal</span>
+            <span class="prop-feat-tag">✓ Parquet</span>
+            <span class="prop-feat-tag">✓ Portero</span>
+            <span class="prop-feat-tag">✗ Parking (disponible cerca)</span>
+            <span class="prop-feat-tag">✗ Piscina</span>
+          </div>
+        </div>
+
+        <!-- Eficiencia energética -->
+        <div class="prop-section">
+          <h2>Eficiencia energética</h2>
+          <div class="prop-specs-grid">
+            <div class="prop-spec"><span class="prop-spec-label">Clase energética</span><span class="prop-spec-value"><span style="background:#e8a020;color:white;padding:.2rem .6rem;border-radius:3px;font-size:.875rem">C</span></span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Consumo</span><span class="prop-spec-value">82 kWh/m²·año</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Emisiones</span><span class="prop-spec-value">18 kg CO₂/m²·año</span></div>
+            <div class="prop-spec"><span class="prop-spec-label">Certificado disponible</span><span class="prop-spec-value">Sí</span></div>
+          </div>
+        </div>
+
+        <!-- Ubicación -->
+        <div class="prop-section">
+          <h2>Ubicación</h2>
+          <p style="font-size:.875rem;color:var(--gris-texto);margin-bottom:1rem">Calle Consell de Cent, 280 · Eixample Derecha · Barcelona 08011</p>
+          <div class="prop-map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2992.8!2d2.1663!3d41.3869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a2e3a1f4a1b%3A0x0!2sConsell+de+Cent%2C+280%2C+Barcelona!5e0!3m2!1ses!2ses!4v1"
+              allowfullscreen="" loading="lazy">
+            </iframe>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.25rem">
+            <div style="font-size:.8125rem;color:var(--gris-texto)">🚇 Metro L2/L3 Passeig de Gràcia · 4 min</div>
+            <div style="font-size:.8125rem;color:var(--gris-texto)">🏥 Hospital Clínic · 10 min</div>
+            <div style="font-size:.8125rem;color:var(--gris-texto)">🏫 Colegio Sagrada Família · 8 min</div>
+            <div style="font-size:.8125rem;color:var(--gris-texto)">🛒 Supermercado · 2 min</div>
+          </div>
+        </div>
+
+        <!-- Banner servicio NuevaHabitat -->
+        <div class="prop-service-banner">
+          <img src="imagenes/inmobiliario1.jpg" alt="Servicio NuevaHabitat"/>
+          <div class="prop-service-banner-overlay"></div>
+          <div class="prop-service-banner-body">
+            <h4>¿Te interesa este inmueble?</h4>
+            <p>Acompañamiento completo de compra por 5.000€ + IVA. Cobro solo en escritura.</p>
+            <a href="#contacto-sidebar" class="btn btn-gold">Solicitar visita</a>
+          </div>
+        </div>
+
+      </div><!-- /main -->
+
+      <!-- SIDEBAR -->
+      <div class="prop-detail-sidebar" id="contacto-sidebar">
+        <div class="prop-contact-card">
+          <h3>Solicitar información</h3>
+          <div class="prop-contact-agent">
+            <img src="imagenes/inmobiliario4.jpg" alt="Agente"/>
+            <div>
+              <div class="prop-contact-agent-name">Jordi Martínez</div>
+              <div class="prop-contact-agent-role">Agente · Eixample y Gràcia</div>
+            </div>
+          </div>
+          <form class="prop-contact-form" onsubmit="return propContactSubmit(event)">
+            <input type="text" placeholder="Nombre y apellidos" required/>
+            <input type="tel" placeholder="Teléfono" required/>
+            <input type="email" placeholder="Email"/>
+            <textarea placeholder="Me gustaría visitar este inmueble..."></textarea>
+            <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center">Solicitar visita</button>
+            <a href="https://wa.me/34600367742?text=Hola%2C%20me%20interesa%20el%20piso%20del%20Eixample%20de%20485.000%E2%82%AC" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:.5rem">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Consultar por WhatsApp
+            </a>
+            <a href="tel:+34600367742" class="btn" style="width:100%;justify-content:center;border:1.5px solid var(--crema-dark);color:var(--negro)">
+              📞 600 367 742
+            </a>
+          </form>
+          <div class="prop-ref">Ref. NH-EIX-001 · Actualizado 10 jul 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPIEDADES SIMILARES -->
+<section class="similar-section">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
+      <div>
+        <span class="overline">Propiedades cercanas</span>
+        <h2 class="section-title mb-0" style="font-size:1.75rem">Estas casas podrían<br/>interesarte</h2>
+      </div>
+      <div class="similar-nav">
+        <button class="prop-arrow" id="simPrev"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+        <button class="prop-arrow" id="simNext"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <div class="similar-track-wrap">
+      <div class="similar-track" id="simTrack">
+        <div class="similar-card"><img src="imagenes/interior4.jpg" alt="Gràcia"/><div class="similar-card-body"><div class="similar-card-price">380.000 €</div><div class="similar-card-title">Piso luminoso con balcón · Gràcia</div><a href="inmueble-gracia.html" class="btn btn-outline" style="font-size:.8125rem;padding:.45rem 1rem;margin-top:.75rem;display:inline-flex">Ver ficha →</a></div></div>
+        <div class="similar-card"><img src="imagenes/3d-contemporary-bedroom-interior.jpg" alt="Sant Gervasi"/><div class="similar-card-body"><div class="similar-card-price">720.000 €</div><div class="similar-card-title">Ático con vistas panorámicas · Sant Gervasi</div><a href="inmueble-sant-gervasi.html" class="btn btn-outline" style="font-size:.8125rem;padding:.45rem 1rem;margin-top:.75rem;display:inline-flex">Ver ficha →</a></div></div>
+        <div class="similar-card"><img src="imagenes/interior1.jpg" alt="Sarrià"/><div class="similar-card-body"><div class="similar-card-price">310.000 €</div><div class="similar-card-title">Piso acogedor con suelos de mármol · Sarrià</div><a href="inmueble-sarria.html" class="btn btn-outline" style="font-size:.8125rem;padding:.45rem 1rem;margin-top:.75rem;display:inline-flex">Ver ficha →</a></div></div>
+        <div class="similar-card"><img src="imagenes/modern-styled-small-entryway.jpg" alt="Sant Cugat"/><div class="similar-card-body"><div class="similar-card-price">620.000 €</div><div class="similar-card-title">Casa unifamiliar con jardín · Sant Cugat</div><a href="inmueble-sant-cugat.html" class="btn btn-outline" style="font-size:.8125rem;padding:.45rem 1rem;margin-top:.75rem;display:inline-flex">Ver ficha →</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="whatsapp-float"><div class="whatsapp-tooltip">¿Hablamos?</div><a href="https://wa.me/34600367742?text=Hola%2C%20me%20interesa%20el%20piso%20del%20Eixample%20de%20485.000%E2%82%AC" class="whatsapp-btn" target="_blank" rel="noopener"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
+
+<script>
+const lbImages=['imagenes/interior2.jpg','imagenes/interior8.jpg','imagenes/interior9.jpg','imagenes/interior3.jpg','imagenes/spacejoy-85pCvDWDMmI-unsplash.jpg'];
+const lbAlts=['Salón principal','Comedor','Terraza','Dormitorio principal','Cocina'];
+let lbCurrent=0;
+
+function openLightbox(idx){
+  lbCurrent=idx;
+  const lb=document.getElementById('lightbox');
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+  updateLb();
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+function lbNav(dir){lbCurrent=(lbCurrent+dir+lbImages.length)%lbImages.length;updateLb();}
+function updateLb(){
+  document.getElementById('lbImg').src=lbImages[lbCurrent];
+  document.getElementById('lbImg').alt=lbAlts[lbCurrent];
+  const dots=document.getElementById('lbDots');
+  dots.innerHTML=lbImages.map((_,i)=>`<div class="lightbox-dot${i===lbCurrent?' active':''}" onclick="lbCurrent=${i};updateLb()"></div>`).join('');
+}
+document.addEventListener('keydown',e=>{if(document.getElementById('lightbox').classList.contains('open')){if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();}});
+
+// Carrusel similares
+const track=document.getElementById('simTrack');
+const cards=track.querySelectorAll('.similar-card');
+let simPos=0;
+const cardW=340;
+document.getElementById('simNext').addEventListener('click',()=>{simPos=Math.min(simPos+1,cards.length-getVisible());track.style.transform=`translateX(-${simPos*cardW}px)`;});
+document.getElementById('simPrev').addEventListener('click',()=>{simPos=Math.max(0,simPos-1);track.style.transform=`translateX(-${simPos*cardW}px)`;});
+function getVisible(){return window.innerWidth<768?1:window.innerWidth<1200?2:3;}
+
+function propContactSubmit(e){e.preventDefault();const btn=e.target.querySelector('button[type=submit]');btn.textContent='✓ Solicitud enviada';btn.style.background='var(--negro)';btn.disabled=true;return false;}
+function toggleFav(){const btn=document.getElementById('favBtn');btn.style.color=btn.style.color==='rgb(232, 69, 69)'?'':'rgb(232, 69, 69)';}
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Crear cuenta · NuevaHabitat</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-visual">
+    <img src="imagenes/interior3.jpg" alt="Interior NuevaHabitat"/>
+    <div class="auth-visual-overlay"></div>
+    <div class="auth-visual-brand"><a href="index.html"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/></a></div>
+    <div class="auth-visual-copy">
+      <h2>Sin adelantos.<br/>Sin sorpresas.</h2>
+      <p>Regístrate y tu agente se pondrá en contacto en menos de 24 horas para empezar el proceso.</p>
+    </div>
+  </div>
+  <div class="auth-form-side">
+    <div class="auth-form-box">
+      <span class="overline">Es gratis y sin compromiso</span>
+      <h1>Crear cuenta</h1>
+      <p>Empieza a vender o comprar tu vivienda hoy mismo.</p>
+      <form onsubmit="return regSubmit(event)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+          <div>
+            <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Nombre</label>
+            <input type="text" placeholder="Nombre" required style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+          </div>
+          <div>
+            <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Apellidos</label>
+            <input type="text" placeholder="Apellidos" required style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+          </div>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Email</label>
+          <input type="email" placeholder="tu@email.com" required style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Teléfono</label>
+          <input type="tel" placeholder="600 000 000" required style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Quiero...</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem;transition:border-color var(--transition)" id="optVender">
+              <input type="radio" name="tipo" value="vender" style="accent-color:var(--oro)"/> Vender mi vivienda
+            </label>
+            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem;transition:border-color var(--transition)" id="optComprar">
+              <input type="radio" name="tipo" value="comprar" style="accent-color:var(--oro)"/> Comprar vivienda
+            </label>
+          </div>
+        </div>
+        <div style="margin-bottom:1rem">
+          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Contraseña</label>
+          <input type="password" placeholder="Mínimo 8 caracteres" required minlength="8" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none"/>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem;font-size:.8125rem;color:var(--gris-texto)">
+          <input type="checkbox" required style="margin-top:2px;accent-color:var(--oro)"/>
+          <span>Acepto la <a href="privacidad.html" style="color:var(--oro)">política de privacidad</a> y el tratamiento de mis datos para la gestión del servicio.</span>
+        </div>
+        <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">Crear mi cuenta →</button>
+      </form>
+      <p class="auth-link">¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
+    </div>
+  </div>
+</div>
+<script>
+function regSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button[type=submit]');
+  btn.textContent='✓ Cuenta creada — Un agente te llama pronto';
+  btn.style.background='var(--negro)';
+  btn.disabled=true;
+  return false;
+}
+</script>
+</body>
+</html>

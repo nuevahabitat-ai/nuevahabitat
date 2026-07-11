@@ -1338,3 +1338,210 @@ footer {
 .mt-3 { margin-top: 1.5rem; }
 .mt-4 { margin-top: 2rem; }
 .mb-0 { margin-bottom: 0; }
+
+/* ============================================================
+   ESTILOS ADICIONALES — Comprar, Ficha, Blog, Login, Hipotecas
+   ============================================================ */
+
+/* ── Shared page hero ─────────────────────────────────────── */
+.page-hero{position:relative;min-height:72vh;display:flex;align-items:center;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.page-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.86) 40%,rgba(13,13,13,.28) 100%)}
+.page-hero-content{position:relative;z-index:2;max-width:660px;padding:140px 0 100px}
+.page-hero-content h1{font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,4rem);color:var(--blanco);line-height:1.1;margin-bottom:1.25rem}
+.page-hero-content p{font-size:1.125rem;color:rgba(255,255,255,.8);line-height:1.7;max-width:540px}
+.page-hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+
+/* ── FAQ Accordion ────────────────────────────────────────── */
+.faq-section{padding:100px 0;background:var(--blanco)}
+.faq-list{max-width:760px;margin:3rem auto 0;display:flex;flex-direction:column;gap:.75rem}
+.faq-item{border:1.5px solid var(--crema-dark);border-radius:var(--radius-md);overflow:hidden;transition:border-color var(--transition)}
+.faq-item.open{border-color:var(--oro)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;padding:1.35rem 1.5rem;background:var(--blanco);font-size:1rem;font-weight:500;color:var(--negro);text-align:left;cursor:pointer;gap:1rem}
+.faq-q svg{flex-shrink:0;transition:transform var(--transition);color:var(--oro)}
+.faq-item.open .faq-q svg{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+.faq-item.open .faq-a{max-height:400px}
+.faq-a-inner{padding:0 1.5rem 1.35rem;font-size:.9375rem;color:var(--gris-texto);line-height:1.75}
+
+/* ── Galería ficha inmueble ───────────────────────────────── */
+.prop-gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:.5rem;height:520px;border-radius:var(--radius-lg);overflow:hidden}
+.prop-gallery-main{grid-row:1/3;position:relative;cursor:pointer;overflow:hidden}
+.prop-gallery-main img,.prop-gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.prop-gallery-main:hover img,.prop-gallery-thumb:hover img{transform:scale(1.04)}
+.prop-gallery-thumb{position:relative;cursor:pointer;overflow:hidden}
+.gallery-count{position:absolute;bottom:.75rem;right:.75rem;background:rgba(13,13,13,.75);color:var(--blanco);font-size:.8125rem;padding:.35rem .75rem;border-radius:100px;backdrop-filter:blur(6px)}
+
+/* ── Lightbox ─────────────────────────────────────────────── */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column}
+.lightbox.open{display:flex}
+.lightbox img{max-height:85vh;max-width:90vw;object-fit:contain;border-radius:var(--radius-sm)}
+.lightbox-close{position:absolute;top:1.5rem;right:1.5rem;color:rgba(255,255,255,.7);font-size:2rem;cursor:pointer;transition:color var(--transition)}
+.lightbox-close:hover{color:var(--blanco)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);display:flex;width:100%;justify-content:space-between;padding:0 1rem;pointer-events:none}
+.lightbox-arrow{pointer-events:all;width:48px;height:48px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--blanco);transition:background var(--transition)}
+.lightbox-arrow:hover{background:rgba(255,255,255,.25)}
+.lightbox-dots{display:flex;gap:.5rem;margin-top:1.25rem}
+.lightbox-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:background var(--transition)}
+.lightbox-dot.active{background:var(--oro)}
+
+/* ── Ficha inmueble header ────────────────────────────────── */
+.prop-detail-header{position:sticky;top:70px;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--crema-dark);padding:.85rem 0}
+.prop-detail-header-inner{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.prop-breadcrumb{font-size:.8125rem;color:var(--gris-medio);display:flex;align-items:center;gap:.4rem}
+.prop-breadcrumb a{color:var(--gris-medio);transition:color var(--transition)}
+.prop-breadcrumb a:hover{color:var(--negro)}
+.prop-breadcrumb svg{width:12px}
+.prop-header-price{font-family:var(--font-serif);font-size:1.75rem;font-weight:700;color:var(--negro);margin-left:auto}
+.prop-header-actions{display:flex;gap:.75rem}
+.prop-header-actions button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--crema-dark);display:flex;align-items:center;justify-content:center;color:var(--gris-medio);transition:var(--transition)}
+.prop-header-actions button:hover{border-color:var(--negro);color:var(--negro)}
+
+/* ── Ficha inmueble body ──────────────────────────────────── */
+.prop-detail-body{padding:3rem 0 6rem;background:var(--crema)}
+.prop-detail-grid{display:grid;grid-template-columns:1fr 380px;gap:2.5rem;align-items:start}
+.prop-detail-main{}
+.prop-detail-sidebar{}
+.prop-section{background:var(--blanco);border-radius:var(--radius-lg);padding:2rem;margin-bottom:1.5rem}
+.prop-section h2{font-size:1.25rem;margin-bottom:1.25rem;padding-bottom:.85rem;border-bottom:1px solid var(--crema-dark)}
+.prop-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.prop-spec{display:flex;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid var(--crema-dark);font-size:.9rem}
+.prop-spec:last-child{border-bottom:none}
+.prop-spec-label{color:var(--gris-texto)}
+.prop-spec-value{font-weight:500;color:var(--negro)}
+.prop-features-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.prop-feat-tag{background:var(--crema);border-radius:100px;padding:.35rem .85rem;font-size:.8125rem;color:var(--negro)}
+.prop-description{font-size:.9375rem;color:var(--gris-texto);line-height:1.8}
+.prop-map{border-radius:var(--radius-md);overflow:hidden;height:260px;background:var(--crema-dark);display:flex;align-items:center;justify-content:center;margin-top:1rem}
+.prop-map iframe{width:100%;height:100%;border:none}
+
+/* Sidebar contacto ─────────────────────────────────────────── */
+.prop-contact-card{background:var(--blanco);border-radius:var(--radius-lg);padding:2rem;position:sticky;top:130px;box-shadow:var(--shadow-md)}
+.prop-contact-card h3{font-size:1.125rem;margin-bottom:1.25rem}
+.prop-contact-agent{display:flex;align-items:center;gap:.85rem;margin-bottom:1.5rem;padding-bottom:1.25rem;border-bottom:1px solid var(--crema-dark)}
+.prop-contact-agent img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.prop-contact-agent-name{font-weight:600;font-size:.9375rem}
+.prop-contact-agent-role{font-size:.8rem;color:var(--gris-medio)}
+.prop-contact-form{display:flex;flex-direction:column;gap:.85rem}
+.prop-contact-form input,.prop-contact-form textarea{width:100%;padding:.75rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition)}
+.prop-contact-form input:focus,.prop-contact-form textarea:focus{border-color:var(--oro)}
+.prop-contact-form textarea{resize:none;height:90px}
+.prop-ref{font-size:.75rem;color:var(--gris-medio);margin-top:.75rem;text-align:center}
+
+/* ── Banner servicio en ficha ─────────────────────────────── */
+.prop-service-banner{border-radius:var(--radius-lg);overflow:hidden;position:relative;min-height:200px;display:flex;align-items:center;margin-bottom:1.5rem}
+.prop-service-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.prop-service-banner-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,13,13,.82) 0%,rgba(13,13,13,.4) 100%)}
+.prop-service-banner-body{position:relative;z-index:2;padding:1.75rem}
+.prop-service-banner-body p{font-size:.875rem;color:rgba(255,255,255,.8);margin:.35rem 0 1.1rem;line-height:1.55}
+.prop-service-banner-body h4{color:var(--blanco);font-size:1.125rem}
+
+/* ── Carrusel propiedades similares ───────────────────────── */
+.similar-section{padding:60px 0;background:var(--blanco)}
+.similar-track-wrap{overflow:hidden;position:relative}
+.similar-track{display:flex;gap:1.5rem;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.similar-card{min-width:320px;background:var(--blanco);border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm);flex-shrink:0}
+.similar-card img{width:100%;height:200px;object-fit:cover}
+.similar-card-body{padding:1.1rem 1.25rem 1.35rem}
+.similar-card-price{font-family:var(--font-serif);font-size:1.35rem;font-weight:700;color:var(--negro)}
+.similar-card-title{font-size:.875rem;color:var(--gris-texto);margin:.2rem 0 .6rem}
+.similar-nav{display:flex;gap:.75rem;margin-top:1.5rem}
+
+/* ── Blog ─────────────────────────────────────────────────── */
+.blog-hero{padding:140px 0 80px;background:var(--negro);text-align:center}
+.blog-hero h1{font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,3.75rem);color:var(--blanco);margin-bottom:1rem}
+.blog-hero p{color:rgba(255,255,255,.65);font-size:1.0625rem;max-width:560px;margin:0 auto}
+.blog-cats{display:flex;gap:.5rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.blog-cat-btn{padding:.45rem 1.25rem;border-radius:100px;border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.8125rem;transition:var(--transition);cursor:pointer;background:none;font-family:var(--font-sans)}
+.blog-cat-btn:hover,.blog-cat-btn.active{border-color:var(--oro);color:var(--oro)}
+.blog-main{padding:80px 0;background:var(--crema)}
+.blog-featured{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;margin-bottom:3rem}
+.blog-feat-card{border-radius:var(--radius-lg);overflow:hidden;position:relative;min-height:420px;cursor:pointer}
+.blog-feat-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.blog-feat-card:hover img{transform:scale(1.04)}
+.blog-feat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,13,.9) 0%,rgba(13,13,13,.1) 60%,transparent 100%)}
+.blog-feat-body{position:absolute;bottom:0;padding:2rem;z-index:2}
+.blog-feat-body .blog-cat{color:var(--oro-claro)}
+.blog-feat-body h2{font-family:var(--font-serif);color:var(--blanco);font-size:1.5rem;margin:.4rem 0 .5rem;line-height:1.25}
+.blog-feat-body p{color:rgba(255,255,255,.75);font-size:.875rem}
+.blog-side{display:flex;flex-direction:column;gap:1.5rem}
+.blog-side-card{background:var(--blanco);border-radius:var(--radius-md);overflow:hidden;display:flex;gap:0;cursor:pointer;transition:var(--transition);box-shadow:var(--shadow-sm)}
+.blog-side-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.blog-side-card img{width:120px;flex-shrink:0;object-fit:cover}
+.blog-side-body{padding:1rem 1.25rem}
+.blog-side-body .blog-cat{font-size:.7rem;color:var(--oro)}
+.blog-side-body h3{font-size:.9375rem;margin:.3rem 0 .4rem;line-height:1.3;color:var(--negro)}
+.blog-side-body p{font-size:.8125rem;color:var(--gris-medio)}
+.blog-all-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+
+/* ── Login / Registro ─────────────────────────────────────── */
+.auth-page{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.auth-visual{position:relative;overflow:hidden}
+.auth-visual img{width:100%;height:100%;object-fit:cover}
+.auth-visual-overlay{position:absolute;inset:0;background:rgba(13,13,13,.55)}
+.auth-visual-brand{position:absolute;top:2rem;left:2rem}
+.auth-visual-brand img{height:60px;mix-blend-mode:screen}
+.auth-visual-copy{position:absolute;bottom:3rem;left:2.5rem;right:2.5rem;color:var(--blanco)}
+.auth-visual-copy h2{font-family:var(--font-serif);font-size:2.25rem;line-height:1.15;margin-bottom:.75rem}
+.auth-visual-copy p{color:rgba(255,255,255,.7);font-size:.9375rem;line-height:1.65}
+.auth-form-side{display:flex;align-items:center;justify-content:center;padding:3rem 2rem;background:var(--blanco)}
+.auth-form-box{width:100%;max-width:420px}
+.auth-form-box .overline{margin-bottom:.5rem}
+.auth-form-box h1{font-size:2rem;margin-bottom:.4rem}
+.auth-form-box>p{font-size:.9375rem;color:var(--gris-texto);margin-bottom:2rem}
+.auth-social-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:.6rem;padding:.85rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-size:.9rem;font-weight:500;color:var(--negro);background:var(--blanco);transition:var(--transition);cursor:pointer;font-family:var(--font-sans);margin-bottom:1rem}
+.auth-social-btn:hover{border-color:var(--negro);background:var(--crema)}
+.auth-divider{display:flex;align-items:center;gap:.85rem;margin:1.25rem 0;color:var(--gris-medio);font-size:.8125rem}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--crema-dark)}
+.auth-link{text-align:center;font-size:.875rem;color:var(--gris-texto);margin-top:1.5rem}
+.auth-link a{color:var(--oro);font-weight:500}
+.auth-forgot{font-size:.8125rem;color:var(--gris-medio);text-align:right;display:block;margin-top:-.5rem;margin-bottom:.75rem;transition:color var(--transition)}
+.auth-forgot:hover{color:var(--negro)}
+
+/* ── Hipotecas ────────────────────────────────────────────── */
+.calc-section{padding:80px 0;background:var(--blanco)}
+.calc-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.calc-form{background:var(--crema);border-radius:var(--radius-lg);padding:2.5rem}
+.calc-form h3{font-size:1.35rem;margin-bottom:1.5rem}
+.calc-field{margin-bottom:1.25rem}
+.calc-field label{display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem;color:var(--negro)}
+.calc-field input[type=range]{width:100%;accent-color:var(--oro);margin:.5rem 0}
+.calc-field-val{display:flex;justify-content:space-between;font-size:.875rem;color:var(--gris-texto)}
+.calc-field-val strong{color:var(--negro);font-size:1.0625rem}
+.calc-result{background:var(--negro);border-radius:var(--radius-lg);padding:2.5rem;color:var(--blanco)}
+.calc-result h4{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--oro);margin-bottom:.5rem}
+.calc-cuota{font-family:var(--font-serif);font-size:3rem;font-weight:700;margin-bottom:.35rem}
+.calc-cuota span{font-size:1.25rem;font-weight:400;color:rgba(255,255,255,.6)}
+.calc-breakdown{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1)}
+.calc-row{display:flex;justify-content:space-between;font-size:.875rem;color:rgba(255,255,255,.7)}
+.calc-row strong{color:var(--blanco)}
+.calc-disclaimer{font-size:.75rem;color:rgba(255,255,255,.45);margin-top:1.25rem;line-height:1.6}
+.hipo-bancos{padding:80px 0;background:var(--crema)}
+.bancos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.banco-card{background:var(--blanco);border-radius:var(--radius-md);padding:1.75rem;text-align:center;box-shadow:var(--shadow-sm);transition:var(--transition)}
+.banco-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.banco-tae{font-family:var(--font-serif);font-size:1.75rem;font-weight:700;color:var(--negro);margin-bottom:.2rem}
+.banco-tipo{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);margin-bottom:.5rem}
+.banco-name{font-size:.9375rem;font-weight:500;color:var(--negro);margin-bottom:.25rem}
+.banco-plazo{font-size:.8125rem;color:var(--gris-medio)}
+
+/* ── Responsive nuevos ────────────────────────────────────── */
+@media(max-width:1024px){
+  .prop-detail-grid{grid-template-columns:1fr}
+  .prop-contact-card{position:static}
+  .prop-gallery{height:380px}
+  .blog-featured{grid-template-columns:1fr}
+  .blog-all-grid{grid-template-columns:1fr 1fr}
+  .calc-inner{grid-template-columns:1fr}
+  .bancos-grid{grid-template-columns:1fr 1fr}
+  .auth-page{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .prop-gallery{grid-template-columns:1fr;grid-template-rows:auto;height:auto}
+  .prop-gallery-main{height:260px;grid-row:auto}
+  .prop-gallery-thumb{height:160px}
+  .blog-all-grid{grid-template-columns:1fr}
+  .bancos-grid{grid-template-columns:1fr 1fr}
+  .auth-visual{display:none}
+  .similar-card{min-width:280px}
+}

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Hipotecas en Barcelona · NuevaHabitat</title>
+  <meta name="description" content="Consigue la mejor hipoteca para tu vivienda en Barcelona. Asesoría hipotecaria gratuita incluida en el servicio de compra de NuevaHabitat."/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">Barcelona · Inmobiliaria</span></div></a>
+    <ul class="nav-links">
+      <li><a href="vender.html">Vender</a></li><li><a href="comprar.html">Comprar</a></li>
+      <li><a href="inmuebles.html">Inmuebles</a></li><li><a href="hipotecas.html" style="color:var(--oro)">Hipotecas</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li><li><a href="blog.html">Blog</a></li>
+    </ul>
+    <div class="nav-actions"><a href="tel:+34600367742" class="nav-tel">600 367 742</a><a href="registro.html" class="nav-cta">Empezar ahora</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="nosotros.html">Nosotros</a><a href="registro.html" style="color:var(--oro)">Empezar →</a></nav>
+
+<!-- HERO — imagen interior9 exclusiva -->
+<section class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('imagenes/interior9.jpg')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content fade-up">
+      <span class="overline">Asesoría hipotecaria</span>
+      <h1>La mejor hipoteca<br/>para tu nuevo hogar.</h1>
+      <p>Comparamos entre más de 15 bancos para conseguirte el tipo de interés más bajo. Sin coste adicional si compras con NuevaHabitat.</p>
+      <div class="page-hero-btns">
+        <a href="#calculadora" class="btn btn-gold btn-lg">Calcular mi cuota</a>
+        <a href="tel:+34600367742" class="btn btn-outline-light btn-lg">Hablar con un experto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar-inner">
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Asesoría 100% gratuita</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>+15 bancos comparados</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1"/></svg>Ahorro medio: 8.400€</div>
+      <div class="trust-divider"></div>
+      <div class="trust-item"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Respuesta en 48 horas</div>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULADORA -->
+<section class="calc-section" id="calculadora">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3.5rem">
+      <span class="overline">Simulador</span>
+      <h2 class="section-title">Calcula tu cuota mensual</h2>
+      <p class="section-subtitle">Orientativo. Un asesor revisará las condiciones reales con tu perfil financiero.</p>
+    </div>
+    <div class="calc-inner">
+      <div class="calc-form">
+        <h3>Datos de la hipoteca</h3>
+        <div class="calc-field">
+          <label>Precio de la vivienda</label>
+          <input type="range" id="precio" min="100000" max="1000000" step="5000" value="350000" oninput="calcular()"/>
+          <div class="calc-field-val"><span>100.000€</span><strong id="precioVal">350.000€</strong><span>1.000.000€</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Aportación inicial (entrada)</label>
+          <input type="range" id="entrada" min="10" max="40" step="1" value="20" oninput="calcular()"/>
+          <div class="calc-field-val"><span>10%</span><strong id="entradaVal">20% — 70.000€</strong><span>40%</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Plazo de amortización</label>
+          <input type="range" id="plazo" min="10" max="30" step="5" value="25" oninput="calcular()"/>
+          <div class="calc-field-val"><span>10 años</span><strong id="plazoVal">25 años</strong><span>30 años</span></div>
+        </div>
+        <div class="calc-field">
+          <label>Tipo de interés estimado (%)</label>
+          <input type="range" id="interes" min="2" max="5" step="0.1" value="3.2" oninput="calcular()"/>
+          <div class="calc-field-val"><span>2%</span><strong id="interesVal">3,2% TIN</strong><span>5%</span></div>
+        </div>
+      </div>
+      <div class="calc-result">
+        <h4>Tu cuota mensual estimada</h4>
+        <div class="calc-cuota"><span id="cuotaVal">1.362</span> <span>€/mes</span></div>
+        <div class="calc-breakdown">
+          <div class="calc-row"><span>Capital a financiar</span><strong id="capitalVal">280.000€</strong></div>
+          <div class="calc-row"><span>Aportación inicial</span><strong id="entradaResVal">70.000€</strong></div>
+          <div class="calc-row"><span>Plazo</span><strong id="plazoResVal">25 años · 300 cuotas</strong></div>
+          <div class="calc-row"><span>Tipo estimado TIN</span><strong id="tinVal">3,20%</strong></div>
+          <div class="calc-row"><span>Total intereses (aprox.)</span><strong id="totalInteresVal">128.600€</strong></div>
+        </div>
+        <p class="calc-disclaimer">Cálculo orientativo. Las condiciones finales dependen de tu perfil, aval y banco elegido. Un asesor de NuevaHabitat revisará tu caso sin coste.</p>
+        <a href="tel:+34600367742" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:1.5rem">Hablar con un asesor hipotecario</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPOS DE HIPOTECA -->
+<section style="padding:80px 0;background:var(--negro)">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3.5rem">
+      <span class="overline">¿Cuál es la tuya?</span>
+      <h2 class="section-title light">Tipos de hipoteca en España</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem">
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:2.25rem;transition:var(--transition)" onmouseover="this.style.borderColor='rgba(184,147,106,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+        <div style="color:var(--oro);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">Hipoteca fija</div>
+        <h3 style="color:var(--blanco);font-size:1.25rem;margin-bottom:.75rem">Cuota constante<br/>sin sorpresas</h3>
+        <p style="color:rgba(255,255,255,.6);font-size:.875rem;line-height:1.75;margin-bottom:1.5rem">El tipo de interés no varía durante toda la vida del préstamo. Ideal si valoras la seguridad y previsibilidad.</p>
+        <div style="color:rgba(255,255,255,.5);font-size:.8125rem">✓ Sin variación del euríbor · ✓ Planificación fácil</div>
+      </div>
+      <div style="background:var(--oro);border-radius:var(--radius-lg);padding:2.25rem;position:relative">
+        <div style="position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);font-size:.7rem;padding:.2rem .6rem;border-radius:100px;color:white">MÁS CONTRATADA</div>
+        <div style="color:rgba(255,255,255,.85);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">Hipoteca mixta</div>
+        <h3 style="color:var(--blanco);font-size:1.25rem;margin-bottom:.75rem">Lo mejor<br/>de ambas</h3>
+        <p style="color:rgba(255,255,255,.9);font-size:.875rem;line-height:1.75;margin-bottom:1.5rem">Tipo fijo los primeros años (5-10) y variable el resto. Equilibrio entre seguridad y ahorro a largo plazo.</p>
+        <div style="color:rgba(255,255,255,.85);font-size:.8125rem">✓ Arranque seguro · ✓ Potencial ahorro futuro</div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:2.25rem;transition:var(--transition)" onmouseover="this.style.borderColor='rgba(184,147,106,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+        <div style="color:var(--oro);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem">Hipoteca variable</div>
+        <h3 style="color:var(--blanco);font-size:1.25rem;margin-bottom:.75rem">Ligada al<br/>euríbor</h3>
+        <p style="color:rgba(255,255,255,.6);font-size:.875rem;line-height:1.75;margin-bottom:1.5rem">Tipo más bajo al inicio y revisión anual según euríbor + diferencial. Puede generar ahorro si el euríbor baja.</p>
+        <div style="color:rgba(255,255,255,.5);font-size:.8125rem">✓ Cuota inicial baja · ✓ Aprovecha bajadas euríbor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANCOS COMPARATIVA -->
+<section class="hipo-bancos">
+  <div class="container">
+    <div class="text-center">
+      <span class="overline">Comparativa orientativa</span>
+      <h2 class="section-title">Tipos actuales del mercado</h2>
+      <p class="section-subtitle">Condiciones reales sujetas a perfil financiero. Nuestros asesores buscan las mejores ofertas para ti.</p>
+    </div>
+    <div class="bancos-grid">
+      <div class="banco-card fade-up">
+        <div class="banco-tipo">Hipoteca Fija</div>
+        <div class="banco-tae">3,10%</div>
+        <div class="banco-name">TIN · 30 años</div>
+        <div class="banco-plazo">TAE aprox. 3,38%</div>
+      </div>
+      <div class="banco-card fade-up fade-up-delay-1">
+        <div class="banco-tipo">Hipoteca Mixta</div>
+        <div class="banco-tae">2,75%</div>
+        <div class="banco-name">TIN fijo 10 años</div>
+        <div class="banco-plazo">Variable: Euríbor + 0,60%</div>
+      </div>
+      <div class="banco-card fade-up fade-up-delay-2">
+        <div class="banco-tipo">Hipoteca Variable</div>
+        <div class="banco-tae">2,35%</div>
+        <div class="banco-name">TIN · Euríbor + 0,45%</div>
+        <div class="banco-plazo">TAE aprox. 4,1% (actual)</div>
+      </div>
+      <div class="banco-card fade-up fade-up-delay-3">
+        <div class="banco-tipo">Jóvenes (-35)</div>
+        <div class="banco-tae">2,90%</div>
+        <div class="banco-name">TIN fijo · Condiciones ICO</div>
+        <div class="banco-plazo">Hasta 80% del valor</div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:.8125rem;color:var(--gris-medio);margin-top:2rem">Datos orientativos julio 2026. Sujetos a perfil del solicitante y valoración bancaria.</p>
+  </div>
+</section>
+
+<!-- FAQ HIPOTECAS -->
+<section class="faq-section">
+  <div class="container">
+    <div class="text-center">
+      <span class="overline">Preguntas frecuentes</span>
+      <h2 class="section-title">Dudas habituales<br/>sobre hipotecas</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">¿Cuánto necesito de entrada para comprar un piso?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button><div class="faq-a"><p class="faq-a-inner">En España, los bancos financian hasta el 80% del valor de tasación. Necesitas al menos el 20% de la vivienda más aproximadamente un 10-12% para gastos (ITP o IVA, notaría, registro, gestoría). En total, conviene tener entre el 30-35% del precio.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Qué documentación necesita el banco?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button><div class="faq-a"><p class="faq-a-inner">DNI, últimas 3 nóminas, declaración de IRPF, contrato de trabajo, extracto bancario de los últimos 6 meses, y nota simple de otros bienes si los tienes. Nuestro equipo te ayuda a preparar todo el dosier.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Cuánto tarda en aprobarse una hipoteca?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button><div class="faq-a"><p class="faq-a-inner">Entre 2 y 4 semanas desde que se entrega la documentación completa. La tasación de la vivienda suele tardar 3-5 días hábiles. Con NuevaHabitat gestionamos el proceso para que todo llegue a tiempo de la firma.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Es mejor contratar la hipoteca con el banco del vendedor?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button><div class="faq-a"><p class="faq-a-inner">No necesariamente. Comparamos las condiciones de varios bancos para encontrar la mejor oferta para tu perfil específico. En muchos casos, otro banco ofrece un tipo más bajo o menos productos vinculados obligatorios.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-final">
+  <div class="cta-bg" style="background-image:url('imagenes/inmobiliario5.jpg')"></div>
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="cta-content fade-up">
+      <span class="overline" style="color:var(--oro-claro);display:flex;justify-content:center">Asesoría gratuita</span>
+      <h2 class="section-title light">Hablemos de tu hipoteca<br/>sin compromiso</h2>
+      <p class="section-subtitle light">Un asesor hipotecario especializado en Barcelona te llama hoy mismo.</p>
+      <div class="cta-buttons">
+        <a href="tel:+34600367742" class="btn btn-gold btn-lg">Solicitar asesoría gratuita</a>
+        <a href="comprar.html" class="btn btn-outline-light btn-lg">Ver servicio de compra</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top" style="grid-template-columns:2fr 1fr 1fr">
+      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo y cobro solo en escritura.</p></div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="vender.html">Vender</a></li><li><a href="comprar.html">Comprar</a></li><li><a href="hipotecas.html">Hipotecas</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34600367742">600 367 742</a></li><li><a href="mailto:hola@nuevahabitat.com">hola@nuevahabitat.com</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="privacidad.html">Privacidad</a><a href="aviso-legal.html">Aviso legal</a></div></div>
+  </div>
+</footer>
+
+<div class="whatsapp-float"><div class="whatsapp-tooltip">¿Hablamos?</div><a href="https://wa.me/34600367742" class="whatsapp-btn" target="_blank" rel="noopener"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
+
+<script>
+function calcular(){
+  const precio=+document.getElementById('precio').value;
+  const pct=+document.getElementById('entrada').value/100;
+  const plazo=+document.getElementById('plazo').value;
+  const tin=+document.getElementById('interes').value/100/12;
+  const capital=precio*(1-pct);
+  const n=plazo*12;
+  const cuota=tin===0?capital/n:capital*tin*Math.pow(1+tin,n)/(Math.pow(1+tin,n)-1);
+  const totalPagado=cuota*n;
+  const totalInteres=totalPagado-capital;
+  document.getElementById('precioVal').textContent=precio.toLocaleString('es-ES')+'€';
+  document.getElementById('entradaVal').textContent=`${Math.round(pct*100)}% — ${Math.round(precio*pct).toLocaleString('es-ES')}€`;
+  document.getElementById('plazoVal').textContent=`${plazo} años`;
+  document.getElementById('interesVal').textContent=`${(+document.getElementById('interes').value).toFixed(1).replace('.',',')}% TIN`;
+  document.getElementById('cuotaVal').textContent=Math.round(cuota).toLocaleString('es-ES');
+  document.getElementById('capitalVal').textContent=Math.round(capital).toLocaleString('es-ES')+'€';
+  document.getElementById('entradaResVal').textContent=Math.round(precio*pct).toLocaleString('es-ES')+'€';
+  document.getElementById('plazoResVal').textContent=`${plazo} años · ${n} cuotas`;
+  document.getElementById('tinVal').textContent=`${(+document.getElementById('interes').value).toFixed(2).replace('.',',')}%`;
+  document.getElementById('totalInteresVal').textContent=Math.round(totalInteres).toLocaleString('es-ES')+'€';
+}
+calcular();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
