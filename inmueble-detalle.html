@@ -69,6 +69,27 @@
     .det-sup-lbl{color:#888}
     .det-sup-val{font-weight:600;color:#e8e0d5}
 
+    /* Mapa */
+    .det-map{border-radius:12px;overflow:hidden;border:1px solid #2e2e2e;margin-bottom:2rem;height:280px;background:#1a1a1a;display:flex;align-items:center;justify-content:center}
+    .det-map iframe{width:100%;height:100%;border:0}
+
+    /* Visita scheduler */
+    .det-visit{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;padding:1.5rem;margin-top:1rem}
+    .det-visit h3{font-family:'Playfair Display',serif;font-size:1rem;color:#e8e0d5;margin-bottom:.25rem}
+    .det-visit-sub{font-size:.78rem;color:#888;margin-bottom:1rem}
+    .vs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.75rem}
+    .vs-btn{background:#242424;border:1px solid #2e2e2e;border-radius:8px;padding:.6rem .3rem;font-size:.78rem;color:#a09080;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;text-align:center}
+    .vs-btn:hover{border-color:#b8936a;color:#d4b896}
+    .vs-btn.sel{background:rgba(184,147,106,.15);border-color:#b8936a;color:#d4b896;font-weight:600}
+    .vs-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b8936a;margin:.75rem 0 .4rem}
+    .vs-info{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:6px;padding:.6rem .75rem;font-size:.74rem;color:#93c5fd;margin:.75rem 0;line-height:1.5}
+    .vs-input{width:100%;background:#242424;border:1px solid #2e2e2e;border-radius:6px;padding:.6rem .8rem;color:#e8e0d5;font-size:.84rem;margin-bottom:.5rem;font-family:'Inter',sans-serif}
+    .vs-input:focus{outline:none;border-color:#b8936a}
+    .vs-submit{width:100%;background:#b8936a;color:#fff;border:none;border-radius:8px;padding:.8rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s}
+    .vs-submit:hover{background:#9a7550}
+    .vs-submit:disabled{opacity:.5;cursor:not-allowed}
+    .vs-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;border-radius:6px;padding:.75rem;font-size:.82rem;text-align:center;margin-top:.5rem;display:none}
+
     /* Contact card */
     .det-contact{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;padding:1.5rem;position:sticky;top:90px}
     .det-contact h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1.25rem;color:#e8e0d5}
@@ -211,6 +232,14 @@
             <div class="det-section-title">Descripción</div>
             <div class="det-desc" id="det-desc"></div>
           </div>
+
+          <!-- Mapa -->
+          <div class="det-section" id="det-map-section">
+            <div class="det-section-title">Ubicación</div>
+            <div class="det-map">
+              <iframe id="det-map-iframe" src="" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa ubicación"></iframe>
+            </div>
+          </div>
         </div>
 
         <!-- Columna derecha: contacto -->
@@ -236,6 +265,41 @@
               </button>
               <div class="det-form-ok" id="cf-ok">✅ Solicitud enviada. Nos pondremos en contacto contigo.</div>
             </div>
+          </div>
+
+          <!-- Visita scheduler -->
+          <div class="det-visit">
+            <h3>¿Te ha gustado? ¡Visítalo!</h3>
+            <div class="det-visit-sub">Indica tu disponibilidad</div>
+
+            <div class="vs-grid" id="vs-dias">
+              <button class="vs-btn" data-val="Lunes"     onclick="selDay(this)">Lunes</button>
+              <button class="vs-btn" data-val="Martes"    onclick="selDay(this)">Martes</button>
+              <button class="vs-btn" data-val="Miércoles" onclick="selDay(this)">Miércoles</button>
+              <button class="vs-btn" data-val="Jueves"    onclick="selDay(this)">Jueves</button>
+              <button class="vs-btn" data-val="Viernes"   onclick="selDay(this)">Viernes</button>
+              <button class="vs-btn" data-val="Sábado"    onclick="selDay(this)">Sábado</button>
+            </div>
+
+            <div class="vs-label">Indica el rango de hora</div>
+            <div class="vs-grid" id="vs-horas">
+              <button class="vs-btn" data-val="8h–12h"  onclick="selHour(this)">8h–12h</button>
+              <button class="vs-btn" data-val="12h–16h" onclick="selHour(this)">12h–16h</button>
+              <button class="vs-btn" data-val="16h–20h" onclick="selHour(this)">16h–20h</button>
+            </div>
+
+            <div class="vs-info">
+              ℹ Esto no es una reserva: se enviará tu disponibilidad al gestor, que te contactará para confirmar.
+            </div>
+
+            <input class="vs-input" type="text"  id="vs-nombre"   placeholder="Nombre"/>
+            <input class="vs-input" type="tel"   id="vs-telefono" placeholder="Teléfono *"/>
+            <input class="vs-input" type="email" id="vs-email"    placeholder="Email (opcional)"/>
+
+            <button class="vs-submit" onclick="concertarVisita()" id="vs-btn">
+              📅 Concertar una visita
+            </button>
+            <div class="vs-ok" id="vs-ok">✅ ¡Solicitud recibida! El gestor te contactará para confirmar la visita.</div>
           </div>
         </div>
       </div>
@@ -293,6 +357,7 @@ function showError(){
 }
 
 function renderProperty(p){
+  currentProp = p;
   document.getElementById('det-loading').style.display='none';
   document.getElementById('det-content').style.display='block';
 
@@ -395,6 +460,9 @@ function renderProperty(p){
   // Agente (alternamos según tipo)
   const agente = (p.habitaciones||0) % 2 === 0 ? 'Juan Sebastián' : 'Daniel Hernández';
   document.getElementById('det-agent-name').textContent = agente;
+
+  // Mapa
+  loadMap(p);
 }
 
 /* ── Lightbox ──────────────────────────────────────────────────── */
@@ -407,6 +475,70 @@ function updateLB(){
   document.getElementById('lb-counter').textContent = (lbIdx+1)+' / '+allImages.length;
 }
 document.getElementById('lightbox').addEventListener('click',function(e){ if(e.target===this) closeLB(); });
+
+/* ── Variables globales visita ────────────────────────────────── */
+let visitDay  = '';
+let visitHour = '';
+let currentProp = null;   // guardamos el objeto property completo
+
+/* ── Day/Hour selectors ───────────────────────────────────────── */
+function selDay(btn){
+  document.querySelectorAll('#vs-dias .vs-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  visitDay = btn.dataset.val;
+}
+function selHour(btn){
+  document.querySelectorAll('#vs-horas .vs-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  visitHour = btn.dataset.val;
+}
+
+/* ── Concertar visita → lead en Supabase ──────────────────────── */
+async function concertarVisita(){
+  const nombre  = document.getElementById('vs-nombre').value.trim();
+  const tel     = document.getElementById('vs-telefono').value.trim();
+  const email   = document.getElementById('vs-email').value.trim();
+
+  if(!tel){ alert('El teléfono es obligatorio para confirmar la visita.'); return; }
+  if(!visitDay){ alert('Selecciona un día disponible.'); return; }
+  if(!visitHour){ alert('Selecciona un rango horario.'); return; }
+
+  const btn = document.getElementById('vs-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite"></span> Enviando…';
+
+  const refText = currentProp ? (currentProp.ref||currentProp.id) : '';
+  const tituloP = currentProp ? (currentProp.titulo||'') : '';
+
+  const mensaje = `Visita solicitada · ${tituloP} (${refText})\nDisponibilidad: ${visitDay} ${visitHour}`;
+
+  try {
+    const { error } = await window.nhSupabase.from('leads').insert({
+      nombre:   nombre || 'Sin nombre',
+      telefono: tel,
+      email:    email || null,
+      mensaje,
+      tipo:     'visita',
+    });
+    if(error) throw error;
+
+    document.getElementById('vs-ok').style.display='block';
+    btn.style.display='none';
+  } catch(e){
+    alert('Error al enviar: '+(e.message||'Inténtalo de nuevo.'));
+    btn.disabled=false;
+    btn.innerHTML='📅 Concertar una visita';
+  }
+}
+
+/* ── Mapa (OpenStreetMap embed) ───────────────────────────────── */
+function loadMap(p){
+  const addr = [p.direccion, p.barrio, p.municipio, p.provincia].filter(Boolean).join(', ');
+  if(!addr){ document.getElementById('det-map-section').style.display='none'; return; }
+  const q = encodeURIComponent(addr);
+  document.getElementById('det-map-iframe').src =
+    `https://www.google.com/maps?q=${q}&output=embed`;
+}
 
 /* ── Formulario contacto ──────────────────────────────────────── */
 function sendContactForm(){
