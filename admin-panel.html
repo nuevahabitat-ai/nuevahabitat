@@ -229,7 +229,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
   <!-- Sidebar -->
   <aside class="adm-sidebar">
     <div class="adm-logo">
-      <img src="imagenes/logosinfondo2.png" alt="NH"/>
+      <div style="width:36px;height:36px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:#0d0d0d;font-size:.95rem;flex-shrink:0">NH</div>
       <div><span>NUEVA HABITAT</span><small>Panel Admin</small></div>
     </div>
     <nav class="adm-nav">
@@ -847,7 +847,8 @@ function hideWizErr(step){ document.getElementById('wiz-err-'+step).style.displa
 function buildPreview(){
   const title = document.getElementById('w-titulo').value;
   const precio = parseFloat(document.getElementById('w-precio').value)||0;
-  const zona   = document.getElementById('w-zona').value || document.getElementById('w-municipio').value;
+  const zonaP  = document.getElementById('w-zona').value;
+  const zona   = zonaP ? `${document.getElementById('w-municipio').value} – ${zonaP}` : document.getElementById('w-municipio').value;
   const estado = document.getElementById('w-estado').value;
   const tipo   = document.getElementById('w-tipo').value;
   const dorm   = document.getElementById('w-dorm').value;
@@ -934,6 +935,8 @@ async function publishProperty(){
     document.getElementById('mo-upload-status').style.display='none';
 
     // 6. Insert to Supabase
+    const zonaVal = txt('w-zona');
+    const municipioVal = txt('w-municipio');
     const payload = {
       titulo:               txt('w-titulo'),
       referencia:           txt('w-ref'),
@@ -941,8 +944,7 @@ async function publishProperty(){
       tipo_operacion:       txt('w-operacion'),
       precio:               num('w-precio'),
       estado:               txt('w-estado'),
-      zona:                 txt('w-zona'),
-      municipio:            txt('w-municipio'),
+      municipio:            zonaVal ? `${municipioVal} – ${zonaVal}` : municipioVal,
       propietario_nombre:   txt('w-prop-nombre'),
       propietario_telefono: txt('w-prop-tel'),
       propietario_email:    txt('w-prop-email'),
@@ -1165,7 +1167,7 @@ async function loadPublications(){
             ${p.dormitorios?`<span>🛏 ${p.dormitorios}</span>`:''}
             ${p.banos?`<span>🚿 ${p.banos}</span>`:''}
             ${p.m2_util?`<span>📐 ${p.m2_util} m²</span>`:''}
-            ${(p.zona||p.municipio)?`<span>📍 ${p.zona||p.municipio}</span>`:''}
+            ${p.municipio?`<span>📍 ${p.municipio}</span>`:''}
           </div>
           <div class="pub-actions">
             <button class="pub-btn-edit" onclick="editProperty('${p.id}')">✏ Editar</button>
