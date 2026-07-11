@@ -3,161 +3,113 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-  <title>Inmueble · NuevaHabitat</title>
+  <title>Ficha de inmueble · NuevaHabitat</title>
   <meta name="description" content="Ficha de inmueble NuevaHabitat Barcelona"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
   <style>
-    /* ── Detalle dinámico ────────────────────────────────────────── */
-    .det-wrap{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 4rem}
-    .det-loading{display:flex;align-items:center;justify-content:center;min-height:60vh;flex-direction:column;gap:1rem;color:#888}
+    /* ─── Ajustes específicos para la página dinámica ─────────────────── */
+    .det-loading{display:flex;align-items:center;justify-content:center;min-height:60vh;flex-direction:column;gap:1rem;color:var(--gris-medio)}
     .det-spinner{width:40px;height:40px;border:3px solid rgba(184,147,106,.2);border-top-color:#b8936a;border-radius:50%;animation:spin .8s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .det-error{text-align:center;padding:4rem 2rem;color:#888}
+    .det-error{text-align:center;padding:4rem 2rem;color:var(--gris-medio)}
     .det-error h2{color:#ef4444;margin-bottom:.5rem}
 
-    /* Breadcrumb */
-    .det-breadcrumb{font-size:.78rem;color:#888;margin-bottom:1.25rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
-    .det-breadcrumb a{color:#b8936a;text-decoration:none}.det-breadcrumb a:hover{text-decoration:underline}
-
-    /* Galería */
-    .det-gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:280px 140px;gap:.5rem;border-radius:12px;overflow:hidden;margin-bottom:2rem}
-    .det-gallery-main{grid-row:1/3;position:relative;cursor:pointer}
-    .det-gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
-    .det-gallery-main:hover img{transform:scale(1.02)}
+    /* Galería dinámica */
+    .det-gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:280px 140px;gap:.5rem;border-radius:12px;overflow:hidden;margin-bottom:0}
+    .det-gallery-main{grid-row:1/3;position:relative;cursor:pointer;overflow:hidden}
+    .det-gallery-main img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+    .det-gallery-main:hover img{transform:scale(1.03)}
     .det-gallery-thumb{position:relative;cursor:pointer;overflow:hidden}
-    .det-gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+    .det-gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
     .det-gallery-thumb:hover img{transform:scale(1.05)}
-    .det-gallery-more{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem}
-    .det-gallery-badge{position:absolute;top:.75rem;left:.75rem;padding:.3rem .8rem;border-radius:20px;font-size:.72rem;font-weight:700;text-transform:uppercase}
-    .badge-disp{background:rgba(34,197,94,.2);color:#22c55e;border:1px solid rgba(34,197,94,.4)}
-    .badge-res{background:rgba(249,115,22,.2);color:#f97316;border:1px solid rgba(249,115,22,.4)}
-    .badge-vend{background:rgba(239,68,68,.2);color:#ef4444;border:1px solid rgba(239,68,68,.4)}
-    .badge-ret{background:rgba(100,100,100,.2);color:#888;border:1px solid rgba(100,100,100,.3)}
+    .det-gallery-more{position:absolute;inset:0;background:rgba(13,13,13,.55);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1rem}
 
-    /* Layout principal */
-    .det-body{display:grid;grid-template-columns:1fr 340px;gap:2rem;align-items:start}
+    /* Badges estado */
+    .badge-disp{background:var(--oro);color:#fff}
+    .badge-res{background:#f97316;color:#fff}
+    .badge-vend{background:#ef4444;color:#fff}
+    .badge-ret{background:#888;color:#fff}
 
-    /* Info izquierda */
-    .det-info{}
-    .det-ref{font-size:.72rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.25rem}
-    .det-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;line-height:1.2;margin-bottom:.5rem;color:#e8e0d5}
-    .det-price{font-size:2.2rem;font-weight:800;color:#b8936a;margin-bottom.25rem}
-    .det-price-m2{font-size:.82rem;color:#888;margin-bottom:1.25rem}
-    .det-location{display:flex;align-items:center;gap:.4rem;color:#888;font-size:.88rem;margin-bottom:1.5rem}
-    .det-location svg{flex-shrink:0}
+    /* Sidebar sticky con scroll */
+    .det-sidebar-col{position:sticky;top:130px;max-height:calc(100vh - 140px);overflow-y:auto;display:flex;flex-direction:column;gap:1.25rem;scrollbar-width:thin;scrollbar-color:var(--crema-dark) transparent}
+    .det-sidebar-col::-webkit-scrollbar{width:4px}
+    .det-sidebar-col::-webkit-scrollbar-thumb{background:var(--crema-dark);border-radius:4px}
 
-    /* Ficha */
-    .det-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.75rem;margin-bottom:2rem}
-    .det-stat{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:8px;padding:.85rem;text-align:center}
-    .det-stat-val{font-size:1.3rem;font-weight:700;color:#e8e0d5}
-    .det-stat-lbl{font-size:.65rem;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-top:.15rem}
+    /* Tarjeta del agente dentro del prop-contact-card */
+    .prop-contact-card h3{font-size:1.125rem;margin-bottom:1rem}
 
-    /* Características */
-    .det-features{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
-    .det-feat{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:20px;padding:.3rem .85rem;font-size:.78rem;color:#e8e0d5}
-    .det-feat.yes{border-color:rgba(184,147,106,.4);color:#d4b896}
-
-    /* Sección */
-    .det-section{margin-bottom:2rem}
-    .det-section-title{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#b8936a;margin-bottom:.85rem;padding-bottom:.4rem;border-bottom:1px solid rgba(184,147,106,.2)}
-    .det-desc{font-size:.9rem;line-height:1.8;color:#a09080}
-
-    /* Superficies tabla */
-    .det-sups{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.5rem}
-    .det-sup{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:6px;padding:.6rem .85rem;display:flex;justify-content:space-between;align-items:center;font-size:.82rem}
-    .det-sup-lbl{color:#888}
-    .det-sup-val{font-weight:600;color:#e8e0d5}
-
-    /* Mapa */
-    .det-map{border-radius:12px;overflow:hidden;border:1px solid #2e2e2e;margin-bottom:2rem;height:280px;background:#1a1a1a;display:flex;align-items:center;justify-content:center}
-    .det-map iframe{width:100%;height:100%;border:0}
-
-    /* Visita scheduler */
-    .det-visit{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;padding:1.5rem;margin-top:1rem}
-    .det-visit h3{font-family:'Playfair Display',serif;font-size:1rem;color:#e8e0d5;margin-bottom:.25rem}
-    .det-visit-sub{font-size:.78rem;color:#888;margin-bottom:1rem}
+    /* ─── Visita scheduler (tema claro) ───────────────────────── */
+    .vs-card{background:var(--blanco);border-radius:var(--radius-lg);padding:1.75rem;box-shadow:var(--shadow-md)}
+    .vs-card h3{font-size:1.05rem;margin-bottom:.2rem;color:var(--negro)}
+    .vs-card-sub{font-size:.8rem;color:var(--gris-medio);margin-bottom:1.1rem}
     .vs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:.75rem}
-    .vs-btn{background:#242424;border:1px solid #2e2e2e;border-radius:8px;padding:.6rem .3rem;font-size:.78rem;color:#a09080;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;text-align:center}
-    .vs-btn:hover{border-color:#b8936a;color:#d4b896}
-    .vs-btn.sel{background:rgba(184,147,106,.15);border-color:#b8936a;color:#d4b896;font-weight:600}
-    .vs-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b8936a;margin:.75rem 0 .4rem}
-    .vs-info{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:6px;padding:.6rem .75rem;font-size:.74rem;color:#93c5fd;margin:.75rem 0;line-height:1.5}
-    .vs-input{width:100%;background:#242424;border:1px solid #2e2e2e;border-radius:6px;padding:.6rem .8rem;color:#e8e0d5;font-size:.84rem;margin-bottom:.5rem;font-family:'Inter',sans-serif}
-    .vs-input:focus{outline:none;border-color:#b8936a}
-    .vs-submit{width:100%;background:#b8936a;color:#fff;border:none;border-radius:8px;padding:.8rem;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s}
-    .vs-submit:hover{background:#9a7550}
+    .vs-btn{background:var(--crema);border:1.5px solid var(--crema-dark);border-radius:8px;padding:.55rem .25rem;font-size:.78rem;color:var(--gris-texto);cursor:pointer;transition:all .2s;font-family:var(--font-sans);text-align:center}
+    .vs-btn:hover{border-color:var(--oro);color:var(--negro)}
+    .vs-btn.sel{background:rgba(184,147,106,.12);border-color:var(--oro);color:var(--negro);font-weight:700}
+    .vs-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);margin:.75rem 0 .4rem}
+    .vs-info{background:rgba(184,147,106,.06);border:1px solid rgba(184,147,106,.2);border-radius:6px;padding:.55rem .75rem;font-size:.75rem;color:var(--gris-texto);margin:.75rem 0;line-height:1.5}
+    .vs-input{width:100%;padding:.7rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition);background:var(--blanco);color:var(--negro);margin-bottom:.55rem}
+    .vs-input:focus{border-color:var(--oro)}
+    .vs-submit{width:100%;background:var(--oro);color:#fff;border:none;border-radius:var(--radius-sm);padding:.8rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s;margin-top:.25rem}
+    .vs-submit:hover{background:var(--oro-oscuro)}
     .vs-submit:disabled{opacity:.5;cursor:not-allowed}
-    .vs-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;border-radius:6px;padding:.75rem;font-size:.82rem;text-align:center;margin-top:.5rem;display:none}
+    .vs-ok{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);color:#16a34a;border-radius:6px;padding:.7rem;font-size:.82rem;text-align:center;margin-top:.5rem;display:none}
 
-    /* ── Columna derecha sticky ──────────────────────────────── */
-    .det-right-col{position:sticky;top:88px;max-height:calc(100vh - 100px);overflow-y:auto;display:flex;flex-direction:column;gap:.75rem;scrollbar-width:thin;scrollbar-color:#2e2e2e transparent}
-    .det-right-col::-webkit-scrollbar{width:4px}.det-right-col::-webkit-scrollbar-thumb{background:#2e2e2e;border-radius:4px}
-
-    /* Contact card */
-    .det-contact{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;padding:1.5rem}
-    .det-contact h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1.25rem;color:#e8e0d5}
-    .det-agent{display:flex;align-items:center;gap:.85rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid #2e2e2e}
-    .det-agent img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #b8936a}
-    .det-agent-name{font-weight:600;font-size:.9rem;color:#e8e0d5}
-    .det-agent-role{font-size:.72rem;color:#b8936a}
-    .det-form input,.det-form textarea{width:100%;background:#242424;border:1px solid #2e2e2e;border-radius:6px;padding:.65rem .85rem;color:#e8e0d5;font-size:.84rem;margin-bottom:.65rem;font-family:'Inter',sans-serif;transition:border .2s}
-    .det-form input:focus,.det-form textarea:focus{outline:none;border-color:#b8936a}
-    .det-form textarea{resize:vertical;min-height:70px}
-    .det-btn-primary{width:100%;background:#b8936a;color:#fff;border:none;border-radius:6px;padding:.8rem;font-size:.88rem;font-weight:700;cursor:pointer;margin-bottom:.65rem;transition:background .2s;font-family:'Inter',sans-serif}
-    .det-btn-primary:hover{background:#9a7550}
-    .det-btn-wa{width:100%;background:#25d366;color:#fff;border:none;border-radius:6px;padding:.75rem;font-size:.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:'Inter',sans-serif}
-    .det-btn-wa:hover{background:#1ebe57}
-    .det-form-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;border-radius:6px;padding:.65rem;font-size:.8rem;text-align:center;margin-top:.5rem;display:none}
-
-    /* ── Calculadora hipoteca (widget) ───────────────────────── */
-    .hc-widget{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:12px;padding:1.25rem}
-    .hc-widget h3{font-family:'Playfair Display',serif;font-size:.95rem;color:#e8e0d5;margin-bottom:1rem}
-    .hc-price-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.5rem}
-    .hc-price{font-size:1.4rem;font-weight:800;color:#b8936a}
+    /* ─── Calculadora hipoteca (tema claro) ────────────────────── */
+    .hc-widget{background:var(--blanco);border-radius:var(--radius-lg);padding:1.75rem;box-shadow:var(--shadow-md)}
+    .hc-widget h3{font-size:1.05rem;margin-bottom:.85rem;color:var(--negro)}
+    .hc-price-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:1px solid var(--crema-dark)}
+    .hc-price{font-size:1.3rem;font-weight:800;color:var(--oro);font-family:var(--font-serif)}
     .hc-row{margin-bottom:.85rem}
-    .hc-row-lbl{display:flex;justify-content:space-between;font-size:.75rem;color:#888;margin-bottom:.3rem}
-    .hc-row-lbl span:last-child{color:#e8e0d5;font-weight:600}
-    .hc-slider{width:100%;accent-color:#b8936a;cursor:pointer}
-    .hc-tipo{display:flex;gap:.5rem;margin-bottom:.85rem}
-    .hc-tipo-btn{flex:1;background:#242424;border:1px solid #2e2e2e;border-radius:6px;padding:.45rem;font-size:.75rem;color:#888;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-    .hc-tipo-btn.act{background:rgba(184,147,106,.15);border-color:#b8936a;color:#d4b896;font-weight:600}
-    .hc-result{background:#242424;border:1px solid #2e2e2e;border-radius:8px;padding:.85rem;margin-bottom:.75rem}
-    .hc-result-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.35rem}
-    .hc-result-row:last-child{margin:0;padding-top:.35rem;border-top:1px solid #2e2e2e;margin-top:.35rem}
-    .hc-result-lbl{font-size:.76rem;color:#888}
-    .hc-result-val{font-size:1rem;font-weight:700;color:#e8e0d5}
-    .hc-result-main .hc-result-val{font-size:1.3rem;color:#b8936a}
-    .hc-cta{width:100%;background:none;border:1px solid #b8936a;color:#b8936a;border-radius:6px;padding:.65rem;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
-    .hc-cta:hover{background:rgba(184,147,106,.1)}
-    .hc-note{font-size:.65rem;color:#555;margin-top:.5rem;line-height:1.5}
+    .hc-row-lbl{display:flex;justify-content:space-between;font-size:.75rem;color:var(--gris-medio);margin-bottom:.3rem}
+    .hc-row-lbl span:last-child{color:var(--negro);font-weight:600}
+    .hc-slider{width:100%;accent-color:var(--oro);cursor:pointer;height:4px}
+    .hc-tipo-row{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;flex-wrap:wrap}
+    .hc-tipo-btn{flex:1;background:var(--crema);border:1.5px solid var(--crema-dark);border-radius:6px;padding:.4rem;font-size:.75rem;color:var(--gris-texto);cursor:pointer;font-family:var(--font-sans);transition:all .2s;min-width:60px}
+    .hc-tipo-btn.act{background:rgba(184,147,106,.1);border-color:var(--oro);color:var(--negro);font-weight:700}
+    .hc-tasa-ctrl{display:flex;align-items:center;gap:.35rem;margin-left:auto}
+    .hc-tasa-ctrl button{background:var(--crema);border:1.5px solid var(--crema-dark);color:var(--negro);border-radius:4px;width:26px;height:26px;cursor:pointer;font-size:.95rem;line-height:1;font-family:var(--font-sans)}
+    .hc-tasa-ctrl span{font-size:.82rem;color:var(--negro);min-width:42px;text-align:center;font-weight:600}
+    .hc-result{background:var(--crema);border:1px solid var(--crema-dark);border-radius:8px;padding:.9rem 1rem;margin-bottom:.75rem}
+    .hc-result-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem}
+    .hc-result-row:last-child{margin:0;padding-top:.35rem;border-top:1px solid var(--crema-dark);margin-top:.35rem}
+    .hc-result-lbl{font-size:.76rem;color:var(--gris-medio)}
+    .hc-result-val{font-size:.95rem;font-weight:700;color:var(--negro)}
+    .hc-result-main .hc-result-val{font-size:1.25rem;color:var(--oro)}
+    .hc-cta{width:100%;background:none;border:1.5px solid var(--oro);color:var(--oro);border-radius:var(--radius-sm);padding:.65rem;font-size:.83rem;font-weight:700;cursor:pointer;font-family:var(--font-sans);transition:all .2s}
+    .hc-cta:hover{background:rgba(184,147,106,.08)}
+    .hc-note{font-size:.65rem;color:var(--gris-medio);margin-top:.5rem;line-height:1.5}
 
-    /* ── Modal hipoteca ──────────────────────────────────────── */
-    #hc-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9998;display:none;align-items:center;justify-content:center;padding:1rem}
+    /* ─── Modal hipoteca (tema claro) ──────────────────────────── */
+    #hc-modal{position:fixed;inset:0;background:rgba(13,13,13,.7);z-index:9998;display:none;align-items:center;justify-content:center;padding:1rem}
     #hc-modal.open{display:flex}
-    .hc-modal-box{background:#1a1a1a;border:1px solid #2e2e2e;border-radius:16px;padding:2rem;width:100%;max-width:460px;position:relative}
-    .hc-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#888;font-size:1.5rem;cursor:pointer;line-height:1}
-    .hc-modal-close:hover{color:#fff}
-    .hc-modal-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:#e8e0d5;margin-bottom:.35rem}
-    .hc-modal-sub{font-size:.82rem;color:#888;margin-bottom:1.25rem}
-    .hc-modal-result{background:#242424;border:1px solid #2e2e2e;border-radius:8px;padding:1rem;margin-bottom:1.25rem;display:flex;justify-content:space-around;text-align:center}
-    .hc-modal-result div{display:flex;flex-direction:column;gap:.25rem}
-    .hc-modal-result .val{font-size:1.3rem;font-weight:700;color:#b8936a}
-    .hc-modal-result .lbl{font-size:.68rem;color:#888;text-transform:uppercase;letter-spacing:.06em}
-    .hc-modal input{width:100%;background:#242424;border:1px solid #2e2e2e;border-radius:6px;padding:.65rem .85rem;color:#e8e0d5;font-size:.84rem;margin-bottom:.65rem;font-family:'Inter',sans-serif}
-    .hc-modal input:focus{outline:none;border-color:#b8936a}
-    .hc-modal-btn{width:100%;background:#b8936a;color:#fff;border:none;border-radius:8px;padding:.85rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
-    .hc-modal-btn:hover{background:#9a7550}
-    .hc-modal-ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80;border-radius:6px;padding:.75rem;font-size:.82rem;text-align:center;margin-top:.75rem;display:none}
+    .hc-modal-box{background:var(--blanco);border-radius:var(--radius-lg);padding:2rem;width:100%;max-width:460px;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.18)}
+    .hc-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--gris-medio);font-size:1.4rem;cursor:pointer;line-height:1}
+    .hc-modal-close:hover{color:var(--negro)}
+    .hc-modal-title{font-family:var(--font-serif);font-size:1.25rem;color:var(--negro);margin-bottom:.25rem}
+    .hc-modal-sub{font-size:.82rem;color:var(--gris-medio);margin-bottom:1.25rem}
+    .hc-modal-result{background:var(--crema);border:1px solid var(--crema-dark);border-radius:8px;padding:1rem;margin-bottom:1.25rem;display:flex;justify-content:space-around;text-align:center;flex-wrap:wrap;gap:.5rem}
+    .hc-modal-result .val{font-size:1.25rem;font-weight:700;color:var(--oro);font-family:var(--font-serif)}
+    .hc-modal-result .lbl{font-size:.68rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.06em;margin-top:.15rem}
+    .hc-modal input{width:100%;padding:.75rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition);margin-bottom:.65rem;background:var(--blanco);color:var(--negro)}
+    .hc-modal input:focus{border-color:var(--oro)}
+    .hc-modal-btn{width:100%;background:var(--oro);color:#fff;border:none;border-radius:var(--radius-sm);padding:.85rem;font-size:.9rem;font-weight:700;cursor:pointer;font-family:var(--font-sans);transition:background .2s}
+    .hc-modal-btn:hover{background:var(--oro-oscuro)}
+    .hc-modal-ok{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);color:#16a34a;border-radius:6px;padding:.75rem;font-size:.82rem;text-align:center;margin-top:.75rem;display:none}
 
-    /* ── Banner vendedores (debajo del mapa) ─────────────────── */
-    .det-sell-banner{background:linear-gradient(135deg,#0d0d0d 60%,rgba(184,147,106,.12));border:1px solid rgba(184,147,106,.3);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-    .det-sell-banner-icon{font-size:2.2rem;flex-shrink:0}
+    /* ─── Banner vendedores ─────────────────────────────────────── */
+    .det-sell-banner{border-radius:var(--radius-lg);overflow:hidden;position:relative;min-height:160px;display:flex;align-items:center;margin-bottom:1.5rem;background:linear-gradient(135deg,var(--negro) 55%,#1a1a1a)}
+    .det-sell-banner-body{position:relative;z-index:2;padding:1.75rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;width:100%}
+    .det-sell-banner-icon{font-size:2.5rem;flex-shrink:0}
     .det-sell-banner-text{flex:1}
-    .det-sell-banner-text h4{font-family:'Playfair Display',serif;font-size:1.1rem;color:#e8e0d5;margin-bottom:.3rem}
-    .det-sell-banner-text p{font-size:.8rem;color:#888;line-height:1.5}
-    .det-sell-banner-btn{background:#b8936a;color:#fff;border:none;border-radius:8px;padding:.65rem 1.25rem;font-size:.82rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
-    .det-sell-banner-btn:hover{background:#9a7550}
+    .det-sell-banner-text h4{color:var(--blanco);font-size:1.05rem;margin-bottom:.35rem}
+    .det-sell-banner-text p{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.5}
+    .det-sell-banner-btn{background:var(--oro);color:#fff;border:none;border-radius:8px;padding:.65rem 1.25rem;font-size:.82rem;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-sans)}
+    .det-sell-banner-btn:hover{background:var(--oro-oscuro)}
+
+    /* ─── Mapa ─────────────────────────────────────────────────── */
+    #det-map-section .prop-map iframe{width:100%;height:100%;border:none}
 
     /* Lightbox */
     #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column}
@@ -166,14 +118,12 @@
     .lb-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer}
     .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:#fff;font-size:2rem;padding:.5rem 1rem;cursor:pointer;border-radius:6px}
     .lb-prev{left:1rem}.lb-next{right:1rem}
-    .lb-counter{color:#888;font-size:.82rem;margin-top:.75rem}
+    .lb-counter{color:rgba(255,255,255,.6);font-size:.82rem;margin-top:.75rem}
 
     @media(max-width:900px){
       .det-gallery{grid-template-columns:1fr;grid-template-rows:260px;height:260px}
       .det-gallery-thumb{display:none}
-      .det-body{grid-template-columns:1fr}
-      .det-right-col{position:static;max-height:none;overflow:visible}
-      .det-title{font-size:1.5rem}
+      .det-sidebar-col{position:static;max-height:none;overflow:visible}
     }
   </style>
 </head>
@@ -190,239 +140,300 @@
     <ul class="nav-links">
       <li><a href="vender.html">Vender</a></li>
       <li><a href="comprar.html">Comprar</a></li>
-      <li><a href="inmuebles.html" class="active">Inmuebles</a></li>
+      <li><a href="inmuebles.html" style="color:var(--oro)">Inmuebles</a></li>
       <li><a href="hipotecas.html">Hipotecas</a></li>
       <li><a href="nosotros.html">Nosotros</a></li>
       <li><a href="blog.html">Blog</a></li>
     </ul>
     <div class="nav-actions">
       <a href="tel:+34600367742" class="nav-tel">600 367 742</a>
-      <a href="login.html" class="btn btn-gold btn-sm">Empezar ahora</a>
+      <a href="registro.html" class="nav-cta">Empezar ahora</a>
+      <button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button>
     </div>
-    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mobile-nav" id="mobileNav">
-    <a href="vender.html">Vender</a>
-    <a href="comprar.html">Comprar</a>
-    <a href="inmuebles.html">Inmuebles</a>
-    <a href="hipotecas.html">Hipotecas</a>
-    <a href="nosotros.html">Nosotros</a>
-    <a href="blog.html">Blog</a>
-    <a href="login.html" class="btn btn-gold" style="margin-top:.5rem">Área cliente</a>
   </div>
 </nav>
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="menuClose">&#x2715;</button>
+  <a href="vender.html">Vender</a><a href="comprar.html">Comprar</a>
+  <a href="inmuebles.html">Inmuebles</a><a href="hipotecas.html">Hipotecas</a>
+  <a href="nosotros.html">Nosotros</a><a href="blog.html">Blog</a>
+  <a href="registro.html" style="color:var(--oro)">Empezar ahora &#x2192;</a>
+</nav>
 
-<!-- ── Contenido dinámico ────────────────────────────────────────── -->
-<div style="padding-top:80px">
-
-  <div id="det-loading" class="det-loading">
-    <div class="det-spinner"></div>
-    <p>Cargando ficha del inmueble…</p>
-  </div>
-
-  <div id="det-error" class="det-error" style="display:none">
-    <h2>Inmueble no encontrado</h2>
-    <p>La ficha que buscas no existe o ha sido eliminada.</p>
-    <a href="inmuebles.html" style="color:#b8936a;margin-top:1rem;display:inline-block">← Ver todos los inmuebles</a>
-  </div>
-
-  <div id="det-content" style="display:none">
-    <div class="det-wrap">
-      <!-- Breadcrumb -->
-      <div class="det-breadcrumb">
-        <a href="index.html">Inicio</a> ›
-        <a href="inmuebles.html">Inmuebles</a> ›
-        <span id="det-bc-title">Cargando…</span>
+<!-- BREADCRUMB + PRECIO (sticky) -->
+<div class="prop-detail-header" style="top:70px" id="det-header" style="display:none">
+  <div class="container">
+    <div class="prop-detail-header-inner">
+      <nav class="prop-breadcrumb">
+        <a href="index.html">Inicio</a>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <a href="inmuebles.html">Inmuebles</a>
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        <span id="det-breadcrumb-loc">–</span>
+      </nav>
+      <div class="prop-header-price" id="det-header-price">–</div>
+      <div class="prop-header-actions">
+        <button onclick="navigator.clipboard.writeText(location.href);alert('URL copiada')" title="Compartir">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+        </button>
+        <button id="favBtn" onclick="this.style.color=this.style.color?'':'#e84545'" title="Guardar">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </button>
       </div>
+    </div>
+  </div>
+</div>
 
-      <!-- Galería -->
-      <div class="det-gallery" id="det-gallery">
-        <div class="det-gallery-main" onclick="openLB(0)">
-          <img id="det-img-main" src="" alt="Inmueble"/>
-          <span class="det-gallery-badge" id="det-badge"></span>
-        </div>
-        <div class="det-gallery-thumb" id="det-thumb1" onclick="openLB(1)">
-          <img id="det-img-t1" src="" alt=""/>
-        </div>
-        <div class="det-gallery-thumb" id="det-thumb2" onclick="openLB(2)" style="position:relative">
-          <img id="det-img-t2" src="" alt=""/>
-          <div class="det-gallery-more" id="det-more-label" style="display:none"></div>
-        </div>
+<!-- LOADING -->
+<div class="det-loading" id="det-loading" style="background:var(--crema);padding-top:80px">
+  <div class="det-spinner"></div>
+  <div style="font-size:.9rem">Cargando ficha del inmueble…</div>
+</div>
+
+<!-- ERROR -->
+<div class="det-error" id="det-error" style="display:none;background:var(--crema);padding-top:80px">
+  <h2>Inmueble no encontrado</h2>
+  <p>No pudimos cargar la información de este inmueble.</p>
+  <a href="inmuebles.html" class="btn btn-gold" style="margin-top:1.5rem;display:inline-flex">Ver todos los inmuebles</a>
+</div>
+
+<!-- GALERÍA -->
+<div id="det-gallery-wrap" style="display:none;background:var(--negro);padding-top:70px">
+  <div class="container" style="padding-top:1.5rem;padding-bottom:1.5rem">
+    <div class="det-gallery" id="det-gallery">
+      <div class="det-gallery-main" onclick="openLightbox(0)">
+        <img id="det-img-main" src="" alt="Inmueble"/>
       </div>
+      <div class="det-gallery-thumb" onclick="openLightbox(1)">
+        <img id="det-img-t1" src="" alt="Foto 2" onerror="this.parentElement.style.display='none'"/>
+      </div>
+      <div class="det-gallery-thumb" onclick="openLightbox(2)" style="position:relative">
+        <img id="det-img-t2" src="" alt="Foto 3" onerror="this.parentElement.style.display='none'"/>
+        <div class="det-gallery-more" id="det-gallery-more" style="display:none"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <!-- Body -->
-      <div class="det-body">
-        <!-- Columna izquierda -->
-        <div class="det-info">
-          <div class="det-ref" id="det-ref"></div>
-          <h1 class="det-title" id="det-title"></h1>
-          <div class="det-price" id="det-price"></div>
-          <div class="det-price-m2" id="det-price-m2"></div>
-          <div class="det-location">
-            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#b8936a" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <span id="det-location"></span>
-          </div>
+<!-- CUERPO -->
+<section class="prop-detail-body" id="det-body" style="display:none">
+  <div class="container">
+    <div class="prop-detail-grid">
 
-          <!-- Stats -->
-          <div class="det-stats" id="det-stats"></div>
+      <!-- ── Columna izquierda ───────────────────────────────── -->
+      <div class="prop-detail-main">
 
-          <!-- Características -->
-          <div class="det-section">
-            <div class="det-section-title">Características</div>
-            <div class="det-features" id="det-features"></div>
-          </div>
-
-          <!-- Superficies -->
-          <div class="det-section" id="det-sup-section">
-            <div class="det-section-title">Superficies</div>
-            <div class="det-sups" id="det-sups"></div>
-          </div>
-
-          <!-- Descripción -->
-          <div class="det-section" id="det-desc-section" style="display:none">
-            <div class="det-section-title">Descripción</div>
-            <div class="det-desc" id="det-desc"></div>
-          </div>
-
-          <!-- Mapa -->
-          <div class="det-section" id="det-map-section">
-            <div class="det-section-title">Ubicación aproximada</div>
-            <div class="det-map">
-              <iframe id="det-map-iframe" src="" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa ubicación" style="width:100%;height:100%;border:0"></iframe>
+        <!-- Título, precio y estadísticas -->
+        <div class="prop-section">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem">
+            <div>
+              <span class="prop-badge" id="det-badge" style="position:static;margin-bottom:.75rem;display:inline-block">Disponible</span>
+              <h1 id="det-title" style="font-size:1.75rem;margin-bottom:.5rem">–</h1>
+              <div class="prop-location" id="det-location" style="font-size:.9rem">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span id="det-loc-text">–</span>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div id="det-price-main" style="font-family:var(--font-serif);font-size:2.2rem;font-weight:700;color:var(--negro)">–</div>
+              <div id="det-price-m2" style="font-size:.875rem;color:var(--gris-medio)"></div>
             </div>
           </div>
+          <!-- Stats -->
+          <div style="display:flex;gap:1.5rem;padding-top:1.25rem;border-top:1px solid var(--crema-dark);flex-wrap:wrap" id="det-stats-row"></div>
+        </div>
 
-          <!-- Banner vendedores -->
-          <div class="det-sell-banner">
+        <!-- Descripción -->
+        <div class="prop-section" id="det-desc-section" style="display:none">
+          <h2>Descripción</h2>
+          <p id="det-desc" class="prop-description"></p>
+        </div>
+
+        <!-- Características -->
+        <div class="prop-section" id="det-feats-section" style="display:none">
+          <h2>Características</h2>
+          <div id="det-feats" style="display:flex;flex-wrap:wrap;gap:.5rem"></div>
+        </div>
+
+        <!-- Ficha técnica -->
+        <div class="prop-section">
+          <h2>Datos técnicos</h2>
+          <div class="prop-specs-grid" id="det-specs"></div>
+        </div>
+
+        <!-- Superficies -->
+        <div class="prop-section" id="det-sups-section" style="display:none">
+          <h2>Superficies</h2>
+          <div style="display:flex;flex-wrap:wrap;gap:.65rem" id="det-sups"></div>
+        </div>
+
+        <!-- Mapa -->
+        <div class="prop-section" id="det-map-section">
+          <h2>Ubicación aproximada</h2>
+          <div class="prop-map" style="height:260px;margin-top:.75rem">
+            <iframe id="det-map-iframe" src="" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa ubicación"></iframe>
+          </div>
+          <p id="det-map-addr" style="font-size:.8125rem;color:var(--gris-texto);margin-top:.75rem"></p>
+        </div>
+
+        <!-- Banner vendedores -->
+        <div class="det-sell-banner">
+          <div class="det-sell-banner-body">
             <div class="det-sell-banner-icon">🏠</div>
             <div class="det-sell-banner-text">
               <h4>¿Tienes un inmueble que vender?</h4>
-              <p>Valoramos tu propiedad gratis y la publicamos en 24h. Sin comisión por adelantado — solo cobramos en escritura.</p>
+              <p>Valoración gratuita en 24h. Sin comisión hasta escritura. Publicamos en todos los portales.</p>
             </div>
             <a href="vender.html" class="det-sell-banner-btn">Vender gratis →</a>
           </div>
         </div>
 
-        <!-- Columna derecha sticky -->
-        <div class="det-right-col">
-          <div class="det-contact">
-            <h3>Solicitar información</h3>
-            <div class="det-agent">
-              <img src="imagenes/inmobiliario4.jpg" alt="Agente" id="det-agent-img"/>
-              <div>
-                <div class="det-agent-name" id="det-agent-name">Juan Sebastián</div>
-                <div class="det-agent-role">Gestor · NuevaHabitat</div>
-              </div>
-            </div>
-            <div class="det-form">
-              <input type="text" id="cf-nombre" placeholder="Nombre y apellidos"/>
-              <input type="tel" id="cf-tel" placeholder="Teléfono"/>
-              <input type="email" id="cf-email" placeholder="Email"/>
-              <textarea id="cf-msg" placeholder="Me gustaría visitar este inmueble…"></textarea>
-              <button class="det-btn-primary" onclick="sendContactForm()">Solicitar visita</button>
-              <button class="det-btn-wa" onclick="openWA()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.523 5.85L.057 23.886a.5.5 0 00.611.61l6.053-1.457A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.89 9.89 0 01-5.031-1.373l-.36-.214-3.733.899.916-3.641-.234-.374A9.861 9.861 0 012.106 12C2.106 6.527 6.527 2.106 12 2.106c5.473 0 9.894 4.421 9.894 9.894 0 5.473-4.421 9.894-9.894 9.894z"/></svg>
-                WhatsApp
-              </button>
-              <div class="det-form-ok" id="cf-ok">✅ Solicitud enviada. Nos pondremos en contacto contigo.</div>
-            </div>
+        <!-- Solicitar visita -->
+        <div class="vs-card">
+          <h3>¿Te ha gustado? Solicita una visita</h3>
+          <div class="vs-card-sub">Indica tu disponibilidad y te confirmamos en 24h</div>
+
+          <div class="vs-label">Elige un día</div>
+          <div class="vs-grid" id="vs-dias">
+            <button class="vs-btn" data-val="Lunes"     onclick="selDay(this)">Lunes</button>
+            <button class="vs-btn" data-val="Martes"    onclick="selDay(this)">Martes</button>
+            <button class="vs-btn" data-val="Miércoles" onclick="selDay(this)">Miércoles</button>
+            <button class="vs-btn" data-val="Jueves"    onclick="selDay(this)">Jueves</button>
+            <button class="vs-btn" data-val="Viernes"   onclick="selDay(this)">Viernes</button>
+            <button class="vs-btn" data-val="Sábado"    onclick="selDay(this)">Sábado</button>
           </div>
 
-          <!-- Visita scheduler -->
-          <div class="det-visit">
-            <h3>¿Te ha gustado? ¡Visítalo!</h3>
-            <div class="det-visit-sub">Indica tu disponibilidad</div>
+          <div class="vs-label">Rango horario</div>
+          <div class="vs-grid" id="vs-horas">
+            <button class="vs-btn" data-val="8h–12h"  onclick="selHour(this)">8h–12h</button>
+            <button class="vs-btn" data-val="12h–16h" onclick="selHour(this)">12h–16h</button>
+            <button class="vs-btn" data-val="16h–20h" onclick="selHour(this)">16h–20h</button>
+          </div>
 
-            <div class="vs-grid" id="vs-dias">
-              <button class="vs-btn" data-val="Lunes"     onclick="selDay(this)">Lunes</button>
-              <button class="vs-btn" data-val="Martes"    onclick="selDay(this)">Martes</button>
-              <button class="vs-btn" data-val="Miércoles" onclick="selDay(this)">Miércoles</button>
-              <button class="vs-btn" data-val="Jueves"    onclick="selDay(this)">Jueves</button>
-              <button class="vs-btn" data-val="Viernes"   onclick="selDay(this)">Viernes</button>
-              <button class="vs-btn" data-val="Sábado"    onclick="selDay(this)">Sábado</button>
+          <div class="vs-info">ℹ Esto no es una reserva. Tu gestor te contactará para confirmar.</div>
+
+          <input class="vs-input" type="text"  id="vs-nombre"   placeholder="Tu nombre"/>
+          <input class="vs-input" type="tel"   id="vs-telefono" placeholder="Teléfono *"/>
+          <input class="vs-input" type="email" id="vs-email"    placeholder="Email (opcional)"/>
+
+          <button class="vs-submit" onclick="concertarVisita()" id="vs-btn">
+            📅 Concertar visita
+          </button>
+          <div class="vs-ok" id="vs-ok">✅ ¡Solicitud enviada! Tu gestor te contactará pronto.</div>
+        </div>
+
+      </div><!-- /prop-detail-main -->
+
+      <!-- ── Columna derecha (sticky con scroll) ─────────────── -->
+      <div class="det-sidebar-col">
+
+        <!-- Contacto -->
+        <div class="prop-contact-card">
+          <h3>Solicitar información</h3>
+          <div class="prop-contact-agent">
+            <img id="det-agent-img" src="imagenes/inmobiliario4.jpg" alt="Agente"/>
+            <div>
+              <div class="prop-contact-agent-name" id="det-agent-name">Juan Sebastián</div>
+              <div class="prop-contact-agent-role">Gestor · NuevaHabitat</div>
             </div>
-
-            <div class="vs-label">Indica el rango de hora</div>
-            <div class="vs-grid" id="vs-horas">
-              <button class="vs-btn" data-val="8h–12h"  onclick="selHour(this)">8h–12h</button>
-              <button class="vs-btn" data-val="12h–16h" onclick="selHour(this)">12h–16h</button>
-              <button class="vs-btn" data-val="16h–20h" onclick="selHour(this)">16h–20h</button>
-            </div>
-
-            <div class="vs-info">
-              ℹ Esto no es una reserva: se enviará tu disponibilidad al gestor, que te contactará para confirmar.
-            </div>
-
-            <input class="vs-input" type="text"  id="vs-nombre"   placeholder="Nombre"/>
-            <input class="vs-input" type="tel"   id="vs-telefono" placeholder="Teléfono *"/>
-            <input class="vs-input" type="email" id="vs-email"    placeholder="Email (opcional)"/>
-
-            <button class="vs-submit" onclick="concertarVisita()" id="vs-btn">
-              📅 Concertar una visita
+          </div>
+          <form class="prop-contact-form" onsubmit="sendContact(event)">
+            <input type="text"  id="fc-nombre"   placeholder="Nombre y apellidos" required/>
+            <input type="tel"   id="fc-tel"      placeholder="Teléfono" required/>
+            <input type="email" id="fc-email"    placeholder="Email"/>
+            <textarea           id="fc-msg"      placeholder="Me gustaría visitar este inmueble…"></textarea>
+            <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center">Solicitar visita</button>
+            <button type="button" id="det-wa-btn" onclick="openWA()" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:.35rem">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              WhatsApp
             </button>
-            <div class="vs-ok" id="vs-ok">✅ ¡Solicitud recibida! El gestor te contactará para confirmar la visita.</div>
+            <a href="tel:+34600367742" class="btn" style="width:100%;justify-content:center;margin-top:.35rem;border:1.5px solid var(--crema-dark);color:var(--negro)">600 367 742</a>
+            <div class="prop-ref" id="det-ref" style="margin-top:.75rem;font-size:.75rem;color:var(--gris-medio)"></div>
+          </form>
+          <div id="det-form-ok" style="display:none;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);color:#16a34a;border-radius:6px;padding:.65rem;font-size:.8rem;text-align:center;margin-top:.5rem">✅ Mensaje enviado. Te contactamos pronto.</div>
+        </div>
+
+        <!-- Calculadora hipoteca -->
+        <div class="hc-widget">
+          <h3>🏦 Calcula tu hipoteca</h3>
+          <div class="hc-price-row">
+            <div class="hc-price" id="hc-precio-lbl">– €</div>
+            <span style="font-size:.72rem;color:var(--gris-medio)">Precio inmueble</span>
           </div>
 
-          <!-- Widget calculadora hipoteca -->
-          <div class="hc-widget">
-            <h3>🏦 Calcula tu hipoteca</h3>
-            <div class="hc-price-row">
-              <div class="hc-price" id="hc-precio-lbl">– €</div>
-              <span style="font-size:.72rem;color:#888">Precio inmueble</span>
-            </div>
-
-            <div class="hc-row">
-              <div class="hc-row-lbl"><span>Mis ahorros</span><span id="hc-ahorros-lbl">–</span></div>
-              <input type="range" class="hc-slider" id="hc-ahorros-range" min="0" max="100" value="20" oninput="updateCalc()"/>
-              <div class="hc-row-lbl" style="margin-top:.2rem"><span style="font-size:.65rem">0%</span><span style="font-size:.65rem">100%</span></div>
-            </div>
-
-            <div class="hc-row">
-              <div class="hc-row-lbl"><span>Plazo</span><span id="hc-anos-lbl">30 años</span></div>
-              <input type="range" class="hc-slider" id="hc-anos-range" min="5" max="30" value="30" oninput="updateCalc()"/>
-              <div class="hc-row-lbl" style="margin-top:.2rem"><span style="font-size:.65rem">5 años</span><span style="font-size:.65rem">30 años</span></div>
-            </div>
-
-            <div class="hc-row">
-              <div class="hc-row-lbl"><span>Tipo de interés</span><span id="hc-tasa-lbl">2.52%</span></div>
-              <div style="display:flex;align-items:center;gap:.5rem">
-                <div class="hc-tipo">
-                  <button class="hc-tipo-btn act" id="hc-fijo" onclick="setTipo('fijo')">Fijo</button>
-                  <button class="hc-tipo-btn" id="hc-variable" onclick="setTipo('variable')">Variable</button>
-                </div>
-                <div style="display:flex;align-items:center;gap:.3rem;flex:1;justify-content:flex-end">
-                  <button onclick="changeTasa(-0.1)" style="background:#242424;border:1px solid #2e2e2e;color:#e8e0d5;border-radius:4px;width:24px;height:24px;cursor:pointer;font-size:.9rem">−</button>
-                  <span id="hc-tasa-display" style="font-size:.85rem;color:#e8e0d5;min-width:40px;text-align:center">2.52%</span>
-                  <button onclick="changeTasa(0.1)" style="background:#242424;border:1px solid #2e2e2e;color:#e8e0d5;border-radius:4px;width:24px;height:24px;cursor:pointer;font-size:.9rem">+</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="hc-result">
-              <div class="hc-result-row hc-result-main">
-                <span class="hc-result-lbl">Cuota mensual</span>
-                <span class="hc-result-val" id="hc-cuota">–</span>
-              </div>
-              <div class="hc-result-row">
-                <span class="hc-result-lbl">Préstamo</span>
-                <span class="hc-result-val" id="hc-prestamo">–</span>
-              </div>
-              <div class="hc-result-row">
-                <span class="hc-result-lbl">Coste total</span>
-                <span class="hc-result-val" id="hc-total">–</span>
-              </div>
-            </div>
-
-            <button class="hc-cta" onclick="openHcModal()">📋 Solicitar estudio de hipoteca</button>
-            <div class="hc-note">Los resultados son orientativos. Las condiciones reales dependen de cada entidad financiera.</div>
+          <div class="hc-row">
+            <div class="hc-row-lbl"><span>Mis ahorros</span><span id="hc-ahorros-lbl">–</span></div>
+            <input type="range" class="hc-slider" id="hc-ahorros-range" min="0" max="100" value="20" oninput="updateCalc()"/>
+            <div class="hc-row-lbl" style="margin-top:.2rem"><span style="font-size:.65rem">0%</span><span style="font-size:.65rem">100%</span></div>
           </div>
 
-        </div><!-- fin det-right-col -->
+          <div class="hc-row">
+            <div class="hc-row-lbl"><span>Plazo</span><span id="hc-anos-lbl">30 años</span></div>
+            <input type="range" class="hc-slider" id="hc-anos-range" min="5" max="30" value="30" oninput="updateCalc()"/>
+            <div class="hc-row-lbl" style="margin-top:.2rem"><span style="font-size:.65rem">5 años</span><span style="font-size:.65rem">30 años</span></div>
+          </div>
+
+          <div class="hc-row">
+            <div class="hc-row-lbl"><span>Tipo de interés</span><span id="hc-tasa-lbl">2.52%</span></div>
+            <div class="hc-tipo-row">
+              <button class="hc-tipo-btn act" id="hc-fijo"     onclick="setTipo('fijo')">Fijo</button>
+              <button class="hc-tipo-btn"     id="hc-variable" onclick="setTipo('variable')">Variable</button>
+              <div class="hc-tasa-ctrl">
+                <button onclick="changeTasa(-0.1)">−</button>
+                <span id="hc-tasa-display">2.52%</span>
+                <button onclick="changeTasa(0.1)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="hc-result">
+            <div class="hc-result-row hc-result-main">
+              <span class="hc-result-lbl">Cuota mensual</span>
+              <span class="hc-result-val" id="hc-cuota">–</span>
+            </div>
+            <div class="hc-result-row">
+              <span class="hc-result-lbl">Préstamo</span>
+              <span class="hc-result-val" id="hc-prestamo">–</span>
+            </div>
+            <div class="hc-result-row">
+              <span class="hc-result-lbl">Coste total</span>
+              <span class="hc-result-val" id="hc-total">–</span>
+            </div>
+          </div>
+
+          <button class="hc-cta" onclick="openHcModal()">📋 Solicitar estudio gratuito</button>
+          <div class="hc-note">Resultados orientativos. Las condiciones reales dependen de la entidad financiera.</div>
+        </div>
+
+      </div><!-- /det-sidebar-col -->
+
+    </div><!-- /prop-detail-grid -->
+  </div>
+</section>
+
+<!-- Inmuebles similares -->
+<section class="similar-section" id="det-similar" style="display:none">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
+      <div>
+        <span class="overline">Propiedades cercanas</span>
+        <h2 class="section-title mb-0" style="font-size:1.75rem">También puede interesarte</h2>
+      </div>
+      <div class="similar-nav">
+        <button class="prop-arrow" id="simPrev"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+        <button class="prop-arrow" id="simNext"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
       </div>
     </div>
+    <div class="similar-track-wrap"><div class="similar-track" id="simTrack"></div></div>
   </div>
+</section>
+
+<!-- WA flotante -->
+<div class="whatsapp-float">
+  <div class="whatsapp-tooltip">¿Hablamos?</div>
+  <a href="https://wa.me/34600367742" class="whatsapp-btn" target="_blank" rel="noopener">
+    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
 </div>
 
 <!-- Modal hipoteca -->
@@ -434,256 +445,375 @@
     <div class="hc-modal-result">
       <div><div class="val" id="hc-m-cuota">–</div><div class="lbl">Cuota mensual</div></div>
       <div><div class="val" id="hc-m-total">–</div><div class="lbl">Coste total</div></div>
-      <div><div class="val" id="hc-m-tasa">–</div><div class="lbl">Interés</div></div>
+      <div><div class="val" id="hc-m-tasa">–</div><div class="lbl">Interés anual</div></div>
     </div>
-    <input type="text"  id="hc-m-nombre"   placeholder="Nombre completo *"/>
-    <input type="tel"   id="hc-m-tel"      placeholder="Teléfono *"/>
-    <input type="email" id="hc-m-email"    placeholder="Email (opcional)"/>
+    <input type="text"  id="hc-m-nombre" placeholder="Nombre completo *"/>
+    <input type="tel"   id="hc-m-tel"    placeholder="Teléfono *"/>
+    <input type="email" id="hc-m-email"  placeholder="Email (opcional)"/>
     <button class="hc-modal-btn" onclick="sendHcLead()">📩 Solicitar estudio gratuito</button>
-    <div class="hc-modal-ok" id="hc-m-ok">✅ Solicitud enviada. Te contactaremos en menos de 24h.</div>
+    <div class="hc-modal-ok" id="hc-m-ok">✅ ¡Solicitud enviada! Te contactamos en menos de 24h.</div>
   </div>
 </div>
 
 <!-- Lightbox -->
 <div id="lightbox">
-  <button class="lb-close" onclick="closeLB()">✕</button>
-  <button class="lb-prev lb-nav" onclick="lbPrev()">‹</button>
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
+  <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
   <img id="lb-img" src="" alt=""/>
-  <button class="lb-next lb-nav" onclick="lbNext()">›</button>
   <div class="lb-counter" id="lb-counter"></div>
 </div>
 
-<!-- Bottom nav móvil -->
-<nav class="mbn">
-  <a href="index.html" class="mbn-tab" data-tab="inicio"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg><span>Inicio</span></a>
-  <a href="inmuebles.html" class="mbn-tab active" data-tab="inmuebles"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Inmuebles</span></a>
-  <a href="vender.html" class="mbn-tab" data-tab="vender"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>Vender</span></a>
-  <a href="comprar.html" class="mbn-tab" data-tab="comprar"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6M17 13l1.5 6M9 19a1 1 0 100 2 1 1 0 000-2zm8 0a1 1 0 100 2 1 1 0 000-2z"/></svg><span>Comprar</span></a>
-  <a href="login.html" class="mbn-tab" data-tab="cuenta"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><span>Cuenta</span></a>
+<!-- Mobile bottom nav -->
+<nav class="mbn" id="mbn">
+  <a href="index.html" class="mbn-tab" data-tab="inicio" aria-label="Inicio">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+    <span>Inicio</span>
+  </a>
+  <a href="inmuebles.html" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg>
+    <span>Inmuebles</span>
+  </a>
+  <a href="vender.html" class="mbn-tab" data-tab="vender" aria-label="Vender">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/></svg>
+    <span>Vender</span>
+  </a>
+  <a href="comprar.html" class="mbn-tab" data-tab="comprar" aria-label="Comprar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+    <span>Comprar</span>
+  </a>
+  <a href="login.html" class="mbn-tab" data-tab="cuenta" aria-label="Mi cuenta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+    <span>Cuenta</span>
+  </a>
 </nav>
+
+<!-- Cookie banner -->
+<div id="cookie-banner">
+  <p>Usamos cookies propias y de terceros para mejorar tu experiencia. <a href="cookies.html">Más información</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-btn-accept" id="cookie-accept">Aceptar todo</button>
+    <button class="cookie-btn-reject" id="cookie-reject">Solo necesarias</button>
+  </div>
+</div>
 
 <script src="js/supabase.js"></script>
 <script src="js/main.js"></script>
 <script>
-/* ── Leer ID de la URL ─────────────────────────────────────────── */
-const params  = new URLSearchParams(window.location.search);
-const propId  = params.get('id');
-const propRef = params.get('ref');
+/* ═══════════════════════════════════════════════════════════════
+   Variables globales
+═══════════════════════════════════════════════════════════════ */
+let lbImages   = [];
+let lbCurrent  = 0;
+let currentProp= null;
+let visitDay   = '';
+let visitHour  = '';
+let hcTasa     = 2.52;
+let hcTipoFijo = true;
 
-let allImages = [];
-let lbIdx = 0;
+/* ═══════════════════════════════════════════════════════════════
+   CARGA DEL INMUEBLE
+═══════════════════════════════════════════════════════════════ */
+async function loadProperty(){
+  const params = new URLSearchParams(location.search);
+  const id  = params.get('id');
+  const ref = params.get('ref');
+  const slug= params.get('slug');
 
-document.addEventListener('supabase:ready', async () => {
-  if(!propId && !propRef){
+  if(!id && !ref && !slug){
     showError(); return;
   }
 
-  let query = window.nhSupabase.from('inmuebles').select('*');
-  if(propId)  query = query.eq('id', propId);
-  else        query = query.eq('ref', propRef);
+  try {
+    let query = window.nhSupabase.from('inmuebles').select('*');
+    if(id)   query = query.eq('id', id);
+    else if(ref)  query = query.eq('ref', ref);
+    else if(slug) query = query.eq('slug', slug);
 
-  const { data, error } = await query.single();
+    const { data, error } = await query.single();
+    if(error || !data){ showError(); return; }
 
-  if(error || !data){ showError(); return; }
-  renderProperty(data);
-});
+    currentProp = data;
+    renderProperty(data);
+    loadSimilar(data);
+  } catch(e){
+    showError();
+  }
+}
 
 function showError(){
-  document.getElementById('det-loading').style.display='none';
-  document.getElementById('det-error').style.display='block';
+  document.getElementById('det-loading').style.display = 'none';
+  document.getElementById('det-error').style.display   = 'block';
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════════════════════════ */
 function renderProperty(p){
-  currentProp = p;
-  document.getElementById('det-loading').style.display='none';
-  document.getElementById('det-content').style.display='block';
+  /* ── Título / Meta ── */
+  document.title = `${p.titulo||'Inmueble'} · NuevaHabitat`;
 
-  // Título y SEO
-  const titulo = p.titulo || 'Inmueble';
-  document.title = `${titulo} · NuevaHabitat`;
-  document.getElementById('det-bc-title').textContent = titulo;
-  document.getElementById('det-title').textContent = titulo;
-  document.getElementById('det-ref').textContent = `${p.ref||''} · ${(p.tipo||'inmueble').toUpperCase()}`;
+  /* ── Breadcrumb y header ── */
+  const loc = [p.barrio, p.municipio].filter(Boolean).join(', ') || 'Barcelona';
+  document.getElementById('det-breadcrumb-loc').textContent = loc;
+  const precio = parseFloat(p.precio)||0;
+  document.getElementById('det-header-price').textContent = precio ? precio.toLocaleString('es-ES')+'  EUR' : '';
+  document.getElementById('det-header').style.display = '';
 
-  // Precio
-  const precio = p.precio ? Number(p.precio).toLocaleString('es-ES') + ' €' : '–';
-  document.getElementById('det-price').textContent = precio;
-  if(p.m2_utiles && p.precio){
-    document.getElementById('det-price-m2').textContent =
-      Math.round(p.precio/p.m2_utiles).toLocaleString('es-ES') + ' € / m²';
+  /* ── Galería ── */
+  const imgs = Array.isArray(p.imagenes) ? p.imagenes.filter(Boolean) : [];
+  if(p.imagen_principal) imgs.unshift(p.imagen_principal);
+  const unique = [...new Set(imgs)];
+  lbImages = unique.length ? unique : ['imagenes/interior1.jpg'];
+
+  document.getElementById('det-img-main').src = lbImages[0];
+  if(lbImages[1]) document.getElementById('det-img-t1').src = lbImages[1];
+  else document.getElementById('det-img-t1').parentElement.style.display='none';
+  if(lbImages[2]) document.getElementById('det-img-t2').src = lbImages[2];
+  else document.getElementById('det-img-t2').parentElement.style.display='none';
+  if(lbImages.length > 3){
+    const more = document.getElementById('det-gallery-more');
+    more.textContent = '+' + (lbImages.length - 3) + ' fotos';
+    more.style.display = 'flex';
+  }
+  document.getElementById('det-gallery-wrap').style.display = '';
+
+  /* ── Badge estado ── */
+  const badge = document.getElementById('det-badge');
+  const estadoMap = {disponible:'disponible',reservado:'reservada',vendido:'reservada',retirado:'reservada'};
+  badge.className = 'prop-badge ' + (estadoMap[p.estado]||'disponible');
+  badge.textContent = p.estado ? p.estado.charAt(0).toUpperCase()+p.estado.slice(1) : 'Disponible';
+
+  /* ── Título y precio ── */
+  document.getElementById('det-title').textContent = p.titulo || 'Sin título';
+  document.getElementById('det-loc-text').textContent = loc;
+  document.getElementById('det-price-main').textContent = precio ? precio.toLocaleString('es-ES')+' EUR' : '';
+  const m2 = p.m2_utiles||p.m2_construidos;
+  if(precio && m2){
+    document.getElementById('det-price-m2').textContent = Math.round(precio/m2).toLocaleString('es-ES')+' EUR / m²';
   }
 
-  // Ubicación
-  const loc = [p.barrio, p.municipio, p.provincia].filter(Boolean).join(', ');
-  document.getElementById('det-location').textContent = loc || '–';
+  /* ── Stats row ── */
+  const statsData = [
+    {v: m2 ? m2+' m²' : null,         l:'m² construidos'},
+    {v: p.habitaciones||p.dormitorios||null, l:'Habitaciones'},
+    {v: p.banos||p.aseos||null,              l:'Baños'},
+    {v: p.m2_terraza ? p.m2_terraza+' m²' : null, l:'Terraza'},
+    {v: p.planta||null,                      l:'Planta'},
+  ].filter(s=>s.v);
+  const statsRow = document.getElementById('det-stats-row');
+  statsRow.innerHTML = statsData.map(s=>`
+    <div style="text-align:center">
+      <div style="font-size:1.4rem;font-weight:700;font-family:var(--font-serif)">${s.v}</div>
+      <div style="font-size:.75rem;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.06em">${s.l}</div>
+    </div>`).join('');
 
-  // Badge estado
-  const badgeCfg = {
-    disponible:{cls:'badge-disp',lbl:'Disponible'},
-    reservado: {cls:'badge-res', lbl:'Reservado'},
-    vendido:   {cls:'badge-vend',lbl:'Vendido'},
-    retirado:  {cls:'badge-ret', lbl:'No disponible'},
-  };
-  const bc = badgeCfg[p.estado] || badgeCfg.disponible;
-  const badgeEl = document.getElementById('det-badge');
-  badgeEl.className = 'det-gallery-badge '+bc.cls;
-  badgeEl.textContent = bc.lbl;
-
-  // Galería
-  allImages = Array.isArray(p.imagenes) && p.imagenes.length ? p.imagenes : (p.imagen_principal ? [p.imagen_principal] : ['imagenes/interior1.jpg']);
-  document.getElementById('det-img-main').src = allImages[0];
-  if(allImages[1]){
-    document.getElementById('det-img-t1').src = allImages[1];
-    document.getElementById('det-thumb1').style.display='block';
-  } else {
-    document.getElementById('det-thumb1').style.display='none';
-  }
-  if(allImages[2]){
-    document.getElementById('det-img-t2').src = allImages[2];
-    document.getElementById('det-thumb2').style.display='block';
-    if(allImages.length > 3){
-      const more = document.getElementById('det-more-label');
-      more.style.display='flex';
-      more.textContent = `+${allImages.length-3} fotos`;
-    }
-  } else {
-    document.getElementById('det-thumb2').style.display='none';
-  }
-
-  // Stats
-  const stats = [];
-  if(p.habitaciones) stats.push({val:p.habitaciones,  lbl:'Habitaciones'});
-  if(p.banos)        stats.push({val:p.banos,          lbl:'Baños'});
-  if(p.m2_utiles)    stats.push({val:p.m2_utiles+' m²',lbl:'M² útiles'});
-  if(p.m2_construidos) stats.push({val:p.m2_construidos+' m²',lbl:'Construidos'});
-  if(p.planta)       stats.push({val:p.planta,         lbl:'Planta'});
-  document.getElementById('det-stats').innerHTML = stats.map(s=>`
-    <div class="det-stat"><div class="det-stat-val">${s.val}</div><div class="det-stat-lbl">${s.lbl}</div></div>`).join('');
-
-  // Características booleanas
-  const feats = [
-    {k:'ascensor',    lbl:'Ascensor'},
-    {k:'trastero',    lbl:'Trastero'},
-    {k:'parking',     lbl:'Parking'},
-    {k:'jardin',      lbl:'Jardín'},
-    {k:'piscina',     lbl:'Piscina'},
-    {k:'aire_acondicionado', lbl:'Aire acondicionado'},
-    {k:'calefaccion', lbl:'Calefacción'},
-    {k:'armarios_empotrados',lbl:'Armarios'},
-    {k:'cocina_equipada',    lbl:'Cocina equipada'},
-  ];
-  document.getElementById('det-features').innerHTML = feats
-    .map(f=>`<span class="det-feat ${p[f.k]?'yes':''}">${p[f.k]?'✓':''} ${f.lbl}</span>`)
-    .join('');
-
-  // Superficies
-  const sups = [];
-  if(p.m2_utiles)      sups.push({lbl:'Útil',       val:p.m2_utiles+' m²'});
-  if(p.m2_construidos) sups.push({lbl:'Construida',  val:p.m2_construidos+' m²'});
-  if(p.m2_terraza)     sups.push({lbl:'Terraza',     val:p.m2_terraza+' m²'});
-  if(sups.length){
-    document.getElementById('det-sups').innerHTML = sups.map(s=>`
-      <div class="det-sup"><span class="det-sup-lbl">${s.lbl}</span><span class="det-sup-val">${s.val}</span></div>`).join('');
-  } else {
-    document.getElementById('det-sup-section').style.display='none';
-  }
-
-  // Descripción
+  /* ── Descripción ── */
   if(p.descripcion){
     document.getElementById('det-desc').textContent = p.descripcion;
-    document.getElementById('det-desc-section').style.display='block';
+    document.getElementById('det-desc-section').style.display = '';
   }
 
-  // Agente (alternamos según tipo)
-  const agente = (p.habitaciones||0) % 2 === 0 ? 'Juan Sebastián' : 'Daniel Hernández';
-  document.getElementById('det-agent-name').textContent = agente;
+  /* ── Características ── */
+  const feats = [];
+  if(p.ascensor)      feats.push('Ascensor');
+  if(p.trastero)      feats.push('Trastero');
+  if(p.garaje)        feats.push('Garaje');
+  if(p.piscina)       feats.push('Piscina');
+  if(p.jardin)        feats.push('Jardín');
+  if(p.terraza||p.m2_terraza) feats.push('Terraza');
+  if(p.aire_acondicionado)    feats.push('Aire acond.');
+  if(p.calefaccion)           feats.push('Calefacción');
+  if(p.amueblado)             feats.push('Amueblado');
+  if(feats.length){
+    const el = document.getElementById('det-feats');
+    el.innerHTML = feats.map(f=>`<span style="background:var(--crema);border:1.5px solid var(--crema-dark);border-radius:20px;padding:.3rem .9rem;font-size:.8rem;color:var(--negro)">${f}</span>`).join('');
+    document.getElementById('det-feats-section').style.display = '';
+  }
 
-  // Mapa
+  /* ── Ficha técnica ── */
+  const specs = [
+    ['Referencia',   p.ref||'–'],
+    ['Tipo',         p.tipo||'–'],
+    ['Operación',    p.tipo_operacion||'Venta'],
+    ['Estado',       p.estado||'–'],
+    ['Municipio',    p.municipio||p.barrio||'–'],
+    ['Planta',       p.planta||'–'],
+    ['Año const.',   p.ano_construccion||'–'],
+    ['Comunidad',    p.gastos_comunidad ? p.gastos_comunidad+' €/mes' : '–'],
+    ['IBI',          p.ibi ? '~'+p.ibi+' €/año' : '–'],
+    ['Orientación',  p.orientacion||'–'],
+  ].filter(s=>s[1]&&s[1]!=='–');
+  document.getElementById('det-specs').innerHTML = specs.map(([l,v])=>`
+    <div class="prop-spec"><span class="prop-spec-label">${l}</span><span class="prop-spec-value">${v}</span></div>`).join('');
+
+  /* ── Superficies ── */
+  const sups = [
+    ['Útil',      p.m2_utiles,      'm²'],
+    ['Construida',p.m2_construidos, 'm²'],
+    ['Terraza',   p.m2_terraza,     'm²'],
+    ['Parcela',   p.m2_parcela,     'm²'],
+  ].filter(s=>s[1]);
+  if(sups.length){
+    document.getElementById('det-sups').innerHTML = sups.map(([l,v,u])=>`
+      <div style="background:var(--crema);border:1.5px solid var(--crema-dark);border-radius:6px;padding:.6rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-size:.84rem;min-width:140px">
+        <span style="color:var(--gris-medio)">${l}</span>
+        <span style="font-weight:700;color:var(--negro)">${v} ${u}</span>
+      </div>`).join('');
+    document.getElementById('det-sups-section').style.display = '';
+  }
+
+  /* ── Agente ── */
+  const agentes = ['Juan Sebastián','Daniel Hernández'];
+  const agIdx = (p.id||'').charCodeAt(0) % 2;
+  document.getElementById('det-agent-name').textContent = agentes[agIdx];
+  document.getElementById('det-agent-img').src = agIdx === 0 ? 'imagenes/inmobiliario3.jpg' : 'imagenes/inmobiliario2.jpg';
+
+  /* ── Ref ── */
+  if(p.ref) document.getElementById('det-ref').textContent = 'Ref. '+p.ref;
+
+  /* ── WhatsApp ── */
+  const waMsg = encodeURIComponent(`Hola, me interesa el inmueble "${p.titulo||''}". ¿Podemos hablar?`);
+  document.getElementById('det-wa-btn').onclick = ()=> window.open(`https://wa.me/34600367742?text=${waMsg}`,'_blank');
+
+  /* ── Mapa ── */
   loadMap(p);
-  // Calculadora
+
+  /* ── Calculadora ── */
   initCalc(p);
+
+  /* ── Mostrar todo ── */
+  document.getElementById('det-loading').style.display = 'none';
+  document.getElementById('det-body').style.display    = '';
+  document.getElementById('det-similar').style.display = '';
 }
 
-/* ── Lightbox ──────────────────────────────────────────────────── */
-function openLB(i){ lbIdx=i; updateLB(); document.getElementById('lightbox').classList.add('open'); }
-function closeLB(){ document.getElementById('lightbox').classList.remove('open'); }
-function lbPrev(){ lbIdx=(lbIdx-1+allImages.length)%allImages.length; updateLB(); }
-function lbNext(){ lbIdx=(lbIdx+1)%allImages.length; updateLB(); }
-function updateLB(){
-  document.getElementById('lb-img').src = allImages[lbIdx];
-  document.getElementById('lb-counter').textContent = (lbIdx+1)+' / '+allImages.length;
+/* ═══════════════════════════════════════════════════════════════
+   INMUEBLES SIMILARES
+═══════════════════════════════════════════════════════════════ */
+async function loadSimilar(current){
+  try {
+    const { data } = await window.nhSupabase
+      .from('inmuebles')
+      .select('id,titulo,precio,municipio,barrio,imagen_principal,imagenes,ref')
+      .neq('id', current.id)
+      .eq('estado','disponible')
+      .limit(4);
+    if(!data||!data.length) return;
+
+    const track = document.getElementById('simTrack');
+    track.innerHTML = data.map(p=>{
+      const img = p.imagen_principal || (Array.isArray(p.imagenes)?p.imagenes[0]:null) || 'imagenes/interior1.jpg';
+      const loc = [p.barrio, p.municipio].filter(Boolean).join(' · ');
+      const pr  = parseFloat(p.precio)||0;
+      return `<div class="similar-card">
+        <img src="${img}" alt="${p.titulo||'Inmueble'}" loading="lazy" onerror="this.src='imagenes/interior1.jpg'"/>
+        <div class="similar-card-body">
+          <div class="similar-card-price">${pr?pr.toLocaleString('es-ES')+' EUR':''} · ${loc}</div>
+          <div style="font-size:.82rem;color:var(--gris-medio);margin:.3rem 0">${p.titulo||''}</div>
+          <a href="inmueble-detalle.html?id=${p.id}" class="btn btn-outline" style="font-size:.8125rem;padding:.45rem 1rem;margin-top:.5rem;display:inline-flex">Ver ficha</a>
+        </div>
+      </div>`;
+    }).join('');
+
+    let simPos = 0;
+    const maxPos = Math.max(0, data.length - 1);
+    document.getElementById('simNext').addEventListener('click',()=>{
+      simPos = Math.min(simPos+1, maxPos);
+      track.style.transform = `translateX(-${simPos*340}px)`;
+    });
+    document.getElementById('simPrev').addEventListener('click',()=>{
+      simPos = Math.max(0, simPos-1);
+      track.style.transform = `translateX(-${simPos*340}px)`;
+    });
+  } catch(e){}
 }
-document.getElementById('lightbox').addEventListener('click',function(e){ if(e.target===this) closeLB(); });
 
-/* ── Variables globales visita ────────────────────────────────── */
-let visitDay  = '';
-let visitHour = '';
-let currentProp = null;   // guardamos el objeto property completo
+/* ═══════════════════════════════════════════════════════════════
+   FORMULARIO CONTACTO
+═══════════════════════════════════════════════════════════════ */
+async function sendContact(e){
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.disabled = true; btn.textContent = 'Enviando…';
+  const nombre  = document.getElementById('fc-nombre').value.trim();
+  const tel     = document.getElementById('fc-tel').value.trim();
+  const email   = document.getElementById('fc-email').value.trim();
+  const msg     = document.getElementById('fc-msg').value.trim();
+  const ref     = currentProp ? (currentProp.ref||currentProp.id||'') : '';
+  const titulo  = currentProp ? (currentProp.titulo||'') : '';
+  try {
+    await window.nhSupabase.from('leads').insert({
+      nombre, telefono: tel, email: email||null,
+      mensaje: msg || `Solicita info: ${titulo} (${ref})`,
+      tipo: 'contacto'
+    });
+    document.getElementById('det-form-ok').style.display = 'block';
+    btn.style.display = 'none';
+  } catch(err){
+    btn.disabled = false; btn.textContent = 'Solicitar visita';
+    alert('Error al enviar. Inténtalo de nuevo.');
+  }
+}
 
-/* ── Day/Hour selectors ───────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   VISITA
+═══════════════════════════════════════════════════════════════ */
 function selDay(btn){
   document.querySelectorAll('#vs-dias .vs-btn').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  visitDay = btn.dataset.val;
+  btn.classList.add('sel'); visitDay = btn.dataset.val;
 }
 function selHour(btn){
   document.querySelectorAll('#vs-horas .vs-btn').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  visitHour = btn.dataset.val;
+  btn.classList.add('sel'); visitHour = btn.dataset.val;
 }
-
-/* ── Concertar visita → lead en Supabase ──────────────────────── */
 async function concertarVisita(){
-  const nombre  = document.getElementById('vs-nombre').value.trim();
-  const tel     = document.getElementById('vs-telefono').value.trim();
-  const email   = document.getElementById('vs-email').value.trim();
-
-  if(!tel){ alert('El teléfono es obligatorio para confirmar la visita.'); return; }
-  if(!visitDay){ alert('Selecciona un día disponible.'); return; }
+  const nombre = document.getElementById('vs-nombre').value.trim();
+  const tel    = document.getElementById('vs-telefono').value.trim();
+  const email  = document.getElementById('vs-email').value.trim();
+  if(!tel)      { alert('El teléfono es obligatorio.'); return; }
+  if(!visitDay) { alert('Selecciona un día.'); return; }
   if(!visitHour){ alert('Selecciona un rango horario.'); return; }
 
   const btn = document.getElementById('vs-btn');
-  btn.disabled = true;
-  btn.innerHTML = '<span style="display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite"></span> Enviando…';
+  btn.disabled = true; btn.innerHTML = '⏳ Enviando…';
 
-  const refText = currentProp ? (currentProp.ref||currentProp.id) : '';
-  const tituloP = currentProp ? (currentProp.titulo||'') : '';
-
-  const mensaje = `Visita solicitada · ${tituloP} (${refText})\nDisponibilidad: ${visitDay} ${visitHour}`;
+  const ref    = currentProp ? (currentProp.ref||currentProp.id||'') : '';
+  const titulo = currentProp ? (currentProp.titulo||'') : '';
+  const mensaje= `Visita: ${titulo} (${ref}) · ${visitDay} ${visitHour}`;
 
   try {
-    const { error } = await window.nhSupabase.from('leads').insert({
-      nombre:   nombre || 'Sin nombre',
-      telefono: tel,
-      email:    email || null,
-      mensaje,
-      tipo:     'visita',
+    await window.nhSupabase.from('leads').insert({
+      nombre: nombre||'Sin nombre', telefono: tel, email: email||null, mensaje, tipo:'visita'
     });
-    if(error) throw error;
-
-    document.getElementById('vs-ok').style.display='block';
-    btn.style.display='none';
+    document.getElementById('vs-ok').style.display = 'block';
+    btn.style.display = 'none';
   } catch(e){
-    alert('Error al enviar: '+(e.message||'Inténtalo de nuevo.'));
-    btn.disabled=false;
-    btn.innerHTML='📅 Concertar una visita';
+    btn.disabled = false; btn.innerHTML = '📅 Concertar visita';
+    alert('Error: '+(e.message||'Inténtalo de nuevo.'));
   }
 }
 
-/* ── Mapa (Google Maps embed con dirección real) ─────────────── */
+/* ═══════════════════════════════════════════════════════════════
+   MAPA DINÁMICO
+═══════════════════════════════════════════════════════════════ */
 function loadMap(p){
   const parts = [p.direccion, p.barrio, p.municipio, p.cp, p.provincia].filter(Boolean);
   if(!parts.length){ document.getElementById('det-map-section').style.display='none'; return; }
-  const q = encodeURIComponent(parts.join(', '));
-  // Usar embed de OpenStreetMap (gratuito, no necesita API key)
-  document.getElementById('det-map-iframe').src =
-    `https://maps.google.com/maps?q=${q}&t=m&z=15&ie=UTF8&iwloc=&output=embed`;
+  const addr = parts.join(', ');
+  const q    = encodeURIComponent(addr);
+  document.getElementById('det-map-iframe').src = `https://maps.google.com/maps?q=${q}&t=m&z=15&ie=UTF8&iwloc=&output=embed`;
+  document.getElementById('det-map-addr').textContent = addr;
 }
 
-/* ── Calculadora hipoteca ─────────────────────────────────────── */
-let hcTasa = 2.52;
-let hcTipoFijo = true;
-
+/* ═══════════════════════════════════════════════════════════════
+   CALCULADORA
+═══════════════════════════════════════════════════════════════ */
+function initCalc(p){
+  const precio = parseFloat(p.precio)||0;
+  document.getElementById('hc-precio-lbl').textContent = precio ? precio.toLocaleString('es-ES')+' €' : '–';
+  updateCalc();
+}
 function setTipo(t){
   hcTipoFijo = t==='fijo';
   document.getElementById('hc-fijo').classList.toggle('act', hcTipoFijo);
@@ -692,15 +822,13 @@ function setTipo(t){
   document.getElementById('hc-tasa-display').textContent = hcTasa.toFixed(2)+'%';
   updateCalc();
 }
-
 function changeTasa(delta){
-  hcTasa = Math.max(0.1, Math.min(10, +(hcTasa + delta).toFixed(2)));
+  hcTasa = Math.max(0.1, Math.min(10, +(hcTasa+delta).toFixed(2)));
   document.getElementById('hc-tasa-display').textContent = hcTasa.toFixed(2)+'%';
   updateCalc();
 }
-
 function updateCalc(){
-  const precio = currentProp ? parseFloat(currentProp.precio)||0 : 0;
+  const precio  = currentProp ? parseFloat(currentProp.precio)||0 : 0;
   if(!precio) return;
   const pct     = parseInt(document.getElementById('hc-ahorros-range').value)/100;
   const ahorros = Math.round(precio * pct);
@@ -708,89 +836,75 @@ function updateCalc(){
   const prestamo= precio - ahorros;
   const tasaMes = hcTasa / 100 / 12;
   const n       = anos * 12;
-  const cuota   = tasaMes>0
-    ? Math.round(prestamo * tasaMes / (1 - Math.pow(1+tasaMes, -n)))
+  const cuota   = tasaMes > 0
+    ? Math.round(prestamo * tasaMes / (1-Math.pow(1+tasaMes,-n)))
     : Math.round(prestamo / n);
-  const total   = cuota * n;
+  const total = cuota * n;
 
-  document.getElementById('hc-ahorros-lbl').textContent   = ahorros.toLocaleString('es-ES')+' €';
-  document.getElementById('hc-anos-lbl').textContent       = anos+' años';
-  document.getElementById('hc-tasa-lbl').textContent       = hcTasa.toFixed(2)+'%';
-  document.getElementById('hc-cuota').textContent          = cuota.toLocaleString('es-ES')+' €';
-  document.getElementById('hc-prestamo').textContent       = prestamo.toLocaleString('es-ES')+' €';
-  document.getElementById('hc-total').textContent          = total.toLocaleString('es-ES')+' €';
+  document.getElementById('hc-ahorros-lbl').textContent = ahorros.toLocaleString('es-ES')+' €';
+  document.getElementById('hc-anos-lbl').textContent    = anos+' años';
+  document.getElementById('hc-tasa-lbl').textContent    = hcTasa.toFixed(2)+'%';
+  document.getElementById('hc-cuota').textContent       = cuota.toLocaleString('es-ES')+' €';
+  document.getElementById('hc-prestamo').textContent    = prestamo.toLocaleString('es-ES')+' €';
+  document.getElementById('hc-total').textContent       = total.toLocaleString('es-ES')+' €';
 }
-
-function initCalc(p){
-  const precio = parseFloat(p.precio)||0;
-  document.getElementById('hc-precio-lbl').textContent = precio.toLocaleString('es-ES')+' €';
-  document.getElementById('hc-ahorros-range').max = 100;
-  updateCalc();
-}
-
-/* ── Modal hipoteca ───────────────────────────────────────────── */
 function openHcModal(){
-  const cuota  = document.getElementById('hc-cuota').textContent;
-  const total  = document.getElementById('hc-total').textContent;
-  document.getElementById('hc-m-cuota').textContent = cuota;
-  document.getElementById('hc-m-total').textContent = total;
+  document.getElementById('hc-m-cuota').textContent = document.getElementById('hc-cuota').textContent;
+  document.getElementById('hc-m-total').textContent = document.getElementById('hc-total').textContent;
   document.getElementById('hc-m-tasa').textContent  = hcTasa.toFixed(2)+'%';
   document.getElementById('hc-modal').classList.add('open');
 }
 function closeHcModal(){ document.getElementById('hc-modal').classList.remove('open'); }
-
 async function sendHcLead(){
   const nombre = document.getElementById('hc-m-nombre').value.trim();
   const tel    = document.getElementById('hc-m-tel').value.trim();
   const email  = document.getElementById('hc-m-email').value.trim();
   if(!nombre||!tel){ alert('Nombre y teléfono son obligatorios.'); return; }
-
-  const anos   = document.getElementById('hc-anos-range').value;
-  const cuota  = document.getElementById('hc-cuota').textContent;
-  const ref    = currentProp ? (currentProp.ref||currentProp.id) : '';
-  const titulo = currentProp ? (currentProp.titulo||'') : '';
-
-  const mensaje = `Estudio hipoteca · ${titulo} (${ref}) · Cuota estimada: ${cuota} · Plazo: ${anos} años · Tipo: ${hcTipoFijo?'Fijo':'Variable'} ${hcTasa.toFixed(2)}%`;
-
+  const anos  = document.getElementById('hc-anos-range').value;
+  const cuota = document.getElementById('hc-cuota').textContent;
+  const ref   = currentProp ? (currentProp.ref||currentProp.id||'') : '';
+  const titulo= currentProp ? (currentProp.titulo||'') : '';
+  const mensaje = `Estudio hipoteca · ${titulo} (${ref}) · Cuota: ${cuota} · Plazo: ${anos}a · ${hcTipoFijo?'Fijo':'Variable'} ${hcTasa.toFixed(2)}%`;
   try {
-    await window.nhSupabase.from('leads').insert({
-      nombre, telefono: tel, email: email||null, mensaje, tipo: 'hipoteca'
-    });
-    document.getElementById('hc-m-ok').style.display='block';
-    document.querySelector('.hc-modal-btn').style.display='none';
-  } catch(e){
-    alert('Error: '+(e.message||'Inténtalo de nuevo.'));
-  }
+    await window.nhSupabase.from('leads').insert({nombre, telefono:tel, email:email||null, mensaje, tipo:'hipoteca'});
+    document.getElementById('hc-m-ok').style.display = 'block';
+    document.querySelector('.hc-modal-btn').style.display = 'none';
+  } catch(e){ alert('Error: '+(e.message||'Inténtalo de nuevo.')); }
 }
 
-/* ── Formulario contacto ──────────────────────────────────────── */
-function sendContactForm(){
-  const nombre = document.getElementById('cf-nombre').value.trim();
-  const tel    = document.getElementById('cf-tel').value.trim();
-  if(!nombre || !tel){ alert('Nombre y teléfono son obligatorios.'); return; }
-  // Guardar lead si Supabase está listo
-  try {
-    window.nhSupabase.from('leads').insert({
-      nombre,
-      telefono: tel,
-      email:    document.getElementById('cf-email').value.trim()||null,
-      mensaje:  document.getElementById('cf-msg').value.trim()||null,
-      tipo:     'info',
-    });
-  } catch(e){}
-  document.getElementById('cf-ok').style.display='block';
-  document.getElementById('cf-nombre').value='';
-  document.getElementById('cf-tel').value='';
-  document.getElementById('cf-email').value='';
-  document.getElementById('cf-msg').value='';
+/* ═══════════════════════════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════════════════════════ */
+function openLightbox(i){
+  lbCurrent = i;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  updateLb();
 }
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbNav(d){
+  lbCurrent = (lbCurrent + d + lbImages.length) % lbImages.length;
+  updateLb();
+}
+function updateLb(){
+  document.getElementById('lb-img').src         = lbImages[lbCurrent];
+  document.getElementById('lb-counter').textContent = (lbCurrent+1)+' / '+lbImages.length;
+}
+document.addEventListener('keydown', e=>{
+  if(!document.getElementById('lightbox').classList.contains('open')) return;
+  if(e.key==='ArrowLeft')  lbNav(-1);
+  if(e.key==='ArrowRight') lbNav(1);
+  if(e.key==='Escape')     closeLightbox();
+});
+function openWA(){}
 
-function openWA(){
-  const ref   = document.getElementById('det-ref').textContent;
-  const title = document.getElementById('det-title').textContent;
-  const url   = window.location.href;
-  window.open(`https://wa.me/34600367742?text=${encodeURIComponent(`Hola, me interesa el inmueble "${title}" (${ref}). ${url}`)}`, '_blank');
-}
+/* ═══════════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════════ */
+loadProperty();
 </script>
 </body>
 </html>
