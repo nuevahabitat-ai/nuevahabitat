@@ -1305,7 +1305,7 @@ async function loadPublications(){
           <div class="pub-actions">
             <button class="pub-btn-edit" onclick="editProperty('${p.id}')">✏ Editar</button>
             <button class="pub-btn-del" onclick="deleteProperty('${p.id}')">🗑 Eliminar</button>
-            <button class="pub-btn-web" onclick="window.open('inmuebles.html','_blank')">🌐 Web</button>
+            <button class="pub-btn-web" onclick="window.open('inmueble-detalle.html?id=${p.id}','_blank')">🌐 Web</button>
           </div>
         </div>
       </div>`;
