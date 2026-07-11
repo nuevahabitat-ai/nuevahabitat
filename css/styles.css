@@ -1951,10 +1951,7 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
 }
 .cookie-btn-reject:hover { border-color: rgba(255,255,255,.5); color: rgba(255,255,255,.85); }
 @media (max-width: 768px) {
-  #cookie-banner { padding: 1rem 1.25rem; bottom: 62px; gap: 1rem; }
-  #cookie-banner p { font-size: .8125rem; }
-  .cookie-btns { width: 100%; }
-  .cookie-btn-accept, .cookie-btn-reject { flex: 1; text-align: center; justify-content: center; }
+  #cookie-banner { display: none !important; }
 }
 
 /* Safe area para dispositivos con notch */
