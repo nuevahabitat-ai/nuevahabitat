@@ -106,22 +106,35 @@
 
 /* ── Scroll Reveal (Intersection Observer) ─────────────────── */
 (function () {
-  const els = document.querySelectorAll('.fade-up');
-  if (!els.length || !('IntersectionObserver' in window)) {
-    els.forEach(el => el.classList.add('visible'));
-    return;
+  let observer;
+
+  function createObserver() {
+    if (!('IntersectionObserver' in window)) return null;
+    return new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
+  function observeAll(root) {
+    const els = (root || document).querySelectorAll('.fade-up:not(.visible)');
+    if (!els.length) return;
+    if (!observer) {
+      observer = createObserver();
+      if (!observer) { els.forEach(el => el.classList.add('visible')); return; }
+    }
+    els.forEach(el => observer.observe(el));
+  }
 
-  els.forEach(el => observer.observe(el));
+  // Observa los elementos del DOM inicial
+  observeAll();
+
+  // Expone globalmente para re-observar tras carga dinámica
+  window.nhObserveFadeUps = observeAll;
 })();
 
 

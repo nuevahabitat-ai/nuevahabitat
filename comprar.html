@@ -232,7 +232,7 @@
     const b = badge||'disponible';
     const cls = b==='reservado'?'reservada':'disponible';
     const lbl = b==='reservado'?'Reservado':'Disponible';
-    return `<a href="${href}" class="prop-card fade-up" style="text-decoration:none;color:inherit;display:block">
+    return `<a href="${href}" class="prop-card fade-up visible" style="text-decoration:none;color:inherit;display:block">
       <div class="prop-card-image">
         <img src="${img}" alt="${title}" loading="lazy" onerror="this.src='imagenes/interior1.jpg'"/>
         <span class="prop-badge ${cls}">${lbl}</span>

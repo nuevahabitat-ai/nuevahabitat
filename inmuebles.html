@@ -435,7 +435,7 @@ function buildCard(p){
   const href = `inmueble-detalle.html?id=${p.id}`;
   const bc   = badgeClass(p.estado);
   const bl   = badgeLabel(p.estado);
-  return `<a href="${href}" class="prop-card prop-card-large fade-up" style="text-decoration:none;color:inherit;display:block">
+  return `<a href="${href}" class="prop-card prop-card-large fade-up visible" style="text-decoration:none;color:inherit;display:block">
     <div class="prop-card-image">
       <img src="${img}" alt="${p.titulo||''}" loading="lazy" onerror="this.src='imagenes/interior1.jpg'"/>
       <span class="prop-badge ${bc}">${bl}</span>
@@ -471,9 +471,11 @@ async function loadSupabaseProps(){
     const grid = document.getElementById('propGrid');
     if(!grid) return;
 
-    // Muestra propiedades de Supabase + las estáticas (sin duplicar por id)
-    const sbHtml = data.map(buildCard).join('');
-    grid.innerHTML = sbHtml;
+    // Reemplaza el grid con las propiedades de Supabase
+    grid.innerHTML = data.map(buildCard).join('');
+
+    // Re-observa para animación de scroll
+    if(window.nhObserveFadeUps) window.nhObserveFadeUps();
 
     // Actualiza contador
     const cnt = document.querySelector('.filtros-count');
