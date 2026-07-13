@@ -28,6 +28,13 @@ window.nhAuth = {
       email, password,
       options: { data: { nombre, tipo } }
     });
+    if (!error && data?.user) {
+      // Email bienvenida al cliente + notificación al admin
+      if (window.nhNotify) {
+        nhNotify({ nombre, email, tipo: 'bienvenida', template: 'bienvenida' });
+        nhNotify({ nombre, email, telefono: '', mensaje: `Nuevo registro · tipo: ${tipo||'–'}`, tipo: 'comprar' });
+      }
+    }
     return { data, error };
   },
 
