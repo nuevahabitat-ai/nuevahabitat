@@ -511,9 +511,11 @@ async function submitVenderModal(){
   const mensaje = (_vmTipo==='valoracion'?'Valoración gratuita':'Quiero vender') + (zona?' · '+zona:'');
   try {
     if(window.nhSupabase){
-      await window.nhSupabase.from('leads').insert({
-        nombre, telefono:tel, email:email||null, mensaje, tipo:_vmTipo==='valoracion'?'valoracion':'vender'
+      const tipoLead = _vmTipo==='valoracion'?'valoracion':'vender';
+    await window.nhSupabase.from('leads').insert({
+        nombre, telefono:tel, email:email||null, mensaje, tipo:tipoLead
       });
+    if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje, tipo:tipoLead });
     }
     document.getElementById('vm-form-wrap').style.display='none';
     document.getElementById('vm-ok').style.display='block';
@@ -575,6 +577,7 @@ function submitValoracion(e) {
   </div>
 </div>
 <script src="js/main.js"></script>
+<script src="js/notify.js"></script>
 </body>
 </html>
 

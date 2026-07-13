@@ -19,3 +19,7 @@ node_modules/
 # Documentos internos (no subir contratos)
 imagenes/*.docx
 .vercel
+*.exe
+*.exe
+*.msi
+CursorUserSetup*

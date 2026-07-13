@@ -414,6 +414,76 @@
   </div>
 </div>
 <script src="js/main.js"></script>
+<script src="js/supabase.js"></script>
+<script>
+/* ── Carga dinámica de propiedades desde Supabase ────────────────────── */
+const SVG_HAB  = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>`;
+const SVG_BAN  = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>`;
+const SVG_M2   = `<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>`;
+const SVG_HEART= `<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`;
+
+function badgeClass(est){ return est==='reservado'?'reservada':est==='vendido'?'reservada':'disponible'; }
+function badgeLabel(est){ return est==='reservado'?'Reservado':est==='vendido'?'Vendido':'Disponible'; }
+
+function buildCard(p){
+  const img  = p.imagen_principal || (Array.isArray(p.imagenes)?p.imagenes[0]:null) || 'imagenes/interior1.jpg';
+  const pr   = p.precio ? Number(p.precio).toLocaleString('es-ES')+' €' : '';
+  const loc  = [p.barrio, p.municipio].filter(Boolean).join(', ') || 'Barcelona';
+  const hab  = p.habitaciones || p.dormitorios;
+  const ban  = p.banos || p.aseos;
+  const m2   = p.m2_utiles || p.m2_construidos;
+  const href = `inmueble-detalle.html?id=${p.id}`;
+  const bc   = badgeClass(p.estado);
+  const bl   = badgeLabel(p.estado);
+  return `<a href="${href}" class="prop-card prop-card-large fade-up" style="text-decoration:none;color:inherit;display:block">
+    <div class="prop-card-image">
+      <img src="${img}" alt="${p.titulo||''}" loading="lazy" onerror="this.src='imagenes/interior1.jpg'"/>
+      <span class="prop-badge ${bc}">${bl}</span>
+      <button class="prop-favorite" aria-label="Guardar" onclick="event.preventDefault()">${SVG_HEART}</button>
+    </div>
+    <div class="prop-card-body">
+      <div class="prop-price">${pr}</div>
+      <div class="prop-title">${p.titulo||'Inmueble'}</div>
+      <div class="prop-location">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        ${loc}
+      </div>
+      <div class="prop-features">
+        ${hab ? `<div class="prop-feat">${SVG_HAB}${hab} hab.</div>` : ''}
+        ${ban ? `<div class="prop-feat">${SVG_BAN}${ban} baño${ban>1?'s':''}</div>` : ''}
+        ${m2  ? `<div class="prop-feat">${SVG_M2}${m2} m²</div>` : ''}
+      </div>
+    </div>
+  </a>`;
+}
+
+async function loadSupabaseProps(){
+  if(!window.nhSupabase) return;
+  try {
+    const { data, error } = await window.nhSupabase
+      .from('inmuebles')
+      .select('id,titulo,precio,barrio,municipio,imagen_principal,imagenes,habitaciones,dormitorios,banos,aseos,m2_utiles,m2_construidos,estado')
+      .neq('estado','retirado')
+      .order('created_at', { ascending: false });
+
+    if(error || !data || !data.length) return; // mantiene cards estáticas si falla
+
+    const grid = document.getElementById('propGrid');
+    if(!grid) return;
+
+    // Muestra propiedades de Supabase + las estáticas (sin duplicar por id)
+    const sbHtml = data.map(buildCard).join('');
+    grid.innerHTML = sbHtml;
+
+    // Actualiza contador
+    const cnt = document.querySelector('.filtros-count');
+    if(cnt) cnt.textContent = data.length + ' propiedades';
+  } catch(_){}
+}
+
+if(window.nhSupabase){ loadSupabaseProps(); }
+else { document.addEventListener('supabase:ready', loadSupabaseProps); }
+</script>
 </body>
 </html>
 

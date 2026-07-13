@@ -496,6 +496,7 @@
 
 <script src="js/supabase.js"></script>
 <script src="js/main.js"></script>
+<script src="js/notify.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
    Variables globales
@@ -563,15 +564,35 @@ function renderProperty(p){
   const unique = [...new Set(imgs)];
   lbImages = unique.length ? unique : ['imagenes/interior1.jpg'];
 
+  const gallery = document.getElementById('det-gallery');
   document.getElementById('det-img-main').src = lbImages[0];
-  if(lbImages[1]) document.getElementById('det-img-t1').src = lbImages[1];
-  else document.getElementById('det-img-t1').parentElement.style.display='none';
-  if(lbImages[2]) document.getElementById('det-img-t2').src = lbImages[2];
-  else document.getElementById('det-img-t2').parentElement.style.display='none';
-  if(lbImages.length > 3){
-    const more = document.getElementById('det-gallery-more');
-    more.textContent = '+' + (lbImages.length - 3) + ' fotos';
-    more.style.display = 'flex';
+
+  if(lbImages.length === 1){
+    // Una sola foto: ocultamos la columna de thumbs y mostramos principal a ancho completo
+    gallery.style.gridTemplateColumns = '1fr';
+    gallery.style.gridTemplateRows   = '1fr';
+    document.getElementById('det-img-t1').parentElement.style.display = 'none';
+    document.getElementById('det-img-t2').parentElement.style.display = 'none';
+  } else {
+    gallery.style.gridTemplateColumns = '';
+    gallery.style.gridTemplateRows   = '';
+    // Thumb 1
+    document.getElementById('det-img-t1').src = lbImages[1];
+    document.getElementById('det-img-t1').parentElement.style.display = '';
+    // Thumb 2
+    if(lbImages[2]){
+      document.getElementById('det-img-t2').src = lbImages[2];
+      document.getElementById('det-img-t2').parentElement.style.display = '';
+    } else {
+      document.getElementById('det-img-t2').parentElement.style.display = 'none';
+      // Con solo 2 fotos, la foto 1 cubre toda la columna derecha
+      gallery.style.gridTemplateRows = '1fr';
+    }
+    if(lbImages.length > 3){
+      const more = document.getElementById('det-gallery-more');
+      more.textContent = '+' + (lbImages.length - 3) + ' fotos';
+      more.style.display = 'flex';
+    }
   }
   document.getElementById('det-gallery-wrap').style.display = '';
 
@@ -748,11 +769,11 @@ async function sendContact(e){
   const ref     = currentProp ? (currentProp.ref||currentProp.id||'') : '';
   const titulo  = currentProp ? (currentProp.titulo||'') : '';
   try {
+    const leadMsg = msg || `Solicita info: ${titulo} (${ref})`;
     await window.nhSupabase.from('leads').insert({
-      nombre, telefono: tel, email: email||null,
-      mensaje: msg || `Solicita info: ${titulo} (${ref})`,
-      tipo: 'contacto'
+      nombre, telefono: tel, email: email||null, mensaje: leadMsg, tipo: 'contacto'
     });
+    if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje:leadMsg, tipo:'contacto', inmueble:`${titulo} (${ref})` });
     document.getElementById('det-form-ok').style.display = 'block';
     btn.style.display = 'none';
   } catch(err){
@@ -791,6 +812,7 @@ async function concertarVisita(){
     await window.nhSupabase.from('leads').insert({
       nombre: nombre||'Sin nombre', telefono: tel, email: email||null, mensaje, tipo:'visita'
     });
+    if(window.nhNotify) nhNotify({ nombre:nombre||'Sin nombre', telefono:tel, email, mensaje, tipo:'visita', inmueble:`${titulo} (${ref})` });
     document.getElementById('vs-ok').style.display = 'block';
     btn.style.display = 'none';
   } catch(e){
@@ -872,6 +894,7 @@ async function sendHcLead(){
   const mensaje = `Estudio hipoteca · ${titulo} (${ref}) · Cuota: ${cuota} · Plazo: ${anos}a · ${hcTipoFijo?'Fijo':'Variable'} ${hcTasa.toFixed(2)}%`;
   try {
     await window.nhSupabase.from('leads').insert({nombre, telefono:tel, email:email||null, mensaje, tipo:'hipoteca'});
+    if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje, tipo:'hipoteca', inmueble:`${titulo} (${ref})` });
     document.getElementById('hc-m-ok').style.display = 'block';
     document.querySelector('.hc-modal-btn').style.display = 'none';
   } catch(e){ alert('Error: '+(e.message||'Inténtalo de nuevo.')); }
