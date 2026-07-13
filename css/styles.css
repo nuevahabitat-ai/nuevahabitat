@@ -147,7 +147,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   backdrop-filter: blur(12px);
   box-shadow: 0 2px 20px rgba(0,0,0,.3);
   transition: padding var(--transition), box-shadow var(--transition);
-  padding: 1.1rem 0;
+  padding: .85rem 0;
 }
 
 #navbar.scrolled {
@@ -1461,7 +1461,7 @@ footer {
 .lightbox-dot.active{background:var(--oro)}
 
 /* ── Ficha inmueble header ────────────────────────────────── */
-.prop-detail-header{position:sticky;top:70px;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--crema-dark);padding:.85rem 0}
+.prop-detail-header{position:sticky;top:72px;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--crema-dark);padding:.6rem 0}
 .prop-detail-header-inner{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
 .prop-breadcrumb{font-size:.8125rem;color:var(--gris-medio);display:flex;align-items:center;gap:.4rem}
 .prop-breadcrumb a{color:var(--gris-medio);transition:color var(--transition)}
