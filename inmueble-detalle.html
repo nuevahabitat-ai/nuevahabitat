@@ -173,7 +173,7 @@
         <button onclick="navigator.clipboard.writeText(location.href);alert('URL copiada')" title="Compartir">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
         </button>
-        <button id="favBtn" onclick="this.style.color=this.style.color?'':'#e84545'" title="Guardar">
+        <button id="favBtn" onclick="toggleFavorito()" title="Guardar en favoritos">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
         </button>
       </div>
@@ -328,9 +328,9 @@
         <div class="prop-contact-card">
           <h3>Solicitar información</h3>
           <div class="prop-contact-agent">
-            <div style="width:52px;height:52px;border-radius:50%;background:var(--oro);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;color:#fff;flex-shrink:0;font-family:var(--font-serif)">JS</div>
+            <div style="width:52px;height:52px;border-radius:50%;background:var(--oro);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.05rem;color:#fff;flex-shrink:0;font-family:var(--font-serif)">JC</div>
             <div>
-              <div class="prop-contact-agent-name" id="det-agent-name">Juan Sebastián</div>
+              <div class="prop-contact-agent-name" id="det-agent-name">Juan Cárdenas</div>
               <div class="prop-contact-agent-role">Agente · NuevaHabitat</div>
             </div>
           </div>
@@ -671,7 +671,8 @@ function renderProperty(p){
   }
 
   /* ── Agente ── */
-  document.getElementById('det-agent-name').textContent = 'Juan Sebastián';
+  document.getElementById('det-agent-name').textContent = 'Juan Cárdenas';
+  checkFavorito(p.id);
 
   /* ── Ref ── */
   if(p.ref) document.getElementById('det-ref').textContent = 'Ref. '+p.ref;
@@ -912,6 +913,42 @@ if(window.nhSupabase){
   loadProperty();
 } else {
   document.addEventListener('supabase:ready', loadProperty);
+}
+
+/* ── Favoritos ─────────────────────────────────────────────── */
+let _isFav = false;
+let _favId  = null;
+
+async function checkFavorito(inmuebleId){
+  if(!window.nhSupabase) return;
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if(!session) return;
+  const { data } = await window.nhSupabase
+    .from('favoritos').select('id').eq('user_id', session.user.id).eq('inmueble_id', inmuebleId).maybeSingle();
+  if(data){ _isFav = true; _favId = data.id; updateFavBtn(); }
+}
+
+function updateFavBtn(){
+  const btn = document.getElementById('favBtn');
+  if(!btn) return;
+  btn.querySelector('svg').setAttribute('fill', _isFav ? '#e84545' : 'none');
+  btn.querySelector('svg').setAttribute('stroke', _isFav ? '#e84545' : 'currentColor');
+  btn.title = _isFav ? 'Eliminar de favoritos' : 'Guardar en favoritos';
+}
+
+async function toggleFavorito(){
+  if(!window.nhSupabase){ alert('Inicia sesión para guardar favoritos.'); return; }
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if(!session){ window.location.href = 'login.html?redirect=' + encodeURIComponent(location.href); return; }
+  if(!currentProp) return;
+  if(_isFav && _favId){
+    await window.nhSupabase.from('favoritos').delete().eq('id', _favId);
+    _isFav = false; _favId = null;
+  } else {
+    const { data } = await window.nhSupabase.from('favoritos').insert({ user_id: session.user.id, inmueble_id: currentProp.id }).select('id').single();
+    if(data){ _isFav = true; _favId = data.id; }
+  }
+  updateFavBtn();
 }
 </script>
 </body>
