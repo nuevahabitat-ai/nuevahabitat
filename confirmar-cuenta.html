@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Confirmar cuenta · NuevaHabitat</title>
+  <meta name="description" content="Confirma tu cuenta en NuevaHabitat y accede a tu panel de vendedor o comprador."/>
+  <meta name="robots" content="noindex"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+  <style>
+    body{background:var(--crema);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem}
+    .cf-wrap{width:100%;max-width:480px}
+    .cf-card{background:var(--blanco);border-radius:var(--radius-lg);padding:2.5rem 2rem;box-shadow:var(--shadow-md);text-align:center}
+    .cf-logo{width:72px;height:72px;border-radius:16px;background:linear-gradient(135deg,var(--oro),#9a7550);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:var(--font-serif);font-weight:700;font-size:1.5rem;color:#fff}
+    .cf-card h1{font-family:var(--font-serif);font-size:1.65rem;margin-bottom:.5rem;color:var(--negro)}
+    .cf-card p{font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin-bottom:1.5rem}
+    .cf-spinner{width:40px;height:40px;border:3px solid var(--crema-dark);border-top-color:var(--oro);border-radius:50%;animation:cfspin .8s linear infinite;margin:0 auto 1rem}
+    @keyframes cfspin{to{transform:rotate(360deg)}}
+    .cf-badge{display:inline-block;background:rgba(184,147,106,.12);color:var(--oro);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.35rem .85rem;border-radius:20px;margin-bottom:1rem}
+    .cf-email{background:var(--crema);border-radius:8px;padding:.75rem 1rem;font-size:.875rem;color:var(--negro);margin-bottom:1.25rem;word-break:break-all}
+    .cf-steps{text-align:left;margin:1.25rem 0;display:flex;flex-direction:column;gap:.65rem}
+    .cf-step{display:flex;align-items:flex-start;gap:.65rem;font-size:.84rem;color:var(--gris-texto)}
+    .cf-step-num{width:22px;height:22px;border-radius:50%;background:var(--negro);color:#fff;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .cf-error{background:#fef2f2;border:1px solid #fca5a5;color:#b91c1c;border-radius:8px;padding:.85rem 1rem;font-size:.85rem;margin-bottom:1rem;text-align:left}
+    .cf-success-icon{width:64px;height:64px;border-radius:50%;background:#e8f5e9;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+    .cf-back{display:block;margin-top:1.25rem;font-size:.82rem;color:var(--gris-medio)}
+    .cf-back:hover{color:var(--negro)}
+  </style>
+</head>
+<body>
+<div class="cf-wrap">
+  <div class="cf-card">
+
+    <div class="cf-logo">NH</div>
+
+    <!-- Estado: verificando enlace -->
+    <div id="state-loading">
+      <div class="cf-spinner"></div>
+      <h1>Verificando tu cuenta…</h1>
+      <p>Un momento, estamos confirmando tu registro en Nueva Habitat.</p>
+    </div>
+
+    <!-- Estado: esperando confirmación por email -->
+    <div id="state-pending" style="display:none">
+      <div class="cf-badge">Paso final</div>
+      <h1>Confirma tu cuenta</h1>
+      <p>Hemos enviado un enlace de confirmación a:</p>
+      <div class="cf-email" id="pending-email">tu@email.com</div>
+      <div class="cf-steps">
+        <div class="cf-step"><span class="cf-step-num">1</span><span>Abre el email de <strong>Supabase Auth</strong> o Nueva Habitat</span></div>
+        <div class="cf-step"><span class="cf-step-num">2</span><span>Pulsa el enlace <strong>«Confirm email address»</strong></span></div>
+        <div class="cf-step"><span class="cf-step-num">3</span><span>Vuelve aquí y pulsa el botón para ir a tu panel</span></div>
+      </div>
+      <button class="btn btn-gold btn-lg" id="btn-check" style="width:100%;justify-content:center;margin-bottom:.75rem">
+        Ya confirmé — Ir a mi panel →
+      </button>
+      <button class="btn btn-outline" id="btn-resend" style="width:100%;justify-content:center;font-size:.85rem">Reenviar email de confirmación</button>
+      <a href="login.html" class="cf-back">¿Ya confirmaste? Iniciar sesión</a>
+    </div>
+
+    <!-- Estado: confirmado -->
+    <div id="state-success" style="display:none">
+      <div class="cf-success-icon">
+        <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="#2e7d32" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <div class="cf-badge" id="success-tipo">Panel Comprador</div>
+      <h1>¡Cuenta confirmada!</h1>
+      <p id="success-msg">Tu cuenta está activa. Accede a tu panel para seguir tu expediente con Juan Cárdenas.</p>
+      <button class="btn btn-gold btn-lg" id="btn-panel" style="width:100%;justify-content:center;font-size:1rem;padding:1rem">
+        Ir a mi panel →
+      </button>
+      <a href="index.html" class="cf-back">Volver al inicio</a>
+    </div>
+
+    <!-- Estado: error -->
+    <div id="state-error" style="display:none">
+      <div class="cf-error" id="error-msg">No pudimos confirmar tu cuenta.</div>
+      <h1>Algo ha fallado</h1>
+      <p>El enlace puede haber caducado. Intenta iniciar sesión o regístrate de nuevo.</p>
+      <a href="login.html" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;display:inline-flex;margin-bottom:.75rem">Iniciar sesión</a>
+      <a href="registro.html" class="cf-back">Crear nueva cuenta</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/supabase.js"></script>
+<script>
+let confirmedUser = null;
+
+function showState(id) {
+  ['state-loading','state-pending','state-success','state-error'].forEach(s => {
+    document.getElementById(s).style.display = s === id ? '' : 'none';
+  });
+}
+
+function onConfirmed(user) {
+  confirmedUser = user;
+  const tipo = nhAuth.getUserTipo(user);
+  const isVendedor = tipo === 'vendedor';
+  document.getElementById('success-tipo').textContent = isVendedor ? 'Panel Vendedor' : 'Panel Comprador';
+  document.getElementById('success-msg').textContent = isVendedor
+    ? 'Tu cuenta de vendedor está activa. Desde tu panel podrás seguir el proceso de venta de tu inmueble.'
+    : 'Tu cuenta de comprador está activa. Desde tu panel podrás seguir tu búsqueda de vivienda.';
+  localStorage.removeItem('nh_reg_tipo');
+  showState('state-success');
+}
+
+async function initConfirm() {
+  if (!window.nhSupabase) { document.addEventListener('supabase:ready', initConfirm); return; }
+
+  const params = new URLSearchParams(location.search);
+  const pending = params.get('pending') === '1';
+  const email   = params.get('email') || '';
+
+  // Escuchar confirmación automática del enlace del email
+  window.nhSupabase.auth.onAuthStateChange((event, session) => {
+    if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session?.user?.email_confirmed_at) {
+      onConfirmed(session.user);
+    }
+  });
+
+  // Comprobar si ya hay sesión confirmada (enlace del email o sesión existente)
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (session?.user?.email_confirmed_at) {
+    onConfirmed(session.user);
+    return;
+  }
+
+  // Si viene del registro sin sesión aún
+  if (pending) {
+    if (email) document.getElementById('pending-email').textContent = decodeURIComponent(email);
+    showState('state-pending');
+    return;
+  }
+
+  // Sin sesión ni pending — mostrar opción de login
+  showState('state-error');
+  document.getElementById('error-msg').textContent = 'No hay sesión activa. Confirma tu email o inicia sesión.';
+}
+
+document.getElementById('btn-panel').addEventListener('click', () => {
+  if (confirmedUser) nhAuth.redirectAfterLogin(confirmedUser);
+  else window.location.href = 'login.html';
+});
+
+document.getElementById('btn-check').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-check');
+  btn.textContent = 'Comprobando…';
+  btn.disabled = true;
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (session?.user) {
+    if (session.user.email_confirmed_at) {
+      onConfirmed(session.user);
+    } else {
+      btn.textContent = 'Ya confirmé — Ir a mi panel →';
+      btn.disabled = false;
+      alert('Tu email aún no está confirmado. Abre el enlace que te enviamos por correo.');
+    }
+  } else {
+    btn.textContent = 'Ya confirmé — Ir a mi panel →';
+    btn.disabled = false;
+    window.location.href = 'login.html';
+  }
+});
+
+document.getElementById('btn-resend').addEventListener('click', async () => {
+  const email = document.getElementById('pending-email').textContent;
+  if (!email || email === 'tu@email.com') { alert('No hay email registrado.'); return; }
+  const btn = document.getElementById('btn-resend');
+  btn.textContent = 'Enviando…';
+  btn.disabled = true;
+  const { error } = await window.nhSupabase.auth.resend({
+    type: 'signup',
+    email,
+    options: { emailRedirectTo: window.location.origin + '/confirmar-cuenta.html' }
+  });
+  btn.textContent = 'Reenviar email de confirmación';
+  btn.disabled = false;
+  if (error) alert('Error: ' + error.message);
+  else alert('Email reenviado. Revisa tu bandeja de entrada.');
+});
+
+if (window.nhSupabase) initConfirm();
+else document.addEventListener('supabase:ready', initConfirm);
+</script>
+</body>
+</html>

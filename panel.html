@@ -17,6 +17,8 @@
     .p-avatar{width:36px;height:36px;border-radius:50%;background:var(--oro);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0}
     .p-logout{color:rgba(255,255,255,.45);font-size:.8rem;text-decoration:none;margin-left:.25rem}
     .p-logout:hover{color:rgba(255,255,255,.75)}
+    .p-tipo-badge{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;background:rgba(184,147,106,.2);color:var(--oro);padding:.25rem .6rem;border-radius:20px;margin-left:.5rem}
+    [data-only]{/* controlado por JS */}
 
     /* ── Layout ── */
     .p-main{padding:2.5rem 0 5rem}
@@ -123,11 +125,12 @@
       <a href="index.html" class="nav-logo">
         <img src="imagenes/Logo/logosinfondo2.png" alt="NH" style="height:40px;mix-blend-mode:screen"/>
         <div class="nav-logo-divider"></div>
-        <div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">Mi panel</span></div>
+        <div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub" id="panelSub">Mi panel</span></div>
       </a>
       <div class="p-user">
         <div class="p-avatar" id="pAvatar">?</div>
         <span id="pUserName">Mi cuenta</span>
+        <span class="p-tipo-badge" id="panelTipoBadge">Panel</span>
         <a href="#" class="p-logout" onclick="doLogout()">Cerrar sesión</a>
       </div>
     </div>
@@ -150,13 +153,21 @@
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
           Mi proceso
         </button>
-        <button class="p-nav-btn" data-sec="visitas">
+        <button class="p-nav-btn" data-sec="visitas" data-only="comprador">
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           Mis visitas
         </button>
-        <button class="p-nav-btn" data-sec="favoritos">
+        <button class="p-nav-btn" data-sec="favoritos" data-only="comprador">
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
           Favoritos
+        </button>
+        <button class="p-nav-btn" data-sec="visitas-vendedor" data-only="vendedor" style="display:none">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Visitas a mi inmueble
+        </button>
+        <button class="p-nav-btn" data-sec="publicacion" data-only="vendedor" style="display:none">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+          Mi publicación
         </button>
         <div class="p-sep"></div>
         <div class="p-nav-label">Documentos</div>
@@ -185,10 +196,15 @@
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
               Resumen de tu expediente
             </div>
-            <div class="p-stats">
+            <div class="p-stats" data-only="comprador">
               <div class="p-stat"><div class="p-stat-val" id="statVistos">0</div><div class="p-stat-lbl">Inmuebles vistos</div></div>
               <div class="p-stat"><div class="p-stat-val" id="statVisitas">0</div><div class="p-stat-lbl">Visitas programadas</div></div>
               <div class="p-stat"><div class="p-stat-val" id="statFavs">0</div><div class="p-stat-lbl">Favoritos guardados</div></div>
+            </div>
+            <div class="p-stats" data-only="vendedor" style="display:none">
+              <div class="p-stat"><div class="p-stat-val" id="statPub">–</div><div class="p-stat-lbl">Estado publicación</div></div>
+              <div class="p-stat"><div class="p-stat-val" id="statVisitasV">0</div><div class="p-stat-lbl">Visitas recibidas</div></div>
+              <div class="p-stat"><div class="p-stat-val" id="statOfertas">0</div><div class="p-stat-lbl">Ofertas recibidas</div></div>
             </div>
           </div>
 
@@ -214,8 +230,8 @@
             </div>
           </div>
 
-          <!-- Inmuebles recientes desde Supabase -->
-          <div class="p-card">
+          <!-- Inmuebles recientes (solo comprador) -->
+          <div class="p-card" data-only="comprador">
             <div class="p-card-title">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
               Inmuebles disponibles para ti
@@ -224,8 +240,8 @@
           </div>
         </div>
 
-        <!-- ── MI PROCESO ── -->
-        <div class="p-section" id="sec-proceso">
+        <!-- ── MI PROCESO COMPRADOR ── -->
+        <div class="p-section" id="sec-proceso" data-only="comprador">
           <div class="p-card">
             <div class="p-card-title">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
@@ -270,8 +286,95 @@
           </div>
         </div>
 
-        <!-- ── VISITAS ── -->
-        <div class="p-section" id="sec-visitas">
+        <!-- ── MI PROCESO VENDEDOR ── -->
+        <div class="p-section" id="sec-proceso-vendedor">
+          <div class="p-card">
+            <div class="p-card-title">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+              Estado de tu proceso de venta
+            </div>
+            <div class="p-timeline">
+              <div class="p-step">
+                <div class="p-step-dot dot-done">✓</div>
+                <div class="p-step-body">
+                  <h4>Registro completado</h4>
+                  <p>Has creado tu cuenta de vendedor en NuevaHabitat.</p>
+                  <small id="stepDateV1">Julio 2026</small>
+                </div>
+              </div>
+              <div class="p-step">
+                <div class="p-step-dot dot-now">2</div>
+                <div class="p-step-body">
+                  <h4>Valoración de tu inmueble</h4>
+                  <p>Juan Cárdenas visitará tu vivienda y elaborará un informe de valoración de mercado gratuito.</p>
+                  <small>Pendiente · <a href="https://wa.me/34675704514?text=Hola%2C%20quiero%20valorar%20mi%20inmueble" target="_blank" style="color:var(--oro)">Solicitar valoración</a></small>
+                </div>
+              </div>
+              <div class="p-step">
+                <div class="p-step-dot dot-pend">3</div>
+                <div class="p-step-body"><h4>Reportaje fotográfico</h4><p>Sesión profesional incluida en el precio. Tu inmueble se mostrará en su mejor versión.</p></div>
+              </div>
+              <div class="p-step">
+                <div class="p-step-dot dot-pend">4</div>
+                <div class="p-step-body"><h4>Publicación y difusión</h4><p>Publicamos en nuestra cartera y entre compradores cualificados con capacidad financiera verificada.</p></div>
+              </div>
+              <div class="p-step">
+                <div class="p-step-dot dot-pend">5</div>
+                <div class="p-step-body"><h4>Visitas y ofertas</h4><p>Agendamos visitas en tu horario y gestionamos las ofertas de compradores.</p></div>
+              </div>
+              <div class="p-step" style="padding-bottom:0">
+                <div class="p-step-dot dot-pend">6</div>
+                <div class="p-step-body"><h4>Escritura y cobro</h4><p>Firma ante notario. Cobramos 3.000 € + IVA solo el día de la escritura.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="p-card" style="background:linear-gradient(135deg,var(--negro),#1a1a1a);color:#fff">
+            <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Honorarios transparentes</div>
+            <div style="font-family:var(--font-serif);font-size:1.5rem;margin-bottom:.3rem">3.000 € + IVA · 3.630 € total</div>
+            <p style="font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem">Solo cobramos en escritura. Si no vendes, no pagas nada.</p>
+            <a href="tel:+34675704514" class="btn btn-gold" style="font-size:.84rem">Llamar a Juan Cárdenas</a>
+          </div>
+        </div>
+
+        <!-- ── PUBLICACIÓN VENDEDOR ── -->
+        <div class="p-section" id="sec-publicacion">
+          <div class="p-card">
+            <div class="p-card-title">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+              Mi inmueble en venta
+            </div>
+            <div id="pubContent">
+              <div class="p-empty">
+                <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+                <h4>Tu inmueble aún no está publicado</h4>
+                <p>Cuando Juan Cárdenas publique tu propiedad, aparecerá aquí con el enlace directo a la ficha.</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-card" style="text-align:center">
+            <p style="font-size:.9rem;color:var(--gris-texto);margin-bottom:1rem">¿Quieres adelantar la valoración de tu inmueble?</p>
+            <a href="vender.html#valorar" class="btn btn-gold">Solicitar valoración gratuita</a>
+          </div>
+        </div>
+
+        <!-- ── VISITAS VENDEDOR ── -->
+        <div class="p-section" id="sec-visitas-vendedor">
+          <div class="p-card">
+            <div class="p-card-title">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Visitas programadas a tu inmueble
+            </div>
+            <div id="visitasVendedorContent">
+              <div class="p-empty">
+                <h4>Sin visitas programadas</h4>
+                <p>Cuando haya compradores interesados, las visitas aparecerán aquí con fecha y hora.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── VISITAS COMPRADOR ── -->
+        <div class="p-section" id="sec-visitas" data-only="comprador">
           <div class="p-card">
             <div class="p-card-title">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -291,7 +394,7 @@
         </div>
 
         <!-- ── FAVORITOS ── -->
-        <div class="p-section" id="sec-favoritos">
+        <div class="p-section" id="sec-favoritos" data-only="comprador">
           <div class="p-card">
             <div class="p-card-title">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
@@ -455,20 +558,57 @@
 <script src="js/main.js"></script>
 <script>
 /* ─── Navegación entre secciones ─────────────────────────── */
+let userTipo = 'comprador';
+
 document.querySelectorAll('.p-nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    const sec = btn.dataset.sec;
-    // Botones
+    let sec = btn.dataset.sec;
+    if (sec === 'proceso' && userTipo === 'vendedor') sec = 'proceso-vendedor';
     document.querySelectorAll('.p-nav-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    // Secciones
     document.querySelectorAll('.p-section').forEach(s => s.classList.remove('active'));
-    document.getElementById('sec-' + sec).classList.add('active');
-    // Cargar datos si es necesario
-    if (sec === 'visitas')   loadVisitas();
+    const el = document.getElementById('sec-' + sec);
+    if (el) el.classList.add('active');
+    if (sec === 'visitas') loadVisitas();
     if (sec === 'favoritos') loadFavoritos();
+    if (sec === 'publicacion') loadPublicacion();
   });
 });
+
+function applyPanelMode(tipo) {
+  userTipo = tipo;
+  const isVendedor = tipo === 'vendedor';
+  document.getElementById('panelTipoBadge').textContent = isVendedor ? 'Vendedor' : 'Comprador';
+  document.getElementById('panelSub').textContent = isVendedor ? 'Panel vendedor' : 'Panel comprador';
+  document.title = (isVendedor ? 'Panel Vendedor' : 'Panel Comprador') + ' · NuevaHabitat';
+
+  document.querySelectorAll('[data-only="comprador"]').forEach(el => {
+    if (isVendedor) {
+      el.style.display = 'none';
+    } else if (el.classList.contains('p-stats')) {
+      el.style.display = 'grid';
+    } else {
+      el.style.display = '';
+    }
+  });
+  document.querySelectorAll('[data-only="vendedor"]').forEach(el => {
+    if (!isVendedor) {
+      el.style.display = 'none';
+    } else if (el.classList.contains('p-stats')) {
+      el.style.display = 'grid';
+    } else if (el.classList.contains('p-nav-btn')) {
+      el.style.display = 'flex';
+    } else {
+      el.style.display = '';
+    }
+  });
+
+  // Activar sección resumen correcta
+  document.querySelectorAll('.p-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-resumen').classList.add('active');
+  document.querySelectorAll('.p-nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.p-nav-btn[data-sec="resumen"]').classList.add('active');
+}
 
 /* ─── Auth y perfil ───────────────────────────────────────── */
 let currentUser = null;
@@ -486,12 +626,31 @@ async function initPanel() {
   document.getElementById('pAvatar').textContent = initials;
   document.getElementById('pUserName').textContent = nombre;
 
+  // Tipo de panel: URL param > metadata > localStorage
+  const urlTipo = new URLSearchParams(location.search).get('tipo');
+  const tipo = (urlTipo === 'vendedor' || urlTipo === 'comprador')
+    ? urlTipo
+    : nhAuth.getUserTipo(currentUser);
+  applyPanelMode(tipo);
+
+  // Fecha registro en timeline
+  const fecha = currentUser.created_at
+    ? new Date(currentUser.created_at).toLocaleDateString('es-ES', { month: 'long', year: 'numeric' })
+    : 'Julio 2026';
+  const d1 = document.getElementById('stepDate1');
+  const dV = document.getElementById('stepDateV1');
+  if (d1) d1.textContent = fecha;
+  if (dV) dV.textContent = fecha;
+
   // Prefill perfil
   document.getElementById('pf-nombre').value = nombre;
   document.getElementById('pf-email').value = currentUser.email || '';
+  if (currentUser.user_metadata?.telefono) {
+    document.getElementById('pf-tel').value = currentUser.user_metadata.telefono;
+  }
 
-  // Cargar inmuebles recientes
-  loadRecentProps();
+  if (tipo === 'comprador') loadRecentProps();
+  else loadPublicacion();
 }
 
 async function doLogout() {
@@ -626,6 +785,51 @@ async function removeFav(favId) {
   if (!window.nhSupabase) return;
   await window.nhSupabase.from('favoritos').delete().eq('id', favId);
   loadFavoritos();
+}
+
+/* ─── Publicación del vendedor ────────────────────────────── */
+async function loadPublicacion() {
+  const el = document.getElementById('pubContent');
+  if (!el || !window.nhSupabase || !currentUser) return;
+
+  const email = currentUser.email || '';
+  const { data: vend } = await window.nhSupabase
+    .from('vendedores')
+    .select('inmueble_ref, nombre')
+    .eq('email', email)
+    .maybeSingle();
+
+  if (!vend?.inmueble_ref) {
+    document.getElementById('statPub').textContent = 'Pendiente';
+    return;
+  }
+
+  const { data: inm } = await window.nhSupabase
+    .from('inmuebles')
+    .select('id,titulo,precio,estado,imagen_principal,imagenes,barrio,municipio')
+    .eq('ref', vend.inmueble_ref)
+    .maybeSingle();
+
+  if (!inm) {
+    document.getElementById('statPub').textContent = 'En proceso';
+    return;
+  }
+
+  const img = inm.imagen_principal || (Array.isArray(inm.imagenes) ? inm.imagenes[0] : null) || 'imagenes/interior1.jpg';
+  const pr  = inm.precio ? Number(inm.precio).toLocaleString('es-ES') + ' €' : '';
+  const loc = [inm.barrio, inm.municipio].filter(Boolean).join(', ');
+  const est = inm.estado === 'disponible' ? 'Publicado' : inm.estado;
+  document.getElementById('statPub').textContent = est.charAt(0).toUpperCase() + est.slice(1);
+
+  el.innerHTML = `<a href="inmueble-detalle.html?id=${inm.id}" style="text-decoration:none;color:inherit;display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+    <img src="${img}" alt="${inm.titulo}" style="width:140px;height:100px;object-fit:cover;border-radius:8px" onerror="this.src='imagenes/interior1.jpg'"/>
+    <div style="flex:1;min-width:180px">
+      <div style="font-weight:700;font-size:1rem;color:var(--negro)">${inm.titulo || ''}</div>
+      <div style="font-size:.9rem;color:var(--oro);font-weight:700;margin:.25rem 0">${pr}</div>
+      <div style="font-size:.8rem;color:var(--gris-medio)">${loc}</div>
+      <div style="font-size:.75rem;margin-top:.35rem;background:rgba(184,147,106,.12);color:var(--oro);display:inline-block;padding:.2rem .6rem;border-radius:20px">${est}</div>
+    </div>
+  </a>`;
 }
 
 /* ─── Init ────────────────────────────────────────────────── */

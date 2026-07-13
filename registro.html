@@ -60,7 +60,7 @@
           <input type="tel" id="regTel" placeholder="600 000 000" required />
         </div>
         <div style="margin-bottom:1rem">
-          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Quiero...</label>
+          <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Quiero... <span style="color:#b91c1c">*</span></label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
             <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
               <input type="radio" name="tipo" id="tipoVender" value="vender" style="accent-color:var(--oro)"/> Vender
@@ -88,7 +88,12 @@
 <script>
 document.addEventListener('supabase:ready', async () => {
   const session = await nhAuth.getSession();
-  if (session) { window.location.href = 'panel.html'; return; }
+  if (session) { nhAuth.redirectAfterLogin(session.user); return; }
+
+  // Preseleccionar tipo desde URL (?tipo=vender o ?tipo=comprar)
+  const urlTipo = new URLSearchParams(location.search).get('tipo');
+  if (urlTipo === 'vender') document.getElementById('tipoVender').checked = true;
+  else if (urlTipo === 'comprar') document.getElementById('tipoComprar').checked = true;
 
   const form   = document.getElementById('regForm');
   const errBox = document.getElementById('reg-error');
@@ -101,17 +106,20 @@ document.addEventListener('supabase:ready', async () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     errBox.style.display = 'none';
-    const tipo = document.querySelector('input[name="tipo"]:checked')?.value || 'comprar';
+    const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
+    if (!tipo) { showError('Selecciona si quieres vender o comprar.'); return; }
     const nombre = document.getElementById('regNombre').value.trim() + ' ' + document.getElementById('regApellidos').value.trim();
+    const email  = document.getElementById('regEmail').value.trim();
 
     regBtn.textContent = 'Creando cuenta…';
     regBtn.disabled = true;
 
     const { data, error } = await nhAuth.register({
-      email:    document.getElementById('regEmail').value.trim(),
+      email,
       password: document.getElementById('regPassword').value,
       nombre,
-      tipo
+      tipo,
+      telefono: document.getElementById('regTel').value.trim()
     });
 
     if (error) {
@@ -119,9 +127,12 @@ document.addEventListener('supabase:ready', async () => {
       showError(msg);
       regBtn.textContent = 'Crear mi cuenta →';
       regBtn.disabled = false;
+    } else if (data?.session) {
+      // Email confirm desactivado — ir directo al panel
+      nhAuth.redirectAfterLogin(data.session.user);
     } else {
-      showOk('¡Cuenta creada! Revisa tu email para confirmar el registro. Un agente te contactará pronto.');
-      form.style.display = 'none';
+      // Redirigir a página de confirmación interactiva
+      window.location.href = 'confirmar-cuenta.html?pending=1&email=' + encodeURIComponent(email);
     }
   });
 });
