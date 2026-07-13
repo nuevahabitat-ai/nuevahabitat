@@ -193,7 +193,7 @@
     <div class="inmuebles-full-grid" id="propGrid">
 
       <!-- Propiedad 1 -->
-      <a href="inmueble-eixample.html" class="prop-card prop-card-large fade-up" style="text-decoration:none;color:inherit">
+      <a href="inmueble-eixample.html" class="prop-card prop-card-large fade-up visible" style="text-decoration:none;color:inherit">
         <div class="prop-card-image">
           <img src="imagenes/interior2.jpg" alt="Piso en Eixample" loading="lazy" />
           <span class="prop-badge disponible">Disponible</span>
@@ -217,7 +217,7 @@
       </a>
 
       <!-- Propiedad 2 -->
-      <a href="inmueble-gracia.html" class="prop-card prop-card-large fade-up fade-up-delay-1" style="text-decoration:none;color:inherit;display:block">
+      <a href="inmueble-gracia.html" class="prop-card prop-card-large fade-up visible fade-up-delay-1" style="text-decoration:none;color:inherit;display:block">
         <div class="prop-card-image">
           <img src="imagenes/interior4.jpg" alt="Piso en Gràcia" loading="lazy" />
           <span class="prop-badge disponible">Disponible</span>
@@ -239,7 +239,7 @@
       </a>
 
       <!-- Propiedad 3 -->
-      <a href="inmueble-sant-gervasi.html" class="prop-card prop-card-large fade-up fade-up-delay-2" style="text-decoration:none;color:inherit;display:block">
+      <a href="inmueble-sant-gervasi.html" class="prop-card prop-card-large fade-up visible fade-up-delay-2" style="text-decoration:none;color:inherit;display:block">
         <div class="prop-card-image">
           <img src="imagenes/3d-contemporary-bedroom-interior.jpg" alt="Ático en Sant Gervasi" loading="lazy" />
           <span class="prop-badge reservada">Reservada</span>
@@ -261,7 +261,7 @@
       </a>
 
       <!-- Propiedad 4 -->
-      <a href="inmueble-sarria.html" class="prop-card prop-card-large fade-up" style="text-decoration:none;color:inherit;display:block">
+      <a href="inmueble-sarria.html" class="prop-card prop-card-large fade-up visible" style="text-decoration:none;color:inherit;display:block">
         <div class="prop-card-image">
           <img src="imagenes/interior1.jpg" alt="Piso en Sarrià" loading="lazy" />
           <span class="prop-badge disponible">Disponible</span>
@@ -283,7 +283,7 @@
       </a>
 
       <!-- Propiedad 5 -->
-      <a href="inmueble-poblenou.html" class="prop-card prop-card-large fade-up fade-up-delay-1" style="text-decoration:none;color:inherit;display:block">
+      <a href="inmueble-poblenou.html" class="prop-card prop-card-large fade-up visible fade-up-delay-1" style="text-decoration:none;color:inherit;display:block">
         <div class="prop-card-image">
           <img src="imagenes/interior5.jpg" alt="Piso en Poblenou" loading="lazy" />
           <span class="prop-badge disponible">Disponible</span>
@@ -305,7 +305,7 @@
       </a>
 
       <!-- Propiedad 6 -->
-      <a href="inmueble-sant-cugat.html" class="prop-card prop-card-large fade-up fade-up-delay-2" style="text-decoration:none;color:inherit;display:block">
+      <a href="inmueble-sant-cugat.html" class="prop-card prop-card-large fade-up visible fade-up-delay-2" style="text-decoration:none;color:inherit;display:block">
         <div class="prop-card-image">
           <img src="imagenes/modern-styled-small-entryway.jpg" alt="Casa en Sant Cugat" loading="lazy" />
           <span class="prop-badge disponible">Disponible</span>
@@ -429,8 +429,8 @@ function buildCard(p){
   const img  = p.imagen_principal || (Array.isArray(p.imagenes)?p.imagenes[0]:null) || 'imagenes/interior1.jpg';
   const pr   = p.precio ? Number(p.precio).toLocaleString('es-ES')+' €' : '';
   const loc  = [p.barrio, p.municipio].filter(Boolean).join(', ') || 'Barcelona';
-  const hab  = p.habitaciones || p.dormitorios;
-  const ban  = p.banos || p.aseos;
+  const hab  = p.habitaciones;
+  const ban  = p.banos;
   const m2   = p.m2_utiles || p.m2_construidos;
   const href = `inmueble-detalle.html?id=${p.id}`;
   const bc   = badgeClass(p.estado);
@@ -462,24 +462,20 @@ async function loadSupabaseProps(){
   try {
     const { data, error } = await window.nhSupabase
       .from('inmuebles')
-      .select('id,titulo,precio,barrio,municipio,imagen_principal,imagenes,habitaciones,dormitorios,banos,aseos,m2_utiles,m2_construidos,estado')
+      .select('id,titulo,precio,barrio,municipio,imagen_principal,imagenes,habitaciones,banos,m2_utiles,m2_construidos,estado')
       .neq('estado','retirado')
       .order('created_at', { ascending: false });
 
-    if(error || !data || !data.length) return; // mantiene cards estáticas si falla
-
     const grid = document.getElementById('propGrid');
     if(!grid) return;
+    if(error || !data || !data.length) return;
 
-    // Reemplaza el grid con las propiedades de Supabase
-    grid.innerHTML = data.map(buildCard).join('');
-
-    // Re-observa para animación de scroll
+    // Añade publicaciones de Supabase delante de las estáticas (no las reemplaza)
+    grid.insertAdjacentHTML('afterbegin', data.map(buildCard).join(''));
     if(window.nhObserveFadeUps) window.nhObserveFadeUps();
 
-    // Actualiza contador
     const cnt = document.querySelector('.filtros-count');
-    if(cnt) cnt.textContent = data.length + ' propiedades';
+    if(cnt) cnt.textContent = grid.querySelectorAll('.prop-card').length + ' propiedades';
   } catch(_){}
 }
 

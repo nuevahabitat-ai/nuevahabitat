@@ -160,9 +160,36 @@
     .beneficio-body h4 { font-size: 1.0625rem; margin-bottom: .35rem; }
     .beneficio-body p  { font-size: .875rem; color: var(--gris-texto); line-height: 1.65; }
     @media(max-width:768px) {
-      .valorar-inner { grid-template-columns: 1fr; }
+      .page-hero { min-height: auto; padding: 100px 0 48px; }
+      .page-hero-content h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+      .page-hero-content p { font-size: 1rem; margin-bottom: 1.5rem; }
+      .page-hero-content .btn-lg { width: 100%; justify-content: center; }
+      .trust-bar-inner { flex-wrap: wrap; gap: .75rem; justify-content: center; }
+      .trust-divider { display: none; }
+      .valorar-section { padding: 48px 0 64px; }
+      .valorar-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-card { padding: 1.5rem; border-radius: var(--radius-md); }
+      .form-card h2 { font-size: 1.45rem; }
       .form-row { grid-template-columns: 1fr; }
+      .beneficios-list { gap: 1.5rem; }
+      .proceso-grid { grid-template-columns: 1fr 1fr !important; gap: 1rem !important; }
+      .proceso-grid > div { padding: 1.25rem .75rem !important; }
+      .cta-final .cta-buttons { flex-direction: column; }
+      .cta-final .btn-lg { width: 100%; justify-content: center; }
     }
+    @media(max-width:480px) {
+      .proceso-grid { grid-template-columns: 1fr !important; }
+    }
+    /* Modal vendedor/valoración */
+    #vender-modal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.55); backdrop-filter:blur(4px); padding:0; overflow-y:auto; align-items:flex-end; }
+    #vender-modal.open { display:flex !important; }
+    .vm-panel { width:100%; max-width:480px; margin:auto auto 0; background:var(--blanco); border-radius:20px 20px 0 0; padding:1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom)); position:relative; max-height:92vh; overflow-y:auto; box-shadow:0 -8px 40px rgba(0,0,0,.18); }
+    @media(min-width:640px){
+      #vender-modal { align-items:center; padding:1rem; }
+      .vm-panel { margin:auto; border-radius:16px; padding:2rem; max-height:88vh; }
+    }
+    .vm-input { width:100%; padding:.85rem 1rem; border:1.5px solid var(--crema-dark); border-radius:var(--radius-sm); font-family:var(--font-sans); font-size:.9375rem; outline:none; margin-bottom:.75rem; box-sizing:border-box; background:var(--blanco); }
+    .vm-input:focus { border-color:var(--oro); }
   </style>
 </head>
 <body>
@@ -364,7 +391,7 @@
       <span class="overline">Paso a paso</span>
       <h2 class="section-title">El proceso de venta<br/>de principio a fin</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem" class="proceso-grid">
       <div class="fade-up" style="text-align:center;padding:2rem;background:var(--crema);border-radius:var(--radius-md)">
         <div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--oro);font-weight:700;margin-bottom:.5rem">1</div>
         <h4 style="font-size:1rem;margin-bottom:.5rem">Visita y valoración</h4>
@@ -400,7 +427,7 @@
       <p class="section-subtitle light">Valoración gratuita en menos de 24 horas. Sin compromiso.</p>
       <div class="cta-buttons">
         <a href="#valorar" class="btn btn-gold btn-lg">Valorar mi piso gratis</a>
-        <a href="tel:+34600367742" class="btn btn-outline-light btn-lg">600 367 742 · 675 704 514</a>
+        <a href="tel:+34675704514" class="btn btn-outline-light btn-lg">675 704 514</a>
       </div>
     </div>
   </div>
@@ -451,33 +478,36 @@
 </div>
 
 <!-- MODAL VENDER/VALORAR -->
-<div id="vender-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);padding:1rem;overflow-y:auto">
-  <div style="max-width:460px;margin:auto;background:var(--crema);border-radius:16px;padding:2rem;position:relative;top:10vh">
-    <button onclick="closeVenderModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;font-size:1.4rem;color:var(--gris-medio)">&#x2715;</button>
-    <div id="vm-icon" style="width:56px;height:56px;background:linear-gradient(135deg,var(--oro),#9a7550);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem">
-      <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+<div id="vender-modal">
+  <div class="vm-panel">
+    <button onclick="closeVenderModal()" style="position:absolute;top:1rem;right:1rem;background:var(--crema);border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;font-size:1rem;color:var(--gris-medio);display:flex;align-items:center;justify-content:center">&#x2715;</button>
+    <div id="vm-icon" style="width:52px;height:52px;background:linear-gradient(135deg,var(--oro),#9a7550);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
     </div>
-    <h3 id="vm-title" style="font-family:var(--font-serif);font-size:1.4rem;margin-bottom:.4rem">Quiero vender mi inmueble</h3>
-    <p id="vm-sub" style="font-size:.875rem;color:var(--gris-texto);margin-bottom:1.5rem;line-height:1.6">Déjanos tus datos y Juan Sebastián te contactará en menos de 24h para iniciar el proceso.</p>
+    <h3 id="vm-title" style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:.35rem;padding-right:2rem">Quiero vender mi inmueble</h3>
+    <p id="vm-sub" style="font-size:.875rem;color:var(--gris-texto);margin-bottom:1.25rem;line-height:1.6">Déjanos tus datos y Juan Cárdenas te contactará en menos de 24h.</p>
     <div id="vm-form-wrap">
-      <input id="vm-nombre" type="text" placeholder="Nombre y apellidos *" required style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;margin-bottom:.75rem;box-sizing:border-box"/>
-      <input id="vm-tel" type="tel" placeholder="Teléfono *" required style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;margin-bottom:.75rem;box-sizing:border-box"/>
-      <input id="vm-email" type="email" placeholder="Email (opcional)" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;margin-bottom:.75rem;box-sizing:border-box"/>
-      <input id="vm-zona" type="text" placeholder="Zona / dirección del inmueble" style="width:100%;padding:.8rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;margin-bottom:1rem;box-sizing:border-box"/>
-      <button onclick="submitVenderModal()" id="vm-btn" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">Enviar solicitud →</button>
+      <input id="vm-nombre" type="text" placeholder="Nombre y apellidos *" class="vm-input"/>
+      <input id="vm-tel" type="tel" placeholder="Teléfono *" class="vm-input"/>
+      <input id="vm-email" type="email" placeholder="Email (opcional)" class="vm-input"/>
+      <input id="vm-zona" type="text" placeholder="Zona / dirección del inmueble" class="vm-input"/>
+      <textarea id="vm-notas" placeholder="Detalles adicionales (m², habitaciones…)" rows="2" class="vm-input" style="resize:vertical;min-height:72px"></textarea>
+      <button onclick="submitVenderModal()" id="vm-btn" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-top:.25rem">Enviar solicitud →</button>
     </div>
     <div id="vm-ok" style="display:none;text-align:center;padding:1.5rem 0">
-      <div style="font-size:2.5rem;margin-bottom:.75rem">✅</div>
+      <div style="width:56px;height:56px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem">
+        <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#2e7d32" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+      </div>
       <h4 style="font-family:var(--font-serif);margin-bottom:.4rem">¡Solicitud recibida!</h4>
-      <p style="font-size:.875rem;color:var(--gris-texto)">Juan Sebastián te contactará en menos de 24h. También puedes escribirle directamente por WhatsApp.</p>
-      <a href="https://wa.me/34675704514" target="_blank" class="btn btn-gold" style="margin-top:1rem;display:inline-flex">WhatsApp</a>
+      <p style="font-size:.875rem;color:var(--gris-texto)">Juan Cárdenas te contactará en menos de 24h.</p>
+      <a href="https://wa.me/34675704514" target="_blank" class="btn btn-gold" style="margin-top:1rem;display:inline-flex">WhatsApp directo</a>
     </div>
   </div>
 </div>
 
 <script>
 let _vmTipo = 'vender';
-function openVenderModal(tipo){
+function openVenderModal(tipo, prefill){
   _vmTipo = tipo;
   const modal = document.getElementById('vender-modal');
   const title = document.getElementById('vm-title');
@@ -487,17 +517,24 @@ function openVenderModal(tipo){
     sub.textContent = 'Solicita una valoración gratuita sin compromiso. Te enviamos el informe en menos de 24h.';
   } else {
     title.textContent = 'Quiero vender mi inmueble';
-    sub.textContent = 'Déjanos tus datos y Juan Sebastián te contactará en menos de 24h para iniciar el proceso.';
+    sub.textContent = 'Déjanos tus datos y Juan Cárdenas te contactará en menos de 24h.';
+  }
+  if(prefill){
+    if(prefill.nombre) document.getElementById('vm-nombre').value = prefill.nombre;
+    if(prefill.telefono) document.getElementById('vm-tel').value = prefill.telefono;
+    if(prefill.email) document.getElementById('vm-email').value = prefill.email;
+    if(prefill.zona) document.getElementById('vm-zona').value = prefill.zona;
+    if(prefill.notas) document.getElementById('vm-notas').value = prefill.notas;
   }
   document.getElementById('vm-ok').style.display='none';
   document.getElementById('vm-form-wrap').style.display='block';
   document.getElementById('vm-btn').textContent='Enviar solicitud →';
   document.getElementById('vm-btn').disabled=false;
-  modal.style.display='block';
+  modal.classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeVenderModal(){
-  document.getElementById('vender-modal').style.display='none';
+  document.getElementById('vender-modal').classList.remove('open');
   document.body.style.overflow='';
 }
 async function submitVenderModal(){
@@ -505,32 +542,59 @@ async function submitVenderModal(){
   const tel    = document.getElementById('vm-tel').value.trim();
   const email  = document.getElementById('vm-email').value.trim();
   const zona   = document.getElementById('vm-zona').value.trim();
+  const notas  = document.getElementById('vm-notas').value.trim();
   if(!nombre||!tel){ alert('Nombre y teléfono son obligatorios.'); return; }
   const btn = document.getElementById('vm-btn');
   btn.textContent='Enviando…'; btn.disabled=true;
-  const mensaje = (_vmTipo==='valoracion'?'Valoración gratuita':'Quiero vender') + (zona?' · '+zona:'');
+  const mensaje = (_vmTipo==='valoracion'?'Valoración gratuita':'Quiero vender') + (zona?' · '+zona:'') + (notas?' · '+notas:'');
   try {
     if(window.nhSupabase){
       const tipoLead = _vmTipo==='valoracion'?'valoracion':'vender';
-    await window.nhSupabase.from('leads').insert({
+      await window.nhSupabase.from('leads').insert({
         nombre, telefono:tel, email:email||null, mensaje, tipo:tipoLead
       });
-    if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje, tipo:tipoLead });
+      if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje, tipo:tipoLead });
     }
     document.getElementById('vm-form-wrap').style.display='none';
     document.getElementById('vm-ok').style.display='block';
   } catch(e){
     btn.textContent='Enviar solicitud →'; btn.disabled=false;
-    alert('Error al enviar: '+(e.message||'Inténtalo de nuevo.'));
+    alert('Error al enviar. Inténtalo de nuevo o escríbenos por WhatsApp.');
   }
 }
 document.getElementById('vender-modal').addEventListener('click', function(e){
   if(e.target===this) closeVenderModal();
 });
 
-function submitValoracion(e) {
+async function submitValoracion(e) {
   e.preventDefault();
-  openVenderModal('valoracion');
+  const dir  = document.getElementById('direccion').value.trim();
+  const mun  = document.getElementById('municipio').value;
+  const m2   = document.getElementById('metros').value;
+  const hab  = document.getElementById('habitaciones').value;
+  const ban  = document.getElementById('banos').value;
+  const nom  = document.getElementById('nombre').value.trim();
+  const eml  = document.getElementById('email').value.trim();
+  const tel  = document.getElementById('telefono').value.trim();
+  if(!dir||!nom||!eml||!tel){ alert('Completa los campos obligatorios.'); return; }
+  const notas = [m2&&m2+' m²', hab&&hab+' hab.', ban&&ban+' baño'+ (ban>1?'s':'')].filter(Boolean).join(' · ');
+  const btn = e.target.querySelector('button[type=submit]');
+  if(btn){ btn.textContent='Enviando…'; btn.disabled=true; }
+  const mensaje = 'Valoración · '+dir+(mun?', '+mun:'')+(notas?' · '+notas:'');
+  try {
+    if(window.nhSupabase){
+      await window.nhSupabase.from('leads').insert({ nombre:nom, telefono:tel, email:eml, mensaje, tipo:'valoracion' });
+      if(window.nhNotify) nhNotify({ nombre:nom, telefono:tel, email:eml, mensaje, tipo:'valoracion' });
+    }
+    openVenderModal('valoracion');
+    document.getElementById('vm-form-wrap').style.display='none';
+    document.getElementById('vm-ok').style.display='block';
+    document.getElementById('valoracionForm').reset();
+  } catch(err){
+    openVenderModal('valoracion', { nombre:nom, telefono:tel, email:eml, zona:dir+(mun?', '+mun:''), notas });
+  } finally {
+    if(btn){ btn.textContent='Solicitar valoración gratuita →'; btn.disabled=false; }
+  }
 }
 </script>
 
@@ -577,6 +641,7 @@ function submitValoracion(e) {
   </div>
 </div>
 <script src="js/main.js"></script>
+<script src="js/supabase.js"></script>
 <script src="js/notify.js"></script>
 </body>
 </html>

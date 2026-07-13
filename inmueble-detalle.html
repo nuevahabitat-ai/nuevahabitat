@@ -722,9 +722,9 @@ function renderProperty(p){
   /* ── Ref ── */
   if(p.ref) document.getElementById('det-ref').textContent = 'Ref. '+p.ref;
 
-  /* ── WhatsApp (Juan Sebastián) ── */
-  const waMsg = encodeURIComponent(`Hola, me interesa el inmueble "${p.titulo||''}". ¿Podemos hablar?`);
-  document.getElementById('det-wa-btn').onclick = ()=> window.open(`https://wa.me/34675704514?text=${waMsg}`,'_blank');
+  /* ── WhatsApp contacto ── */
+  const waMsgContact = encodeURIComponent(`Hola, me interesa el inmueble "${p.titulo||''}". ¿Podemos hablar?`);
+  document.getElementById('det-wa-btn').onclick = ()=> window.open(`https://wa.me/34675704514?text=${waMsgContact}`,'_blank');
 
   /* ── Mapa ── */
   loadMap(p);

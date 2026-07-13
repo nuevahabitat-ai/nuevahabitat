@@ -460,6 +460,7 @@
   </div>
 </section>
 
+<script src="js/supabase.js"></script>
 <script>
 /* ── Carga dinámica "Últimas propiedades" (index.html) ────────────── */
 (function(){
@@ -476,8 +477,8 @@
     const img = p.imagen_principal||(Array.isArray(p.imagenes)?p.imagenes[0]:null)||'imagenes/interior1.jpg';
     const pr  = p.precio ? Number(p.precio).toLocaleString('es-ES')+' €' : '';
     const loc = [p.barrio,p.municipio].filter(Boolean).join(', ')||'Barcelona';
-    const hab = p.habitaciones||p.dormitorios;
-    const ban = p.banos||p.aseos;
+    const hab = p.habitaciones;
+    const ban = p.banos;
     const m2  = p.m2_utiles||p.m2_construidos;
     return `<a href="inmueble-detalle.html?id=${p.id}" class="prop-card fade-up visible" style="text-decoration:none;color:inherit;display:block">
       <div class="prop-card-image">
@@ -524,7 +525,7 @@
     try {
       const { data, error } = await window.nhSupabase
         .from('inmuebles')
-        .select('id,titulo,precio,barrio,municipio,imagen_principal,imagenes,habitaciones,dormitorios,banos,aseos,m2_utiles,m2_construidos,estado')
+        .select('id,titulo,precio,barrio,municipio,imagen_principal,imagenes,habitaciones,banos,m2_utiles,m2_construidos,estado')
         .neq('estado','retirado')
         .order('created_at',{ascending:false})
         .limit(6);
@@ -535,8 +536,8 @@
     } catch(_){ renderFallback(); }
   }
 
-  // Timeout de seguridad: si Supabase tarda más de 4s, muestra el fallback
-  setTimeout(renderFallback, 4000);
+  // Timeout de seguridad: si Supabase tarda más de 3s, muestra el fallback
+  setTimeout(renderFallback, 3000);
 
   if(window.nhSupabase){ loadProps(); }
   else { document.addEventListener('supabase:ready', loadProps); }
