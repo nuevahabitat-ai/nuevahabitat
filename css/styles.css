@@ -1461,16 +1461,12 @@ footer {
 .lightbox-dot.active{background:var(--oro)}
 
 /* ── Ficha inmueble header ────────────────────────────────── */
-.prop-detail-header{position:sticky;top:72px;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--crema-dark);padding:.6rem 0}
-.prop-detail-header-inner{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.prop-breadcrumb{font-size:.8125rem;color:var(--gris-medio);display:flex;align-items:center;gap:.4rem}
-.prop-breadcrumb a{color:var(--gris-medio);transition:color var(--transition)}
+.prop-detail-header{position:sticky;top:72px;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--crema-dark);padding:.55rem 0}
+.prop-detail-header-inner{display:flex;align-items:center;gap:1rem;flex-wrap:nowrap;overflow:hidden}
+.prop-breadcrumb{font-size:.8rem;color:var(--gris-medio);display:flex;align-items:center;gap:.35rem;overflow:hidden}
+.prop-breadcrumb a{color:var(--gris-medio);white-space:nowrap;transition:color var(--transition)}
 .prop-breadcrumb a:hover{color:var(--negro)}
-.prop-breadcrumb svg{width:12px}
-.prop-header-price{font-family:var(--font-serif);font-size:1.75rem;font-weight:700;color:var(--negro);margin-left:auto}
-.prop-header-actions{display:flex;gap:.75rem}
-.prop-header-actions button{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--crema-dark);display:flex;align-items:center;justify-content:center;color:var(--gris-medio);transition:var(--transition)}
-.prop-header-actions button:hover{border-color:var(--negro);color:var(--negro)}
+@media(max-width:640px){.prop-breadcrumb{display:none}}
 
 /* ── Ficha inmueble body ──────────────────────────────────── */
 .prop-detail-body{padding:3rem 0 6rem;background:var(--crema)}
