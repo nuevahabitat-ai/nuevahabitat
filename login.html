@@ -51,6 +51,27 @@
       <div class="auth-divider">o con tu email</div>
 
       <div id="auth-error" style="display:none;background:#fef2f2;border:1px solid #fca5a5;color:#b91c1c;border-radius:6px;padding:.75rem 1rem;font-size:.875rem;margin-bottom:1rem"></div>
+      <div id="auth-success" style="display:none;background:#f0fdf4;border:1px solid #86efac;color:#166534;border-radius:6px;padding:.75rem 1rem;font-size:.875rem;margin-bottom:1rem"></div>
+
+      <div id="recoveryBox" style="display:none">
+        <span class="overline">Recuperación</span>
+        <h1 style="font-size:1.5rem;margin:.5rem 0 1rem">Nueva contraseña</h1>
+        <p style="font-size:.9rem;color:var(--gris-medio);margin-bottom:1.25rem">Elige una contraseña segura para tu cuenta.</p>
+        <form id="recoveryForm">
+          <div class="form-group">
+            <label>Nueva contraseña</label>
+            <input type="password" id="recoveryPassword" placeholder="Mínimo 8 caracteres" required minlength="8" />
+          </div>
+          <div class="form-group">
+            <label>Repetir contraseña</label>
+            <input type="password" id="recoveryPassword2" placeholder="Repite la contraseña" required minlength="8" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" id="recoveryBtn" style="width:100%;justify-content:center;margin-top:.5rem">
+            Guardar contraseña
+          </button>
+        </form>
+        <p style="text-align:center;margin-top:1.25rem"><a href="login.html" style="font-size:.8125rem;color:var(--gris-medio)">← Volver al login</a></p>
+      </div>
 
       <form id="loginForm">
         <div class="form-group">
@@ -75,22 +96,98 @@
 <script src="js/supabase.js"></script>
 <script>
 document.addEventListener('supabase:ready', async () => {
-  /* Redirigir si ya hay sesión */
-  const session = await nhAuth.getSession();
-  if (session) { nhAuth.redirectAfterLogin(session.user); return; }
+  const justLoggedOut = new URLSearchParams(location.search).get('logout') === '1';
+  const recoveryMode  = nhAuth.isRecoverySession();
 
-  const form     = document.getElementById('loginForm');
-  const errBox   = document.getElementById('auth-error');
-  const loginBtn = document.getElementById('loginBtn');
+  const form        = document.getElementById('loginForm');
+  const recoveryBox = document.getElementById('recoveryBox');
+  const errBox      = document.getElementById('auth-error');
+  const okBox       = document.getElementById('auth-success');
+  const loginBtn    = document.getElementById('loginBtn');
 
   function showError(msg) {
+    okBox.style.display = 'none';
     errBox.textContent = msg;
     errBox.style.display = 'block';
   }
+  function showSuccess(msg) {
+    errBox.style.display = 'none';
+    okBox.textContent = msg;
+    okBox.style.display = 'block';
+  }
+  function showRecoveryUI() {
+    document.querySelector('.auth-form-box > .overline')?.style && (document.querySelector('.auth-form-box > .overline').style.display = 'none');
+    document.querySelector('.auth-form-box > h1')?.style && (document.querySelector('.auth-form-box > h1').style.display = 'none');
+    document.querySelector('.auth-form-box > p')?.style && (document.querySelector('.auth-form-box > p').style.display = 'none');
+    document.getElementById('btnGoogle').style.display = 'none';
+    document.querySelector('.auth-divider').style.display = 'none';
+    form.style.display = 'none';
+    document.querySelector('.auth-link')?.style && (document.querySelector('.auth-link').style.display = 'none');
+    recoveryBox.style.display = 'block';
+  }
+
+  if (recoveryMode) {
+    showRecoveryUI();
+  } else if (justLoggedOut) {
+    history.replaceState(null, '', 'login.html');
+  } else {
+    const user = await nhAuth.getUser();
+    if (user) { nhAuth.redirectAfterLogin(user); return; }
+    // OAuth Google vuelve con ?code= — esperar sesión
+    if (new URLSearchParams(location.search).get('code')) {
+      loginBtn.textContent = 'Verificando…';
+      loginBtn.disabled = true;
+      const start = Date.now();
+      while (Date.now() - start < 8000) {
+        const { data: { session } } = await window.nhSupabase.auth.getSession();
+        if (session?.user) { nhAuth.redirectAfterLogin(session.user); return; }
+        await new Promise(r => setTimeout(r, 250));
+      }
+      loginBtn.textContent = 'Entrar al panel';
+      loginBtn.disabled = false;
+      showError('No se pudo completar el inicio con Google. Inténtalo de nuevo.');
+    }
+  }
+
+  window.nhSupabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'PASSWORD_RECOVERY') showRecoveryUI();
+    if (session?.user && ['SIGNED_IN', 'INITIAL_SESSION'].includes(event) && !nhAuth.isRecoverySession()) {
+      nhAuth.redirectAfterLogin(session.user);
+    }
+  });
+
+  document.getElementById('recoveryForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errBox.style.display = 'none';
+    const p1 = document.getElementById('recoveryPassword').value;
+    const p2 = document.getElementById('recoveryPassword2').value;
+    if (p1.length < 8) { showError('La contraseña debe tener al menos 8 caracteres.'); return; }
+    if (p1 !== p2) { showError('Las contraseñas no coinciden.'); return; }
+    const btn = document.getElementById('recoveryBtn');
+    btn.textContent = 'Guardando…';
+    btn.disabled = true;
+    const { error } = await nhAuth.updatePassword(p1);
+    if (error) {
+      showError(error.message || 'No se pudo actualizar la contraseña.');
+      btn.textContent = 'Guardar contraseña';
+      btn.disabled = false;
+      return;
+    }
+    history.replaceState(null, '', 'login.html');
+    const user = await nhAuth.getUser();
+    if (user) nhAuth.redirectAfterLogin(user);
+    else {
+      showSuccess('Contraseña actualizada. Ya puedes iniciar sesión.');
+      recoveryBox.style.display = 'none';
+      form.style.display = 'block';
+      document.getElementById('btnGoogle').style.display = '';
+      document.querySelector('.auth-divider').style.display = '';
+    }
+  });
 
   /* Login con Google */
   document.getElementById('btnGoogle').addEventListener('click', async () => {
-    await nhAuth.loginGoogle();
+    await nhAuth.loginGoogle('/login.html');
   });
 
   /* Login con email */
@@ -122,10 +219,12 @@ document.addEventListener('supabase:ready', async () => {
     if (!email) { showError('Escribe tu email primero.'); return; }
     const { error } = await nhAuth.resetPassword(email);
     if (error) { showError(error.message); }
-    else { errBox.style.background='#f0fdf4';errBox.style.borderColor='#86efac';errBox.style.color='#166534'; showError('Te hemos enviado un email para restablecer tu contraseña.'); }
+    else { showSuccess('Te hemos enviado un email para restablecer tu contraseña.'); }
   });
 });
 </script>
+<script src="js/mbn.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
 

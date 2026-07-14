@@ -2,6 +2,32 @@
    NUEVAHABITAT — JavaScript Principal
    ============================================================ */
 
+/* ── Toast (páginas sin supabase.js) ─────────────────────── */
+(function () {
+  if (window.nhToast) return;
+  window.nhToast = function (msg, type = 'error', ms = 4500) {
+    let root = document.getElementById('nh-toast-root');
+    if (!root) {
+      root = document.createElement('div');
+      root.id = 'nh-toast-root';
+      root.style.cssText = 'position:fixed;bottom:calc(70px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:.5rem;max-width:min(420px,92vw);pointer-events:none';
+      document.body.appendChild(root);
+    }
+    const el = document.createElement('div');
+    const bg = type === 'success' ? '#166534' : type === 'info' ? '#1e40af' : '#b91c1c';
+    el.style.cssText = `background:${bg};color:#fff;padding:.85rem 1.1rem;border-radius:8px;font-size:.875rem;line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.2);pointer-events:auto;animation:nhToastIn .25s ease`;
+    el.textContent = msg;
+    root.appendChild(el);
+    setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .3s'; setTimeout(() => el.remove(), 300); }, ms);
+  };
+  if (!document.getElementById('nh-toast-style')) {
+    const s = document.createElement('style');
+    s.id = 'nh-toast-style';
+    s.textContent = '@keyframes nhToastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}';
+    document.head.appendChild(s);
+  }
+})();
+
 /* ── Navbar: transparente → sólido al hacer scroll ────────── */
 (function () {
   const navbar = document.getElementById('navbar');
@@ -138,10 +164,12 @@
 })();
 
 
-/* ── Propiedad favorita toggle ─────────────────────────────── */
+/* ── Propiedad favorita toggle (solo tarjetas estáticas sin Supabase) ── */
 (function () {
-  document.querySelectorAll('.prop-favorite').forEach(btn => {
-    btn.addEventListener('click', function () {
+  document.querySelectorAll('.prop-favorite:not([data-fav-id])').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       const isActive = this.classList.toggle('active');
       this.style.color = isActive ? '#e84545' : '';
       const svg = this.querySelector('svg');
@@ -311,12 +339,42 @@
   document.getElementById('cookie-accept').addEventListener('click', () => {
     localStorage.setItem('nh_cookies', 'all');
     banner.classList.add('hidden');
+    window.nhLoadAnalytics && window.nhLoadAnalytics();
   });
   document.getElementById('cookie-reject').addEventListener('click', () => {
     localStorage.setItem('nh_cookies', 'necessary');
     banner.classList.add('hidden');
   });
+
+  if (localStorage.getItem('nh_cookies') === 'all') {
+    window.nhLoadAnalytics && window.nhLoadAnalytics();
+  }
 })();
+
+/* ── Google Analytics (solo con consentimiento) ─────────────── */
+window.nhLoadAnalytics = function () {
+  if (window.__nhGaLoaded) return;
+  const id = window.NH_GA_ID || 'G-XXXXXXXXXX';
+  if (!id || id === 'G-XXXXXXXXXX') return;
+  window.__nhGaLoaded = true;
+  const s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', id, { anonymize_ip: true });
+};
+
+window.nhCookiePrefs = function (mode) {
+  localStorage.setItem('nh_cookies', mode === 'all' ? 'all' : 'necessary');
+  if (mode === 'all') window.nhLoadAnalytics && window.nhLoadAnalytics();
+  nhToast(mode === 'all'
+    ? 'Preferencias guardadas: aceptadas todas las cookies.'
+    : 'Preferencias guardadas: solo cookies necesarias.', 'success');
+};
 
 
 /* ── Mobile Search Bar en home ──────────────────────────────── */

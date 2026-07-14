@@ -41,8 +41,8 @@
       <h1>Hablemos.<br/>Sin compromiso.</h1>
       <p>Llámanos, escríbenos o rellena el formulario. Te respondemos en menos de 24 horas.</p>
       <div class="page-hero-btns">
-        <a href="tel:+34600367742" class="btn btn-gold btn-lg">600 367 742 · 675 704 514</a>
-        <a href="https://wa.me/34600367742" class="btn btn-outline-light btn-lg" target="_blank">WhatsApp</a>
+        <a href="tel:+34675704514" class="btn btn-gold btn-lg">675 704 514 · Juan Cárdenas</a>
+        <a href="https://wa.me/34675704514" class="btn btn-outline-light btn-lg" target="_blank">WhatsApp</a>
       </div>
     </div>
   </div>
@@ -65,8 +65,7 @@
             </div>
             <div>
               <div style="font-weight:600;font-size:.9375rem;margin-bottom:.25rem">Teléfono</div>
-              <a href="tel:+34600367742" style="color:var(--gris-texto);font-size:.9375rem;display:block">600 367 742</a>
-              <a href="tel:+34675704514" style="color:var(--gris-texto);font-size:.9375rem;display:block">675 704 514 · Juan Sebastián</a>
+              <a href="tel:+34675704514" style="color:var(--gris-texto);font-size:.9375rem;display:block">675 704 514 · Juan Cárdenas</a>
             </div>
           </div>
           <div style="display:flex;gap:1rem;align-items:flex-start">
@@ -83,7 +82,7 @@
               <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="color:white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             </div>
             <div>
-              <div style="font-weight:600;font-size:.9375rem;margin-bottom:.25rem">WhatsApp · Juan Sebastián</div>
+              <div style="font-weight:600;font-size:.9375rem;margin-bottom:.25rem">WhatsApp · Juan Cárdenas</div>
               <a href="https://wa.me/34675704514" target="_blank" style="color:var(--gris-texto);font-size:.9375rem">Escríbenos directamente</a>
             </div>
           </div>
@@ -116,24 +115,24 @@
         <div style="background:var(--blanco);border-radius:var(--radius-lg);padding:2.5rem;box-shadow:var(--shadow-md)">
           <h3 style="font-size:1.35rem;margin-bottom:.5rem">Envíanos un mensaje</h3>
           <p style="font-size:.875rem;color:var(--gris-texto);margin-bottom:2rem">Te respondemos en menos de 24 horas en días laborables.</p>
-          <form onsubmit="return contactSubmit(event)">
+          <form id="contactForm" onsubmit="return contactSubmit(event)">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
               <div>
                 <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Nombre *</label>
-                <input type="text" required placeholder="Tu nombre" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--oro)'" onblur="this.style.borderColor='var(--crema-dark)'"/>
+                <input type="text" id="ct-nombre" required placeholder="Tu nombre" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--oro)'" onblur="this.style.borderColor='var(--crema-dark)'"/>
               </div>
               <div>
                 <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Teléfono *</label>
-                <input type="tel" required placeholder="600 000 000" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--oro)'" onblur="this.style.borderColor='var(--crema-dark)'"/>
+                <input type="tel" id="ct-tel" required placeholder="600 000 000" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--oro)'" onblur="this.style.borderColor='var(--crema-dark)'"/>
               </div>
             </div>
             <div style="margin-bottom:1rem">
               <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Email</label>
-              <input type="email" placeholder="tu@email.com" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--oro)'" onblur="this.style.borderColor='var(--crema-dark)'"/>
+              <input type="email" id="ct-email" placeholder="tu@email.com" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--oro)'" onblur="this.style.borderColor='var(--crema-dark)'"/>
             </div>
             <div style="margin-bottom:1rem">
               <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Motivo de consulta</label>
-              <select style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;background:white">
+              <select id="ct-motivo" style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;background:white">
                 <option>Quiero vender mi vivienda</option>
                 <option>Quiero comprar una vivienda</option>
                 <option>Asesoría hipotecaria</option>
@@ -143,13 +142,16 @@
             </div>
             <div style="margin-bottom:1.25rem">
               <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Mensaje</label>
-              <textarea placeholder="Cuéntanos en qué podemos ayudarte..." style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;resize:none;height:110px;transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--oro)'" onblur="this.style.borderColor='var(--crema-dark)'"></textarea>
+              <textarea id="ct-msg" placeholder="Cuéntanos en qué podemos ayudarte..." style="width:100%;padding:.85rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;outline:none;resize:none;height:110px;transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--oro)'" onblur="this.style.borderColor='var(--crema-dark)'"></textarea>
+            </div>
+            <div id="ct-ok" style="display:none;background:#ecfdf5;border:1px solid #6ee7b7;border-radius:var(--radius-sm);padding:1rem;margin-bottom:1rem;font-size:.875rem;color:#065f46">
+              ✓ Mensaje recibido. Juan Cárdenas te contactará en menos de 24 horas.
             </div>
             <div style="display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem;font-size:.8125rem;color:var(--gris-texto)">
               <input type="checkbox" required style="margin-top:2px;accent-color:var(--oro)"/>
               <span>He leído y acepto la <a href="privacidad.html" style="color:var(--oro)">política de privacidad</a> y el tratamiento de mis datos para atender mi consulta.</span>
             </div>
-            <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">Enviar mensaje →</button>
+            <button type="submit" id="ct-btn" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">Enviar mensaje →</button>
           </form>
         </div>
       </div>
@@ -168,10 +170,56 @@
   </div>
 </footer>
 
-<div class="whatsapp-float"><div class="whatsapp-tooltip">¿Hablamos?</div><a href="https://wa.me/34600367742" class="whatsapp-btn" target="_blank" rel="noopener"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
+<div class="whatsapp-float"><div class="whatsapp-tooltip">¿Hablamos?</div><a href="https://wa.me/34675704514" class="whatsapp-btn" target="_blank" rel="noopener"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
 
+<script src="js/supabase.js"></script>
+<script src="js/notify.js"></script>
 <script>
-function contactSubmit(e){e.preventDefault();const btn=e.target.querySelector('button[type=submit]');btn.textContent='✓ Mensaje enviado — Te llamamos pronto';btn.style.background='var(--negro)';btn.disabled=true;return false;}
+const CT_MOTIVO_TIPO = {
+  'Quiero vender mi vivienda': 'venta',
+  'Quiero comprar una vivienda': 'compra',
+  'Asesoría hipotecaria': 'hipoteca',
+  'Información sobre un inmueble concreto': 'info',
+  'Otro': 'info'
+};
+
+async function contactSubmit(e){
+  e.preventDefault();
+  const btn = document.getElementById('ct-btn');
+  const nombre = document.getElementById('ct-nombre').value.trim();
+  const tel    = document.getElementById('ct-tel').value.trim();
+  const email  = document.getElementById('ct-email').value.trim();
+  const motivo = document.getElementById('ct-motivo').value;
+  const msg    = document.getElementById('ct-msg').value.trim();
+  if(!nombre || !tel){ nhToast('Nombre y teléfono son obligatorios.'); return false; }
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+
+  const mensaje = (msg ? msg + ' · ' : '') + motivo;
+  const tipo = CT_MOTIVO_TIPO[motivo] || 'info';
+
+  try {
+    if(window.nhSupabase){
+      await window.nhSupabase.from('leads').insert({
+        nombre, telefono: tel, email: email || null,
+        mensaje, tipo, origen: 'web_contacto'
+      });
+    }
+    if(window.nhNotify) {
+      const clientTpl = tipo === 'compra' ? 'compra' : tipo === 'hipoteca' ? 'hipoteca' : 'contacto';
+      nhNotify({ nombre, telefono: tel, email, mensaje, tipo, template: clientTpl });
+    }
+    document.getElementById('ct-ok').style.display = 'block';
+    btn.style.display = 'none';
+    document.getElementById('contactForm').querySelectorAll('input,select,textarea').forEach(el => el.disabled = true);
+  } catch(_){
+    btn.disabled = false;
+    btn.textContent = 'Enviar mensaje →';
+    nhToast('Error al enviar. Llámanos al 675 704 514 o escríbenos por WhatsApp.');
+  }
+  return false;
+}
 </script>
 
 <!-- ═══ MOBILE BOTTOM NAV ═══ -->

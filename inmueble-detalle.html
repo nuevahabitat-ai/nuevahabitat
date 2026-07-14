@@ -24,7 +24,8 @@
     .badge-ret{background:#888;color:#fff}
 
     /* Sidebar sticky con scroll */
-    .det-sidebar-col{position:sticky;top:130px;max-height:calc(100vh - 140px);overflow-y:auto;display:flex;flex-direction:column;gap:1.25rem;scrollbar-width:thin;scrollbar-color:var(--crema-dark) transparent}
+    .det-sidebar-col{position:sticky;top:calc(var(--nav-h) + var(--det-bar-h) + 12px);max-height:calc(100vh - var(--nav-h) - var(--det-bar-h) - 24px);overflow-y:auto;display:flex;flex-direction:column;gap:1.25rem;scrollbar-width:thin;scrollbar-color:var(--crema-dark) transparent}
+    .det-page-pad{padding-top:var(--nav-h)}
     .det-sidebar-col::-webkit-scrollbar{width:4px}
     .det-sidebar-col::-webkit-scrollbar-thumb{background:var(--crema-dark);border-radius:4px}
 
@@ -172,10 +173,10 @@
       </nav>
 
       <!-- Precio -->
-      <div id="det-header-price" style="font-family:var(--font-serif);font-size:1.45rem;font-weight:700;color:var(--negro);white-space:nowrap;flex-shrink:0">–</div>
+      <div id="det-header-price" class="prop-detail-price">–</div>
 
       <!-- Acciones -->
-      <div style="display:flex;align-items:center;gap:.5rem;flex-shrink:0">
+      <div class="prop-detail-actions">
 
         <!-- WhatsApp -->
         <a id="det-wa-header" href="#" target="_blank"
@@ -202,21 +203,21 @@
 </div>
 
 <!-- LOADING -->
-<div class="det-loading" id="det-loading" style="background:var(--crema);padding-top:78px">
+<div class="det-loading det-page-pad" id="det-loading" style="background:var(--crema)">
   <div class="det-spinner"></div>
   <div style="font-size:.9rem">Cargando ficha del inmueble…</div>
 </div>
 
 <!-- ERROR -->
-<div class="det-error" id="det-error" style="display:none;background:var(--crema);padding-top:80px">
+<div class="det-error det-page-pad" id="det-error" style="display:none;background:var(--crema)">
   <h2>Inmueble no encontrado</h2>
   <p>No pudimos cargar la información de este inmueble.</p>
   <a href="inmuebles.html" class="btn btn-gold" style="margin-top:1.5rem;display:inline-flex">Ver todos los inmuebles</a>
 </div>
 
 <!-- GALERÍA -->
-<div id="det-gallery-wrap" style="display:none;background:var(--crema);padding-top:78px">
-  <div class="container" style="padding-top:1.25rem;padding-bottom:1.25rem">
+<div id="det-gallery-wrap" style="display:none;background:var(--crema)">
+  <div class="container" style="padding-top:1rem;padding-bottom:1.25rem">
     <div class="prop-gallery" id="det-gallery">
       <div class="prop-gallery-main" onclick="openLightbox(0)">
         <img id="det-img-main" src="" alt="Inmueble"/>
@@ -364,7 +365,7 @@
               <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
               WhatsApp
             </button>
-            <a href="tel:+34675704514" class="btn" style="width:100%;justify-content:center;margin-top:.35rem;border:1.5px solid var(--crema-dark);color:var(--negro)">675 704 514 · Juan Sebastián</a>
+            <a href="tel:+34675704514" class="btn" style="width:100%;justify-content:center;margin-top:.35rem;border:1.5px solid var(--crema-dark);color:var(--negro)">675 704 514 · Juan Cárdenas</a>
             <div class="prop-ref" id="det-ref" style="margin-top:.75rem;font-size:.75rem;color:var(--gris-medio)"></div>
           </form>
           <div id="det-form-ok" style="display:none;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.3);color:#16a34a;border-radius:6px;padding:.65rem;font-size:.8rem;text-align:center;margin-top:.5rem">✅ Mensaje enviado. Te contactamos pronto.</div>
@@ -448,7 +449,7 @@
 <!-- WA flotante -->
 <div class="whatsapp-float">
   <div class="whatsapp-tooltip">¿Hablamos?</div>
-  <a href="https://wa.me/34600367742" class="whatsapp-btn" target="_blank" rel="noopener">
+  <a href="https://wa.me/34675704514" class="whatsapp-btn" target="_blank" rel="noopener">
     <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
 </div>
@@ -551,6 +552,11 @@ async function loadProperty(){
     const { data, error } = await query.single();
     if(error || !data){ showError(); return; }
 
+    if (data.cartera_privada) {
+      const { data: { user } } = await window.nhSupabase.auth.getUser();
+      if (!user) { showPrivateListing(); return; }
+    }
+
     currentProp = data;
     renderProperty(data);
     loadSimilar(data);
@@ -564,21 +570,74 @@ function showError(){
   document.getElementById('det-error').style.display   = 'block';
 }
 
+function showPrivateListing(){
+  document.getElementById('det-loading').style.display = 'none';
+  const el = document.getElementById('det-error');
+  el.querySelector('h2').textContent = 'Cartera privada';
+  el.querySelector('p').textContent = 'Este inmueble solo está disponible para compradores registrados en NuevaHabitat.';
+  const link = el.querySelector('a');
+  link.href = 'registro.html?tipo=comprar';
+  link.textContent = 'Crear cuenta de comprador →';
+  el.style.display = 'block';
+}
+
+function waBriefDesc(text, max = 140) {
+  if (!text) return '';
+  const clean = String(text).replace(/\s+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > 80 ? cut.slice(0, lastSpace) : cut).trim() + '…';
+}
+
+function buildWaShareMsg(p, titulo, precio, loc) {
+  const precioStr = precio ? precio.toLocaleString('es-ES') + ' EUR' : '';
+  const stats = [
+    p.m2_utiles ? `${p.m2_utiles} m²` : null,
+    p.habitaciones ? `${p.habitaciones} hab.` : null,
+    p.banos ? `${p.banos} baño${p.banos > 1 ? 's' : ''}` : null,
+  ].filter(Boolean).join(' · ');
+  const desc = waBriefDesc(p.descripcion);
+  let msg = 'Somos NUEVAHABITAT, te presentamos este inmueble que tenemos en venta:\n\n';
+  msg += `${titulo}${precioStr ? ' — ' + precioStr : ''}\n`;
+  if (loc) msg += `📍 ${loc}\n`;
+  if (stats) msg += `${stats}\n`;
+  if (desc) msg += `\n${desc}\n`;
+  msg += `\n${location.href}`;
+  return encodeURIComponent(msg);
+}
+
 /* ═══════════════════════════════════════════════════════════════
    RENDER
 ═══════════════════════════════════════════════════════════════ */
 function renderProperty(p){
   /* ── Título / Meta ── */
   document.title = `${p.titulo||'Inmueble'} · NuevaHabitat`;
+  const locEarly = [p.barrio, p.municipio].filter(Boolean).join(', ') || 'Barcelona';
+  const precioEarly = parseFloat(p.precio)||0;
+  let metaDesc = document.querySelector('meta[name="description"]');
+  if (!metaDesc) { metaDesc = document.createElement('meta'); metaDesc.name = 'description'; document.head.appendChild(metaDesc); }
+  metaDesc.content = [p.titulo, locEarly, precioEarly ? precioEarly.toLocaleString('es-ES') + ' €' : ''].filter(Boolean).join(' · ');
+  let ld = document.getElementById('ld-json');
+  if (!ld) { ld = document.createElement('script'); ld.id = 'ld-json'; ld.type = 'application/ld+json'; document.head.appendChild(ld); }
+  ld.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateListing',
+    name: p.titulo || 'Inmueble',
+    description: (p.descripcion || '').slice(0, 300),
+    url: location.href,
+    offers: precioEarly ? { '@type': 'Offer', price: precioEarly, priceCurrency: 'EUR' } : undefined,
+    address: { '@type': 'PostalAddress', addressLocality: p.municipio || 'Barcelona', addressRegion: p.barrio || '' }
+  });
 
   /* ── Breadcrumb y header ── */
-  const loc = [p.barrio, p.municipio].filter(Boolean).join(', ') || 'Barcelona';
+  const loc = locEarly;
   document.getElementById('det-breadcrumb-loc').textContent = loc;
   const precio = parseFloat(p.precio)||0;
   document.getElementById('det-header-price').textContent = precio ? precio.toLocaleString('es-ES')+' EUR' : '';
   // WhatsApp del header con el título del inmueble
   const titulo = p.titulo||'Inmueble';
-  const waMsg  = encodeURIComponent(`Hola Juan, te comparto este inmueble: ${titulo} — ${precio?precio.toLocaleString('es-ES')+' EUR':''}\n${location.href}`);
+  const waMsg  = buildWaShareMsg(p, titulo, precio, loc);
   document.getElementById('det-wa-header').href = `https://wa.me/34675704514?text=${waMsg}`;
   document.getElementById('det-header').style.display = '';
 
@@ -743,12 +802,13 @@ function renderProperty(p){
 ═══════════════════════════════════════════════════════════════ */
 async function loadSimilar(current){
   try {
-    const { data } = await window.nhSupabase
-      .from('inmuebles')
-      .select('id,titulo,precio,municipio,barrio,imagen_principal,imagenes,ref')
+    const cols = 'id,titulo,precio,municipio,barrio,imagen_principal,imagenes,ref';
+    const q = window.nhAuth
+      ? nhAuth.fetchInmuebles(cols, { limit: 4 })
+      : window.nhSupabase.from('inmuebles').select(cols).limit(4);
+    const { data } = await q
       .neq('id', current.id)
-      .eq('estado','disponible')
-      .limit(4);
+      .eq('estado','disponible');
     if(!data||!data.length) return;
 
     const track = document.getElementById('simTrack');
@@ -795,14 +855,15 @@ async function sendContact(e){
   try {
     const leadMsg = msg || `Solicita info: ${titulo} (${ref})`;
     await window.nhSupabase.from('leads').insert({
-      nombre, telefono: tel, email: email||null, mensaje: leadMsg, tipo: 'contacto'
+      nombre, telefono: tel, email: email||null, mensaje: leadMsg, tipo: 'info', origen: 'web_inmueble',
+      inmueble_id: currentProp?.id || null
     });
-    if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje:leadMsg, tipo:'contacto', inmueble:`${titulo} (${ref})` });
+    if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje:leadMsg, tipo:'contacto', template:'contacto', inmueble:`${titulo} (${ref})` });
     document.getElementById('det-form-ok').style.display = 'block';
     btn.style.display = 'none';
   } catch(err){
     btn.disabled = false; btn.textContent = 'Solicitar visita';
-    alert('Error al enviar. Inténtalo de nuevo.');
+    nhToast('Error al enviar. Inténtalo de nuevo.');
   }
 }
 
@@ -821,28 +882,71 @@ async function concertarVisita(){
   const nombre = document.getElementById('vs-nombre').value.trim();
   const tel    = document.getElementById('vs-telefono').value.trim();
   const email  = document.getElementById('vs-email').value.trim();
-  if(!tel)      { alert('El teléfono es obligatorio.'); return; }
-  if(!visitDay) { alert('Selecciona un día.'); return; }
-  if(!visitHour){ alert('Selecciona un rango horario.'); return; }
+  if(!tel)      { nhToast('El teléfono es obligatorio.'); return; }
+  if(!visitDay) { nhToast('Selecciona un día.'); return; }
+  if(!visitHour){ nhToast('Selecciona un rango horario.'); return; }
+  if(!currentProp?.id){ nhToast('Inmueble no disponible.'); return; }
 
   const btn = document.getElementById('vs-btn');
   btn.disabled = true; btn.innerHTML = '⏳ Enviando…';
 
-  const ref    = currentProp ? (currentProp.ref||currentProp.id||'') : '';
-  const titulo = currentProp ? (currentProp.titulo||'') : '';
+  const ref    = currentProp.ref || currentProp.id || '';
+  const titulo = currentProp.titulo || '';
   const mensaje= `Visita: ${titulo} (${ref}) · ${visitDay} ${visitHour}`;
+  const fechaVisita = parseVisitaFecha(visitDay, visitHour);
+
+  let sessionUser = null;
+  try {
+    const { data: { user } } = await window.nhSupabase.auth.getUser();
+    sessionUser = user;
+  } catch(_){}
 
   try {
-    await window.nhSupabase.from('leads').insert({
-      nombre: nombre||'Sin nombre', telefono: tel, email: email||null, mensaje, tipo:'visita'
+    const { data: leadRow, error: leadErr } = await window.nhSupabase.from('leads').insert({
+      nombre: nombre || 'Sin nombre',
+      telefono: tel,
+      email: email || null,
+      mensaje,
+      tipo: 'info',
+      origen: 'web_visita',
+      inmueble_id: currentProp.id,
+      perfil_id: sessionUser?.id || null
+    }).select('id').single();
+
+    if (leadErr) throw leadErr;
+
+    const { error: visErr } = await window.nhSupabase.from('visitas').insert({
+      inmueble_id: currentProp.id,
+      lead_id: leadRow?.id || null,
+      perfil_id: sessionUser?.id || null,
+      estado: 'pendiente',
+      fecha_hora: fechaVisita.toISOString(),
+      notas: mensaje
     });
-    if(window.nhNotify) nhNotify({ nombre:nombre||'Sin nombre', telefono:tel, email, mensaje, tipo:'visita', inmueble:`${titulo} (${ref})` });
+    if (visErr) throw visErr;
+
+    if(window.nhNotify) nhNotify({ nombre:nombre||'Sin nombre', telefono:tel, email, mensaje, tipo:'visita', template:'visita', inmueble:`${titulo} (${ref})` });
     document.getElementById('vs-ok').style.display = 'block';
     btn.style.display = 'none';
   } catch(e){
     btn.disabled = false; btn.innerHTML = '📅 Concertar visita';
-    alert('Error: '+(e.message||'Inténtalo de nuevo.'));
+    nhToast('Error: '+(e.message||'Inténtalo de nuevo.'));
   }
+}
+
+function parseVisitaFecha(dayName, hourRange) {
+  const map = { 'Lunes': 1, 'Martes': 2, 'Miércoles': 3, 'Jueves': 4, 'Viernes': 5, 'Sábado': 6 };
+  const target = map[dayName] || 1;
+  const d = new Date();
+  const cur = d.getDay() === 0 ? 7 : d.getDay();
+  let diff = target - cur;
+  if (diff <= 0) diff += 7;
+  d.setDate(d.getDate() + diff);
+  let h = 10;
+  if (hourRange && hourRange.startsWith('12')) h = 14;
+  if (hourRange && hourRange.startsWith('16')) h = 18;
+  d.setHours(h, 0, 0, 0);
+  return d;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -910,7 +1014,7 @@ async function sendHcLead(){
   const nombre = document.getElementById('hc-m-nombre').value.trim();
   const tel    = document.getElementById('hc-m-tel').value.trim();
   const email  = document.getElementById('hc-m-email').value.trim();
-  if(!nombre||!tel){ alert('Nombre y teléfono son obligatorios.'); return; }
+  if(!nombre||!tel){ nhToast('Nombre y teléfono son obligatorios.'); return; }
   const anos  = document.getElementById('hc-anos-range').value;
   const cuota = document.getElementById('hc-cuota').textContent;
   const ref   = currentProp ? (currentProp.ref||currentProp.id||'') : '';
@@ -921,7 +1025,7 @@ async function sendHcLead(){
     if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje, tipo:'hipoteca', inmueble:`${titulo} (${ref})` });
     document.getElementById('hc-m-ok').style.display = 'block';
     document.querySelector('.hc-modal-btn').style.display = 'none';
-  } catch(e){ alert('Error: '+(e.message||'Inténtalo de nuevo.')); }
+  } catch(e){ nhToast('Error: '+(e.message||'Inténtalo de nuevo.')); }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -984,7 +1088,7 @@ function updateFavBtn(){
 }
 
 async function toggleFavorito(){
-  if(!window.nhSupabase){ alert('Inicia sesión para guardar favoritos.'); return; }
+  if(!window.nhSupabase){ nhToast('Inicia sesión para guardar favoritos.', 'info'); return; }
   const { data: { session } } = await window.nhSupabase.auth.getSession();
   if(!session){ window.location.href = 'login.html?redirect=' + encodeURIComponent(location.href); return; }
   if(!currentProp) return;

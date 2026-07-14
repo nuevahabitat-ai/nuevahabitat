@@ -11,13 +11,21 @@
     body{background:var(--crema);min-height:100vh}
 
     /* ── Header ── */
-    .p-header{background:var(--negro);padding:1.1rem 0;position:sticky;top:0;z-index:100}
-    .p-header-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    .p-user{display:flex;align-items:center;gap:.75rem;color:#fff;font-size:.875rem}
-    .p-avatar{width:36px;height:36px;border-radius:50%;background:var(--oro);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0}
-    .p-logout{color:rgba(255,255,255,.45);font-size:.8rem;text-decoration:none;margin-left:.25rem}
-    .p-logout:hover{color:rgba(255,255,255,.75)}
-    .p-tipo-badge{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;background:rgba(184,147,106,.2);color:var(--oro);padding:.25rem .6rem;border-radius:20px;margin-left:.5rem}
+    .p-header{background:var(--negro);padding:.85rem 0;position:sticky;top:0;z-index:100}
+    .p-header-inner{display:flex;align-items:center;justify-content:space-between;gap:.75rem}
+    .p-brand{display:flex;align-items:center;min-width:0;flex-shrink:1}
+    .p-brand .nav-logo img{display:none}
+    .p-brand .nav-logo-divider{display:none}
+    .p-brand .logo-name{font-size:.95rem;white-space:nowrap}
+    .p-brand .logo-sub{font-size:.58rem}
+    .p-user{display:flex;align-items:center;gap:.5rem;min-width:0;flex-shrink:0}
+    .p-user-info{display:flex;align-items:center;gap:.5rem;min-width:0}
+    .p-user-text{display:flex;flex-direction:column;gap:.15rem;min-width:0}
+    .p-avatar{width:32px;height:32px;border-radius:50%;background:var(--oro);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;color:#fff;flex-shrink:0}
+    .p-user-name{color:#fff;font-size:.78rem;font-weight:500;max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2}
+    .p-tipo-badge{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(184,147,106,.2);color:var(--oro);padding:.15rem .45rem;border-radius:20px;align-self:flex-start}
+    .p-logout-btn{flex-shrink:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.72rem;font-weight:600;padding:.45rem .65rem;border-radius:6px;cursor:pointer;font-family:var(--font-sans);white-space:nowrap}
+    .p-logout-btn:hover{background:rgba(255,255,255,.18)}
     [data-only]{/* controlado por JS */}
 
     /* ── Layout ── */
@@ -110,9 +118,24 @@
 
     @media(max-width:900px){
       .p-grid{grid-template-columns:1fr}
-      .p-sidebar{position:static}
+      .p-sidebar{position:fixed;left:0;top:0;bottom:0;width:min(280px,88vw);z-index:200;transform:translateX(-105%);transition:transform .25s ease;overflow-y:auto;box-shadow:var(--shadow-lg);border-radius:0}
+      .p-sidebar.open{transform:translateX(0)}
+      .p-sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:199}
+      .p-sidebar-backdrop.open{display:block}
+      .p-mobile-menu{display:inline-flex!important}
       .p-stats{grid-template-columns:1fr 1fr}
       .p-form-grid{grid-template-columns:1fr}
+      .p-main{padding:1.5rem 0 5rem}
+      .p-user-name{max-width:90px}
+    }
+    .p-mobile-menu{display:none;align-items:center;gap:.4rem;padding:.55rem .9rem;border:1.5px solid var(--crema-dark);border-radius:8px;background:var(--blanco);font-size:.85rem;cursor:pointer;margin-bottom:1rem}
+    @media(min-width:901px){
+      .p-brand .nav-logo img{display:block;height:40px;mix-blend-mode:screen}
+      .p-brand .nav-logo-divider{display:block}
+      .p-user-name{max-width:160px;font-size:.875rem}
+      .p-avatar{width:36px;height:36px;font-size:.85rem}
+      .p-tipo-badge{font-size:.65rem;padding:.25rem .6rem}
+      .p-logout-btn{font-size:.78rem;padding:.5rem .85rem}
     }
   </style>
 </head>
@@ -122,16 +145,20 @@
 <div class="p-header">
   <div class="container">
     <div class="p-header-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="imagenes/Logo/logosinfondo2.png" alt="NH" style="height:40px;mix-blend-mode:screen"/>
+      <a href="index.html" class="nav-logo p-brand">
+        <img src="imagenes/Logo/logosinfondo2.png" alt="NH"/>
         <div class="nav-logo-divider"></div>
         <div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub" id="panelSub">Mi panel</span></div>
       </a>
       <div class="p-user">
-        <div class="p-avatar" id="pAvatar">?</div>
-        <span id="pUserName">Mi cuenta</span>
-        <span class="p-tipo-badge" id="panelTipoBadge">Panel</span>
-        <a href="#" class="p-logout" onclick="doLogout()">Cerrar sesión</a>
+        <div class="p-user-info">
+          <div class="p-avatar" id="pAvatar">?</div>
+          <div class="p-user-text">
+            <span class="p-user-name" id="pUserName" title="">Mi cuenta</span>
+            <span class="p-tipo-badge" id="panelTipoBadge">Panel</span>
+          </div>
+        </div>
+        <button type="button" class="p-logout-btn" onclick="doLogout()">Salir</button>
       </div>
     </div>
   </div>
@@ -140,6 +167,8 @@
 <!-- Main -->
 <div class="p-main">
   <div class="container">
+    <button type="button" class="p-mobile-menu" id="pMenuBtn" aria-label="Menú expediente">☰ Menú</button>
+    <div class="p-sidebar-backdrop" id="pSidebarBackdrop"></div>
     <div class="p-grid">
 
       <!-- Sidebar -->
@@ -247,7 +276,7 @@
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
               Estado de tu proceso de compra
             </div>
-            <div class="p-timeline">
+            <div class="p-timeline" id="timelineComprador">
               <div class="p-step">
                 <div class="p-step-dot dot-done">✓</div>
                 <div class="p-step-body">
@@ -293,7 +322,7 @@
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
               Estado de tu proceso de venta
             </div>
-            <div class="p-timeline">
+            <div class="p-timeline" id="timelineVendedor">
               <div class="p-step">
                 <div class="p-step-dot dot-done">✓</div>
                 <div class="p-step-body">
@@ -420,38 +449,8 @@
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
               Contratos y arras
             </div>
-            <!-- Lista de documentos tipo contrato -->
-            <div style="display:flex;flex-direction:column;gap:.75rem" id="docContratos">
-              <div class="p-doc-row">
-                <div class="p-doc-icon">
-                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                </div>
-                <div class="p-doc-info">
-                  <div class="p-doc-name">Contrato de encargo</div>
-                  <div class="p-doc-status p-doc-pending">Pendiente de firma</div>
-                </div>
-                <a href="https://wa.me/34675704514?text=Hola%2C%20necesito%20el%20contrato%20de%20encargo" target="_blank" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Solicitar</a>
-              </div>
-              <div class="p-doc-row">
-                <div class="p-doc-icon">
-                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                </div>
-                <div class="p-doc-info">
-                  <div class="p-doc-name">Contrato de arras</div>
-                  <div class="p-doc-status p-doc-pending">Pendiente</div>
-                </div>
-                <a href="https://wa.me/34675704514?text=Hola%2C%20necesito%20el%20contrato%20de%20arras" target="_blank" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Solicitar</a>
-              </div>
-              <div class="p-doc-row">
-                <div class="p-doc-icon">
-                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                </div>
-                <div class="p-doc-info">
-                  <div class="p-doc-name">Escritura notarial</div>
-                  <div class="p-doc-status p-doc-pending">Pendiente</div>
-                </div>
-                <a href="https://wa.me/34675704514?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20la%20escritura" target="_blank" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Solicitar</a>
-              </div>
+            <div style="display:flex;flex-direction:column;gap:.75rem" id="docContratosList">
+              <p style="font-size:.85rem;color:var(--gris-medio)">Cargando documentos…</p>
             </div>
             <p style="font-size:.8rem;color:var(--gris-medio);margin-top:1.25rem">Tus documentos firmados aparecerán aquí. Para cualquier gestión, contacta con tu agente.</p>
           </div>
@@ -472,37 +471,8 @@
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
               Tasación y notas del agente
             </div>
-            <div style="display:flex;flex-direction:column;gap:.75rem">
-              <div class="p-doc-row">
-                <div class="p-doc-icon" style="background:rgba(99,102,241,.08)">
-                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#6366f1" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                </div>
-                <div class="p-doc-info">
-                  <div class="p-doc-name">Informe de valoración del inmueble</div>
-                  <div class="p-doc-status p-doc-pending">Solicitalo a tu agente</div>
-                </div>
-                <a href="https://wa.me/34675704514?text=Hola%20Juan%2C%20necesito%20un%20informe%20de%20valoraci%C3%B3n" target="_blank" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Pedir</a>
-              </div>
-              <div class="p-doc-row">
-                <div class="p-doc-icon" style="background:rgba(16,185,129,.08)">
-                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                </div>
-                <div class="p-doc-info">
-                  <div class="p-doc-name">Notas del mercado — Julio 2026</div>
-                  <div class="p-doc-status" style="color:#10b981">Disponible</div>
-                </div>
-                <a href="https://wa.me/34675704514?text=Hola%20Juan%2C%20me%20interesa%20el%20informe%20de%20mercado" target="_blank" class="btn btn-gold" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Ver</a>
-              </div>
-              <div class="p-doc-row">
-                <div class="p-doc-icon" style="background:rgba(245,158,11,.08)">
-                  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#f59e0b" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div class="p-doc-info">
-                  <div class="p-doc-name">Guía de compra para primera vivienda</div>
-                  <div class="p-doc-status" style="color:#f59e0b">PDF disponible</div>
-                </div>
-                <a href="https://wa.me/34675704514?text=Hola%2C%20quiero%20la%20gu%C3%ADa%20de%20compra" target="_blank" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Descargar</a>
-              </div>
+            <div style="display:flex;flex-direction:column;gap:.75rem" id="docTasacionList">
+              <p style="font-size:.85rem;color:var(--gris-medio)">Cargando…</p>
             </div>
           </div>
         </div>
@@ -555,6 +525,7 @@
 </div>
 
 <script src="js/supabase.js"></script>
+<script src="js/notify.js"></script>
 <script src="js/main.js"></script>
 <script>
 /* ─── Navegación entre secciones ─────────────────────────── */
@@ -570,10 +541,113 @@ document.querySelectorAll('.p-nav-btn').forEach(btn => {
     const el = document.getElementById('sec-' + sec);
     if (el) el.classList.add('active');
     if (sec === 'visitas') loadVisitas();
+    if (sec === 'visitas-vendedor') loadVisitasVendedor();
     if (sec === 'favoritos') loadFavoritos();
     if (sec === 'publicacion') loadPublicacion();
+    if (sec === 'contratos' || sec === 'tasacion') loadDocumentos();
+    document.querySelector('.p-sidebar')?.classList.remove('open');
+    document.getElementById('pSidebarBackdrop')?.classList.remove('open');
   });
 });
+
+document.getElementById('pMenuBtn')?.addEventListener('click', () => {
+  document.querySelector('.p-sidebar')?.classList.toggle('open');
+  document.getElementById('pSidebarBackdrop')?.classList.toggle('open');
+});
+document.getElementById('pSidebarBackdrop')?.addEventListener('click', () => {
+  document.querySelector('.p-sidebar')?.classList.remove('open');
+  document.getElementById('pSidebarBackdrop')?.classList.remove('open');
+});
+
+const COMPRADOR_STEPS = ['registro', 'reunion', 'busqueda', 'visitas', 'arras'];
+const VENDEDOR_STEPS  = ['registro', 'valoracion', 'fotos', 'publicacion', 'visitas', 'escritura'];
+
+function renderTimeline(containerId, steps, currentKey) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const idx = Math.max(0, steps.indexOf(currentKey));
+  el.querySelectorAll('.p-step').forEach((step, i) => {
+    const dot = step.querySelector('.p-step-dot');
+    if (!dot) return;
+    dot.classList.remove('dot-done', 'dot-now', 'dot-pend');
+    if (i < idx) { dot.classList.add('dot-done'); dot.textContent = '✓'; }
+    else if (i === idx) { dot.classList.add('dot-now'); dot.textContent = String(i + 1); }
+    else { dot.classList.add('dot-pend'); dot.textContent = String(i + 1); }
+  });
+}
+
+function docRowHtml(d, href) {
+  const st = d.estado === 'firmado' || d.estado === 'disponible' ? 'p-doc-status' : 'p-doc-status p-doc-pending';
+  const stColor = d.estado === 'disponible' || d.estado === 'firmado' ? ' style="color:#10b981"' : '';
+  const btn = href
+    ? `<a href="${href}" target="_blank" rel="noopener" class="btn btn-gold" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Ver / Descargar</a>`
+    : `<a href="https://wa.me/34675704514?text=${encodeURIComponent('Hola Juan, necesito: ' + d.nombre)}" target="_blank" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Solicitar</a>`;
+  return `<div class="p-doc-row">
+    <div class="p-doc-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+    <div class="p-doc-info"><div class="p-doc-name">${d.nombre}</div><div class="${st}"${stColor}>${d.estado || 'pendiente'}</div></div>
+    ${btn}
+  </div>`;
+}
+
+async function resolveDocUrl(url) {
+  if (!url) return null;
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  if (!window.nhSupabase) return null;
+  const { data, error } = await window.nhSupabase.storage.from('documentos-clientes').createSignedUrl(url, 3600);
+  return error ? null : data?.signedUrl || null;
+}
+
+async function loadDocumentos() {
+  if (!window.nhSupabase || !currentUser?.email) return;
+  const email = currentUser.email;
+  const { data } = await window.nhSupabase.from('cliente_documentos')
+    .select('*').ilike('cliente_email', email).order('created_at', { ascending: false });
+
+  const contratos = (data || []).filter(d => ['contrato_encargo', 'contrato_arras', 'escritura', 'contrato'].includes(d.tipo));
+  const tasacion  = (data || []).filter(d => !['contrato_encargo', 'contrato_arras', 'escritura', 'contrato'].includes(d.tipo));
+
+  const cEl = document.getElementById('docContratosList');
+  const tEl = document.getElementById('docTasacionList');
+  const emptyC = '<p style="font-size:.85rem;color:var(--gris-medio)">Aún no hay contratos. Juan Cárdenas los subirá aquí cuando estén listos.</p>';
+  const emptyT = '<p style="font-size:.85rem;color:var(--gris-medio)">Sin informes todavía. Pide tu valoración o notas de mercado por WhatsApp.</p>';
+
+  if (cEl) {
+    if (!contratos.length) cEl.innerHTML = emptyC;
+    else {
+      const rows = await Promise.all(contratos.map(async d => docRowHtml(d, await resolveDocUrl(d.url))));
+      cEl.innerHTML = rows.join('');
+    }
+  }
+  if (tEl) {
+    if (!tasacion.length) tEl.innerHTML = emptyT;
+    else {
+      const rows = await Promise.all(tasacion.map(async d => docRowHtml(d, await resolveDocUrl(d.url))));
+      tEl.innerHTML = rows.join('');
+    }
+  }
+}
+
+async function loadExpedienteTimeline(tipo) {
+  if (!window.nhSupabase || !currentUser?.email) return;
+  const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
+  const { data } = await window.nhSupabase.from(tabla)
+    .select('estado_expediente, activo, inmueble_ref').eq('email', currentUser.email).maybeSingle();
+
+  let estado = data?.estado_expediente || 'registro';
+  const visitas = parseInt(document.getElementById(tipo === 'vendedor' ? 'statVisitasV' : 'statVisitas')?.textContent || '0', 10);
+  const favs = parseInt(document.getElementById('statFavs')?.textContent || '0', 10);
+
+  if (tipo === 'comprador') {
+    if (visitas > 0 && COMPRADOR_STEPS.indexOf(estado) < COMPRADOR_STEPS.indexOf('visitas')) estado = 'visitas';
+    else if (favs > 0 && COMPRADOR_STEPS.indexOf(estado) < COMPRADOR_STEPS.indexOf('busqueda')) estado = 'busqueda';
+    else if (data?.activo !== false && COMPRADOR_STEPS.indexOf(estado) < COMPRADOR_STEPS.indexOf('reunion')) estado = 'reunion';
+    renderTimeline('timelineComprador', COMPRADOR_STEPS, estado);
+  } else {
+    if (visitas > 0 && VENDEDOR_STEPS.indexOf(estado) < VENDEDOR_STEPS.indexOf('visitas')) estado = 'visitas';
+    else if (data?.inmueble_ref && VENDEDOR_STEPS.indexOf(estado) < VENDEDOR_STEPS.indexOf('publicacion')) estado = 'publicacion';
+    renderTimeline('timelineVendedor', VENDEDOR_STEPS, estado);
+  }
+}
 
 function applyPanelMode(tipo) {
   userTipo = tipo;
@@ -610,21 +684,53 @@ function applyPanelMode(tipo) {
   document.querySelector('.p-nav-btn[data-sec="resumen"]').classList.add('active');
 }
 
-/* ─── Auth y perfil ───────────────────────────────────────── */
+function headerDisplayName(user) {
+  let n = user?.user_metadata?.nombre || '';
+  if (n.includes('@')) n = n.split('@')[0];
+  if (!n) n = user?.email?.split('@')[0] || 'Cliente';
+  n = n.trim().split(/\s+/)[0];
+  if (n.length > 14) n = n.slice(0, 12) + '…';
+  return n.charAt(0).toUpperCase() + n.slice(1);
+}
+
+function setHeaderUser(user) {
+  const display = headerDisplayName(user);
+  const el = document.getElementById('pUserName');
+  el.textContent = display;
+  el.title = user.email || display;
+  document.getElementById('pAvatar').textContent = display.slice(0, 2).toUpperCase();
+}
+
 let currentUser = null;
 
 async function initPanel() {
   if (!window.nhSupabase) { document.addEventListener('supabase:ready', initPanel); return; }
 
-  const { data: { session } } = await window.nhSupabase.auth.getSession();
-  if (!session) { window.location.href = 'login.html'; return; }
+  const { data: { user }, error } = await window.nhSupabase.auth.getUser();
+  if (error || !user) { window.location.replace('login.html'); return; }
 
-  currentUser = session.user;
+  if (nhAuth.isAdmin(user)) { window.location.replace('admin-panel.html'); return; }
+
+  window.nhSupabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_OUT' || !session?.user) {
+      window.location.replace('login.html?logout=1');
+      return;
+    }
+    if (nhAuth.isAdmin(session.user)) {
+      window.location.replace('admin-panel.html');
+      return;
+    }
+    if (session.user.id !== currentUser?.id) {
+      currentUser = session.user;
+      setHeaderUser(session.user);
+    }
+  });
+
+  currentUser = user;
+  await nhAuth.ensureClientRecord(user);
   const nombre = currentUser.user_metadata?.nombre || currentUser.email?.split('@')[0] || 'Cliente';
-  const initials = nombre.slice(0, 2).toUpperCase();
 
-  document.getElementById('pAvatar').textContent = initials;
-  document.getElementById('pUserName').textContent = nombre;
+  setHeaderUser(currentUser);
 
   // Tipo de panel: URL param > metadata > localStorage
   const urlTipo = new URLSearchParams(location.search).get('tipo');
@@ -648,9 +754,31 @@ async function initPanel() {
   if (currentUser.user_metadata?.telefono) {
     document.getElementById('pf-tel').value = currentUser.user_metadata.telefono;
   }
+  if (currentUser.user_metadata?.dni) {
+    document.getElementById('pf-dni').value = currentUser.user_metadata.dni;
+  }
+  const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
+  const { data: clienteRow } = await window.nhSupabase.from(tabla)
+    .select('telefono,dni').eq('email', currentUser.email).maybeSingle();
+  if (clienteRow?.telefono && !document.getElementById('pf-tel').value) {
+    document.getElementById('pf-tel').value = clienteRow.telefono;
+  }
+  if (clienteRow?.dni) {
+    document.getElementById('pf-dni').value = clienteRow.dni;
+  }
 
-  if (tipo === 'comprador') loadRecentProps();
-  else loadPublicacion();
+  if (tipo === 'comprador') {
+    loadRecentProps();
+    await loadDashboardStats('comprador');
+    loadVisitas();
+    await loadExpedienteTimeline('comprador');
+  } else {
+    loadPublicacion();
+    await loadDashboardStats('vendedor');
+    loadVisitasVendedor();
+    await loadExpedienteTimeline('vendedor');
+  }
+  loadDocumentos();
 }
 
 async function doLogout() {
@@ -660,20 +788,98 @@ async function doLogout() {
 
 async function saveProfile() {
   const nombre = document.getElementById('pf-nombre').value.trim();
+  const telefono = document.getElementById('pf-tel').value.trim();
+  const dni = document.getElementById('pf-dni').value.trim();
   if (!window.nhSupabase || !currentUser) return;
-  await window.nhSupabase.auth.updateUser({ data: { nombre } });
-  document.getElementById('pUserName').textContent = nombre;
-  document.getElementById('pAvatar').textContent = nombre.slice(0, 2).toUpperCase();
+  await window.nhSupabase.auth.updateUser({ data: { nombre, telefono, dni: dni || null } });
+  await window.nhSupabase.from('perfiles').upsert({
+    id: currentUser.id,
+    nombre,
+    telefono: telefono || null
+  }, { onConflict: 'id' });
+  const urlTipo = new URLSearchParams(location.search).get('tipo');
+  const tipo = (urlTipo === 'vendedor' || urlTipo === 'comprador') ? urlTipo : nhAuth.getUserTipo(currentUser);
+  const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
+  await window.nhSupabase.from(tabla).update({
+    nombre,
+    telefono: telefono || null,
+    dni: dni || null
+  }).eq('email', currentUser.email);
+  if (currentUser) currentUser.user_metadata = { ...currentUser.user_metadata, nombre, telefono, dni: dni || null };
+  setHeaderUser(currentUser);
   document.getElementById('pf-ok').style.display = 'inline';
   setTimeout(() => document.getElementById('pf-ok').style.display = 'none', 3000);
 }
 
+/* ─── Stats del resumen ───────────────────────────────────── */
+async function favCountForUser(userId) {
+  let q = window.nhSupabase.from('favoritos').select('id', { count: 'exact', head: true }).eq('user_id', userId);
+  let { count, error } = await q;
+  if (error) {
+    const r2 = await window.nhSupabase.from('favoritos').select('id', { count: 'exact', head: true }).eq('perfil_id', userId);
+    count = r2.count;
+  }
+  return count || 0;
+}
+
+async function loadDashboardStats(tipo) {
+  if (!window.nhSupabase || !currentUser) return;
+  const email = currentUser.email || '';
+
+  if (tipo === 'comprador') {
+    const favs = await favCountForUser(currentUser.id);
+    document.getElementById('statFavs').textContent = favs;
+
+    const { data: visitas } = await window.nhSupabase.from('leads').select('id')
+      .eq('email', email)
+      .or('origen.eq.web_visita,mensaje.ilike.%Visita concertada%');
+    document.getElementById('statVisitas').textContent = visitas?.length || 0;
+
+    const { data: consultas } = await window.nhSupabase.from('leads').select('id')
+      .eq('email', email)
+      .or('origen.eq.web_inmueble,origen.eq.web_comprar,tipo.eq.compra');
+    document.getElementById('statVistos').textContent = consultas?.length || 0;
+
+    const { data: comprador } = await window.nhSupabase.from('compradores')
+      .select('activo, notas, zona_buscada')
+      .eq('email', email)
+      .maybeSingle();
+    if (comprador?.activo === false) {
+      document.querySelector('#sec-proceso .p-step:nth-child(3) .p-step-dot')?.classList.replace('dot-pend', 'dot-now');
+    }
+    await loadExpedienteTimeline('comprador');
+    return;
+  }
+
+  // Vendedor
+  const { data: vend } = await window.nhSupabase.from('vendedores')
+    .select('inmueble_ref').eq('email', email).maybeSingle();
+
+  if (vend?.inmueble_ref) {
+    const { data: inm } = await window.nhSupabase.from('inmuebles')
+      .select('id, ref, titulo').eq('ref', vend.inmueble_ref).maybeSingle();
+
+    if (inm) {
+      const { data: visitasV } = await window.nhSupabase.from('visitas').select('id')
+        .eq('inmueble_id', inm.id);
+      document.getElementById('statVisitasV').textContent = visitasV?.length || 0;
+
+      const { data: ofertas } = await window.nhSupabase.from('leads').select('id')
+        .eq('inmueble_id', inm.id)
+        .in('tipo', ['compra', 'info']);
+      document.getElementById('statOfertas').textContent = ofertas?.length || 0;
+    }
+  }
+  await loadExpedienteTimeline('vendedor');
+}
+
 /* ─── Inmuebles recientes ─────────────────────────────────── */
 async function loadRecentProps() {
-  if (!window.nhSupabase) return;
-  const { data } = await window.nhSupabase
-    .from('inmuebles').select('id,titulo,precio,barrio,municipio,imagen_principal,imagenes')
-    .eq('estado', 'disponible').order('created_at', { ascending: false }).limit(3);
+  if (!window.nhSupabase || !window.nhAuth) return;
+  const { data } = await nhAuth.fetchInmuebles(
+    'id,titulo,precio,barrio,municipio,imagen_principal,imagenes',
+    { column: 'created_at', ascending: false, limit: 3 }
+  ).eq('estado', 'disponible');
 
   const el = document.getElementById('recentProps');
   if (!data || !data.length) {
@@ -696,6 +902,45 @@ async function loadRecentProps() {
 }
 
 /* ─── Visitas del usuario ─────────────────────────────────── */
+function parseVisitaFecha(dayName, hourRange) {
+  const map = { 'Lunes': 1, 'Martes': 2, 'Miércoles': 3, 'Jueves': 4, 'Viernes': 5, 'Sábado': 6 };
+  const target = map[dayName] || 1;
+  const d = new Date();
+  const cur = d.getDay() === 0 ? 7 : d.getDay();
+  let diff = target - cur;
+  if (diff <= 0) diff += 7;
+  d.setDate(d.getDate() + diff);
+  let h = 10;
+  if (hourRange && hourRange.startsWith('12')) h = 14;
+  if (hourRange && hourRange.startsWith('16')) h = 18;
+  d.setHours(h, 0, 0, 0);
+  return d;
+}
+
+async function loadVisitasFromTable(email, userId) {
+  const rows = [];
+  const { data: byPerfil } = await window.nhSupabase
+    .from('visitas')
+    .select('id, estado, fecha_hora, notas, inmuebles(titulo, ref)')
+    .eq('perfil_id', userId)
+    .order('fecha_hora', { ascending: false });
+  if (byPerfil?.length) rows.push(...byPerfil);
+
+  const { data: myLeads } = await window.nhSupabase.from('leads').select('id').eq('email', email);
+  const leadIds = (myLeads || []).map(l => l.id);
+  if (leadIds.length) {
+    const { data: byLead } = await window.nhSupabase
+      .from('visitas')
+      .select('id, estado, fecha_hora, notas, inmuebles(titulo, ref)')
+      .in('lead_id', leadIds)
+      .order('fecha_hora', { ascending: false });
+    if (byLead?.length) {
+      byLead.forEach(v => { if (!rows.some(r => r.id === v.id)) rows.push(v); });
+    }
+  }
+  return rows;
+}
+
 async function loadVisitas() {
   const el = document.getElementById('visitasContent');
   if (!window.nhSupabase || !currentUser) {
@@ -705,12 +950,25 @@ async function loadVisitas() {
   el.innerHTML = '<div class="p-empty"><h4 style="color:var(--gris-medio)">Cargando…</h4></div>';
 
   const email = currentUser.email || '';
-  const { data } = await window.nhSupabase
-    .from('leads')
-    .select('*')
-    .eq('tipo', 'visita')
-    .eq('email', email)
-    .order('created_at', { ascending: false });
+  let data = await loadVisitasFromTable(email, currentUser.id);
+
+  if (!data.length) {
+    const { data: leadsVis } = await window.nhSupabase
+      .from('leads')
+      .select('*')
+      .eq('email', email)
+      .or('origen.eq.web_visita,mensaje.ilike.%Visita:%')
+      .order('created_at', { ascending: false });
+    if (leadsVis?.length) {
+      data = leadsVis.map(v => ({
+        id: v.id,
+        estado: 'pendiente',
+        fecha_hora: v.created_at,
+        notas: v.mensaje,
+        inmuebles: null
+      }));
+    }
+  }
 
   if (!data || !data.length) {
     el.innerHTML = `<div class="p-empty">
@@ -723,11 +981,66 @@ async function loadVisitas() {
 
   document.getElementById('statVisitas').textContent = data.length;
   el.innerHTML = data.map(v => {
-    const d = new Date(v.created_at);
-    const fecha = d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+    const d = new Date(v.fecha_hora || v.created_at);
+    const fecha = d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    const titulo = v.inmuebles?.titulo || '';
+    const msg = v.notas || v.mensaje || titulo || '–';
+    const est = v.estado || 'pendiente';
     return `<div class="p-lead-row">
-      <span class="p-lead-tipo">Visita</span>
-      <div class="p-lead-msg">${v.mensaje || '–'}</div>
+      <span class="p-lead-tipo">${est}</span>
+      <div class="p-lead-msg">${msg}</div>
+      <div class="p-lead-date">${fecha}</div>
+    </div>`;
+  }).join('');
+}
+
+async function loadVisitasVendedor() {
+  const el = document.getElementById('visitasVendedorContent');
+  if (!window.nhSupabase || !currentUser || !el) return;
+  el.innerHTML = '<div class="p-empty"><h4 style="color:var(--gris-medio)">Cargando…</h4></div>';
+
+  const email = currentUser.email || '';
+  const { data: vend } = await window.nhSupabase.from('vendedores')
+    .select('inmueble_ref').eq('email', email).maybeSingle();
+
+  if (!vend?.inmueble_ref) {
+    el.innerHTML = `<div class="p-empty">
+      <h4>Sin inmueble vinculado</h4>
+      <p>Cuando publiquemos tu propiedad, las visitas solicitadas aparecerán aquí.</p>
+    </div>`;
+    return;
+  }
+
+  const { data: inm } = await window.nhSupabase.from('inmuebles')
+    .select('id, titulo, ref').eq('ref', vend.inmueble_ref).maybeSingle();
+
+  if (!inm) {
+    el.innerHTML = `<div class="p-empty"><h4>Publicación en preparación</h4><p>Tu inmueble (${vend.inmueble_ref}) está siendo preparado.</p></div>`;
+    return;
+  }
+
+  const { data } = await window.nhSupabase.from('visitas')
+    .select('id, estado, fecha_hora, notas, leads(nombre, telefono, email)')
+    .eq('inmueble_id', inm.id)
+    .order('fecha_hora', { ascending: false });
+
+  if (!data?.length) {
+    el.innerHTML = `<div class="p-empty">
+      <h4>Sin visitas programadas</h4>
+      <p>Cuando haya compradores interesados en <strong>${inm.titulo || inm.ref}</strong>, las visitas aparecerán aquí.</p>
+    </div>`;
+    document.getElementById('statVisitasV').textContent = '0';
+    return;
+  }
+
+  document.getElementById('statVisitasV').textContent = data.length;
+  el.innerHTML = data.map(v => {
+    const d = new Date(v.fecha_hora);
+    const fecha = d.toLocaleDateString('es-ES', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+    const cliente = v.leads?.nombre || v.leads?.telefono || v.leads?.email || 'Interesado';
+    return `<div class="p-lead-row">
+      <span class="p-lead-tipo">${v.estado || 'pendiente'}</span>
+      <div class="p-lead-msg"><strong>${cliente}</strong>${v.notas ? ' · ' + v.notas : ''}</div>
       <div class="p-lead-date">${fecha}</div>
     </div>`;
   }).join('');
@@ -742,11 +1055,21 @@ async function loadFavoritos() {
   }
   el.innerHTML = '<div class="p-empty"><h4 style="color:var(--gris-medio)">Cargando…</h4></div>';
 
-  const { data, error } = await window.nhSupabase
+  let { data, error } = await window.nhSupabase
     .from('favoritos')
     .select('id, inmueble_id, inmuebles(id,titulo,precio,barrio,municipio,imagen_principal,imagenes,estado)')
     .eq('user_id', currentUser.id)
     .order('created_at', { ascending: false });
+
+  if (error) {
+    const r2 = await window.nhSupabase
+      .from('favoritos')
+      .select('id, inmueble_id, inmuebles(id,titulo,precio,barrio,municipio,imagen_principal,imagenes,estado)')
+      .eq('perfil_id', currentUser.id)
+      .order('created_at', { ascending: false });
+    data = r2.data;
+    error = r2.error;
+  }
 
   if (error || !data || !data.length) {
     el.innerHTML = `<div class="p-empty">

@@ -22,12 +22,15 @@ button{cursor:pointer;font-family:'Inter',sans-serif}
 input,select,textarea{font-family:'Inter',sans-serif}
 
 /* ─── Layout ─────────────────────────────────────────────────── */
-#admin-guard{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:1rem}
-#admin-app{display:flex;height:100vh;overflow:hidden}
+#admin-loading{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:1rem}
+#admin-guard{display:none;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:1rem}
+#admin-app{display:none;height:100vh;overflow:hidden}
+#admin-app.visible{display:flex}
 
 /* ─── Sidebar ─────────────────────────────────────────────────── */
 .adm-sidebar{width:220px;min-width:220px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
 .adm-logo{padding:1.4rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem}
+.adm-logo-icon{width:36px;height:36px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:#0d0d0d;font-size:.95rem;flex-shrink:0}
 .adm-logo img{height:36px;mix-blend-mode:screen}
 .adm-logo span{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--gold);letter-spacing:.1em}
 .adm-logo small{display:block;font-size:.62rem;color:var(--muted);letter-spacing:.05em}
@@ -45,7 +48,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
 
 /* ─── Main ────────────────────────────────────────────────────── */
 .adm-main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.adm-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.adm-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem}
 .adm-topbar h2{font-size:1rem;font-weight:600}
 .adm-topbar-date{font-size:.75rem;color:var(--muted)}
 .adm-content{flex:1;overflow-y:auto;padding:1.5rem}
@@ -98,7 +101,9 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .wizard-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
 .wizard-title{font-size:.95rem;font-weight:600}
 .wizard-steps-bar{display:flex;align-items:center;gap:0;padding:1rem 1.5rem;background:var(--surface2);border-bottom:1px solid var(--border)}
-.wstep{display:flex;align-items:center;gap:.5rem;flex:1}
+.wstep{display:flex;align-items:center;gap:.5rem;flex:1;cursor:pointer;user-select:none;position:relative;z-index:1;padding:.25rem 0}
+.wstep:hover .wstep-num{border-color:var(--gold)}
+.wstep:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
 .wstep-num{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .3s}
 .wstep.done .wstep-num{background:var(--green);border-color:var(--green);color:#fff}
 .wstep.active .wstep-num{background:var(--gold);border-color:var(--gold);color:#fff}
@@ -209,12 +214,53 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .alert-error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171}
 .alert-success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80}
 .divider{border:none;border-top:1px solid var(--border);margin:1rem 0}
+
+/* ─── Mobile ─────────────────────────────────────────────────── */
+.adm-mobile-logout{display:none}
+@media(max-width:768px){
+  #admin-app{flex-direction:column;height:auto;min-height:100vh;overflow:auto}
+  .adm-sidebar{width:100%;min-width:0;border-right:none;border-bottom:1px solid var(--border);flex-shrink:0}
+  .adm-logo img,.adm-logo-icon{display:none!important}
+  .adm-nav{display:flex;overflow-x:auto;flex-wrap:nowrap;padding-bottom:.25rem;-webkit-overflow-scrolling:touch}
+  .adm-nav-group{display:none}
+  .adm-nav-item{white-space:nowrap;flex-shrink:0;margin:.15rem .25rem}
+  .adm-user{display:none}
+  .adm-main{overflow:visible}
+  .adm-topbar{padding:.75rem 1rem;gap:.75rem}
+  .adm-topbar-date{display:none}
+  .adm-mobile-logout{display:inline-flex;margin-left:auto;flex-shrink:0}
+  .adm-stats{grid-template-columns:1fr 1fr}
+  .adm-content{padding:1rem}
+  .adm-form-grid,.adm-form-grid-3{grid-template-columns:1fr}
+  .wizard-header{padding:1rem;flex-wrap:wrap;gap:.5rem}
+  .adm-section-hdr{flex-direction:column;align-items:stretch;gap:.75rem}
+  .adm-section-hdr .adm-btn{width:100%;justify-content:center}
+  .wstep-label{font-size:.65rem}
+  .wizard-body{padding:1rem}
+  .wizard-footer{flex-direction:column;gap:.75rem;align-items:stretch}
+  .wizard-footer .gap-row{width:100%;justify-content:space-between}
+  .adm-table-wrap{display:none}
+  .adm-leads-cards{display:flex;flex-direction:column;gap:.75rem}
+  .lead-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:1rem}
+  .lead-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.5rem}
+  .lead-card-actions{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.75rem}
+}
+@media(min-width:769px){
+  .adm-leads-cards{display:none}
+}
 </style>
 </head>
 <body>
 
+<!-- Cargando -->
+<div id="admin-loading">
+  <div style="width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:admSpin .8s linear infinite"></div>
+  <p style="color:var(--muted);font-size:.875rem">Cargando panel de administración…</p>
+</div>
+<style>@keyframes admSpin{to{transform:rotate(360deg)}}</style>
+
 <!-- ══ Guard (sin sesión) ══════════════════════════════════════ -->
-<div id="admin-guard" style="display:none">
+<div id="admin-guard">
   <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#ef4444" stroke-width="1.5">
     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 4h.01M4.93 4.93l14.14 14.14M12 2a10 10 0 100 20A10 10 0 0012 2z"/>
   </svg>
@@ -229,8 +275,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
   <!-- Sidebar -->
   <aside class="adm-sidebar">
     <div class="adm-logo">
-      <div style="width:36px;height:36px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:#0d0d0d;font-size:.95rem;flex-shrink:0">NH</div>
-      <div><span>NUEVA HABITAT</span><small>Panel Admin</small></div>
+      <img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat" style="height:36px;width:auto"/>
+      <div><span>NuevaHabitat</span><small>Panel Admin</small></div>
     </div>
     <nav class="adm-nav">
       <div class="adm-nav-group">Principal</div>
@@ -258,6 +304,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <div class="adm-nav-item" data-sec="visitas">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
         Visitas
+      </div>
+      <div class="adm-nav-item" data-sec="documentos">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        Documentos
       </div>
       <div class="adm-nav-group" style="margin-top:.5rem">Contenido</div>
       <div class="adm-nav-item" data-sec="blog">
@@ -288,6 +338,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
   <main class="adm-main">
     <div class="adm-topbar">
       <h2 id="adm-section-title">Dashboard</h2>
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm adm-mobile-logout" onclick="nhAuth.logout()">Salir</button>
       <span class="adm-topbar-date" id="adm-date"></span>
     </div>
 
@@ -311,6 +362,23 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <section class="adm-section" id="sec-leads">
         <div class="adm-card">
           <div class="adm-card-head"><h3>Leads recibidos</h3></div>
+          <div class="adm-subtabs" style="margin-bottom:1rem;flex-wrap:wrap">
+            <button class="adm-subtab active" data-lf="estado" data-val="">Todos</button>
+            <button class="adm-subtab" data-lf="estado" data-val="nuevo">Nuevos</button>
+            <button class="adm-subtab" data-lf="estado" data-val="contactado">Contactados</button>
+            <button class="adm-subtab" data-lf="estado" data-val="cualificado">Cualificados</button>
+            <button class="adm-subtab" data-lf="estado" data-val="cerrado">Cerrados</button>
+          </div>
+          <div class="gap-row" style="margin-bottom:1rem;flex-wrap:wrap">
+            <select id="lead-filter-tipo" class="adm-field" style="padding:.5rem .75rem;max-width:180px">
+              <option value="">Todos los tipos</option>
+              <option value="compra">Compra</option>
+              <option value="venta">Venta</option>
+              <option value="valoracion">Valoración</option>
+              <option value="hipoteca">Hipoteca</option>
+              <option value="info">Info / contacto</option>
+            </select>
+          </div>
           <div id="leads-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
@@ -340,6 +408,17 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <div class="adm-field"><label>DNI (opcional)</label><input type="text" id="c-dni" placeholder="12345678A"/></div>
             <div class="adm-field" style="align-items:flex-start;padding-top:.5rem">
               <label class="adm-field-check"><input type="checkbox" id="c-activo" checked/> Activo en búsqueda</label>
+            </div>
+            <div class="adm-field">
+              <label>Estado expediente</label>
+              <select id="c-expediente">
+                <option value="registro">Registro</option>
+                <option value="reunion">Reunión agente</option>
+                <option value="busqueda">Búsqueda activa</option>
+                <option value="visitas">Visitas</option>
+                <option value="arras">Arras / escritura</option>
+                <option value="cerrado">Cerrado</option>
+              </select>
             </div>
           </div>
           <hr class="divider"/>
@@ -400,6 +479,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <section class="adm-section" id="sec-vendedores">
         <div class="adm-section-hdr">
           <div class="adm-section-title">Vendedores</div>
+          <button class="adm-btn adm-btn-ghost" onclick="syncVendedoresFromInmuebles()" title="Crea vendedores desde los propietarios de inmuebles">↻ Sincronizar</button>
           <button class="adm-btn adm-btn-gold" onclick="openVendForm()">+ Nuevo vendedor</button>
         </div>
 
@@ -421,6 +501,18 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <div class="adm-field"><label>DNI (opcional)</label><input type="text" id="v-dni" placeholder="12345678A"/></div>
             <div class="adm-field"><label>Precio mínimo requerido (€)</label><input type="number" id="v-precio-min" placeholder="200000"/></div>
             <div class="adm-field"><label>Referencia inmueble vinculado</label><input type="text" id="v-ref" placeholder="NH-2026-1234"/></div>
+            <div class="adm-field">
+              <label>Estado expediente</label>
+              <select id="v-expediente">
+                <option value="registro">Registro</option>
+                <option value="valoracion">Valoración</option>
+                <option value="fotos">Reportaje fotos</option>
+                <option value="publicacion">Publicado</option>
+                <option value="visitas">Visitas</option>
+                <option value="escritura">Escritura</option>
+                <option value="cerrado">Cerrado</option>
+              </select>
+            </div>
           </div>
           <div class="adm-field">
             <label>Descripción / Notas de seguimiento</label>
@@ -474,14 +566,14 @@ input,select,textarea{font-family:'Inter',sans-serif}
             </div>
 
             <!-- Steps bar -->
-            <div class="wizard-steps-bar">
-              <div class="wstep active" id="ws-1"><div class="wstep-num">1</div><div class="wstep-label">Propietario</div></div>
+            <div class="wizard-steps-bar" id="wizard-steps-bar">
+              <div class="wstep active" id="ws-1" data-step="1" role="button" tabindex="0" onclick="wizGoToStep(1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();wizGoToStep(1)}"><div class="wstep-num">1</div><div class="wstep-label">Propietario</div></div>
               <div class="wstep-line"></div>
-              <div class="wstep" id="ws-2"><div class="wstep-num">2</div><div class="wstep-label">Inmueble</div></div>
+              <div class="wstep" id="ws-2" data-step="2" role="button" tabindex="0" onclick="wizGoToStep(2)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();wizGoToStep(2)}"><div class="wstep-num">2</div><div class="wstep-label">Inmueble</div></div>
               <div class="wstep-line"></div>
-              <div class="wstep" id="ws-3"><div class="wstep-num">3</div><div class="wstep-label">Medios</div></div>
+              <div class="wstep" id="ws-3" data-step="3" role="button" tabindex="0" onclick="wizGoToStep(3)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();wizGoToStep(3)}"><div class="wstep-num">3</div><div class="wstep-label">Medios</div></div>
               <div class="wstep-line"></div>
-              <div class="wstep" id="ws-4"><div class="wstep-num">4</div><div class="wstep-label">Publicar</div></div>
+              <div class="wstep" id="ws-4" data-step="4" role="button" tabindex="0" onclick="wizGoToStep(4)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();wizGoToStep(4)}"><div class="wstep-num">4</div><div class="wstep-label">Publicar</div></div>
             </div>
 
             <div class="wizard-body">
@@ -508,6 +600,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
 
               <!-- ── Step 2: Datos inmueble ──────────────────── -->
               <div class="wizard-step" id="wiz-step-2">
+                <div id="wiz-prop-banner" class="alert-box alert-info" style="display:none;margin-bottom:1rem;font-size:.82rem;line-height:1.6">
+                  <strong>Propietario:</strong> <span id="wiz-prop-summary">–</span>
+                  <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" style="margin-left:.5rem;padding:.2rem .6rem" onclick="wizGoToStep(1)">✏ Editar propietario</button>
+                </div>
                 <div class="wiz-section-label">Identificación</div>
                 <div class="adm-form-grid-3">
                   <div class="adm-field">
@@ -549,6 +645,14 @@ input,select,textarea{font-family:'Inter',sans-serif}
                       <option value="vendido">Vendido</option>
                       <option value="no_disponible">No disponible</option>
                     </select>
+                  </div>
+                  <div class="adm-field adm-form-col-full" style="display:flex;flex-wrap:wrap;gap:1.25rem;margin-top:.25rem">
+                    <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.875rem">
+                      <input type="checkbox" id="w-cartera"/> Cartera privada (solo compradores registrados)
+                    </label>
+                    <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.875rem">
+                      <input type="checkbox" id="w-destacado"/> Destacar en portada
+                    </label>
                   </div>
                   <div class="adm-field">
                     <label>Título *</label>
@@ -708,6 +812,38 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
       </section>
 
+      <!-- ── Documentos clientes ───────────────────────────────── -->
+      <section class="adm-section" id="sec-documentos">
+        <div class="adm-card">
+          <div class="adm-card-head"><h3>Documentos de clientes</h3></div>
+          <div class="adm-form-grid" style="margin-bottom:1rem">
+            <div class="adm-field"><label>Email cliente *</label><input type="email" id="doc-email" placeholder="cliente@email.com"/></div>
+            <div class="adm-field"><label>Tipo</label>
+              <select id="doc-tipo">
+                <option value="contrato_encargo">Contrato encargo</option>
+                <option value="contrato_arras">Contrato arras</option>
+                <option value="escritura">Escritura</option>
+                <option value="tasacion">Tasación</option>
+                <option value="nota_mercado">Nota mercado</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="adm-field adm-form-col-full"><label>Nombre documento *</label><input type="text" id="doc-nombre" placeholder="Contrato de encargo firmado"/></div>
+            <div class="adm-field adm-form-col-full"><label>Archivo PDF (opcional)</label><input type="file" id="doc-file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"/></div>
+            <div class="adm-field adm-form-col-full"><label>URL externa (si no subes archivo)</label><input type="url" id="doc-url" placeholder="https://..."/></div>
+            <div class="adm-field"><label>Estado</label>
+              <select id="doc-estado">
+                <option value="pendiente">Pendiente</option>
+                <option value="disponible">Disponible</option>
+                <option value="firmado">Firmado</option>
+              </select>
+            </div>
+          </div>
+          <button class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveDocumento()">Subir documento</button>
+          <div id="documentos-table" style="margin-top:1.25rem"><p class="text-muted">Cargando…</p></div>
+        </div>
+      </section>
+
       <!-- ── Blog ─────────────────────────────────────────────── -->
       <section class="adm-section" id="sec-blog">
         <div class="adm-card">
@@ -720,6 +856,9 @@ input,select,textarea{font-family:'Inter',sans-serif}
               <div class="adm-field"><label>Título</label><input type="text" id="b-titulo"/></div>
               <div class="adm-field"><label>Categoría</label><input type="text" id="b-cat" placeholder="Mercado, Consejos…"/></div>
               <div class="adm-field adm-form-col-full"><label>Extracto</label><textarea id="b-extracto" rows="2"></textarea></div>
+              <div class="adm-field"><label>Slug (URL)</label><input type="text" id="b-slug" placeholder="auto-desde-titulo"/></div>
+              <div class="adm-field"><label>Imagen URL</label><input type="url" id="b-imagen" placeholder="imagenes/..."/></div>
+              <div class="adm-field adm-form-col-full"><label>Contenido (HTML)</label><textarea id="b-contenido" rows="6" placeholder="<p>Párrafo del artículo…</p>"></textarea></div>
             </div>
             <div class="gap-row">
               <button class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveBlog()">Guardar</button>
@@ -824,6 +963,9 @@ input,select,textarea{font-family:'Inter',sans-serif}
 </div>
 
 <script src="js/supabase.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/blog-api.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
    ADMIN PANEL – NuevaHabitat
@@ -836,6 +978,9 @@ let mediaFiles = [];    // {file, preview, compressed}
 let videoUrl  = '';
 let planoFile = null;
 let currentPropertyId = null;
+let editingPropertyId = null;
+let existingVideoUrl = '';
+let existingPlanoUrl = '';
 
 /* ── Date ─────────────────────────────────────────────────────── */
 (function(){
@@ -844,20 +989,101 @@ let currentPropertyId = null;
 })();
 
 /* ── Init ─────────────────────────────────────────────────────── */
-document.addEventListener('supabase:ready', async () => {
-  const user = await nhAuth.getUser();
-  if (!user || !nhAuth.isAdmin(user)) {
-    document.getElementById('admin-app').style.display = 'none';
-    document.getElementById('admin-guard').style.display = 'flex';
-    return;
-  }
-  document.getElementById('admin-app').style.display = 'flex';
-  document.getElementById('adm-user-name').textContent = user.email.split('@')[0];
+let _adminReady = false;
 
-  setupNav();
-  loadDashboard();
-  loadPublications();
-});
+function showAdminView(view) {
+  const loading = document.getElementById('admin-loading');
+  const guard = document.getElementById('admin-guard');
+  const app = document.getElementById('admin-app');
+  loading.style.display = view === 'loading' ? 'flex' : 'none';
+  guard.style.display = view === 'guard' ? 'flex' : 'none';
+  if (view === 'app') {
+    app.style.display = 'flex';
+    app.classList.add('visible');
+  } else {
+    app.style.display = 'none';
+    app.classList.remove('visible');
+  }
+}
+
+async function waitAdminSession(maxMs = 8000) {
+  const start = Date.now();
+  while (Date.now() - start < maxMs) {
+    if (window.nhSupabase) {
+      const { data: { session } } = await window.nhSupabase.auth.getSession();
+      if (session?.user) return session.user;
+      const u = await nhAuth.getUser();
+      if (u) return u;
+    }
+    await new Promise(r => setTimeout(r, 300));
+  }
+  return null;
+}
+
+async function initAdmin() {
+  if (_adminReady) return;
+  showAdminView('loading');
+
+  if (!window.nhSupabase) return;
+
+  try {
+    const user = await waitAdminSession(10000);
+    if (!user || !nhAuth.isAdmin(user)) {
+      _adminReady = true;
+      showAdminView('guard');
+      return;
+    }
+
+    _adminReady = true;
+    showAdminView('app');
+    document.getElementById('adm-user-name').textContent = user.email.split('@')[0];
+
+    window.nhSupabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_OUT') {
+        window.location.replace('login.html?logout=1');
+        return;
+      }
+      if (session?.user && !nhAuth.isAdmin(session.user)) {
+        window.location.replace('login.html');
+        return;
+      }
+      if (session?.user && nhAuth.isAdmin(session.user)) {
+        document.getElementById('adm-user-name').textContent = session.user.email.split('@')[0];
+      }
+    });
+
+    setupNav();
+    setupPubGridActions();
+    setupWizardSteps();
+    await ensureAdminProfile(user);
+    try {
+      const { data, error } = await window.nhSupabase.rpc('admin_sync_vendedores');
+      if(!error && data?.synced > 0) console.log('Vendedores sincronizados:', data);
+    } catch (_) {}
+    await loadDashboard();
+    loadPublications();
+  } catch (err) {
+    console.error('initAdmin:', err);
+    _adminReady = true;
+    showAdminView('guard');
+    const guard = document.getElementById('admin-guard');
+    const extra = guard.querySelector('p:last-of-type');
+    if (extra) extra.textContent = 'Error al cargar: ' + (err.message || 'intenta de nuevo');
+  }
+}
+
+document.addEventListener('supabase:ready', initAdmin);
+setTimeout(() => {
+  if (!_adminReady) {
+    if (window.nhSupabase) initAdmin();
+    else {
+      _adminReady = true;
+      showAdminView('guard');
+      const p = document.querySelector('#admin-guard p:last-of-type');
+      if (p) p.textContent = 'No se pudo conectar con el servidor. Recarga la página.';
+    }
+  }
+}, 12000);
 
 /* ── Navigation ──────────────────────────────────────────────── */
 function setupNav(){
@@ -865,29 +1091,66 @@ function setupNav(){
     el.addEventListener('click',()=>{ switchSection(el.dataset.sec); });
   });
 }
+
+function setupPubGridActions(){
+  const grid = document.getElementById('pub-grid');
+  if(!grid || grid.dataset.bound) return;
+  grid.dataset.bound = '1';
+  grid.addEventListener('click', (e)=>{
+    const editBtn = e.target.closest('[data-action="edit-inmueble"]');
+    if(editBtn?.dataset.id){
+      e.preventDefault();
+      editProperty(editBtn.dataset.id);
+      return;
+    }
+    const delBtn = e.target.closest('[data-action="delete-inmueble"]');
+    if(delBtn?.dataset.id){
+      e.preventDefault();
+      deleteProperty(delBtn.dataset.id);
+    }
+  });
+}
+
+function setupWizardSteps(){
+  ['w-prop-nombre','w-prop-tel','w-prop-email'].forEach(id=>{
+    document.getElementById(id)?.addEventListener('input', updatePropietarioBanner);
+  });
+}
+
+async function ensureAdminProfile(user){
+  if(!user?.id) return;
+  const { error } = await window.nhSupabase.from('perfiles').upsert({
+    id: user.id,
+    nombre: user.user_metadata?.nombre || user.email.split('@')[0],
+    rol: 'admin',
+    telefono: user.user_metadata?.telefono || null
+  }, { onConflict: 'id' });
+  if(error) console.warn('ensureAdminProfile:', error);
+}
 function switchSection(id){
   currentSection = id;
   document.querySelectorAll('.adm-section').forEach(s=>s.classList.remove('active'));
   document.getElementById('sec-'+id).classList.add('active');
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Vendedores',inmuebles:'Inmuebles',visitas:'Visitas',blog:'Blog',newsletter:'Newsletter'};
+  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Vendedores',inmuebles:'Inmuebles',visitas:'Visitas',documentos:'Documentos',blog:'Blog',newsletter:'Newsletter'};
   document.getElementById('adm-section-title').textContent = titles[id]||id;
   if(id==='leads')       loadLeads();
   if(id==='compradores') loadCompradores();
   if(id==='vendedores')  loadVendedores();
   if(id==='visitas')     loadVisitas();
+  if(id==='documentos')  loadDocumentosAdmin();
   if(id==='blog')        loadBlog();
   if(id==='newsletter')  loadNewsletter();
 }
 
 /* ── Inmuebles sub-tabs ──────────────────────────────────────── */
-function showInmTab(t){
+function showInmTab(t, keepState){
   document.getElementById('inm-pub').style.display = t==='pub'?'block':'none';
   document.getElementById('inm-new').style.display = t==='new'?'block':'none';
   document.getElementById('tab-pub').classList.toggle('active', t==='pub');
   document.getElementById('tab-new').classList.toggle('active', t==='new');
-  if(t==='new') resetWizard();
+  if(t==='new' && !keepState) resetWizard();
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -899,12 +1162,38 @@ function resetWizard(){
   videoUrl = '';
   planoFile = null;
   currentPropertyId = null;
+  editingPropertyId = null;
+  existingVideoUrl = '';
+  existingPlanoUrl = '';
+  clearWizardForm();
+  document.querySelector('.wizard-title').textContent = 'Nuevo inmueble';
+  const pubBtn = document.getElementById('btn-publish');
+  pubBtn.innerHTML = '🚀 Publicar inmueble';
+  pubBtn.disabled = false;
   updateWizUI();
   autoGenerateRef();
   ['wiz-err-1','wiz-err-2','wiz-err-4','wiz-ok'].forEach(id=>{
     const el=document.getElementById(id);
     if(el){el.style.display='none';el.textContent='';}
   });
+}
+
+function clearWizardForm(){
+  ['w-prop-nombre','w-prop-tel','w-prop-email','w-ref','w-titulo','w-precio','w-calle','w-numero',
+   'w-pisopuerta','w-cp','w-municipio','w-zona','w-dorm','w-banos','w-aseos','w-m2util','w-m2const',
+   'w-m2terr','w-m2parc','w-desc','mo-video-url'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.value='';
+  });
+  ['w-salon','w-terraza','w-balcon','w-garaje','w-trastero','w-ascensor','w-cartera','w-destacado'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.checked=false;
+  });
+  document.getElementById('w-tipo').value='piso';
+  document.getElementById('w-operacion').value='venta';
+  document.getElementById('w-estado').value='disponible';
+  document.getElementById('mo-video-file').value='';
+  document.getElementById('mo-plano-file').value='';
 }
 
 function autoGenerateRef(){
@@ -933,7 +1222,43 @@ function updateWizUI(){
   document.getElementById('mo-count-badge').textContent = mediaFiles.length;
   document.getElementById('mo-video-badge').textContent = (videoUrl||'')!==''?'✔':'-';
   document.getElementById('mo-plano-badge').textContent = planoFile?'✔':'-';
+  updatePropietarioBanner();
 }
+
+function updatePropietarioBanner(){
+  const banner = document.getElementById('wiz-prop-banner');
+  const summary = document.getElementById('wiz-prop-summary');
+  if(!banner || !summary) return;
+  const n = (document.getElementById('w-prop-nombre')?.value || '').trim();
+  const t = (document.getElementById('w-prop-tel')?.value || '').trim();
+  const e = (document.getElementById('w-prop-email')?.value || '').trim();
+  const show = !!editingPropertyId || wizStep >= 2;
+  if(!show || wizStep === 1){
+    banner.style.display = 'none';
+    return;
+  }
+  banner.style.display = 'block';
+  if(!n && !e){
+    summary.innerHTML = '<span style="color:var(--red,#ef4444)">Sin propietario — obligatorio para crear vendedor</span>';
+    banner.className = 'alert-box alert-error';
+  } else {
+    summary.textContent = [n, t, e].filter(Boolean).join(' · ');
+    banner.className = 'alert-box alert-info';
+  }
+}
+
+function wizGoToStep(n){
+  n = Math.max(1, Math.min(4, parseInt(n, 10) || 1));
+  if(n > wizStep){
+    if(wizStep <= 1 && n > 1 && !validateStep1()) return;
+    if(wizStep <= 2 && n > 2 && !validateStep2()) return;
+  }
+  wizStep = n;
+  updateWizUI();
+  document.getElementById('wiz-step-'+n)?.scrollIntoView({behavior:'smooth', block:'start'});
+  if(n===4) buildPreview();
+}
+window.wizGoToStep = wizGoToStep;
 
 function wizNext(){
   if(wizStep===1 && !validateStep1()) return;
@@ -944,8 +1269,7 @@ function wizNext(){
   if(wizStep===4) buildPreview();
 }
 function wizPrev(){
-  wizStep = Math.max(1, wizStep-1);
-  updateWizUI();
+  wizGoToStep(wizStep - 1);
 }
 
 function validateStep1(){
@@ -954,7 +1278,9 @@ function validateStep1(){
   const e=document.getElementById('w-prop-email').value.trim();
   if(!n||!t||!e){ showWizErr(1,'Completa todos los campos del propietario.'); return false; }
   if(!/\S+@\S+\.\S+/.test(e)){ showWizErr(1,'Email del propietario no válido.'); return false; }
-  hideWizErr(1); return true;
+  hideWizErr(1);
+  updatePropietarioBanner();
+  return true;
 }
 function validateStep2(){
   const t=document.getElementById('w-titulo').value.trim();
@@ -1009,76 +1335,69 @@ function buildPreview(){
 /* ── Publish property ─────────────────────────────────────────── */
 async function publishProperty(){
   const btn = document.getElementById('btn-publish');
+  const isEdit = !!editingPropertyId;
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Publicando…';
+  btn.innerHTML = '<span class="spinner"></span> ' + (isEdit ? 'Guardando…' : 'Publicando…');
   document.getElementById('wiz-err-4').style.display='none';
   document.getElementById('wiz-ok').style.display='none';
 
   try {
-    const tempId = 'prop_'+Date.now();
-    currentPropertyId = tempId;
+    if(!validateStep1()){ wizGoToStep(1); throw new Error('Completa los datos del propietario (paso 1).'); }
+    if(!validateStep2()){ wizGoToStep(2); throw new Error('Completa título, precio y municipio (paso 2).'); }
 
-    // Helpers
+    const storageId = editingPropertyId || ('prop_'+Date.now());
+    currentPropertyId = storageId;
+
     const v   = id => (document.getElementById(id)?.value||'').trim();
     const txt = id => v(id) || null;
     const num = id => parseFloat(v(id)) || null;
     const int = id => parseInt(v(id))  || null;
     const chk = id => document.getElementById(id)?.checked || false;
 
-    // Upload images
     const imageUrls = [];
     if(mediaFiles.length>0){
       document.getElementById('mo-upload-status').style.display='block';
       for(let i=0;i<mediaFiles.length;i++){
         document.getElementById('mo-bar').style.width=((i/mediaFiles.length)*100)+'%';
         document.getElementById('mo-bar-txt').textContent=`Subiendo foto ${i+1} de ${mediaFiles.length}…`;
-        const compressed = await compressImage(mediaFiles[i].file);
-        const path = `${tempId}/foto-${i+1}-${Date.now()}.jpg`;
-        const url = await uploadToStorage(compressed, path);
-        imageUrls.push(url);
+        if(mediaFiles[i].existing){
+          imageUrls.push(mediaFiles[i].url);
+        } else {
+          const compressed = await compressImage(mediaFiles[i].file);
+          const path = `${storageId}/foto-${i+1}-${Date.now()}.jpg`;
+          imageUrls.push(await uploadToStorage(compressed, path));
+        }
       }
       document.getElementById('mo-bar').style.width='100%';
     }
+    document.getElementById('mo-upload-status').style.display='none';
 
-    // Upload vídeo
-    let videoFinalUrl = txt('mo-video-url') || null;
+    let videoFinalUrl = txt('mo-video-url') || videoUrl || existingVideoUrl || null;
     const vFile = document.getElementById('mo-video-file').files[0];
     if(vFile){
       document.getElementById('mo-bar-txt').textContent='Subiendo vídeo…';
-      videoFinalUrl = await uploadToStorage(vFile, `${tempId}/video-${Date.now()}.mp4`);
+      videoFinalUrl = await uploadToStorage(vFile, `${storageId}/video-${Date.now()}.mp4`);
     }
 
-    // Upload plano (guardado como tour_virtual_url)
-    let planoUrl = null;
+    let planoUrl = existingPlanoUrl || null;
     const pFile = document.getElementById('mo-plano-file').files[0];
     if(pFile){
       document.getElementById('mo-bar-txt').textContent='Subiendo plano…';
       const ext = pFile.name.split('.').pop();
-      planoUrl = await uploadToStorage(pFile, `${tempId}/plano-${Date.now()}.${ext}`);
+      planoUrl = await uploadToStorage(pFile, `${storageId}/plano-${Date.now()}.${ext}`);
     }
-    document.getElementById('mo-upload-status').style.display='none';
 
-    // Mapeo tipo → enum BD (piso,atico,casa,duplex,local,oficina,garaje)
     const tipoMap = {piso:'piso',casa:'casa',atico:'atico',duplex:'duplex',
                      local:'local',nave:'local',terreno:'local',garaje:'garaje'};
     const tipoVal = tipoMap[v('w-tipo')] || 'piso';
 
-    // Mapeo estado → enum BD (disponible,reservado,vendido,retirado)
     const estadoMap = {disponible:'disponible',reservado:'reservado',
                        vendido:'vendido',no_disponible:'retirado'};
     const estadoVal = estadoMap[v('w-estado')] || 'disponible';
 
-    // ref y slug únicos
-    const refVal  = txt('w-ref') || `NH-${Date.now()}`;
-    const slugVal = refVal.toLowerCase().replace(/[^a-z0-9]+/g,'-') + '-' + Date.now();
-
-    // Dirección combinada
     const direccionVal = [v('w-calle'),v('w-numero'),v('w-pisopuerta')].filter(Boolean).join(' ') || null;
 
-    // Payload usando columnas reales del esquema 001
     const payload = {
-      ref:             refVal,
-      slug:            slugVal,
       titulo:          txt('w-titulo'),
       descripcion:     txt('w-desc'),
       tipo:            tipoVal,
@@ -1098,33 +1417,71 @@ async function publishProperty(){
       imagenes:        imageUrls,
       imagen_principal: imageUrls[0] || null,
       video_url:        videoFinalUrl,
-      tour_virtual_url: planoUrl,   // plano guardado aquí hasta migración 002
-      cartera_privada:  false,
+      tour_virtual_url: planoUrl,
+      cartera_privada:  chk('w-cartera'),
+      destacado:        chk('w-destacado'),
+      propietario_nombre:   txt('w-prop-nombre'),
+      propietario_telefono: txt('w-prop-tel'),
+      propietario_email:    txt('w-prop-email'),
+      updated_at:       new Date().toISOString(),
     };
 
-    const { data, error } = await window.nhSupabase.from('inmuebles').insert(payload).select().single();
-    if(error) throw error;
+    if(isEdit){
+      const { error } = await window.nhSupabase.from('inmuebles').update(payload).eq('id', editingPropertyId);
+      if(error) throw error;
+      const refVal = txt('w-ref') || payload.ref;
+      let vendWarn = '';
+      try {
+        await autoCreateVendedor(
+          v('w-prop-nombre'),
+          v('w-prop-tel'),
+          v('w-prop-email'),
+          refVal,
+          num('w-precio')
+        );
+      } catch(vendErr) {
+        console.error(vendErr);
+        vendWarn = ' ⚠️ Vendedor: ' + (vendErr.message || 'no registrado');
+      }
+      document.getElementById('wiz-ok').textContent = '✅ Inmueble actualizado correctamente.' + vendWarn;
+      loadVendedores();
+    } else {
+      const refVal  = txt('w-ref') || `NH-${Date.now()}`;
+      const slugVal = refVal.toLowerCase().replace(/[^a-z0-9]+/g,'-') + '-' + Date.now();
+      payload.ref = refVal;
+      payload.slug = slugVal;
 
-    // Auto-crear ficha de vendedor con datos del propietario
-    await autoCreateVendedor(
-      v('w-prop-nombre'),
-      v('w-prop-tel'),
-      v('w-prop-email'),
-      refVal,
-      num('w-precio')
-    );
+      const { data, error } = await window.nhSupabase.from('inmuebles').insert(payload).select().single();
+      if(error) throw error;
+
+      let vendWarn = '';
+      try {
+        await autoCreateVendedor(
+          v('w-prop-nombre'),
+          v('w-prop-tel'),
+          v('w-prop-email'),
+          refVal,
+          num('w-precio')
+        );
+      } catch(vendErr) {
+        console.error(vendErr);
+        vendWarn = ' ⚠️ Vendedor: ' + (vendErr.message || 'no registrado');
+      }
+      document.getElementById('wiz-ok').textContent = '✅ Inmueble publicado correctamente.' + vendWarn;
+      loadVendedores();
+    }
 
     document.getElementById('wiz-ok').style.display='block';
-    btn.innerHTML='✅ Publicado';
+    btn.innerHTML = isEdit ? '✅ Guardado' : '✅ Publicado';
     setTimeout(()=>{ showInmTab('pub'); loadPublications(); }, 2000);
 
   } catch(err){
     console.error(err);
     const el=document.getElementById('wiz-err-4');
-    el.textContent='Error al publicar: '+(err.message||JSON.stringify(err));
+    el.textContent=(editingPropertyId?'Error al guardar: ':'Error al publicar: ')+(err.message||JSON.stringify(err));
     el.style.display='block';
     btn.disabled=false;
-    btn.innerHTML='🚀 Publicar inmueble';
+    btn.innerHTML = editingPropertyId ? '💾 Guardar cambios' : '🚀 Publicar inmueble';
   }
 }
 
@@ -1166,6 +1523,7 @@ async function uploadToStorage(file, path){
    MEDIA OVERLAY
    ══════════════════════════════════════════════════════════════ */
 function openMediaOverlay(){
+  document.getElementById('mo-video-url').value = videoUrl || existingVideoUrl || '';
   document.getElementById('media-overlay').classList.add('open');
   renderMediaGrid();
 }
@@ -1203,7 +1561,7 @@ function addFiles(files){
     const preview = URL.createObjectURL(f);
     mediaFiles.push({file:f, preview});
   });
-  if(imgs.length>remaining) alert(`Solo se pueden añadir ${remaining} imagen(es) más (máximo 25).`);
+  if(imgs.length>remaining) nhToast(`Solo se pueden añadir ${remaining} imagen(es) más (máximo 25).`, 'info');
   renderMediaGrid();
   updateProgress();
 }
@@ -1269,7 +1627,6 @@ async function loadPublications(){
   const { data, error } = await window.nhSupabase
     .from('inmuebles')
     .select('*')
-    .eq('cartera_privada', false)
     .order('created_at', {ascending:false});
 
   const grid = document.getElementById('pub-grid');
@@ -1314,11 +1671,12 @@ async function loadPublications(){
             ${p.banos?`<span>${p.banos} baños</span>`:''}
             ${p.m2_utiles?`<span>${p.m2_utiles} m²</span>`:''}
             ${zona?`<span>${zona}</span>`:''}
+            ${p.cartera_privada?`<span style="font-size:.65rem;color:var(--gold)">🔒 Cartera privada</span>`:''}
           </div>
           <div class="pub-actions">
-            <button class="pub-btn-edit" onclick="editProperty('${p.id}')">Editar</button>
-            <button class="pub-btn-del"  onclick="deleteProperty('${p.id}')">Eliminar</button>
-            <button class="pub-btn-web"  onclick="window.open('inmueble-detalle.html?id=${p.id}','_blank')">Web</button>
+            <button type="button" class="pub-btn-edit" data-action="edit-inmueble" data-id="${p.id}">Editar</button>
+            <button type="button" class="pub-btn-del" data-action="delete-inmueble" data-id="${p.id}">Eliminar</button>
+            <button type="button" class="pub-btn-web" onclick="window.open('inmueble-detalle.html?id=${p.id}','_blank')">Web</button>
           </div>
         </div>
       </div>`;
@@ -1339,11 +1697,100 @@ function pubImgPrev(id, imgs){
 async function deleteProperty(id){
   if(!confirm('¿Eliminar este inmueble? Esta acción no se puede deshacer.')) return;
   const { error } = await window.nhSupabase.from('inmuebles').delete().eq('id',id);
-  if(error){ alert('Error: '+error.message); return; }
+  if(error){ nhToast('Error: '+error.message); return; }
   loadPublications();
 }
 function editProperty(id){
-  alert('Función de edición en desarrollo. Por ahora elimina y republica el inmueble.');
+  if(!id){ nhToast('ID de inmueble no válido'); return; }
+  loadPropertyForEdit(id);
+}
+window.editProperty = editProperty;
+
+async function loadPropertyForEdit(id){
+  try {
+  const { data:p, error } = await window.nhSupabase.from('inmuebles').select('*').eq('id',id).single();
+  if(error || !p){ nhToast('No se pudo cargar el inmueble: '+(error?.message||'desconocido')); return; }
+
+  clearWizardForm();
+  mediaFiles = [];
+  videoUrl = '';
+  planoFile = null;
+  existingVideoUrl = '';
+  existingPlanoUrl = '';
+  editingPropertyId = id;
+  currentPropertyId = id;
+  ['wiz-err-1','wiz-err-2','wiz-err-4','wiz-ok'].forEach(eid=>{
+    const el=document.getElementById(eid);
+    if(el){ el.style.display='none'; el.textContent=''; }
+  });
+
+  const estadoRev = {disponible:'disponible',reservado:'reservado',vendido:'vendido',retirado:'no_disponible'};
+  const tipoRev = {piso:'piso',casa:'casa',atico:'atico',duplex:'duplex',local:'local',garaje:'garaje'};
+
+  document.getElementById('w-ref').value = p.ref || '';
+  document.getElementById('w-titulo').value = p.titulo || '';
+  document.getElementById('w-precio').value = p.precio || '';
+  document.getElementById('w-tipo').value = tipoRev[p.tipo] || p.tipo || 'piso';
+  document.getElementById('w-estado').value = estadoRev[p.estado] || 'disponible';
+  document.getElementById('w-municipio').value = p.municipio || '';
+  document.getElementById('w-zona').value = p.barrio || '';
+  document.getElementById('w-cp').value = p.cp || '';
+  document.getElementById('w-dorm').value = p.habitaciones ?? '';
+  document.getElementById('w-banos').value = p.banos ?? '';
+  document.getElementById('w-m2util').value = p.m2_utiles ?? '';
+  document.getElementById('w-m2const').value = p.m2_construidos ?? '';
+  document.getElementById('w-m2terr').value = p.m2_terraza ?? '';
+  document.getElementById('w-desc').value = p.descripcion || '';
+  document.getElementById('w-ascensor').checked = !!p.ascensor;
+  document.getElementById('w-trastero').checked = !!p.trastero;
+  document.getElementById('w-cartera').checked = !!p.cartera_privada;
+  document.getElementById('w-destacado').checked = !!p.destacado;
+
+  if(p.direccion){
+    const parts = p.direccion.split(' ');
+    if(parts.length >= 2){
+      document.getElementById('w-numero').value = parts.pop();
+      document.getElementById('w-calle').value = parts.join(' ');
+    } else {
+      document.getElementById('w-calle').value = p.direccion;
+    }
+  }
+
+  if(p.ref){
+    const { data: vend } = await window.nhSupabase.from('vendedores')
+      .select('nombre,telefono,email').eq('inmueble_ref', p.ref).maybeSingle();
+    if(vend){
+      document.getElementById('w-prop-nombre').value = vend.nombre || '';
+      document.getElementById('w-prop-tel').value = vend.telefono || '';
+      document.getElementById('w-prop-email').value = vend.email || '';
+    } else if(p.propietario_nombre || p.propietario_email){
+      document.getElementById('w-prop-nombre').value = p.propietario_nombre || '';
+      document.getElementById('w-prop-tel').value = p.propietario_telefono || '';
+      document.getElementById('w-prop-email').value = p.propietario_email || '';
+    }
+  }
+
+  const imgs = Array.isArray(p.imagenes) && p.imagenes.length ? p.imagenes
+    : (p.imagen_principal ? [p.imagen_principal] : []);
+  mediaFiles = imgs.map(url => ({ file:null, preview:url, existing:true, url }));
+  existingVideoUrl = p.video_url || '';
+  videoUrl = existingVideoUrl;
+  existingPlanoUrl = p.tour_virtual_url || '';
+  if(existingPlanoUrl) planoFile = { existing:true, url:existingPlanoUrl };
+
+  document.querySelector('.wizard-title').textContent = 'Editar inmueble';
+  document.getElementById('btn-publish').innerHTML = '💾 Guardar cambios';
+  document.getElementById('btn-publish').disabled = false;
+  wizStep = 1;
+  updateWizUI();
+
+  switchSection('inmuebles');
+  showInmTab('new', true);
+  document.getElementById('inm-new')?.scrollIntoView({behavior:'smooth', block:'start'});
+  } catch(err){
+    console.error('loadPropertyForEdit:', err);
+    nhToast('Error al abrir editor: '+(err.message||'desconocido'));
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -1351,47 +1798,223 @@ function editProperty(id){
    ══════════════════════════════════════════════════════════════ */
 async function loadDashboard(){
   const sb = window.nhSupabase;
-  const [leads, compradores, vendedores, inm, vis] = await Promise.all([
-    sb.from('leads').select('*',{count:'exact',head:true}),
-    sb.from('compradores').select('*',{count:'exact',head:true}),
-    sb.from('vendedores').select('*',{count:'exact',head:true}),
-    sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('cartera_privada',false),
-    sb.from('visitas').select('*',{count:'exact',head:true}),
-  ]);
-  document.getElementById('st-leads').textContent     = leads.count??0;
-  document.getElementById('st-clientes').textContent  = (compradores.count??0)+' / '+(vendedores.count??0);
-  document.getElementById('st-inmuebles').textContent = inm.count??0;
-  document.getElementById('st-visitas').textContent   = vis.count??0;
+  try {
+    const [leads, compradores, vendedores, inm, vis] = await Promise.all([
+      sb.from('leads').select('*',{count:'exact',head:true}).eq('estado','nuevo'),
+      sb.from('compradores').select('*',{count:'exact',head:true}),
+      sb.from('vendedores').select('*',{count:'exact',head:true}),
+      sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('cartera_privada',false),
+      sb.from('visitas').select('*',{count:'exact',head:true}),
+    ]);
+    document.getElementById('st-leads').textContent     = leads.count??0;
+    document.getElementById('st-clientes').textContent  = (compradores.count??0)+' / '+(vendedores.count??0);
+    document.getElementById('st-inmuebles').textContent = inm.count??0;
+    document.getElementById('st-visitas').textContent   = vis.count??0;
 
-  const { data } = await sb.from('leads').select('*').order('created_at',{ascending:false}).limit(5);
-  const tbl = document.getElementById('dash-leads-table');
-  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin leads aún.</p>'; return; }
-  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Nombre</th><th>Email</th><th>Mensaje</th><th>Fecha</th></tr></thead><tbody>${
-    data.map(l=>`<tr><td>${l.nombre||'–'}</td><td>${l.email||'–'}</td><td>${(l.mensaje||'').slice(0,50)}</td><td>${l.created_at?new Date(l.created_at).toLocaleDateString('es-ES'):'–'}</td></tr>`).join('')
-  }</tbody></table>`;
+    const { data } = await sb.from('leads').select('*').order('created_at',{ascending:false}).limit(5);
+    const tbl = document.getElementById('dash-leads-table');
+    if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin leads aún.</p>'; return; }
+    tbl.innerHTML = renderLeadsTable(data, false);
+  } catch (err) {
+    console.error('loadDashboard:', err);
+    document.getElementById('dash-leads-table').innerHTML = '<p class="text-muted">Error al cargar datos.</p>';
+  }
 }
 
-/* ── Leads ─────────────────────────────────────────────────────── */
+const LEAD_ESTADOS = ['nuevo','contactado','cualificado','descartado','cerrado'];
+let _leadsData = [];
+let _leadFilterEstado = '';
+let _leadFilterTipo = '';
+
+function leadEstadoBadge(est) {
+  const colors = { nuevo:'badge-new', contactado:'', cualificado:'badge-new', descartado:'', cerrado:'' };
+  return `<span class="badge ${colors[est]||''}">${est||'nuevo'}</span>`;
+}
+
+function leadActionBtns(l, compact) {
+  const sm = compact ? ' adm-btn-sm' : ' adm-btn-sm';
+  return `<div class="gap-row lead-card-actions">
+    <button class="adm-btn adm-btn-ghost${sm}" onclick="setLeadEstado('${l.id}','contactado')" title="Contactado">📞</button>
+    <button class="adm-btn adm-btn-ghost${sm}" onclick="setLeadEstado('${l.id}','cualificado')" title="Cualificado">✓</button>
+    <button class="adm-btn adm-btn-red${sm}" onclick="setLeadEstado('${l.id}','descartado')" title="Descartar">✕</button>
+    <button class="adm-btn adm-btn-gold${sm}" onclick="setLeadEstado('${l.id}','cerrado')" title="Cerrado">🏁</button>
+  </div>`;
+}
+
+function renderLeadsTable(list, full) {
+  if (!list.length) return '<p class="text-muted">Sin leads.</p>';
+  const rows = list.map(l => {
+    const fecha = l.created_at ? new Date(l.created_at).toLocaleDateString('es-ES') : '–';
+    const notasVal = (l.notas || '').replace(/"/g, '&quot;');
+    return `<tr>
+      <td><strong>${l.nombre||'–'}</strong><br/><span class="text-muted" style="font-size:.75rem">${l.tipo||''}</span></td>
+      <td>${l.email||'–'}<br/><a href="tel:${l.telefono||''}" style="font-size:.8rem">${l.telefono||'–'}</a></td>
+      <td style="max-width:200px">${(l.mensaje||'').slice(0, full ? 120 : 50)}</td>
+      <td>${leadEstadoBadge(l.estado)}</td>
+      <td>${fecha}</td>
+      ${full ? `<td>
+        <input type="text" class="adm-field" style="padding:.35rem .5rem;font-size:.78rem;width:100%;min-width:100px" placeholder="Notas…" value="${notasVal}"
+          onchange="saveLeadNotas('${l.id}', this.value)"/>
+        ${leadActionBtns(l, true)}
+      </td>` : ''}
+    </tr>`;
+  }).join('');
+  const headFull = full ? '<th>Notas / Acciones</th>' : '';
+  return `<div class="adm-table-wrap"><table class="adm-table"><thead><tr>
+    <th>Contacto</th><th>Email / Tel</th><th>Mensaje</th><th>Estado</th><th>Fecha</th>${headFull}
+  </thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function renderLeadsCards(list) {
+  if (!list.length) return '';
+  return `<div class="adm-leads-cards">${list.map(l => {
+    const fecha = l.created_at ? new Date(l.created_at).toLocaleDateString('es-ES') : '';
+    return `<div class="lead-card">
+      <div class="lead-card-head">
+        <div><strong>${l.nombre||'–'}</strong><div class="text-muted" style="font-size:.78rem">${l.tipo||''} · ${fecha}</div></div>
+        ${leadEstadoBadge(l.estado)}
+      </div>
+      <div style="font-size:.82rem"><a href="tel:${l.telefono}">${l.telefono||''}</a> · ${l.email||''}</div>
+      <p style="font-size:.8rem;margin:.5rem 0;color:var(--text-muted)">${(l.mensaje||'').slice(0,100)}</p>
+      <input type="text" class="adm-field" style="padding:.4rem .6rem;font-size:.78rem;width:100%" placeholder="Notas internas…" value="${(l.notas||'').replace(/"/g,'&quot;')}"
+        onchange="saveLeadNotas('${l.id}', this.value)"/>
+      ${leadActionBtns(l, false)}
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function filterLeadsList() {
+  return _leadsData.filter(l => {
+    if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
+    if (_leadFilterTipo && l.tipo !== _leadFilterTipo) return false;
+    return true;
+  });
+}
+
+function renderLeadsView() {
+  const list = filterLeadsList();
+  const tbl = document.getElementById('leads-table');
+  if (!tbl) return;
+  if (!list.length) { tbl.innerHTML = '<p class="text-muted">Sin leads con estos filtros.</p>'; return; }
+  tbl.innerHTML = renderLeadsTable(list, true) + renderLeadsCards(list);
+}
+
 async function loadLeads(){
   const { data } = await window.nhSupabase.from('leads').select('*').order('created_at',{ascending:false});
-  const tbl=document.getElementById('leads-table');
-  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin leads.</p>'; return; }
-  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Mensaje</th><th>Fecha</th></tr></thead><tbody>${
-    data.map(l=>`<tr><td>${l.nombre||'–'}</td><td>${l.email||'–'}</td><td>${l.telefono||'–'}</td><td>${(l.mensaje||'').slice(0,60)}</td><td>${l.created_at?new Date(l.created_at).toLocaleDateString('es-ES'):'–'}</td></tr>`).join('')
-  }</tbody></table>`;
+  _leadsData = data || [];
+  renderLeadsView();
 }
+
+async function setLeadEstado(id, estado) {
+  if (!LEAD_ESTADOS.includes(estado)) return;
+  const { error } = await window.nhSupabase.from('leads').update({ estado }).eq('id', id);
+  if (error) { window.nhToast && nhToast('Error: ' + error.message); return; }
+  const l = _leadsData.find(x => x.id === id);
+  if (l) l.estado = estado;
+  renderLeadsView();
+  window.nhToast && nhToast('Estado actualizado: ' + estado, 'success', 2500);
+}
+
+async function saveLeadNotas(id, notas) {
+  await window.nhSupabase.from('leads').update({ notas: notas.trim() || null }).eq('id', id);
+  const l = _leadsData.find(x => x.id === id);
+  if (l) l.notas = notas.trim();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-lf="estado"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-lf="estado"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      _leadFilterEstado = btn.dataset.val || '';
+      renderLeadsView();
+    });
+  });
+  document.getElementById('lead-filter-tipo')?.addEventListener('change', e => {
+    _leadFilterTipo = e.target.value;
+    renderLeadsView();
+  });
+});
 
 /* loadClientes obsoleto — reemplazado por loadCompradores + loadVendedores */
 async function loadClientes(){ /* no-op */ }
 
 /* ── Visitas ────────────────────────────────────────────────────── */
 async function loadVisitas(){
-  const { data } = await window.nhSupabase.from('visitas').select('*').order('created_at',{ascending:false});
+  const { data, error } = await window.nhSupabase
+    .from('visitas')
+    .select('id, estado, fecha_hora, notas, inmueble_id, inmuebles(titulo, ref), leads(nombre, email, telefono)')
+    .order('fecha_hora', { ascending: false });
   const tbl=document.getElementById('visitas-table');
-  if(!data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin visitas.</p>'; return; }
-  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Inmueble</th><th>Cliente</th><th>Fecha</th><th>Estado</th></tr></thead><tbody>${
-    data.map(v=>`<tr><td>${v.inmueble_id||'–'}</td><td>${v.cliente_email||v.cliente_id||'–'}</td><td>${v.fecha||'–'}</td><td><span class="badge badge-new">${v.estado||'pendiente'}</span></td></tr>`).join('')
+  if(error || !data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin visitas.</p>'; return; }
+  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Inmueble</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th></th></tr></thead><tbody>${
+    data.map(v=>{
+      const inm = v.inmuebles?.titulo || v.inmuebles?.ref || '–';
+      const cli = v.leads?.nombre || v.leads?.email || v.leads?.telefono || '–';
+      const fecha = v.fecha_hora ? new Date(v.fecha_hora).toLocaleString('es-ES') : '–';
+      const est = v.estado || 'pendiente';
+      return `<tr><td>${inm}</td><td>${cli}</td><td>${fecha}</td><td><span class="badge badge-new">${est}</span></td>
+        <td><div class="gap-row">
+          <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="setVisitaEstado('${v.id}','confirmada')">✓</button>
+          <button class="adm-btn adm-btn-red adm-btn-sm" onclick="setVisitaEstado('${v.id}','cancelada')">✕</button>
+        </div></td></tr>`;
+    }).join('')
   }</tbody></table>`;
+}
+
+async function setVisitaEstado(id, estado) {
+  await window.nhSupabase.from('visitas').update({ estado }).eq('id', id);
+  loadVisitas();
+}
+
+async function loadDocumentosAdmin() {
+  const { data } = await window.nhSupabase.from('cliente_documentos')
+    .select('*').order('created_at', { ascending: false });
+  const tbl = document.getElementById('documentos-table');
+  if (!data?.length) { tbl.innerHTML = '<p class="text-muted">Sin documentos.</p>'; return; }
+  tbl.innerHTML = `<table class="adm-table"><thead><tr><th>Cliente</th><th>Documento</th><th>Tipo</th><th>Estado</th><th></th></tr></thead><tbody>${
+    data.map(d => `<tr><td>${d.cliente_email}</td><td>${d.nombre}</td><td>${d.tipo}</td><td>${d.estado}</td>
+      <td>${d.url ? `<a href="${d.url}" target="_blank">Ver</a>` : '–'} · <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteDocumento('${d.id}')">🗑</button></td></tr>`).join('')
+  }</tbody></table>`;
+}
+
+async function saveDocumento() {
+  const email = document.getElementById('doc-email').value.trim();
+  const nombre = document.getElementById('doc-nombre').value.trim();
+  if (!email || !nombre) { nhToast('Email y nombre son obligatorios.'); return; }
+
+  let url = document.getElementById('doc-url').value.trim() || null;
+  const file = document.getElementById('doc-file').files[0];
+  if (file) {
+    const safe = email.toLowerCase().replace(/[^a-z0-9@._+-]/g, '_');
+    const path = `${safe}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+    const { error: upErr } = await window.nhSupabase.storage.from('documentos-clientes').upload(path, file, { upsert: false });
+    if (upErr) { nhToast('Error al subir archivo: ' + upErr.message); return; }
+    url = path;
+  }
+  if (!url) { nhToast('Sube un archivo o indica una URL.'); return; }
+
+  const { error } = await window.nhSupabase.from('cliente_documentos').insert({
+    cliente_email: email,
+    tipo: document.getElementById('doc-tipo').value,
+    nombre,
+    url,
+    estado: document.getElementById('doc-estado').value,
+  });
+  if (error) { nhToast('Error: ' + error.message); return; }
+  if (window.nhNotify) {
+    nhNotify({ nombre: nombre.split(' ')[0], email, tipo: 'documentos', template: 'documentos', extra: { documentos: [nombre] } });
+  }
+  document.getElementById('doc-nombre').value = '';
+  document.getElementById('doc-url').value = '';
+  document.getElementById('doc-file').value = '';
+  loadDocumentosAdmin();
+}
+
+async function deleteDocumento(id) {
+  if (!confirm('¿Eliminar documento?')) return;
+  await window.nhSupabase.from('cliente_documentos').delete().eq('id', id);
+  loadDocumentosAdmin();
 }
 
 /* ── Blog ──────────────────────────────────────────────────────── */
@@ -1407,9 +2030,16 @@ async function saveBlog(){
   const titulo=document.getElementById('b-titulo').value.trim();
   const categoria=document.getElementById('b-cat').value.trim();
   const extracto=document.getElementById('b-extracto').value.trim();
-  if(!titulo){ alert('El título es obligatorio.'); return; }
-  const { error } = await window.nhSupabase.from('blog_posts').insert({titulo,categoria,extracto,publicado:true});
-  if(error){ alert('Error: '+error.message); return; }
+  const contenido=document.getElementById('b-contenido').value.trim();
+  const imagen_url=document.getElementById('b-imagen').value.trim()||null;
+  if(!titulo){ nhToast('El título es obligatorio.'); return; }
+  const slugRaw = document.getElementById('b-slug').value.trim();
+  const slug = slugRaw || (window.nhBlog ? nhBlog.slugify(titulo) : titulo.toLowerCase().replace(/[^a-z0-9]+/g,'-'));
+  const { error } = await window.nhSupabase.from('blog_posts').insert({
+    titulo, categoria, extracto, contenido: contenido || extracto, imagen_url, slug,
+    publicado: true, publicado_en: new Date().toISOString()
+  });
+  if(error){ nhToast('Error: '+error.message); return; }
   document.getElementById('blog-form').style.display='none';
   loadBlog();
 }
@@ -1428,7 +2058,13 @@ let _compFilter = 'todos';
 async function loadCompradores(){
   const { data, error } = await window.nhSupabase
     .from('compradores').select('*').order('created_at',{ascending:false});
-  _compData = data || [];
+  if(error){
+    console.error('loadCompradores:', error);
+    nhToast('No se pudieron cargar compradores: '+error.message, 'error');
+    _compData = [];
+  } else {
+    _compData = data || [];
+  }
   renderCompradores();
 }
 
@@ -1499,6 +2135,7 @@ function openCompForm(prefill={}){
   document.getElementById('c-zona').value=prefill.zona_buscada||'';
   document.getElementById('c-honorarios').value=prefill.honorarios||6050;
   document.getElementById('c-notas').value=prefill.notas||'';
+  document.getElementById('c-expediente').value=prefill.estado_expediente||'registro';
   document.getElementById('comp-form-err').style.display='none';
   document.getElementById('comp-form-wrap').scrollIntoView({behavior:'smooth'});
 }
@@ -1532,6 +2169,7 @@ async function saveComprador(){
     zona_buscada:     document.getElementById('c-zona').value.trim()||null,
     honorarios:       parseFloat(document.getElementById('c-honorarios').value)||6050,
     notas:            document.getElementById('c-notas').value.trim()||null,
+    estado_expediente: document.getElementById('c-expediente').value || 'registro',
   };
 
   const editId = document.getElementById('comp-edit-id').value;
@@ -1563,9 +2201,15 @@ async function toggleActivoComp(id, nuevoValor){
 let _vendData = [];
 
 async function loadVendedores(){
-  const { data } = await window.nhSupabase
+  const { data, error } = await window.nhSupabase
     .from('vendedores').select('*').order('created_at',{ascending:false});
-  _vendData = data || [];
+  if(error){
+    console.error('loadVendedores:', error);
+    nhToast('No se pudieron cargar vendedores: '+error.message, 'error');
+    _vendData = [];
+  } else {
+    _vendData = data || [];
+  }
   renderVendedores();
 }
 
@@ -1573,7 +2217,7 @@ function renderVendedores(){
   const tbl = document.getElementById('vend-table');
   document.getElementById('vend-count').textContent = _vendData.length+' vendedores';
   if(!_vendData.length){
-    tbl.innerHTML='<p class="text-muted">Sin vendedores. Se crean automáticamente al publicar un inmueble, o puedes añadir uno manualmente.</p>';
+    tbl.innerHTML='<p class="text-muted">Sin vendedores. Pulsa <strong>↻ Sincronizar</strong> o completa el propietario al publicar/editar un inmueble.</p>';
     return;
   }
   tbl.innerHTML=`<table class="adm-table">
@@ -1608,6 +2252,7 @@ function openVendForm(prefill={}){
   document.getElementById('v-precio-min').value=prefill.precio_minimo||'';
   document.getElementById('v-ref').value=prefill.inmueble_ref||'';
   document.getElementById('v-desc').value=prefill.descripcion||'';
+  document.getElementById('v-expediente').value=prefill.estado_expediente||'registro';
   document.getElementById('vend-form-err').style.display='none';
   document.getElementById('vend-form-wrap').scrollIntoView({behavior:'smooth'});
 }
@@ -1635,6 +2280,7 @@ async function saveVendedor(){
     precio_minimo: parseFloat(document.getElementById('v-precio-min').value)||null,
     inmueble_ref:  document.getElementById('v-ref').value.trim()||null,
     descripcion:   document.getElementById('v-desc').value.trim()||null,
+    estado_expediente: document.getElementById('v-expediente').value || 'registro',
   };
   const editId = document.getElementById('vend-edit-id').value;
   let error;
@@ -1654,17 +2300,76 @@ async function deleteVendedor(id){
   loadVendedores();
 }
 
-/* Auto-crear vendedor desde datos del wizard (llamado por publishProperty) */
+/* Auto-crear o vincular vendedor desde datos del wizard (respaldo del trigger SQL) */
 async function autoCreateVendedor(propNombre, propTel, propEmail, refInmueble, precio){
-  if(!propNombre) return;
-  await window.nhSupabase.from('vendedores').insert({
-    nombre:        propNombre,
-    telefono:      propTel||null,
-    email:         propEmail||null,
-    precio_minimo: precio||null,
-    inmueble_ref:  refInmueble||null,
-    descripcion:   'Creado automáticamente al publicar el inmueble '+refInmueble,
-  });
+  if(!propNombre && !propEmail) return;
+  const payload = {
+    nombre:        propNombre || (propEmail ? propEmail.split('@')[0] : 'Propietario'),
+    telefono:      propTel || null,
+    email:         propEmail || null,
+    precio_minimo: precio || null,
+    inmueble_ref:  refInmueble || null,
+    descripcion:   refInmueble ? ('Vinculado al inmueble ' + refInmueble) : null,
+  };
+
+  if(propEmail){
+    const { data: existing, error: findErr } = await window.nhSupabase.from('vendedores')
+      .select('id').ilike('email', propEmail.trim()).maybeSingle();
+    if(findErr) throw new Error('Vendedor: '+findErr.message);
+    if(existing){
+      const { error } = await window.nhSupabase.from('vendedores').update({
+        inmueble_ref: refInmueble,
+        precio_minimo: precio || null,
+        nombre: payload.nombre,
+        telefono: payload.telefono,
+        descripcion: payload.descripcion,
+      }).eq('id', existing.id);
+      if(error) throw new Error('Vendedor: '+error.message);
+      return;
+    }
+  } else if(refInmueble){
+    const { data: byRef, error: refErr } = await window.nhSupabase.from('vendedores')
+      .select('id').eq('inmueble_ref', refInmueble).maybeSingle();
+    if(refErr) throw new Error('Vendedor: '+refErr.message);
+    if(byRef){
+      const { error } = await window.nhSupabase.from('vendedores').update({
+        precio_minimo: precio || null,
+        nombre: payload.nombre,
+        telefono: payload.telefono,
+        descripcion: payload.descripcion,
+      }).eq('id', byRef.id);
+      if(error) throw new Error('Vendedor: '+error.message);
+      return;
+    }
+  }
+
+  const { error } = await window.nhSupabase.from('vendedores').insert(payload);
+  if(error) throw new Error('Vendedor: '+error.message);
+}
+
+async function syncVendedoresFromInmuebles(){
+  nhToast('Sincronizando vendedores…', 'info', 2000);
+  const { data, error } = await window.nhSupabase.rpc('admin_sync_vendedores');
+  if(error){
+    console.error('syncVendedoresFromInmuebles:', error);
+    const { data: inmuebles, error: err2 } = await window.nhSupabase
+      .from('inmuebles')
+      .select('ref, propietario_nombre, propietario_telefono, propietario_email, precio');
+    if(err2){ nhToast('Error: '+err2.message); return; }
+    let n = 0;
+    for(const i of (inmuebles||[])){
+      if(!i.propietario_nombre && !i.propietario_email) continue;
+      try {
+        await autoCreateVendedor(i.propietario_nombre, i.propietario_telefono, i.propietario_email, i.ref, i.precio);
+        n++;
+      } catch(e){ console.warn(e); }
+    }
+    nhToast(n ? `Sincronizados ${n} vendedor(es)` : 'Ningún inmueble tiene propietario', n ? 'success' : 'info');
+  } else {
+    nhToast(`Listo: ${data.synced} vendedor(es). Total: ${data.total_vendedores}`, 'success');
+  }
+  loadVendedores();
+  loadDashboard();
 }
 
 /* ── Newsletter ─────────────────────────────────────────────────── */

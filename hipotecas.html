@@ -46,7 +46,7 @@
       <p>Comparamos entre más de 15 bancos para conseguirte el tipo de interés más bajo. Sin coste adicional si compras con NuevaHabitat.</p>
       <div class="page-hero-btns">
         <a href="#calculadora" class="btn btn-gold btn-lg">Calcular mi cuota</a>
-        <a href="tel:+34600367742" class="btn btn-outline-light btn-lg">Hablar con un experto</a>
+        <a href="tel:+34675704514" class="btn btn-outline-light btn-lg">Hablar con un experto</a>
       </div>
     </div>
   </div>
@@ -110,7 +110,7 @@
           <div class="calc-row"><span>Total intereses (aprox.)</span><strong id="totalInteresVal">128.600€</strong></div>
         </div>
         <p class="calc-disclaimer">Cálculo orientativo. Las condiciones finales dependen de tu perfil, aval y banco elegido. Un asesor de NuevaHabitat revisará tu caso sin coste.</p>
-        <a href="tel:+34600367742" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:1.5rem">Hablar con un asesor hipotecario</a>
+        <a href="tel:+34675704514" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:1.5rem">Hablar con un asesor hipotecario</a>
       </div>
     </div>
   </div>
@@ -211,8 +211,20 @@
       <h2 class="section-title light">Hablemos de tu hipoteca<br/>sin compromiso</h2>
       <p class="section-subtitle light">Un asesor hipotecario especializado en Barcelona te llama hoy mismo.</p>
       <div class="cta-buttons">
-        <a href="tel:+34600367742" class="btn btn-gold btn-lg">Solicitar asesoría gratuita</a>
+        <a href="tel:+34675704514" class="btn btn-gold btn-lg">675 704 514 · Juan Cárdenas</a>
         <a href="comprar.html" class="btn btn-outline-light btn-lg">Ver servicio de compra</a>
+      </div>
+      <div style="max-width:480px;margin:2rem auto 0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-lg);padding:1.5rem;text-align:left">
+        <p style="font-size:.875rem;font-weight:600;margin-bottom:.75rem;color:#fff">Solicita asesoría hipotecaria</p>
+        <form id="hipForm" onsubmit="return submitHipoteca(event)">
+          <div style="display:grid;gap:.65rem">
+            <input type="text" id="hip-nombre" required placeholder="Nombre *" style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(255,255,255,.2);border-radius:var(--radius-sm);background:rgba(255,255,255,.06);color:#fff;font-size:.875rem"/>
+            <input type="tel" id="hip-tel" required placeholder="Teléfono *" style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(255,255,255,.2);border-radius:var(--radius-sm);background:rgba(255,255,255,.06);color:#fff;font-size:.875rem"/>
+            <input type="email" id="hip-email" placeholder="Email" style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(255,255,255,.2);border-radius:var(--radius-sm);background:rgba(255,255,255,.06);color:#fff;font-size:.875rem"/>
+          </div>
+          <div id="hip-ok" style="display:none;margin-top:.75rem;font-size:.8125rem;color:#065f46;background:#ecfdf5;border-radius:var(--radius-sm);padding:.75rem">✓ Recibido. Te contactamos hoy mismo.</div>
+          <button type="submit" id="hip-btn" class="btn btn-gold" style="width:100%;justify-content:center;margin-top:.85rem">Enviar solicitud</button>
+        </form>
       </div>
     </div>
   </div>
@@ -223,13 +235,13 @@
     <div class="footer-top" style="grid-template-columns:2fr 1fr 1fr">
       <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo y cobro solo en escritura.</p></div>
       <div class="footer-col"><h4>Servicios</h4><ul><li><a href="vender.html">Vender</a></li><li><a href="comprar.html">Comprar</a></li><li><a href="hipotecas.html">Hipotecas</a></li></ul></div>
-      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34600367742">600 367 742 · 675 704 514</a></li><li><a href="mailto:admin.nuevahabitat@gmail.com">admin.nuevahabitat@gmail.com</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34675704514">675 704 514 · Juan Cárdenas</a></li><li><a href="mailto:admin.nuevahabitat@gmail.com">admin.nuevahabitat@gmail.com</a></li></ul></div>
     </div>
     <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="privacidad.html">Privacidad</a><a href="aviso-legal.html">Aviso legal</a></div></div>
   </div>
 </footer>
 
-<div class="whatsapp-float"><div class="whatsapp-tooltip">¿Hablamos?</div><a href="https://wa.me/34600367742" class="whatsapp-btn" target="_blank" rel="noopener"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
+<div class="whatsapp-float"><div class="whatsapp-tooltip">¿Hablamos?</div><a href="https://wa.me/34675704514" class="whatsapp-btn" target="_blank" rel="noopener"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
 
 <script>
 function calcular(){
@@ -254,6 +266,42 @@ function calcular(){
   document.getElementById('totalInteresVal').textContent=Math.round(totalInteres).toLocaleString('es-ES')+'€';
 }
 calcular();
+</script>
+<script src="js/supabase.js"></script>
+<script src="js/notify.js"></script>
+<script>
+async function submitHipoteca(e){
+  e.preventDefault();
+  const nombre = document.getElementById('hip-nombre').value.trim();
+  const tel    = document.getElementById('hip-tel').value.trim();
+  const email  = document.getElementById('hip-email').value.trim();
+  if(!nombre || !tel){ nhToast('Nombre y teléfono son obligatorios.'); return false; }
+  const btn = document.getElementById('hip-btn');
+  btn.disabled = true; btn.textContent = 'Enviando…';
+  const mensaje = `Asesoría hipotecaria · Precio ${document.getElementById('precioVal').textContent} · Entrada ${document.getElementById('entradaVal').textContent} · Cuota ${document.getElementById('cuotaVal').textContent} €/mes · Plazo ${document.getElementById('plazo').value} años`;
+  try {
+    if(window.nhSupabase){
+      await window.nhSupabase.from('leads').insert({
+        nombre, telefono: tel, email: email || null,
+        mensaje, tipo: 'hipoteca', origen: 'web_hipotecas'
+      });
+    }
+    if(window.nhNotify) nhNotify({
+      nombre, telefono: tel, email, mensaje, tipo: 'hipoteca', template: 'hipoteca',
+      extra: {
+        cuota: document.getElementById('cuotaVal').textContent + ' €/mes',
+        prestamo: document.getElementById('capitalVal').textContent,
+        anos: document.getElementById('plazo').value
+      }
+    });
+    document.getElementById('hip-ok').style.display = 'block';
+    btn.style.display = 'none';
+  } catch(_){
+    btn.disabled = false; btn.textContent = 'Enviar solicitud';
+    nhToast('Error al enviar. Llámanos al 675 704 514.');
+  }
+  return false;
+}
 </script>
 
 <!-- ═══ MOBILE BOTTOM NAV ═══ -->

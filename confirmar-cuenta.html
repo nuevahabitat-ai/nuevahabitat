@@ -12,7 +12,8 @@
     body{background:var(--crema);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem}
     .cf-wrap{width:100%;max-width:480px}
     .cf-card{background:var(--blanco);border-radius:var(--radius-lg);padding:2.5rem 2rem;box-shadow:var(--shadow-md);text-align:center}
-    .cf-logo{width:72px;height:72px;border-radius:16px;background:linear-gradient(135deg,var(--oro),#9a7550);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:var(--font-serif);font-weight:700;font-size:1.5rem;color:#fff}
+    .cf-logo{width:120px;height:auto;margin:0 auto 1.5rem;display:block}
+    .cf-logo img{width:100%;height:auto;display:block}
     .cf-card h1{font-family:var(--font-serif);font-size:1.65rem;margin-bottom:.5rem;color:var(--negro)}
     .cf-card p{font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin-bottom:1.5rem}
     .cf-spinner{width:40px;height:40px;border:3px solid var(--crema-dark);border-top-color:var(--oro);border-radius:50%;animation:cfspin .8s linear infinite;margin:0 auto 1rem}
@@ -32,7 +33,7 @@
 <div class="cf-wrap">
   <div class="cf-card">
 
-    <div class="cf-logo">NH</div>
+    <div class="cf-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/></div>
 
     <!-- Estado: verificando enlace -->
     <div id="state-loading">
@@ -85,9 +86,11 @@
   </div>
 </div>
 
+<script src="js/notify.js"></script>
 <script src="js/supabase.js"></script>
 <script>
 let confirmedUser = null;
+let confirmHandled = false;
 
 function showState(id) {
   ['state-loading','state-pending','state-success','state-error'].forEach(s => {
@@ -95,49 +98,127 @@ function showState(id) {
   });
 }
 
-function onConfirmed(user) {
-  confirmedUser = user;
-  const tipo = nhAuth.getUserTipo(user);
-  const isVendedor = tipo === 'vendedor';
-  document.getElementById('success-tipo').textContent = isVendedor ? 'Panel Vendedor' : 'Panel Comprador';
-  document.getElementById('success-msg').textContent = isVendedor
-    ? 'Tu cuenta de vendedor está activa. Desde tu panel podrás seguir el proceso de venta de tu inmueble.'
-    : 'Tu cuenta de comprador está activa. Desde tu panel podrás seguir tu búsqueda de vivienda.';
-  localStorage.removeItem('nh_reg_tipo');
-  showState('state-success');
+async function waitForSession(maxMs = 6000) {
+  const start = Date.now();
+  while (Date.now() - start < maxMs) {
+    const { data: { session } } = await window.nhSupabase.auth.getSession();
+    if (session?.user) return session.user;
+    await new Promise(r => setTimeout(r, 250));
+  }
+  return null;
+}
+
+async function onConfirmed(initialUser) {
+  if (confirmHandled) return;
+  confirmHandled = true;
+  let user = initialUser;
+
+  try {
+    const storedTipo = localStorage.getItem('nh_reg_tipo');
+    if (storedTipo && !user.user_metadata?.tipo) {
+      const { error: metaErr } = await window.nhSupabase.auth.updateUser({
+        data: { tipo: storedTipo, nombre: user.user_metadata?.nombre || user.user_metadata?.full_name || user.email?.split('@')[0] }
+      });
+      if (!metaErr) {
+        const { data: { user: refreshed } } = await window.nhSupabase.auth.getUser();
+        if (refreshed) user = refreshed;
+      }
+    }
+
+    confirmedUser = user;
+    await nhAuth.ensureClientRecord(user);
+    const tipo = nhAuth.getUserTipo(user);
+    const isAdmin = nhAuth.isAdmin(user);
+    const isVendedor = !isAdmin && tipo === 'vendedor';
+    document.getElementById('success-tipo').textContent = isAdmin ? 'Panel Administración' : (isVendedor ? 'Panel Vendedor' : 'Panel Comprador');
+    document.getElementById('success-msg').textContent = isAdmin
+      ? 'Tu cuenta de administrador está activa. Accede al panel de gestión.'
+      : isVendedor
+      ? 'Tu cuenta de vendedor está activa. Desde tu panel podrás seguir el proceso de venta de tu inmueble.'
+      : 'Tu cuenta de comprador está activa. Desde tu panel podrás seguir tu búsqueda de vivienda.';
+    localStorage.removeItem('nh_reg_tipo');
+    localStorage.removeItem('nh_reg_email');
+    showState('state-success');
+
+    const bienvenidaKey = 'nh_bienvenida_' + user.id;
+    if (!localStorage.getItem(bienvenidaKey) && window.nhNotify) {
+      localStorage.setItem(bienvenidaKey, '1');
+      const nombre = user.user_metadata?.nombre || user.email?.split('@')[0] || '';
+      nhNotify({ nombre, email: user.email, tipo: 'bienvenida', template: 'bienvenida', extra: { tipo: tipo === 'vendedor' ? 'vender' : 'comprar' } });
+    }
+    setTimeout(() => nhAuth.redirectAfterLogin(user), 2000);
+  } catch (err) {
+    console.error('onConfirmed:', err);
+    confirmHandled = false;
+    showState('state-error');
+    document.getElementById('error-msg').textContent = err.message || 'No se pudo completar la verificación. Intenta iniciar sesión.';
+  }
 }
 
 async function initConfirm() {
   if (!window.nhSupabase) { document.addEventListener('supabase:ready', initConfirm); return; }
-
-  const params = new URLSearchParams(location.search);
-  const pending = params.get('pending') === '1';
-  const email   = params.get('email') || '';
-
-  // Escuchar confirmación automática del enlace del email
-  window.nhSupabase.auth.onAuthStateChange((event, session) => {
-    if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session?.user?.email_confirmed_at) {
-      onConfirmed(session.user);
-    }
-  });
-
-  // Comprobar si ya hay sesión confirmada (enlace del email o sesión existente)
-  const { data: { session } } = await window.nhSupabase.auth.getSession();
-  if (session?.user?.email_confirmed_at) {
-    onConfirmed(session.user);
+  if (new URLSearchParams(location.search).get('logout') === '1') {
+    window.location.replace('login.html?logout=1');
     return;
   }
 
-  // Si viene del registro sin sesión aún
-  if (pending) {
-    if (email) document.getElementById('pending-email').textContent = decodeURIComponent(email);
+  const params = new URLSearchParams(location.search);
+  const hash   = new URLSearchParams(location.hash.replace(/^#/, ''));
+  const pending = params.get('pending') === '1';
+  const email   = params.get('email') || localStorage.getItem('nh_reg_email') || '';
+
+  const errDesc = hash.get('error_description') || params.get('error_description');
+  if (errDesc) {
+    showState('state-error');
+    document.getElementById('error-msg').textContent = decodeURIComponent(errDesc.replace(/\+/g, ' '));
+    return;
+  }
+
+  const handleUser = (user) => { if (user) onConfirmed(user); };
+
+  window.nhSupabase.auth.onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_OUT') return;
+    if (session?.user && ['SIGNED_IN', 'INITIAL_SESSION', 'TOKEN_REFRESHED'].includes(event)) {
+      handleUser(session.user);
+    }
+  });
+
+  const tokenHash = params.get('token_hash');
+  const otpType   = params.get('type');
+  if (tokenHash && otpType) {
+    const { data, error } = await window.nhSupabase.auth.verifyOtp({ token_hash: tokenHash, type: otpType });
+    if (data?.user) { await onConfirmed(data.user); return; }
+    if (error) {
+      showState('state-error');
+      document.getElementById('error-msg').textContent = error.message;
+      return;
+    }
+  }
+
+  if (params.get('code') || hash.get('access_token')) {
+    const user = await waitForSession(8000);
+    if (user) { await onConfirmed(user); return; }
+    showState('state-error');
+    document.getElementById('error-msg').textContent = 'No se pudo verificar la sesión. Vuelve a iniciar sesión.';
+    return;
+  }
+
+  const user = await waitForSession(2000);
+  if (user) { await onConfirmed(user); return; }
+
+  if (pending || email) {
+    if (email) {
+      document.getElementById('pending-email').textContent = decodeURIComponent(email);
+      localStorage.setItem('nh_reg_email', email);
+    }
     showState('state-pending');
     return;
   }
 
-  // Sin sesión ni pending — mostrar opción de login
-  showState('state-error');
-  document.getElementById('error-msg').textContent = 'No hay sesión activa. Confirma tu email o inicia sesión.';
+  showState('state-pending');
+  document.getElementById('pending-email').textContent = email || 'tu correo electrónico';
+  document.querySelector('#state-pending h1').textContent = 'Confirma tu cuenta';
+  document.querySelector('#state-pending > p').textContent = 'Si ya confirmaste tu email, pulsa el botón para acceder a tu panel:';
 }
 
 document.getElementById('btn-panel').addEventListener('click', () => {
@@ -149,14 +230,14 @@ document.getElementById('btn-check').addEventListener('click', async () => {
   const btn = document.getElementById('btn-check');
   btn.textContent = 'Comprobando…';
   btn.disabled = true;
-  const { data: { session } } = await window.nhSupabase.auth.getSession();
-  if (session?.user) {
-    if (session.user.email_confirmed_at) {
-      onConfirmed(session.user);
+  const { data: { user } } = await window.nhSupabase.auth.getUser();
+  if (user) {
+    if (user.email_confirmed_at) {
+      onConfirmed(user);
     } else {
       btn.textContent = 'Ya confirmé — Ir a mi panel →';
       btn.disabled = false;
-      alert('Tu email aún no está confirmado. Abre el enlace que te enviamos por correo.');
+      nhToast('Tu email aún no está confirmado. Abre el enlace que te enviamos por correo.', 'info');
     }
   } else {
     btn.textContent = 'Ya confirmé — Ir a mi panel →';
@@ -167,7 +248,7 @@ document.getElementById('btn-check').addEventListener('click', async () => {
 
 document.getElementById('btn-resend').addEventListener('click', async () => {
   const email = document.getElementById('pending-email').textContent;
-  if (!email || email === 'tu@email.com') { alert('No hay email registrado.'); return; }
+  if (!email || email === 'tu@email.com') { nhToast('No hay email registrado.'); return; }
   const btn = document.getElementById('btn-resend');
   btn.textContent = 'Enviando…';
   btn.disabled = true;
@@ -178,12 +259,14 @@ document.getElementById('btn-resend').addEventListener('click', async () => {
   });
   btn.textContent = 'Reenviar email de confirmación';
   btn.disabled = false;
-  if (error) alert('Error: ' + error.message);
-  else alert('Email reenviado. Revisa tu bandeja de entrada.');
+  if (error) nhToast('Error: ' + error.message);
+  else nhToast('Email reenviado. Revisa tu bandeja de entrada.', 'success');
 });
 
 if (window.nhSupabase) initConfirm();
 else document.addEventListener('supabase:ready', initConfirm);
 </script>
+<script src="js/mbn.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

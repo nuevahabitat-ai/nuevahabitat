@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Artículo · NuevaHabitat Barcelona</title>
+  <meta name="description" content="Artículo del blog inmobiliario de NuevaHabitat Barcelona."/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+  <style>
+    .blog-post-hero{position:relative;min-height:340px;display:flex;align-items:flex-end;background:var(--negro);margin-top:var(--nav-h,80px)}
+    .blog-post-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
+    .blog-post-hero .container{position:relative;z-index:1;padding:3rem 0;color:#fff}
+    .blog-post-hero h1{font-family:var(--font-serif);font-size:clamp(1.75rem,4vw,2.75rem);max-width:780px;line-height:1.2;margin:.75rem 0}
+    .blog-post-meta{display:flex;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:rgba(255,255,255,.75)}
+    .blog-post-body{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem}
+    .blog-post-body p,.blog-post-body li{font-size:1rem;line-height:1.75;color:var(--gris-texto);margin-bottom:1.1rem}
+    .blog-post-body a{color:var(--oro)}
+    .blog-post-body ol{padding-left:1.25rem}
+    .blog-back{display:inline-flex;align-items:center;gap:.4rem;font-size:.875rem;color:var(--gris-medio);margin-bottom:2rem;text-decoration:none}
+    .blog-back:hover{color:var(--negro)}
+  </style>
+</head>
+<body>
+<nav id="navbar" class="scrolled" style="background:rgba(13,13,13,.97)">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">Barcelona · Inmobiliaria</span></div></a>
+    <ul class="nav-links">
+      <li><a href="vender.html">Vender</a></li><li><a href="comprar.html">Comprar</a></li>
+      <li><a href="inmuebles.html">Inmuebles</a></li><li><a href="hipotecas.html">Hipotecas</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li><li><a href="blog.html" style="color:var(--oro)">Blog</a></li>
+    </ul>
+    <div class="nav-actions"><a href="tel:+34675704514" class="nav-tel">675 704 514</a><a href="registro.html" class="nav-cta">Empezar ahora</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
+  </div>
+</nav>
+<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="hipotecas.html">Hipotecas</a><a href="nosotros.html">Nosotros</a><a href="blog.html">Blog</a><a href="registro.html" style="color:var(--oro)">Empezar ahora →</a></nav>
+
+<div class="blog-post-hero" id="postHero">
+  <img id="postImg" src="imagenes/interior1.jpg" alt=""/>
+  <div class="container">
+    <span class="blog-cat" id="postCat">Blog</span>
+    <h1 id="postTitle">Cargando artículo…</h1>
+    <div class="blog-post-meta">
+      <span id="postDate"></span>
+      <span id="postRead"></span>
+    </div>
+  </div>
+</div>
+
+<article class="blog-post-body">
+  <a href="blog.html" class="blog-back">← Volver al blog</a>
+  <div id="postBody"></div>
+</article>
+
+<footer>
+  <div class="container">
+    <div class="footer-top" style="grid-template-columns:2fr 1fr 1fr">
+      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo y cobro solo en escritura.</p></div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="vender.html">Vender</a></li><li><a href="comprar.html">Comprar</a></li><li><a href="hipotecas.html">Hipotecas</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34675704514">675 704 514 · Juan Cárdenas</a></li><li><a href="mailto:admin.nuevahabitat@gmail.com">admin.nuevahabitat@gmail.com</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="privacidad.html">Privacidad</a><a href="aviso-legal.html">Aviso legal</a></div></div>
+  </div>
+</footer>
+
+<script src="js/supabase.js"></script>
+<script src="js/blog-posts.js"></script>
+<script src="js/blog-api.js"></script>
+<script src="js/blog-articulo.js"></script>
+<script src="js/mbn.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

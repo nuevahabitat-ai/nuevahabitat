@@ -14,52 +14,45 @@ const HEAD = `
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f0ea;color:#0d0d0d}
-  .wrap{max-width:580px;margin:32px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
-  .hdr{background:#0d0d0d;padding:28px 40px;display:flex;align-items:center;gap:16px}
-  .logo-box{width:44px;height:44px;background:#b8936a;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-weight:700;color:#0d0d0d;font-size:1.1rem;flex-shrink:0}
-  .logo-text{display:flex;flex-direction:column;gap:2px}
-  .logo-name{color:#b8936a;font-size:.9rem;font-weight:700;letter-spacing:.12em}
-  .logo-sub{color:rgba(255,255,255,.45);font-size:.65rem;letter-spacing:.15em}
-  .body{padding:36px 40px}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f0ea;color:#0d0d0d;-webkit-text-size-adjust:100%}
+  .wrap{max-width:580px;margin:16px auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+  .hdr{background:#0d0d0d;padding:20px 24px;text-align:center}
+  .logo-name{color:#b8936a;font-size:1rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  .body{padding:28px 24px}
   .tag{display:inline-block;background:rgba(184,147,106,.12);color:#b8936a;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:14px}
-  h1{font-family:Georgia,serif;font-size:1.55rem;margin-bottom:10px;line-height:1.3}
-  .intro{font-size:.9rem;color:#555;line-height:1.7;margin-bottom:28px}
-  .card{background:#f9f5ef;border-radius:10px;padding:24px;margin-bottom:20px}
+  h1{font-family:Georgia,serif;font-size:1.35rem;margin-bottom:10px;line-height:1.35;word-break:break-word}
+  .intro{font-size:.9rem;color:#555;line-height:1.7;margin-bottom:24px}
+  .card{background:#f9f5ef;border-radius:10px;padding:20px;margin-bottom:20px}
   .card-title{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#b8936a;margin-bottom:12px}
   table{width:100%;border-collapse:collapse}
   td{padding:8px 0;font-size:.88rem;border-bottom:1px solid #efe9e0;vertical-align:top}
   td:first-child{color:#888;width:130px}
   td:last-child{font-weight:500}
   tr:last-child td{border:none}
-  .btn{display:inline-block;padding:13px 28px;border-radius:8px;text-decoration:none;font-size:.88rem;font-weight:600;margin-top:4px}
+  .btn{display:block;width:100%;padding:14px 20px;border-radius:8px;text-decoration:none;font-size:.88rem;font-weight:600;text-align:center;margin-bottom:10px}
   .btn-gold{background:#b8936a;color:#fff}
   .btn-dark{background:#0d0d0d;color:#fff}
   .btn-wa{background:#25d366;color:#fff}
-  .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .btns{margin-top:20px}
   .divider{height:1px;background:#f0ece6;margin:24px 0}
-  .tip{background:#fffbf5;border-left:3px solid #b8936a;padding:14px 18px;border-radius:0 8px 8px 0;font-size:.83rem;color:#555;line-height:1.6;margin-bottom:20px}
-  .steps{display:flex;flex-direction:column;gap:14px;margin:20px 0}
-  .step{display:flex;gap:14px;align-items:flex-start}
-  .step-num{width:30px;height:30px;border-radius:50%;background:#b8936a;color:#fff;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-  .step-body h4{font-size:.875rem;margin-bottom:2px}
-  .step-body p{font-size:.82rem;color:#666;line-height:1.5}
-  .ftr{background:#0d0d0d;padding:24px 40px;text-align:center}
+  .tip{background:#fffbf5;border-left:3px solid #b8936a;padding:14px 16px;border-radius:0 8px 8px 0;font-size:.83rem;color:#555;line-height:1.6;margin-bottom:20px}
+  .step-table{width:100%;border-collapse:collapse;margin:16px 0}
+  .step-num-cell{width:40px;vertical-align:top;padding-bottom:16px}
+  .step-num{width:28px;height:28px;border-radius:50%;background:#b8936a;color:#fff;font-size:.78rem;font-weight:700;text-align:center;line-height:28px}
+  .step-body-cell{vertical-align:top;padding-bottom:16px;padding-left:4px}
+  .step-title{font-size:.875rem;font-weight:600;color:#0d0d0d;margin:0 0 4px;line-height:1.3}
+  .step-desc{font-size:.82rem;color:#666;line-height:1.5;margin:0}
+  .ftr{background:#0d0d0d;padding:20px 24px;text-align:center}
   .ftr p{color:rgba(255,255,255,.35);font-size:.73rem;line-height:1.7}
   .ftr a{color:#b8936a;text-decoration:none}
-  .stat-row{display:flex;gap:16px;margin:16px 0;flex-wrap:wrap}
-  .stat{flex:1;min-width:100px;background:#fff;border-radius:8px;padding:14px;text-align:center;border:1px solid #efe9e0}
+  .stat-row{display:block;margin:16px 0}
+  .stat{background:#fff;border-radius:8px;padding:14px;text-align:center;border:1px solid #efe9e0;margin-bottom:10px}
   .stat-val{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;color:#0d0d0d}
   .stat-lbl{font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
-  @media(max-width:600px){.body,.hdr,.ftr{padding:24px 20px}.btns{flex-direction:column}}
 </style></head><body>
 <div class="wrap">
 <div class="hdr">
-  <div class="logo-box">NH</div>
-  <div class="logo-text">
-    <span class="logo-name">NUEVA HABITAT</span>
-    <span class="logo-sub">BARCELONA · INMOBILIARIA</span>
-  </div>
+  <span class="logo-name">NuevaHabitat</span>
 </div>`;
 
 const FOOTER = `
@@ -75,6 +68,28 @@ const FOOTER = `
 /* ══════════════════════════════════════════════════════════════════════
    PLANTILLAS
 ══════════════════════════════════════════════════════════════════════ */
+
+function safeEmailName(nombre) {
+  if (!nombre) return 'bienvenido/a';
+  let n = String(nombre).trim();
+  if (n.includes('@')) n = n.split('@')[0];
+  n = n.split(/\s+/)[0];
+  if (n.length > 18) n = n.slice(0, 16) + '…';
+  return n.charAt(0).toUpperCase() + n.slice(1);
+}
+
+function emailSteps(items) {
+  return `<table class="step-table" cellpadding="0" cellspacing="0" role="presentation">${
+    items.map(([num, title, desc]) => `
+    <tr>
+      <td class="step-num-cell"><div class="step-num">${num}</div></td>
+      <td class="step-body-cell">
+        <p class="step-title">${title}</p>
+        <p class="step-desc">${desc}</p>
+      </td>
+    </tr>`).join('')
+  }</table>`;
+}
 
 function tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble }) {
   const labels = {
@@ -110,25 +125,39 @@ function tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble }) {
   };
 }
 
-function tplBienvenida({ nombre, email }) {
+function tplBienvenida({ nombre, email, tipo }) {
+  const esVendedor = tipo === 'vender' || tipo === 'vendedor';
+  const panelUrl = esVendedor
+    ? 'https://www.nuevahabitat.com/panel.html?tipo=vendedor'
+    : 'https://www.nuevahabitat.com/panel.html?tipo=comprador';
+  const intro = esVendedor
+    ? 'Nos alegra tenerte en NuevaHabitat. Desde tu <strong>panel de vendedor</strong> podrás seguir el proceso de venta de tu inmueble en tiempo real: documentos, visitas y comunicación con tu agente.'
+    : 'Nos alegra tenerte en NuevaHabitat. Desde tu <strong>panel de comprador</strong> podrás seguir tu búsqueda de vivienda: favoritos, visitas y el estado de tu expediente.';
+  const pasos = esVendedor
+    ? emailSteps([
+        ['1', 'Estado de tu venta', 'Sigue cada fase: valoración, publicación, visitas y ofertas.'],
+        ['2', 'Visitas programadas', 'Consulta las visitas solicitadas y confirmadas a tu inmueble.'],
+        ['3', 'Documentos', 'Contratos, arras y notas de tu agente en un solo lugar.'],
+      ])
+    : emailSteps([
+        ['1', 'Resumen del expediente', 'Estado actualizado de tu proceso de compra.'],
+        ['2', 'Mis visitas', 'Historial de visitas solicitadas y confirmadas.'],
+        ['3', 'Mis favoritos', 'Guarda y compara los inmuebles que más te gusten.'],
+      ]);
+  const saludo = safeEmailName(nombre);
   return {
-    subject: `Bienvenido/a a NuevaHabitat, ${nombre || 'cliente'}`,
+    subject: `Bienvenido/a a NuevaHabitat, ${saludo}`,
     html: HEAD + `<div class="body">
       <div class="tag">Bienvenida</div>
-      <h1>Hola, ${nombre || 'bienvenido/a'} 👋</h1>
-      <p class="intro">Nos alegra tenerte en NuevaHabitat. Tienes acceso a tu panel personal donde podrás seguir todo el proceso de compra o venta en tiempo real.</p>
-      <div class="tip">Tu agente personal <strong>Juan Cárdenas</strong> se pondrá en contacto contigo en menos de 24h para conocer tu perfil y comenzar la búsqueda activa.</div>
+      <h1>Hola, ${saludo} 👋</h1>
+      <p class="intro">${intro}</p>
+      <div class="tip">Tu agente personal <strong>Juan Cárdenas</strong> se pondrá en contacto contigo en menos de 24h.</div>
       <div class="card">
         <div class="card-title">Tu panel incluye</div>
-        <div class="steps">
-          <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Resumen del expediente</h4><p>Estado actualizado de tu proceso de compra o venta.</p></div></div>
-          <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Mis visitas</h4><p>Historial de visitas solicitadas y confirmadas.</p></div></div>
-          <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Mis favoritos</h4><p>Guarda y compara los inmuebles que más te gusten.</p></div></div>
-          <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Documentos</h4><p>Contratos, arras y notas de tu agente en un solo lugar.</p></div></div>
-        </div>
+        ${pasos}
       </div>
       <div class="btns">
-        <a href="https://www.nuevahabitat.com/panel.html" class="btn btn-gold">Acceder al panel →</a>
+        <a href="${panelUrl}" class="btn btn-gold">Acceder al panel →</a>
         <a href="https://wa.me/34675704514?text=Hola%20Juan%2C%20acabo%20de%20registrarme%20en%20NuevaHabitat" class="btn btn-wa">WhatsApp</a>
       </div>
       <div class="divider"></div>
@@ -185,14 +214,43 @@ function tplValoracion({ nombre }) {
       <p class="intro">Hola <strong>${nombre || ''}</strong>, hemos registrado tu solicitud de valoración. Nuestro equipo analizará tu inmueble y te enviará un informe detallado en menos de 24 horas.</p>
       <div class="card">
         <div class="card-title">¿Qué incluye la valoración?</div>
-        <div class="steps">
-          <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Análisis de mercado</h4><p>Comparativa con inmuebles similares vendidos recientemente en tu zona.</p></div></div>
-          <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Precio orientativo</h4><p>Rango de precio de venta recomendado según el estado actual del mercado.</p></div></div>
-          <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Propuesta sin compromiso</h4><p>Te explicamos cómo podemos ayudarte a vender al mejor precio en el menor tiempo.</p></div></div>
-        </div>
+        ${emailSteps([
+          ['1', 'Análisis de mercado', 'Comparativa con inmuebles similares vendidos recientemente en tu zona.'],
+          ['2', 'Precio orientativo', 'Rango de precio de venta recomendado según el estado actual del mercado.'],
+          ['3', 'Propuesta sin compromiso', 'Te explicamos cómo podemos ayudarte a vender al mejor precio en el menor tiempo.'],
+        ])}
       </div>
       <div class="btns">
         <a href="https://wa.me/34675704514?text=Hola%2C%20he%20pedido%20una%20valoraci%C3%B3n" class="btn btn-wa">WhatsApp</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplCompra({ nombre }) {
+  return {
+    subject: `Hemos recibido tu búsqueda de vivienda · NuevaHabitat`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Búsqueda registrada</div>
+      <h1>Estamos buscando tu hogar</h1>
+      <p class="intro">Hola <strong>${nombre || ''}</strong>, hemos registrado tu solicitud de compra. Juan Cárdenas revisará tu perfil y te contactará con inmuebles de nuestra cartera, incluidos los de acceso privado.</p>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/panel.html?tipo=comprador" class="btn btn-gold">Ir a mi panel</a>
+        <a href="https://wa.me/34675704514" class="btn btn-wa">WhatsApp</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplNewsletter({ email }) {
+  return {
+    subject: `Suscripción confirmada · NuevaHabitat`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Newsletter</div>
+      <h1>¡Gracias por suscribirte!</h1>
+      <p class="intro">Recibirás en <strong>${email || ''}</strong> novedades del mercado inmobiliario en Barcelona, consejos de compra y venta, y las últimas publicaciones del blog.</p>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/blog.html" class="btn btn-gold">Leer el blog</a>
       </div>
     </div>` + FOOTER,
   };
@@ -279,11 +337,13 @@ export default async function handler(req, res) {
     /* 2. Email al cliente según plantilla */
     if (email) {
       const tmpl = template || tipo;
-      if      (tmpl === 'bienvenida')  jobs.push(send(email, tplBienvenida({ nombre, email })));
+      if      (tmpl === 'bienvenida')  jobs.push(send(email, tplBienvenida({ nombre, email, tipo: extra?.tipo || tipo })));
       else if (tmpl === 'visita')      jobs.push(send(email, tplConfirmacionVisita({ nombre, mensaje, inmueble })));
       else if (tmpl === 'contacto')    jobs.push(send(email, tplConfirmacionContacto({ nombre, inmueble })));
-      else if (tmpl === 'valoracion' || tmpl === 'vender') jobs.push(send(email, tplValoracion({ nombre })));
+      else if (tmpl === 'valoracion' || tmpl === 'vender' || tmpl === 'venta') jobs.push(send(email, tplValoracion({ nombre })));
+      else if (tmpl === 'compra' || tmpl === 'comprar') jobs.push(send(email, tplCompra({ nombre })));
       else if (tmpl === 'hipoteca')    jobs.push(send(email, tplHipoteca({ nombre, ...(extra||{}) })));
+      else if (tmpl === 'newsletter')  jobs.push(send(email, tplNewsletter({ email })));
       else if (tmpl === 'documentos')  jobs.push(send(email, tplDocumentosListos({ nombre, documentos: extra?.documentos })));
     }
 

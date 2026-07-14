@@ -33,6 +33,8 @@
 
   --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
   --max-w:       1280px;
+  --nav-h:       104px;
+  --det-bar-h:   58px;
 }
 
 /* ── Reset & Base ─────────────────────────────────────────── */
@@ -1286,7 +1288,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  :root { --max-w: 100%; }
+  :root { --max-w: 100%; --nav-h: 80px; --det-bar-h: 52px; }
   .container { padding: 0 1.25rem; }
 
   /* Nav */
@@ -1461,8 +1463,18 @@ footer {
 .lightbox-dot.active{background:var(--oro)}
 
 /* ── Ficha inmueble header ────────────────────────────────── */
-.prop-detail-header{position:sticky;top:72px;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--crema-dark);padding:.55rem 0}
-.prop-detail-header-inner{display:flex;align-items:center;gap:1rem;flex-wrap:nowrap;overflow:hidden}
+.prop-detail-header{position:sticky;top:var(--nav-h);margin-top:var(--nav-h);z-index:990;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--crema-dark);padding:.65rem 0}
+.prop-detail-header-inner{display:flex;align-items:center;gap:1rem;flex-wrap:nowrap;overflow:hidden;min-height:var(--det-bar-h)}
+.prop-detail-actions{display:flex;align-items:center;gap:.5rem;flex-shrink:0;margin-left:auto}
+.prop-detail-price{font-family:var(--font-serif);font-size:1.45rem;font-weight:700;color:var(--negro);white-space:nowrap;flex-shrink:0}
+@media(max-width:768px){
+  .prop-detail-header{padding:.5rem 0}
+  .prop-detail-header-inner{gap:.5rem}
+  .prop-detail-price{font-size:1.15rem}
+}
+@media(max-width:480px){
+  .prop-detail-price{font-size:1rem}
+}
 .prop-breadcrumb{font-size:.8rem;color:var(--gris-medio);display:flex;align-items:center;gap:.35rem;overflow:hidden}
 .prop-breadcrumb a{color:var(--gris-medio);white-space:nowrap;transition:color var(--transition)}
 .prop-breadcrumb a:hover{color:var(--negro)}
