@@ -5,7 +5,7 @@ window.NH_BLOG_POSTS = {
     cat: 'Mercado',
     date: '10 jul 2026',
     readMin: 7,
-    image: 'imagenes/spacejoy-85pCvDWDMmI-unsplash.jpg',
+    image: 'imagenes/interior11.jpg',
     excerpt: 'Los precios han subido un 8% de media, pero hay diferencias enormes entre Eixample y Nou Barris.',
     body: `
       <p>El mercado residencial de Barcelona cierra el primer semestre de 2026 con una subida media del <strong>8%</strong> interanual. No obstante, hablar de "un solo mercado" es engañoso: la diferencia entre Eixample Derecho y Nou Barris supera ampliamente los 2.000 €/m².</p>
