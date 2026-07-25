@@ -1,0 +1,45 @@
+{
+  "slug": "vender-piso-raval-barcelona",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Raval",
+  "footerLabel": "Vender en el Raval",
+  "breadcrumbCurrent": "Raval",
+  "priority": 0.88,
+  "testimonials": false,
+  "postalCodes": ["08001"],
+  "zonas": ["Rambla del Raval", "MACBA", "Sant Antoni (límite)", "Carrer Tallers"],
+  "inmueblesQuery": "Raval",
+  "ejemploPrecio": 380000,
+  "ahorro": "20.800",
+  "origen_lead": "vender-piso-raval-barcelona",
+  "heroImage": "imagenes/interior12.jpg",
+  "heroImageAlt": "Interior de piso en el Raval, Barcelona",
+  "meta": {
+    "title": "Vender piso en el Raval, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en el Raval? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores cualificados, visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Raval, vender piso Raval Barcelona, inmobiliaria Raval, vender vivienda 08001, vender piso MACBA, Carrer Tallers"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en el Raval?",
+    "lead": "Vende en el Raval con <strong>honorarios fijos de 3.000€ + IVA</strong>, estrategia de precio adaptada al comprador real del barrio y visitas en tu horario."
+  },
+  "argumento_principal": "<p>El Raval ha cambiado mucho en los últimos años: la zona del MACBA y el Filmoteca ha atraído comprador joven y creativo, y el barrio combina hoy precios más accesibles que el resto de Ciutat Vella con un potencial de revalorización alto — lo cual atrae también a inversores que buscan entrar en el centro histórico sin pagar el precio del Gòtic o el Born.</p><p>Vender bien en el Raval significa comunicar ese contraste: precio de entrada competitivo, ubicación céntrica real, y transformación urbana en marcha. En NuevaHabitat ajustamos la ficha y la estrategia de precio a ese perfil de comprador — con honorarios fijos de 3.000 € + IVA, cobrados solo en escritura, sin comisión del 6%. Te acompañamos desde la valoración hasta la firma.</p>",
+  "faq": [
+    { "q": "¿Cuánto cuesta vender un piso en el Raval con NuevaHabitat?", "a": "3.000 € + IVA, precio fijo, solo en escritura." },
+    { "q": "¿El Raval es una zona con buena demanda de compra ahora mismo?", "a": "Sí, especialmente en la zona norte cercana al MACBA y Sant Antoni, con perfil de comprador joven y creativo." },
+    { "q": "¿Puedo elegir cuándo recibir visitas?", "a": "Sí, tú decides días y franjas horarias." },
+    { "q": "¿Filtráis compradores antes de las visitas?", "a": "Sí, priorizamos compradores con capacidad financiera verificada." },
+    { "q": "¿Trabajáis toda la zona, incluido cerca de Sant Antoni?", "a": "Sí, todo el Raval (08001)." },
+    { "q": "¿Cuánto tarda vender un piso en el Raval?", "a": "Depende del estado y la planta; te damos una estimación real en la valoración gratuita." }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-ciutat-vella-barcelona", "label": "Vender en Ciutat Vella" },
+    { "slug": "vender-piso-gotic-barcelona", "label": "Vender en el Gòtic" },
+    { "slug": "vender-piso-born-barcelona", "label": "Vender en el Born" },
+    { "slug": "vender-piso-barceloneta", "label": "Vender en la Barceloneta" }
+  ],
+  "keywords_footer": "vender piso Raval · vender piso Raval Barcelona · inmobiliaria Raval · MACBA · Carrer Tallers · 08001",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20el%20Raval",
+  "formPlaceholder": "Dirección o zona en el Raval (MACBA, Tallers…)"
+}

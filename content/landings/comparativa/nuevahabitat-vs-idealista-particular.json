@@ -1,0 +1,126 @@
+{
+  "slug": "nuevahabitat-vs-idealista-particular",
+  "cluster": "comparativa",
+  "indexable": true,
+  "keyword_principal": "nuevahabitat vs idealista particular",
+  "keyword_aliases": [
+    "vender piso idealista particular barcelona",
+    "idealista vs inmobiliaria barcelona",
+    "vender en idealista o agencia barcelona"
+  ],
+  "footerLabel": "NH vs Idealista",
+  "priority": 0.9,
+  "origen_lead": "nuevahabitat-vs-idealista-particular",
+  "meta": {
+    "title": "NuevaHabitat vs Idealista (particular) en Barcelona · Comparativa honesta",
+    "description": "¿Vender en Idealista como particular o con NuevaHabitat? Compara coste real, filtro de compradores, negociación y plazos. Precio fijo 3.000€ + IVA vs anuncio + tiempo + riesgo. Barcelona.",
+    "keywords": "nuevahabitat vs idealista, vender piso idealista particular barcelona, idealista vs inmobiliaria barcelona, vender en idealista o agencia, coste idealista particular, vender piso particular barcelona"
+  },
+  "hero": {
+    "badge": "Comparativa · Particular vs precio fijo",
+    "h1": "¿Vender en Idealista como particular o con NuevaHabitat en Barcelona?",
+    "lead": "Publicar en <strong>Idealista como particular</strong> parece barato hasta que sumas suscripción, curiosos, meses sin cerrar y errores en arras. En Barcelona, NuevaHabitat cobra <strong>3.000 € + IVA solo en escritura</strong>, filtra compradores con solvencia y te acompaña hasta firma — sin comisión del 6%.",
+    "image": "imagenes/contrato1.jpg",
+    "imageAlt": "Propietario comparando vender en Idealista como particular vs NuevaHabitat en Barcelona"
+  },
+  "breadcrumbCurrent": "vs Idealista",
+  "argumento_principal": "<p>Si buscas <strong>vender piso en Idealista como particular en Barcelona</strong>, probablemente quieres ahorrarte la comisión del 6% de una agencia tradicional. Es un objetivo legítimo. Pero Idealista es un <em>portal de anuncios</em>, no un servicio de venta: cobra por destacar tu piso, no por filtrar compradores solventes, negociar arras ni revisar la documentación del comprador.</p><h2>Qué pagas realmente en Idealista como particular</h2><p>Un anuncio de particulares en Idealista puede costar desde unos cientos de euros (paquete básico) hasta más de 500–700 € si contratas visibilidad premium, cartel en fachada o republicaciones. Eso es solo visibilidad. A ello sumas tu tiempo en llamadas, visitas de curiosos, errores en el precio de salida y el riesgo de aceptar una oferta de alguien sin hipoteca aprobada — lo que alarga la operación semanas o meses.</p><h2>Qué aporta NuevaHabitat frente a Idealista</h2><p>NuevaHabitat no compite con Idealista en “publicar un anuncio”. Compite en <strong>cerrar la operación</strong>: valoración con comparables reales de tu barrio en Barcelona, reportaje fotográfico profesional, difusión a cartera con estudio hipotecario previo, coordinación de visitas en tus horarios, negociación de arras y checklist legal hasta escritura. Honorarios: <strong>3.000 € + IVA solo si vendes</strong>. En un piso de 450.000 €, una agencia al 6% factura más de 27.000 € + IVA.</p><h2>¿Puedo usar Idealista y NuevaHabitat?</h2><p>Muchos propietarios empiezan solos en Idealista y, tras semanas de curiosos, piden ayuda para filtrar y negociar. Podemos integrar tu situación en la valoración gratuita: te decimos si conviene seguir solo, ajustar precio o activar compradores cualificados de cartera. Sin exclusiva abusiva de doce meses.</p>",
+  "calculadora": {
+    "precioDefault": 450000,
+    "titulo": "Compara: comisión 6% vs Idealista + tiempo vs NuevaHabitat",
+    "subtitulo": "Introduce el precio de venta. Idealista no cobra % pero sí anuncio + riesgo de retraso; la agencia tradicional cobra ~6% + IVA."
+  },
+  "comparativa_modelos": {
+    "title": "Idealista particular vs agencia tradicional vs NuevaHabitat (Barcelona)",
+    "rows": [
+      {
+        "modelo": "Particular en Idealista (solo portal)",
+        "tiempo": "Impredecible (3–12+ meses)",
+        "coste": "Anuncio 300–700 € + tu tiempo",
+        "riesgo": "Curiosos, ofertas sin hipoteca, errores legales",
+        "tipo": "neutral"
+      },
+      {
+        "modelo": "Idealista + negociación sin filtro",
+        "tiempo": "Variable",
+        "coste": "Anuncio + posible bajada de precio por prisa",
+        "riesgo": "Comprador cae en última hora; arras mal planteadas",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "Agencia tradicional (~6%)",
+        "tiempo": "4–8 meses habitual",
+        "coste": "~6% precio + IVA",
+        "riesgo": "Exclusiva larga; coste alto aunque cierres rápido",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "NuevaHabitat precio fijo",
+        "tiempo": "Plan 60–90 días habitual",
+        "coste": "3.000 € + IVA en escritura",
+        "riesgo": "Sin venta, sin factura. Compradores filtrados",
+        "tipo": "win"
+      }
+    ]
+  },
+  "mitos": {
+    "title": "Mitos sobre vender en Idealista como particular en Barcelona",
+    "items": [
+      {
+        "mito": "En Idealista como particular no pago comisión, así que siempre gano más",
+        "realidad": "Ahorras el % pero puedes perder más por sobreprecio inicial, meses de comunidad/hipoteca y rebajas de última hora."
+      },
+      {
+        "mito": "Si pago anuncio premium en Idealista, vendo en un mes",
+        "realidad": "La visibilidad trae llamadas; no garantiza comprador solvente ni cierre en arras."
+      },
+      {
+        "mito": "Idealista sustituye a una agencia",
+        "realidad": "Idealista es difusión. No filtra solvencia, no negocia ni revisa documentación del comprador."
+      },
+      {
+        "mito": "Con muchas fotos en Idealista basta",
+        "realidad": "Fotos ayudan, pero el precio de salida y el filtro financiero del comprador determinan el cierre."
+      },
+      {
+        "mito": "Una agencia al 6% vende mejor que yo en Idealista",
+        "realidad": "No siempre. Depende del precio y del comprador. NuevaHabitat ofrece tercera vía: precio fijo sin 6%."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuánto cuesta publicar en Idealista como particular en 2026?",
+      "a": "Depende del paquete (básico, destacado, cartel). Orientativamente entre 300 y 700 € por ciclo de anuncio. Eso no incluye filtro de compradores ni negociación profesional."
+    },
+    {
+      "q": "¿NuevaHabitat publica también en Idealista?",
+      "a": "Trabajamos difusión multicanal según estrategia del inmueble. La diferencia está en filtro de solvencia, valoración y acompañamiento hasta escritura — no solo en colgar un anuncio."
+    },
+    {
+      "q": "¿Puedo seguir en Idealista si contrato NuevaHabitat?",
+      "a": "Lo revisamos caso a caso en la valoración. Muchos propietarios vienen de Idealista sin cerrar; activamos cartera cualificada sin exclusiva abusiva."
+    },
+    {
+      "q": "¿Cuánto cuesta NuevaHabitat frente a Idealista + agencia 6%?",
+      "a": "3.000 € + IVA solo en escritura. En un piso de 450.000 € la agencia al 6% supera 27.000 € + IVA; Idealista parece barato pero el coste oculto es tiempo y rebaja de precio."
+    },
+    {
+      "q": "¿Trabajáis solo en Barcelona ciudad?",
+      "a": "Barcelona ciudad y área metropolitana accesible desde Les Corts (L'Hospitalet, Esplugues, etc.)."
+    },
+    {
+      "q": "¿Idealista o NuevaHabitat si tengo prisa?",
+      "a": "La prisa exige precio correcto y comprador con hipoteca preaprobada desde el día uno — no solo más visitas de portal. Lo evaluamos en valoración gratuita."
+    }
+  ],
+  "relacionadas": [
+    { "slug": "nuevahabitat-vs-fotocasa-particular", "label": "NH vs Fotocasa" },
+    { "slug": "nuevahabitat-vs-agencia-tradicional-barcelona", "label": "NH vs agencia 6%" },
+    { "slug": "vender-por-tu-cuenta-vs-nuevahabitat-barcelona", "label": "Por tu cuenta vs NH" },
+    { "slug": "vender-piso-sin-exclusividad-barcelona", "label": "Vender sin exclusividad" }
+  ],
+  "keywords_footer": "nuevahabitat vs idealista · vender piso idealista particular barcelona · idealista vs inmobiliaria · vender particular barcelona · precio fijo 3000 euros",
+  "whatsappText": "Hola%2C%20quiero%20comparar%20Idealista%20vs%20NuevaHabitat%20para%20vender%20en%20Barcelona",
+  "formPlaceholder": "Barrio o municipio donde vendes (Barcelona, L'Hospitalet…)"
+}

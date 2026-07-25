@@ -18,7 +18,10 @@ window.nhBlog = {
       publicado_en: null,
       _date: p.date,
       _readMin: p.readMin || 5,
-      _static: true
+      _static: true,
+      keywords: p.keywords,
+      metaDescription: p.metaDescription,
+      seoTitle: p.seoTitle,
     };
   },
 

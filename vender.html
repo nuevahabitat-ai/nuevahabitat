@@ -8,7 +8,7 @@
   
   <!-- SEO & Open Graph -->
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://www.nuevahabitat.com/vender.html" />
+  <meta property="og:url"         content="https://www.nuevahabitat.com/vender" />
   <meta property="og:title"       content="Vender tu vivienda en Barcelona · NuevaHabitat" />
   <meta property="og:description" content="Vende tu piso en Barcelona por 3.000€ + IVA. Precio fijo, sin comisiones y cobro solo en escritura. Proceso completo con panel digital." />
   <meta property="og:image"       content="https://www.nuevahabitat.com/imagenes/inmobiliario1.jpg" />
@@ -18,7 +18,7 @@
   <meta name="twitter:title"      content="Vender tu vivienda en Barcelona · NuevaHabitat" />
   <meta name="twitter:description" content="Vende tu piso en Barcelona por 3.000€ + IVA. Precio fijo, sin comisiones y cobro solo en escritura. Proceso completo con panel digital." />
   <meta name="twitter:image"      content="https://www.nuevahabitat.com/imagenes/inmobiliario1.jpg" />
-  <link rel="canonical"           href="https://www.nuevahabitat.com/vender.html" />
+  <link rel="canonical"           href="https://www.nuevahabitat.com/vender" />
 <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo1.png" />
   <style>
@@ -166,30 +166,159 @@
       .page-hero-content .btn-lg { width: 100%; justify-content: center; }
       .trust-bar-inner { flex-wrap: wrap; gap: .75rem; justify-content: center; }
       .trust-divider { display: none; }
-      .valorar-section { padding: 48px 0 64px; }
+      .valorar-section { padding: 48px 0 calc(88px + env(safe-area-inset-bottom, 0px)); }
       .valorar-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .form-card { padding: 1.5rem; border-radius: var(--radius-md); }
+      .form-card { padding: 1.25rem; border-radius: var(--radius-md); }
       .form-card h2 { font-size: 1.45rem; }
       .form-row { grid-template-columns: 1fr; }
+      .form-group input, .form-group select, .form-group textarea { font-size: 16px; }
+      .form-check { align-items: flex-start; gap: .65rem; }
+      .form-check label { font-size: .8125rem; line-height: 1.55; }
       .beneficios-list { gap: 1.5rem; }
       .proceso-grid { grid-template-columns: 1fr 1fr !important; gap: 1rem !important; }
       .proceso-grid > div { padding: 1.25rem .75rem !important; }
       .cta-final .cta-buttons { flex-direction: column; }
       .cta-final .btn-lg { width: 100%; justify-content: center; }
+      .zona-local-strip { grid-template-columns: 1fr !important; }
+      @media (min-width: 640px) { .zona-local-strip { grid-template-columns: repeat(2, 1fr) !important; } }
+      @media (min-width: 1024px) { .zona-local-strip { grid-template-columns: repeat(3, 1fr) !important; } }
     }
     @media(max-width:480px) {
       .proceso-grid { grid-template-columns: 1fr !important; }
     }
     /* Modal vendedor/valoración */
-    #vender-modal { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,.55); backdrop-filter:blur(4px); padding:0; overflow-y:auto; align-items:flex-end; }
-    #vender-modal.open { display:flex !important; }
-    .vm-panel { width:100%; max-width:480px; margin:auto auto 0; background:var(--blanco); border-radius:20px 20px 0 0; padding:1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom)); position:relative; max-height:92vh; overflow-y:auto; box-shadow:0 -8px 40px rgba(0,0,0,.18); }
-    @media(min-width:640px){
-      #vender-modal { align-items:center; padding:1rem; }
-      .vm-panel { margin:auto; border-radius:16px; padding:2rem; max-height:88vh; }
+    #vender-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 101000;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(6px);
+      padding: 0;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      align-items: flex-end;
     }
-    .vm-input { width:100%; padding:.85rem 1rem; border:1.5px solid var(--crema-dark); border-radius:var(--radius-sm); font-family:var(--font-sans); font-size:.9375rem; outline:none; margin-bottom:.75rem; box-sizing:border-box; background:var(--blanco); }
-    .vm-input:focus { border-color:var(--oro); }
+    #vender-modal.open { display: flex !important; }
+    body.vm-open { overflow: hidden !important; }
+    body.vm-open .mbn,
+    body.vm-open .whatsapp-float { display: none !important; }
+
+    .vm-panel {
+      width: 100%;
+      max-width: 480px;
+      margin: auto auto 0;
+      background: var(--blanco);
+      border-radius: 20px 20px 0 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      max-height: min(92dvh, 720px);
+      box-shadow: 0 -12px 48px rgba(0,0,0,.22);
+    }
+    .vm-handle {
+      width: 40px;
+      height: 4px;
+      background: var(--crema-dark);
+      border-radius: 4px;
+      margin: .65rem auto .85rem;
+      flex-shrink: 0;
+    }
+    .vm-close {
+      position: absolute;
+      top: .85rem;
+      right: .85rem;
+      background: var(--crema);
+      border: none;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      color: var(--gris-medio);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .vm-panel-head {
+      flex-shrink: 0;
+      padding: 0 1.15rem .25rem;
+      padding-right: 3.5rem;
+    }
+    .vm-panel-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 0 1.15rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    .vm-panel-actions {
+      flex-shrink: 0;
+      padding: .85rem 1.15rem calc(.85rem + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid var(--crema-dark);
+      background: var(--blanco);
+    }
+    .vm-panel-actions .btn { width: 100%; justify-content: center; min-height: 48px; margin: 0; }
+
+    @media (min-width: 640px) {
+      #vender-modal { align-items: center; padding: 1rem; }
+      .vm-panel {
+        margin: auto;
+        border-radius: 16px;
+        max-height: 88vh;
+      }
+      .vm-handle { display: none; }
+      .vm-panel-head { padding: 2rem 2rem .5rem; padding-right: 3.5rem; }
+      .vm-panel-scroll { padding: 0 2rem; max-height: calc(88vh - 220px); }
+      .vm-panel-actions { padding: 1rem 2rem 1.5rem; border-top: none; }
+    }
+
+    .vm-input {
+      width: 100%;
+      padding: .85rem 1rem;
+      border: 1.5px solid var(--crema-dark);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      outline: none;
+      margin-bottom: .75rem;
+      box-sizing: border-box;
+      background: var(--blanco);
+      -webkit-appearance: none;
+      appearance: none;
+      min-height: 48px;
+    }
+    .vm-input:focus { border-color: var(--oro); }
+    textarea.vm-input { min-height: 80px; resize: vertical; }
+    #vm-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      margin-bottom: .35rem;
+      line-height: 1.25;
+    }
+    #vm-sub {
+      font-size: .875rem;
+      color: var(--gris-texto);
+      margin-bottom: 1rem;
+      line-height: 1.55;
+    }
+    #vm-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--oro), #9a7550);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .85rem;
+    }
+    @media (max-width: 639px) {
+      .vm-panel { max-height: 94dvh; border-radius: 18px 18px 0 0; }
+      #vm-title { font-size: 1.2rem; }
+      #vm-sub { font-size: .8125rem; margin-bottom: .85rem; }
+    }
   </style>
 </head>
 <body>
@@ -202,7 +331,7 @@
       <div class="nav-logo-divider"></div>
       <div class="logo-text">
         <span class="logo-name">Nueva Habitat</span>
-        <span class="logo-sub">Inmobiliaria tecnológica · AMB</span>
+        <span class="logo-sub">Barcelona · Inmobiliaria</span>
       </div>
     </a>
     <ul class="nav-links">
@@ -214,7 +343,7 @@
       <li><a href="blog.html">Blog</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="tel:+34675704514" class="nav-tel">675 704 514</a>
+      <a href="tel:+34603656587" class="nav-tel">603 656 587</a>
       <a href="registro.html" class="nav-cta">Empezar ahora</a>
       <button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button>
     </div>
@@ -340,6 +469,7 @@
           <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center">
             Solicitar valoración gratuita →
           </button>
+          <div id="val-ok" class="lead-ok" style="display:none;margin-top:1rem">✓ Solicitud recibida. Te contactamos en menos de 24h con tu valoración.</div>
         </form>
       </div>
 
@@ -377,10 +507,19 @@
               <p>Cobro a éxito real: si no llega la escritura, no emitimos factura. Tu riesgo es cero.</p>
             </div>
           </div>
+          <div class="beneficio-item">
+            <div class="beneficio-num">05</div>
+            <div class="beneficio-body">
+              <h4>Firma electrónica con FIRMACERT</h4>
+              <p>Firmamos contratos y arras con FIRMACERT, plataforma de firma electrónica avanzada bajo eIDAS Art. 26. Incluido en el servicio, sin coste adicional.</p>
+            </div>
+          </div>
         </div>
       </div>
 
     </div>
+
+    <div class="fade-up zona-local-strip" style="margin-top:3rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem" data-nh-zona-local></div>
   </div>
 </section>
 
@@ -416,6 +555,54 @@
   </div>
 </section>
 
+<!-- FIRMACERT -->
+<section class="firmacert-section alt">
+  <div class="container">
+    <div class="firmacert-block fade-up">
+      <div class="firmacert-img">
+        <img src="imagenes/contrato1.jpg" alt="Contrato y firma electrónica FIRMACERT" loading="lazy" />
+      </div>
+      <div class="firmacert-body">
+        <span class="overline">Incluido en el servicio de venta</span>
+        <h3>Firma electrónica avanzada con <strong>FIRMACERT</strong></h3>
+        <p>Gestionamos arras, reservas y documentación con <strong>FIRMACERT</strong>, la plataforma de firma electrónica avanzada conforme al reglamento <strong>eIDAS (Art. 26)</strong>. Firmas seguras con validez legal, desde cualquier dispositivo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ VENDER -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="overline">Preguntas frecuentes</span>
+      <h2 class="section-title">Todo lo que necesitas saber<br/>para vender tu piso</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" type="button">¿Cuánto cuesta vender con NuevaHabitat?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+        <div class="faq-a"><p class="faq-a-inner">3.000€ + IVA, precio fijo. Sin comisión del 3% ni sorpresas. Incluye valoración, reportaje fotográfico, difusión entre compradores cualificados y gestión completa hasta la escritura.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">¿Cuándo pago los honorarios?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+        <div class="faq-a"><p class="faq-a-inner">Solo el día de la firma ante notario. Si no hay venta, no hay honorario. No pedimos adelantos ni cargos ocultos en ningún momento del proceso.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">¿Cuánto tarda en venderse un piso?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+        <div class="faq-a"><p class="faq-a-inner">Nuestra media es de unos 58 días desde la publicación hasta la reserva, según zona, precio y estado del inmueble. Trabajamos con compradores ya cualificados de nuestra cartera.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">¿Publicáis en Idealista y Fotocasa?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+        <div class="faq-a"><p class="faq-a-inner">Priorizamos nuestra base de compradores registrados y cualificados. Si lo necesitas, también podemos complementar con difusión en portales externos según la estrategia de venta acordada.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">¿Qué es FIRMACERT y está incluido?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+        <div class="faq-a"><p class="faq-a-inner">Sí, está incluido. FIRMACERT es firma electrónica avanzada conforme a eIDAS para arras, reservas y documentación. Firmas con validez legal desde el móvil u ordenador.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-final">
   <div class="cta-bg" style="background-image:url('imagenes/interior2.jpg')"></div>
@@ -427,7 +614,7 @@
       <p class="section-subtitle light">Valoración gratuita en menos de 24 horas. Sin compromiso.</p>
       <div class="cta-buttons">
         <a href="#valorar" class="btn btn-gold btn-lg">Valorar mi piso gratis</a>
-        <a href="tel:+34675704514" class="btn btn-outline-light btn-lg">675 704 514</a>
+        <a href="tel:+34603656587" class="btn btn-outline-light btn-lg">603 656 587</a>
       </div>
     </div>
   </div>
@@ -436,25 +623,20 @@
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-top" style="grid-template-columns:2fr 1fr 1fr">
+    <div class="footer-top" style="grid-template-columns:1.5fr 2.5fr 1fr">
       <div class="footer-brand">
         <img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat" />
         <p>Inmobiliaria tecnológica especializada en el área metropolitana de Barcelona. Precio fijo y cobro solo en escritura.</p>
       </div>
-      <div class="footer-col">
+      <div class="footer-col footer-col--servicios">
         <h4>Servicios</h4>
-        <ul>
-          <li><a href="vender.html">Vender</a></li>
-          <li><a href="comprar.html">Comprar</a></li>
-          <li><a href="hipotecas.html">Hipotecas</a></li>
-          <li><a href="inmuebles.html">Inmuebles</a></li>
-        </ul>
+        <div data-nh-landing-footer data-nh-footer-extra="comprar,hipotecas,inmuebles"></div>
       </div>
       <div class="footer-col">
         <h4>Contacto</h4>
         <ul>
-          <li><a href="tel:+34675704514">675 704 514 · Juan Cárdenas</a></li>
-          <li><a href="mailto:admin.nuevahabitat@gmail.com">admin.nuevahabitat@gmail.com</a></li>
+          <li><a href="tel:+34603656587">603 656 587 · Nuevahabitat general</a></li>
+          <li><a href="mailto:info@nuevahabitat.com">info@nuevahabitat.com</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Carrer+de+Mej%C3%ADa+Lequerica,+42,+08028+Barcelona" target="_blank" rel="noopener" style="font-size:.8125rem;line-height:1.5;color:rgba(255,255,255,.55)">Carrer de Mejía Lequerica, 42, Les Corts, 08028 Barcelona</a></li>
         </ul>
       </div>
     </div>
@@ -471,39 +653,52 @@
 
 <div class="whatsapp-float">
   <div class="whatsapp-tooltip">¿Hablamos?</div>
-  <a href="https://wa.me/34675704514" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <a href="https://wa.me/34603656587" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
 </div>
 
 <!-- MODAL VENDER/VALORAR -->
-<div id="vender-modal">
+<div id="vender-modal" role="dialog" aria-modal="true" aria-labelledby="vm-title">
   <div class="vm-panel">
-    <button onclick="closeVenderModal()" style="position:absolute;top:1rem;right:1rem;background:var(--crema);border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;font-size:1rem;color:var(--gris-medio);display:flex;align-items:center;justify-content:center">&#x2715;</button>
-    <div id="vm-icon" style="width:52px;height:52px;background:linear-gradient(135deg,var(--oro),#9a7550);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
-      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-    </div>
-    <h3 id="vm-title" style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:.35rem;padding-right:2rem">Quiero vender mi inmueble</h3>
-    <p id="vm-sub" style="font-size:.875rem;color:var(--gris-texto);margin-bottom:1.25rem;line-height:1.6">Déjanos tus datos y Juan Cárdenas te contactará en menos de 24h.</p>
-    <div id="vm-form-wrap">
-      <input id="vm-nombre" type="text" placeholder="Nombre y apellidos *" class="vm-input"/>
-      <input id="vm-tel" type="tel" placeholder="Teléfono *" class="vm-input"/>
-      <input id="vm-email" type="email" placeholder="Email (opcional)" class="vm-input"/>
-      <input id="vm-zona" type="text" placeholder="Zona / dirección del inmueble" class="vm-input"/>
-      <textarea id="vm-notas" placeholder="Detalles adicionales (m², habitaciones…)" rows="2" class="vm-input" style="resize:vertical;min-height:72px"></textarea>
-      <button onclick="submitVenderModal()" id="vm-btn" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-top:.25rem">Enviar solicitud →</button>
-    </div>
-    <div id="vm-ok" style="display:none;text-align:center;padding:1.5rem 0">
-      <div style="width:56px;height:56px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem">
-        <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#2e7d32" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    <div class="vm-handle" aria-hidden="true"></div>
+    <button type="button" class="vm-close" onclick="closeVenderModal()" aria-label="Cerrar">&#x2715;</button>
+
+    <div class="vm-panel-head">
+      <div id="vm-icon">
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
       </div>
-      <h4 style="font-family:var(--font-serif);margin-bottom:.4rem">¡Solicitud recibida!</h4>
-      <p style="font-size:.875rem;color:var(--gris-texto)">Juan Cárdenas te contactará en menos de 24h.</p>
-      <a href="https://wa.me/34675704514" target="_blank" class="btn btn-gold" style="margin-top:1rem;display:inline-flex">WhatsApp directo</a>
+      <h3 id="vm-title">Quiero vender mi inmueble</h3>
+      <p id="vm-sub">Déjanos tus datos y NuevaHabitat te contactará en menos de 24h.</p>
+    </div>
+
+    <div class="vm-panel-scroll">
+      <div id="vm-form-wrap">
+        <input id="vm-nombre" type="text" placeholder="Nombre y apellidos *" class="vm-input" autocomplete="name"/>
+        <input id="vm-tel" type="tel" placeholder="Teléfono *" class="vm-input" autocomplete="tel"/>
+        <input id="vm-email" type="email" placeholder="Email (opcional)" class="vm-input" autocomplete="email"/>
+        <input id="vm-zona" type="text" placeholder="Zona / dirección del inmueble" class="vm-input" autocomplete="street-address"/>
+        <textarea id="vm-notas" placeholder="Detalles adicionales (m², habitaciones…)" rows="3" class="vm-input"></textarea>
+      </div>
+      <div id="vm-ok" style="display:none;text-align:center;padding:1rem 0 1.5rem">
+        <div style="width:56px;height:56px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#2e7d32" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h4 style="font-family:var(--font-serif);margin-bottom:.4rem">¡Solicitud recibida!</h4>
+        <p style="font-size:.875rem;color:var(--gris-texto)">Te contactamos en menos de 24h.</p>
+        <a href="https://wa.me/34603656587" target="_blank" class="btn btn-gold" style="margin-top:1rem;display:inline-flex;min-height:48px">WhatsApp directo</a>
+      </div>
+    </div>
+
+    <div class="vm-panel-actions" id="vm-actions">
+      <button type="button" onclick="submitVenderModal()" id="vm-btn" class="btn btn-gold btn-lg">Enviar solicitud →</button>
     </div>
   </div>
 </div>
 
+<script src="js/supabase.js"></script>
+<script src="js/notify.js"></script>
+<script src="js/leads.js"></script>
 <script>
 let _vmTipo = 'vender';
 function openVenderModal(tipo, prefill){
@@ -512,11 +707,11 @@ function openVenderModal(tipo, prefill){
   const title = document.getElementById('vm-title');
   const sub   = document.getElementById('vm-sub');
   if(tipo === 'valoracion'){
-    title.textContent = 'Valorar mi inmueble';
-    sub.textContent = 'Solicita una valoración gratuita sin compromiso. Te enviamos el informe en menos de 24h.';
+    title.textContent = 'Valoración gratuita de tu vivienda';
+    sub.textContent = 'Sin compromiso. Te enviamos la valoración en menos de 24h.';
   } else {
     title.textContent = 'Quiero vender mi inmueble';
-    sub.textContent = 'Déjanos tus datos y Juan Cárdenas te contactará en menos de 24h.';
+    sub.textContent = 'Déjanos tus datos y te contactamos en menos de 24h.';
   }
   if(prefill){
     if(prefill.nombre) document.getElementById('vm-nombre').value = prefill.nombre;
@@ -527,14 +722,16 @@ function openVenderModal(tipo, prefill){
   }
   document.getElementById('vm-ok').style.display='none';
   document.getElementById('vm-form-wrap').style.display='block';
+  document.getElementById('vm-actions').style.display='block';
   document.getElementById('vm-btn').textContent='Enviar solicitud →';
   document.getElementById('vm-btn').disabled=false;
   modal.classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.classList.add('vm-open');
+  setTimeout(() => document.getElementById('vm-nombre').focus(), 300);
 }
 function closeVenderModal(){
   document.getElementById('vender-modal').classList.remove('open');
-  document.body.style.overflow='';
+  document.body.classList.remove('vm-open');
 }
 async function submitVenderModal(){
   const nombre = document.getElementById('vm-nombre').value.trim();
@@ -546,23 +743,26 @@ async function submitVenderModal(){
   const btn = document.getElementById('vm-btn');
   btn.textContent='Enviando…'; btn.disabled=true;
   const mensaje = (_vmTipo==='valoracion'?'Valoración gratuita':'Quiero vender') + (zona?' · '+zona:'') + (notas?' · '+notas:'');
-  try {
-    if(window.nhSupabase){
-      const tipoLead = _vmTipo==='valoracion'?'valoracion':'venta';
-      await window.nhSupabase.from('leads').insert({
-        nombre, telefono:tel, email:email||null, mensaje, tipo:tipoLead
-      });
-      if(window.nhNotify) nhNotify({ nombre, telefono:tel, email, mensaje, tipo:tipoLead, template: tipoLead === 'valoracion' ? 'valoracion' : 'valoracion' });
-    }
-    document.getElementById('vm-form-wrap').style.display='none';
-    document.getElementById('vm-ok').style.display='block';
-  } catch(e){
-    btn.textContent='Enviar solicitud →'; btn.disabled=false;
-    nhToast('Error al enviar. Inténtalo de nuevo o escríbenos por WhatsApp.');
-  }
+  const tipoLead = _vmTipo==='valoracion'?'valoracion':'venta';
+  const ok = await nhSubmitLead({
+    nombre, telefono: tel, email, mensaje, tipo: tipoLead, origen: 'web_vender_modal',
+    template: tipoLead === 'valoracion' ? 'valoracion' : 'valoracion',
+    onSuccess(){
+      document.getElementById('vm-form-wrap').style.display='none';
+      document.getElementById('vm-actions').style.display='none';
+      document.getElementById('vm-ok').style.display='block';
+    },
+    onError(){ btn.textContent='Enviar solicitud →'; btn.disabled=false; }
+  });
+  if (!ok) { btn.textContent='Enviar solicitud →'; btn.disabled=false; }
 }
 document.getElementById('vender-modal').addEventListener('click', function(e){
   if(e.target===this) closeVenderModal();
+});
+document.querySelectorAll('#vender-modal .vm-input').forEach(el => {
+  el.addEventListener('focus', () => {
+    setTimeout(() => el.scrollIntoView({ block: 'center', behavior: 'smooth' }), 300);
+  });
 });
 
 async function submitValoracion(e) {
@@ -580,20 +780,18 @@ async function submitValoracion(e) {
   const btn = e.target.querySelector('button[type=submit]');
   if(btn){ btn.textContent='Enviando…'; btn.disabled=true; }
   const mensaje = 'Valoración · '+dir+(mun?', '+mun:'')+(notas?' · '+notas:'');
-  try {
-    if(window.nhSupabase){
-      await window.nhSupabase.from('leads').insert({ nombre:nom, telefono:tel, email:eml, mensaje, tipo:'valoracion' });
-      if(window.nhNotify) nhNotify({ nombre:nom, telefono:tel, email:eml, mensaje, tipo:'valoracion' });
+  const ok = await nhSubmitLead({
+    nombre: nom, telefono: tel, email: eml, mensaje, tipo: 'valoracion', origen: 'web_vender_form', template: 'valoracion',
+    onSuccess(){
+      document.getElementById('val-ok').style.display = 'block';
+      document.getElementById('valoracionForm').reset();
+      document.getElementById('valoracionForm').querySelectorAll('input,select,textarea,button').forEach(el => { if(el.type!=='submit') el.disabled = true; else el.style.display='none'; });
+    },
+    onError(){
+      openVenderModal('valoracion', { nombre:nom, telefono:tel, email:eml, zona:dir+(mun?', '+mun:''), notas });
     }
-    openVenderModal('valoracion');
-    document.getElementById('vm-form-wrap').style.display='none';
-    document.getElementById('vm-ok').style.display='block';
-    document.getElementById('valoracionForm').reset();
-  } catch(err){
-    openVenderModal('valoracion', { nombre:nom, telefono:tel, email:eml, zona:dir+(mun?', '+mun:''), notas });
-  } finally {
-    if(btn){ btn.textContent='Solicitar valoración gratuita →'; btn.disabled=false; }
-  }
+  });
+  if(btn){ btn.textContent='Solicitar valoración gratuita →'; btn.disabled=false; if(ok) btn.style.display='none'; }
 }
 </script>
 
@@ -639,6 +837,11 @@ async function submitValoracion(e) {
     <button class="cookie-btn-reject" id="cookie-reject">Solo necesarias</button>
   </div>
 </div>
+<script src="js/landings.js"></script>
+<script src="js/landings-ui.js"></script>
+<script src="js/site-config.js"></script>
+<script src="js/ga-config.js"></script>
+<script src="js/seo.js"></script>
 <script src="js/main.js"></script>
 <script src="js/supabase.js"></script>
 <script src="js/notify.js"></script>

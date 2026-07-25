@@ -1,0 +1,45 @@
+{
+  "slug": "vender-piso-born-barcelona",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Born",
+  "footerLabel": "Vender en el Born",
+  "breadcrumbCurrent": "Born",
+  "priority": 0.88,
+  "testimonials": false,
+  "postalCodes": ["08003"],
+  "zonas": ["Passeig del Born", "Santa Maria del Mar", "Sant Pere", "Palau de la Música"],
+  "inmueblesQuery": "Born",
+  "ejemploPrecio": 590000,
+  "ahorro": "32.400",
+  "origen_lead": "vender-piso-born-barcelona",
+  "heroImage": "imagenes/agenteinmobiliario3.jpg",
+  "heroImageAlt": "Piso con carácter en el Born, Barcelona",
+  "meta": {
+    "title": "Vender piso en el Born, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en el Born o Sant Pere? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores cualificados, visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Born, vender piso Born Barcelona, inmobiliaria Born, vender vivienda 08003, vender piso Sant Pere, Passeig del Born"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en el Born?",
+    "lead": "Vende en el Born y Sant Pere con <strong>honorarios fijos de 3.000€ + IVA</strong>, presentación profesional y compradores filtrados — sin comisión del 6%."
+  },
+  "argumento_principal": "<p>El Born es de los barrios con más presión de demanda del centro de Barcelona: pisos con carácter (techos altos, vigas, fincas modernistas o medievales rehabilitadas) que atraen tanto a comprador local de alto poder adquisitivo como a comprador internacional. Eso significa que un piso bien presentado en el Born puede venderse rápido y por encima de la media del distrito — pero también que un precio de salida mal calculado se nota enseguida, porque el comprador de esta zona compara mucho antes de decidir.</p><p>En NuevaHabitat trabajamos la presentación (fotografía profesional, ficha optimizada) y la fijación de precio con datos reales del Born y Sant Pere, no con la media genérica de Ciutat Vella. Honorarios fijos de 3.000 € + IVA, cobro solo en escritura, sin la comisión del 6% de una agencia tradicional.</p>",
+  "faq": [
+    { "q": "¿Cuánto cuesta vender un piso en el Born con NuevaHabitat?", "a": "3.000 € + IVA, precio fijo, solo en escritura." },
+    { "q": "¿Un piso con techos altos o vigas vistas se valora distinto?", "a": "Sí, son elementos que suelen aumentar el atractivo y el precio en esta zona; los incorporamos en la valoración y en la ficha del anuncio." },
+    { "q": "¿Puedo elegir cuándo recibir visitas?", "a": "Sí, tú decides días y horarios." },
+    { "q": "¿Los compradores están verificados financieramente?", "a": "Sí, priorizamos cartera con hipoteca preaprobada o capacidad demostrada antes de agendar visitas." },
+    { "q": "¿Trabajáis también Sant Pere y zona Palau de la Música?", "a": "Sí, todo el Born y Sant Pere-Santa Caterina (08003)." },
+    { "q": "¿Cuánto tarda vender un piso en el Born?", "a": "El Born suele moverse más rápido que la media del centro si el precio es correcto; te damos una estimación en la valoración gratuita." }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-ciutat-vella-barcelona", "label": "Vender en Ciutat Vella" },
+    { "slug": "vender-piso-gotic-barcelona", "label": "Vender en el Gòtic" },
+    { "slug": "vender-piso-raval-barcelona", "label": "Vender en el Raval" },
+    { "slug": "vender-piso-barceloneta", "label": "Vender en la Barceloneta" }
+  ],
+  "keywords_footer": "vender piso Born · vender piso Born Barcelona · inmobiliaria Born · Sant Pere · Passeig del Born · 08003",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20el%20Born",
+  "formPlaceholder": "Dirección o zona en el Born (Sant Pere, Passeig del Born…)"
+}

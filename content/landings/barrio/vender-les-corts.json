@@ -1,0 +1,80 @@
+{
+  "slug": "vender-les-corts",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Les Corts",
+  "footerLabel": "Vender en Les Corts",
+  "breadcrumbCurrent": "Les Corts",
+  "postalCodes": [
+    "08028",
+    "08034"
+  ],
+  "zonas": [
+    "Numància",
+    "Zona Universitaria",
+    "Pedralbes",
+    "Les Corts centre"
+  ],
+  "inmueblesQuery": "Les Corts",
+  "ejemploPrecio": 400000,
+  "heroImage": "imagenes/equipo1.jpg",
+  "heroImageAlt": "Vivienda en Les Corts, Barcelona",
+  "origen_lead": "vender-les-corts",
+  "testimonials": true,
+  "priority": 0.88,
+  "footerExtra": "comprar",
+  "ahorro": "20.000€",
+  "meta": {
+    "title": "Vender piso en Les Corts, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en Les Corts? NuevaHabitat: plataforma para vendedores con honorarios fijos de 3.000€ + IVA. Compradores con hipoteca preaprobada, panel digital y visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Les Corts, vender casa Les Corts Barcelona, inmobiliaria Les Corts, vender vivienda 08028, agencia inmobiliaria Les Corts precio fijo, vender piso Zona Universitaria, comisión inmobiliaria Les Corts, vender piso Numància, plataforma vendedores Barcelona"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en Les Corts?",
+    "lead": "<strong>NuevaHabitat</strong> es la plataforma inmobiliaria para vendedores que quieren vender su vivienda en Les Corts con <strong>honorarios ajustados y precio fijo</strong>, lejos de las agencias tradicionales que cobran un 6% sobre el precio de venta."
+  },
+  "argumento_principal": "<p>Les Corts mezcla familias consolidadas, profesionales del 22@ y demanda universitaria en la Zona Universitaria, Numància, Pedralbes y el eje del Camp Nou. Vender en 08028 exige entender micro-mercados: un piso en Numància no se valora igual que uno en Pedralbes aunque compartan distrito.</p><p>Somos la inmobiliaria con sede en <strong>Carrer de Mejía Lequerica, 42</strong>: conocemos el barrio porque trabajamos en él cada día. Combinamos agente local, tecnología y panel de vendedor con expediente digital, visitas en tu horario y compradores filtrados por solvencia.</p><p>Honorarios fijos de 3.000 € + IVA al cierre — frente a más de 20.000 € en comisión tradicional sobre un piso de 400.000 €. Valoración gratuita en 24 h sin compromiso de exclusiva ni permanencia.</p>",
+  "faq": [
+    {
+      "q": "¿Cuánto cuesta vender un piso en Les Corts con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo cobrado únicamente en escritura. No pagas un 6% sobre el precio de venta como en muchas agencias tradicionales de Barcelona."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas en mi piso?",
+      "a": "Sí. Tú indicas días y franjas horarias disponibles. Solo agendamos visitas con compradores previamente filtrados por capacidad financiera."
+    },
+    {
+      "q": "¿Qué es el panel de vendedor?",
+      "a": "Es tu área privada en NuevaHabitat donde consultas el estado de la venta: documentos, visitas, ofertas y hitos hasta la escritura. Acceso 24/7 desde móvil u ordenador."
+    },
+    {
+      "q": "¿Los compradores tienen hipoteca aprobada?",
+      "a": "Priorizamos compradores de nuestra cartera con preaprobación hipotecaria o estudio de viabilidad bancaria, y ahorro suficiente para entrada y gastos de compraventa en Cataluña."
+    },
+    {
+      "q": "¿Vendéis pisos en Numància, Zona Universitaria y Pedralbes?",
+      "a": "Sí. Trabajamos todo el distrito de Les Corts (08028, 08034) y el área metropolitana de Barcelona desde nuestras oficinas en Mejía Lequerica."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en Les Corts?",
+      "a": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en Les Corts se venden en 60–90 días. Te damos una estimación en la valoración gratuita."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-eixample",
+      "label": "Vender en el Eixample"
+    },
+    {
+      "slug": "vender-gracia",
+      "label": "Vender en Gràcia"
+    },
+    {
+      "slug": "vender-sants",
+      "label": "Vender en Sants"
+    }
+  ],
+  "keywords_footer": "vender piso Les Corts · vender casa Les Corts Barcelona · inmobiliaria Les Corts precio fijo · vender vivienda 08028 · agencia inmobiliaria Numància · vender piso Zona Universitaria · comisión inmobiliaria Barcelona · vender piso sin comisión 6% · valoración gratuita Les Corts · plataforma vendedores Barcelona",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Les%20Corts",
+  "formPlaceholder": "Dirección o zona en Les Corts"
+}

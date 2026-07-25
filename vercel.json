@@ -1,10 +1,157 @@
 {
   "name": "nuevahabitat",
-  "buildCommand": null,
+  "buildCommand": "node scripts/build-landings.js",
   "outputDirectory": ".",
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/vender-les-corts.html",
+      "destination": "/vender-les-corts",
+      "permanent": true
+    },
+    {
+      "source": "/vender-sants.html",
+      "destination": "/vender-sants",
+      "permanent": true
+    },
+    {
+      "source": "/vender-gracia.html",
+      "destination": "/vender-gracia",
+      "permanent": true
+    },
+    {
+      "source": "/vender-sarria.html",
+      "destination": "/vender-sarria",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-urgente-barcelona",
+      "destination": "/vender-piso-rapido-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-urgente-barcelona.html",
+      "destination": "/vender-piso-rapido-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-gotic-barcelona.html",
+      "destination": "/vender-piso-gotic-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-born-barcelona.html",
+      "destination": "/vender-piso-born-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-raval-barcelona.html",
+      "destination": "/vender-piso-raval-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-barceloneta.html",
+      "destination": "/vender-piso-barceloneta",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-alquilado-barcelona.html",
+      "destination": "/vender-piso-alquilado-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-rapido-barcelona.html",
+      "destination": "/vender-piso-rapido-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-sin-exclusividad-barcelona.html",
+      "destination": "/vender-piso-sin-exclusividad-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-eixample.html",
+      "destination": "/vender-eixample",
+      "permanent": true
+    },
+    {
+      "source": "/vender-poblenou.html",
+      "destination": "/vender-poblenou",
+      "permanent": true
+    },
+    {
+      "source": "/vender-horta.html",
+      "destination": "/vender-horta",
+      "permanent": true
+    },
+    {
+      "source": "/vender-nou-barris.html",
+      "destination": "/vender-nou-barris",
+      "permanent": true
+    },
+    {
+      "source": "/vender-l-hospitalet.html",
+      "destination": "/vender-l-hospitalet",
+      "permanent": true
+    },
+    {
+      "source": "/vender-esplugues.html",
+      "destination": "/vender-esplugues",
+      "permanent": true
+    },
+    {
+      "source": "/nuevahabitat-vs-idealista-particular.html",
+      "destination": "/nuevahabitat-vs-idealista-particular",
+      "permanent": true
+    },
+    {
+      "source": "/nuevahabitat-vs-fotocasa-particular.html",
+      "destination": "/nuevahabitat-vs-fotocasa-particular",
+      "permanent": true
+    },
+    {
+      "source": "/nuevahabitat-vs-agencia-tradicional-barcelona.html",
+      "destination": "/nuevahabitat-vs-agencia-tradicional-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-por-tu-cuenta-vs-nuevahabitat-barcelona.html",
+      "destination": "/vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-inquilino-vencer-barcelona.html",
+      "destination": "/vender-piso-inquilino-vencer-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-antes-comprar-otro-barcelona.html",
+      "destination": "/vender-piso-antes-comprar-otro-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-segunda-residencia-barcelona.html",
+      "destination": "/vender-segunda-residencia-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-traslado-barcelona.html",
+      "destination": "/vender-piso-traslado-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/gracias.html",
+      "destination": "/gracias",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-ciutat-vella-barcelona.html",
+      "destination": "/vender-piso-ciutat-vella-barcelona",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" }
   ],

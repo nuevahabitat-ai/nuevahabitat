@@ -1,0 +1,126 @@
+{
+  "slug": "nuevahabitat-vs-fotocasa-particular",
+  "cluster": "comparativa",
+  "indexable": true,
+  "keyword_principal": "nuevahabitat vs fotocasa particular",
+  "keyword_aliases": [
+    "vender piso fotocasa particular barcelona",
+    "fotocasa vs inmobiliaria barcelona",
+    "vender en fotocasa o agencia barcelona"
+  ],
+  "footerLabel": "NH vs Fotocasa",
+  "priority": 0.89,
+  "origen_lead": "nuevahabitat-vs-fotocasa-particular",
+  "meta": {
+    "title": "NuevaHabitat vs Fotocasa (particular) en Barcelona · Comparativa 2026",
+    "description": "¿Vender en Fotocasa como particular o con NuevaHabitat en Barcelona? Coste del anuncio, filtro de compradores, negociación y plazos. Precio fijo 3.000€ + IVA vs portal + tiempo.",
+    "keywords": "nuevahabitat vs fotocasa, vender piso fotocasa particular barcelona, fotocasa vs inmobiliaria barcelona, vender en fotocasa barcelona, coste fotocasa particular, vender piso particular barcelona"
+  },
+  "hero": {
+    "badge": "Comparativa · Fotocasa vs precio fijo",
+    "h1": "¿Vender en Fotocasa como particular o con NuevaHabitat en Barcelona?",
+    "lead": "Fotocasa compite con Idealista por visibilidad, no por cerrar operaciones. Publicar como <strong>particular en Barcelona</strong> cuesta anuncio + tiempo + riesgo de curiosos. NuevaHabitat: <strong>3.000 € + IVA solo en escritura</strong>, compradores filtrados y negociación hasta firma.",
+    "image": "imagenes/interior2.jpg",
+    "imageAlt": "Propietario comparando Fotocasa como particular vs NuevaHabitat en Barcelona"
+  },
+  "breadcrumbCurrent": "vs Fotocasa",
+  "argumento_principal": "<p>Si estás valorando <strong>vender piso en Fotocasa como particular en Barcelona</strong>, buscas lo mismo que en Idealista: evitar la comisión del 6%. Fotocasa es un portal de difusión: te vende paquetes de visibilidad (básico, destacado, cartel), no te garantiza comprador con hipoteca aprobada ni te defiende en arras.</p><h2>Fotocasa particular: qué incluye y qué no</h2><p>En 2026 un anuncio de particulares en Fotocasa puede oscilar entre unos 200–400 € (publicación estándar) y más de 600 € con destacados y servicios añadidos. Eso compra impresiones y llamadas — no tasación profesional con comparables de tu barrio, ni filtro de solvencia, ni revisión de la documentación del comprador antes de reservar visitas.</p><h2>Diferencias reales Fotocasa vs Idealista para vender en Barcelona</h2><p>Ambos portales compiten por tráfico. En Barcelona ciudad, Idealista suele concentrar más búsquedas transaccionales; Fotocasa puede aportar compradores complementarios. Publicar en los dos duplica coste y gestión sin resolver el cuello de botella: <em>precio correcto + comprador solvente + negociación</em>. Muchos propietarios acumulan semanas de visitas en ambos portales antes de entender que el problema no es falta de anuncio.</p><h2>NuevaHabitat frente a Fotocasa</h2><p>NuevaHabitat trabaja el cierre: valoración con datos de micro-zona en Barcelona, fotografía profesional, cartera con estudio hipotecario previo, visitas en tus horarios y acompañamiento legal hasta escritura. Honorarios fijos: <strong>3.000 € + IVA solo si vendes</strong>. Si vienes de Fotocasa sin cerrar, la valoración gratuita evalúa si conviene ajustar precio, cambiar estrategia o activar compradores cualificados.</p>",
+  "calculadora": {
+    "precioDefault": 400000,
+    "titulo": "Fotocasa + tiempo vs comisión 6% vs NuevaHabitat",
+    "subtitulo": "El portal no cobra % pero sí anuncio y meses de espera. Compara con agencia tradicional y precio fijo."
+  },
+  "comparativa_modelos": {
+    "title": "Fotocasa particular vs Idealista vs agencia 6% vs NuevaHabitat (Barcelona)",
+    "rows": [
+      {
+        "modelo": "Particular solo en Fotocasa",
+        "tiempo": "3–12+ meses habitual",
+        "coste": "Anuncio 200–600 € + gestión propia",
+        "riesgo": "Menor tráfico que Idealista en BCn; mismos curiosos",
+        "tipo": "neutral"
+      },
+      {
+        "modelo": "Fotocasa + Idealista (doble anuncio)",
+        "tiempo": "Variable",
+        "coste": "500–1.200 € en portales + tiempo",
+        "riesgo": "Más llamadas, misma falta de filtro financiero",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "Agencia tradicional (~6%)",
+        "tiempo": "4–8 meses",
+        "coste": "~6% precio + IVA",
+        "riesgo": "Exclusiva larga; factura alta en cualquier plazo",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "NuevaHabitat precio fijo",
+        "tiempo": "60–90 días plan habitual",
+        "coste": "3.000 € + IVA en escritura",
+        "riesgo": "Sin venta, sin factura. Multicanal + filtro",
+        "tipo": "win"
+      }
+    ]
+  },
+  "mitos": {
+    "title": "Mitos sobre vender en Fotocasa como particular en Barcelona",
+    "items": [
+      {
+        "mito": "Fotocasa es gratis para particulares",
+        "realidad": "Hay opciones limitadas, pero la visibilidad útil suele requerir pago. El coste real incluye tu tiempo y posibles rebajas de precio."
+      },
+      {
+        "mito": "Publicar en Fotocasa e Idealista duplica las posibilidades de vender",
+        "realidad": "Duplica curiosos, no necesariamente compradores solventes. Sin filtro, el cuello de botella persiste."
+      },
+      {
+        "mito": "Fotocasa negocia y revisa la hipoteca del comprador",
+        "realidad": "No. Eso depende de ti o de un profesional. Una oferta sin financiación aprobada alarga la operación."
+      },
+      {
+        "mito": "En Barcelona Fotocasa vende igual que Idealista",
+        "realidad": "Idealista domina en volumen en Barcelona ciudad. Fotocasa puede complementar, no sustituir estrategia de precio y comprador."
+      },
+      {
+        "mito": "Si bajo el precio en Fotocasa, vendo en días",
+        "realidad": "Un recorte sin datos puede regalar margen. Un ajuste del 3–5% bien justificado suele ser más eficaz que un descuento del 15%."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuánto cuesta anunciar en Fotocasa como particular en Barcelona?",
+      "a": "Depende del paquete. Orientativamente entre 200 y 600 € por ciclo de publicación con opciones destacadas. No incluye valoración profesional ni negociación."
+    },
+    {
+      "q": "¿Es mejor Fotocasa o Idealista para vender en Barcelona?",
+      "a": "Idealista suele generar más búsquedas en Barcelona ciudad. Fotocasa puede ser complemento. Ninguno sustituye filtro de compradores y pricing correcto."
+    },
+    {
+      "q": "¿NuevaHabitat publica en Fotocasa?",
+      "a": "Usamos difusión multicanal según estrategia del inmueble. La diferencia está en solvencia del comprador, valoración y cierre — no solo en colgar anuncios."
+    },
+    {
+      "q": "¿Puedo seguir en Fotocasa si trabajo con NuevaHabitat?",
+      "a": "Lo revisamos en valoración. Muchos clientes vienen de portales sin cerrar; activamos cartera cualificada sin exclusiva abusiva."
+    },
+    {
+      "q": "¿Cuánto ahorro con NuevaHabitat vs agencia al 6%?",
+      "a": "3.000 € + IVA fijos. En un piso de 400.000 € la agencia al 6% supera 24.000 € + IVA."
+    },
+    {
+      "q": "¿Fotocasa o NuevaHabitat si el piso está en el Eixample o Gràcia?",
+      "a": "En barrios de alta demanda el pricing fino importa más que el portal. Valoramos con comparables de tu micro-zona en Barcelona."
+    }
+  ],
+  "relacionadas": [
+    { "slug": "nuevahabitat-vs-idealista-particular", "label": "NH vs Idealista" },
+    { "slug": "nuevahabitat-vs-agencia-tradicional-barcelona", "label": "NH vs agencia 6%" },
+    { "slug": "vender-por-tu-cuenta-vs-nuevahabitat-barcelona", "label": "Por tu cuenta vs NH" },
+    { "slug": "vender-eixample", "label": "Vender en el Eixample" }
+  ],
+  "keywords_footer": "nuevahabitat vs fotocasa · vender piso fotocasa particular barcelona · fotocasa vs inmobiliaria · vender en fotocasa barcelona · precio fijo 3000 euros",
+  "whatsappText": "Hola%2C%20quiero%20comparar%20Fotocasa%20vs%20NuevaHabitat%20para%20vender%20en%20Barcelona",
+  "formPlaceholder": "Barrio en Barcelona donde vendes (Eixample, Sants, Gràcia…)"
+}

@@ -1,0 +1,126 @@
+{
+  "slug": "vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
+  "cluster": "comparativa",
+  "indexable": true,
+  "keyword_principal": "vender piso por tu cuenta vs inmobiliaria barcelona",
+  "keyword_aliases": [
+    "vender piso solo vs agencia barcelona",
+    "vender casa por mi cuenta barcelona",
+    "vender sin inmobiliaria barcelona"
+  ],
+  "footerLabel": "Por tu cuenta vs NH",
+  "priority": 0.88,
+  "origen_lead": "vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
+  "meta": {
+    "title": "Vender piso por tu cuenta vs NuevaHabitat en Barcelona · Comparativa honesta",
+    "description": "¿Vender el piso solo o con NuevaHabitat en Barcelona? Compara tiempo, riesgos legales, filtro de compradores y coste real. Precio fijo 3.000€ + IVA vs 0€ comisión pero meses de gestión.",
+    "keywords": "vender piso por tu cuenta barcelona, vender piso solo vs agencia barcelona, vender sin inmobiliaria barcelona, vender casa por mi cuenta barcelona, vender particular barcelona, nueva habitat vs vender solo"
+  },
+  "hero": {
+    "badge": "Comparativa · Solo vs acompañado",
+    "h1": "¿Vender el piso por tu cuenta o con NuevaHabitat en Barcelona?",
+    "lead": "Vender <strong>por tu cuenta en Barcelona</strong> ahorra comisión pero exige tiempo, conocimiento legal y filtro de compradores. NuevaHabitat: <strong>3.000 € + IVA solo en escritura</strong> — no es el 6% tradicional, pero sí cierras con profesionales sin regalar el piso a curiosos de portal.",
+    "image": "imagenes/interior3.jpg",
+    "imageAlt": "Propietario decidiendo vender piso por su cuenta o con NuevaHabitat en Barcelona"
+  },
+  "breadcrumbCurrent": "Por tu cuenta vs NH",
+  "argumento_principal": "<p>Decidir <strong>vender piso por tu cuenta en Barcelona</strong> es razonable si tienes tiempo, experiencia en negociación inmobiliaria y contactos solventes. Muchos propietarios empiezan así — y a los dos o tres meses descubren que el coste oculto no es la comisión, sino las visitas improductivas, las ofertas sin hipoteca, los errores en arras y el precio mal fijado el primer día.</p><h2>Qué implica vender solo en Barcelona</h2><p>Debes valorar con comparables reales (no el precio del vecino ni el anuncio inflado de Idealista), preparar documentación (nota simple, certificado energético, ITE si aplica, estado de comunidad, plusvalía), hacer fotos que compitan en portales, filtrar llamadas, coordinar visitas en horarios laborables, negociar señal y arras, y supervisar la due diligence del comprador hasta notaría. En Barcelona, donde muchos compradores compiten por el mismo stock en Eixample, Gràcia o Sants, un error en el precio de salida puede costarte 20.000–40.000 € en rebaja posterior.</p><h2>Cuándo tiene sentido vender por tu cuenta</h2><p>Vender solo encaja si: ya tienes comprador identificado (familia, conocido con financiación clara), el piso está en zona de altísima demanda y precio obvio, o dispones de varias horas semanales durante meses. Si llevas más de 60 días con anuncio activo y solo curiosos, el ahorro de comisión se erosiona con hipoteca, IBI y comunidad.</p><h2>NuevaHabitat: tercera vía entre solo y agencia al 6%</h2><p>No somos una agencia tradicional al 6% ni un portal. Cobramos <strong>3.000 € + IVA solo en escritura</strong> por hacer el trabajo operativo que muchos particulares subestiman: filtro financiero, fotografía, negociación y checklist hasta firma. Si prefieres seguir solo, la valoración gratuita te dice si tu precio es de mercado — sin compromiso ni exclusiva.</p>",
+  "calculadora": {
+    "precioDefault": 380000,
+    "titulo": "Coste real: vender solo vs agencia 6% vs NuevaHabitat",
+    "subtitulo": "Vender solo parece 0 € de comisión, pero suma tiempo, rebajas y riesgo. Compara con modelos profesionales."
+  },
+  "comparativa_modelos": {
+    "title": "Vender por tu cuenta vs portales vs agencia 6% vs NuevaHabitat (Barcelona)",
+    "rows": [
+      {
+        "modelo": "Por tu cuenta (sin portal)",
+        "tiempo": "Muy lento o azaroso",
+        "coste": "0 € comisión",
+        "riesgo": "Alcance limitado; operación informal",
+        "tipo": "neutral"
+      },
+      {
+        "modelo": "Por tu cuenta + Idealista/Fotocasa",
+        "tiempo": "3–12+ meses",
+        "coste": "Anuncio + decenas de horas",
+        "riesgo": "Curiosos; arras mal redactadas",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "Agencia tradicional 6%",
+        "tiempo": "4–8 meses",
+        "coste": "~6% + IVA",
+        "riesgo": "Coste muy alto; exclusiva larga",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "NuevaHabitat precio fijo",
+        "tiempo": "60–90 días habitual",
+        "coste": "3.000 € + IVA en escritura",
+        "riesgo": "Sin venta, sin factura. Acompañamiento real",
+        "tipo": "win"
+      }
+    ]
+  },
+  "mitos": {
+    "title": "Mitos sobre vender por tu cuenta en Barcelona",
+    "items": [
+      {
+        "mito": "Vender solo siempre me deja más dinero",
+        "realidad": "Solo si cierras al precio de mercado sin retrasos. Sobreprecio inicial + meses de espera pueden costar más que 3.630 €."
+      },
+      {
+        "mito": "Con un buen anuncio en portal no necesito nadie",
+        "realidad": "El anuncio trae contactos; no filtra solvencia ni negocia arras en tu interés."
+      },
+      {
+        "mito": "Las agencias solo ponen un cartel",
+        "realidad": "Las buenas filtran y negocian — pero el 6% es caro. NuevaHabitat concentra lo útil a precio fijo."
+      },
+      {
+        "mito": "Si conozco al comprador, no hace falta profesional",
+        "realidad": "Operaciones entre conocidos también fallan por financiación, arras o documentación. Un checklist evita conflictos."
+      },
+      {
+        "mito": "NuevaHabitat me quita el control de la venta",
+        "realidad": "Tú eliges visitas y horarios. Nosotros filtramos, negociamos y documentamos — tú decides precio mínimo y ofertas."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Merece la pena vender por mi cuenta en Barcelona?",
+      "a": "Depende de tiempo, experiencia y si ya tienes comprador. Si llevas meses con anuncio sin cierre serio, el coste de esperar suele superar 3.630 € en margen perdido."
+    },
+    {
+      "q": "¿Cuánto cuesta NuevaHabitat si ya estoy vendiendo solo?",
+      "a": "3.000 € + IVA solo en escritura. Muchos clientes llegan tras intentar vender solos en portales."
+    },
+    {
+      "q": "¿Puedo seguir anunciando yo si contrato NuevaHabitat?",
+      "a": "Lo revisamos en valoración. Priorizamos compradores cualificados de cartera; evitamos duplicar esfuerzos sin estrategia."
+    },
+    {
+      "q": "¿Qué hace NuevaHabitat que yo no haría vendiendo solo?",
+      "a": "Filtro hipotecario previo, valoración con comparables, negociación de arras, coordinación documental y panel de seguimiento."
+    },
+    {
+      "q": "¿Trabajáis en todos los barrios de Barcelona?",
+      "a": "Barcelona ciudad y área metropolitana desde Les Corts: Eixample, Gràcia, Sants, Ciutat Vella, Sarrià, etc."
+    },
+    {
+      "q": "¿Vender solo o agencia al 6%?",
+      "a": "Hay una tercera opción: precio fijo sin % ni exclusiva abusiva. Compara en la calculadora de esta página."
+    }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-sin-exclusividad-barcelona", "label": "Vender sin exclusividad" },
+    { "slug": "nuevahabitat-vs-agencia-tradicional-barcelona", "label": "NH vs agencia 6%" },
+    { "slug": "nuevahabitat-vs-idealista-particular", "label": "NH vs Idealista" },
+    { "slug": "vender-gracia", "label": "Vender en Gràcia" }
+  ],
+  "keywords_footer": "vender piso por tu cuenta barcelona · vender solo vs agencia · vender sin inmobiliaria · vender casa por mi cuenta · precio fijo nueva habitat · vender particular barcelona",
+  "whatsappText": "Hola%2C%20dudo%20entre%20vender%20solo%20o%20con%20NuevaHabitat%20en%20Barcelona",
+  "formPlaceholder": "¿Vendes solo ahora? Indica barrio y tiempo llevas anunciado…"
+}

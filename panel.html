@@ -125,8 +125,19 @@
       .p-mobile-menu{display:inline-flex!important}
       .p-stats{grid-template-columns:1fr 1fr}
       .p-form-grid{grid-template-columns:1fr}
-      .p-main{padding:1.5rem 0 5rem}
-      .p-user-name{max-width:90px}
+      .p-main{padding:1.25rem 0 calc(5.5rem + env(safe-area-inset-bottom, 0px))}
+      .p-header{padding:.65rem 0}
+      .p-header-inner{gap:.5rem}
+      .p-brand{flex:1;min-width:0;max-width:55%}
+      .p-brand .logo-name{display:none}
+      .p-brand .nav-logo img{display:block!important;height:34px;mix-blend-mode:screen;flex-shrink:0}
+      .p-brand .nav-logo-divider{display:block;height:28px;margin:0 .45rem}
+      .p-brand .logo-sub{font-size:.58rem;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;max-width:100%}
+      .p-user{flex-shrink:0;gap:.35rem}
+      .p-user-info{gap:.4rem}
+      .p-user-text{display:none}
+      .p-avatar{width:34px;height:34px;font-size:.72rem}
+      .p-logout-btn{padding:.42rem .55rem;font-size:.68rem}
     }
     .p-mobile-menu{display:none;align-items:center;gap:.4rem;padding:.55rem .9rem;border:1.5px solid var(--crema-dark);border-radius:8px;background:var(--blanco);font-size:.85rem;cursor:pointer;margin-bottom:1rem}
     @media(min-width:901px){
@@ -152,7 +163,7 @@
       </a>
       <div class="p-user">
         <div class="p-user-info">
-          <div class="p-avatar" id="pAvatar">?</div>
+          <div class="p-avatar" id="pAvatar" title="">?</div>
           <div class="p-user-text">
             <span class="p-user-name" id="pUserName" title="">Mi cuenta</span>
             <span class="p-tipo-badge" id="panelTipoBadge">Panel</span>
@@ -250,11 +261,11 @@
                 </div>
               </div>
               <div style="display:flex;gap:.65rem;flex-wrap:wrap">
-                <a href="tel:+34675704514" class="btn btn-outline" style="font-size:.82rem;padding:.55rem 1.1rem">
+                <a href="tel:+34603656587" class="btn btn-outline" style="font-size:.82rem;padding:.55rem 1.1rem">
                   <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                  675 704 514
+                  603 656 587
                 </a>
-                <a href="https://wa.me/34675704514?text=Hola%20Juan%20C%C3%A1rdenas%2C%20soy%20cliente%20de%20NuevaHabitat" target="_blank" class="btn btn-gold" style="font-size:.82rem;padding:.55rem 1.1rem">WhatsApp</a>
+                <a href="https://wa.me/34603656587?text=Hola%20Juan%20C%C3%A1rdenas%2C%20soy%20cliente%20de%20NuevaHabitat" target="_blank" class="btn btn-gold" style="font-size:.82rem;padding:.55rem 1.1rem">WhatsApp</a>
               </div>
             </div>
           </div>
@@ -290,7 +301,7 @@
                 <div class="p-step-body">
                   <h4>Reunión inicial con tu agente</h4>
                   <p>Juan Cárdenas se pondrá en contacto en menos de 24h para conocer tu perfil y empezar la búsqueda activa.</p>
-                  <small>Pendiente · <a href="https://wa.me/34675704514" target="_blank" style="color:var(--oro)">Adelantar por WhatsApp</a></small>
+                  <small>Pendiente · <a href="https://wa.me/34603656587" target="_blank" style="color:var(--oro)">Adelantar por WhatsApp</a></small>
                 </div>
               </div>
               <div class="p-step">
@@ -311,7 +322,7 @@
             <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Honorarios transparentes</div>
             <div style="font-family:var(--font-serif);font-size:1.5rem;margin-bottom:.3rem">5.000 € + IVA · 6.050 € total</div>
             <p style="font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem">Solo cobramos en el momento de la escritura. Sin costes por adelantado. Sin letra pequeña.</p>
-            <a href="tel:+34675704514" class="btn btn-gold" style="font-size:.84rem">Llamar a Juan Cárdenas</a>
+            <a href="tel:+34603656587" class="btn btn-gold" style="font-size:.84rem">Llamar a Juan Cárdenas</a>
           </div>
         </div>
 
@@ -336,7 +347,7 @@
                 <div class="p-step-body">
                   <h4>Valoración de tu inmueble</h4>
                   <p>Juan Cárdenas visitará tu vivienda y elaborará un informe de valoración de mercado gratuito.</p>
-                  <small>Pendiente · <a href="https://wa.me/34675704514?text=Hola%2C%20quiero%20valorar%20mi%20inmueble" target="_blank" style="color:var(--oro)">Solicitar valoración</a></small>
+                  <small>Pendiente · <a href="https://wa.me/34603656587?text=Hola%2C%20quiero%20valorar%20mi%20inmueble" target="_blank" style="color:var(--oro)">Solicitar valoración</a></small>
                 </div>
               </div>
               <div class="p-step">
@@ -361,7 +372,7 @@
             <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Honorarios transparentes</div>
             <div style="font-family:var(--font-serif);font-size:1.5rem;margin-bottom:.3rem">3.000 € + IVA · 3.630 € total</div>
             <p style="font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem">Solo cobramos en escritura. Si no vendes, no pagas nada.</p>
-            <a href="tel:+34675704514" class="btn btn-gold" style="font-size:.84rem">Llamar a Juan Cárdenas</a>
+            <a href="tel:+34603656587" class="btn btn-gold" style="font-size:.84rem">Llamar a Juan Cárdenas</a>
           </div>
         </div>
 
@@ -458,8 +469,8 @@
             <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">¿Necesitas ayuda con un documento?</div>
             <p style="font-size:.875rem;color:var(--gris-texto);margin-bottom:1rem">Juan Cárdenas puede enviarte cualquier documento directamente a tu email o por WhatsApp.</p>
             <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-              <a href="tel:+34675704514" class="btn btn-outline" style="font-size:.84rem">675 704 514</a>
-              <a href="https://wa.me/34675704514?text=Hola%20Juan%2C%20necesito%20ayuda%20con%20documentos" target="_blank" class="btn btn-gold" style="font-size:.84rem">WhatsApp</a>
+              <a href="tel:+34603656587" class="btn btn-outline" style="font-size:.84rem">603 656 587</a>
+              <a href="https://wa.me/34603656587?text=Hola%20Juan%2C%20necesito%20ayuda%20con%20documentos" target="_blank" class="btn btn-gold" style="font-size:.84rem">WhatsApp</a>
             </div>
           </div>
         </div>
@@ -526,6 +537,9 @@
 
 <script src="js/supabase.js"></script>
 <script src="js/notify.js"></script>
+<script src="js/site-config.js"></script>
+<script src="js/ga-config.js"></script>
+<script src="js/seo.js"></script>
 <script src="js/main.js"></script>
 <script>
 /* ─── Navegación entre secciones ─────────────────────────── */
@@ -581,7 +595,7 @@ function docRowHtml(d, href) {
   const stColor = d.estado === 'disponible' || d.estado === 'firmado' ? ' style="color:#10b981"' : '';
   const btn = href
     ? `<a href="${href}" target="_blank" rel="noopener" class="btn btn-gold" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Ver / Descargar</a>`
-    : `<a href="https://wa.me/34675704514?text=${encodeURIComponent('Hola Juan, necesito: ' + d.nombre)}" target="_blank" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Solicitar</a>`;
+    : `<a href="https://wa.me/34603656587?text=${encodeURIComponent('Hola Juan, necesito: ' + d.nombre)}" target="_blank" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem;white-space:nowrap">Solicitar</a>`;
   return `<div class="p-doc-row">
     <div class="p-doc-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
     <div class="p-doc-info"><div class="p-doc-name">${d.nombre}</div><div class="${st}"${stColor}>${d.estado || 'pendiente'}</div></div>
@@ -631,7 +645,7 @@ async function loadExpedienteTimeline(tipo) {
   if (!window.nhSupabase || !currentUser?.email) return;
   const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
   const { data } = await window.nhSupabase.from(tabla)
-    .select('estado_expediente, activo, inmueble_ref').eq('email', currentUser.email).maybeSingle();
+    .select('activo, inmueble_ref').eq('email', currentUser.email).maybeSingle();
 
   let estado = data?.estado_expediente || 'registro';
   const visitas = parseInt(document.getElementById(tipo === 'vendedor' ? 'statVisitasV' : 'statVisitas')?.textContent || '0', 10);
@@ -654,6 +668,9 @@ function applyPanelMode(tipo) {
   const isVendedor = tipo === 'vendedor';
   document.getElementById('panelTipoBadge').textContent = isVendedor ? 'Vendedor' : 'Comprador';
   document.getElementById('panelSub').textContent = isVendedor ? 'Panel vendedor' : 'Panel comprador';
+  const av = document.getElementById('pAvatar');
+  const name = document.getElementById('pUserName')?.textContent || '';
+  if (av) av.title = name ? `${name} · ${isVendedor ? 'Vendedor' : 'Comprador'}` : '';
   document.title = (isVendedor ? 'Panel Vendedor' : 'Panel Comprador') + ' · NuevaHabitat';
 
   document.querySelectorAll('[data-only="comprador"]').forEach(el => {
@@ -698,7 +715,9 @@ function setHeaderUser(user) {
   const el = document.getElementById('pUserName');
   el.textContent = display;
   el.title = user.email || display;
-  document.getElementById('pAvatar').textContent = display.slice(0, 2).toUpperCase();
+  const av = document.getElementById('pAvatar');
+  av.textContent = display.slice(0, 2).toUpperCase();
+  av.title = display;
 }
 
 let currentUser = null;
@@ -878,8 +897,9 @@ async function loadRecentProps() {
   if (!window.nhSupabase || !window.nhAuth) return;
   const { data } = await nhAuth.fetchInmuebles(
     'id,titulo,precio,barrio,municipio,imagen_principal,imagenes',
-    { column: 'created_at', ascending: false, limit: 3 }
-  ).eq('estado', 'disponible');
+    { column: 'created_at', ascending: false, limit: 3 },
+    { estado: 'disponible' }
+  );
 
   const el = document.getElementById('recentProps');
   if (!data || !data.length) {

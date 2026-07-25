@@ -1,5 +1,5 @@
 /**
- * notify.js — Helper para enviar notificaciones por email al admin.
+ * notify.js — Helper para enviar notificaciones por email (admin + info corporativo).
  * Se llama después de guardar un lead en Supabase.
  */
 window.nhNotify = async function(payload) {

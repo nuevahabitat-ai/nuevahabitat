@@ -1,0 +1,161 @@
+{
+  "updated": "2026-07-25T18:03:02.146Z",
+  "landings": [
+    {
+      "slug": "vender-piso-ciutat-vella-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-eixample",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-gracia",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-les-corts",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-piso-barceloneta",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-piso-born-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-piso-gotic-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-piso-raval-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-poblenou",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-sants",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-sarria",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-horta",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "vender-nou-barris",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "vender-l-hospitalet",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-esplugues",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "vender-piso-alquilado-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "vender-piso-antes-comprar-otro-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "vender-piso-inquilino-vencer-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-piso-traslado-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "vender-segunda-residencia-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-piso-sin-exclusividad-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
+      "cluster": "comparativa",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "nuevahabitat-vs-fotocasa-particular",
+      "cluster": "comparativa",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "nuevahabitat-vs-idealista-particular",
+      "cluster": "comparativa",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
+      "cluster": "comparativa",
+      "indexable": true,
+      "priority": 0.88
+    }
+  ]
+}

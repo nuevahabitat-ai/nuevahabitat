@@ -1,0 +1,45 @@
+{
+  "slug": "vender-horta",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Horta-Guinardó",
+  "footerLabel": "Vender en Horta-Guinardó",
+  "breadcrumbCurrent": "Horta-Guinardó",
+  "priority": 0.87,
+  "testimonials": false,
+  "postalCodes": ["08031", "08032", "08035", "08041"],
+  "zonas": ["Horta centre", "Montbau", "Vall d'Hebron", "La Teixonera", "El Carmel"],
+  "inmueblesQuery": "Horta",
+  "ejemploPrecio": 420000,
+  "ahorro": "26.900",
+  "origen_lead": "vender-horta",
+  "heroImage": "imagenes/equipo1.jpg",
+  "heroImageAlt": "Vivienda en Horta-Guinardó, Barcelona",
+  "meta": {
+    "title": "Vender piso en Horta-Guinardó, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes en Horta-Guinardó, Montbau o Vall d'Hebron? Mercado ~3.900–4.300 €/m². Honorarios fijos 3.000€ + IVA, compradores filtrados y visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Horta Guinardó Barcelona, vender piso Horta Barcelona, inmobiliaria Horta, vender vivienda 08031, vender piso Montbau, Vall d'Hebron, La Teixonera"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en Horta-Guinardó, Barcelona?",
+    "lead": "Vende en Horta, Montbau, Vall d'Hebron o La Teixonera con <strong>honorarios fijos de 3.000€ + IVA</strong>, valoración según mercado real del distrito (~3.900–4.300 €/m²) y compradores filtrados."
+  },
+  "argumento_principal": "<p>Horta-Guinardó combina barrio de toda la vida en Horta centre, la presión sanitaria y universitaria de <strong>Vall d'Hebron</strong> y la demanda residencial de Montbau y La Teixonera. En 2026 el precio medio orientativo ronda <strong>3.900–4.300 €/m²</strong>: un piso de 3 habitaciones suele moverse entre 320.000 y 480.000 € según planta, terraza y parking. Aquí compran familias que huyen del precio del Eixample buscando metros y terraza, no inversores turísticos de fin de semana.</p><p>El error más habitual es valorar con la media de “Barcelona” en lugar de con ventas en 08031, 08032 o 08035. Un bloque sin ascensor en El Carmel no compite con un piso reformado junto al Laberint d'Horta. En NuevaHabitat cruzamos comparables de tu calle, preparamos reportaje fotográfico y filtramos compradores con hipoteca preaprobada antes de agendar visitas. Honorarios <strong>3.000 € + IVA solo en escritura</strong>.</p><p>Quién vende suele ser una familia que se traslada fuera del distrito, una herencia entre hermanos o un jubilado que reduce metros; quien compra prioriza colegios, metro L3/L5 y proximidad al hospital. Si llevas semanas en portal sin ofertas serias, casi siempre es precio o presentación — no falta de demanda en Horta-Guinardó.</p>",
+  "faq": [
+    { "q": "¿Cuánto cuesta el m² en Horta-Guinardó frente al Eixample?", "a": "Orientativamente 3.900–4.300 €/m² en Horta-Guinardó frente a 5.000–7.000 €/m² en buena parte del Eixample. Un piso equivalente puede costar 80.000–120.000 € menos, lo que atrae compradores familiares." },
+    { "q": "¿Se vende bien un piso en Montbau o La Teixonera sin parking?", "a": "Depende de planta y orientación. Sin plaza se descuenta, pero terraza, luz y ascensor pueden compensar. Lo cuantificamos en la valoración con comparables del mismo edificio o calle." },
+    { "q": "¿Trabajáis la parte alta de Guinardó (El Carmel, 08032)?", "a": "Sí, cubrimos Horta centre, Montbau, Vall d'Hebron, La Teixonera, El Carmel y CP 08031, 08032, 08035 y 08041." },
+    { "q": "¿Un piso con terraza o parking se valora distinto en Horta-Guinardó?", "a": "Sí. Terraza usable y plaza propia son de los activos más demandados en el distrito; los incluimos explícitamente en la tasación y en la ficha." },
+    { "q": "¿Cuánto cuesta vender con NuevaHabitat en Horta-Guinardó?", "a": "3.000 € + IVA, precio fijo, solo en escritura. Sin venta, no pagas comisión." },
+    { "q": "¿Cuánto tarda vender un piso bien de precio en Horta?", "a": "Con pricing correcto y compradores filtrados, muchos inmuebles cierran en 60–90 días. Te damos estimación en la valoración gratuita." }
+  ],
+  "relacionadas": [
+    { "slug": "vender-nou-barris", "label": "Vender en Nou Barris" },
+    { "slug": "vender-gracia", "label": "Vender en Gràcia" },
+    { "slug": "vender-sants", "label": "Vender en Sants" },
+    { "slug": "vender-les-corts", "label": "Vender en Les Corts" }
+  ],
+  "keywords_footer": "vender piso Horta Guinardó Barcelona · vender piso Montbau · Vall d'Hebron · La Teixonera · 08031 · inmobiliaria Horta precio fijo",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Horta%20Guinardo",
+  "formPlaceholder": "Dirección o zona (Horta centre, Montbau, Vall d'Hebron, Teixonera…)"
+}

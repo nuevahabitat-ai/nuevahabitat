@@ -1,0 +1,83 @@
+{
+  "slug": "vender-sarria",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Sarrià",
+  "footerLabel": "Vender en Sarrià",
+  "breadcrumbCurrent": "Sarrià",
+  "postalCodes": [
+    "08017",
+    "08034"
+  ],
+  "zonas": [
+    "Galvany",
+    "Bonanova",
+    "Tres Torres",
+    "Sant Gervasi"
+  ],
+  "inmueblesQuery": "Sarrià",
+  "ejemploPrecio": 750000,
+  "heroImage": "imagenes/interior2.jpg",
+  "heroImageAlt": "Vivienda en Sarrià-Sant Gervasi, Barcelona",
+  "origen_lead": "vender-sarria",
+  "testimonials": false,
+  "priority": 0.88,
+  "ahorro": "42.000€",
+  "meta": {
+    "title": "Vender piso en Sarrià, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en Sarrià? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores con hipoteca preaprobada, panel digital y visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Sarrià, vender casa Sarrià Barcelona, inmobiliaria Sarrià, vender vivienda 08017, agencia inmobiliaria Sant Gervasi precio fijo, vender piso Bonanova, vender casa Tres Torres, comisión inmobiliaria Sarrià"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en Sarrià?",
+    "lead": "<strong>NuevaHabitat</strong> ayuda a vendedores en Sarrià a vender su vivienda con <strong>honorarios fijos de 3.000€ + IVA</strong>, lejos de las agencias que cobran un 6% sobre el precio de venta. Panel digital, compradores cualificados y visitas en tu horario."
+  },
+  "argumento_principal": "<p>Sarrià-Sant Gervasi es uno de los mercados más exigentes de Barcelona: Bonanova, Tres Torres, Galvany y Vallvidrera atraen compradores con alto poder adquisitivo, pero también negociaciones complejas sobre parking, ITE y plusvalía. Si quieres <strong>vender piso en Sarrià</strong>, el margen de error en el precio es caro.</p><p>NuevaHabitat trabaja con comparables de operaciones cerradas en 08017 y 08034, no con anuncios inflados de portales. Filtramos compradores por solvencia real antes de cada visita y centralizamos documentación, ofertas y arras en tu panel de vendedor.</p><p>Con un piso orientativo de 750.000 €, ahorras más de 42.000 € frente a una comisión del 6%. Cobramos 3.000 € + IVA solo en escritura; sin exclusividad abusiva ni permanencias que te atan sin resultados.</p>",
+  "faq": [
+    {
+      "q": "¿Cuánto cuesta vender un piso en Sarrià con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo cobrado únicamente en escritura. No pagas un 6% sobre el precio de venta como en muchas agencias tradicionales de Barcelona."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas en mi piso?",
+      "a": "Sí. Tú indicas días y franjas horarias disponibles. Solo agendamos visitas con compradores previamente filtrados por capacidad financiera."
+    },
+    {
+      "q": "¿Qué es el panel de vendedor?",
+      "a": "Es tu área privada en NuevaHabitat donde consultas el estado de la venta: documentos, visitas, ofertas y hitos hasta la escritura. Acceso 24/7 desde móvil u ordenador."
+    },
+    {
+      "q": "¿Los compradores tienen hipoteca aprobada?",
+      "a": "Priorizamos compradores de nuestra cartera con preaprobación hipotecaria o estudio de viabilidad bancaria, y ahorro suficiente para entrada y gastos de compraventa en Cataluña."
+    },
+    {
+      "q": "¿Vendéis pisos en Sarrià, Galvany, Bonanova y Tres Torres?",
+      "a": "Sí. Trabajamos Sarrià-Sant Gervasi (08017, 08021, 08022) y el área metropolitana de Barcelona desde nuestras oficinas en Les Corts."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en Sarrià?",
+      "a": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en Sarrià se venden en 60–90 días. Te damos una estimación en la valoración gratuita."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-eixample",
+      "label": "Vender en el Eixample"
+    },
+    {
+      "slug": "vender-gracia",
+      "label": "Vender en Gràcia"
+    },
+    {
+      "slug": "vender-sants",
+      "label": "Vender en Sants"
+    },
+    {
+      "slug": "vender-les-corts",
+      "label": "Vender en Les Corts"
+    }
+  ],
+  "keywords_footer": "vender piso Sarrià · vender casa Sarrià Barcelona · inmobiliaria Sarrià precio fijo · vender vivienda 08017 · agencia inmobiliaria Sant Gervasi · vender piso Bonanova · vender casa Tres Torres · valoración gratuita Sarrià",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Sarria",
+  "formPlaceholder": "Dirección o zona en Sarrià"
+}

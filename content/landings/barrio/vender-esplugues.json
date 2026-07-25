@@ -1,0 +1,46 @@
+{
+  "slug": "vender-esplugues",
+  "cluster": "barrio",
+  "indexable": true,
+  "municipio": true,
+  "barrio": "Esplugues de Llobregat",
+  "footerLabel": "Vender en Esplugues",
+  "breadcrumbCurrent": "Esplugues",
+  "priority": 0.855,
+  "testimonials": false,
+  "postalCodes": ["08950"],
+  "zonas": ["Can Vidalet", "Can Sant Joan", "Centre", "Finestrelles", "Les Malloles"],
+  "inmueblesQuery": "Esplugues",
+  "ejemploPrecio": 325000,
+  "ahorro": "18.300",
+  "origen_lead": "vender-esplugues",
+  "heroImage": "imagenes/interior2.jpg",
+  "heroImageAlt": "Piso en Esplugues de Llobregat, área metropolitana de Barcelona",
+  "meta": {
+    "title": "Vender piso en Esplugues de Llobregat · Precio fijo · NuevaHabitat",
+    "description": "¿Vendes en Esplugues? Mercado ~3.200–3.800 €/m². Honorarios fijos 3.000€ + IVA desde Les Corts. Can Vidalet, Centre, Finestrelles. Compradores filtrados.",
+    "keywords": "vender piso Esplugues de Llobregat, vender piso Esplugues, inmobiliaria Esplugues, vender vivienda 08950, vender piso Can Vidalet, vender piso Barcelona área metropolitana"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en Esplugues de Llobregat?",
+    "lead": "Vende en Can Vidalet, Centre o Finestrelles con <strong>honorarios fijos de 3.000€ + IVA</strong>, valoración según mercado real del municipio (~3.200–3.800 €/m²) y compradores filtrados — a minutos de nuestra oficina en Les Corts."
+  },
+  "argumento_principal": "<p><strong>Esplugues de Llobregat</strong> atrae a familias y profesionales que quieren más calidad residencial que en L'Hospitalet sin pagar precio Sarrià. En 2026 el mercado orientativo ronda <strong>3.200–3.800 €/m²</strong>: un piso de 3 habitaciones suele situarse entre 280.000 y 380.000 € según zona (Can Vidalet vs Finestrelles), planta, parking y estado de la finca.</p><p>Can Vidalet y el Centre concentran demanda estable por metro L5 (Cornellà Centre) y bus directo a Barcelona. Finestrelles y Les Malloles compiten por compradores que buscan más metros y entorno más tranquilo. La tasación debe usar comparables del mismo núcleo — no mezclar chalet adosado en Finestrelles con piso en bloque de Can Vidalet.</p><p>Atendemos Esplugues desde <strong>Carrer de Mejía Lequerica, 42 (Les Corts)</strong>. Muchos vendedores llegan tras meses en Idealista con curiosos pero sin comprador con hipoteca aprobada. NuevaHabitat filtra solvencia, coordina visitas en tu horario y cobra <strong>3.000 € + IVA solo en escritura</strong> — sin comisión del 6% que en un piso de 325.000 € supera los 23.000 € en honorarios tradicionales.</p><p>Perfil habitual del vendedor en Esplugues: herencia entre hermanos, familia que se traslada al Baix Llobregat o propietario que liquida inversión de alquiler. Comprador: familias con hijos, parejas jóvenes desplazadas desde Barcelona por precio, o quien trabaja en Zona Franca / hospitales del entorno.</p>",
+  "faq": [
+    { "q": "¿Cuánto cuesta el m² en Esplugues frente a Sarrià o Les Corts?", "a": "Orientativamente 3.200–3.800 €/m² en Esplugues frente a 5.000–7.000 €/m² en Sarrià y 4.500–5.500 €/m² en buena parte de Les Corts. Esplugues ofrece más metros por euro con buenas conexiones." },
+    { "q": "¿Se vende bien un piso en Can Vidalet o Finestrelles?", "a": "Sí, con pricing correcto. Can Vidalet tiene demanda por transporte; Finestrelles atrae familias por espacio. La valoración debe ser por micro-zona, no por media del municipio." },
+    { "q": "¿Atendéis Esplugues desde la oficina de Les Corts?", "a": "Sí. Esplugues está a pocos minutos en coche o transporte público desde Les Corts. Visitas en tu horario y compradores filtrados por solvencia." },
+    { "q": "¿Cuánto cuesta vender con NuevaHabitat en Esplugues?", "a": "3.000 € + IVA, precio fijo, solo en escritura. Sin venta, no pagas honorarios." },
+    { "q": "¿Trabajáis solo pisos o también casas adosadas?", "a": "Principalmente pisos y apartamentos en bloque. Casas y adosados en Finestrelles se valoran con comparables específicos en la valoración gratuita." },
+    { "q": "¿Cuánto tarda vender un piso bien de precio en Esplugues?", "a": "Con valoración alineada al mercado local, muchos inmuebles cierran en 60–90 días. Te damos escenario realista según tu zona y estado." }
+  ],
+  "relacionadas": [
+    { "slug": "vender-l-hospitalet", "label": "Vender en L'Hospitalet" },
+    { "slug": "vender-les-corts", "label": "Vender en Les Corts" },
+    { "slug": "vender-sarria", "label": "Vender en Sarrià" },
+    { "slug": "nuevahabitat-vs-agencia-tradicional-barcelona", "label": "NH vs agencia 6%" }
+  ],
+  "keywords_footer": "vender piso Esplugues · vender piso Esplugues de Llobregat · inmobiliaria Esplugues · Can Vidalet · Finestrelles · 08950 · área metropolitana Barcelona",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Esplugues%20de%20Llobregat",
+  "formPlaceholder": "Dirección o zona (Can Vidalet, Centre, Finestrelles, Les Malloles…)"
+}

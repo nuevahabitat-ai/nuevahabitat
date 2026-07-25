@@ -1,0 +1,45 @@
+{
+  "slug": "vender-piso-barceloneta",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Barceloneta",
+  "footerLabel": "Vender en la Barceloneta",
+  "breadcrumbCurrent": "Barceloneta",
+  "priority": 0.88,
+  "testimonials": false,
+  "postalCodes": ["08003"],
+  "zonas": ["Passeig Marítim", "Plaça del Mar", "Carrer de Sant Carles", "Barceloneta playa"],
+  "inmueblesQuery": "Barceloneta",
+  "ejemploPrecio": 490000,
+  "ahorro": "26.900",
+  "origen_lead": "vender-piso-barceloneta",
+  "heroImage": "imagenes/interior11.jpg",
+  "heroImageAlt": "Piso cerca del mar en la Barceloneta, Barcelona",
+  "meta": {
+    "title": "Vender piso en la Barceloneta, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en la Barceloneta? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores cualificados, visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Barceloneta, vender piso Barceloneta Barcelona, inmobiliaria Barceloneta, vender vivienda playa Barcelona, Passeig Marítim"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en la Barceloneta?",
+    "lead": "Vende en la Barceloneta con <strong>honorarios fijos de 3.000€ + IVA</strong>, ficha orientada al comprador que busca mar y visitas en tu horario."
+  },
+  "argumento_principal": "<p>La Barceloneta tiene un perfil de comprador muy definido: quiere playa a pie, vistas o proximidad al mar, y acepta fincas más pequeñas o antiguas a cambio de esa ubicación. Es también uno de los barrios de Barcelona con más interés de comprador internacional, lo que puede jugar a favor del vendedor si el piso se presenta bien — con fotografía que muestre la cercanía real al mar y al Passeig Marítim, no solo el interior.</p><p>En NuevaHabitat ajustamos la valoración y la ficha a ese comprador específico de la Barceloneta, con honorarios fijos de 3.000 € + IVA, cobro solo en escritura, sin la comisión del 6% de una agencia tradicional. Coordinamos visitas en tus horarios y filtramos compradores solventes antes de abrirte la puerta.</p>",
+  "faq": [
+    { "q": "¿Cuánto cuesta vender un piso en la Barceloneta con NuevaHabitat?", "a": "3.000 € + IVA, precio fijo, solo en escritura." },
+    { "q": "¿Un piso pequeño cerca del mar se vende mejor que uno grande más alejado?", "a": "Depende del comprador objetivo; en la Barceloneta la proximidad a la playa suele pesar mucho en la decisión, lo valoramos en la tasación." },
+    { "q": "¿Puedo elegir cuándo recibir visitas?", "a": "Sí, tú decides días y horarios." },
+    { "q": "¿Los compradores están verificados financieramente?", "a": "Sí, priorizamos cartera con capacidad financiera contrastada antes de agendar visitas." },
+    { "q": "¿Trabajáis toda la zona, incluido Passeig Marítim y Plaça del Mar?", "a": "Sí, toda la Barceloneta (08003)." },
+    { "q": "¿Cuánto tarda vender un piso en la Barceloneta?", "a": "Depende de vistas, planta y estado; te damos una estimación real en la valoración gratuita." }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-ciutat-vella-barcelona", "label": "Vender en Ciutat Vella" },
+    { "slug": "vender-piso-gotic-barcelona", "label": "Vender en el Gòtic" },
+    { "slug": "vender-piso-born-barcelona", "label": "Vender en el Born" },
+    { "slug": "vender-piso-raval-barcelona", "label": "Vender en el Raval" }
+  ],
+  "keywords_footer": "vender piso Barceloneta · vender piso playa Barcelona · inmobiliaria Barceloneta · Passeig Marítim · Plaça del Mar",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20la%20Barceloneta",
+  "formPlaceholder": "Dirección o zona en la Barceloneta (Passeig Marítim, Sant Carles…)"
+}

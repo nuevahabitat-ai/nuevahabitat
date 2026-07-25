@@ -1,0 +1,82 @@
+{
+  "slug": "vender-piso-rapido-barcelona",
+  "cluster": "intencion",
+  "indexable": true,
+  "keyword_principal": "vender piso rapido barcelona",
+  "keyword_aliases": ["vender piso urgente barcelona"],
+  "footerLabel": "Vender piso rápido",
+  "priority": 0.89,
+  "origen_lead": "vender-piso-rapido-barcelona",
+  "meta": {
+    "title": "Vender piso rápido en Barcelona · Urgente · Precio fijo · NuevaHabitat",
+    "description": "¿Necesitas vender tu piso rápido en Barcelona? Calcula tu ahorro, compara modelos (agencia, particular, portal) y vende con precio fijo 3.000€ + IVA. Valoración gratuita.",
+    "keywords": "vender piso rapido barcelona, vender piso urgente barcelona, vender casa rapido barcelona, vender piso prisa barcelona, inmobiliaria venta rapida barcelona"
+  },
+  "hero": {
+    "badge": "Urgencia · Venta ágil",
+    "h1": "¿Necesitas vender tu piso rápido en Barcelona?",
+    "lead": "Ya sea por liquidez, herencia, traslado o divorcio: vender con prisa no significa regalar el piso. NuevaHabitat combina pricing agresivo basado en datos, compradores preaprobados y honorarios fijos de 3.000 € + IVA — sin comisión del 6% que reduce lo que recibes en una venta urgente.",
+    "image": "imagenes/firma1.jpg",
+    "imageAlt": "Firma de compraventa rápida de piso en Barcelona"
+  },
+  "breadcrumbCurrent": "Venta rápida",
+  "argumento_principal": "<p>Buscar <strong>vender piso rápido en Barcelona</strong> suele mezclar dos miedos: no encontrar comprador a tiempo, y pagar demasiado a una agencia que no acelera el proceso. La velocidad real depende de tres variables: precio de salida correcto, documentación lista y compradores solventes desde el primer día — no de publicar en más portales.</p><p>En operaciones urgentes el error más caro es <em>sobrevalorar</em> durante las primeras semanas. Cada mes de retraso en Barcelona cuesta impuestos, comunidad, hipoteca y oportunidad. Por eso empezamos con valoración comparativa honesta y un plan de salida a 30-60-90 días, según tu margen de negociación.</p><p>NuevaHabitat no promete milagros en 48 horas, pero sí un proceso optimizado: fotos en días, difusión a cartera con hipoteca preaprobada, visitas concentradas en franjas cortas y negociación con datos. Si tu urgencia es extrema, evaluamos también compradores inversores de nuestra red — siempre con transparencia sobre el precio.</p>",
+  "calculadora": {
+    "precioDefault": 420000,
+    "titulo": "Calcula cuánto te ahorras vendiendo con precio fijo",
+    "subtitulo": "Introduce el precio estimado de venta. Comparamos comisión tradicional (~6%) vs NuevaHabitat (3.000 € + IVA)."
+  },
+  "comparativa_modelos": {
+    "title": "Cuatro formas de vender en Barcelona — ¿cuál encaja con tu urgencia?",
+    "rows": [
+      { "modelo": "Agencia tradicional (~6%)", "tiempo": "Variable, a menudo 4-8 meses", "coste": "6% del precio + IVA", "riesgo": "Exclusiva larga, coste alto si vendes pronto", "tipo": "lose" },
+      { "modelo": "Particular sin agencia", "tiempo": "Impredecible", "coste": "0 € comisión", "riesgo": "Compradores no filtrados, errores legales, más tiempo", "tipo": "neutral" },
+      { "modelo": "Portal + anuncio propio", "tiempo": "Depende del anuncio", "coste": "Suscripción + tiempo", "riesgo": "Curiosos, sin negociación profesional", "tipo": "neutral" },
+      { "modelo": "NuevaHabitat precio fijo", "tiempo": "Plan 30-90 días", "coste": "3.000 € + IVA en escritura", "riesgo": "Sin venta, sin factura. Compradores filtrados", "tipo": "win" }
+    ]
+  },
+  "mitos": {
+    "title": "Mitos sobre vender rápido (y urgente) en Barcelona",
+    "items": [
+      { "mito": "Bajar mucho el precio es la única forma de vender rápido", "realidad": "Un ajuste del 3-5% bien justificado suele multiplicar visitas. Un recorte del 15% sin estrategia regala dinero." },
+      { "mito": "Cuantos más portales, antes vendo", "realidad": "La velocidad depende del comprador correcto, no del volumen de curiosos. Filtrar ahorra semanas." },
+      { "mito": "Urgente = aceptar la primera oferta", "realidad": "Negociamos con datos para cerrar rápido sin ceder de más. La prisa no implica desprotección." },
+      { "mito": "Sin agencia siempre es más rápido", "realidad": "Sin filtro de solvencia y sin coordinación de visitas, muchas ventas particulares se alargan meses." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuánto se tarda en vender un piso en Barcelona con urgencia?",
+      "a": "Con precio bien ajustado y compradores filtrados, muchos inmuebles se venden en 60-90 días. En la valoración gratuita te damos un escenario realista según tu barrio y estado del piso."
+    },
+    {
+      "q": "¿Vender piso urgente y vender piso rápido es lo mismo?",
+      "a": "Sí en intención de búsqueda. Esta página cubre ambas: necesitas liquidez o cerrar en plazos cortos. No mantenemos dos URLs distintas para no duplicar contenido."
+    },
+    {
+      "q": "¿Cuánto cuesta vender rápido con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo solo en escritura. En un piso de 420.000 € te ahorras más de 22.000 € frente a una comisión del 6%."
+    },
+    {
+      "q": "¿Podéis priorizar mi venta si tengo fecha límite?",
+      "a": "Sí. Indícanos tu plazo en la valoración. Ajustamos calendario de fotos, difusión y negociación. La transparencia sobre plazos legales (arras, hipoteca comprador) es clave."
+    },
+    {
+      "q": "¿Qué documentación necesito para acelerar la venta?",
+      "a": "Nota simple, ITE si aplica, certificado energético, recibos de comunidad y, si hay inquilino o hipoteca, documentación asociada. Te enviamos checklist personalizado."
+    },
+    {
+      "q": "¿Trabajáis en toda Barcelona y área metropolitana?",
+      "a": "Sí. Desde nuestras oficinas en Les Corts (Carrer de Mejía Lequerica, 42) atendemos Barcelona ciudad y área metropolitana."
+    }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-sin-exclusividad-barcelona", "label": "Vender sin exclusividad" },
+    { "slug": "vender-piso-alquilado-barcelona", "label": "Vender piso con inquilino" },
+    { "slug": "vender-eixample", "label": "Vender en el Eixample" },
+    { "slug": "vender-sants", "label": "Vender en Sants" }
+  ],
+  "keywords_footer": "vender piso rapido barcelona · vender piso urgente barcelona · vender casa rapido · vender piso prisa · inmobiliaria venta rapida · precio fijo barcelona",
+  "whatsappText": "Hola%2C%20necesito%20vender%20mi%20piso%20r%C3%A1pido%20en%20Barcelona",
+  "formPlaceholder": "Barrio, m², plazo en el que necesitas vender…"
+}

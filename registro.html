@@ -7,7 +7,7 @@
 
   <!-- SEO & Open Graph -->
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://www.nuevahabitat.com/registro.html" />
+  <meta property="og:url"         content="https://www.nuevahabitat.com/registro" />
   <meta property="og:title"       content="Crear cuenta · NuevaHabitat" />
   <meta property="og:description" content="Crea tu cuenta en NuevaHabitat y empieza a vender o comprar tu vivienda en Barcelona. Registro gratuito y sin compromiso." />
   <meta property="og:image"       content="https://www.nuevahabitat.com/imagenes/interior3.jpg" />
@@ -17,7 +17,7 @@
   <meta name="twitter:title"      content="Crear cuenta · NuevaHabitat" />
   <meta name="twitter:description" content="Crea tu cuenta en NuevaHabitat y empieza a vender o comprar tu vivienda en Barcelona. Registro gratuito y sin compromiso." />
   <meta name="twitter:image"      content="https://www.nuevahabitat.com/imagenes/interior3.jpg" />
-  <link rel="canonical"           href="https://www.nuevahabitat.com/registro.html" />
+  <link rel="canonical"           href="https://www.nuevahabitat.com/registro" />
 <link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
 </head>
@@ -145,15 +145,20 @@ document.addEventListener('supabase:ready', async () => {
       regBtn.disabled = false;
     } else if (data?.session) {
       localStorage.setItem('nh_reg_email', email);
+      window.nhSeo?.track('sign_up', { method: 'email', user_type: tipo });
       nhAuth.redirectAfterLogin(data.session.user);
     } else {
       localStorage.setItem('nh_reg_email', email);
+      window.nhSeo?.track('sign_up', { method: 'email', user_type: tipo });
       window.location.href = 'confirmar-cuenta.html?pending=1&email=' + encodeURIComponent(email);
     }
   });
 });
 </script>
 <script src="js/mbn.js"></script>
+<script src="js/site-config.js"></script>
+<script src="js/ga-config.js"></script>
+<script src="js/seo.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

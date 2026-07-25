@@ -4,7 +4,10 @@
  * Usa Resend (resend.com) como proveedor de email.
  */
 
-const ADMIN_EMAIL = 'admin.nuevahabitat@gmail.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || 'info@nuevahabitat.com';
+/** Destinatarios internos: todas las alertas de leads/registros van a ambos por igual */
+const NOTIFY_RECIPIENTS = [...new Set([ADMIN_EMAIL, CONTACT_EMAIL].map((e) => String(e || '').trim()).filter(Boolean))];
 const FROM_ADMIN  = 'NuevaHabitat <noreply@nuevahabitat.com>';
 const FROM_NOREPLY= 'NuevaHabitat <noreply@nuevahabitat.com>';
 
@@ -57,8 +60,8 @@ const HEAD = `
 
 const FOOTER = `
 <div class="ftr">
-  <p>NuevaHabitat Barcelona · C/ Ejemplo 1, 08001 Barcelona<br/>
-  <a href="tel:+34675704514">675 704 514</a> · <a href="mailto:admin.nuevahabitat@gmail.com">admin.nuevahabitat@gmail.com</a><br/><br/>
+  <p>NuevaHabitat Barcelona · Carrer de Mejía Lequerica, 42, 08028 Barcelona<br/>
+  <a href="tel:+34603656587">603 656 587</a> · <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a><br/><br/>
   <a href="https://www.nuevahabitat.com/privacidad.html">Privacidad</a> · <a href="https://www.nuevahabitat.com/cookies.html">Cookies</a> · 
   <a href="https://www.nuevahabitat.com">nuevahabitat.com</a>
   </p>
@@ -151,17 +154,17 @@ function tplBienvenida({ nombre, email, tipo }) {
       <div class="tag">Bienvenida</div>
       <h1>Hola, ${saludo} 👋</h1>
       <p class="intro">${intro}</p>
-      <div class="tip">Tu agente personal <strong>Juan Cárdenas</strong> se pondrá en contacto contigo en menos de 24h.</div>
+      <div class="tip">El equipo de <strong>NuevaHabitat</strong> se pondrá en contacto contigo en menos de 24h.</div>
       <div class="card">
         <div class="card-title">Tu panel incluye</div>
         ${pasos}
       </div>
       <div class="btns">
         <a href="${panelUrl}" class="btn btn-gold">Acceder al panel →</a>
-        <a href="https://wa.me/34675704514?text=Hola%20Juan%2C%20acabo%20de%20registrarme%20en%20NuevaHabitat" class="btn btn-wa">WhatsApp</a>
+        <a href="https://wa.me/34603656587?text=Hola%2C%20acabo%20de%20registrarme%20en%20NuevaHabitat" class="btn btn-wa">WhatsApp</a>
       </div>
       <div class="divider"></div>
-      <p style="font-size:.82rem;color:#888">¿No te registraste? Ignora este email o escríbenos a <a href="mailto:admin.nuevahabitat@gmail.com" style="color:#b8936a">admin.nuevahabitat@gmail.com</a></p>
+      <p style="font-size:.82rem;color:#888">¿No te registraste? Ignora este email o escríbenos a <a href="mailto:${CONTACT_EMAIL}" style="color:#b8936a">${CONTACT_EMAIL}</a></p>
     </div>` + FOOTER,
   };
 }
@@ -172,7 +175,7 @@ function tplConfirmacionVisita({ nombre, mensaje, inmueble }) {
     html: HEAD + `<div class="body">
       <div class="tag">Visita solicitada</div>
       <h1>Hemos recibido tu solicitud</h1>
-      <p class="intro">Gracias, <strong>${nombre || 'cliente'}</strong>. Tu agente Juan Cárdenas revisará tu disponibilidad y te confirmará la visita en menos de 24 horas.</p>
+      <p class="intro">Gracias, <strong>${nombre || 'cliente'}</strong>. El equipo de NuevaHabitat revisará tu disponibilidad y te confirmará la visita en menos de 24 horas.</p>
       <div class="card">
         <div class="card-title">Detalles de la solicitud</div>
         <table>
@@ -182,7 +185,7 @@ function tplConfirmacionVisita({ nombre, mensaje, inmueble }) {
       </div>
       <div class="tip">⚠️ Esta no es una reserva confirmada. Tu gestor te llamará para acordar fecha y hora exactas.</div>
       <div class="btns">
-        <a href="https://wa.me/34675704514?text=Hola%20Juan%2C%20he%20solicitado%20una%20visita" class="btn btn-wa">Adelantar por WhatsApp</a>
+        <a href="https://wa.me/34603656587?text=Hola%2C%20he%20solicitado%20una%20visita" class="btn btn-wa">Adelantar por WhatsApp</a>
         <a href="https://www.nuevahabitat.com/inmuebles.html" class="btn btn-gold">Ver más inmuebles</a>
       </div>
     </div>` + FOOTER,
@@ -199,7 +202,7 @@ function tplConfirmacionContacto({ nombre, inmueble }) {
       <div class="tip">Mientras esperas, puedes explorar más inmuebles en nuestra cartera o calcular tu hipoteca directamente en la ficha.</div>
       <div class="btns">
         <a href="https://www.nuevahabitat.com/inmuebles.html" class="btn btn-gold">Ver inmuebles disponibles</a>
-        <a href="https://wa.me/34675704514" class="btn btn-wa">WhatsApp directo</a>
+        <a href="https://wa.me/34603656587" class="btn btn-wa">WhatsApp directo</a>
       </div>
     </div>` + FOOTER,
   };
@@ -221,7 +224,7 @@ function tplValoracion({ nombre }) {
         ])}
       </div>
       <div class="btns">
-        <a href="https://wa.me/34675704514?text=Hola%2C%20he%20pedido%20una%20valoraci%C3%B3n" class="btn btn-wa">WhatsApp</a>
+        <a href="https://wa.me/34603656587?text=Hola%2C%20he%20pedido%20una%20valoraci%C3%B3n" class="btn btn-wa">WhatsApp</a>
       </div>
     </div>` + FOOTER,
   };
@@ -233,10 +236,10 @@ function tplCompra({ nombre }) {
     html: HEAD + `<div class="body">
       <div class="tag">Búsqueda registrada</div>
       <h1>Estamos buscando tu hogar</h1>
-      <p class="intro">Hola <strong>${nombre || ''}</strong>, hemos registrado tu solicitud de compra. Juan Cárdenas revisará tu perfil y te contactará con inmuebles de nuestra cartera, incluidos los de acceso privado.</p>
+      <p class="intro">Hola <strong>${nombre || ''}</strong>, hemos registrado tu solicitud de compra. Nuestro equipo revisará tu perfil y te contactará con inmuebles de nuestra cartera, incluidos los de acceso privado.</p>
       <div class="btns">
         <a href="https://www.nuevahabitat.com/panel.html?tipo=comprador" class="btn btn-gold">Ir a mi panel</a>
-        <a href="https://wa.me/34675704514" class="btn btn-wa">WhatsApp</a>
+        <a href="https://wa.me/34603656587" class="btn btn-wa">WhatsApp</a>
       </div>
     </div>` + FOOTER,
   };
@@ -265,14 +268,14 @@ function tplDocumentosListos({ nombre, documentos }) {
     html: HEAD + `<div class="body">
       <div class="tag">Documentos listos</div>
       <h1>Nuevos documentos en tu panel</h1>
-      <p class="intro">Hola <strong>${nombre || ''}</strong>, tu agente Juan Cárdenas ha preparado nuevos documentos para ti. Puedes revisarlos y firmarlos directamente desde tu panel personal.</p>
+      <p class="intro">Hola <strong>${nombre || ''}</strong>, tu equipo de NuevaHabitat ha preparado nuevos documentos para ti. Puedes revisarlos y firmarlos directamente desde tu panel personal.</p>
       <div class="card">
         <div class="card-title">Documentos disponibles</div>
         <table>${docList}</table>
       </div>
       <div class="btns">
         <a href="https://www.nuevahabitat.com/panel.html" class="btn btn-gold">Ver en mi panel →</a>
-        <a href="https://wa.me/34675704514?text=Hola%20Juan%2C%20he%20visto%20los%20documentos" class="btn btn-wa">WhatsApp</a>
+        <a href="https://wa.me/34603656587?text=Hola%2C%20he%20visto%20los%20documentos" class="btn btn-wa">WhatsApp</a>
       </div>
     </div>` + FOOTER,
   };
@@ -296,7 +299,7 @@ function tplHipoteca({ nombre, cuota, prestamo, anos, tasa }) {
       </div>
       <div class="tip">La gestión hipotecaria está <strong>incluida en nuestro servicio</strong>. Trabajamos con los principales bancos para conseguirte las mejores condiciones.</div>
       <div class="btns">
-        <a href="https://wa.me/34675704514?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20hipoteca" class="btn btn-wa">WhatsApp</a>
+        <a href="https://wa.me/34603656587?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20hipoteca" class="btn btn-wa">WhatsApp</a>
         <a href="https://www.nuevahabitat.com/hipotecas.html" class="btn btn-gold">Más sobre hipotecas</a>
       </div>
     </div>` + FOOTER,
@@ -331,8 +334,8 @@ export default async function handler(req, res) {
   try {
     const jobs = [];
 
-    /* 1. Notificación interna siempre al admin */
-    jobs.push(send(ADMIN_EMAIL, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
+    /* 1. Notificación interna a admin + contacto corporativo */
+    jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
 
     /* 2. Email al cliente según plantilla */
     if (email) {

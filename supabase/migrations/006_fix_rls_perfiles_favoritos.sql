@@ -36,7 +36,7 @@ WHERE email IN (
 INSERT INTO agentes (nombre, apellidos, email, telefono, zona, activo)
 VALUES (
   'Juan', 'Cárdenas', 'admin.nuevahabitat@gmail.com',
-  '675704514', ARRAY['Barcelona', 'Área metropolitana'], true
+  '603656587', ARRAY['Barcelona', 'Área metropolitana'], true
 )
 ON CONFLICT (email) DO UPDATE SET
   nombre    = EXCLUDED.nombre,

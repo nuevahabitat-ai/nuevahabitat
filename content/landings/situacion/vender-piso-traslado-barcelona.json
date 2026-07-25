@@ -1,0 +1,93 @@
+{
+  "slug": "vender-piso-traslado-barcelona",
+  "cluster": "situacion",
+  "indexable": true,
+  "keyword_principal": "vender piso traslado trabajo barcelona",
+  "keyword_aliases": [
+    "vender piso cambio ciudad barcelona",
+    "vender piso mudanza extranjero barcelona",
+    "vender piso me mudo barcelona"
+  ],
+  "footerLabel": "Traslado / mudanza",
+  "priority": 0.87,
+  "origen_lead": "vender-piso-traslado-barcelona",
+  "meta": {
+    "title": "Vender piso por traslado de trabajo o cambio de ciudad · Barcelona · NuevaHabitat",
+    "description": "¿Te mudas y vendes tu piso en Barcelona? Traslado laboral, expatriación o cambio de ciudad. Venta a distancia, plazos ajustados. Precio fijo 3.000€ + IVA.",
+    "keywords": "vender piso traslado trabajo barcelona, vender piso cambio ciudad barcelona, vender piso mudanza barcelona, vender piso me mudo barcelona, vender piso expatriacion barcelona"
+  },
+  "hero": {
+    "badge": "Situación · Traslado / mudanza",
+    "h1": "¿Vendes tu piso en Barcelona por traslado o cambio de ciudad?",
+    "lead": "Traslado laboral, expatriación o mudanza fuera de Barcelona: necesitas <strong>vender en plazo</strong> sin estar físicamente en cada visita. NuevaHabitat gestiona la venta con precio fijo <strong>3.000 € + IVA</strong>, panel digital y compradores filtrados — desde Les Corts.",
+    "image": "imagenes/interior3.jpg",
+    "imageAlt": "Vender piso en Barcelona por traslado de trabajo o cambio de ciudad"
+  },
+  "breadcrumbCurrent": "Traslado",
+  "argumento_principal": "<p><strong>Vender piso por traslado de trabajo en Barcelona</strong> — o por mudanza a otra ciudad o país — añade presión de calendario: fecha de incorporación en el nuevo destino, posible doble alquiler, y la imposibilidad de coordinar visitas un martes a las 11:00 en Gràcia cuando ya estás en Madrid, Londres o teletrabajando con huso distinto.</p><p>En Barcelona, mercados como el Eixample o Les Corts absorben stock con rapidez si el precio es correcto desde el día uno. Retrasar la publicación dos semanas mientras organizas la mudanza puede costarte un mes entero de demanda. Quienes se trasladan suelen cometer dos errores: (1) sobrevalorar porque “en Barcelona siempre se vende” — cierto, pero no a cualquier precio; (2) delegar en un familiar sin filtro de compradores, acumulando visitas de curiosos que no cierran.</p><p>NuevaHabitat está diseñado para vendedores que no pueden estar presentes: fotografía profesional, visitas en franjas amplias con portería o llaves, informes en panel digital, negociación telemática de arras y checklist documental para firma — con apoderamiento notarial si no puedes volver a Barcelona para escritura. Honorarios: <strong>3.000 € + IVA solo en escritura</strong>, sin comisión del 6% que reduce lo que necesitas en el destino.</p>",
+  "bloque_legal_fiscal": {
+    "title": "Aspectos prácticos al vender en Barcelona desde otro lugar",
+    "items": [
+      {
+        "title": "Apoderamiento para firma",
+        "body": "Si no estarás en Barcelona el día de escritura, puedes firmar poder especial ante notario en tu ciudad. Planificarlo con 2–3 semanas de margen evita retrasos."
+      },
+      {
+        "title": "Entrega de llaves y mudanza",
+        "body": "Coordina vaciado del piso, limpieza y entrega al comprador. Arras deben reflejar fecha de posesión realista según tu calendario de mudanza."
+      },
+      {
+        "title": "Hipoteca pendiente y cancelación",
+        "body": "Si vendes con hipoteca, el banco debe preparar cancelación registral. Hacerlo en paralelo a la venta acorta semanas al cierre."
+      },
+      {
+        "title": "Residencia fiscal y traslado",
+        "body": "Cambiar de residencia fiscal puede afectar tributación de la venta. Te orientamos sobre documentación; planificación fiscal internacional requiere asesor."
+      }
+    ]
+  },
+  "como_ayudamos": {
+    "title": "Venta a distancia cuando te mudas de Barcelona",
+    "steps": [
+      { "title": "Valoración con plazo de traslado", "body": "Definimos precio y calendario según tu fecha de mudanza o incorporación laboral." },
+      { "title": "Visitas sin tu presencia", "body": "Coordinamos acceso, filtramos compradores solventes e informamos tras cada visita." },
+      { "title": "Negociación remota", "body": "Arras y documentación por email y firma digital donde proceda; videollamada para decisiones clave." },
+      { "title": "Escritura y precio fijo", "body": "3.000 € + IVA al cerrar. Apoderamiento si no puedes asistir presencialmente." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Puedo vender mi piso en Barcelona si ya me mudé a otra ciudad?",
+      "a": "Sí. Gestionamos visitas, negociación y documentación a distancia. Escritura con apoderamiento si es necesario."
+    },
+    {
+      "q": "¿Cuánto tarda vender si tengo fecha de traslado en 2 meses?",
+      "a": "Con precio ajustado y comprador filtrado, es viable en 60–90 días. En valoración te damos escenario realista según barrio."
+    },
+    {
+      "q": "¿Vender rápido por traslado significa regalar el piso?",
+      "a": "No. Un ajuste moderado acelera; un recorte excesivo no. Valoramos con comparables, no con pánico."
+    },
+    {
+      "q": "¿Qué pasa con el piso si me expatrió y estoy fuera de España?",
+      "a": "Operaciones con no residentes son habituales. Requieren documentación adicional; te indicamos checklist desde el inicio."
+    },
+    {
+      "q": "¿Cuánto cobra NuevaHabitat en una venta por traslado?",
+      "a": "3.000 € + IVA fijos solo en escritura. Sin % sobre precio."
+    },
+    {
+      "q": "¿Trabajáis en todos los distritos de Barcelona?",
+      "a": "Sí en Barcelona ciudad desde Les Corts: Eixample, Sants, Sarrià, Ciutat Vella, Gràcia, etc."
+    }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-rapido-barcelona", "label": "Vender piso rápido" },
+    { "slug": "vender-piso-antes-comprar-otro-barcelona", "label": "Vender antes de comprar" },
+    { "slug": "vender-segunda-residencia-barcelona", "label": "Segunda residencia" },
+    { "slug": "vender-les-corts", "label": "Vender en Les Corts" }
+  ],
+  "keywords_footer": "vender piso traslado trabajo barcelona · vender piso cambio ciudad · vender piso mudanza · me mudo vendo piso barcelona · venta a distancia barcelona · precio fijo",
+  "whatsappText": "Hola%2C%20me%20traslado%20y%20necesito%20vender%20mi%20piso%20en%20Barcelona",
+  "formPlaceholder": "Barrio, fecha de mudanza/traslado y si ya no resides en Barcelona…"
+}

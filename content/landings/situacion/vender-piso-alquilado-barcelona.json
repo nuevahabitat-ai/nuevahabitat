@@ -1,0 +1,88 @@
+{
+  "slug": "vender-piso-alquilado-barcelona",
+  "cluster": "situacion",
+  "indexable": true,
+  "keyword_principal": "vender piso alquilado barcelona",
+  "footerLabel": "Vender piso alquilado",
+  "priority": 0.87,
+  "origen_lead": "vender-piso-alquilado-barcelona",
+  "meta": {
+    "title": "Vender piso alquilado en Barcelona · Inquilino dentro · NuevaHabitat",
+    "description": "¿Vendes un piso con inquilino en Barcelona? Te explicamos contrato en vigor, derecho de tanteo, visitas y precio fijo 3.000€ + IVA. Valoración gratuita.",
+    "keywords": "vender piso alquilado barcelona, vender piso con inquilino, vender vivienda alquilada cataluña, contrato alquiler venta piso, derecho tanteo inquilino barcelona"
+  },
+  "hero": {
+    "badge": "Situación · Piso con inquilino",
+    "h1": "¿Vendes un piso alquilado en Barcelona?",
+    "lead": "Vender con inquilino dentro no es igual que vender una vivienda vacía. Hay un contrato de arrendamiento en vigor, plazos legales y compradores que valoran (o descartan) la renta existente. En NuevaHabitat te acompañamos con precio fijo de 3.000 € + IVA y experiencia en operaciones con inquilino en Cataluña.",
+    "image": "imagenes/contrato1.jpg",
+    "imageAlt": "Contrato de alquiler y venta de vivienda en Barcelona"
+  },
+  "breadcrumbCurrent": "Piso alquilado",
+  "argumento_principal": "<p>Vender un <strong>piso alquilado en Barcelona</strong> implica que la vivienda no está libre de ocupantes: el arrendatario tiene derechos reconocidos por la Ley de Arrendamientos Urbanos (LAU) y, en muchos casos, por la normativa catalana de vivienda. Eso condiciona el calendario de visitas, el perfil de comprador y hasta el precio final.</p><p>El comprador adquiere la propiedad <em>con el contrato en vigor</em>, salvo que las partes acuerden la entrega de llaves antes de la escritura — algo poco habitual si el inquilino cumple. Por eso la due diligence debe incluir: duración restante del contrato, importe de la renta, fianza depositada, recibos al día y si existe subrogación o cláusula de no subarrendamiento.</p><p>En NuevaHabitat filtramos compradores que aceptan activamente la situación de alquilado (inversores, carteras de renta) y explicamos con transparencia la rentabilidad bruta del activo. No prometemos visitas ilimitadas ignorando al inquilino: coordinamos con la legalidad vigente y reducimos fricción entre propietario, arrendatario y comprador.</p>",
+  "bloque_legal_fiscal": {
+    "title": "Qué tener en cuenta legalmente al vender con inquilino",
+    "items": [
+      {
+        "title": "Contrato en vigor y transmisión",
+        "body": "La venta no extingue automáticamente el arrendamiento. El comprador entra en la posición del arrendador (subrogación). Debes facilitar copia del contrato, recibos, fianza en el INCASÒL y comunicaciones relevantes."
+      },
+      {
+        "title": "Derecho de tanteo y retracto",
+        "body": "En muchos supuestos el inquilino tiene derecho de tanteo (y a veces retracto) si la vivienda se vende durante el arrendamiento. Los plazos y requisitos de notificación son estrictos. Una omisión puede retrasar meses la operación o anular acuerdos."
+      },
+      {
+        "title": "Visitas con inquilino dentro",
+        "body": "El propietario puede mostrar la vivienda, pero debe avisar con antelación razonable y respetar la intimidad del arrendatario. Acordamos franjas que minimicen conflictos y documentamos cada visita."
+      },
+      {
+        "title": "Plusvalía e IRPF",
+        "body": "La tributación no cambia por llevar inquilino, pero el precio de venta puede ajustarse si la renta está por debajo o por encima del mercado. Te orientamos para valorar el inmueble como activo con cash-flow, no solo como piso vacío."
+      }
+    ]
+  },
+  "como_ayudamos": {
+    "title": "Cómo vendemos tu piso alquilado sin sorpresas",
+    "steps": [
+      { "title": "Auditoría del alquiler", "body": "Revisamos contrato, renta, fianza, recibos y situación del inquilino antes de fijar precio." },
+      { "title": "Compradores adecuados", "body": "Priorizamos inversores y compradores informados sobre la renta y plazos legales." },
+      { "title": "Visitas coordinadas", "body": "Agendamos respetando LAU y al inquilino. Menos conflicto, más seriedad." },
+      { "title": "Escritura con precio fijo", "body": "3.000 € + IVA solo al cerrar. Si no vendes, no pagas honorarios." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Puedo vender mi piso en Barcelona si tiene inquilino?",
+      "a": "Sí. Puedes vender con contrato en vigor. El comprador se subroga como arrendador y el inquilino mantiene sus derechos según la LAU y el contrato firmado."
+    },
+    {
+      "q": "¿El inquilino puede impedir las visitas?",
+      "a": "No puede impedirlas sin motivo, pero tiene derecho a preaviso y a que se respete su uso de la vivienda. Coordinamos visitas con plazo y horarios razonables para evitar conflictos."
+    },
+    {
+      "q": "¿Debo informar al inquilino de la venta?",
+      "a": "Sí. Además, en muchos casos debe comunicársele el derecho de tanteo con los plazos legales. Gestionarlo mal puede paralizar la venta."
+    },
+    {
+      "q": "¿Un piso alquilado vale menos que uno vacío?",
+      "a": "No siempre. Para un inversor, una renta estable puede ser ventaja. Para quien busca vivienda habitual, suele restar demanda. Valoramos ambos escenarios en la tasación gratuita."
+    },
+    {
+      "q": "¿Cuánto cobra NuevaHabitat por vender un piso alquilado?",
+      "a": "3.000 € + IVA, precio fijo cobrado únicamente en escritura. Mismo modelo que en una venta estándar: sin comisión del 6% sobre el precio."
+    },
+    {
+      "q": "¿Podéis ayudarme si el contrato es antiguo o sin actualizar?",
+      "a": "Sí. Revisamos la documentación, identificamos riesgos y te indicamos qué regularizar antes de publicar el inmueble a compradores serios."
+    }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-inquilino-vencer-barcelona", "label": "Inquilino vence pronto" },
+    { "slug": "vender-piso-rapido-barcelona", "label": "Vender piso rápido" },
+    { "slug": "vender-sarria", "label": "Vender en Sarrià" },
+    { "slug": "vender-les-corts", "label": "Vender en Les Corts" }
+  ],
+  "keywords_footer": "vender piso alquilado barcelona · vender piso con inquilino · vender vivienda alquilada cataluña · contrato alquiler venta · derecho tanteo inquilino · inmobiliaria precio fijo barcelona",
+  "whatsappText": "Hola%2C%20quiero%20vender%20un%20piso%20alquilado%20en%20Barcelona",
+  "formPlaceholder": "Dirección del piso y situación del alquiler (renta, fin contrato…)"
+}

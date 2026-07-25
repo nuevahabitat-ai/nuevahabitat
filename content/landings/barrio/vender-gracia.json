@@ -1,0 +1,80 @@
+{
+  "slug": "vender-gracia",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Gràcia",
+  "footerLabel": "Vender en Gràcia",
+  "breadcrumbCurrent": "Gràcia",
+  "postalCodes": [
+    "08012",
+    "08024",
+    "08006"
+  ],
+  "zonas": [
+    "Vila de Gràcia",
+    "Camp d'en Grassot",
+    "Vallcarca",
+    "Penitents"
+  ],
+  "inmueblesQuery": "Gràcia",
+  "ejemploPrecio": 480000,
+  "heroImage": "imagenes/agenteinmobiliario3.jpg",
+  "heroImageAlt": "Agente inmobiliario en Gràcia, Barcelona",
+  "origen_lead": "vender-gracia",
+  "testimonials": false,
+  "priority": 0.88,
+  "ahorro": "25.000€",
+  "meta": {
+    "title": "Vender piso en Gràcia, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en Gràcia? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores con hipoteca preaprobada, panel digital y visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Gràcia, vender casa Gràcia Barcelona, inmobiliaria Gràcia, vender vivienda 08012, agencia inmobiliaria Gràcia precio fijo, vender piso Vila de Gràcia, vender piso Camp Grassot, comisión inmobiliaria Gràcia"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en Gràcia?",
+    "lead": "<strong>NuevaHabitat</strong> ayuda a vendedores en Gràcia a vender su vivienda con <strong>honorarios fijos de 3.000€ + IVA</strong>, lejos de las agencias que cobran un 6% sobre el precio de venta. Panel digital, compradores cualificados y visitas en tu horario."
+  },
+  "argumento_principal": "<p>Gràcia combina Plaça de la Vila, metro L3, L4 y FGC con ambiente de barrio auténtico y alta demanda de familias y jóvenes profesionales. Si buscas <strong>vender piso en Gràcia</strong>, Vila de Gràcia, Camp d'en Grassot o Vallcarca, necesitas fijar el precio con ventas reales del distrito — no con medias genéricas de Barcelona.</p><p>Los pisos con terraza en Plaça del Sol, fincas en Travessera de Gràcia o áticos en Penitents compiten con muchas exclusivas que bloquean al propietario meses. NuevaHabitat evita ese riesgo: honorarios fijos de 3.000 € + IVA, panel digital 24/7, compradores con hipoteca preaprobada y visitas solo en tus horarios.</p><p>Valoramos con comparables de 08012, 08024 y 08006, preparamos la ficha con fotografía profesional y te acompañamos hasta la escritura desde nuestras oficinas en Les Corts. Si no vendes, no pagas comisión.</p>",
+  "faq": [
+    {
+      "q": "¿Cuánto cuesta vender un piso en Gràcia con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo cobrado únicamente en escritura. No pagas un 6% sobre el precio de venta como en muchas agencias tradicionales de Barcelona."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas en mi piso?",
+      "a": "Sí. Tú indicas días y franjas horarias disponibles. Solo agendamos visitas con compradores previamente filtrados por capacidad financiera."
+    },
+    {
+      "q": "¿Qué es el panel de vendedor?",
+      "a": "Es tu área privada en NuevaHabitat donde consultas el estado de la venta: documentos, visitas, ofertas y hitos hasta la escritura. Acceso 24/7 desde móvil u ordenador."
+    },
+    {
+      "q": "¿Los compradores tienen hipoteca aprobada?",
+      "a": "Priorizamos compradores de nuestra cartera con preaprobación hipotecaria o estudio de viabilidad bancaria, y ahorro suficiente para entrada y gastos de compraventa en Cataluña."
+    },
+    {
+      "q": "¿Vendéis pisos en Vila de Gràcia, Camp d'en Grassot y Vallcarca?",
+      "a": "Sí. Trabajamos todo el distrito de Gràcia (08012, 08024, 08006) y el área metropolitana de Barcelona desde nuestras oficinas en Les Corts."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en Gràcia?",
+      "a": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en Gràcia se venden en 60–90 días. Te damos una estimación en la valoración gratuita."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-eixample",
+      "label": "Vender en el Eixample"
+    },
+    {
+      "slug": "vender-sants",
+      "label": "Vender en Sants"
+    },
+    {
+      "slug": "vender-les-corts",
+      "label": "Vender en Les Corts"
+    }
+  ],
+  "keywords_footer": "vender piso Gràcia · vender casa Gràcia Barcelona · inmobiliaria Gràcia precio fijo · vender vivienda 08012 · agencia inmobiliaria Vila de Gràcia · vender piso Vallcarca · comisión inmobiliaria Barcelona · valoración gratuita Gràcia",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Gracia",
+  "formPlaceholder": "Dirección o zona en Gràcia"
+}

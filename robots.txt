@@ -1,9 +1,32 @@
 User-agent: *
+
 Allow: /
 
+
+
 # No indexar páginas de usuario/panel
+
+Disallow: /panel
+
 Disallow: /panel.html
+
+Disallow: /admin-panel
+
+Disallow: /admin-panel.html
+
+Disallow: /login
+
 Disallow: /login.html
+
+Disallow: /registro
+
 Disallow: /registro.html
 
+Disallow: /confirmar-cuenta
+
+Disallow: /confirmar-cuenta.html
+
+
+
 Sitemap: https://www.nuevahabitat.com/sitemap.xml
+

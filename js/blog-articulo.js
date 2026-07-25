@@ -20,6 +20,19 @@
     document.getElementById('postDate').textContent = nhBlog.formatDate(post);
     document.getElementById('postRead').textContent = nhBlog.readMin(post) + ' min lectura';
     document.getElementById('postBody').innerHTML = post.contenido || post.body || ('<p>' + (post.extracto || '') + '</p>');
+    if (window.nhSeo) {
+      const kw = window.NH_BLOG_SEO ? NH_BLOG_SEO.keywordsForPost(post, slug) : [];
+      if (window.NH_BLOG_SEO) NH_BLOG_SEO.applyArticleMeta(post, slug);
+      nhSeo.injectJsonLd([
+        nhSeo.orgSchema(),
+        window.NH_BLOG_SEO ? NH_BLOG_SEO.enhancedArticleSchema(post, slug, kw) : nhSeo.articleSchema(post, slug),
+        nhSeo.breadcrumbSchema([
+          { name: 'Inicio', url: '/' },
+          { name: 'Blog', url: 'blog.html' },
+          { name: post.titulo || post.title || 'Artículo', url: 'blog-articulo.html?slug=' + encodeURIComponent(slug) },
+        ]),
+      ]);
+    }
   }
   loadPost();
 })();

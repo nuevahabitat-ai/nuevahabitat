@@ -1,0 +1,9 @@
+{
+  "name": "nuevahabitat",
+  "private": true,
+  "scripts": {
+    "build:landings": "node scripts/build-landings.js",
+    "validate:landings": "node scripts/build-landings.js",
+    "validate:jsonld": "node scripts/validate-jsonld.js"
+  }
+}

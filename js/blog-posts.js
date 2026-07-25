@@ -9,7 +9,8 @@ window.NH_BLOG_POSTS = {
     excerpt: 'Los precios han subido un 8% de media, pero hay diferencias enormes entre Eixample y Nou Barris.',
     body: `
       <p>El mercado residencial de Barcelona cierra el primer semestre de 2026 con una subida media del <strong>8%</strong> interanual. No obstante, hablar de "un solo mercado" es engañoso: la diferencia entre Eixample Derecho y Nou Barris supera ampliamente los 2.000 €/m².</p>
-      <p>En zonas prime como Sarrià-Sant Gervasi o el Eixample, los pisos reformados se mueven entre <strong>5.500 y 7.000 €/m²</strong>. En barrios emergentes como Poblenou o Sant Andreu, los precios rondan los <strong>3.800–4.500 €/m²</strong>, con mayor rotación y más margen de negociación.</p>
+      <p>En zonas prime como Sarrià-Sant Gervasi o el Eixample, los pisos reformados se mueven entre <strong>5.500 y 7.000 €/m²</strong>. En barrios emergentes como Poblenou o Sant Andreu, los precios rondan los <strong>3.800–4.500 €/m²</strong>, con mayor rotación y más margen de negociación. En <strong>Les Corts</strong> — Numància, Zona Universitaria y entorno del Camp Nou — la demanda es estable y el precio medio suele situarse entre <strong>4.200 y 5.800 €/m²</strong> según planta y estado.</p>
+      <p>Si tu vivienda está en Les Corts, consulta nuestra guía específica para vender en el distrito: <a href="/vender-les-corts">vender piso en Les Corts</a>.</p>
       <p>Para calcular el valor real de tu vivienda hay que tener en cuenta orientación, planta, estado de la finca, ITE, y la comparativa con operaciones cerradas en los últimos 6 meses — no solo con anuncios publicados.</p>
       <p>En NuevaHabitat realizamos valoraciones gratuitas basadas en datos de mercado y visita presencial. Si estás pensando en vender, <a href="vender.html">solicita tu valoración</a> sin compromiso.</p>
     `
@@ -137,10 +138,158 @@ window.NH_BLOG_POSTS = {
     readMin: 5,
     image: 'imagenes/interior5.jpg',
     excerpt: 'Previsiones de los principales analistas y qué significa para tu hipoteca variable.',
+    keywords: ['euríbor 2026', 'hipoteca variable Barcelona', 'previsión euríbor', 'tipos interés hipoteca España'],
+    metaDescription: 'Previsión euríbor 2026: qué esperar en hipotecas variables en Barcelona. Análisis para compradores con financiación.',
     body: `
       <p>Tras la volatilidad de 2023–2024, el euríbor a 12 meses se ha estabilizado en torno al 2,5–3% en 2026. La mayoría de analistas prevén que se mantenga en ese rango durante la segunda mitad del año, con posibles recortes del BCE si la inflación sigue moderándose.</p>
       <p>Para quienes tienen hipoteca variable, esto significa cuotas más predecibles que hace dos años. Para quienes van a contratar, la decisión fija vs. variable depende más de tu perfil de riesgo que del tipo en sí.</p>
       <p>En NuevaHabitat comparamos ofertas de varios bancos para encontrar la mejor hipoteca para tu situación. <a href="hipotecas.html">Usa nuestra calculadora</a> o pide asesoría gratuita.</p>
+    `
+  },
+
+  'vender-piso-barcelona-precio-fijo': {
+    title: 'Vender piso en Barcelona con precio fijo: cuánto cuesta de verdad en 2026',
+    cat: 'Vender',
+    date: '12 jul 2026',
+    readMin: 6,
+    image: 'imagenes/inmobiliario1.jpg',
+    excerpt: 'Comisiones ocultas, exclusivas y permanencias: por qué el precio fijo de 3.000 € + IVA cambia las reglas.',
+    keywords: ['vender piso Barcelona precio fijo', 'inmobiliaria precio fijo Barcelona', 'comisión inmobiliaria Barcelona', 'vender casa sin sorpresas'],
+    metaDescription: 'Vender piso en Barcelona con precio fijo de 3.000€ + IVA. Sin comisiones ocultas ni exclusivas. Cobro solo en escritura. NuevaHabitat.',
+    body: `
+      <p>Si buscas <strong>vender piso en Barcelona</strong>, lo primero que te preguntarás es cuánto te costará la inmobiliaria. En el modelo tradicional, las comisiones suelen oscilar entre el 3% y el 5% del precio de venta — en un piso de 350.000 €, eso supone hasta 17.500 €.</p>
+      <p>En <strong>NuevaHabitat</strong> aplicamos un modelo de <strong>precio fijo: 3.000 € + IVA</strong>, cobrados únicamente en el momento de la escritura. Sin permanencias, sin exclusivas abusivas y sin comisiones ocultas. Si no vendes, no pagas.</p>
+      <p>El servicio incluye valoración de mercado, reportaje fotográfico profesional, publicación en portales, filtrado de compradores cualificados, visitas, negociación y acompañamiento hasta la firma.</p>
+      <p>¿Quieres saber cuánto vale tu vivienda antes de decidir? <a href="vender.html">Solicita una valoración gratuita</a> sin compromiso. Si vives en Les Corts, también puedes ver el detalle del servicio en nuestra <a href="/vender-les-corts">landing de venta en Les Corts</a>.</p>
+    `
+  },
+
+  'valoracion-gratis-barcelona': {
+    title: 'Valoración gratuita de vivienda en Barcelona: cómo calcular el precio real',
+    cat: 'Vender',
+    date: '8 jul 2026',
+    readMin: 5,
+    image: 'imagenes/interior12.jpg',
+    excerpt: 'Tasación online vs valoración profesional: qué datos usa el mercado para fijar el precio de tu piso.',
+    keywords: ['valoración gratuita piso Barcelona', 'tasación vivienda Barcelona', 'valorar casa Barcelona', 'cuánto vale mi piso Barcelona'],
+    metaDescription: 'Valoración gratuita de piso en Barcelona con datos reales de mercado. Tasación profesional sin compromiso. NuevaHabitat.',
+    body: `
+      <p>Buscar <strong>valoración gratuita piso Barcelona</strong> en internet devuelve cifras muy dispares. Los estimadores automáticos sirven como orientación, pero no contemplan orientación, estado de la finca, ITE, reformas recientes ni operaciones cerradas en tu edificio.</p>
+      <p>Una <strong>tasación vivienda Barcelona</strong> fiable combina comparables de operaciones reales (no solo anuncios), visita presencial y conocimiento del micro-mercado de tu barrio — Eixample no se comporta igual que Nou Barris, Les Corts o Poblenou.</p>
+      <p>En NuevaHabitat la valoración es gratuita y sin compromiso. Te entregamos un informe con rango de precio recomendado, tiempo estimado de venta y plan de acción. <a href="vender.html">Pide tu valoración aquí</a>. ¿Tu piso está en Les Corts? <a href="/vender-les-corts">Consulta condiciones para vender en el distrito</a>.</p>
+    `
+  },
+
+  'comision-inmobiliaria-barcelona': {
+    title: 'Comisión inmobiliaria en Barcelona: cuánto cobran y qué debes exigir',
+    cat: 'Vender',
+    date: '3 jul 2026',
+    readMin: 5,
+    image: 'imagenes/interior4.jpg',
+    excerpt: 'Porcentaje sobre venta, exclusivas y gastos extra: desglosamos el coste real de vender con una agencia.',
+    keywords: ['comisión inmobiliaria Barcelona', 'cuánto cobra inmobiliaria por vender', 'mejor inmobiliaria Barcelona', 'agencia inmobiliaria Barcelona vender'],
+    metaDescription: '¿Cuánto cobra una inmobiliaria en Barcelona por vender tu piso? Compara comisiones y descubre el modelo precio fijo NuevaHabitat.',
+    body: `
+      <p>La <strong>comisión inmobiliaria Barcelona</strong> media ronda el 3%–5% del precio de venta más IVA. En operaciones de 300.000–500.000 €, el coste para el vendedor puede superar los 15.000 €, independientemente del tiempo que tarde la venta.</p>
+      <p>Antes de firmar una exclusiva, pregunta qué incluye: ¿fotografía profesional? ¿publicación en portales? ¿filtrado de compradores? ¿negociación? ¿gestión de arras y escritura? Muchas agencias cobran extras por cada servicio.</p>
+      <p>NuevaHabitat cobra <strong>3.000 € + IVA solo en escritura</strong>, con todo incluido. Transparencia total desde el primer día. <a href="vender.html">Consulta condiciones</a> o compara con tu presupuesto actual. En Les Corts, un piso de 400.000 € supone un ahorro de más de 21.000 € frente a una agencia al 6% — <a href="/vender-les-corts">ver comparativa en Les Corts</a>.</p>
+    `
+  },
+
+  'comprar-piso-barcelona-guia': {
+    title: 'Guía completa para comprar piso en Barcelona en 2026',
+    cat: 'Comprar',
+    date: '6 jul 2026',
+    readMin: 8,
+    image: 'imagenes/familia1.jpg',
+    excerpt: 'Desde la búsqueda hasta la escritura: pasos, costes, financiación y errores que debes evitar.',
+    keywords: ['comprar piso Barcelona', 'guía comprar vivienda Barcelona', 'pasos comprar casa Barcelona', 'comprar apartamento Barcelona'],
+    metaDescription: 'Guía para comprar piso en Barcelona 2026: búsqueda, hipoteca, arras, gastos e impuestos. Acompañamiento NuevaHabitat 5.000€ + IVA.',
+    body: `
+      <p><strong>Comprar piso Barcelona</strong> en 2026 requiere planificación: ahorro para entrada y gastos (12–15% adicional), preaprobación hipotecaria, búsqueda activa y due diligence antes de firmar arras.</p>
+      <h2>Pasos para comprar vivienda en Barcelona</h2>
+      <ol>
+        <li>Define presupuesto real (precio + ITP + notaría + registro + gestoría).</li>
+        <li>Obtén preaprobación bancaria o carta de viabilidad.</li>
+        <li>Busca en zonas objetivo (Eixample, Gràcia, Poblenou, área metropolitana).</li>
+        <li>Visita con checklist: comunidad, ITE, certificado energético, cargas.</li>
+        <li>Negocia con comparables de mercado — no solo con el precio de anuncio.</li>
+        <li>Firma arras con condiciones suspensivas bien redactadas.</li>
+        <li>Escritura pública y registro de la propiedad.</li>
+      </ol>
+      <p>NuevaHabitat acompaña todo el proceso por <strong>5.000 € + IVA</strong>, cobrados solo en escritura. Acceso a compradores cualificados y negociación profesional. <a href="comprar.html">Empieza tu búsqueda</a>.</p>
+    `
+  },
+
+  'comprar-casa-area-metropolitana': {
+    title: 'Comprar casa en el área metropolitana de Barcelona: mejores zonas y precios',
+    cat: 'Comprar',
+    date: '2 jul 2026',
+    readMin: 6,
+    image: 'imagenes/inmobiliario5.jpg',
+    excerpt: 'Sant Cugat, Badalona, L\'Hospitalet, Sant Adrià: dónde comprar según presupuesto y estilo de vida.',
+    keywords: ['comprar casa área metropolitana Barcelona', 'comprar piso Badalona', 'comprar piso L\'Hospitalet', 'comprar casa Sant Cugat', 'pisos área metropolitana Barcelona'],
+    metaDescription: 'Comprar casa en el área metropolitana de Barcelona: precios por zona, transporte y oportunidades. Sant Cugat, Badalona, L\'Hospitalet.',
+    body: `
+      <p>No todo el mundo puede o quiere <strong>comprar piso en Barcelona</strong> ciudad. El área metropolitana ofrece alternativas con mejor relación calidad-precio y buenas conexiones de transporte.</p>
+      <p><strong>Sant Cugat del Vallès</strong> atrae a familias por sus colegios y espacios verdes; <strong>Badalona</strong> y <strong>L'Hospitalet</strong> concentran oferta más accesible con metro directo; <strong>Sant Adrià</strong> y el <strong>22@</strong> ganan peso entre jóvenes profesionales.</p>
+      <p>La clave es comparar precio/m², tiempo de desplazamiento y perspectiva de revalorización a 5–10 años. NuevaHabitat trabaja toda el área metropolitana con datos de mercado actualizados. <a href="inmuebles.html">Ver inmuebles disponibles</a> o <a href="comprar.html">activar búsqueda personalizada</a>.</p>
+    `
+  },
+
+  'documentos-vender-piso': {
+    title: 'Documentos para vender un piso en Cataluña: checklist completo 2026',
+    cat: 'Vender',
+    date: '28 jun 2026',
+    readMin: 6,
+    image: 'imagenes/interior3.jpg',
+    excerpt: 'Nota simple, certificado energético, ITE, comunidad y plusvalía: todo lo que necesitas antes de publicar.',
+    keywords: ['documentos vender piso España', 'documentos vender vivienda Cataluña', 'certificado energético vender piso', 'ITE vivienda Barcelona', 'nota simple registro propiedad'],
+    metaDescription: 'Lista de documentos para vender piso en Cataluña 2026: nota simple, ITE, certificado energético, comunidad. Checklist NuevaHabitat.',
+    body: `
+      <p>Para <strong>vender vivienda Barcelona</strong> sin retrasos, reúne la documentación antes de publicar. Un comprador serio la pedirá en la primera visita.</p>
+      <ul>
+        <li><strong>Nota simple</strong> del Registro de la Propiedad (titularidad y cargas).</li>
+        <li><strong>Certificado de eficiencia energética</strong> (obligatorio).</li>
+        <li><strong>ITE</strong> si el edificio lo exige.</li>
+        <li>Certificado de estar al corriente de <strong>comunidad de propietarios</strong>.</li>
+        <li>Último recibo de IBI y suministros.</li>
+        <li>Plano de la vivienda (si existe).</li>
+        <li>Contrato de alquiler vigente, si hay inquilino.</li>
+      </ul>
+      <p>En NuevaHabitat te guiamos en la preparación documental para acelerar la venta. <a href="vender.html">Solicita valoración gratuita</a>.</p>
+    `
+  },
+
+  'buscar-piso-hipoteca-barcelona': {
+    title: 'Buscar piso con hipoteca en Barcelona: requisitos del banco y consejos',
+    cat: 'Comprar',
+    date: '24 jun 2026',
+    readMin: 6,
+    image: 'imagenes/inmobiliario4.jpg',
+    excerpt: 'Financiación al 80%, tasación, vinculaciones y cómo presentar una oferta competitiva.',
+    keywords: ['buscar piso hipoteca Barcelona', 'comprar piso con hipoteca Barcelona', 'financiación vivienda Barcelona', 'preaprobación hipoteca Barcelona'],
+    metaDescription: 'Cómo buscar piso con hipoteca en Barcelona: financiación 80%, tasación, preaprobación y oferta de compra. Asesoría NuevaHabitat.',
+    body: `
+      <p><strong>Buscar piso con hipoteca Barcelona</strong> exige orden: primero la viabilidad bancaria, después la búsqueda intensiva. Los bancos financian hasta el 80% del valor de tasación (no siempre del precio de compra).</p>
+      <p>Consigue una preaprobación o estudio de viabilidad antes de visitar decenas de pisos. Así podrás hacer ofertas creíbles y negociar con fuerza. Revisa TAE, vinculaciones de seguros y comisiones de apertura — no solo el TIN.</p>
+      <p>NuevaHabitat incluye asesoría hipotecaria en el servicio de compra. Comparamos entidades y te ayudamos a estructurar la oferta. <a href="hipotecas.html">Calculadora hipotecaria</a> · <a href="comprar.html">Activar búsqueda</a>.</p>
+    `
+  },
+
+  'vender-piso-herencia-barcelona': {
+    title: 'Vender un piso heredado en Barcelona: pasos legales y fiscalidad',
+    cat: 'Vender',
+    date: '18 jun 2026',
+    readMin: 7,
+    image: 'imagenes/interior2.jpg',
+    excerpt: 'Aceptación de herencia, plusvalía, impuesto de sucesiones y cómo acelerar la venta.',
+    keywords: ['vender piso herencia Barcelona', 'vender piso heredado', 'herencia vivienda Barcelona', 'plusvalía vender herencia'],
+    metaDescription: 'Vender piso heredado en Barcelona: herencia, impuestos, plusvalía y venta rápida. Asesoramiento NuevaHabitat precio fijo.',
+    body: `
+      <p><strong>Vender piso herencia Barcelona</strong> implica pasos previos: aceptación de herencia, pago del Impuesto de Sucesiones, inscripción registral a tu nombre y, en muchos casos, acuerdo entre herederos sobre el precio mínimo de venta.</p>
+      <p>La fiscalidad incluye posible plusvalía municipal si ha habido incremento del valor catastral del suelo. Planifica el timing: vender antes o después de completar trámites puede afectar a compradores y al precio final.</p>
+      <p>NuevaHabitat acompaña a familias en ventas por herencia con discreción y precio fijo de 3.000 € + IVA. <a href="contacto.html">Consulta tu caso</a> o <a href="vender.html">solicita valoración</a>.</p>
     `
   }
 };

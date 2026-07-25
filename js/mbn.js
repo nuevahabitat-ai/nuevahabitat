@@ -5,7 +5,7 @@
   const path = location.pathname.split('/').pop() || 'index.html';
   const tabMap = {
     'index.html': 'inicio', 'inmuebles.html': 'inmuebles', 'inmueble-detalle.html': 'inmuebles',
-    'vender.html': 'vender', 'comprar.html': 'comprar',
+    'vender.html': 'vender', 'vender-les-corts': 'vender', 'vender-eixample': 'vender', 'vender-sants': 'vender', 'vender-gracia': 'vender', 'vender-sarria': 'vender', 'vender-piso-gotic-barcelona': 'vender', 'vender-piso-born-barcelona': 'vender', 'vender-piso-raval-barcelona': 'vender', 'vender-piso-barceloneta': 'vender', 'vender-piso-alquilado-barcelona': 'vender', 'vender-piso-rapido-barcelona': 'vender', 'comprar.html': 'comprar',
     'login.html': 'cuenta', 'registro.html': 'cuenta', 'confirmar-cuenta.html': 'cuenta', 'panel.html': 'cuenta'
   };
   const active = tabMap[path] || '';

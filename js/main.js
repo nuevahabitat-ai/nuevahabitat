@@ -58,6 +58,38 @@
 })();
 
 
+/* ── FAQ acordeón ──────────────────────────────────────────── */
+(function () {
+  const FAQ_ICON = '<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>';
+
+  function initFaq() {
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      if (!btn.querySelector('svg')) btn.insertAdjacentHTML('beforeend', FAQ_ICON);
+    });
+  }
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.faq-q');
+    if (!btn) return;
+    e.preventDefault();
+    const item = btn.closest('.faq-item');
+    if (!item) return;
+    const list = item.closest('.faq-list');
+    const wasOpen = item.classList.contains('open');
+    list?.querySelectorAll('.faq-item.open').forEach(i => {
+      if (i !== item) i.classList.remove('open');
+    });
+    item.classList.toggle('open', !wasOpen);
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaq);
+  } else {
+    initFaq();
+  }
+})();
+
+
 /* ── Hero Slider ───────────────────────────────────────────── */
 (function () {
   const slides = document.querySelectorAll('.hero-slide');
@@ -331,24 +363,50 @@
   const banner = document.getElementById('cookie-banner');
   if (!banner) return;
 
+  if (!banner.querySelector('.cookie-banner-inner')) {
+    const inner = document.createElement('div');
+    inner.className = 'cookie-banner-inner';
+    while (banner.firstChild) inner.appendChild(banner.firstChild);
+    banner.appendChild(inner);
+  }
+  const inner = banner.querySelector('.cookie-banner-inner');
+  if (!document.getElementById('cookie-close')) {
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.id = 'cookie-close';
+    closeBtn.className = 'cookie-btn-close';
+    closeBtn.setAttribute('aria-label', 'Cerrar y usar solo cookies necesarias');
+    closeBtn.innerHTML = '&times;';
+    inner.insertBefore(closeBtn, inner.firstChild);
+  }
+
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-label', 'Preferencias de cookies');
+  banner.setAttribute('aria-live', 'polite');
+
+  function dismissBanner(choice) {
+    localStorage.setItem('nh_cookies', choice);
+    banner.classList.add('hidden');
+    banner.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('cookie-banner-open');
+    if (choice === 'all') window.nhLoadAnalytics && window.nhLoadAnalytics();
+  }
+
   if (localStorage.getItem('nh_cookies')) {
     banner.classList.add('hidden');
+    banner.setAttribute('aria-hidden', 'true');
+    if (localStorage.getItem('nh_cookies') === 'all') {
+      window.nhLoadAnalytics && window.nhLoadAnalytics();
+    }
     return;
   }
 
-  document.getElementById('cookie-accept').addEventListener('click', () => {
-    localStorage.setItem('nh_cookies', 'all');
-    banner.classList.add('hidden');
-    window.nhLoadAnalytics && window.nhLoadAnalytics();
-  });
-  document.getElementById('cookie-reject').addEventListener('click', () => {
-    localStorage.setItem('nh_cookies', 'necessary');
-    banner.classList.add('hidden');
-  });
+  document.body.classList.add('cookie-banner-open');
+  banner.setAttribute('aria-hidden', 'false');
 
-  if (localStorage.getItem('nh_cookies') === 'all') {
-    window.nhLoadAnalytics && window.nhLoadAnalytics();
-  }
+  document.getElementById('cookie-accept')?.addEventListener('click', () => dismissBanner('all'));
+  document.getElementById('cookie-reject')?.addEventListener('click', () => dismissBanner('necessary'));
+  document.getElementById('cookie-close')?.addEventListener('click', () => dismissBanner('necessary'));
 })();
 
 /* ── Google Analytics (solo con consentimiento) ─────────────── */
@@ -370,6 +428,12 @@ window.nhLoadAnalytics = function () {
 
 window.nhCookiePrefs = function (mode) {
   localStorage.setItem('nh_cookies', mode === 'all' ? 'all' : 'necessary');
+  const banner = document.getElementById('cookie-banner');
+  if (banner) {
+    banner.classList.add('hidden');
+    banner.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('cookie-banner-open');
+  }
   if (mode === 'all') window.nhLoadAnalytics && window.nhLoadAnalytics();
   nhToast(mode === 'all'
     ? 'Preferencias guardadas: aceptadas todas las cookies.'
@@ -395,5 +459,101 @@ window.nhCookiePrefs = function (mode) {
       const val = msb.value.trim();
       window.location.href = `inmuebles.html${val ? '?q=' + encodeURIComponent(val) : ''}`;
     });
+  }
+})();
+
+
+/* ── Footer: mapa cuadrado + sellos de confianza ─────────────── */
+(function () {
+  const MAPS = 'https://www.google.com/maps/search/?api=1&query=Carrer+de+Mej%C3%ADa+Lequerica,+42,+08028+Barcelona';
+  const MAP_EMBED = 'https://maps.google.com/maps?q=Carrer+de+Mej%C3%ADa+Lequerica,+42,+Les+Corts,+08028+Barcelona&t=m&z=17&ie=UTF8&iwloc=&output=embed';
+  const SEAL_BASE = 'imagenes/sello confianza/';
+  const SEALS = [
+    { src: 'Sello-Confianza-Online.png', alt: 'Sello Confianza Online', cls: '' },
+    { src: 'api.jpg', alt: 'Agente de la Propiedad Inmobiliaria — API', cls: '' },
+    { src: 'RGPD.jpg', alt: 'Cumplimiento RGPD', cls: '' },
+    { src: 'pyme_innovadora_meic-SP_web.png', alt: 'PYME Innovadora — Ministerio de Ciencia e Innovación', cls: 'footer-trust-wide' },
+    { src: 'efqm500.png', alt: 'EFQM 500+ Excelencia', cls: 'footer-trust-tall' },
+    { src: 'banner-consejo.jpg', alt: 'Consejo General de los Colegios de Agentes de la Propiedad Inmobiliaria de España', cls: 'footer-trust-wide' },
+  ];
+
+  function buildTrustPanel(includeMap) {
+    const logos = SEALS.map(s =>
+      `<img src="${SEAL_BASE + s.src}" alt="${s.alt}" class="${s.cls}" loading="lazy" decoding="async"/>`
+    ).join('');
+
+    const mapBlock = includeMap
+      ? `<div class="footer-trust-map">
+          <iframe src="${MAP_EMBED}" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa oficinas NuevaHabitat — Les Corts, Barcelona"></iframe>
+        </div>`
+      : '';
+
+    return (
+      '<div class="footer-trust-panel">' +
+        '<div class="footer-trust-body">' +
+          mapBlock +
+          '<div class="footer-trust-content">' +
+            '<p class="footer-trust-title">Oficinas y sellos de confianza</p>' +
+            `<p class="footer-trust-addr">Carrer de Mejía Lequerica, 42, Les Corts, 08028 Barcelona` +
+            `<a href="${MAPS}" target="_blank" rel="noopener"> · Google Maps</a></p>` +
+            `<div class="footer-trust-logos">${logos}</div>` +
+          '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function initFooterExtras() {
+    const footer = document.querySelector('footer .container');
+    if (!footer) return;
+
+    footer.querySelector('.footer-map-block')?.remove();
+
+    const brand = footer.querySelector('.footer-brand');
+    if (brand && !brand.querySelector('.footer-office') && !brand.textContent.includes('Mejía Lequerica')) {
+      const office = document.createElement('p');
+      office.className = 'footer-office';
+      office.innerHTML =
+        '<span class="footer-office-label">Oficinas</span>' +
+        `<a href="${MAPS}" target="_blank" rel="noopener">Carrer de Mejía Lequerica, 42<br/>Les Corts, 08028 Barcelona</a>`;
+      brand.appendChild(office);
+    }
+
+    footer.querySelectorAll('.footer-col').forEach(col => {
+      const h4 = col.querySelector('h4');
+      if (!h4 || !/contacto/i.test(h4.textContent)) return;
+      if (col.querySelector('a[href*="Mej"]')) return;
+      const ul = col.querySelector('ul');
+      if (!ul) return;
+      const li = document.createElement('li');
+      li.innerHTML =
+        `<a href="${MAPS}" target="_blank" rel="noopener" class="footer-addr">` +
+        'Carrer de Mejía Lequerica, 42<br/>Les Corts, 08028 Barcelona</a>';
+      ul.appendChild(li);
+    });
+
+    const includeMap = true;
+    let trust = footer.querySelector('.footer-trust');
+
+    if (trust?.querySelector('.footer-trust-panel')) {
+      trust.innerHTML = buildTrustPanel(includeMap);
+      return;
+    }
+
+    if (trust) trust.remove();
+
+    trust = document.createElement('div');
+    trust.className = 'footer-trust';
+    trust.innerHTML = buildTrustPanel(includeMap);
+
+    const bottom = footer.querySelector('.footer-bottom');
+    if (bottom) footer.insertBefore(trust, bottom);
+    else footer.appendChild(trust);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFooterExtras);
+  } else {
+    initFooterExtras();
   }
 })();

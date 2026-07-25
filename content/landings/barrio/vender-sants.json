@@ -1,0 +1,79 @@
+{
+  "slug": "vender-sants",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Sants",
+  "footerLabel": "Vender en Sants",
+  "breadcrumbCurrent": "Sants",
+  "postalCodes": [
+    "08014",
+    "08028"
+  ],
+  "zonas": [
+    "Hostafrancs",
+    "La Bordeta",
+    "Estació de Sants",
+    "Sants centre"
+  ],
+  "inmueblesQuery": "Sants",
+  "ejemploPrecio": 380000,
+  "heroImage": "imagenes/interior3.jpg",
+  "heroImageAlt": "Piso en Sants, Barcelona",
+  "origen_lead": "vender-sants",
+  "testimonials": true,
+  "priority": 0.88,
+  "ahorro": "19.000€",
+  "meta": {
+    "title": "Vender piso en Sants, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en Sants? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores con hipoteca preaprobada, panel digital y visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Sants, vender casa Sants Barcelona, inmobiliaria Sants, vender vivienda 08014, agencia inmobiliaria Sants precio fijo, vender piso Hostafrancs, vender piso La Bordeta, comisión inmobiliaria Sants"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en Sants?",
+    "lead": "<strong>NuevaHabitat</strong> ayuda a vendedores en Sants a vender su vivienda con <strong>honorarios fijos de 3.000€ + IVA</strong>, lejos de las agencias que cobran un 6% sobre el precio de venta. Panel digital, compradores cualificados y visitas en tu horario."
+  },
+  "argumento_principal": "<p>Sants es uno de los distritos mejor conectados de Barcelona: Estació de Sants, metro L3 y L5, cercanías y acceso rápido a la Ronda. Hostafrancs, La Bordeta y el Carrer de Sants atraen compradores primerizos y familias que buscan metro a pie y precio más accesible que en el Eixample.</p><p>Muchos propietarios publican solos en portales y acumulan visitas sin filtro — curiosos, ofertas bajas y semanas perdidas. NuevaHabitat aplica pricing con ventas recientes en 08014, fotografía profesional y compradores de cartera con estudio hipotecario previo.</p><p>Precio fijo 3.000 € + IVA solo en escritura; panel para seguir visitas y documentación; oficinas en Les Corts a minutos en L3. Sin exclusividad obligatoria de doce meses ni comisión si no cierras.</p>",
+  "faq": [
+    {
+      "q": "¿Cuánto cuesta vender un piso en Sants con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo cobrado únicamente en escritura. No pagas un 6% sobre el precio de venta como en muchas agencias tradicionales de Barcelona."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas en mi piso?",
+      "a": "Sí. Tú indicas días y franjas horarias disponibles. Solo agendamos visitas con compradores previamente filtrados por capacidad financiera."
+    },
+    {
+      "q": "¿Qué es el panel de vendedor?",
+      "a": "Es tu área privada en NuevaHabitat donde consultas el estado de la venta: documentos, visitas, ofertas y hitos hasta la escritura. Acceso 24/7 desde móvil u ordenador."
+    },
+    {
+      "q": "¿Los compradores tienen hipoteca aprobada?",
+      "a": "Priorizamos compradores de nuestra cartera con preaprobación hipotecaria o estudio de viabilidad bancaria, y ahorro suficiente para entrada y gastos de compraventa en Cataluña."
+    },
+    {
+      "q": "¿Vendéis pisos en Hostafrancs, La Bordeta y cerca de la Estació de Sants?",
+      "a": "Sí. Trabajamos todo el barrio de Sants y el distrito Sants-Montjuïc (08014, 08038), además del área metropolitana de Barcelona desde nuestras oficinas en Les Corts."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en Sants?",
+      "a": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en Sants se venden en 60–90 días. Te damos una estimación en la valoración gratuita."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-eixample",
+      "label": "Vender en el Eixample"
+    },
+    {
+      "slug": "vender-gracia",
+      "label": "Vender en Gràcia"
+    },
+    {
+      "slug": "vender-les-corts",
+      "label": "Vender en Les Corts"
+    }
+  ],
+  "keywords_footer": "vender piso Sants · vender casa Sants Barcelona · inmobiliaria Sants precio fijo · vender vivienda 08014 · agencia inmobiliaria Hostafrancs · vender piso La Bordeta · comisión inmobiliaria Barcelona · vender piso Estació de Sants · valoración gratuita Sants",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Sants",
+  "formPlaceholder": "Dirección o zona en Sants"
+}

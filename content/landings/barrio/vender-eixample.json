@@ -1,0 +1,80 @@
+{
+  "slug": "vender-eixample",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Eixample",
+  "footerLabel": "Vender en el Eixample",
+  "breadcrumbCurrent": "Eixample",
+  "postalCodes": [
+    "08007",
+    "08009",
+    "08013"
+  ],
+  "zonas": [
+    "Eixample Derecho",
+    "Sagrada Família",
+    "Passeig de Gràcia",
+    "Fort Pienc"
+  ],
+  "inmueblesQuery": "Eixample",
+  "ejemploPrecio": 550000,
+  "heroImage": "imagenes/interior1.jpg",
+  "heroImageAlt": "Piso en el Eixample de Barcelona",
+  "origen_lead": "vender-eixample",
+  "testimonials": true,
+  "priority": 0.88,
+  "ahorro": "30.000€",
+  "meta": {
+    "title": "Vender piso en el Eixample, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en el Eixample? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores con hipoteca preaprobada, panel digital y visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Eixample, vender casa Eixample Barcelona, inmobiliaria Eixample, vender vivienda 08007, agencia inmobiliaria Eixample precio fijo, vender piso Sagrada Família, Passeig de Gràcia, comisión inmobiliaria Eixample"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en el Eixample?",
+    "lead": "<strong>NuevaHabitat</strong> ayuda a vendedores en el Eixample a vender su vivienda con <strong>honorarios fijos de 3.000€ + IVA</strong>, lejos de las agencias que cobran un 6% sobre el precio de venta. Panel digital, compradores cualificados y visitas en tu horario."
+  },
+  "argumento_principal": "<p>El Eixample concentra la mayor liquidez de Barcelona: Eixample Derecho y Esquerre, Sagrada Família, Passeig de Gràcia, Fort Pienc y Sant Antoni muestran rangos muy distintos — a menudo entre 5.000 y 7.500 €/m² según planta, orientación y estado de la finca.</p><p>Vender aquí no es solo publicar en Idealista: compites con decenas de exclusivas y compradores que piden descuento sin estudio bancario. NuevaHabitat fija honorarios de 3.000 € + IVA, presenta tu inmueble con reportaje fotográfico y activa nuestra cartera de compradores cualificados antes de abrir visitas masivas.</p><p>Tu panel muestra cada hito — valoración, publicación, visitas confirmadas, oferta y escritura — y tú decides cuándo recibir a interesados. Sin venta, sin factura de comisión ni permanencias ocultas en contrato.</p>",
+  "faq": [
+    {
+      "q": "¿Cuánto cuesta vender un piso en el Eixample con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo cobrado únicamente en escritura. No pagas un 6% sobre el precio de venta como en muchas agencias tradicionales de Barcelona."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas en mi piso?",
+      "a": "Sí. Tú indicas días y franjas horarias disponibles. Solo agendamos visitas con compradores previamente filtrados por capacidad financiera."
+    },
+    {
+      "q": "¿Qué es el panel de vendedor?",
+      "a": "Es tu área privada en NuevaHabitat donde consultas el estado de la venta: documentos, visitas, ofertas y hitos hasta la escritura. Acceso 24/7 desde móvil u ordenador."
+    },
+    {
+      "q": "¿Los compradores tienen hipoteca aprobada?",
+      "a": "Priorizamos compradores de nuestra cartera con preaprobación hipotecaria o estudio de viabilidad bancaria, y ahorro suficiente para entrada y gastos de compraventa en Cataluña."
+    },
+    {
+      "q": "¿Vendéis pisos en Eixample Derecho, Esquerre y cerca de la Sagrada Família?",
+      "a": "Sí. Trabajamos todo el distrito del Eixample (08007, 08009, 08010, 08011, 08013, 08015) y el área metropolitana de Barcelona desde nuestras oficinas en Les Corts."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en el Eixample?",
+      "a": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en el Eixample se venden en 60–90 días. Te damos una estimación en la valoración gratuita."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-gracia",
+      "label": "Vender en Gràcia"
+    },
+    {
+      "slug": "vender-sants",
+      "label": "Vender en Sants"
+    },
+    {
+      "slug": "vender-les-corts",
+      "label": "Vender en Les Corts"
+    }
+  ],
+  "keywords_footer": "vender piso Eixample · vender casa Eixample Barcelona · inmobiliaria Eixample precio fijo · vender vivienda 08007 · agencia inmobiliaria Sagrada Família · vender piso Passeig de Gràcia · comisión inmobiliaria Eixample · vender piso Eixample Derecho · valoración gratuita Eixample",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Eixample",
+  "formPlaceholder": "Dirección o zona en Eixample"
+}

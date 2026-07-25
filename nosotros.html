@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Quiénes somos · NuevaHabitat Barcelona</title>
-  <meta name="description" content="Conoce al equipo de NuevaHabitat. Expertos inmobiliarios en Barcelona comprometidos con la transparencia y el precio fijo." />
+  <meta name="description" content="Equipo joven de NuevaHabitat: tecnología e inmobiliaria clásica en Barcelona. Expertos en trámites, firma electrónica FIRMACERT y precio fijo." />
   
   <!-- SEO & Open Graph -->
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://www.nuevahabitat.com/nosotros.html" />
+  <meta property="og:url"         content="https://www.nuevahabitat.com/nosotros" />
   <meta property="og:title"       content="Quiénes somos · NuevaHabitat Barcelona" />
   <meta property="og:description" content="Conoce al equipo de NuevaHabitat. Expertos inmobiliarios en Barcelona comprometidos con la transparencia y el precio fijo." />
   <meta property="og:image"       content="https://www.nuevahabitat.com/imagenes/inmobiliario4.jpg" />
@@ -18,7 +18,7 @@
   <meta name="twitter:title"      content="Quiénes somos · NuevaHabitat Barcelona" />
   <meta name="twitter:description" content="Conoce al equipo de NuevaHabitat. Expertos inmobiliarios en Barcelona comprometidos con la transparencia y el precio fijo." />
   <meta name="twitter:image"      content="https://www.nuevahabitat.com/imagenes/inmobiliario4.jpg" />
-  <link rel="canonical"           href="https://www.nuevahabitat.com/nosotros.html" />
+  <link rel="canonical"           href="https://www.nuevahabitat.com/nosotros" />
 <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo1.png" />
   <style>
@@ -110,28 +110,46 @@
       padding: 100px 0;
       background: var(--blanco);
     }
-    .equipo-grid {
+    .equipo-inner {
       display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 2.5rem;
-      margin-top: 4rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
-    .agente-card {
-      text-align: center;
+    .equipo-text p {
+      font-size: 1rem;
+      color: var(--gris-texto);
+      line-height: 1.75;
+      margin-bottom: 1rem;
     }
-    .agente-foto {
-      width: 160px; height: 160px;
-      border-radius: 50%;
+    .equipo-tramites {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+    .equipo-tramites li {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      font-size: .9375rem;
+      color: var(--gris-texto);
+      line-height: 1.5;
+    }
+    .equipo-tramites li svg { color: var(--oro); flex-shrink: 0; margin-top: .15rem; }
+    .equipo-fotos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .equipo-foto {
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      margin: 0 auto 1.25rem;
-      border: 4px solid var(--crema-dark);
-      transition: border-color var(--transition);
+      aspect-ratio: 4/5;
     }
-    .agente-card:hover .agente-foto { border-color: var(--oro); }
-    .agente-foto img { width:100%;height:100%;object-fit:cover; }
-    .agente-nombre { font-size:1.125rem; font-weight:600; margin-bottom:.25rem; }
-    .agente-rol { font-size:.875rem; color:var(--oro); margin-bottom:.5rem; }
-    .agente-bio { font-size:.875rem; color:var(--gris-texto); line-height:1.65; }
+    .equipo-foto:first-child { margin-top: 2rem; }
+    .equipo-foto img { width: 100%; height: 100%; object-fit: cover; }
     .numeros {
       padding: 80px 0;
       background: var(--crema);
@@ -155,13 +173,15 @@
     @media(max-width:1024px) {
       .manifesto-inner { gap:3rem; }
       .valores-cards   { grid-template-columns:1fr 1fr; }
-      .equipo-grid     { grid-template-columns:1fr 1fr; }
+      .equipo-inner    { gap: 3rem; }
       .numeros-grid    { grid-template-columns:1fr 1fr; gap:2.5rem; }
     }
     @media(max-width:768px) {
       .manifesto-inner { grid-template-columns:1fr; }
       .valores-cards   { grid-template-columns:1fr; }
-      .equipo-grid     { grid-template-columns:1fr; }
+      .equipo-inner    { grid-template-columns:1fr; }
+      .equipo-fotos    { grid-template-columns:1fr; }
+      .equipo-foto:first-child { margin-top: 0; }
     }
   </style>
 </head>
@@ -174,7 +194,7 @@
       <div class="nav-logo-divider"></div>
       <div class="logo-text">
         <span class="logo-name">Nueva Habitat</span>
-        <span class="logo-sub">Inmobiliaria tecnológica · AMB</span>
+        <span class="logo-sub">Barcelona · Inmobiliaria</span>
       </div>
     </a>
     <ul class="nav-links">
@@ -186,7 +206,7 @@
       <li><a href="blog.html">Blog</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="tel:+34675704514" class="nav-tel">675 704 514</a>
+      <a href="tel:+34603656587" class="nav-tel">603 656 587</a>
       <a href="registro.html" class="nav-cta">Empezar ahora</a>
       <button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button>
     </div>
@@ -223,12 +243,15 @@
         <p style="font-size:.9375rem;color:var(--gris-texto);line-height:1.75;margin-bottom:1.5rem">
           Combinamos la calidez del acompañamiento humano con la eficiencia de una plataforma digital propia que da al cliente control total sobre su expediente, calendario de visitas y documentación.
         </p>
-        <p style="font-size:.9375rem;color:var(--gris-texto);line-height:1.75;margin-bottom:2rem">
+        <p style="font-size:.9375rem;color:var(--gris-texto);line-height:1.75;margin-bottom:1rem">
           Operamos en Barcelona y su área metropolitana. Cada familia que ayudamos es un paso más hacia un mercado inmobiliario más justo.
+        </p>
+        <p style="font-size:.9375rem;color:var(--gris-texto);line-height:1.75;margin-bottom:2rem">
+          Nuestras oficinas están en Les Corts (Mejía Lequerica, 42). Si quieres vender tu piso en el distrito, conoce nuestro servicio local: <a href="/vender-les-corts" style="color:var(--oro);font-weight:500">vender en Les Corts</a>.
         </p>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
           <a href="registro.html" class="btn btn-gold">Empieza hoy</a>
-          <a href="tel:+34675704514" class="btn btn-outline">Habla con nosotros</a>
+          <a href="tel:+34603656587" class="btn btn-outline">Habla con nosotros</a>
         </div>
       </div>
     </div>
@@ -316,27 +339,43 @@
 <!-- EQUIPO -->
 <section class="equipo">
   <div class="container">
-    <div class="text-center section-header">
-      <span class="overline">El equipo</span>
-      <h2 class="section-title">Las personas detrás<br/>de NuevaHabitat</h2>
-    </div>
-    <div class="equipo-grid" style="max-width:420px;margin:0 auto">
-
-      <!-- Juan Cárdenas -->
-      <div class="agente-card fade-up">
-        <div class="agente-foto" style="background:linear-gradient(135deg,var(--oro),#9a7550);display:flex;align-items:center;justify-content:center;border:none">
-          <span style="font-family:var(--font-serif);font-size:2.5rem;font-weight:700;color:#fff">JC</span>
+    <div class="equipo-inner">
+      <div class="equipo-text fade-up">
+        <span class="overline">El equipo</span>
+        <h2 class="section-title">Un equipo joven que une tecnología e inmobiliaria clásica</h2>
+        <p>En NuevaHabitat somos un equipo joven y dinámico que combina lo mejor de dos mundos: la agilidad y transparencia de la tecnología digital con el know-how del sistema inmobiliario tradicional.</p>
+        <p>Somos expertos en todos los trámites inmobiliarios — valoración, negociación, arras, escritura y gestión documental — para que tú no tengas que preocuparte por nada.</p>
+        <ul class="equipo-tramites">
+          <li>
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Valoración y tasación de inmuebles
+          </li>
+          <li>
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Contratos de arras y reservas
+          </li>
+          <li>
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Escritura pública y coordinación con notaría
+          </li>
+          <li>
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Firma electrónica avanzada con FIRMACERT (eIDAS Art. 26)
+          </li>
+          <li>
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Gestión hipotecaria y documentación completa
+          </li>
+        </ul>
+      </div>
+      <div class="equipo-fotos fade-up fade-up-delay-1">
+        <div class="equipo-foto">
+          <img src="imagenes/equipo1.jpg" alt="Equipo NuevaHabitat en reunión" loading="lazy" />
         </div>
-        <div class="agente-nombre">Juan Cárdenas</div>
-        <div class="agente-rol">Responsable &amp; Agente Comercial</div>
-        <p class="agente-bio">Experto en el mercado residencial barcelonés, con gran experiencia en el sector inmobiliario. Especialista en primera compra y venta de propiedades. Juan es un excelente asesor inmobiliario, con grandes aptitudes y una marcada vocación comercial. Te ayudará a encontrar el inmueble que necesitas, al mejor precio y en las mejores condiciones.</p>
-        <div style="display:flex;gap:.75rem;margin-top:1.25rem;flex-wrap:wrap;justify-content:center">
-          <a href="tel:+34675704514" class="btn btn-outline" style="font-size:.82rem;padding:.5rem 1rem">675 704 514</a>
-          <a href="mailto:admin.nuevahabitat@gmail.com" class="btn btn-outline" style="font-size:.82rem;padding:.5rem 1rem">Email</a>
-          <a href="https://wa.me/34675704514" target="_blank" class="btn btn-gold" style="font-size:.82rem;padding:.5rem 1rem">WhatsApp</a>
+        <div class="equipo-foto">
+          <img src="imagenes/equipo2.jpg" alt="Equipo NuevaHabitat trabajando" loading="lazy" />
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -352,7 +391,7 @@
       <p class="section-subtitle light">Nuestro equipo está disponible de lunes a sábado de 9 a 20h.</p>
       <div class="cta-buttons">
         <a href="registro.html" class="btn btn-gold btn-lg">Empezar ahora</a>
-        <a href="tel:+34675704514" class="btn btn-outline-light btn-lg">675 704 514 · Juan Cárdenas</a>
+        <a href="tel:+34603656587" class="btn btn-outline-light btn-lg">603 656 587</a>
       </div>
     </div>
   </div>
@@ -370,14 +409,15 @@
         <ul>
           <li><a href="vender.html">Vender</a></li>
           <li><a href="comprar.html">Comprar</a></li>
+          <li><a href="/vender-les-corts">Vender en Les Corts</a></li>
           <li><a href="inmuebles.html">Inmuebles</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contacto</h4>
         <ul>
-          <li><a href="tel:+34675704514">675 704 514 · Juan Cárdenas</a></li>
-          <li><a href="mailto:admin.nuevahabitat@gmail.com">admin.nuevahabitat@gmail.com</a></li>
+          <li><a href="tel:+34603656587">603 656 587 · Nuevahabitat general</a></li>
+          <li><a href="mailto:info@nuevahabitat.com">info@nuevahabitat.com</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Carrer+de+Mej%C3%ADa+Lequerica,+42,+08028+Barcelona" target="_blank" rel="noopener" style="font-size:.8125rem;line-height:1.5;color:rgba(255,255,255,.55)">Carrer de Mejía Lequerica, 42, Les Corts, 08028 Barcelona</a></li>
         </ul>
       </div>
     </div>
@@ -393,7 +433,7 @@
 
 <div class="whatsapp-float">
   <div class="whatsapp-tooltip">¿Hablamos?</div>
-  <a href="https://wa.me/34675704514" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <a href="https://wa.me/34603656587" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
 </div>
@@ -441,6 +481,9 @@
     <button class="cookie-btn-reject" id="cookie-reject">Solo necesarias</button>
   </div>
 </div>
+<script src="js/site-config.js"></script>
+<script src="js/ga-config.js"></script>
+<script src="js/seo.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

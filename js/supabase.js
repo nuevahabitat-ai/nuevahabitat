@@ -197,16 +197,18 @@ window.nhAuth = {
   },
 
   /** Query inmuebles respetando cartera privada (solo registrados ven privados) */
-  async fetchInmuebles(selectCols, orderOpts = {}) {
+  async fetchInmuebles(selectCols, orderOpts = {}, filters = {}) {
     const sb = window.nhSupabase;
     let q = sb.from('inmuebles').select(selectCols).neq('estado', 'retirado');
     const { data: { user } } = await sb.auth.getUser();
     if (!user) q = q.or('cartera_privada.eq.false,cartera_privada.is.null');
-    if (orderOpts.ascending !== undefined) {
-      q = q.order(orderOpts.column || 'created_at', { ascending: orderOpts.ascending });
+    if (filters.estado) q = q.eq('estado', filters.estado);
+    if (filters.excludeId) q = q.neq('id', filters.excludeId);
+    if (orderOpts.column) {
+      q = q.order(orderOpts.column, { ascending: orderOpts.ascending !== false });
     }
     if (orderOpts.limit) q = q.limit(orderOpts.limit);
-    return q;
+    return await q;
   }
 };
 

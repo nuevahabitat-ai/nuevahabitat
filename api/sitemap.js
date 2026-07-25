@@ -1,17 +1,59 @@
+const fs = require('fs');
+const path = require('path');
+
 const SITE = 'https://www.nuevahabitat.com';
 const SB_URL = process.env.SUPABASE_URL || 'https://xxodawayoogthxnjpouq.supabase.co';
 const SB_KEY = process.env.SUPABASE_ANON_KEY || 'sb_publishable_fZ9IgW5VfsF_Gf_zFsxqnA_jOaH2yri';
 
+function loadLandingsFromIndex() {
+  try {
+    const indexPath = path.join(process.cwd(), 'content', 'landings-index.json');
+    const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+    return (index.landings || []).filter((l) => l.indexable !== false);
+  } catch (_) {
+    return [
+      { slug: 'vender-gracia', priority: 0.88 },
+      { slug: 'vender-sarria', priority: 0.88 },
+      { slug: 'vender-eixample', priority: 0.88 },
+      { slug: 'vender-les-corts', priority: 0.88 },
+      { slug: 'vender-sants', priority: 0.88 },
+      { slug: 'vender-piso-alquilado-barcelona', priority: 0.87 },
+      { slug: 'vender-piso-rapido-barcelona', priority: 0.89 },
+    ];
+  }
+}
 const STATIC = [
   '', 'vender.html', 'comprar.html', 'inmuebles.html', 'hipotecas.html',
-  'nosotros.html', 'blog.html', 'contacto.html', 'login.html', 'registro.html',
+  'nosotros.html', 'blog.html', 'contacto.html',
   'privacidad.html', 'aviso-legal.html', 'cookies.html'
+];
+
+const STATIC_BLOG = [
+  'precio-pisos-barcelona', 'contrato-arras', 'guia-hipotecas', 'como-vender-rapido',
+  'home-staging', 'primera-vivienda', 'mercado-2026', 'gastos-compraventa',
+  'negociar-precio', 'euribor-2026', 'vender-piso-barcelona-precio-fijo',
+  'valoracion-gratis-barcelona', 'comision-inmobiliaria-barcelona',
+  'comprar-piso-barcelona-guia', 'comprar-casa-area-metropolitana',
+  'documentos-vender-piso', 'buscar-piso-hipoteca-barcelona', 'vender-piso-herencia-barcelona',
 ];
 
 export default async function handler(req, res) {
   const urls = STATIC.map(p => ({
-    loc: `${SITE}/${p}`,
+    loc: p === '' ? `${SITE}/` : `${SITE}/${p.replace(/\.html$/, '')}`,
     priority: p === '' ? '1.0' : '0.8',
+  }));
+
+  const LANDINGS = loadLandingsFromIndex();
+
+  LANDINGS.forEach(({ slug, priority }) => urls.push({
+    loc: `${SITE}/${slug}`,
+    priority: String(priority || 0.88),
+    changefreq: 'monthly',
+  }));
+  STATIC_BLOG.forEach(slug => urls.push({
+    loc: `${SITE}/blog-articulo?slug=${encodeURIComponent(slug)}`,
+    priority: '0.75',
+    changefreq: 'monthly',
   }));
 
   try {
@@ -22,7 +64,7 @@ export default async function handler(req, res) {
     if (inmRes.ok) {
       const inm = await inmRes.json();
       inm.forEach(i => urls.push({
-        loc: `${SITE}/inmueble-detalle.html?id=${i.id}`,
+        loc: `${SITE}/inmueble-detalle?id=${i.id}`,
         lastmod: i.updated_at ? i.updated_at.slice(0, 10) : undefined,
         priority: '0.9',
       }));
@@ -35,7 +77,7 @@ export default async function handler(req, res) {
     if (blogRes.ok) {
       const posts = await blogRes.json();
       posts.forEach(p => urls.push({
-        loc: `${SITE}/blog-articulo.html?slug=${encodeURIComponent(p.slug)}`,
+        loc: `${SITE}/blog-articulo?slug=${encodeURIComponent(p.slug)}`,
         lastmod: p.updated_at ? p.updated_at.slice(0, 10) : undefined,
         priority: '0.7',
       }));

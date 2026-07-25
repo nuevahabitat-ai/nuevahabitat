@@ -1,0 +1,96 @@
+{
+  "vender-piso-alquilado-barcelona": {
+    "keyword": "vender piso alquilado barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-alquilado-barcelona"
+  },
+  "vender-piso-inquilino-vencer-barcelona": {
+    "keyword": "vender piso inquilino contrato vencer barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-inquilino-vencer-barcelona",
+    "aliases": [
+      "vender piso alquiler termina barcelona",
+      "vender piso cuando acaba contrato inquilino barcelona"
+    ]
+  },
+  "vender-piso-antes-comprar-otro-barcelona": {
+    "keyword": "vender piso antes de comprar otro barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-antes-comprar-otro-barcelona",
+    "aliases": [
+      "vender para comprar otra vivienda barcelona",
+      "cadena compraventa piso barcelona"
+    ]
+  },
+  "vender-segunda-residencia-barcelona": {
+    "keyword": "vender segunda residencia barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-segunda-residencia-barcelona",
+    "aliases": [
+      "vender piso vacio barcelona",
+      "vender piso no habitual barcelona"
+    ]
+  },
+  "vender-piso-traslado-barcelona": {
+    "keyword": "vender piso traslado trabajo barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-traslado-barcelona",
+    "aliases": [
+      "vender piso cambio ciudad barcelona",
+      "vender piso mudanza barcelona"
+    ]
+  },
+  "vender-piso-rapido-barcelona": {
+    "keyword": "vender piso rapido barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-rapido-barcelona",
+    "aliases": ["vender piso urgente barcelona"]
+  },
+  "vender-piso-sin-exclusividad-barcelona": {
+    "keyword": "vender piso sin exclusividad barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-exclusividad-barcelona",
+    "aliases": [
+      "vender piso sin exclusiva barcelona",
+      "vender piso particular barcelona",
+      "vender casa particular barcelona"
+    ]
+  },
+  "nuevahabitat-vs-idealista-particular": {
+    "keyword": "nuevahabitat vs idealista particular",
+    "cluster": "comparativa",
+    "canonical": "/nuevahabitat-vs-idealista-particular",
+    "aliases": [
+      "vender piso idealista particular barcelona",
+      "idealista vs inmobiliaria barcelona",
+      "vender en idealista o agencia barcelona"
+    ]
+  },
+  "nuevahabitat-vs-fotocasa-particular": {
+    "keyword": "nuevahabitat vs fotocasa particular",
+    "cluster": "comparativa",
+    "canonical": "/nuevahabitat-vs-fotocasa-particular",
+    "aliases": [
+      "vender piso fotocasa particular barcelona",
+      "fotocasa vs inmobiliaria barcelona"
+    ]
+  },
+  "nuevahabitat-vs-agencia-tradicional-barcelona": {
+    "keyword": "comision inmobiliaria barcelona vs precio fijo",
+    "cluster": "comparativa",
+    "canonical": "/nuevahabitat-vs-agencia-tradicional-barcelona",
+    "aliases": [
+      "cuanto cobra inmobiliaria barcelona",
+      "agencia inmobiliaria 6 por ciento barcelona"
+    ]
+  },
+  "vender-por-tu-cuenta-vs-nuevahabitat-barcelona": {
+    "keyword": "vender piso por tu cuenta vs inmobiliaria barcelona",
+    "cluster": "comparativa",
+    "canonical": "/vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
+    "aliases": [
+      "vender piso solo vs agencia barcelona",
+      "vender sin inmobiliaria barcelona"
+    ]
+  }
+}

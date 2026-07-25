@@ -1,0 +1,126 @@
+{
+  "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
+  "cluster": "comparativa",
+  "indexable": true,
+  "keyword_principal": "comision inmobiliaria barcelona vs precio fijo",
+  "keyword_aliases": [
+    "cuanto cobra inmobiliaria barcelona",
+    "agencia inmobiliaria 6 por ciento barcelona",
+    "inmobiliaria precio fijo barcelona"
+  ],
+  "footerLabel": "NH vs agencia 6%",
+  "priority": 0.91,
+  "origen_lead": "nuevahabitat-vs-agencia-tradicional-barcelona",
+  "meta": {
+    "title": "Agencia tradicional 6% vs NuevaHabitat 3.000€ en Barcelona · Comparativa",
+    "description": "¿Cuánto cobra una inmobiliaria en Barcelona? Compara comisión del 6% + IVA vs precio fijo 3.000€ + IVA de NuevaHabitat. Calculadora con tu precio de venta. Barcelona.",
+    "keywords": "comision inmobiliaria barcelona, cuanto cobra inmobiliaria barcelona, agencia 6 por ciento barcelona, inmobiliaria precio fijo barcelona, nueva habitat vs agencia tradicional, vender piso sin comision barcelona"
+  },
+  "hero": {
+    "badge": "Comparativa · 6% vs 3.000€ fijos",
+    "h1": "¿Agencia tradicional al 6% o NuevaHabitat con precio fijo en Barcelona?",
+    "lead": "En un piso de <strong>500.000 €</strong>, una agencia al 6% puede facturar más de <strong>30.000 € + IVA</strong>. NuevaHabitat cobra <strong>3.000 € + IVA solo en escritura</strong> — mismo acompañamiento profesional, sin exclusiva abusiva ni sorpresas en la factura final.",
+    "image": "imagenes/firma1.jpg",
+    "imageAlt": "Comparativa comisión inmobiliaria tradicional vs precio fijo NuevaHabitat Barcelona"
+  },
+  "breadcrumbCurrent": "vs agencia 6%",
+  "argumento_principal": "<p>La pregunta <strong>cuánto cobra una inmobiliaria en Barcelona</strong> tiene una respuesta incómoda: la mayoría de agencias tradicionales trabajan con porcentaje sobre precio de venta — habitualmente entre el 3% y el 6% más IVA, a menudo repartido entre comprador y vendedor pero cargado al propietario en la práctica. En un mercado donde el piso medio en buena zona supera 400.000–500.000 €, la comisión no es un detalle: es el mayor coste de la operación después de impuestos.</p><h2>Cómo se calcula la comisión del 6% en Barcelona</h2><p>Sobre 450.000 € de precio de venta, un 6% + IVA (21%) supone más de <strong>32.670 €</strong> en honorarios. Eso se paga aunque la agencia haya tardado dos meses o diez, y aunque tú hayas encontrado al comprador por recomendación — si firmaste exclusiva. Además, muchos contratos incluyen permanencias de 6–12 meses y cláusulas de penalización.</p><h2>Qué incluye (y qué debería incluir) una agencia en Barcelona</h2><p>Un servicio profesional debe cubrir: valoración con comparables reales, reportaje fotográfico, difusión, filtro de compradores solventes, coordinación de visitas, negociación de arras, checklist documental y presencia en notaría. El problema no es pagar por servicio — es pagar un <em>porcentaje</em> desproporcionado cuando el precio de venta sube por factores ajenos a la agencia (mercado alcista, reforma previa del propietario, ubicación).</p><h2>Modelo NuevaHabitat: precio fijo alineado al cierre</h2><p>NuevaHabitat cobra <strong>3.000 € + IVA (3.630 €)</strong> únicamente en escritura. Si no vendes, no pagas honorarios. Incluimos valoración, fotos, cartera con hipoteca preaprobada, visitas en tu horario, negociación y panel digital de seguimiento. En Barcelona ciudad y área metropolitana desde Les Corts. No sustituimos abogados ni gestores en casos complejos, pero sí el 80% operativo de una venta estándar — sin comisión del 6%.</p>",
+  "calculadora": {
+    "precioDefault": 500000,
+    "titulo": "Calculadora: comisión 6% vs 3.000€ + IVA en Barcelona",
+    "subtitulo": "Introduce el precio de venta de tu piso. La calculadora muestra honorarios de agencia tradicional (~6% + IVA) vs NuevaHabitat."
+  },
+  "comparativa_modelos": {
+    "title": "Agencia tradicional vs boutique vs particular vs NuevaHabitat (Barcelona 2026)",
+    "rows": [
+      {
+        "modelo": "Agencia tradicional exclusiva (~6%)",
+        "tiempo": "4–8 meses habitual",
+        "coste": "6% precio + IVA (ej. 30.000€+ en 500k)",
+        "riesgo": "Exclusiva 6–12 meses; pagas % aunque cierres rápido",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "Agencia boutique (3–4%)",
+        "tiempo": "Similar",
+        "coste": "3–4% + IVA (15.000–20.000€ en 500k)",
+        "riesgo": "Menor coste pero sigue siendo % sobre precio",
+        "tipo": "neutral"
+      },
+      {
+        "modelo": "Particular sin agencia",
+        "tiempo": "Impredecible",
+        "coste": "0 € comisión",
+        "riesgo": "Errores legales, curiosos, meses perdidos",
+        "tipo": "neutral"
+      },
+      {
+        "modelo": "NuevaHabitat precio fijo",
+        "tiempo": "Plan 60–90 días",
+        "coste": "3.630 € total (3.000 + IVA)",
+        "riesgo": "Sin venta, sin factura. Coste conocido desde día 1",
+        "tipo": "win"
+      }
+    ]
+  },
+  "mitos": {
+    "title": "Mitos sobre comisiones inmobiliarias en Barcelona",
+    "items": [
+      {
+        "mito": "Todas las inmobiliarias en Barcelona cobran el 6%",
+        "realidad": "Hay rangos del 3% al 6% + IVA según agencia y exclusiva. Pero en pisos de 400.000€+, cualquier % es una cifra muy alta."
+      },
+      {
+        "mito": "Si pago más comisión, venden antes",
+        "realidad": "La velocidad depende del precio y del comprador solvente, no del porcentaje de honorarios."
+      },
+      {
+        "mito": "El comprador paga la comisión, yo no me entero",
+        "realidad": "En la práctica el coste se traslada al precio o se negocia con el vendedor. Conocer el coste total es clave."
+      },
+      {
+        "mito": "Precio fijo = peor servicio",
+        "realidad": "El modelo fijo alinea incentivos al cierre, no a inflar el precio para cobrar más %."
+      },
+      {
+        "mito": "No puedo negociar la comisión con una agencia tradicional",
+        "realidad": "A veces se negocia, pero suele mantenerse el modelo %. NuevaHabitat elimina esa negociación: precio fijo publicado."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuánto cobra una inmobiliaria en Barcelona por vender un piso?",
+      "a": "Habitualmente entre 3% y 6% del precio de venta + IVA, con exclusiva de meses. En 450.000 € el 6% supera 32.000 € en honorarios."
+    },
+    {
+      "q": "¿Cuánto cuesta NuevaHabitat frente a una agencia al 6%?",
+      "a": "3.000 € + IVA (3.630 €) solo en escritura. En un piso de 500.000 € ahorras más de 26.000 € frente al 6%."
+    },
+    {
+      "q": "¿NuevaHabitat pide exclusiva como las agencias tradicionales?",
+      "a": "No trabajamos con exclusivas abusivas de 12 meses. Honorarios solo si vendes."
+    },
+    {
+      "q": "¿Qué servicios incluye el precio fijo?",
+      "a": "Valoración, fotos, difusión, filtro de compradores, visitas coordinadas, negociación de arras y seguimiento hasta escritura."
+    },
+    {
+      "q": "¿Funciona el precio fijo en pisos caros del Eixample o Sarrià?",
+      "a": "Sí. Cuanto mayor el precio, mayor el ahorro relativo frente al %. En pisos de 700.000€+ la diferencia es especialmente notable."
+    },
+    {
+      "q": "¿Puedo cambiar de agencia tradicional a NuevaHabitat?",
+      "a": "Revisamos tu situación contractual en valoración gratuita. Muchos propietarios llegan tras meses en exclusiva sin resultados."
+    }
+  ],
+  "relacionadas": [
+    { "slug": "nuevahabitat-vs-idealista-particular", "label": "NH vs Idealista" },
+    { "slug": "nuevahabitat-vs-fotocasa-particular", "label": "NH vs Fotocasa" },
+    { "slug": "vender-por-tu-cuenta-vs-nuevahabitat-barcelona", "label": "Por tu cuenta vs NH" },
+    { "slug": "vender-sarria", "label": "Vender en Sarrià" }
+  ],
+  "keywords_footer": "comision inmobiliaria barcelona · cuanto cobra inmobiliaria · agencia 6 por ciento · precio fijo 3000 euros · nueva habitat vs agencia tradicional · vender piso barcelona",
+  "whatsappText": "Hola%2C%20quiero%20comparar%20comisi%C3%B3n%206%25%20vs%20precio%20fijo%20NuevaHabitat%20en%20Barcelona",
+  "formPlaceholder": "Precio orientativo y barrio del piso en Barcelona"
+}

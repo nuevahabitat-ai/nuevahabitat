@@ -1,0 +1,92 @@
+{
+  "slug": "vender-piso-inquilino-vencer-barcelona",
+  "cluster": "situacion",
+  "indexable": true,
+  "keyword_principal": "vender piso inquilino contrato vencer barcelona",
+  "keyword_aliases": [
+    "vender piso alquiler termina barcelona",
+    "vender piso cuando acaba contrato inquilino barcelona"
+  ],
+  "footerLabel": "Inquilino vence pronto",
+  "priority": 0.86,
+  "origen_lead": "vender-piso-inquilino-vencer-barcelona",
+  "meta": {
+    "title": "Vender piso en Barcelona cuando vence el contrato del inquilino · NuevaHabitat",
+    "description": "¿Vendes en Barcelona y el contrato de alquiler vence pronto? Planifica entrega de llaves, visitas, precio y compradores. Precio fijo 3.000€ + IVA. Valoración gratuita.",
+    "keywords": "vender piso inquilino contrato vencer barcelona, vender piso cuando acaba alquiler barcelona, vender piso libre inquilino barcelona, fin contrato arrendamiento venta piso barcelona"
+  },
+  "hero": {
+    "badge": "Situación · Contrato por vencer",
+    "h1": "¿Vendes tu piso en Barcelona cuando el inquilino se va?",
+    "lead": "El contrato de alquiler termina en semanas o meses y quieres <strong>vender en Barcelona</strong> con el piso libre — o negociar entrega antes de escritura. NuevaHabitat planifica calendario, visitas y pricing con precio fijo de <strong>3.000 € + IVA</strong>, sin comisión del 6%.",
+    "image": "imagenes/interior1.jpg",
+    "imageAlt": "Venta de piso en Barcelona al vencer contrato de alquiler del inquilino"
+  },
+  "breadcrumbCurrent": "Inquilino vence",
+  "argumento_principal": "<p>Vender un <strong>piso en Barcelona cuando vence el contrato del inquilino</strong> es una ventana de oportunidad distinta a vender con inquilino dentro: puedes mostrar la vivienda vacía, hacer pequeñas mejoras y competir por compradores de vivienda habitual — no solo inversores. Pero el calendario es estrecho: hay que alinear fin de arrendamiento, devolución de fianza, posibles reparaciones, fotografía y salida al mercado sin perder el primer mes de demanda estacional.</p><p>El error más frecuente es publicar el día exacto en que el inquilino entrega llaves, sin haber preparado documentación ni precio. En barrios como Sants, el Eixample o Gràcia, quien llega al mercado con fotos profesionales y precio ajustado en la primera semana captura visitas que luego no recupera. Otro error: prometer al comprador entrega inmediata sin confirmar por escrito la fecha de salida del arrendatario.</p><p>En NuevaHabitat trabajamos ventas <em>pre-marketing</em>: valoración y estrategia mientras el contrato aún está en curso (respetando derechos del inquilino), reserva de fotos para la semana de entrega de llaves y difusión a cartera con hipoteca preaprobada el mismo día que el piso queda vacío — si tu situación legal lo permite.</p>",
+  "bloque_legal_fiscal": {
+    "title": "Aspectos legales al vender cuando termina el alquiler en Barcelona",
+    "items": [
+      {
+        "title": "Fin natural del contrato",
+        "body": "Si el arrendamiento llega a su fin y el inquilino no renueva, debe restituir la vivienda en condiciones contractuales. Revisa cláusulas de preaviso, estado de la finca y devolución de fianza en el INCASÒL."
+      },
+      {
+        "title": "Visitas antes de la entrega de llaves",
+        "body": "Con contrato vigente puedes enseñar el piso con preaviso razonable al inquilino. Planificar visitas en las últimas semanas puede acelerar la venta post-entrega, siempre respetando LAU y intimidad del arrendatario."
+      },
+      {
+        "title": "Entrega al comprador vs fecha de escritura",
+        "body": "El comprador de vivienda habitual suele exigir piso vacío. Debe quedar claro en arras si la entrega es en firma o antes, y que no hay ocupantes ni contratos pendientes."
+      },
+      {
+        "title": "Plusvalía e IRPF",
+        "body": "Vender tras un periodo de alquiler no cambia la tributación base, pero el tiempo de tenencia y las mejoras realizadas sí afectan. Te orientamos sobre documentación fiscal habitual; casos complejos requieren asesor."
+      }
+    ]
+  },
+  "como_ayudamos": {
+    "title": "Cómo planificamos la venta al vencer el contrato en Barcelona",
+    "steps": [
+      { "title": "Calendario fin de alquiler", "body": "Alineamos fin de contrato, posibles reparaciones y fecha objetivo de publicación." },
+      { "title": "Valoración en vacío simulado", "body": "Tasamos como vivienda libre — precio distinto al piso alquilado con inquilino dentro." },
+      { "title": "Pre-reserva de compradores", "body": "Cartera informada puede reservar visitas para la semana de entrega de llaves." },
+      { "title": "Cierre con precio fijo", "body": "3.000 € + IVA solo en escritura. Sin comisión del 6% sobre el precio." }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Puedo vender en Barcelona antes de que el inquilino se vaya?",
+      "a": "Sí, puedes vender con contrato en vigor; el comprador se subroga o se pacta entrega vacía en escritura. Si el contrato vence pronto, muchos vendedores esperan a publicar libre para mejor precio."
+    },
+    {
+      "q": "¿Cuándo debo empezar a preparar la venta si el contrato vence en 3 meses?",
+      "a": "Idealmente 6–8 semanas antes: valoración, checklist documental y plan de fotos. Así publicas el día que recibes llaves."
+    },
+    {
+      "q": "¿Vale más un piso vacío que uno alquilado en Barcelona?",
+      "a": "Para comprador habitual, sí suele valorarse más. Para inversor con renta estable, a veces interesa el alquilado. Lo evaluamos según tu barrio y renta."
+    },
+    {
+      "q": "¿Puedo hacer visitas mientras el inquilino aún vive?",
+      "a": "Sí, con preaviso y respeto a la LAU. Coordinamos franjas que minimicen conflicto."
+    },
+    {
+      "q": "¿Cuánto cobra NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo solo en escritura. Mismo modelo que en venta estándar en Barcelona."
+    },
+    {
+      "q": "¿Qué pasa si el inquilino no entrega en la fecha?",
+      "a": "Revisamos situación contractual. Una venta bien planteada incluye cláusulas realistas sobre entrega de posesión."
+    }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-alquilado-barcelona", "label": "Vender con inquilino dentro" },
+    { "slug": "vender-piso-rapido-barcelona", "label": "Vender piso rápido" },
+    { "slug": "vender-sants", "label": "Vender en Sants" },
+    { "slug": "vender-les-corts", "label": "Vender en Les Corts" }
+  ],
+  "keywords_footer": "vender piso inquilino contrato vencer barcelona · fin contrato alquiler venta · vender piso libre barcelona · cuando acaba alquiler vender · precio fijo inmobiliaria barcelona",
+  "whatsappText": "Hola%2C%20vendo%20piso%20en%20Barcelona%20cuando%20vence%20el%20contrato%20del%20inquilino",
+  "formPlaceholder": "Barrio, fecha fin de contrato y si el inquilino ya confirmó salida…"
+}

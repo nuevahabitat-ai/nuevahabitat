@@ -1,0 +1,45 @@
+{
+  "slug": "vender-piso-gotic-barcelona",
+  "cluster": "barrio",
+  "indexable": true,
+  "barrio": "Gòtic",
+  "footerLabel": "Vender en el Gòtic",
+  "breadcrumbCurrent": "Gòtic",
+  "priority": 0.88,
+  "testimonials": false,
+  "postalCodes": ["08002"],
+  "zonas": ["Plaça Sant Jaume", "Plaça Reial", "Carrer del Call", "Catedral"],
+  "inmueblesQuery": "Gòtic",
+  "ejemploPrecio": 550000,
+  "ahorro": "30.000",
+  "origen_lead": "vender-piso-gotic-barcelona",
+  "heroImage": "imagenes/interior11.jpg",
+  "heroImageAlt": "Interior de piso en el Barri Gòtic, Barcelona",
+  "meta": {
+    "title": "Vender piso en el Gòtic, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
+    "description": "¿Vendes tu piso en el Barri Gòtic? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores cualificados y visitas en tu horario. Sin comisión del 6%.",
+    "keywords": "vender piso Gòtic, vender piso Barri Gòtic Barcelona, inmobiliaria Gòtic, vender vivienda 08002, vender piso Plaça Reial, vender piso Call Barcelona"
+  },
+  "hero": {
+    "h1": "¿Vendes tu piso en el Gòtic?",
+    "lead": "Vende en el Barri Gòtic con <strong>honorarios fijos de 3.000€ + IVA</strong>, compradores cualificados y visitas en tu horario — sin la comisión del 6% de las agencias tradicionales del centro."
+  },
+  "argumento_principal": "<p>El Gòtic combina finca histórica, alta demanda turística y compradores muy dispares: desde inversores que buscan rentabilidad hasta parejas que quieren vivir en el centro histórico de Barcelona. Vender aquí exige algo que muchas agencias generalistas no hacen bien: <strong>fijar el precio según el tipo de comprador real de la zona</strong>, no solo por el metro cuadrado medio del barrio. Un piso reformado con luz natural en el Gòtic no se vende igual que uno interior en un edificio del siglo XVI sin ascensor, aunque estén en la misma calle.</p><p>En NuevaHabitat empezamos por eso: una valoración gratuita que tiene en cuenta el edificio, la finca y el tipo de comprador que mejor encaja con tu piso — con honorarios fijos de 3.000 € + IVA, cobrados solo en escritura, sin el 6% habitual de las agencias tradicionales del centro.</p>",
+  "faq": [
+    { "q": "¿Cuánto cuesta vender un piso en el Gòtic con NuevaHabitat?", "a": "3.000 € + IVA, precio fijo, solo en escritura." },
+    { "q": "¿Los edificios antiguos sin ascensor afectan al proceso de venta?", "a": "Sí, lo tenemos en cuenta en la valoración; ajustamos precio y estrategia de comprador según planta y estado del edificio." },
+    { "q": "¿Puedo elegir cuándo recibir visitas?", "a": "Sí, tú marcas días y franjas horarias." },
+    { "q": "¿Qué tipo de comprador busca piso en el Gòtic?", "a": "Perfil mixto: inversores, compradores internacionales y residentes que buscan centro histórico; filtramos por capacidad financiera real antes de agendar visitas." },
+    { "q": "¿Trabajáis Plaça Reial, el Call y zona Catedral?", "a": "Sí, todo el Barri Gòtic (08002)." },
+    { "q": "¿Cuánto tarda vender un piso en el Gòtic?", "a": "Depende de estado y planta; te damos estimación real en la valoración gratuita." }
+  ],
+  "relacionadas": [
+    { "slug": "vender-piso-ciutat-vella-barcelona", "label": "Vender en Ciutat Vella" },
+    { "slug": "vender-piso-born-barcelona", "label": "Vender en el Born" },
+    { "slug": "vender-piso-raval-barcelona", "label": "Vender en el Raval" },
+    { "slug": "vender-piso-barceloneta", "label": "Vender en la Barceloneta" }
+  ],
+  "keywords_footer": "vender piso Gòtic · vender piso Barri Gòtic · inmobiliaria Gòtic precio fijo · vender vivienda 08002 · Plaça Reial · Carrer del Call",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20el%20G%C3%B2tic",
+  "formPlaceholder": "Dirección o zona en el Gòtic (Call, Reial, Catedral…)"
+}
