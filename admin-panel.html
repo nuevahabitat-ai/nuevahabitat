@@ -3111,17 +3111,19 @@ async function loadClientes(){ /* no-op */ }
 async function loadVisitas(){
   const { data, error } = await window.nhSupabase
     .from('visitas')
-    .select('id, estado, fecha_hora, notas, inmueble_id, inmuebles(titulo, ref), leads(nombre, email, telefono)')
+    .select('id, estado, fecha_hora, notas, tipo_solicitud, inmueble_id, perfil_id, inmuebles(titulo, ref), leads(nombre, email, telefono), perfiles(nombre, telefono)')
     .order('fecha_hora', { ascending: false });
   const tbl=document.getElementById('visitas-table');
   if(error || !data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin visitas.</p>'; return; }
-  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Inmueble</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th></th></tr></thead><tbody>${
+  const tipoLabel = { visita:'Visita', disponibilidad_vendedor:'Disp. vendedor', disponibilidad_comprador:'Disp. comprador' };
+  tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Tipo</th><th>Inmueble</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th></th></tr></thead><tbody>${
     data.map(v=>{
       const inm = v.inmuebles?.titulo || v.inmuebles?.ref || '–';
-      const cli = v.leads?.nombre || v.leads?.email || v.leads?.telefono || '–';
+      const cli = v.leads?.nombre || v.perfiles?.nombre || v.leads?.email || v.leads?.telefono || '–';
       const fecha = v.fecha_hora ? new Date(v.fecha_hora).toLocaleString('es-ES') : '–';
       const est = v.estado || 'pendiente';
-      return `<tr><td>${inm}</td><td>${cli}</td><td>${fecha}</td><td><span class="badge badge-new">${est}</span></td>
+      const tipo = tipoLabel[v.tipo_solicitud] || v.tipo_solicitud || 'Visita';
+      return `<tr><td><span class="badge badge-new">${tipo}</span></td><td>${inm}</td><td>${cli}</td><td>${fecha}</td><td><span class="badge badge-new">${est}</span></td>
         <td><div class="gap-row">
           <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="setVisitaEstado('${v.id}','confirmada')">✓</button>
           <button class="adm-btn adm-btn-red adm-btn-sm" onclick="setVisitaEstado('${v.id}','cancelada')">✕</button>

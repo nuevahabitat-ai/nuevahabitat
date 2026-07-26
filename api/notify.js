@@ -169,6 +169,56 @@ function tplBienvenida({ nombre, email, tipo }) {
   };
 }
 
+function tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra }) {
+  const esVendedor = extra?.rol === 'vendedor';
+  const label = esVendedor ? 'Disponibilidad vendedor (panel)' : 'Disponibilidad comprador (panel)';
+  return {
+    subject: `[NH] ${label} — ${nombre || 'Cliente'}`,
+    html: HEAD + `<div class="body">
+      <div class="tag">${label}</div>
+      <h1>Nueva franja horaria registrada</h1>
+      <p class="intro">Un cliente ha indicado disponibilidad desde su panel. Revisa el calendario y confirma la visita.</p>
+      <div class="card">
+        <div class="card-title">Detalle</div>
+        <table>
+          <tr><td>Cliente</td><td>${nombre || '–'}</td></tr>
+          <tr><td>Teléfono</td><td><a href="tel:${telefono}" style="color:#b8936a">${telefono || '–'}</a></td></tr>
+          <tr><td>Email</td><td><a href="mailto:${email}" style="color:#b8936a">${email || '–'}</a></td></tr>
+          <tr><td>Perfil</td><td>${esVendedor ? 'Vendedor' : 'Comprador'}</td></tr>
+          <tr><td>Disponibilidad</td><td>${mensaje || '–'}</td></tr>
+          <tr><td>Fecha registro</td><td>${new Date().toLocaleString('es-ES',{timeZone:'Europe/Madrid'})}</td></tr>
+        </table>
+      </div>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/admin-panel.html#visitas" class="btn btn-gold">Ver en panel admin →</a>
+        ${telefono ? `<a href="https://wa.me/34${telefono.replace(/\D/g,'')}" class="btn btn-wa">WhatsApp</a>` : ''}
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplConfirmacionDisponibilidad({ nombre, mensaje, extra }) {
+  const esVendedor = extra?.rol === 'vendedor';
+  return {
+    subject: `Disponibilidad registrada · NuevaHabitat`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Calendario</div>
+      <h1>Hemos recibido tu disponibilidad</h1>
+      <p class="intro">Gracias, <strong>${nombre || 'cliente'}</strong>. ${esVendedor ? 'Tu asesor usará estas franjas para agendar visitas con compradores cualificados.' : 'Tu asesor te propondrá visitas a inmuebles que encajen contigo en esas franjas.'}</p>
+      <div class="card">
+        <div class="card-title">Detalle registrado</div>
+        <table>
+          <tr><td>Disponibilidad</td><td>${mensaje || '–'}</td></tr>
+        </table>
+      </div>
+      <div class="tip">Te contactaremos en menos de 24h para confirmar o ajustar la franja.</div>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/panel.html" class="btn btn-gold">Ir a mi panel →</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
 function tplConfirmacionVisita({ nombre, mensaje, inmueble }) {
   return {
     subject: `Visita recibida — te confirmamos en 24h · NuevaHabitat`,
@@ -335,13 +385,18 @@ export default async function handler(req, res) {
     const jobs = [];
 
     /* 1. Notificación interna a admin + contacto corporativo */
-    jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
+    if (template === 'disponibilidad') {
+      jobs.push(send(NOTIFY_RECIPIENTS, tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra: extra||{} })));
+    } else {
+      jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
+    }
 
     /* 2. Email al cliente según plantilla */
     if (email) {
       const tmpl = template || tipo;
       if      (tmpl === 'bienvenida')  jobs.push(send(email, tplBienvenida({ nombre, email, tipo: extra?.tipo || tipo })));
       else if (tmpl === 'visita')      jobs.push(send(email, tplConfirmacionVisita({ nombre, mensaje, inmueble })));
+      else if (tmpl === 'disponibilidad') jobs.push(send(email, tplConfirmacionDisponibilidad({ nombre, mensaje, extra: extra||{} })));
       else if (tmpl === 'contacto')    jobs.push(send(email, tplConfirmacionContacto({ nombre, inmueble })));
       else if (tmpl === 'valoracion' || tmpl === 'vender' || tmpl === 'venta') jobs.push(send(email, tplValoracion({ nombre })));
       else if (tmpl === 'compra' || tmpl === 'comprar') jobs.push(send(email, tplCompra({ nombre })));

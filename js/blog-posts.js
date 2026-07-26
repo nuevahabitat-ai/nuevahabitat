@@ -54,7 +54,7 @@ window.NH_BLOG_POSTS = {
       <p>Vender en Barcelona no es difícil si el piso está bien posicionado. El problema es vender al precio correcto y sin meses de visitas infructuosas. Estas son las 7 claves que aplicamos en cada operación:</p>
       <ol>
         <li><strong>Valoración realista</strong> basada en comparables recientes, no en anuncios inflados.</li>
-        <li><strong>Reportaje fotográfico profesional</strong> — la primera impresión se decide en 3 segundos.</li>
+        <li><strong>Reportaje fotográfico</strong> — la primera impresión se decide en 3 segundos.</li>
         <li><strong>Home staging básico</strong>: orden, luz y neutralidad.</li>
         <li><strong>Filtrar compradores</strong> con capacidad financiera verificada antes de la visita.</li>
         <li><strong>Disponibilidad para visitas</strong> en horarios amplios, incluidos fines de semana.</li>
@@ -74,7 +74,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>El home staging no consiste en reformar: consiste en <strong>presentar</strong> tu vivienda de forma que el comprador potencial se visualice viviendo en ella. Estudios del sector estiman que un buen staging puede acelerar la venta un 50% y mejorar el precio final hasta un 15%.</p>
       <p>Los cambios de mayor impacto son los más sencillos: despersonalizar (quitar fotos y objetos personales), pintar paredes en tonos neutros, mejorar la iluminación, ordenar armarios y despejar superficies.</p>
-      <p>En NuevaHabitat incluimos sesión fotográfica profesional en el servicio de venta. Si tu piso necesita algo más, te orientamos sobre qué merece la pena invertir y qué no. <a href="vender.html">Solicita valoración gratuita</a>.</p>
+      <p>En NuevaHabitat incluimos reportaje fotográfico en el servicio de venta. Si tu piso necesita algo más, te orientamos sobre qué merece la pena invertir y qué no. <a href="vender.html">Solicita valoración gratuita</a>.</p>
     `
   },
   'primera-vivienda': {
@@ -159,7 +159,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>Si buscas <strong>vender piso en Barcelona</strong>, lo primero que te preguntarás es cuánto te costará la inmobiliaria. En el modelo tradicional, las comisiones suelen oscilar entre el 3% y el 5% del precio de venta — en un piso de 350.000 €, eso supone hasta 17.500 €.</p>
       <p>En <strong>NuevaHabitat</strong> aplicamos un modelo de <strong>precio fijo: 3.000 € + IVA</strong>, cobrados únicamente en el momento de la escritura. Sin permanencias, sin exclusivas abusivas y sin comisiones ocultas. Si no vendes, no pagas.</p>
-      <p>El servicio incluye valoración de mercado, reportaje fotográfico profesional, publicación en portales, filtrado de compradores cualificados, visitas, negociación y acompañamiento hasta la firma.</p>
+      <p>El servicio incluye valoración de mercado, reportaje fotográfico, publicación en portales, filtrado de compradores cualificados, visitas, negociación y acompañamiento hasta la firma.</p>
       <p>¿Quieres saber cuánto vale tu vivienda antes de decidir? <a href="vender.html">Solicita una valoración gratuita</a> sin compromiso. Si vives en Les Corts, también puedes ver el detalle del servicio en nuestra <a href="/vender-les-corts">landing de venta en Les Corts</a>.</p>
     `
   },

@@ -10,7 +10,7 @@ function nhBuyerEcosystemBlock() {
           <li><strong>Plataforma de vendedores en Barcelona</strong> — inmuebles en Eixample, Gràcia, Sants, L'Hospitalet, Badalona, Sant Cugat y todo el área metropolitana.</li>
           <li><strong>Vendedores que confían en nosotros</strong> — propietarios que prefieren vender con compradores cualificados, no con curiosos de portal.</li>
           <li><strong>Exclusiva off-market</strong> — viviendas que no suelen aparecer en portales inmobiliarios y que priorizamos para clientes registrados.</li>
-          <li><strong>Acceso antes que el mercado</strong> — Juan Cárdenas y el equipo te presentan oportunidades de la cartera privada antes de que salgan al público.</li>
+          <li><strong>Acceso antes que el mercado</strong> — El equipo de NuevaHabitat te presenta oportunidades de la cartera privada antes de que salgan al público.</li>
         </ul>
       </div>
       <div class="lc-nh-comprador-cards">
@@ -33,7 +33,7 @@ function nhBuyerProcesoBlock() {
     </div>
     <div class="lc-steps lc-steps-5 fade-up">
       <div class="lc-step"><div class="lc-step-num">1</div><h4>Registro y perfil</h4><p>Creas tu cuenta. Analizamos tu situación financiera, hipoteca y zonas de interés.</p></div>
-      <div class="lc-step"><div class="lc-step-num">2</div><h4>Reunión con tu agente</h4><p>Juan Cárdenas define contigo presupuesto real, barrios y tipo de vivienda.</p></div>
+      <div class="lc-step"><div class="lc-step-num">2</div><h4>Reunión con tu agente</h4><p>Tu asesor asignado define contigo presupuesto real, barrios y tipo de vivienda.</p></div>
       <div class="lc-step"><div class="lc-step-num">3</div><h4>Búsqueda activa</h4><p>Seleccionamos inmuebles de la cartera privada y del mercado que encajan contigo.</p></div>
       <div class="lc-step"><div class="lc-step-num">4</div><h4>Visitas y oferta</h4><p>Visitas presenciales registradas en tu panel. Negociamos el precio en tu nombre.</p></div>
       <div class="lc-step"><div class="lc-step-num">5</div><h4>Arras y escritura</h4><p>Reserva, arras, hipoteca y firma ante notario. Honorarios solo al cerrar.</p></div>

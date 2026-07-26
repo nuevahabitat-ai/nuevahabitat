@@ -16,7 +16,7 @@ function nhEcosystemIntroBlock() {
     <div class="text-center fade-up" style="max-width:820px;margin:0 auto 2.5rem">
       <span class="overline">El ecosistema NuevaHabitat</span>
       <h2 class="section-title">Dos plataformas, un mismo objetivo: cerrar operaciones reales en Barcelona</h2>
-      <p style="color:var(--gris-texto);line-height:1.75;font-size:1.0625rem">NuevaHabitat no es un portal ni una agencia que publica y espera. Somos un <strong>ecosistema inmobiliario</strong> con <strong>compradores cualificados registrados</strong> en un lado y <strong>vendedores con panel propio</strong> en el otro. Juan Cárdenas y el equipo conectan ambos mundos: filtramos solvencia, registramos cada visita y acompañamos hasta la escritura — con transparencia total en cada panel.</p>
+      <p style="color:var(--gris-texto);line-height:1.75;font-size:1.0625rem">NuevaHabitat no es un portal ni una agencia que publica y espera. Somos un <strong>ecosistema inmobiliario</strong> con <strong>compradores cualificados registrados</strong> en un lado y <strong>vendedores con panel propio</strong> en el otro. El equipo de NuevaHabitat conecta ambos mundos: filtramos solvencia, registramos cada visita y acompañamos hasta la escritura — con transparencia total en cada panel.</p>
     </div>
     <div class="lc-nh-eco-dual fade-up">
       <a href="#ecosistema-vendedor" class="lc-nh-eco-card">

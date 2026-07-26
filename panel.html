@@ -116,6 +116,22 @@
     .p-fav-rm{position:absolute;top:.5rem;right:.5rem;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:background .2s}
     .p-fav-rm:hover{background:#fee2e2}
 
+    /* Calendario disponibilidad */
+    .p-cal-intro{font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin-bottom:1rem}
+    .p-cal-form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .p-cal-hours{display:flex;flex-wrap:wrap;gap:.5rem}
+    .p-cal-hour{border:1.5px solid var(--crema-dark);background:var(--blanco);border-radius:8px;padding:.55rem .85rem;font-size:.8rem;font-family:var(--font-sans);cursor:pointer;transition:all .15s}
+    .p-cal-hour:hover{border-color:var(--oro)}
+    .p-cal-hour.sel{background:var(--negro);border-color:var(--negro);color:#fff}
+    .p-cal-saved-wrap{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--crema-dark)}
+    .p-cal-saved-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gris-medio);margin-bottom:.75rem}
+    .p-cal-saved{display:flex;align-items:center;gap:.75rem;padding:.65rem 0;border-bottom:1px solid var(--crema-dark);flex-wrap:wrap}
+    .p-cal-saved:last-child{border:none}
+    .p-cal-saved-tag{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:rgba(184,147,106,.12);color:var(--oro);border-radius:20px;padding:.2rem .55rem}
+    .p-cal-saved-msg{font-size:.84rem;color:var(--negro);flex:1;min-width:140px}
+    .p-cal-saved-date{font-size:.75rem;color:var(--gris-medio);white-space:nowrap}
+    .p-cal-empty{font-size:.82rem;color:var(--gris-medio)}
+
     @media(max-width:900px){
       .p-grid{grid-template-columns:1fr}
       .p-sidebar{position:fixed;left:0;top:0;bottom:0;width:min(280px,88vw);z-index:200;transform:translateX(-105%);transition:transform .25s ease;overflow-y:auto;box-shadow:var(--shadow-lg);border-radius:0}
@@ -125,6 +141,7 @@
       .p-mobile-menu{display:inline-flex!important}
       .p-stats{grid-template-columns:1fr 1fr}
       .p-form-grid{grid-template-columns:1fr}
+      .p-cal-form{grid-template-columns:1fr}
       .p-main{padding:1.25rem 0 calc(5.5rem + env(safe-area-inset-bottom, 0px))}
       .p-header{padding:.65rem 0}
       .p-header-inner{gap:.5rem}
@@ -270,6 +287,15 @@
             </div>
           </div>
 
+          <!-- Calendario disponibilidad -->
+          <div class="p-card">
+            <div class="p-card-title">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              Mi calendario de disponibilidad
+            </div>
+            <div id="panelCalendarResumen"></div>
+          </div>
+
           <!-- Inmuebles recientes (solo comprador) -->
           <div class="p-card" data-only="comprador">
             <div class="p-card-title">
@@ -352,7 +378,7 @@
               </div>
               <div class="p-step">
                 <div class="p-step-dot dot-pend">3</div>
-                <div class="p-step-body"><h4>Reportaje fotográfico</h4><p>Sesión profesional incluida en el precio. Tu inmueble se mostrará en su mejor versión.</p></div>
+                <div class="p-step-body"><h4>Reportaje fotográfico</h4><p>Reportaje fotográfico incluido en el precio. Tu inmueble se mostrará en su mejor versión.</p></div>
               </div>
               <div class="p-step">
                 <div class="p-step-dot dot-pend">4</div>
@@ -410,6 +436,7 @@
                 <p>Cuando haya compradores interesados, las visitas aparecerán aquí con fecha y hora.</p>
               </div>
             </div>
+            <div id="panelCalendarVendedor" style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--crema-dark)"></div>
           </div>
         </div>
 
@@ -426,6 +453,7 @@
                 <h4>Cargando visitas…</h4>
               </div>
             </div>
+            <div id="panelCalendarComprador" style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--crema-dark)"></div>
           </div>
           <div class="p-card" style="text-align:center">
             <p style="font-size:.9rem;color:var(--gris-texto);margin-bottom:1rem">¿Quieres visitar un inmueble? Puedes solicitarla directamente desde cualquier ficha.</p>
@@ -536,7 +564,9 @@
 </div>
 
 <script src="js/supabase.js"></script>
+<script src="js/leads.js"></script>
 <script src="js/notify.js"></script>
+<script src="js/panel-calendar.js"></script>
 <script src="js/site-config.js"></script>
 <script src="js/ga-config.js"></script>
 <script src="js/seo.js"></script>
@@ -798,6 +828,29 @@ async function initPanel() {
     await loadExpedienteTimeline('vendedor');
   }
   loadDocumentos();
+  await initPanelCalendars(tipo);
+}
+
+async function initPanelCalendars(tipo) {
+  if (!window.nhInitPanelCalendar || !currentUser) return;
+  let inmuebleId = null;
+  if (tipo === 'vendedor' && window.nhSupabase) {
+    const email = currentUser.email || '';
+    const { data: vend } = await window.nhSupabase.from('vendedores')
+      .select('inmueble_ref').eq('email', email).maybeSingle();
+    if (vend?.inmueble_ref) {
+      const { data: inm } = await window.nhSupabase.from('inmuebles')
+        .select('id').eq('ref', vend.inmueble_ref).maybeSingle();
+      inmuebleId = inm?.id || null;
+    }
+  }
+  const base = { user: currentUser, role: tipo, inmuebleId };
+  window.nhInitPanelCalendar({ ...base, rootId: 'panelCalendarResumen' });
+  if (tipo === 'comprador') {
+    window.nhInitPanelCalendar({ ...base, rootId: 'panelCalendarComprador' });
+  } else {
+    window.nhInitPanelCalendar({ ...base, rootId: 'panelCalendarVendedor' });
+  }
 }
 
 async function doLogout() {
