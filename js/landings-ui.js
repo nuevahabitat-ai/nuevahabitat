@@ -141,6 +141,8 @@
     }).join('');
 
     container.innerHTML = cards;
+    container.classList.add('visible');
+    if (window.nhObserveFadeUps) window.nhObserveFadeUps(container.parentElement || container);
   }
 
   function renderGuiasVendedor(container) {
@@ -166,6 +168,8 @@
     }).join('');
 
     container.innerHTML = cards;
+    container.classList.add('visible');
+    if (window.nhObserveFadeUps) window.nhObserveFadeUps(container.parentElement || container);
   }
 
   function applyTestimonialsVisibility() {

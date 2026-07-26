@@ -40,6 +40,12 @@
       section[style*="padding:100px"] { padding: 60px 0 !important; }
       section[style*="padding:80px"]  { padding: 48px 0 !important; }
       .cmpr-4col > div { padding: 1.5rem 1rem !important; }
+      .lc-section { padding: 2.75rem 0 !important; }
+      .page-hero-content { padding: 96px 0 52px; }
+      .lc-nh-comprador .section-title.light { font-size: clamp(1.45rem, 6vw, 2rem); }
+      .lc-pm-screens { grid-template-columns: 1fr !important; }
+      .propiedades-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .testimonios-grid { grid-template-columns: 1fr; }
     }
     /* NH_BUYER_PLATFORM_STYLES_START */
 .lc-nh-servicio-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:start}
@@ -124,8 +130,16 @@
       .lc-steps-6{grid-template-columns:repeat(2,1fr)!important}
       .lc-pm-body{grid-template-columns:1fr}
       .lc-pm-sidebar{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--crema-dark)}
+      .lc-nh-panel-grid{align-items:start}
     }
-    @media(max-width:600px){.lc-steps-6{grid-template-columns:1fr!important}.lc-pm-stats{grid-template-columns:1fr}.lc-pm-screens{grid-template-columns:1fr}}
+    @media(max-width:768px){
+      .lc-nh-panel-copy .btn,.lc-nh-comprador-copy~div .btn{width:100%;justify-content:center}
+      .lc-pm-screens{grid-template-columns:1fr!important;gap:.75rem}
+      .lc-pm-screen{padding:.85rem}
+      .lc-nh-compare-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+      .lc-nh-compare-table{min-width:520px}
+    }
+    @media(max-width:600px){.lc-steps-6{grid-template-columns:1fr!important}.lc-pm-stats{grid-template-columns:repeat(3,1fr)}.lc-pm-screens{grid-template-columns:1fr}}
 .lc-nh-comprador-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:start}
     .lc-nh-comprador-copy .lc-nh-lead{font-size:1.0625rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:1.25rem}
     .lc-nh-comprador-cards{display:grid;gap:1rem}
@@ -152,6 +166,15 @@
       .lc-nh-comprador-grid{grid-template-columns:1fr}
       .lc-steps-5{grid-template-columns:repeat(2,1fr)!important}
       .lc-pb-rec-grid{grid-template-columns:1fr}
+      .lc-nh-panel-grid{align-items:start}
+    }
+    @media(max-width:768px){
+      .lc-nh-comprador-grid{gap:1.5rem}
+      .lc-nh-comprador-cards{margin-top:.5rem}
+      .lc-nh-panel-grid{gap:1.5rem;margin-bottom:1.5rem}
+      .lc-pm-screens{display:grid;grid-template-columns:1fr!important;gap:.75rem}
+      .lc-pb-rec-grid{margin-top:1.25rem}
+      .lc-steps.lc-steps-5{gap:.75rem}
     }
     @media(max-width:600px){.lc-steps-5{grid-template-columns:1fr!important}}
 /* NH_BUYER_PLATFORM_STYLES_END */
@@ -509,6 +532,7 @@
         const loc  = [p.barrio,p.municipio].filter(Boolean).join(', ')||'Barcelona';
         return cardHtml('inmueble-detalle.html?id='+p.id, img, pr, p.titulo||'Inmueble', loc, p.habitaciones, p.m2_utiles, p.estado);
       }).join('');
+      if (window.nhObserveFadeUps) window.nhObserveFadeUps(g);
     } catch(_) { showEmpty('No se pudieron cargar los inmuebles.'); }
   }
   if(window.nhSupabase){ loadFromSupabase(); }

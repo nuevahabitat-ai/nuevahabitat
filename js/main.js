@@ -165,34 +165,76 @@
 /* ── Scroll Reveal (Intersection Observer) ─────────────────── */
 (function () {
   let observer;
+  let mobileFallbackTimer;
+
+  function isMobileViewport() {
+    return window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  function revealInViewport(root) {
+    const scope = root || document;
+    scope.querySelectorAll('.fade-up:not(.visible)').forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 120 && rect.bottom > -80) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  function revealAllFadeUps() {
+    document.querySelectorAll('.fade-up:not(.visible)').forEach((el) => {
+      el.classList.add('visible');
+    });
+  }
 
   function createObserver() {
     if (!('IntersectionObserver' in window)) return null;
     return new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08 });
+    }, {
+      threshold: 0.01,
+      rootMargin: isMobileViewport() ? '120px 0px 80px 0px' : '40px 0px 40px 0px',
+    });
   }
 
   function observeAll(root) {
+    revealInViewport(root);
     const els = (root || document).querySelectorAll('.fade-up:not(.visible)');
     if (!els.length) return;
     if (!observer) {
       observer = createObserver();
-      if (!observer) { els.forEach(el => el.classList.add('visible')); return; }
+      if (!observer) {
+        revealAllFadeUps();
+        return;
+      }
     }
-    els.forEach(el => observer.observe(el));
+    els.forEach((el) => observer.observe(el));
+
+    if (isMobileViewport()) {
+      clearTimeout(mobileFallbackTimer);
+      mobileFallbackTimer = setTimeout(revealAllFadeUps, 1800);
+    }
   }
 
-  // Observa los elementos del DOM inicial
-  observeAll();
+  function boot() {
+    observeAll();
+    window.addEventListener('load', () => observeAll(), { once: true });
+    window.addEventListener('pageshow', () => observeAll());
+  }
 
-  // Expone globalmente para re-observar tras carga dinámica
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
   window.nhObserveFadeUps = observeAll;
+  window.nhRevealFadeUps = revealAllFadeUps;
 })();
 
 

@@ -1729,6 +1729,50 @@ footer {
 .fade-up-delay-3 { transition-delay: .3s; }
 .fade-up-delay-4 { transition-delay: .4s; }
 
+@media (max-width: 768px) {
+  .fade-up {
+    transform: translateY(16px);
+  }
+  .lc-section {
+    padding: 2.75rem 0 !important;
+  }
+  .lc-nh-panel-grid,
+  .lc-nh-comprador-grid,
+  .lc-nh-servicio-grid {
+    gap: 1.5rem !important;
+  }
+  .lc-pm-wrap {
+    max-width: 100%;
+  }
+  .lc-pm-header {
+    flex-wrap: wrap;
+    gap: .5rem;
+  }
+  .lc-pm-body {
+    min-height: 0;
+  }
+  .lc-pm-sidebar {
+    padding: .5rem;
+    gap: .35rem;
+  }
+  .lc-pm-nav {
+    font-size: .625rem;
+    padding: .35rem .45rem;
+  }
+  .lc-nh-comprador .section-title.light,
+  .lc-nh-servicio .section-title.light {
+    font-size: clamp(1.45rem, 6vw, 2rem);
+    line-height: 1.2;
+  }
+  .nh-hub-barrio-grid,
+  .lc-pilar-grid {
+    gap: .85rem !important;
+  }
+  .nh-landing-card-body {
+    padding: 1rem;
+  }
+}
+
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .servicios-grid        { grid-template-columns: repeat(2, 1fr); }

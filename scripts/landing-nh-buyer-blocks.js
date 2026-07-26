@@ -175,6 +175,15 @@ function nhBuyerPlatformStyles() {
       .lc-nh-comprador-grid{grid-template-columns:1fr}
       .lc-steps-5{grid-template-columns:repeat(2,1fr)!important}
       .lc-pb-rec-grid{grid-template-columns:1fr}
+      .lc-nh-panel-grid{align-items:start}
+    }
+    @media(max-width:768px){
+      .lc-nh-comprador-grid{gap:1.5rem}
+      .lc-nh-comprador-cards{margin-top:.5rem}
+      .lc-nh-panel-grid{gap:1.5rem;margin-bottom:1.5rem}
+      .lc-pm-screens{display:grid;grid-template-columns:1fr!important;gap:.75rem}
+      .lc-pb-rec-grid{margin-top:1.25rem}
+      .lc-steps.lc-steps-5{gap:.75rem}
     }
     @media(max-width:600px){.lc-steps-5{grid-template-columns:1fr!important}}
   `;
