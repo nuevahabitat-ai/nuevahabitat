@@ -4,18 +4,18 @@ function nhBuyerEcosystemBlock() {
     <div class="lc-nh-comprador-grid fade-up">
       <div class="lc-nh-comprador-copy">
         <span class="overline" style="color:var(--oro)">Ecosistema de compradores</span>
-        <h2 class="section-title light">NuevaHabitat es una plataforma de compradores buscando vivienda en Barcelona</h2>
-        <p class="lc-nh-lead">No somos un portal donde cualquiera hace clic. Tenemos <strong>clientes compradores ya registrados</strong> en nuestra plataforma: cada uno está <strong>cualificado financieramente</strong>, conocemos sus condiciones de hipoteca, su capacidad de endeudamiento y su presupuesto real. Son personas <strong>preparadas para comprar en cualquier momento</strong>.</p>
+        <h2 class="section-title light">Inmuebles en exclusiva de vendedores que confían en NuevaHabitat</h2>
+        <p class="lc-nh-lead">No somos un portal donde cualquiera hace clic. Tenemos una <strong>plataforma propia para vendedores</strong> con inmuebles en toda Barcelona y área metropolitana: son propietarios que <strong>confían en NuevaHabitat</strong> para vender con criterio. Muchos de esos pisos son <strong>exclusivas off-market</strong> que no publicamos en Idealista, Fotocasa ni portales genéricos — y los ofrecemos <strong>en exclusiva a nuestros clientes compradores registrados</strong>.</p>
         <ul class="lc-nh-features">
-          <li><strong>Perfil financiero verificado</strong> — hipoteca preaprobada o liquidez acreditada antes de empezar la búsqueda.</li>
-          <li><strong>Búsqueda activa en el área metropolitana</strong> — Barcelona, L'Hospitalet, Badalona, Sant Cugat, Cornellà y municipios del entorno.</li>
-          <li><strong>Encaje con el vendedor</strong> — cada visita que organizamos cumple el estándar de precio y ratio de financiación del inmueble.</li>
-          <li><strong>Contacto constante</strong> — Juan Cárdenas y el equipo buscan viviendas activamente para cada comprador registrado.</li>
+          <li><strong>Plataforma de vendedores en Barcelona</strong> — inmuebles en Eixample, Gràcia, Sants, L'Hospitalet, Badalona, Sant Cugat y todo el área metropolitana.</li>
+          <li><strong>Vendedores que confían en nosotros</strong> — propietarios que prefieren vender con compradores cualificados, no con curiosos de portal.</li>
+          <li><strong>Exclusiva off-market</strong> — viviendas que no suelen aparecer en portales inmobiliarios y que priorizamos para clientes registrados.</li>
+          <li><strong>Acceso antes que el mercado</strong> — Juan Cárdenas y el equipo te presentan oportunidades de la cartera privada antes de que salgan al público.</li>
         </ul>
       </div>
       <div class="lc-nh-comprador-cards">
-        <div class="lc-nh-mini-card"><span>01</span><h3>Compradores cualificados</h3><p>Sabemos cuánto puedes pagar, tu hipoteca y tu plazo de compra.</p></div>
-        <div class="lc-nh-mini-card"><span>02</span><h3>Cartera privada</h3><p>Inmuebles en exclusiva que no suelen aparecer en portales genéricos.</p></div>
+        <div class="lc-nh-mini-card"><span>01</span><h3>Plataforma de vendedores</h3><p>Inmuebles en Barcelona de propietarios registrados que confían en NuevaHabitat.</p></div>
+        <div class="lc-nh-mini-card"><span>02</span><h3>Cartera privada</h3><p>Exclusivas off-market que no suelen publicarse en portales inmobiliarios.</p></div>
         <div class="lc-nh-mini-card"><span>03</span><h3>Panel comprador 24/7</h3><p>Visitas, favoritos, documentación y proceso guiado en un solo lugar.</p></div>
       </div>
     </div>
