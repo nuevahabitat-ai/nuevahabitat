@@ -104,12 +104,15 @@
           telefono,
           email: user.email,
           mensaje,
-          tipo: 'visita',
+          tipo: 'info',
           origen: role === 'vendedor' ? 'panel_disponibilidad_vendedor' : 'panel_disponibilidad_comprador',
           inmueble_id: inmuebleId || undefined,
+          perfil_id: user.id,
           template: 'disponibilidad',
           method: 'panel_calendar',
+          notifyExtra: { rol: role },
           extra: { landing: 'panel', rol: role },
+          errorMsg: false,
           onLeadCreated(row) { leadId = row?.id || null; },
         });
         if (!ok) throw new Error('No se pudo registrar la solicitud');
@@ -137,7 +140,11 @@
       if (typeof window.loadVisitasVendedor === 'function') window.loadVisitasVendedor();
     } catch (err) {
       console.error('panel-calendar', err);
-      window.nhToast?.('Error al guardar. Inténtalo de nuevo o contacta por WhatsApp.');
+      const msg = err?.message || err?.details || '';
+      const hint = /tipo_solicitud|inmueble_id|column/.test(msg)
+        ? ' Falta aplicar la migración 023 en Supabase.'
+        : '';
+      window.nhToast?.('Error al guardar. Inténtalo de nuevo o contacta por WhatsApp.' + hint);
     } finally {
       if (saveBtn) {
         saveBtn.disabled = false;

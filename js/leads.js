@@ -35,7 +35,7 @@
       tipo: opts.tipo || 'info',
       origen: opts.origen || 'web',
       ...(opts.inmueble_id ? { inmueble_id: opts.inmueble_id } : {}),
-      ...(opts.extra || {}),
+      ...(opts.perfil_id ? { perfil_id: opts.perfil_id } : {}),
     };
 
     try {
@@ -54,7 +54,7 @@
           tipo: row.tipo,
           template: opts.template || row.tipo,
           inmueble: opts.inmueble,
-          extra: opts.notifyExtra,
+          extra: opts.notifyExtra || opts.extra,
         });
       }
       opts.onLeadCreated?.(leadRow);
@@ -75,7 +75,9 @@
       return true;
     } catch (err) {
       console.error('nhSubmitLead', err);
-      window.nhToast?.(opts.errorMsg || 'Error al enviar. Llámanos al 603 656 587 o por WhatsApp.');
+      if (opts.errorMsg !== false) {
+        window.nhToast?.(opts.errorMsg || 'Error al enviar. Llámanos al 603 656 587 o por WhatsApp.');
+      }
       opts.onError?.(err);
       return false;
     }
