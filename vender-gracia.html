@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://www.nuevahabitat.com/vender-gracia"/>
   <meta property="og:title" content="Vender piso en Gràcia, Barcelona · Precio fijo 3.000€"/>
   <meta property="og:description" content="¿Vendes tu piso en Gràcia? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores con hipoteca preaprobada, panel digital y visitas en tu horario. Sin comisión del 6%."/>
-  <meta property="og:image" content="https://www.nuevahabitat.com/imagenes/agenteinmobiliario3.jpg"/>
+  <meta property="og:image" content="https://www.nuevahabitat.com/imagenes/interior5.jpg"/>
   <meta property="og:locale" content="es_ES"/>
   <meta property="og:site_name" content="NuevaHabitat"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -120,6 +120,22 @@
           "@type": "Answer",
           "text": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en Gràcia se venden en 60–90 días. Te damos una estimación en la valoración gratuita."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Un piso sin ascensor en Vila de Gràcia se vende peor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Se vende a un comprador distinto y a un precio ajustado, no necesariamente peor. Muchos compradores de Vila de Gràcia aceptan pisos sin ascensor a cambio de ubicación y carácter de finca; lo reflejamos en la valoración."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Diferenciáis precio entre Vila de Gràcia y Vallcarca?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Aunque comparten distrito, el precio por metro cuadrado y el tipo de comprador varían de forma notable entre el centro de Gràcia y zonas como Vallcarca o Penitents."
+        }
       }
     ]
   }
@@ -168,7 +184,21 @@
     .lc-pilar-card p{font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 .75rem}
     .lc-pilar-meta{font-size:.8125rem;color:var(--gris-medio);margin-bottom:.75rem}
     .lc-pilar-link{font-size:.875rem;font-weight:600;color:var(--oro)}
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
+    .lc-stats-wrap{margin-top:2rem}
+    .lc-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .lc-stat-box{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);padding:1.25rem;text-align:center}
+    .lc-stat-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gris-medio);margin-bottom:.4rem}
+    .lc-stat-value{font-family:var(--font-serif);font-size:1.375rem;color:var(--negro);font-weight:700}
+    .lc-stats-note{font-size:.8125rem;color:var(--gris-medio);margin-top:.85rem;text-align:center}
+    .lc-buyer-grid h3{font-family:var(--font-serif);color:var(--negro);margin-bottom:.5rem}
+    .lc-buyer-grid p{font-size:.9375rem;color:var(--gris-texto);line-height:1.7}
+    .lc-checklist{background:var(--crema);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin-top:2rem}
+    .lc-checklist h3{font-family:var(--font-serif);color:var(--negro);margin:0 0 .5rem}
+    .lc-checklist-intro{font-size:.9375rem;color:var(--gris-texto);margin-bottom:1rem}
+    .lc-checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem}
+    .lc-checklist li{display:flex;align-items:flex-start;gap:.5rem;font-size:.9375rem;color:var(--gris-texto);line-height:1.5}
+    .lc-checklist li svg{flex-shrink:0;color:var(--oro);margin-top:.15rem}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -185,7 +215,7 @@
 <nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
 <div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Gràcia</span></nav></div>
 <section class="lc-hero">
-  <div class="lc-hero-media"><img src="imagenes/agenteinmobiliario3.jpg" alt="Agente inmobiliario en Gràcia, Barcelona" fetchpriority="high" decoding="async"/></div>
+  <div class="lc-hero-media"><img src="imagenes/interior5.jpg" alt="Agente inmobiliario en Gràcia, Barcelona" fetchpriority="high" decoding="async"/></div>
   <div class="lc-hero-overlay"></div>
   <div class="container"><div class="lc-hero-content fade-up">
     <span class="lc-badge">Gràcia · 08012 · Barcelona</span>
@@ -214,8 +244,9 @@
     <div class="lc-prose fade-up">
       <span class="overline">Vender en Gràcia</span>
       <h2>Vender piso en Gràcia con precio fijo y compradores filtrados</h2>
-      <p>Gràcia combina Plaça de la Vila, metro L3, L4 y FGC con ambiente de barrio auténtico y alta demanda de familias y jóvenes profesionales. Si buscas <strong>vender piso en Gràcia</strong>, Vila de Gràcia, Camp d'en Grassot o Vallcarca, necesitas fijar el precio con ventas reales del distrito — no con medias genéricas de Barcelona.</p><p>Los pisos con terraza en Plaça del Sol, fincas en Travessera de Gràcia o áticos en Penitents compiten con muchas exclusivas que bloquean al propietario meses. NuevaHabitat evita ese riesgo: honorarios fijos de 3.000 € + IVA, panel digital 24/7, compradores con hipoteca preaprobada y visitas solo en tus horarios.</p><p>Valoramos con comparables de 08012, 08024 y 08006, preparamos la ficha con fotografía profesional y te acompañamos hasta la escritura desde nuestras oficinas en Les Corts. Si no vendes, no pagas comisión.</p>
+      <p>Gràcia combina Plaça de la Vila, metro L3, L4 y FGC con ambiente de barrio auténtico y alta demanda de familias y jóvenes profesionales. Si buscas <strong>vender piso en Gràcia</strong>, en Vila de Gràcia, Camp d'en Grassot, Vallcarca o Penitents, necesitas fijar el precio con ventas reales del distrito —no con medias genéricas de Barcelona—, porque el carácter de cada sub-zona pesa más aquí que en distritos más homogéneos.</p><h2>Un barrio con identidad propia dentro de la ciudad</h2><p>Vila de Gràcia funciona casi como un pueblo dentro de Barcelona: calles estrechas, plazas con vida de terraza todo el año y fincas antiguas que no siempre tienen ascensor. Ese carácter es justo lo que buscan muchos compradores, que pagan una prima por vivir cerca de Plaça del Sol o Plaça Rius i Taulet aunque signifique subir escaleras. Camp d'en Grassot, en el límite con el Eixample, ofrece edificios algo más modernos y buena conexión de metro, atrayendo a un comprador más orientado a la practicidad. Vallcarca y Penitents, con más desnivel y menos masificación turística, funcionan bien para quien busca tranquilidad y vivienda habitual a largo plazo, con precios algo más contenidos que en el centro de Gràcia.</p><h2>Por qué falla el pricing genérico en Gràcia</h2><p>Los pisos con terraza en Plaça del Sol, fincas reformadas en Travessera de Gràcia o áticos con vistas en Penitents compiten entre sí por perfiles de comprador distintos, y una valoración que promedie todo el distrito suele quedarse corta en las zonas más demandadas y alta en las periféricas. Además, muchas exclusivas de <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencias tradicionales</a> bloquean al propietario durante meses sin resultados, mientras el piso pierde frescura en los portales inmobiliarios.</p><h2>El factor Festa Major y la vida de plaza en la valoración</h2><p>Gràcia tiene un calendario social propio, la Festa Major de agosto es el ejemplo más conocido, pero la vida de plaza se mantiene activa todo el año, que forma parte del atractivo real del barrio para quien lo elige frente a otras zonas de Barcelona. Este factor cualitativo, difícil de cuantificar en una hoja de cálculo, sí influye en la decisión final de muchos compradores que ya conocen y han vivido el barrio antes de buscar piso, y conviene reflejarlo en la ficha del inmueble más allá de los metros cuadrados y la distribución.</p><h2>Pisos sin ascensor en Vila de Gràcia: cómo se venden bien</h2><p>Una parte significativa del parque de vivienda en Vila de Gràcia no tiene ascensor, lo que exige un enfoque de venta distinto al de un piso estándar: el precio debe ajustarse de forma realista según la planta, pero también conviene destacar activamente los elementos que compensan la ausencia de ascensor, luminosidad, techos altos, ubicación exacta respecto a las plazas principales. Un error habitual es fijar el precio como si el edificio tuviera ascensor y esperar semanas sin ofertas serias antes de corregirlo, perdiendo el impulso inicial de la publicación.</p><h2>Cómo trabajamos la venta en Gràcia</h2><p>NuevaHabitat valora con comparables reales cerrados en 08012, 08024 y 08006 —no con la media del distrito—, prepara la ficha con fotografía profesional que resalta terrazas, luz y carácter de la finca, y activa compradores de cartera con estudio hipotecario previo antes de abrir la agenda de visitas. Así evitamos las visitas de curiosos que alargan el proceso sin generar ofertas reales.</p><h2>Honorarios fijos y acompañamiento hasta notaría</h2><p>Precio fijo de 3.000 € + IVA, cobrado solo en escritura, frente al 6% + IVA de una agencia tradicional. Tu panel digital te permite seguir visitas, ofertas y documentación en tiempo real, y nuestras oficinas en Les Corts están a minutos en transporte público. Sin exclusividad obligatoria de doce meses ni comisión si finalmente no vendes.</p><h2>Perfil habitual de vendedor y comprador en Gràcia</h2><p>Quien vende en Gràcia suele ser un propietario de larga trayectoria en el barrio, a menudo tras una herencia, o un inversor que decide liquidar un piso que tenía alquilado. El comprador tipo combina jóvenes profesionales que ya vivían de alquiler en la zona y no quieren abandonarla, con familias que buscan el equilibrio entre ambiente de barrio y buena conexión de metro hacia el resto de Barcelona.</p>
       <p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Micro-zonas:</strong> Vila de Gràcia, Camp d'en Grassot, Vallcarca, Penitents.</p>
+      <div class="lc-stats-wrap fade-up"><div class="lc-stats-grid"><div class="lc-stat-box"><div class="lc-stat-label">Precio orientativo</div><div class="lc-stat-value">4.300 – 5.800 €/m²</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tiempo medio de venta</div><div class="lc-stat-value">60 – 90 días</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tendencia 2026</div><div class="lc-stat-value">Demanda estable de familias y jóvenes profesionales, con presión al alza en pisos con terraza</div></div></div><p class="lc-stats-note">Rangos orientativos de mercado 2026 basados en datos públicos del sector. No sustituyen una valoración personalizada de tu vivienda.</p></div>
     </div>
     <div class="lc-form fade-up" id="valorar">
       <span class="overline">Sin compromiso</span>
@@ -230,6 +261,10 @@
       </form>
     </div>
   </div>
+  <div class="container"><div class="lc-grid-2 lc-buyer-grid fade-up">
+    <div><h3>Perfil de comprador habitual</h3><p>Gràcia atrae sobre todo a compradores que ya conocen y buscan activamente el barrio: parejas de 30-45 años que valoran el ambiente de pueblo dentro de la ciudad, la vida de plaza (Plaça de la Vila, Plaça del Sol, Plaça Rius i Taulet) y la oferta de comercio de proximidad, además de familias que suben desde el Eixample buscando más metros por el mismo presupuesto. En Vallcarca y Penitents, más tranquilos y con desnivel, el comprador tipo busca vivienda habitual a largo plazo antes que inversión.</p></div>
+    <div><h3>Tipología de vivienda</h3><p>Mezcla de finca antigua de Vila de Gràcia —muchas veces sin ascensor y con distribución de pasillo largo— con edificios de los años 60-80 en Camp d'en Grassot y Vallcarca, generalmente con ascensor y superficies algo mayores. Los pisos con terraza o balcón practicable en plantas altas son los que más rápido reciben ofertas por encima del precio de salida.</p></div>
+  </div></div>
 </section>
 <section class="lc-section" style="background:var(--crema)" id="calc">
   <div class="container">
@@ -318,7 +353,12 @@
 </section>
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container" style="max-width:800px">
-    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en Gràcia — preguntas frecuentes</h2></div>
+    <div class="lc-checklist fade-up">
+    <h3>Checklist antes de vender en Gràcia</h3>
+    <p class="lc-checklist-intro">Puntos clave para acelerar la venta en Vila de Gràcia, Camp d'en Grassot, Vallcarca o Penitents.</p>
+    <ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Comprobar si la finca tiene ascensor o proyecto aprobado para instalarlo</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Cédula de habitabilidad y certificado energético vigentes</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Nota simple actualizada y recibos de comunidad al día</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Documentar terrazas o balcones practicables: suman valor real en Gràcia</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Revisar si el edificio está en zona de protección del Pla Especial de Gràcia</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Fotografiar la vida de barrio cercana (plaza, mercado) como argumento de venta</span></li></ul>
+  </div>
+    <div class="text-center fade-up" style="margin-bottom:2rem;margin-top:3rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en Gràcia — preguntas frecuentes</h2></div>
     <div class="faq-list fade-up"><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto cuesta vender un piso en Gràcia con NuevaHabitat?</button>
         <div class="faq-a"><div class="faq-a-inner">3.000 € + IVA, precio fijo cobrado únicamente en escritura. No pagas un 6% sobre el precio de venta como en muchas agencias tradicionales de Barcelona.</div></div>
@@ -337,6 +377,12 @@
       </div><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto tarda vender un piso en Gràcia?</button>
         <div class="faq-a"><div class="faq-a-inner">Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en Gràcia se venden en 60–90 días. Te damos una estimación en la valoración gratuita.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Un piso sin ascensor en Vila de Gràcia se vende peor?</button>
+        <div class="faq-a"><div class="faq-a-inner">Se vende a un comprador distinto y a un precio ajustado, no necesariamente peor. Muchos compradores de Vila de Gràcia aceptan pisos sin ascensor a cambio de ubicación y carácter de finca; lo reflejamos en la valoración.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Diferenciáis precio entre Vila de Gràcia y Vallcarca?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Aunque comparten distrito, el precio por metro cuadrado y el tipo de comprador varían de forma notable entre el centro de Gràcia y zonas como Vallcarca o Penitents.</div></div>
       </div></div>
     <div class="lc-kw fade-up"><strong>Búsquedas relacionadas:</strong> vender piso Gràcia · vender casa Gràcia Barcelona · inmobiliaria Gràcia precio fijo · vender vivienda 08012 · agencia inmobiliaria Vila de Gràcia · vender piso Vallcarca · comisión inmobiliaria Barcelona · valoración gratuita Gràcia</div>
   </div>

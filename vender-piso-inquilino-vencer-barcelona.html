@@ -115,6 +115,22 @@
           "@type": "Answer",
           "text": "Revisamos situación contractual. Una venta bien planteada incluye cláusulas realistas sobre entrega de posesión."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo empezar a preparar la venta antes de que se vaya el inquilino?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. La valoración, la documentación y parte de la estrategia se pueden preparar mientras el contrato sigue vigente, respetando siempre los derechos del arrendatario, para publicar el anuncio el mismo día que recuperas las llaves."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Debo reformar antes de vender un piso que estaba alquilado?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No siempre es necesario. En muchos casos basta con pintura y pequeñas reparaciones. Lo evaluamos en la valoración gratuita según el estado real de la vivienda."
+        }
       }
     ]
   },
@@ -194,7 +210,21 @@
     .lc-pilar-card p{font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 .75rem}
     .lc-pilar-meta{font-size:.8125rem;color:var(--gris-medio);margin-bottom:.75rem}
     .lc-pilar-link{font-size:.875rem;font-weight:600;color:var(--oro)}
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
+    .lc-stats-wrap{margin-top:2rem}
+    .lc-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .lc-stat-box{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);padding:1.25rem;text-align:center}
+    .lc-stat-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gris-medio);margin-bottom:.4rem}
+    .lc-stat-value{font-family:var(--font-serif);font-size:1.375rem;color:var(--negro);font-weight:700}
+    .lc-stats-note{font-size:.8125rem;color:var(--gris-medio);margin-top:.85rem;text-align:center}
+    .lc-buyer-grid h3{font-family:var(--font-serif);color:var(--negro);margin-bottom:.5rem}
+    .lc-buyer-grid p{font-size:.9375rem;color:var(--gris-texto);line-height:1.7}
+    .lc-checklist{background:var(--crema);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin-top:2rem}
+    .lc-checklist h3{font-family:var(--font-serif);color:var(--negro);margin:0 0 .5rem}
+    .lc-checklist-intro{font-size:.9375rem;color:var(--gris-texto);margin-bottom:1rem}
+    .lc-checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem}
+    .lc-checklist li{display:flex;align-items:flex-start;gap:.5rem;font-size:.9375rem;color:var(--gris-texto);line-height:1.5}
+    .lc-checklist li svg{flex-shrink:0;color:var(--oro);margin-top:.15rem}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -234,7 +264,7 @@
 </section>
 <section class="lc-section" style="background:var(--crema)">
   <div class="container lc-grid-2">
-    <div class="lc-prose fade-up"><p>Vender un <strong>piso en Barcelona cuando vence el contrato del inquilino</strong> es una ventana de oportunidad distinta a vender con inquilino dentro: puedes mostrar la vivienda vacía, hacer pequeñas mejoras y competir por compradores de vivienda habitual — no solo inversores. Pero el calendario es estrecho: hay que alinear fin de arrendamiento, devolución de fianza, posibles reparaciones, fotografía y salida al mercado sin perder el primer mes de demanda estacional.</p><p>El error más frecuente es publicar el día exacto en que el inquilino entrega llaves, sin haber preparado documentación ni precio. En barrios como Sants, el Eixample o Gràcia, quien llega al mercado con fotos profesionales y precio ajustado en la primera semana captura visitas que luego no recupera. Otro error: prometer al comprador entrega inmediata sin confirmar por escrito la fecha de salida del arrendatario.</p><p>En NuevaHabitat trabajamos ventas <em>pre-marketing</em>: valoración y estrategia mientras el contrato aún está en curso (respetando derechos del inquilino), reserva de fotos para la semana de entrega de llaves y difusión a cartera con hipoteca preaprobada el mismo día que el piso queda vacío — si tu situación legal lo permite.</p></div>
+    <div class="lc-prose fade-up"><p>Vender un <strong>piso en Barcelona cuando vence el contrato del inquilino</strong> es una ventana de oportunidad distinta a vender con inquilino dentro: puedes mostrar la vivienda vacía, hacer pequeñas mejoras y competir por compradores de vivienda habitual —no solo inversores—. Pero el calendario es estrecho: hay que alinear fin de arrendamiento, devolución de fianza, posibles reparaciones, fotografía y salida al mercado sin perder el primer mes de demanda estacional.</p><h2>Los dos errores más frecuentes en esta situación</h2><p>El error más habitual es publicar el día exacto en que el inquilino entrega llaves, sin haber preparado documentación ni precio previamente. En barrios como Sants, el Eixample o Gràcia, quien llega al mercado con fotos profesionales y precio ajustado desde la primera semana captura visitas que luego no recupera si se retrasa. El segundo error frecuente es prometer al comprador entrega inmediata sin confirmar por escrito la fecha de salida del arrendatario, lo que genera tensión en la negociación si el inquilino se retrasa incluso unos días.</p><h2>Por qué conviene preparar la venta antes de que el piso quede libre</h2><p>Muchos propietarios esperan a tener el piso completamente vacío para empezar a moverse, perdiendo semanas valiosas. Es posible —respetando siempre los derechos del inquilino durante el contrato vigente— preparar la valoración, la documentación y hasta parte de la estrategia de precio mientras el arrendamiento sigue activo, de modo que el anuncio esté listo para publicarse el mismo día en que se recuperan las llaves.</p><h2>Reparaciones y puesta a punto tras la salida del inquilino</h2><p>Es habitual que, tras años de alquiler, la vivienda necesite pequeñas reparaciones antes de mostrarse a compradores de vivienda habitual: pintura, revisión de electrodomésticos o arreglos menores. Presupuestar y planificar estas tareas con antelación evita que el piso quede varias semanas fuera de mercado justo cuando podría estar captando las primeras visitas.</p><h2>Qué pasa si el inquilino pide prorrogar unos días más</h2><p>Es habitual que, cerca de la fecha de salida, el inquilino solicite unos días o semanas adicionales por motivos personales de mudanza. Aunque no siempre existe obligación legal de concederlos, negociar con flexibilidad razonable —a cambio, por ejemplo, de facilitar el acceso para hacer fotos o mostrar el piso antes de la salida definitiva— suele ser más productivo que una postura rígida que podría derivar en tensiones innecesarias, especialmente si ya tienes visitas de compradores programadas para justo después de la fecha inicialmente prevista.</p><h2>Cómo aprovechar el cambio de ciclo de comprador tras la salida</h2><p>Mientras un <a href="/vender-piso-alquilado-barcelona">piso alquilado</a> atrae principalmente a inversores, un piso que queda libre tras la salida de un inquilino abre la puerta a un perfil de comprador completamente distinto: familias y parejas que buscan vivienda habitual y que, en igualdad de condiciones, suelen pagar más que un inversor centrado únicamente en la rentabilidad del alquiler. Comunicar claramente esta transición en el anuncio, en lugar de mantener el histórico de «piso alquilado» en la descripción, ayuda a captar la atención de este comprador de mayor disposición a pagar precio de mercado completo.</p><h2>Cómo trabajamos esta transición en NuevaHabitat</h2><p>En NuevaHabitat trabajamos ventas <em>pre-marketing</em>: valoración y estrategia mientras el contrato aún está en curso (respetando derechos del inquilino), reserva de fotos para la semana de entrega de llaves y difusión a cartera con hipoteca preaprobada el mismo día que el piso queda vacío —si tu situación legal lo permite—.</p><h2>Qué hacer con la fianza al finalizar el contrato</h2><p>La devolución de la fianza depositada al inicio del arrendamiento debe gestionarse conforme a la normativa vigente, verificando el estado de la vivienda respecto al inventario inicial antes de proceder a su liquidación. Resolver este trámite con claridad y rapidez evita reclamaciones posteriores por parte del inquilino que puedan complicar innecesariamente el cierre de la relación arrendaticia justo cuando ya estás centrado en preparar la venta.</p><h2>Cómo aprovechar el margen entre el aviso de no renovación y la salida efectiva</h2><p>El periodo entre la comunicación de no renovación del contrato y la fecha efectiva de salida del inquilino es una ventana de tiempo valiosa que muchos propietarios desaprovechan: es el momento ideal para encargar la valoración, reunir la documentación legal y contactar con un fotógrafo profesional, de modo que en cuanto se recuperen las llaves el anuncio pueda publicarse de inmediato sin perder ni una semana de exposición en el mercado.</p></div>
     <div class="lc-form fade-up" id="valorar">
       <span class="overline">Sin compromiso</span>
       <h2 style="font-size:1.5rem;margin:.35rem 0 1rem">Solicitar valoración gratuita</h2>
@@ -253,6 +283,11 @@
   <div class="container">
     <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">Marco legal</span><h2 class="section-title">Aspectos legales al vender cuando termina el alquiler en Barcelona</h2></div>
     <div class="lc-legal-grid fade-up"><div class="lc-legal-card fade-up"><h3>Fin natural del contrato</h3><p>Si el arrendamiento llega a su fin y el inquilino no renueva, debe restituir la vivienda en condiciones contractuales. Revisa cláusulas de preaviso, estado de la finca y devolución de fianza en el INCASÒL.</p></div><div class="lc-legal-card fade-up"><h3>Visitas antes de la entrega de llaves</h3><p>Con contrato vigente puedes enseñar el piso con preaviso razonable al inquilino. Planificar visitas en las últimas semanas puede acelerar la venta post-entrega, siempre respetando LAU y intimidad del arrendatario.</p></div><div class="lc-legal-card fade-up"><h3>Entrega al comprador vs fecha de escritura</h3><p>El comprador de vivienda habitual suele exigir piso vacío. Debe quedar claro en arras si la entrega es en firma o antes, y que no hay ocupantes ni contratos pendientes.</p></div><div class="lc-legal-card fade-up"><h3>Plusvalía e IRPF</h3><p>Vender tras un periodo de alquiler no cambia la tributación base, pero el tiempo de tenencia y las mejoras realizadas sí afectan. Te orientamos sobre documentación fiscal habitual; casos complejos requieren asesor.</p></div></div>
+    <div class="lc-checklist fade-up">
+    <h3>Checklist para vender cuando el inquilino está por salir</h3>
+    <p class="lc-checklist-intro">Prepara estos puntos mientras el contrato sigue vigente, para no perder tiempo tras la entrega de llaves.</p>
+    <ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Confirmar por escrito la fecha exacta de salida del inquilino</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Revisar estado de fianza depositada en el INCASÒL</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Presupuestar reparaciones o pintura necesarias tras la salida</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Cédula de habitabilidad y certificado energético vigentes</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Preparar valoración y documentación mientras el contrato sigue activo</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Planificar sesión de fotos para la semana de entrega de llaves</span></li></ul>
+  </div>
   </div>
 </section>
 <section class="lc-section" style="background:var(--negro);color:#fff">
@@ -301,6 +336,12 @@
       </div><div class="faq-item">
         <button type="button" class="faq-q">¿Qué pasa si el inquilino no entrega en la fecha?</button>
         <div class="faq-a"><div class="faq-a-inner">Revisamos situación contractual. Una venta bien planteada incluye cláusulas realistas sobre entrega de posesión.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Puedo empezar a preparar la venta antes de que se vaya el inquilino?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. La valoración, la documentación y parte de la estrategia se pueden preparar mientras el contrato sigue vigente, respetando siempre los derechos del arrendatario, para publicar el anuncio el mismo día que recuperas las llaves.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Debo reformar antes de vender un piso que estaba alquilado?</button>
+        <div class="faq-a"><div class="faq-a-inner">No siempre es necesario. En muchos casos basta con pintura y pequeñas reparaciones. Lo evaluamos en la valoración gratuita según el estado real de la vivienda.</div></div>
       </div></div>
     <div class="lc-kw"><strong>Búsquedas relacionadas:</strong> vender piso inquilino contrato vencer barcelona · fin contrato alquiler venta · vender piso libre barcelona · cuando acaba alquiler vender · precio fijo inmobiliaria barcelona</div>
   </div>

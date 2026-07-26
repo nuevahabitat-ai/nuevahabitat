@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Vender tu vivienda en Barcelona · NuevaHabitat</title>
-  <meta name="description" content="Vende tu piso en Barcelona por 3.000€ + IVA. Precio fijo, sin comisiones y cobro solo en escritura. Proceso completo con panel digital." />
+  <title>Vender piso en Barcelona sin comisión del 6% · Precio fijo 3.000€ · NuevaHabitat</title>
+  <meta name="description" content="Vende tu piso en Barcelona por 3.000€ + IVA, sin la comisión del 6% de una agencia tradicional ni el riesgo de vender solo. Precio fijo, cobro solo en escritura, compradores cualificados." />
   
   <!-- SEO & Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://www.nuevahabitat.com/vender" />
-  <meta property="og:title"       content="Vender tu vivienda en Barcelona · NuevaHabitat" />
-  <meta property="og:description" content="Vende tu piso en Barcelona por 3.000€ + IVA. Precio fijo, sin comisiones y cobro solo en escritura. Proceso completo con panel digital." />
+  <meta property="og:title"       content="Vender piso en Barcelona sin comisión del 6% · Precio fijo 3.000€ · NuevaHabitat" />
+  <meta property="og:description" content="Vende tu piso en Barcelona por 3.000€ + IVA, sin la comisión del 6% de una agencia tradicional ni el riesgo de vender solo. Precio fijo, cobro solo en escritura, compradores cualificados." />
   <meta property="og:image"       content="https://www.nuevahabitat.com/imagenes/inmobiliario1.jpg" />
   <meta property="og:locale"      content="es_ES" />
   <meta property="og:site_name"   content="NuevaHabitat" />
   <meta name="twitter:card"       content="summary_large_image" />
-  <meta name="twitter:title"      content="Vender tu vivienda en Barcelona · NuevaHabitat" />
-  <meta name="twitter:description" content="Vende tu piso en Barcelona por 3.000€ + IVA. Precio fijo, sin comisiones y cobro solo en escritura. Proceso completo con panel digital." />
+  <meta name="twitter:title"      content="Vender piso en Barcelona sin comisión del 6% · Precio fijo 3.000€ · NuevaHabitat" />
+  <meta name="twitter:description" content="Vende tu piso en Barcelona por 3.000€ + IVA, sin la comisión del 6% de una agencia tradicional ni el riesgo de vender solo. Precio fijo, cobro solo en escritura, compradores cualificados." />
   <meta name="twitter:image"      content="https://www.nuevahabitat.com/imagenes/inmobiliario1.jpg" />
   <link rel="canonical"           href="https://www.nuevahabitat.com/vender" />
 <link rel="stylesheet" href="css/styles.css" />
@@ -185,6 +185,35 @@
     }
     @media(max-width:480px) {
       .proceso-grid { grid-template-columns: 1fr !important; }
+    }
+    /* Bloques de contenido "particular vs agencia" (reutiliza el lenguaje visual de las landings SEO) */
+    .lc-prose { max-width: 820px; margin: 0 auto; }
+    .lc-prose p, .lc-prose li { font-size: 1rem; line-height: 1.8; color: var(--gris-texto); margin-bottom: 1rem; }
+    .lc-prose h2, .lc-prose h3 { font-family: var(--font-serif); color: var(--negro); margin: 1.25rem 0 .65rem; }
+    .lc-compare { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .lc-compare th, .lc-compare td { padding: .85rem 1rem; text-align: left; border-bottom: 1px solid var(--crema-dark); font-size: .875rem; vertical-align: top; }
+    .lc-compare th { background: var(--negro); color: #fff; font-size: .75rem; text-transform: uppercase; }
+    .lc-compare .win { background: #f0fdf4; color: #166534; font-weight: 600; }
+    .lc-compare .lose { background: #fef2f2; color: #991b1b; }
+    .lc-checklist { background: var(--crema); border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-top: 2rem; }
+    .lc-checklist h3 { font-family: var(--font-serif); color: var(--negro); margin: 0 0 .5rem; }
+    .lc-checklist-intro { font-size: .9375rem; color: var(--gris-texto); margin-bottom: 1rem; }
+    .lc-checklist ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: .65rem 1.5rem; }
+    .lc-checklist li { display: flex; align-items: flex-start; gap: .5rem; font-size: .9375rem; color: var(--gris-texto); line-height: 1.5; }
+    .lc-checklist li svg { flex-shrink: 0; color: var(--oro); margin-top: .15rem; }
+    .lc-pilar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .lc-pilar-card { display: block; background: #fff; border: 1px solid var(--crema-dark); border-radius: var(--radius-md); padding: 1.5rem; text-decoration: none; color: inherit; transition: border-color .2s, box-shadow .2s; height: 100%; }
+    .lc-pilar-card:hover { border-color: var(--oro); box-shadow: var(--shadow-md); }
+    .lc-pilar-tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--oro); margin-bottom: .5rem; }
+    .lc-pilar-card h3 { font-family: var(--font-serif); font-size: 1.125rem; margin: 0 0 .5rem; color: var(--negro); }
+    .lc-pilar-card p { font-size: .9rem; color: var(--gris-texto); line-height: 1.65; margin: 0 0 .75rem; }
+    .lc-pilar-link { font-size: .875rem; font-weight: 600; color: var(--oro); }
+    @media(max-width: 900px) {
+      .lc-checklist ul { grid-template-columns: 1fr; }
+      .lc-pilar-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width: 600px) {
+      .lc-pilar-grid { grid-template-columns: 1fr; }
     }
     /* Modal vendedor/valoración */
     #vender-modal {
@@ -357,9 +386,9 @@
   <div class="page-hero-overlay"></div>
   <div class="container">
     <div class="page-hero-content fade-up">
-      <span class="overline">Vende tu vivienda</span>
-      <h1>Vendemos tu piso<br/>por 3.000&nbsp;€</h1>
-      <p>Precio fijo sin comisiones. Fotografía profesional, difusión entre compradores cualificados y acompañamiento completo. Cobras el día de la escritura.</p>
+      <span class="overline">Vende tu vivienda sin comisión del 6%</span>
+      <h1>Vende tu piso en Barcelona<br/>por 3.000&nbsp;€, no por el 6%</h1>
+      <p>Ni agencia tradicional al 3-6% ni vender solo en portales sin filtro: precio fijo, fotografía profesional, compradores cualificados con hipoteca preaprobada y acompañamiento completo hasta notaría. Cobras el día de la escritura, no antes.</p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap">
         <button onclick="openVenderModal('vender')" class="btn btn-gold btn-lg">Quiero vender</button>
         <button onclick="openVenderModal('valoracion')" class="btn btn-outline-light btn-lg">Valorar mi inmueble</button>
@@ -555,6 +584,60 @@
   </div>
 </section>
 
+<!-- PARTICULAR VS AGENCIA: contenido de autoridad -->
+<section class="lc-section" style="background:var(--blanco);padding:5rem 0">
+  <div class="container">
+    <div class="text-center fade-up" style="margin-bottom:2.5rem">
+      <span class="overline">La decisión que más dinero mueve</span>
+      <h2 class="section-title">¿Agencia tradicional al 6%, vender por tu cuenta<br/>o precio fijo con NuevaHabitat?</h2>
+    </div>
+    <div class="lc-prose fade-up">
+      <p>Vender un piso en Barcelona pasa casi siempre por la misma decisión: firmar con una <strong>agencia tradicional</strong> que cobra un porcentaje (habitualmente 3-6% + IVA), intentarlo <strong>por tu cuenta</strong> en Idealista o Fotocasa para ahorrarte esa comisión, o buscar un modelo intermedio. Cada opción tiene un coste real que pocas veces se compara en euros, no solo en porcentaje.</p>
+      <h3>La comisión del 6% en números</h3>
+      <p>Sobre un piso de 450.000 € —precio habitual en zonas como Eixample, Gràcia o Les Corts—, un 6% + IVA supone más de <strong>32.000 €</strong> en honorarios. Esa cifra se paga aunque la venta se cierre en dos meses o en diez, y aunque el comprador llegue por una recomendación tuya, si firmaste exclusiva. Es, después de impuestos, el segundo mayor coste de toda la operación.</p>
+      <h3>Vender por tu cuenta: lo que ahorras y lo que asumes</h3>
+      <p>Vender <a href="/vender-piso-sin-exclusividad-barcelona">como particular</a> o <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona">por tu cuenta</a> elimina la comisión, pero traslada a tu calendario el filtro de compradores solventes, la negociación de arras, la revisión de documentación (nota simple, cédula, certificado energético, ITE) y la coordinación de visitas en horario laboral. El error más habitual —fijar el precio por comparación con anuncios activos, no con cierres reales— puede costar entre 20.000 y 40.000 € en rebaja posterior.</p>
+      <h3>El modelo de precio fijo: por qué cambia el incentivo</h3>
+      <p>Un modelo de <strong>precio fijo, cobrado solo en escritura</strong>, alinea el incentivo de forma distinta al del porcentaje: el profesional solo cobra si la venta se cierra, no importa si tarda ocho o dieciséis semanas. NuevaHabitat trabaja así —<strong>3.000 € + IVA únicamente al firmar</strong>— cubriendo valoración con comparables reales, fotografía profesional, difusión a cartera con hipoteca preaprobada, visitas en tu horario y acompañamiento legal hasta notaría. Sin exclusiva abusiva de doce meses ni penalización por rescisión.</p>
+    </div>
+    <div style="overflow-x:auto;margin-top:2.5rem">
+      <table class="lc-compare fade-up">
+        <thead><tr><th>Modelo</th><th>Coste en un piso de 450.000 €</th><th>Riesgo principal</th></tr></thead>
+        <tbody>
+          <tr><td>Agencia tradicional (~6% + IVA)</td><td>~32.670 €</td><td class="lose">Exclusiva larga, coste alto aunque encuentres tú al comprador</td></tr>
+          <tr><td>Particular en portales (Idealista/Fotocasa)</td><td>Anuncio + decenas de horas</td><td>Curiosos sin financiación, arras mal redactadas</td></tr>
+          <tr><td>Por tu cuenta, sin portal</td><td>0 € comisión</td><td>Alcance muy limitado, operación informal</td></tr>
+          <tr><td>NuevaHabitat precio fijo</td><td class="win">3.630 €</td><td class="win">Sin venta, sin factura. Acompañamiento real hasta notaría</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="lc-checklist fade-up">
+      <h3>Checklist antes de decidir cómo vender tu piso</h3>
+      <p class="lc-checklist-intro">Responde a esto antes de firmar exclusiva o publicar como particular:</p>
+      <ul>
+        <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>¿Tu precio de salida se apoya en comparables cerrados, no en anuncios activos?</li>
+        <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>¿Tienes tiempo semanal disponible para visitas y gestiones durante meses?</li>
+        <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>¿Sabes verificar si un comprador tiene financiación real aprobada?</li>
+        <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>¿Conoces la duración y penalización de la exclusiva antes de firmarla?</li>
+        <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>¿Tienes lista la documentación (nota simple, ITE, certificado energético)?</li>
+        <li><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>¿Has calculado el coste mensual (comunidad, IBI, hipoteca) de seguir sin vender?</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GUÍAS VENDEDOR: comparativas y situaciones -->
+<section class="lc-section" style="background:var(--crema);padding:5rem 0">
+  <div class="container">
+    <div class="text-center fade-up" style="margin-bottom:2.5rem">
+      <span class="overline">Guías vendedor</span>
+      <h2 class="section-title">Comparativas y situaciones para decidir con datos</h2>
+      <p style="color:var(--gris-texto);max-width:640px;margin:0 auto">Cada guía compara costes reales, plazos y riesgos según tu situación: herencia, alquiler, traslado, prisa por vender o dudas entre particular y agencia.</p>
+    </div>
+    <div class="fade-up lc-pilar-grid" data-nh-guias-vendedor></div>
+  </div>
+</section>
+
 <!-- FIRMACERT -->
 <section class="firmacert-section alt">
   <div class="container">
@@ -598,6 +681,14 @@
       <div class="faq-item">
         <button class="faq-q" type="button">¿Qué es FIRMACERT y está incluido?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
         <div class="faq-a"><p class="faq-a-inner">Sí, está incluido. FIRMACERT es firma electrónica avanzada conforme a eIDAS para arras, reservas y documentación. Firmas con validez legal desde el móvil u ordenador.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">¿Cuánto cobra una inmobiliaria en Barcelona frente a NuevaHabitat?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+        <div class="faq-a"><p class="faq-a-inner">La mayoría de agencias tradicionales cobran entre 3% y 6% + IVA del precio de venta. En un piso de 450.000 € son más de 27.000-32.000 €. NuevaHabitat cobra 3.000 € + IVA fijos, solo en escritura.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">¿Me conviene más vender como particular o con NuevaHabitat?<svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg></button>
+        <div class="faq-a"><p class="faq-a-inner">Depende de tu tiempo disponible y experiencia negociando. Comparamos ambas opciones con datos reales en nuestra <a href="/vender-piso-sin-exclusividad-barcelona">guía de venta sin exclusividad</a> y en <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona">por tu cuenta vs NuevaHabitat</a>.</p></div>
       </div>
     </div>
   </div>

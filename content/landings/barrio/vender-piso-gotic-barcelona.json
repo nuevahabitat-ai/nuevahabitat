@@ -7,13 +7,27 @@
   "breadcrumbCurrent": "Gòtic",
   "priority": 0.88,
   "testimonials": false,
-  "postalCodes": ["08002"],
-  "zonas": ["Plaça Sant Jaume", "Plaça Reial", "Carrer del Call", "Catedral"],
+  "postalCodes": [
+    "08002"
+  ],
+  "zonas": [
+    "Plaça Sant Jaume",
+    "Plaça Reial",
+    "Carrer del Call",
+    "Catedral"
+  ],
   "inmueblesQuery": "Gòtic",
   "ejemploPrecio": 550000,
   "ahorro": "30.000",
+  "datosMercado": {
+    "precioM2": "4.700 – 6.300 €/m²",
+    "tiempoVenta": "60 – 95 días",
+    "tendencia": "Demanda internacional sostenida, sensible a la normativa de vivienda turística"
+  },
+  "perfilComprador": "El Gòtic recibe un comprador muy mixto: inversores que buscan rentabilidad (con especial atención a la normativa vigente sobre licencias de vivienda de uso turístico), compradores internacionales que quieren vivir en pleno centro histórico y residentes locales de larga trayectoria en el barrio que buscan reposicionarse dentro de la misma zona. Cada perfil valora de forma distinta el ruido, la afluencia turística y el estado de conservación del edificio.",
+  "tipologiaEdificios": "Predomina la finca histórica, en muchos casos de origen medieval o renacentista con reformas posteriores, sin ascensor en un porcentaje relevante de edificios, techos altos y distribución irregular. Los pisos reformados con luz natural directa (no todos la tienen, por las calles estrechas) tienen una prima de precio muy superior a los interiores sin reformar.",
   "origen_lead": "vender-piso-gotic-barcelona",
-  "heroImage": "imagenes/interior11.jpg",
+  "heroImage": "imagenes/equipo2.jpg",
   "heroImageAlt": "Interior de piso en el Barri Gòtic, Barcelona",
   "meta": {
     "title": "Vender piso en el Gòtic, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
@@ -24,20 +38,70 @@
     "h1": "¿Vendes tu piso en el Gòtic?",
     "lead": "Vende en el Barri Gòtic con <strong>honorarios fijos de 3.000€ + IVA</strong>, compradores cualificados y visitas en tu horario — sin la comisión del 6% de las agencias tradicionales del centro."
   },
-  "argumento_principal": "<p>El Gòtic combina finca histórica, alta demanda turística y compradores muy dispares: desde inversores que buscan rentabilidad hasta parejas que quieren vivir en el centro histórico de Barcelona. Vender aquí exige algo que muchas agencias generalistas no hacen bien: <strong>fijar el precio según el tipo de comprador real de la zona</strong>, no solo por el metro cuadrado medio del barrio. Un piso reformado con luz natural en el Gòtic no se vende igual que uno interior en un edificio del siglo XVI sin ascensor, aunque estén en la misma calle.</p><p>En NuevaHabitat empezamos por eso: una valoración gratuita que tiene en cuenta el edificio, la finca y el tipo de comprador que mejor encaja con tu piso — con honorarios fijos de 3.000 € + IVA, cobrados solo en escritura, sin el 6% habitual de las agencias tradicionales del centro.</p>",
+  "argumento_principal": "<p>El Gòtic combina finca histórica, alta demanda turística y compradores muy dispares: desde inversores que buscan rentabilidad hasta parejas que quieren vivir en el centro histórico de Barcelona. Vender aquí exige algo que muchas agencias generalistas no hacen bien: <strong>fijar el precio según el tipo de comprador real de la zona</strong>, no solo por el metro cuadrado medio del barrio. Un piso reformado con luz natural en el Gòtic no se vende igual que uno interior en un edificio del siglo XVI sin ascensor, aunque estén en la misma calle.</p><h2>Un barrio museo con vida real dentro</h2><p>Vivir y vender en el Gòtic significa convivir con una de las mayores concentraciones de patrimonio histórico de Europa: la Catedral, la Plaça del Rei, el Call y la Plaça Reial marcan el carácter de cada calle. Esa singularidad atrae a un comprador dispuesto a pagar una prima por vivir en el centro histórico, pero también exige que el vendedor entienda las limitaciones del edificio: muchas fincas están protegidas, lo que condiciona qué reformas son posibles y a qué velocidad se pueden ejecutar antes de la venta.</p><h2>El impacto de la normativa de vivienda turística</h2><p>Una parte importante del comprador inversor del Gòtic pregunta desde la primera visita por la situación de licencias de vivienda de uso turístico del edificio. Ser transparentes con esta información desde el anuncio evita perder tiempo con compradores cuyo plan de inversión no encaja con la realidad normativa vigente, y da más seriedad frente a quienes sí siguen interesados.</p><h2>Por qué la luz natural marca tanto el precio aquí</h2><p>Las calles estrechas del Gòtic hacen que muchos pisos interiores reciban poca luz directa, mientras que los que dan a plazas o calles más anchas —Plaça Reial, Plaça del Pi, Avinguda de la Catedral— alcanzan precios claramente superiores a la media del barrio. Reflejar esta diferencia en la valoración inicial evita expectativas de precio poco realistas que alargan la venta innecesariamente.</p><h2>Fincas protegidas: qué se puede reformar y qué no</h2><p>Una parte significativa de los edificios del Gòtic cuenta con algún nivel de protección patrimonial, lo que limita qué reformas se pueden ejecutar en fachadas, elementos estructurales originales o distribuciones históricas del inmueble. Antes de invertir en una reforma pensada para revalorizar el piso de cara a la venta, conviene verificar qué actuaciones están permitidas por la normativa de patrimonio, ya que una reforma no autorizada puede generar problemas legales que compliquen la venta más adelante, incluso si estéticamente el resultado es atractivo para el comprador.</p><h2>Cómo se comporta el mercado en calles con más o menos afluencia turística</h2><p>Dentro del propio Gòtic, calles con alta afluencia turística como las cercanas a la Plaça Reial o la Catedral pueden generar ruido y tránsito constante que algunos compradores valoran negativamente para vivienda habitual, mientras que otros lo ven como una ventaja para uso de inversión o alquiler turístico. Identificar correctamente si tu calle concreta encaja mejor con un comprador residencial o con un perfil inversor, y dirigir la comercialización en consecuencia, evita perder tiempo mostrando el piso a compradores cuyo objetivo no encaja con la realidad de la ubicación.</p><h2>Cómo lo abordamos en NuevaHabitat</h2><p>Empezamos por una <a href=\"/cuanto-vale-mi-piso-barcelona\">valoración gratuita</a> que tiene en cuenta el edificio, la finca, la orientación y el tipo de comprador que mejor encaja con tu piso —inversor, comprador internacional o residente local—, con honorarios fijos de 3.000 € + IVA, cobrados solo en escritura, sin el 6% habitual de las agencias tradicionales del centro histórico.</p><h2>Perfil habitual de vendedor en el Gòtic</h2><p>Quien vende en el Gòtic suele ser un propietario que heredó la finca de generaciones anteriores o un inversor que adquirió el piso años atrás para alquiler turístico y ahora decide liquidar la inversión. En ambos casos, la documentación sobre licencias y protección patrimonial del edificio es determinante para agilizar la venta frente a un comprador informado que comparará varias opciones similares del centro histórico.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender en el Gòtic",
+    "intro": "El carácter histórico del edificio exige revisar puntos que no aparecen en zonas más modernas de la ciudad.",
+    "items": [
+      "Confirmar si la finca tiene protección patrimonial que limite reformas",
+      "Revisar situación de licencia de vivienda de uso turístico del edificio",
+      "Cédula de habitabilidad y certificado energético vigentes",
+      "Nota simple actualizada del Registro de la Propiedad",
+      "Documentar orientación y horas de luz natural real del piso",
+      "Recibos de comunidad e IBI al día"
+    ]
+  },
   "faq": [
-    { "q": "¿Cuánto cuesta vender un piso en el Gòtic con NuevaHabitat?", "a": "3.000 € + IVA, precio fijo, solo en escritura." },
-    { "q": "¿Los edificios antiguos sin ascensor afectan al proceso de venta?", "a": "Sí, lo tenemos en cuenta en la valoración; ajustamos precio y estrategia de comprador según planta y estado del edificio." },
-    { "q": "¿Puedo elegir cuándo recibir visitas?", "a": "Sí, tú marcas días y franjas horarias." },
-    { "q": "¿Qué tipo de comprador busca piso en el Gòtic?", "a": "Perfil mixto: inversores, compradores internacionales y residentes que buscan centro histórico; filtramos por capacidad financiera real antes de agendar visitas." },
-    { "q": "¿Trabajáis Plaça Reial, el Call y zona Catedral?", "a": "Sí, todo el Barri Gòtic (08002)." },
-    { "q": "¿Cuánto tarda vender un piso en el Gòtic?", "a": "Depende de estado y planta; te damos estimación real en la valoración gratuita." }
+    {
+      "q": "¿Cuánto cuesta vender un piso en el Gòtic con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo, solo en escritura."
+    },
+    {
+      "q": "¿Los edificios antiguos sin ascensor afectan al proceso de venta?",
+      "a": "Sí, lo tenemos en cuenta en la valoración; ajustamos precio y estrategia de comprador según planta y estado del edificio."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas?",
+      "a": "Sí, tú marcas días y franjas horarias."
+    },
+    {
+      "q": "¿Qué tipo de comprador busca piso en el Gòtic?",
+      "a": "Perfil mixto: inversores, compradores internacionales y residentes que buscan centro histórico; filtramos por capacidad financiera real antes de agendar visitas."
+    },
+    {
+      "q": "¿Trabajáis Plaça Reial, el Call y zona Catedral?",
+      "a": "Sí, todo el Barri Gòtic (08002)."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en el Gòtic?",
+      "a": "Depende de estado y planta; te damos estimación real en la valoración gratuita."
+    },
+    {
+      "q": "¿La licencia turística del edificio afecta al precio de venta?",
+      "a": "Sí, puede aumentar el interés de compradores inversores. Verificamos la situación real antes de publicar el inmueble para evitar expectativas incorrectas."
+    },
+    {
+      "q": "¿Un piso interior sin mucha luz se puede vender bien en el Gòtic?",
+      "a": "Sí, pero con un pricing distinto al de un piso con vistas a plaza. Ajustamos la valoración para reflejar esta diferencia real de mercado."
+    }
   ],
   "relacionadas": [
-    { "slug": "vender-piso-ciutat-vella-barcelona", "label": "Vender en Ciutat Vella" },
-    { "slug": "vender-piso-born-barcelona", "label": "Vender en el Born" },
-    { "slug": "vender-piso-raval-barcelona", "label": "Vender en el Raval" },
-    { "slug": "vender-piso-barceloneta", "label": "Vender en la Barceloneta" }
+    {
+      "slug": "vender-piso-ciutat-vella-barcelona",
+      "label": "Vender en Ciutat Vella"
+    },
+    {
+      "slug": "vender-piso-born-barcelona",
+      "label": "Vender en el Born"
+    },
+    {
+      "slug": "vender-piso-raval-barcelona",
+      "label": "Vender en el Raval"
+    },
+    {
+      "slug": "vender-piso-barceloneta",
+      "label": "Vender en la Barceloneta"
+    }
   ],
   "keywords_footer": "vender piso Gòtic · vender piso Barri Gòtic · inmobiliaria Gòtic precio fijo · vender vivienda 08002 · Plaça Reial · Carrer del Call",
   "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20el%20G%C3%B2tic",

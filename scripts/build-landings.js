@@ -12,8 +12,14 @@ const SAME_AS = [
   'https://www.google.com/maps/search/?api=1&query=Carrer+de+Mej%C3%ADa+Lequerica,+42,+08028+Barcelona',
   'https://wa.me/34603656587',
 ];
-const MIN_WORDS = 120;
-const SIMILARITY_THRESHOLD = 0.45;
+const MIN_WORDS_BY_CLUSTER = {
+  barrio: 650,
+  situacion: 650,
+  intencion: 900,
+  comparativa: 900,
+};
+const MIN_WORDS_DEFAULT = 650;
+const SIMILARITY_THRESHOLD = 0.38;
 
 function loadJsonFiles(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -55,9 +61,10 @@ function validateLandings(all) {
 
   all.forEach((L) => {
     const wc = wordCount(L.argumento_principal);
-    if (!L.indexable && wc >= MIN_WORDS) return;
-    if (L.indexable && wc < MIN_WORDS) {
-      errors.push(`${L.slug}: argumento_principal tiene ${wc} palabras (mínimo ${MIN_WORDS})`);
+    const min = MIN_WORDS_BY_CLUSTER[L.cluster] || MIN_WORDS_DEFAULT;
+    if (!L.indexable && wc >= min) return;
+    if (L.indexable && wc < min) {
+      errors.push(`${L.slug}: argumento_principal tiene ${wc} palabras (mínimo ${min})`);
     }
     if (!stripHtml(L.argumento_principal)) {
       errors.push(`${L.slug}: argumento_principal vacío`);
@@ -239,6 +246,37 @@ function relatedBlock(L, ctx) {
 </section>`;
 }
 
+function checklistBlock(title, items, intro) {
+  if (!items || !items.length) return '';
+  const li = items.map((i) => `<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>${i}</span></li>`).join('');
+  return `<div class="lc-checklist fade-up">
+    <h3>${title}</h3>
+    ${intro ? `<p class="lc-checklist-intro">${intro}</p>` : ''}
+    <ul>${li}</ul>
+  </div>`;
+}
+
+function marketStatsBlock(L) {
+  const m = L.datosMercado;
+  if (!m) return '';
+  const items = [
+    m.precioM2 ? { label: 'Precio orientativo', value: m.precioM2 } : null,
+    m.tiempoVenta ? { label: 'Tiempo medio de venta', value: m.tiempoVenta } : null,
+    m.tendencia ? { label: 'Tendencia 2026', value: m.tendencia } : null,
+  ].filter(Boolean);
+  if (!items.length) return '';
+  const boxes = items.map((i) => `<div class="lc-stat-box"><div class="lc-stat-label">${i.label}</div><div class="lc-stat-value">${i.value}</div></div>`).join('');
+  return `<div class="lc-stats-wrap fade-up"><div class="lc-stats-grid">${boxes}</div><p class="lc-stats-note">Rangos orientativos de mercado 2026 basados en datos públicos del sector. No sustituyen una valoración personalizada de tu vivienda.</p></div>`;
+}
+
+function buyerProfileBlock(L) {
+  if (!L.perfilComprador && !L.tipologiaEdificios) return '';
+  return `<div class="lc-grid-2 lc-buyer-grid fade-up">
+    ${L.perfilComprador ? `<div><h3>Perfil de comprador habitual</h3><p>${L.perfilComprador}</p></div>` : ''}
+    ${L.tipologiaEdificios ? `<div><h3>Tipología de vivienda</h3><p>${L.tipologiaEdificios}</p></div>` : ''}
+  </div>`;
+}
+
 function sharedStyles() {
   return `<style>
     .page-breadcrumb{font-size:.8125rem;color:var(--gris-medio);display:flex;align-items:center;flex-wrap:wrap;gap:.35rem;padding:1rem 0 .25rem}
@@ -284,7 +322,21 @@ function sharedStyles() {
     .lc-pilar-card p{font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 .75rem}
     .lc-pilar-meta{font-size:.8125rem;color:var(--gris-medio);margin-bottom:.75rem}
     .lc-pilar-link{font-size:.875rem;font-weight:600;color:var(--oro)}
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
+    .lc-stats-wrap{margin-top:2rem}
+    .lc-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .lc-stat-box{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);padding:1.25rem;text-align:center}
+    .lc-stat-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gris-medio);margin-bottom:.4rem}
+    .lc-stat-value{font-family:var(--font-serif);font-size:1.375rem;color:var(--negro);font-weight:700}
+    .lc-stats-note{font-size:.8125rem;color:var(--gris-medio);margin-top:.85rem;text-align:center}
+    .lc-buyer-grid h3{font-family:var(--font-serif);color:var(--negro);margin-bottom:.5rem}
+    .lc-buyer-grid p{font-size:.9375rem;color:var(--gris-texto);line-height:1.7}
+    .lc-checklist{background:var(--crema);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin-top:2rem}
+    .lc-checklist h3{font-family:var(--font-serif);color:var(--negro);margin:0 0 .5rem}
+    .lc-checklist-intro{font-size:.9375rem;color:var(--gris-texto);margin-bottom:1rem}
+    .lc-checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem}
+    .lc-checklist li{display:flex;align-items:flex-start;gap:.5rem;font-size:.9375rem;color:var(--gris-texto);line-height:1.5}
+    .lc-checklist li svg{flex-shrink:0;color:var(--oro);margin-top:.15rem}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -473,6 +525,7 @@ ${callBanner()}
   <div class="container">
     <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">Marco legal</span><h2 class="section-title">${L.bloque_legal_fiscal.title}</h2></div>
     <div class="lc-legal-grid fade-up">${legal}</div>
+    ${checklistBlock(L.checklist?.title || `Checklist antes de ${L.checklistLabel || 'vender'}`, L.checklist?.items, L.checklist?.intro)}
   </div>
 </section>
 <section class="lc-section" style="background:var(--negro);color:#fff">
@@ -560,7 +613,9 @@ ${callBanner()}
   </div>
 </section>
 <section class="lc-section" style="background:var(--crema)">
-  <div class="container" style="max-width:760px"><h2 class="section-title" style="margin-bottom:1.5rem">${L.mitos.title}</h2>${mitos}</div>
+  <div class="container" style="max-width:760px"><h2 class="section-title" style="margin-bottom:1.5rem">${L.mitos.title}</h2>${mitos}
+  ${checklistBlock(L.checklist?.title, L.checklist?.items, L.checklist?.intro)}
+  </div>
 </section>
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container lc-grid-2">${formBlock(L)}<div class="lc-prose fade-up"><h2 class="section-title">Valoración gratuita en 24h</h2><p>${L.form_side_text || 'Cuéntanos si vendes como particular o si quieres salir de una exclusiva. Te proponemos un plan realista — sin comisión del 6% ni permanencias abusivas.'}</p></div></div>
@@ -576,7 +631,7 @@ ${footerAndScripts(L)}
 
 function renderLanding(L, ctx) {
   const rb = () => relatedBlock(L, ctx);
-  const deps = { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock: rb, buildJsonLd, calcBlock, navBar, callBanner };
+  const deps = { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock: rb, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock };
   if (L.pilar) return renderPilar(L, deps);
   if (L.cluster === 'barrio') return renderBarrio(L, deps);
   if (L.cluster === 'situacion') return renderSituacion(L, ctx);
@@ -648,6 +703,7 @@ function main() {
       priority: L.priority,
       indexable: L.indexable !== false,
       keyword_principal: L.keyword_principal,
+      badge: L.hero && L.hero.badge,
       testimonials: false,
     };
   });

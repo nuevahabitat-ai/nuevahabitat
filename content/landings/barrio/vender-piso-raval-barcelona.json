@@ -7,13 +7,27 @@
   "breadcrumbCurrent": "Raval",
   "priority": 0.88,
   "testimonials": false,
-  "postalCodes": ["08001"],
-  "zonas": ["Rambla del Raval", "MACBA", "Sant Antoni (límite)", "Carrer Tallers"],
+  "postalCodes": [
+    "08001"
+  ],
+  "zonas": [
+    "Rambla del Raval",
+    "MACBA",
+    "Sant Antoni (límite)",
+    "Carrer Tallers"
+  ],
   "inmueblesQuery": "Raval",
   "ejemploPrecio": 380000,
   "ahorro": "20.800",
+  "datosMercado": {
+    "precioM2": "3.000 – 4.400 €/m²",
+    "tiempoVenta": "60 – 95 días",
+    "tendencia": "Precio de entrada al centro histórico más bajo, en revalorización progresiva"
+  },
+  "perfilComprador": "El Raval combina dos perfiles de comprador que conviene diferenciar desde la valoración: inversores que buscan entrar al centro histórico de Barcelona con el precio por metro cuadrado más bajo de Ciutat Vella, y compradores jóvenes o creativos atraídos por la zona norte cercana al MACBA y Sant Antoni, con oferta cultural y gastronómica en expansión. El sur del Raval, más cerca del puerto, tiene un mercado algo más lento y de perfil más inversor.",
+  "tipologiaEdificios": "Fincas de finales del XIX y principios del XX, con superficies a menudo más reducidas que en el resto de Ciutat Vella y un porcentaje relevante de edificios sin ascensor. La reforma integral es habitual antes de la reventa, lo que hace que el estado de la instalación eléctrica y de fontanería sea un punto de atención constante para el comprador.",
   "origen_lead": "vender-piso-raval-barcelona",
-  "heroImage": "imagenes/interior12.jpg",
+  "heroImage": "imagenes/interior1.jpg",
   "heroImageAlt": "Interior de piso en el Raval, Barcelona",
   "meta": {
     "title": "Vender piso en el Raval, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
@@ -24,20 +38,70 @@
     "h1": "¿Vendes tu piso en el Raval?",
     "lead": "Vende en el Raval con <strong>honorarios fijos de 3.000€ + IVA</strong>, estrategia de precio adaptada al comprador real del barrio y visitas en tu horario."
   },
-  "argumento_principal": "<p>El Raval ha cambiado mucho en los últimos años: la zona del MACBA y el Filmoteca ha atraído comprador joven y creativo, y el barrio combina hoy precios más accesibles que el resto de Ciutat Vella con un potencial de revalorización alto — lo cual atrae también a inversores que buscan entrar en el centro histórico sin pagar el precio del Gòtic o el Born.</p><p>Vender bien en el Raval significa comunicar ese contraste: precio de entrada competitivo, ubicación céntrica real, y transformación urbana en marcha. En NuevaHabitat ajustamos la ficha y la estrategia de precio a ese perfil de comprador — con honorarios fijos de 3.000 € + IVA, cobrados solo en escritura, sin comisión del 6%. Te acompañamos desde la valoración hasta la firma.</p>",
+  "argumento_principal": "<p>El Raval ha cambiado mucho en los últimos años: la zona del MACBA y la Filmoteca ha atraído comprador joven y creativo, y el barrio combina hoy el precio de entrada más accesible de Ciutat Vella con un potencial de revalorización alto —lo cual atrae también a inversores que buscan entrar en el centro histórico sin pagar el precio del Gòtic o el Born.</p><h2>Un barrio de contrastes que hay que saber comunicar</h2><p>El Raval no es un mercado homogéneo: la zona norte, junto al MACBA, Carrer Tallers y el límite con Sant Antoni, vive una transformación evidente con nueva restauración, comercio de diseño y un perfil de comprador joven dispuesto a invertir en reforma a cambio de un precio de entrada competitivo. La zona sur, más cerca del puerto y de la Rambla, mantiene un carácter distinto, con más presencia de comprador inversor y un ritmo de venta algo más lento. Vender bien aquí significa identificar a qué mitad del barrio pertenece tu piso y dirigir la comunicación al comprador correcto desde el primer anuncio.</p><h2>El argumento de la revalorización, con cifras realistas</h2><p>Muchos compradores del Raval llegan atraídos por el argumento de la revalorización del barrio, pero conviene presentarlo con datos y comparables reales, no con promesas genéricas. Mostramos la evolución de precios de la zona con operaciones cerradas recientemente, de forma que el comprador entienda el potencial sin que se generen expectativas que luego compliquen la negociación.</p><h2>Reforma y estado del edificio como palanca de negociación</h2><p>Al tratarse de fincas con superficies más reducidas y, en muchos casos, sin ascensor, el estado de las instalaciones (eléctrica, fontanería) y la posibilidad de reforma integral son puntos que el comprador revisa con detalle. Preparar esta información con antelación —presupuestos orientativos de reforma incluidos, si procede— acelera notablemente la decisión de compra.</p><h2>Qué buscan realmente los inversores que compran en el Raval</h2><p>El comprador inversor del Raval suele tener un criterio muy claro: precio de entrada bajo, margen real de revalorización tras una reforma y potencial de alquiler, ya sea residencial de larga duración o dentro del marco normativo de vivienda turística vigente. Presentar el inmueble con un análisis honesto de estos tres factores —no solo el precio de venta— facilita que este tipo de comprador tome una decisión rápida, ya que suele comparar varias oportunidades de inversión en paralelo y prioriza la claridad de números sobre la presentación estética del piso.</p><h2>La zona norte y su transformación acelerada</h2><p>El entorno del MACBA y la Filmoteca ha experimentado en los últimos años una transformación notable, con apertura de comercio de diseño, restauración de calidad y llegada de un perfil de residente más joven y con mayor poder adquisitivo que el histórico del barrio. Esta transformación todavía no se refleja de forma completa en los precios medios del Raval, lo que genera una oportunidad real de revalorización para quien compra ahora, un argumento que conviene presentar con datos concretos de evolución de precios en esta sub-zona específica, no como una promesa genérica.</p><h2>Cómo lo trabajamos en NuevaHabitat</h2><p>Ajustamos la ficha y la estrategia de precio al perfil de comprador real de tu zona del Raval —joven creativo cerca del MACBA, o inversor en el entorno de la Rambla y el puerto—, con honorarios fijos de 3.000 € + IVA, cobrados solo en escritura, sin <a href=\"/nuevahabitat-vs-agencia-tradicional-barcelona\">comisión del 6%</a>. Te acompañamos desde la valoración hasta la firma en notaría.</p><h2>Perfil habitual de vendedor en el Raval</h2><p>Quien vende en el Raval suele ser un propietario que compró hace años a precio muy inferior al actual y aprovecha la revalorización del barrio, o una herencia familiar con varios propietarios que prefieren liquidar en lugar de asumir una reforma integral. Documentar con transparencia el estado real del edificio y las posibilidades de reforma es determinante para atraer tanto al comprador joven como al inversor que compara varias oportunidades similares en la misma zona del barrio.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender en el Raval",
+    "intro": "Puntos que anticipan las preguntas más habituales de compradores inversores y de reforma.",
+    "items": [
+      "Estado de instalación eléctrica y fontanería documentado",
+      "Cédula de habitabilidad y certificado energético vigentes",
+      "Nota simple actualizada del Registro de la Propiedad",
+      "Recibos de comunidad e IBI al día",
+      "Presupuesto orientativo de reforma si el piso lo necesita",
+      "Fotografías honestas del estado real, útiles para comprador inversor"
+    ]
+  },
   "faq": [
-    { "q": "¿Cuánto cuesta vender un piso en el Raval con NuevaHabitat?", "a": "3.000 € + IVA, precio fijo, solo en escritura." },
-    { "q": "¿El Raval es una zona con buena demanda de compra ahora mismo?", "a": "Sí, especialmente en la zona norte cercana al MACBA y Sant Antoni, con perfil de comprador joven y creativo." },
-    { "q": "¿Puedo elegir cuándo recibir visitas?", "a": "Sí, tú decides días y franjas horarias." },
-    { "q": "¿Filtráis compradores antes de las visitas?", "a": "Sí, priorizamos compradores con capacidad financiera verificada." },
-    { "q": "¿Trabajáis toda la zona, incluido cerca de Sant Antoni?", "a": "Sí, todo el Raval (08001)." },
-    { "q": "¿Cuánto tarda vender un piso en el Raval?", "a": "Depende del estado y la planta; te damos una estimación real en la valoración gratuita." }
+    {
+      "q": "¿Cuánto cuesta vender un piso en el Raval con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo, solo en escritura."
+    },
+    {
+      "q": "¿El Raval es una zona con buena demanda de compra ahora mismo?",
+      "a": "Sí, especialmente en la zona norte cercana al MACBA y Sant Antoni, con perfil de comprador joven y creativo."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas?",
+      "a": "Sí, tú decides días y franjas horarias."
+    },
+    {
+      "q": "¿Filtráis compradores antes de las visitas?",
+      "a": "Sí, priorizamos compradores con capacidad financiera verificada."
+    },
+    {
+      "q": "¿Trabajáis toda la zona, incluido cerca de Sant Antoni?",
+      "a": "Sí, todo el Raval (08001)."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en el Raval?",
+      "a": "Depende del estado y la planta; te damos una estimación real en la valoración gratuita."
+    },
+    {
+      "q": "¿Es mejor reformar antes de vender en el Raval?",
+      "a": "Depende del margen y del comprador objetivo. Muchos inversores prefieren comprar para reformar ellos mismos; lo valoramos caso a caso en la tasación gratuita."
+    },
+    {
+      "q": "¿La zona norte del Raval, cerca del MACBA, tiene más demanda que el sur?",
+      "a": "En general sí, aunque el sur atrae a un comprador inversor específico. Ajustamos la estrategia según en qué parte del Raval esté tu piso."
+    }
   ],
   "relacionadas": [
-    { "slug": "vender-piso-ciutat-vella-barcelona", "label": "Vender en Ciutat Vella" },
-    { "slug": "vender-piso-gotic-barcelona", "label": "Vender en el Gòtic" },
-    { "slug": "vender-piso-born-barcelona", "label": "Vender en el Born" },
-    { "slug": "vender-piso-barceloneta", "label": "Vender en la Barceloneta" }
+    {
+      "slug": "vender-piso-ciutat-vella-barcelona",
+      "label": "Vender en Ciutat Vella"
+    },
+    {
+      "slug": "vender-piso-gotic-barcelona",
+      "label": "Vender en el Gòtic"
+    },
+    {
+      "slug": "vender-piso-born-barcelona",
+      "label": "Vender en el Born"
+    },
+    {
+      "slug": "vender-piso-barceloneta",
+      "label": "Vender en la Barceloneta"
+    }
   ],
   "keywords_footer": "vender piso Raval · vender piso Raval Barcelona · inmobiliaria Raval · MACBA · Carrer Tallers · 08001",
   "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20el%20Raval",

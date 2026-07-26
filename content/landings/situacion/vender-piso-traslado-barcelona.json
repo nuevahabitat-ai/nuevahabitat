@@ -24,7 +24,19 @@
     "imageAlt": "Vender piso en Barcelona por traslado de trabajo o cambio de ciudad"
   },
   "breadcrumbCurrent": "Traslado",
-  "argumento_principal": "<p><strong>Vender piso por traslado de trabajo en Barcelona</strong> — o por mudanza a otra ciudad o país — añade presión de calendario: fecha de incorporación en el nuevo destino, posible doble alquiler, y la imposibilidad de coordinar visitas un martes a las 11:00 en Gràcia cuando ya estás en Madrid, Londres o teletrabajando con huso distinto.</p><p>En Barcelona, mercados como el Eixample o Les Corts absorben stock con rapidez si el precio es correcto desde el día uno. Retrasar la publicación dos semanas mientras organizas la mudanza puede costarte un mes entero de demanda. Quienes se trasladan suelen cometer dos errores: (1) sobrevalorar porque “en Barcelona siempre se vende” — cierto, pero no a cualquier precio; (2) delegar en un familiar sin filtro de compradores, acumulando visitas de curiosos que no cierran.</p><p>NuevaHabitat está diseñado para vendedores que no pueden estar presentes: fotografía profesional, visitas en franjas amplias con portería o llaves, informes en panel digital, negociación telemática de arras y checklist documental para firma — con apoderamiento notarial si no puedes volver a Barcelona para escritura. Honorarios: <strong>3.000 € + IVA solo en escritura</strong>, sin comisión del 6% que reduce lo que necesitas en el destino.</p>",
+  "argumento_principal": "<p><strong>Vender piso por traslado de trabajo en Barcelona</strong> —o por mudanza a otra ciudad o país— añade presión de calendario: fecha de incorporación en el nuevo destino, posible doble alquiler, y la imposibilidad de coordinar visitas un martes a las 11:00 en Gràcia cuando ya estás en Madrid, Londres o teletrabajando con huso distinto.</p><h2>Por qué el calendario manda en este tipo de venta</h2><p>En Barcelona, mercados como el Eixample o Les Corts absorben stock con rapidez si el precio es correcto desde el día uno. Retrasar la publicación dos semanas mientras organizas la mudanza puede costarte un mes entero de demanda, especialmente si tu traslado coincide con temporada baja de compraventa. Quienes se trasladan suelen cometer dos errores frecuentes: sobrevalorar porque «en Barcelona siempre se vende» —cierto, pero no a cualquier precio ni en cualquier plazo—, o delegar en un familiar o amistad sin filtro real de compradores, acumulando visitas de curiosos que nunca llegan a hacer una oferta seria.</p><h2>Vender sin estar presente, sin perder el control</h2><p>El mayor miedo de quien se traslada es perder visibilidad sobre su propia venta: no saber si las visitas se están haciendo bien, si el precio sigue siendo competitivo o si hay ofertas pendientes de respuesta. Por eso diseñamos un proceso pensado específicamente para vendedores a distancia, con reportes claros después de cada visita y decisiones que puedes tomar por videollamada o email sin necesidad de estar en Barcelona.</p><h2>Documentación pensada para no volver a España</h2><p>Si tu traslado es definitivo o de larga duración, coordinamos con antelación el apoderamiento notarial para que puedas firmar la escritura sin viajar de vuelta, así como la gestión de la cancelación de hipoteca en paralelo a la venta si todavía tienes préstamo pendiente. Cuanto antes se planifique esta documentación, menos margen hay para retrasos de última hora que compliquen tu instalación en el nuevo destino.</p><h2>Cómo elegir entre vender rápido o esperar el mejor precio cuando hay presión de fechas</h2><p>Cuando el traslado tiene una fecha fija de incorporación, existe la tentación de aceptar la primera oferta razonable para cerrar cuanto antes, incluso si está algo por debajo de mercado. Antes de hacerlo, conviene calcular si la diferencia de precio realmente compensa el ahorro de tiempo: en muchos casos, un margen de dos o tres semanas adicionales de comercialización activa, con el precio correcto desde el principio, permite recibir una oferta mejor sin comprometer significativamente el calendario del traslado.</p><h2>Qué hacer con los muebles y enseres antes de mudarte</h2><p>Decidir qué hacer con el mobiliario cuando te trasladas —venderlo, donarlo, llevarlo contigo o dejarlo para el comprador como parte de la operación— es una decisión práctica que conviene tomar con antelación, ya que puede influir tanto en el calendario de entrega como en el propio atractivo del anuncio. Un piso amueblado y bien presentado suele generar mejor primera impresión en las fotos que uno completamente vacío, por lo que en ocasiones tiene sentido mantener el mobiliario básico hasta que se cierre la venta, incluso si el plan es no llevártelo al nuevo destino.</p><h2>Cómo trabajamos tu venta a distancia</h2><p>NuevaHabitat está diseñado para vendedores que no pueden estar presentes: fotografía profesional, visitas en franjas amplias con portería o llaves, informes en panel digital, negociación telemática de arras y checklist documental para firma —con apoderamiento notarial si no puedes volver a Barcelona para escritura—. Honorarios: <strong>3.000 € + IVA solo en escritura</strong>, sin <a href=\"/nuevahabitat-vs-agencia-tradicional-barcelona\">comisión del 6%</a> que reduce lo que necesitas en el destino.</p><h2>Qué hacer si el traslado es temporal y podrías volver</h2><p>Cuando el traslado tiene una duración incierta o podría revertirse en un par de años, conviene valorar con calma si vender es realmente mejor opción que alquilar temporalmente, calculando el coste de oportunidad de cada escenario: gastos de mantener el piso vacío o alquilado frente al coste de recomprar en Barcelona si finalmente decides volver. Esta decisión debería tomarse con datos concretos de tu situación, no solo con la premura del traslado inminente.</p>",
+  "checklist": {
+    "title": "Checklist si vendes por traslado o mudanza",
+    "intro": "Prepara estos puntos con antelación para vender sin tener que volver a Barcelona.",
+    "items": [
+      "Valorar el apoderamiento notarial para firma sin presencia física",
+      "Confirmar con el banco el proceso de cancelación de hipoteca si aplica",
+      "Dejar llaves o acceso gestionado (portería, cerradura inteligente, familiar de confianza)",
+      "Cédula de habitabilidad y certificado energético vigentes",
+      "Recibos de comunidad e IBI al día antes de publicar",
+      "Definir un canal único de comunicación (email o WhatsApp) para decisiones rápidas"
+    ]
+  },
   "bloque_legal_fiscal": {
     "title": "Aspectos prácticos al vender en Barcelona desde otro lugar",
     "items": [
@@ -49,10 +61,22 @@
   "como_ayudamos": {
     "title": "Venta a distancia cuando te mudas de Barcelona",
     "steps": [
-      { "title": "Valoración con plazo de traslado", "body": "Definimos precio y calendario según tu fecha de mudanza o incorporación laboral." },
-      { "title": "Visitas sin tu presencia", "body": "Coordinamos acceso, filtramos compradores solventes e informamos tras cada visita." },
-      { "title": "Negociación remota", "body": "Arras y documentación por email y firma digital donde proceda; videollamada para decisiones clave." },
-      { "title": "Escritura y precio fijo", "body": "3.000 € + IVA al cerrar. Apoderamiento si no puedes asistir presencialmente." }
+      {
+        "title": "Valoración con plazo de traslado",
+        "body": "Definimos precio y calendario según tu fecha de mudanza o incorporación laboral."
+      },
+      {
+        "title": "Visitas sin tu presencia",
+        "body": "Coordinamos acceso, filtramos compradores solventes e informamos tras cada visita."
+      },
+      {
+        "title": "Negociación remota",
+        "body": "Arras y documentación por email y firma digital donde proceda; videollamada para decisiones clave."
+      },
+      {
+        "title": "Escritura y precio fijo",
+        "body": "3.000 € + IVA al cerrar. Apoderamiento si no puedes asistir presencialmente."
+      }
     ]
   },
   "faq": [
@@ -79,13 +103,33 @@
     {
       "q": "¿Trabajáis en todos los distritos de Barcelona?",
       "a": "Sí en Barcelona ciudad desde Les Corts: Eixample, Sants, Sarrià, Ciutat Vella, Gràcia, etc."
+    },
+    {
+      "q": "¿Puedo firmar la escritura sin estar en Barcelona el día de la firma?",
+      "a": "Sí, mediante apoderamiento notarial que puedes tramitar en tu ciudad de destino o incluso en un consulado si estás fuera de España. Te orientamos sobre el proceso con antelación."
+    },
+    {
+      "q": "¿Qué pasa con los suministros y la comunidad mientras gestiono la venta desde fuera?",
+      "a": "Recomendamos mantener comunidad e IBI al día y dejar acceso gestionado a la vivienda. Lo revisamos en la valoración inicial para evitar sorpresas en la recta final."
     }
   ],
   "relacionadas": [
-    { "slug": "vender-piso-rapido-barcelona", "label": "Vender piso rápido" },
-    { "slug": "vender-piso-antes-comprar-otro-barcelona", "label": "Vender antes de comprar" },
-    { "slug": "vender-segunda-residencia-barcelona", "label": "Segunda residencia" },
-    { "slug": "vender-les-corts", "label": "Vender en Les Corts" }
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "label": "Vender piso rápido"
+    },
+    {
+      "slug": "vender-piso-antes-comprar-otro-barcelona",
+      "label": "Vender antes de comprar"
+    },
+    {
+      "slug": "vender-segunda-residencia-barcelona",
+      "label": "Segunda residencia"
+    },
+    {
+      "slug": "vender-les-corts",
+      "label": "Vender en Les Corts"
+    }
   ],
   "keywords_footer": "vender piso traslado trabajo barcelona · vender piso cambio ciudad · vender piso mudanza · me mudo vendo piso barcelona · venta a distancia barcelona · precio fijo",
   "whatsappText": "Hola%2C%20me%20traslado%20y%20necesito%20vender%20mi%20piso%20en%20Barcelona",

@@ -7,13 +7,27 @@
   "breadcrumbCurrent": "Born",
   "priority": 0.88,
   "testimonials": false,
-  "postalCodes": ["08003"],
-  "zonas": ["Passeig del Born", "Santa Maria del Mar", "Sant Pere", "Palau de la Música"],
+  "postalCodes": [
+    "08003"
+  ],
+  "zonas": [
+    "Passeig del Born",
+    "Santa Maria del Mar",
+    "Sant Pere",
+    "Palau de la Música"
+  ],
   "inmueblesQuery": "Born",
   "ejemploPrecio": 590000,
   "ahorro": "32.400",
+  "datosMercado": {
+    "precioM2": "5.100 – 6.900 €/m²",
+    "tiempoVenta": "45 – 75 días",
+    "tendencia": "Alta rotación, muy sensible a la calidad de la reforma y la presentación"
+  },
+  "perfilComprador": "El comprador del Born suele tener un perfil cultural y estético definido: profesionales creativos, compradores internacionales que buscan segunda vivienda en Europa y familias con alto poder adquisitivo que valoran el carácter arquitectónico por encima del tamaño. Compara activamente varias opciones antes de decidir, así que la calidad de la reforma y de las fotografías influye directamente en el precio final conseguido.",
+  "tipologiaEdificios": "Fincas señoriales de los siglos XVII-XIX con techos altos, vigas de madera vista y, en muchos casos, elementos arquitectónicos originales recuperados en reformas de alto nivel. Sant Pere, más allá del Passeig del Born, conserva un tejido residencial algo menos turístico y con precios ligeramente más contenidos.",
   "origen_lead": "vender-piso-born-barcelona",
-  "heroImage": "imagenes/agenteinmobiliario3.jpg",
+  "heroImage": "imagenes/agente-inmobiliario1.webp",
   "heroImageAlt": "Piso con carácter en el Born, Barcelona",
   "meta": {
     "title": "Vender piso en el Born, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
@@ -24,20 +38,70 @@
     "h1": "¿Vendes tu piso en el Born?",
     "lead": "Vende en el Born y Sant Pere con <strong>honorarios fijos de 3.000€ + IVA</strong>, presentación profesional y compradores filtrados — sin comisión del 6%."
   },
-  "argumento_principal": "<p>El Born es de los barrios con más presión de demanda del centro de Barcelona: pisos con carácter (techos altos, vigas, fincas modernistas o medievales rehabilitadas) que atraen tanto a comprador local de alto poder adquisitivo como a comprador internacional. Eso significa que un piso bien presentado en el Born puede venderse rápido y por encima de la media del distrito — pero también que un precio de salida mal calculado se nota enseguida, porque el comprador de esta zona compara mucho antes de decidir.</p><p>En NuevaHabitat trabajamos la presentación (fotografía profesional, ficha optimizada) y la fijación de precio con datos reales del Born y Sant Pere, no con la media genérica de Ciutat Vella. Honorarios fijos de 3.000 € + IVA, cobro solo en escritura, sin la comisión del 6% de una agencia tradicional.</p>",
+  "argumento_principal": "<p>El Born es de los barrios con más presión de demanda del centro de Barcelona: pisos con carácter (techos altos, vigas, fincas modernistas o góticas rehabilitadas) que atraen tanto a comprador local de alto poder adquisitivo como a comprador internacional. Eso significa que un piso bien presentado en el Born puede venderse rápido y por encima de la media del distrito —pero también que un precio de salida mal calculado se nota enseguida, porque el comprador de esta zona compara mucho antes de decidir.</p><h2>Un barrio que premia la reforma bien hecha</h2><p>Pocos barrios de Barcelona recompensan tanto una reforma de calidad como el Born. El mismo piso, con la misma superficie, puede tener una diferencia de precio de decenas de miles de euros según se haya conservado (o recuperado) el carácter original de la finca: vigas vistas, techos altos, suelos hidráulicos. Los compradores de esta zona suelen tener referencias de diseño claras y penalizan las reformas genéricas que no respetan el edificio.</p><h2>Passeig del Born, Santa Maria del Mar y Sant Pere: matices dentro del barrio</h2><p>El entorno inmediato del Passeig del Born y Santa Maria del Mar concentra la mayor presión turística y de comprador internacional, con precios en la parte alta de la horquilla. Sant Pere y el entorno del Palau de la Música, algo más residencial y menos transitado, ofrecen un mercado ligeramente más accesible sin perder la esencia del barrio, atractivo para compradores locales que buscan vivienda habitual en el centro.</p><h2>Por qué la fotografía profesional importa más aquí que en ningún otro barrio</h2><p>El comprador del Born decide gran parte de su interés antes de pisar el piso, comparando anuncios con fotografía de calidad claramente superior a la media. Un reportaje que no capture la luz, la altura de techos o el carácter de la finca hace que el anuncio pase desapercibido frente a otras exclusivas mejor presentadas, aunque el piso en sí sea comparable o mejor.</p><h2>Cómo se negocia con un comprador que compara varias opciones</h2><p>El comprador habitual del Born rara vez decide sobre una única visita: suele comparar activamente tres o cuatro propiedades similares antes de hacer una oferta, valorando no solo el precio sino el carácter arquitectónico, la calidad de la reforma y el estado de conservación de la finca. Esto significa que el margen de negociación real depende de tener claro, desde el inicio, qué elementos diferenciales de tu piso pesan frente a la competencia directa, en lugar de negociar únicamente sobre el precio por metro cuadrado.</p><h2>El papel del Palau de la Música y Santa Maria del Mar en el valor</h2><p>La proximidad a hitos arquitectónicos como el Palau de la Música o Santa Maria del Mar no es solo un argumento estético: para el comprador internacional que busca vivir o invertir en un entorno patrimonial reconocido mundialmente, esta cercanía tiene un valor añadido tangible que conviene reflejar tanto en la valoración como en la narrativa de venta, sin caer en generalidades que no aporten información concreta sobre el inmueble en sí.</p><h2>Cómo trabajamos tu venta en el Born</h2><p>En NuevaHabitat trabajamos la presentación —fotografía profesional, ficha optimizada— y la fijación de precio con datos reales del Born y Sant Pere, no con la media genérica de Ciutat Vella. Honorarios fijos de 3.000 € + IVA, cobro solo en escritura, sin la <a href=\"/nuevahabitat-vs-agencia-tradicional-barcelona\">comisión del 6%</a> de una agencia tradicional del centro.</p><h2>Perfil habitual de vendedor y comprador en el Born</h2><p>Quien vende en el Born suele ser un propietario que reformó la finca hace años y ahora busca liquidar la inversión, o una herencia entre varios familiares que deciden vender en lugar de mantener el <a href=\"/vender-piso-alquilado-barcelona\">piso alquilado</a>. El comprador combina perfil internacional de alto poder adquisitivo con compradores locales que buscan vivir en un entorno patrimonial único, dispuestos a pagar una prima clara y bien justificada por el carácter arquitectónico verdaderamente único de cada finca concreta en cuestión.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender en el Born",
+    "intro": "La calidad de la presentación decide gran parte del resultado en este barrio.",
+    "items": [
+      "Documentar elementos originales conservados: vigas, suelos hidráulicos, techos altos",
+      "Cédula de habitabilidad y certificado energético vigentes",
+      "Nota simple actualizada del Registro de la Propiedad",
+      "Recibos de comunidad e IBI al día",
+      "Reportaje fotográfico profesional con luz natural, no solo flash",
+      "Revisar situación de licencia turística del edificio si aplica a tu operación"
+    ]
+  },
   "faq": [
-    { "q": "¿Cuánto cuesta vender un piso en el Born con NuevaHabitat?", "a": "3.000 € + IVA, precio fijo, solo en escritura." },
-    { "q": "¿Un piso con techos altos o vigas vistas se valora distinto?", "a": "Sí, son elementos que suelen aumentar el atractivo y el precio en esta zona; los incorporamos en la valoración y en la ficha del anuncio." },
-    { "q": "¿Puedo elegir cuándo recibir visitas?", "a": "Sí, tú decides días y horarios." },
-    { "q": "¿Los compradores están verificados financieramente?", "a": "Sí, priorizamos cartera con hipoteca preaprobada o capacidad demostrada antes de agendar visitas." },
-    { "q": "¿Trabajáis también Sant Pere y zona Palau de la Música?", "a": "Sí, todo el Born y Sant Pere-Santa Caterina (08003)." },
-    { "q": "¿Cuánto tarda vender un piso en el Born?", "a": "El Born suele moverse más rápido que la media del centro si el precio es correcto; te damos una estimación en la valoración gratuita." }
+    {
+      "q": "¿Cuánto cuesta vender un piso en el Born con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo, solo en escritura."
+    },
+    {
+      "q": "¿Un piso con techos altos o vigas vistas se valora distinto?",
+      "a": "Sí, son elementos que suelen aumentar el atractivo y el precio en esta zona; los incorporamos en la valoración y en la ficha del anuncio."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas?",
+      "a": "Sí, tú decides días y horarios."
+    },
+    {
+      "q": "¿Los compradores están verificados financieramente?",
+      "a": "Sí, priorizamos cartera con hipoteca preaprobada o capacidad demostrada antes de agendar visitas."
+    },
+    {
+      "q": "¿Trabajáis también Sant Pere y zona Palau de la Música?",
+      "a": "Sí, todo el Born y Sant Pere-Santa Caterina (08003)."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en el Born?",
+      "a": "El Born suele moverse más rápido que la media del centro si el precio es correcto; te damos una estimación en la valoración gratuita."
+    },
+    {
+      "q": "¿Por qué es tan importante la fotografía profesional en el Born?",
+      "a": "Porque el comprador de esta zona compara muchas exclusivas antes de pedir visita, y una fotografía que no muestre bien el carácter de la finca puede hacer que tu piso pase desapercibido."
+    },
+    {
+      "q": "¿Sant Pere se vende al mismo precio que el entorno del Passeig del Born?",
+      "a": "No siempre; Sant Pere suele tener precios algo más contenidos, aunque comparte el mismo carácter arquitectónico del barrio."
+    }
   ],
   "relacionadas": [
-    { "slug": "vender-piso-ciutat-vella-barcelona", "label": "Vender en Ciutat Vella" },
-    { "slug": "vender-piso-gotic-barcelona", "label": "Vender en el Gòtic" },
-    { "slug": "vender-piso-raval-barcelona", "label": "Vender en el Raval" },
-    { "slug": "vender-piso-barceloneta", "label": "Vender en la Barceloneta" }
+    {
+      "slug": "vender-piso-ciutat-vella-barcelona",
+      "label": "Vender en Ciutat Vella"
+    },
+    {
+      "slug": "vender-piso-gotic-barcelona",
+      "label": "Vender en el Gòtic"
+    },
+    {
+      "slug": "vender-piso-raval-barcelona",
+      "label": "Vender en el Raval"
+    },
+    {
+      "slug": "vender-piso-barceloneta",
+      "label": "Vender en la Barceloneta"
+    }
   ],
   "keywords_footer": "vender piso Born · vender piso Born Barcelona · inmobiliaria Born · Sant Pere · Passeig del Born · 08003",
   "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20el%20Born",

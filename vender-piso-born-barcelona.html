@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://www.nuevahabitat.com/vender-piso-born-barcelona"/>
   <meta property="og:title" content="Vender piso en el Born, Barcelona · Precio fijo 3.000€"/>
   <meta property="og:description" content="¿Vendes tu piso en el Born o Sant Pere? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores cualificados, visitas en tu horario. Sin comisión del 6%."/>
-  <meta property="og:image" content="https://www.nuevahabitat.com/imagenes/agenteinmobiliario3.jpg"/>
+  <meta property="og:image" content="https://www.nuevahabitat.com/imagenes/agente-inmobiliario1.jpg"/>
   <meta property="og:locale" content="es_ES"/>
   <meta property="og:site_name" content="NuevaHabitat"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -120,6 +120,22 @@
           "@type": "Answer",
           "text": "El Born suele moverse más rápido que la media del centro si el precio es correcto; te damos una estimación en la valoración gratuita."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué es tan importante la fotografía profesional en el Born?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Porque el comprador de esta zona compara muchas exclusivas antes de pedir visita, y una fotografía que no muestre bien el carácter de la finca puede hacer que tu piso pase desapercibido."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Sant Pere se vende al mismo precio que el entorno del Passeig del Born?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No siempre; Sant Pere suele tener precios algo más contenidos, aunque comparte el mismo carácter arquitectónico del barrio."
+        }
       }
     ]
   }
@@ -168,7 +184,21 @@
     .lc-pilar-card p{font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 .75rem}
     .lc-pilar-meta{font-size:.8125rem;color:var(--gris-medio);margin-bottom:.75rem}
     .lc-pilar-link{font-size:.875rem;font-weight:600;color:var(--oro)}
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
+    .lc-stats-wrap{margin-top:2rem}
+    .lc-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .lc-stat-box{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);padding:1.25rem;text-align:center}
+    .lc-stat-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gris-medio);margin-bottom:.4rem}
+    .lc-stat-value{font-family:var(--font-serif);font-size:1.375rem;color:var(--negro);font-weight:700}
+    .lc-stats-note{font-size:.8125rem;color:var(--gris-medio);margin-top:.85rem;text-align:center}
+    .lc-buyer-grid h3{font-family:var(--font-serif);color:var(--negro);margin-bottom:.5rem}
+    .lc-buyer-grid p{font-size:.9375rem;color:var(--gris-texto);line-height:1.7}
+    .lc-checklist{background:var(--crema);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin-top:2rem}
+    .lc-checklist h3{font-family:var(--font-serif);color:var(--negro);margin:0 0 .5rem}
+    .lc-checklist-intro{font-size:.9375rem;color:var(--gris-texto);margin-bottom:1rem}
+    .lc-checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem}
+    .lc-checklist li{display:flex;align-items:flex-start;gap:.5rem;font-size:.9375rem;color:var(--gris-texto);line-height:1.5}
+    .lc-checklist li svg{flex-shrink:0;color:var(--oro);margin-top:.15rem}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -185,7 +215,7 @@
 <nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
 <div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Born</span></nav></div>
 <section class="lc-hero">
-  <div class="lc-hero-media"><img src="imagenes/agenteinmobiliario3.jpg" alt="Piso con carácter en el Born, Barcelona" fetchpriority="high" decoding="async"/></div>
+  <picture class="lc-hero-media"><source srcset="imagenes/agente-inmobiliario1.webp" type="image/webp"/><img src="imagenes/agente-inmobiliario1.jpg" alt="Piso con carácter en el Born, Barcelona" width="1920" height="1280" fetchpriority="high" decoding="async"/></picture>
   <div class="lc-hero-overlay"></div>
   <div class="container"><div class="lc-hero-content fade-up">
     <span class="lc-badge">Born · 08003 · Barcelona</span>
@@ -214,8 +244,9 @@
     <div class="lc-prose fade-up">
       <span class="overline">Vender en Born</span>
       <h2>Vender piso en Born con precio fijo y compradores filtrados</h2>
-      <p>El Born es de los barrios con más presión de demanda del centro de Barcelona: pisos con carácter (techos altos, vigas, fincas modernistas o medievales rehabilitadas) que atraen tanto a comprador local de alto poder adquisitivo como a comprador internacional. Eso significa que un piso bien presentado en el Born puede venderse rápido y por encima de la media del distrito — pero también que un precio de salida mal calculado se nota enseguida, porque el comprador de esta zona compara mucho antes de decidir.</p><p>En NuevaHabitat trabajamos la presentación (fotografía profesional, ficha optimizada) y la fijación de precio con datos reales del Born y Sant Pere, no con la media genérica de Ciutat Vella. Honorarios fijos de 3.000 € + IVA, cobro solo en escritura, sin la comisión del 6% de una agencia tradicional.</p>
+      <p>El Born es de los barrios con más presión de demanda del centro de Barcelona: pisos con carácter (techos altos, vigas, fincas modernistas o góticas rehabilitadas) que atraen tanto a comprador local de alto poder adquisitivo como a comprador internacional. Eso significa que un piso bien presentado en el Born puede venderse rápido y por encima de la media del distrito —pero también que un precio de salida mal calculado se nota enseguida, porque el comprador de esta zona compara mucho antes de decidir.</p><h2>Un barrio que premia la reforma bien hecha</h2><p>Pocos barrios de Barcelona recompensan tanto una reforma de calidad como el Born. El mismo piso, con la misma superficie, puede tener una diferencia de precio de decenas de miles de euros según se haya conservado (o recuperado) el carácter original de la finca: vigas vistas, techos altos, suelos hidráulicos. Los compradores de esta zona suelen tener referencias de diseño claras y penalizan las reformas genéricas que no respetan el edificio.</p><h2>Passeig del Born, Santa Maria del Mar y Sant Pere: matices dentro del barrio</h2><p>El entorno inmediato del Passeig del Born y Santa Maria del Mar concentra la mayor presión turística y de comprador internacional, con precios en la parte alta de la horquilla. Sant Pere y el entorno del Palau de la Música, algo más residencial y menos transitado, ofrecen un mercado ligeramente más accesible sin perder la esencia del barrio, atractivo para compradores locales que buscan vivienda habitual en el centro.</p><h2>Por qué la fotografía profesional importa más aquí que en ningún otro barrio</h2><p>El comprador del Born decide gran parte de su interés antes de pisar el piso, comparando anuncios con fotografía de calidad claramente superior a la media. Un reportaje que no capture la luz, la altura de techos o el carácter de la finca hace que el anuncio pase desapercibido frente a otras exclusivas mejor presentadas, aunque el piso en sí sea comparable o mejor.</p><h2>Cómo se negocia con un comprador que compara varias opciones</h2><p>El comprador habitual del Born rara vez decide sobre una única visita: suele comparar activamente tres o cuatro propiedades similares antes de hacer una oferta, valorando no solo el precio sino el carácter arquitectónico, la calidad de la reforma y el estado de conservación de la finca. Esto significa que el margen de negociación real depende de tener claro, desde el inicio, qué elementos diferenciales de tu piso pesan frente a la competencia directa, en lugar de negociar únicamente sobre el precio por metro cuadrado.</p><h2>El papel del Palau de la Música y Santa Maria del Mar en el valor</h2><p>La proximidad a hitos arquitectónicos como el Palau de la Música o Santa Maria del Mar no es solo un argumento estético: para el comprador internacional que busca vivir o invertir en un entorno patrimonial reconocido mundialmente, esta cercanía tiene un valor añadido tangible que conviene reflejar tanto en la valoración como en la narrativa de venta, sin caer en generalidades que no aporten información concreta sobre el inmueble en sí.</p><h2>Cómo trabajamos tu venta en el Born</h2><p>En NuevaHabitat trabajamos la presentación —fotografía profesional, ficha optimizada— y la fijación de precio con datos reales del Born y Sant Pere, no con la media genérica de Ciutat Vella. Honorarios fijos de 3.000 € + IVA, cobro solo en escritura, sin la <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">comisión del 6%</a> de una agencia tradicional del centro.</p><h2>Perfil habitual de vendedor y comprador en el Born</h2><p>Quien vende en el Born suele ser un propietario que reformó la finca hace años y ahora busca liquidar la inversión, o una herencia entre varios familiares que deciden vender en lugar de mantener el <a href="/vender-piso-alquilado-barcelona">piso alquilado</a>. El comprador combina perfil internacional de alto poder adquisitivo con compradores locales que buscan vivir en un entorno patrimonial único, dispuestos a pagar una prima clara y bien justificada por el carácter arquitectónico verdaderamente único de cada finca concreta en cuestión.</p>
       <p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Micro-zonas:</strong> Passeig del Born, Santa Maria del Mar, Sant Pere, Palau de la Música.</p>
+      <div class="lc-stats-wrap fade-up"><div class="lc-stats-grid"><div class="lc-stat-box"><div class="lc-stat-label">Precio orientativo</div><div class="lc-stat-value">5.100 – 6.900 €/m²</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tiempo medio de venta</div><div class="lc-stat-value">45 – 75 días</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tendencia 2026</div><div class="lc-stat-value">Alta rotación, muy sensible a la calidad de la reforma y la presentación</div></div></div><p class="lc-stats-note">Rangos orientativos de mercado 2026 basados en datos públicos del sector. No sustituyen una valoración personalizada de tu vivienda.</p></div>
     </div>
     <div class="lc-form fade-up" id="valorar">
       <span class="overline">Sin compromiso</span>
@@ -230,6 +261,10 @@
       </form>
     </div>
   </div>
+  <div class="container"><div class="lc-grid-2 lc-buyer-grid fade-up">
+    <div><h3>Perfil de comprador habitual</h3><p>El comprador del Born suele tener un perfil cultural y estético definido: profesionales creativos, compradores internacionales que buscan segunda vivienda en Europa y familias con alto poder adquisitivo que valoran el carácter arquitectónico por encima del tamaño. Compara activamente varias opciones antes de decidir, así que la calidad de la reforma y de las fotografías influye directamente en el precio final conseguido.</p></div>
+    <div><h3>Tipología de vivienda</h3><p>Fincas señoriales de los siglos XVII-XIX con techos altos, vigas de madera vista y, en muchos casos, elementos arquitectónicos originales recuperados en reformas de alto nivel. Sant Pere, más allá del Passeig del Born, conserva un tejido residencial algo menos turístico y con precios ligeramente más contenidos.</p></div>
+  </div></div>
 </section>
 <section class="lc-section" style="background:var(--crema)" id="calc">
   <div class="container">
@@ -318,7 +353,12 @@
 </section>
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container" style="max-width:800px">
-    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en Born — preguntas frecuentes</h2></div>
+    <div class="lc-checklist fade-up">
+    <h3>Checklist antes de vender en el Born</h3>
+    <p class="lc-checklist-intro">La calidad de la presentación decide gran parte del resultado en este barrio.</p>
+    <ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Documentar elementos originales conservados: vigas, suelos hidráulicos, techos altos</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Cédula de habitabilidad y certificado energético vigentes</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Nota simple actualizada del Registro de la Propiedad</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Recibos de comunidad e IBI al día</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Reportaje fotográfico profesional con luz natural, no solo flash</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Revisar situación de licencia turística del edificio si aplica a tu operación</span></li></ul>
+  </div>
+    <div class="text-center fade-up" style="margin-bottom:2rem;margin-top:3rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en Born — preguntas frecuentes</h2></div>
     <div class="faq-list fade-up"><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto cuesta vender un piso en el Born con NuevaHabitat?</button>
         <div class="faq-a"><div class="faq-a-inner">3.000 € + IVA, precio fijo, solo en escritura.</div></div>
@@ -337,6 +377,12 @@
       </div><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto tarda vender un piso en el Born?</button>
         <div class="faq-a"><div class="faq-a-inner">El Born suele moverse más rápido que la media del centro si el precio es correcto; te damos una estimación en la valoración gratuita.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Por qué es tan importante la fotografía profesional en el Born?</button>
+        <div class="faq-a"><div class="faq-a-inner">Porque el comprador de esta zona compara muchas exclusivas antes de pedir visita, y una fotografía que no muestre bien el carácter de la finca puede hacer que tu piso pase desapercibido.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Sant Pere se vende al mismo precio que el entorno del Passeig del Born?</button>
+        <div class="faq-a"><div class="faq-a-inner">No siempre; Sant Pere suele tener precios algo más contenidos, aunque comparte el mismo carácter arquitectónico del barrio.</div></div>
       </div></div>
     <div class="lc-kw fade-up"><strong>Búsquedas relacionadas:</strong> vender piso Born · vender piso Born Barcelona · inmobiliaria Born · Sant Pere · Passeig del Born · 08003</div>
   </div>

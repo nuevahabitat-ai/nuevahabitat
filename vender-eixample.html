@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://www.nuevahabitat.com/vender-eixample"/>
   <meta property="og:title" content="Vender piso en el Eixample, Barcelona · Precio fijo 3.000€"/>
   <meta property="og:description" content="¿Vendes tu piso en el Eixample? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores con hipoteca preaprobada, panel digital y visitas en tu horario. Sin comisión del 6%."/>
-  <meta property="og:image" content="https://www.nuevahabitat.com/imagenes/interior1.jpg"/>
+  <meta property="og:image" content="https://www.nuevahabitat.com/imagenes/interior2.jpg"/>
   <meta property="og:locale" content="es_ES"/>
   <meta property="og:site_name" content="NuevaHabitat"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -35,9 +35,11 @@
     },
     "areaServed": [
       "Eixample Derecho",
+      "Eixample Esquerre",
       "Sagrada Família",
       "Passeig de Gràcia",
-      "Fort Pienc"
+      "Fort Pienc",
+      "Sant Antoni"
     ],
     "url": "https://www.nuevahabitat.com/vender-eixample",
     "sameAs": [
@@ -118,7 +120,23 @@
         "name": "¿Cuánto tarda vender un piso en el Eixample?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en el Eixample se venden en 60–90 días. Te damos una estimación en la valoración gratuita."
+          "text": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en el Eixample se venden en 55–85 días. Te damos una estimación en la valoración gratuita."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Diferenciáis entre Eixample Derecho, Sant Antoni y Sagrada Família a la hora de fijar precio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Usamos comparables cerrados de tu misma manzana o calle, no el precio medio del distrito, porque las diferencias entre micro-zonas del Eixample pueden superar el 20-25%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué pasa si mi finca tiene una derrama pendiente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lo incorporamos a la valoración y a la ficha del inmueble con total transparencia. Ocultarlo suele generar caídas de operación en notaría; explicarlo bien filtra mejor a los compradores serios."
         }
       }
     ]
@@ -168,7 +186,21 @@
     .lc-pilar-card p{font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 .75rem}
     .lc-pilar-meta{font-size:.8125rem;color:var(--gris-medio);margin-bottom:.75rem}
     .lc-pilar-link{font-size:.875rem;font-weight:600;color:var(--oro)}
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
+    .lc-stats-wrap{margin-top:2rem}
+    .lc-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .lc-stat-box{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);padding:1.25rem;text-align:center}
+    .lc-stat-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gris-medio);margin-bottom:.4rem}
+    .lc-stat-value{font-family:var(--font-serif);font-size:1.375rem;color:var(--negro);font-weight:700}
+    .lc-stats-note{font-size:.8125rem;color:var(--gris-medio);margin-top:.85rem;text-align:center}
+    .lc-buyer-grid h3{font-family:var(--font-serif);color:var(--negro);margin-bottom:.5rem}
+    .lc-buyer-grid p{font-size:.9375rem;color:var(--gris-texto);line-height:1.7}
+    .lc-checklist{background:var(--crema);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin-top:2rem}
+    .lc-checklist h3{font-family:var(--font-serif);color:var(--negro);margin:0 0 .5rem}
+    .lc-checklist-intro{font-size:.9375rem;color:var(--gris-texto);margin-bottom:1rem}
+    .lc-checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem}
+    .lc-checklist li{display:flex;align-items:flex-start;gap:.5rem;font-size:.9375rem;color:var(--gris-texto);line-height:1.5}
+    .lc-checklist li svg{flex-shrink:0;color:var(--oro);margin-top:.15rem}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -185,7 +217,7 @@
 <nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
 <div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Eixample</span></nav></div>
 <section class="lc-hero">
-  <div class="lc-hero-media"><img src="imagenes/interior1.jpg" alt="Piso en el Eixample de Barcelona" fetchpriority="high" decoding="async"/></div>
+  <div class="lc-hero-media"><img src="imagenes/interior2.jpg" alt="Piso en el Eixample de Barcelona" fetchpriority="high" decoding="async"/></div>
   <div class="lc-hero-overlay"></div>
   <div class="container"><div class="lc-hero-content fade-up">
     <span class="lc-badge">Eixample · 08007 · Barcelona</span>
@@ -214,8 +246,9 @@
     <div class="lc-prose fade-up">
       <span class="overline">Vender en Eixample</span>
       <h2>Vender piso en Eixample con precio fijo y compradores filtrados</h2>
-      <p>El Eixample concentra la mayor liquidez de Barcelona: Eixample Derecho y Esquerre, Sagrada Família, Passeig de Gràcia, Fort Pienc y Sant Antoni muestran rangos muy distintos — a menudo entre 5.000 y 7.500 €/m² según planta, orientación y estado de la finca.</p><p>Vender aquí no es solo publicar en Idealista: compites con decenas de exclusivas y compradores que piden descuento sin estudio bancario. NuevaHabitat fija honorarios de 3.000 € + IVA, presenta tu inmueble con reportaje fotográfico y activa nuestra cartera de compradores cualificados antes de abrir visitas masivas.</p><p>Tu panel muestra cada hito — valoración, publicación, visitas confirmadas, oferta y escritura — y tú decides cuándo recibir a interesados. Sin venta, sin factura de comisión ni permanencias ocultas en contrato.</p>
-      <p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Micro-zonas:</strong> Eixample Derecho, Sagrada Família, Passeig de Gràcia, Fort Pienc.</p>
+      <p>El Eixample concentra la mayor liquidez inmobiliaria de Barcelona, pero también la mayor competencia entre vendedores: en cualquier momento hay decenas de exclusivas activas en Eixample Derecho, Eixample Esquerre, Sagrada Família, Passeig de Gràcia, Fort Pienc y Sant Antoni, con rangos de precio que oscilan entre los 4.800 y los 6.800 €/m² según planta, orientación, estado de la finca y proximidad a Passeig de Gràcia o Diagonal. En un mercado tan líquido, el margen de error al fijar el precio de salida es mucho menor que en otros distritos: sobrevalorar diez días te saca de las primeras búsquedas de portales, e infravalorar regala dinero que podrías haber negociado con calma.</p><h2>Un distrito, varios mercados distintos</h2><p>Tratar el Eixample como un bloque homogéneo es el error más habitual de las agencias generalistas. Un principal con ascensor en una finca modernista de Eixample Derecho no compite con un ático reformado en Sant Antoni, ni con un piso interior sin reforma cerca de la Sagrada Família. Cada micro-zona tiene su propio ritmo: Passeig de Gràcia y el entorno de Rambla Catalunya mueven compradores de alto poder adquisitivo y perfil internacional, muchas veces con pago al contado o financiación desde el extranjero; Fort Pienc y Sagrada Família funcionan más con familias locales que valoran metros cuadrados, colegios cercanos y la conexión de L2 y L5; Sant Antoni ha ganado tracción entre compradores de 30-45 años atraídos por el mercado renovado, la oferta gastronómica y la conexión directa en metro (L1, L2) hacia el centro y la zona universitaria. Ignorar estas diferencias al fijar el precio de salida es la causa más común de que un piso se quede semanas sin una sola oferta seria.</p><h2>Qué exige vender bien en el Eixample</h2><p>Con tanta oferta simultánea, el precio de salida y la calidad de la presentación deciden si tu piso se vende en dos meses o se queda seis meses acumulando visitas de curiosos. Nuestra valoración parte de comparables reales cerrados en tu manzana —no del precio medio del distrito— y de un reportaje fotográfico profesional que compite con las publicaciones premium de otras agencias del Eixample. Solo después activamos nuestra cartera de compradores con estudio de solvencia previo, evitando visitas de quien todavía no tiene claro su presupuesto o está empezando a mirar sin decisión real de compra.</p><h2>Documentación y particularidades de la finca de ensanche</h2><p>Buena parte de las incidencias que retrasan una venta en el Eixample nacen en la finca, no en el piso: derramas aprobadas para rehabilitar fachada o instalar ascensor, cédulas de habitabilidad caducadas o licencias turísticas del edificio que condicionan el uso futuro. Revisamos esta documentación antes de publicar el anuncio, de modo que el comprador reciba la información completa desde la primera visita y no aparezcan sorpresas cuando ya hay arras firmadas. Esta transparencia reduce caídas de operación en la recta final, que es donde más tiempo y dinero se pierde en una venta mal preparada.</p><h2>Compradores internacionales: qué cambia en la negociación</h2><p>Una parte relevante de la demanda en Passeig de Gràcia y el entorno de Rambla Catalunya procede de compradores extranjeros, con procesos de financiación, plazos y necesidades de documentación distintos a los de un comprador local: NIE, apoderamientos notariales desde el extranjero, y en ocasiones pago total o parcial en efectivo tras transferencia internacional. Gestionar bien estos plazos administrativos, sin generar fricciones por desconocimiento del proceso, es clave para no perder una oferta sólida por una gestión torpe de los tiempos.</p><h2>Honorarios fijos, sin sorpresas</h2><p>NuevaHabitat cobra 3.000 € + IVA, solo en escritura, frente al 6% + IVA habitual de una <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a> del Eixample —una diferencia que en un piso de 550.000 € supera los 30.000 €—. Tu panel digital de vendedor muestra en tiempo real cada hito: publicación, visitas confirmadas, ofertas recibidas y estado de la documentación hasta notaría. Tú decides los días y franjas en los que abres tu piso a visitas, sin depender del horario comercial de una oficina ni de comerciales que gestionan decenas de exclusivas a la vez.</p>
+      <p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Micro-zonas:</strong> Eixample Derecho, Eixample Esquerre, Sagrada Família, Passeig de Gràcia, Fort Pienc, Sant Antoni.</p>
+      <div class="lc-stats-wrap fade-up"><div class="lc-stats-grid"><div class="lc-stat-box"><div class="lc-stat-label">Precio orientativo</div><div class="lc-stat-value">4.800 – 6.800 €/m²</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tiempo medio de venta</div><div class="lc-stat-value">55 – 85 días</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tendencia 2026</div><div class="lc-stat-value">Demanda alta y sostenida, con presión al alza en pisos reformados</div></div></div><p class="lc-stats-note">Rangos orientativos de mercado 2026 basados en datos públicos del sector. No sustituyen una valoración personalizada de tu vivienda.</p></div>
     </div>
     <div class="lc-form fade-up" id="valorar">
       <span class="overline">Sin compromiso</span>
@@ -230,6 +263,10 @@
       </form>
     </div>
   </div>
+  <div class="container"><div class="lc-grid-2 lc-buyer-grid fade-up">
+    <div><h3>Perfil de comprador habitual</h3><p>El Eixample atrae tres perfiles muy distintos según la manzana: familias que buscan finca modernista de 90-140 m² cerca de colegios (Fort Pienc, Sagrada Família), profesionales e inversores extranjeros que compran obra reformada en Eixample Derecho y Passeig de Gràcia como residencia o activo de rentabilidad, y compradores jóvenes o parejas que priorizan Sant Antoni por su mezcla de mercado gastronómico, movilidad en metro y precios algo más accesibles que el resto del distrito. Un mismo piso puede recibir ofertas muy diferentes según a cuál de estos tres perfiles se dirija primero la comercialización.</p></div>
+    <div><h3>Tipología de vivienda</h3><p>Predomina la finca de ensanche construida entre 1870 y 1930, con fachadas de piedra o esgrafiado, techos altos (a menudo con molduras originales) y, en muchos casos, ascensor añadido posteriormente. Conviven fincas señoriales de gran superficie con edificios más modestos de entreplanta y ático. La presencia o ausencia de ascensor, el estado de la comunidad y si la finca tiene catalogación patrimonial son factores que cambian sensiblemente el precio de salida.</p></div>
+  </div></div>
 </section>
 <section class="lc-section" style="background:var(--crema)" id="calc">
   <div class="container">
@@ -318,7 +355,12 @@
 </section>
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container" style="max-width:800px">
-    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en Eixample — preguntas frecuentes</h2></div>
+    <div class="lc-checklist fade-up">
+    <h3>Checklist antes de vender en el Eixample</h3>
+    <p class="lc-checklist-intro">Revisa estos puntos antes de publicar tu piso; adelantan preguntas frecuentes de compradores y notario.</p>
+    <ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Cédula de habitabilidad y certificado energético vigentes</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Estado de la finca: derramas aprobadas o pendientes (ITE, fachada, ascensor)</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Nota simple actualizada del Registro de la Propiedad</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Últimos recibos de comunidad e IBI al día</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Confirmar si la finca tiene catalogación patrimonial que limite reformas</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Fotografías con luz natural en las horas de mejor orientación del piso</span></li></ul>
+  </div>
+    <div class="text-center fade-up" style="margin-bottom:2rem;margin-top:3rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en Eixample — preguntas frecuentes</h2></div>
     <div class="faq-list fade-up"><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto cuesta vender un piso en el Eixample con NuevaHabitat?</button>
         <div class="faq-a"><div class="faq-a-inner">3.000 € + IVA, precio fijo cobrado únicamente en escritura. No pagas un 6% sobre el precio de venta como en muchas agencias tradicionales de Barcelona.</div></div>
@@ -336,7 +378,13 @@
         <div class="faq-a"><div class="faq-a-inner">Sí. Trabajamos todo el distrito del Eixample (08007, 08009, 08010, 08011, 08013, 08015) y el área metropolitana de Barcelona desde nuestras oficinas en Les Corts.</div></div>
       </div><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto tarda vender un piso en el Eixample?</button>
-        <div class="faq-a"><div class="faq-a-inner">Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en el Eixample se venden en 60–90 días. Te damos una estimación en la valoración gratuita.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en el Eixample se venden en 55–85 días. Te damos una estimación en la valoración gratuita.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Diferenciáis entre Eixample Derecho, Sant Antoni y Sagrada Família a la hora de fijar precio?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Usamos comparables cerrados de tu misma manzana o calle, no el precio medio del distrito, porque las diferencias entre micro-zonas del Eixample pueden superar el 20-25%.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Qué pasa si mi finca tiene una derrama pendiente?</button>
+        <div class="faq-a"><div class="faq-a-inner">Lo incorporamos a la valoración y a la ficha del inmueble con total transparencia. Ocultarlo suele generar caídas de operación en notaría; explicarlo bien filtra mejor a los compradores serios.</div></div>
       </div></div>
     <div class="lc-kw fade-up"><strong>Búsquedas relacionadas:</strong> vender piso Eixample · vender casa Eixample Barcelona · inmobiliaria Eixample precio fijo · vender vivienda 08007 · agencia inmobiliaria Sagrada Família · vender piso Passeig de Gràcia · comisión inmobiliaria Eixample · vender piso Eixample Derecho · valoración gratuita Eixample</div>
   </div>

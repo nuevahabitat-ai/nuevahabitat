@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-25T18:03:02.146Z",
+  "updated": "2026-07-26T08:20:00.692Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -80,7 +80,37 @@
       "priority": 0.87
     },
     {
+      "slug": "vender-sant-antoni",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "vender-sant-gervasi",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "vender-el-clot-la-sagrera-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "vender-l-hospitalet",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-poble-sec",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-sant-andreu",
       "cluster": "barrio",
       "indexable": true,
       "priority": 0.86
@@ -90,6 +120,24 @@
       "cluster": "barrio",
       "indexable": true,
       "priority": 0.855
+    },
+    {
+      "slug": "vender-cornella",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.85
+    },
+    {
+      "slug": "vender-sant-just-sant-joan-despi",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.85
+    },
+    {
+      "slug": "cuanto-vale-mi-piso-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.9
     },
     {
       "slug": "vender-piso-alquilado-barcelona",
@@ -104,10 +152,34 @@
       "priority": 0.87
     },
     {
+      "slug": "vender-piso-herencia-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-piso-hipoteca-pendiente-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
       "slug": "vender-piso-inquilino-vencer-barcelona",
       "cluster": "situacion",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "vender-piso-okupado-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-piso-separacion-divorcio-barcelona",
+      "cluster": "situacion",
+      "indexable": true,
+      "priority": 0.87
     },
     {
       "slug": "vender-piso-traslado-barcelona",
@@ -140,10 +212,22 @@
       "priority": 0.91
     },
     {
+      "slug": "nuevahabitat-vs-clikalia-barcelona",
+      "cluster": "comparativa",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
       "slug": "nuevahabitat-vs-fotocasa-particular",
       "cluster": "comparativa",
       "indexable": true,
       "priority": 0.89
+    },
+    {
+      "slug": "nuevahabitat-vs-housfy-barcelona",
+      "cluster": "comparativa",
+      "indexable": true,
+      "priority": 0.87
     },
     {
       "slug": "nuevahabitat-vs-idealista-particular",

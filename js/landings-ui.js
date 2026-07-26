@@ -132,6 +132,40 @@
     container.innerHTML = cards;
   }
 
+  function renderGuiasVendedor(container) {
+    if (!container || !window.NH_LANDINGS) return;
+
+    var clusters = window.NH_LANDING_CLUSTERS || {};
+    var guiaSlugs = []
+      .concat((clusters.comparativa && clusters.comparativa.slugs) || [])
+      .concat((clusters.intencion && clusters.intencion.slugs) || [])
+      .concat((clusters.situacion && clusters.situacion.slugs) || []);
+
+    if (!guiaSlugs.length) {
+      landingOrder().forEach(function (slug) {
+        var cfg = window.NH_LANDINGS[slug];
+        if (cfg && (cfg.cluster === 'situacion' || cfg.cluster === 'intencion' || cfg.cluster === 'comparativa')) guiaSlugs.push(slug);
+      });
+    }
+
+    var cards = guiaSlugs.map(function (slug) {
+      var cfg = window.NH_LANDINGS[slug];
+      if (!cfg) return '';
+
+      var badge = cfg.badge || (cfg.cluster === 'comparativa' ? 'Comparativa' : cfg.cluster === 'intencion' ? 'Guía' : 'Situación');
+
+      return (
+        '<div style="background:var(--blanco);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-sm);border-left:4px solid var(--oro)">' +
+        '<div style="font-size:.8125rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gris-medio);margin-bottom:.35rem">' + badge + '</div>' +
+        '<p style="font-size:.9375rem;color:var(--negro);margin:0 0 1rem;line-height:1.5">' + footerLabel(cfg) + '</p>' +
+        '<a href="/' + slug + '" class="btn btn-gold" style="width:100%;justify-content:center">Ver guía →</a>' +
+        '</div>'
+      );
+    }).join('');
+
+    container.innerHTML = cards;
+  }
+
   function applyTestimonialsVisibility() {
     var page = (location.pathname.replace(/^\//, '').replace(/\.html$/, '') || '').toLowerCase();
     var cfg = window.NH_LANDINGS && window.NH_LANDINGS[page];
@@ -144,6 +178,7 @@
   function init() {
     document.querySelectorAll('[data-nh-landing-footer]').forEach(renderFooterLinks);
     document.querySelectorAll('[data-nh-zona-local]').forEach(renderZonaLocal);
+    document.querySelectorAll('[data-nh-guias-vendedor]').forEach(renderGuiasVendedor);
     applyTestimonialsVisibility();
   }
 

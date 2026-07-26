@@ -17,13 +17,20 @@
   ],
   "inmueblesQuery": "Les Corts",
   "ejemploPrecio": 400000,
-  "heroImage": "imagenes/equipo1.jpg",
+  "heroImage": "imagenes/interior11.jpg",
   "heroImageAlt": "Vivienda en Les Corts, Barcelona",
   "origen_lead": "vender-les-corts",
   "testimonials": true,
   "priority": 0.88,
   "footerExtra": "comprar",
   "ahorro": "20.000€",
+  "datosMercado": {
+    "precioM2": "4.700 – 6.200 €/m²",
+    "tiempoVenta": "50 – 80 días",
+    "tendencia": "Demanda sólida por proximidad a zona de negocio y campus universitario"
+  },
+  "perfilComprador": "Les Corts combina tres tipos de comprador bien diferenciados: familias consolidadas que llevan años queriendo entrar en el barrio y buscan piso grande cerca del Camp Nou o Numància; profesionales que trabajan en el eje de negocio de Diagonal y buscan proximidad sin el precio de Sarrià; e inversores que compran en Zona Universitaria pensando en alquiler a estudiantes de las facultades cercanas, con rentabilidades estables todo el año.",
+  "tipologiaEdificios": "Conviven fincas de los años 60-70 bien conservadas en Les Corts centre y Numància, promociones más recientes cerca de Diagonal, y edificios de alto standing en el entorno de Pedralbes. La proximidad al Camp Nou (en plena renovación) está revalorizando progresivamente varias calles del entorno.",
   "meta": {
     "title": "Vender piso en Les Corts, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
     "description": "¿Vendes tu piso en Les Corts? NuevaHabitat: plataforma para vendedores con honorarios fijos de 3.000€ + IVA. Compradores con hipoteca preaprobada, panel digital y visitas en tu horario. Sin comisión del 6%.",
@@ -33,7 +40,19 @@
     "h1": "¿Vendes tu piso en Les Corts?",
     "lead": "<strong>NuevaHabitat</strong> es la plataforma inmobiliaria para vendedores que quieren vender su vivienda en Les Corts con <strong>honorarios ajustados y precio fijo</strong>, lejos de las agencias tradicionales que cobran un 6% sobre el precio de venta."
   },
-  "argumento_principal": "<p>Les Corts mezcla familias consolidadas, profesionales del 22@ y demanda universitaria en la Zona Universitaria, Numància, Pedralbes y el eje del Camp Nou. Vender en 08028 exige entender micro-mercados: un piso en Numància no se valora igual que uno en Pedralbes aunque compartan distrito.</p><p>Somos la inmobiliaria con sede en <strong>Carrer de Mejía Lequerica, 42</strong>: conocemos el barrio porque trabajamos en él cada día. Combinamos agente local, tecnología y panel de vendedor con expediente digital, visitas en tu horario y compradores filtrados por solvencia.</p><p>Honorarios fijos de 3.000 € + IVA al cierre — frente a más de 20.000 € en comisión tradicional sobre un piso de 400.000 €. Valoración gratuita en 24 h sin compromiso de exclusiva ni permanencia.</p>",
+  "argumento_principal": "<p>Les Corts mezcla familias consolidadas, profesionales del eje de negocio de Diagonal y demanda universitaria en la Zona Universitaria, Numància, Pedralbes y el entorno del Camp Nou. Vender en 08028 exige entender micro-mercados: un piso en Numància no se valora igual que uno en Pedralbes aunque compartan distrito, y esa diferencia puede superar el 30% del precio por metro cuadrado.</p><h2>El distrito donde trabajamos cada día</h2><p>Somos la inmobiliaria con sede en <strong>Carrer de Mejía Lequerica, 42</strong>, en pleno Les Corts: conocemos el barrio porque lo recorremos cada día, no porque lo hayamos estudiado en un informe genérico. Sabemos qué calles de Numància tienen mejor salida, qué fincas de Pedralbes exigen un comprador de perfil alto, y por qué la Zona Universitaria funciona de forma distinta al resto del distrito por su alta proporción de demanda de alquiler e inversión.</p><h2>La renovación del Camp Nou como factor de valor</h2><p>La reforma del Camp Nou y su entorno está revalorizando progresivamente varias calles cercanas, generando expectativas de compradores e inversores que antes miraban solo el Eixample o Sarrià. Incorporamos este contexto en la valoración para que el precio de salida refleje tanto el estado actual del piso como la evolución previsible del entorno, sin caer en cifras infladas que luego no se sostienen ante el comprador.</p><h2>Pedralbes: un mercado de comprador exigente y discreto</h2><p>Vender en Pedralbes requiere un enfoque distinto al del resto del distrito: el comprador habitual tiene un perfil de mayor poder adquisitivo, valora especialmente la discreción durante el proceso de venta y suele comparar con muy pocas alternativas realmente equivalentes en toda Barcelona. Esto significa que la estrategia de comercialización debe priorizar calidad sobre volumen de visitas: menos interesados, pero mejor cualificados, con una presentación del inmueble a la altura del segmento y sin exposición pública innecesaria del proceso de venta.</p><h2>Numància y la demanda familiar de reposición</h2><p>En Numància es habitual encontrar familias que ya viven en el barrio y buscan cambiar de piso dentro de la misma zona, bien para ganar una habitación adicional, bien para acceder a un edificio con ascensor. Esta demanda de «reposición interna» es distinta a la de quien llega por primera vez a Les Corts: conoce ya los precios de referencia del barrio con precisión, por lo que cualquier desviación notable sobre el valor real de mercado se detecta y descarta rápidamente por parte de estos compradores informados.</p><h2>Tecnología y agente local, no solo un anuncio</h2><p>Combinamos agente local, tecnología y panel de vendedor con expediente digital: valoración, visitas, ofertas y documentación en un mismo sitio, accesible 24/7. Tú decides los horarios de visita y solo recibimos en tu piso a compradores filtrados por solvencia real, con estudio hipotecario o capacidad de compra verificada.</p><h2>Honorarios fijos y valoración sin compromiso</h2><p>Honorarios fijos de 3.000 € + IVA al cierre —frente a más de 20.000 € en comisión tradicional sobre un piso de 400.000 €—, cobrados solo si vendes. <a href=\"/cuanto-vale-mi-piso-barcelona\">Valoración gratuita</a> en 24 horas, sin compromiso de exclusiva ni permanencia mínima en contrato.</p><h2>Perfil habitual de vendedor y comprador en Les Corts</h2><p>Quien vende en Les Corts suele ser una familia que reduce metros tras la marcha de los hijos, un propietario que hereda una vivienda en Pedralbes o Numància, o un inversor que liquida un <a href=\"/vender-piso-alquilado-barcelona\">piso alquilado</a> a estudiantes de la Zona Universitaria. El comprador combina familias que buscan estabilidad a largo plazo con inversores atraídos por la demanda universitaria constante y la revalorización asociada al entorno del Camp Nou.</p><h2>Documentación específica en fincas de perfil universitario</h2><p>En pisos que han estado alquilados por habitaciones a estudiantes durante años, conviene revisar con especial cuidado el estado de las instalaciones eléctricas y de los suministros antes de publicar el anuncio, ya que este tipo de uso intensivo suele generar un desgaste superior al de una vivienda familiar convencional, algo que un comprador atento detectará sin duda durante la propia visita técnica previa.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender en Les Corts",
+    "intro": "Puntos a revisar antes de publicar, especialmente si tu piso está cerca del Camp Nou o en Zona Universitaria.",
+    "items": [
+      "Cédula de habitabilidad y certificado energético vigentes",
+      "Nota simple actualizada del Registro de la Propiedad",
+      "Recibos de comunidad e IBI al día",
+      "Documentar si el piso tiene plaza de parking o trastero incluidos",
+      "Revisar potencial de alquiler a estudiantes si está en Zona Universitaria",
+      "Fotografías que muestren proximidad a Diagonal y transporte público"
+    ]
+  },
   "faq": [
     {
       "q": "¿Cuánto cuesta vender un piso en Les Corts con NuevaHabitat?",
@@ -57,7 +76,15 @@
     },
     {
       "q": "¿Cuánto tarda vender un piso en Les Corts?",
-      "a": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en Les Corts se venden en 60–90 días. Te damos una estimación en la valoración gratuita."
+      "a": "Depende del precio, estado y planta. Con pricing correcto y compradores filtrados, muchos inmuebles en Les Corts se venden en 50–80 días. Te damos una estimación en la valoración gratuita."
+    },
+    {
+      "q": "¿La reforma del Camp Nou afecta al precio de mi piso?",
+      "a": "Puede influir positivamente en las calles más próximas al estadio, dentro de un horizonte de varios años. Lo tenemos en cuenta como factor cualitativo en la valoración, sin prometer revalorizaciones no verificables."
+    },
+    {
+      "q": "¿Es buena zona para vender a inversores?",
+      "a": "La Zona Universitaria tiene demanda estable de alquiler por la proximidad a varias facultades, lo que la hace atractiva para compradores que buscan rentabilidad además de vivienda habitual."
     }
   ],
   "relacionadas": [

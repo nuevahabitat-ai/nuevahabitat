@@ -1,0 +1,133 @@
+{
+  "slug": "vender-piso-hipoteca-pendiente-barcelona",
+  "cluster": "situacion",
+  "indexable": true,
+  "keyword_principal": "vender piso con hipoteca pendiente barcelona",
+  "footerLabel": "Hipoteca pendiente",
+  "priority": 0.87,
+  "origen_lead": "vender-piso-hipoteca-pendiente-barcelona",
+  "checklistLabel": "vender con hipoteca pendiente",
+  "meta": {
+    "title": "Vender piso con hipoteca pendiente en Barcelona · NuevaHabitat",
+    "description": "¿Puedes vender un piso con hipoteca pendiente en Barcelona? Te explicamos cancelación registral, subrogación y cómo se reparte el precio en notaría. Precio fijo 3.000€ + IVA.",
+    "keywords": "vender piso con hipoteca pendiente barcelona, vender piso hipotecado, cancelar hipoteca al vender piso, subrogacion hipoteca comprador barcelona, vender piso debiendo hipoteca"
+  },
+  "hero": {
+    "badge": "Situación · Hipoteca pendiente",
+    "h1": "¿Puedes vender tu piso en Barcelona si aún debes hipoteca?",
+    "lead": "Sí, se puede vender un piso con hipoteca pendiente: es una de las situaciones más habituales en cualquier compraventa. Lo importante es entender cómo se cancela la deuda en notaría y qué pasa si el precio de venta no cubre lo que queda por pagar. Te acompañamos con honorarios fijos de 3.000 € + IVA.",
+    "image": "imagenes/contrato1.jpg",
+    "imageAlt": "Documentos de hipoteca y compraventa de piso en Barcelona"
+  },
+  "breadcrumbCurrent": "Hipoteca pendiente",
+  "argumento_principal": "<p>Vender un <strong>piso con hipoteca pendiente en Barcelona</strong> es, en realidad, la situación más común en el mercado: la mayoría de compraventas de vivienda de segunda mano en España se cierran con el vendedor cancelando su hipoteca en el mismo acto de la firma, usando parte del dinero del comprador. El proceso está muy estandarizado, pero genera dudas legítimas sobre plazos, papeleo y qué ocurre si el precio de venta no llega a cubrir la deuda pendiente.</p><h2>Cómo se cancela la hipoteca el día de la firma</h2><p>En la práctica habitual, el notario solicita a tu banco un certificado de deuda pendiente unos días antes de la firma. Ese importe se retiene del precio que paga el comprador y se transfiere directamente al banco para cancelar el préstamo, normalmente mediante cheque bancario o transferencia gestionada en la propia notaría. El resto del precio, descontados gastos, es lo que recibes tú como vendedor. Después queda pendiente la cancelación registral de la hipoteca, un trámite administrativo que no impide la venta pero que conviene gestionar cuanto antes para que la vivienda quede libre de cargas en el Registro.</p><h2>Qué pasa si debes más de lo que vale tu piso</h2><p>Si el precio de venta no cubre el capital pendiente de la hipoteca —una situación menos habitual en el mercado actual de Barcelona pero posible en compras muy apalancadas o hipotecas recientes—, existen alternativas: aportar la diferencia con ahorros propios, negociar con el banco una quita o una novación, o en última instancia valorar otras opciones legales con asesoramiento especializado. Detectar esta situación cuanto antes, antes de fijar el precio de salida, evita sorpresas desagradables en el último momento frente al notario.</p><h2>Subrogación: cuando el comprador asume tu hipoteca</h2><p>Otra opción menos frecuente pero posible es la subrogación: el comprador asume las condiciones de tu hipoteca actual en lugar de cancelarla y pedir una nueva. Esto puede interesar si tu hipoteca tiene condiciones mejores que las que el comprador conseguiría hoy en el mercado, aunque requiere el visto bueno del banco y no siempre es la opción más sencilla ni la más habitual.</p><h2>Cómo afecta la hipoteca pendiente al proceso de venta</h2><p>Tener hipoteca pendiente no debería afectar al tiempo que tarda tu piso en venderse ni al precio que puedes pedir por él —salvo que tu deuda supere el valor de mercado—. Sí es importante comunicarlo con transparencia desde el principio, tanto al comprador como a su entidad financiera, ya que forma parte de la documentación estándar que se revisa antes de la firma.</p><h2>Qué pasa si tienes más de una hipoteca o cargas adicionales</h2><p>Además de la hipoteca principal, algunos propietarios tienen ampliaciones de capital, segundas hipotecas o incluso embargos que también deben cancelarse antes o durante la venta. Revisar con detalle una <a href=\"blog-articulo.html?slug=documentos-vender-piso\">nota simple</a> actualizada del Registro de la Propiedad antes de fijar el precio de salida es fundamental para conocer exactamente qué cargas existen y cómo afectan al reparto final del dinero, evitando sorpresas desagradables que aparezcan justo el día de la firma en notaría.</p><h2>Cómo afecta la hipoteca pendiente a la negociación con el comprador</h2><p>Ser transparente sobre la existencia de una hipoteca pendiente no debilita tu posición negociadora frente al comprador: es una situación tan habitual que la mayoría de compradores y sus propios bancos ya cuentan con ella como parte estándar del proceso. Lo que sí genera desconfianza es descubrir la existencia de cargas no comunicadas a mitad de la negociación, por lo que aportar el certificado de deuda pendiente de forma proactiva, incluso antes de que el comprador lo solicite, transmite seriedad y agiliza la fase final de la operación.</p><h2>Cómo te acompañamos en NuevaHabitat</h2><p>Pedimos el certificado de deuda pendiente a tu banco en el momento adecuado del proceso, coordinamos con la notaría la cancelación el día de la firma y te explicamos con claridad cuánto vas a recibir realmente una vez descontada la hipoteca y los gastos de la operación. Cobramos <strong>3.000 € + IVA solo en escritura</strong>, el mismo modelo que en cualquier venta, sin <a href=\"/nuevahabitat-vs-agencia-tradicional-barcelona\">comisión del 6%</a> sobre el precio total.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender con hipoteca pendiente",
+    "intro": "Reúne esta información para evitar sorpresas el día de la firma.",
+    "items": [
+      "Solicitar a tu banco el certificado de deuda pendiente actualizado",
+      "Confirmar si tu hipoteca tiene comisión por cancelación anticipada",
+      "Calcular cuánto recibirás realmente tras cancelar hipoteca y gastos",
+      "Verificar si hay cargas adicionales (embargos, otras hipotecas) en el Registro",
+      "Consultar si interesa cancelación o subrogación según tu tipo de interés",
+      "Nota simple actualizada del Registro de la Propiedad"
+    ]
+  },
+  "bloque_legal_fiscal": {
+    "title": "Qué debes saber legalmente al vender con hipoteca",
+    "items": [
+      {
+        "title": "Cancelación económica vs. registral",
+        "body": "La cancelación económica ocurre el día de la firma al pagar la deuda al banco. La cancelación registral, que borra la hipoteca del Registro de la Propiedad, es un trámite posterior que conviene gestionar sin demora."
+      },
+      {
+        "title": "Comisión por cancelación anticipada",
+        "body": "Algunas hipotecas incluyen una comisión si se cancelan antes de tiempo. Revisa tu contrato o pregunta a tu banco antes de fijar el precio neto que esperas recibir."
+      },
+      {
+        "title": "Si la deuda supera el precio de venta",
+        "body": "Es posible negociar con el banco una quita parcial o aportar la diferencia con fondos propios. Cada entidad tiene su propia política; conviene abrir esta conversación cuanto antes."
+      },
+      {
+        "title": "Plusvalía municipal e IRPF",
+        "body": "La existencia de hipoteca no cambia la tributación de la venta: la plusvalía municipal y el posible IRPF se calculan sobre el precio de venta, no sobre lo que recibes tras cancelar la deuda."
+      }
+    ]
+  },
+  "como_ayudamos": {
+    "title": "Cómo gestionamos una venta con hipoteca pendiente",
+    "steps": [
+      {
+        "title": "Revisión de tu hipoteca",
+        "body": "Solicitamos el certificado de deuda y revisamos condiciones de cancelación."
+      },
+      {
+        "title": "Cálculo neto real",
+        "body": "Te mostramos cuánto recibirás realmente tras cancelar hipoteca y gastos."
+      },
+      {
+        "title": "Coordinación con notaría",
+        "body": "Gestionamos el pago al banco y la cancelación el día de la firma."
+      },
+      {
+        "title": "Escritura con precio fijo",
+        "body": "3.000 € + IVA solo al cerrar. Sin venta, no pagas honorarios."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Puedo vender mi piso en Barcelona si todavía tengo hipoteca?",
+      "a": "Sí, es la situación más habitual en el mercado. La hipoteca se cancela el mismo día de la firma con parte del dinero que paga el comprador."
+    },
+    {
+      "q": "¿Qué pasa si debo más de lo que vale mi piso?",
+      "a": "Puedes aportar la diferencia con ahorros, negociar una quita con el banco o valorar otras alternativas legales. Lo detectamos cuanto antes en la valoración inicial."
+    },
+    {
+      "q": "¿Tengo que avisar al comprador de que tengo hipoteca?",
+      "a": "Sí, forma parte de la documentación estándar que se revisa antes de la firma. No afecta negativamente a la operación si se gestiona con transparencia."
+    },
+    {
+      "q": "¿Cuánto tarda en cancelarse la hipoteca tras la venta?",
+      "a": "La cancelación económica es inmediata el día de la firma. La cancelación registral en el Registro de la Propiedad puede tardar semanas, pero no impide la venta."
+    },
+    {
+      "q": "¿Puedo subrogar mi hipoteca al comprador?",
+      "a": "Es posible si el banco lo autoriza y el comprador está de acuerdo, aunque es menos habitual que la cancelación estándar en notaría."
+    },
+    {
+      "q": "¿Cuánto cuesta vender con NuevaHabitat teniendo hipoteca?",
+      "a": "3.000 € + IVA, el mismo precio fijo que en cualquier venta, cobrado solo en escritura."
+    },
+    {
+      "q": "¿Hay comisión por cancelar mi hipoteca anticipadamente?",
+      "a": "Depende del contrato firmado con tu banco. Te ayudamos a revisarlo antes de fijar el precio neto que esperas obtener."
+    },
+    {
+      "q": "¿Afecta la hipoteca al tiempo que tarda en venderse mi piso?",
+      "a": "No, salvo que la deuda supere el valor de mercado. El proceso de venta es igual que el de cualquier piso sin cargas pendientes."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-piso-antes-comprar-otro-barcelona",
+      "label": "Vender antes de comprar"
+    },
+    {
+      "slug": "cuanto-vale-mi-piso-barcelona",
+      "label": "Cuánto vale mi piso"
+    },
+    {
+      "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
+      "label": "NH vs agencia 6%"
+    },
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "label": "Vender piso rápido"
+    }
+  ],
+  "keywords_footer": "vender piso con hipoteca pendiente barcelona · vender piso hipotecado · cancelar hipoteca al vender · subrogacion hipoteca · vender piso debiendo hipoteca",
+  "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Barcelona%20y%20todav%C3%ADa%20tengo%20hipoteca",
+  "formPlaceholder": "Dirección del piso y capital pendiente aproximado de la hipoteca…"
+}

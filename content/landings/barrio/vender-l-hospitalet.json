@@ -8,13 +8,30 @@
   "breadcrumbCurrent": "L'Hospitalet",
   "priority": 0.86,
   "testimonials": false,
-  "postalCodes": ["08901", "08902", "08907"],
-  "zonas": ["Centre", "Bellvitge", "Pubilla Cases", "Granvia L'H", "Santa Eulàlia"],
+  "postalCodes": [
+    "08901",
+    "08902",
+    "08907"
+  ],
+  "zonas": [
+    "Centre",
+    "Bellvitge",
+    "Pubilla Cases",
+    "Granvia L'H",
+    "Santa Eulàlia"
+  ],
   "inmueblesQuery": "Hospitalet",
   "ejemploPrecio": 265000,
   "ahorro": "16.500",
+  "datosMercado": {
+    "precioM2": "2.750 – 3.200 €/m²",
+    "tiempoVenta": "60 – 90 días",
+    "tendencia": "Alto volumen de operaciones, comprador desplazado desde Barcelona ciudad por precio"
+  },
+  "perfilComprador": "El comprador de L'Hospitalet suele venir de dos perfiles: familias y parejas jóvenes que se han quedado fuera de precio en Barcelona ciudad y encuentran aquí más metros por el mismo presupuesto, y personal vinculado al Hospital de Bellvitge o a la zona de negocio de Granvia L'H. También hay demanda inversora atraída por rentabilidades de alquiler superiores a la media de Barcelona ciudad.",
+  "tipologiaEdificios": "El parque es heterogéneo: bloques de los años 60-70 en Centre y Santa Eulàlia, promociones más recientes en Bellvitge junto al hospital, y edificios de mediana altura en Pubilla Cases. La proximidad a metro L1 (Rambla Just Oliveras) marca diferencias de precio notables dentro del mismo municipio.",
   "origen_lead": "vender-l-hospitalet",
-  "heroImage": "imagenes/interior1.jpg",
+  "heroImage": "imagenes/interior9.jpg",
   "heroImageAlt": "Piso en L'Hospitalet de Llobregat, área metropolitana de Barcelona",
   "meta": {
     "title": "Vender piso en L'Hospitalet de Llobregat, Barcelona · Precio fijo · NuevaHabitat",
@@ -25,20 +42,70 @@
     "h1": "¿Vendes tu piso en L'Hospitalet de Llobregat?",
     "lead": "Vende en Centre, Bellvitge o Pubilla Cases con <strong>honorarios fijos de 3.000€ + IVA</strong>, valoración según mercado real del municipio (~2.750–3.200 €/m²) y compradores filtrados — a minutos de nuestra oficina en Les Corts."
   },
-  "argumento_principal": "<p><strong>L'Hospitalet de Llobregat</strong> es el municipio del área metropolitana de Barcelona con mayor volumen de operaciones de compraventa entre quienes buscan más metros por euro. En 2026 el precio orientativo ronda <strong>2.750–3.200 €/m²</strong>: un piso de 3 habitaciones suele situarse entre 220.000 y 320.000 € según barrio interno, ascensor y estado. Centre y la zona de Rambla Just Oliveras (metro L1) compiten distinto que Pubilla Cases o Bellvitge junto al hospital.</p><p>Nuestra oficina está en <strong>Carrer de Mejía Lequerica, 42 (Les Corts)</strong> — a pocos minutos en metro o bus de L'Hospitalet. Conocemos el mercado local porque muchos compradores de cartera buscan precisamente aquí tras quedarse fuera de precio en Barcelona ciudad. Valoramos con comparables de tu CP (08901, 08902, 08907), no con medias del Eixample.</p><p>Quién vende en L'Hospitalet suele ser herencia entre herederos, un inversor que liquida un piso de alquiler antiguo o una familia que se traslada al Baix Llobregat. Quién compra prioriza metro, colegios y precio de entrada. Si llevas meses en Idealista sin cerrar, el problema casi nunca es falta de demanda — es precio, filtro de compradores o documentación pendiente.</p>",
+  "argumento_principal": "<p><strong>L'Hospitalet de Llobregat</strong> es el municipio del área metropolitana de Barcelona con mayor volumen de operaciones de compraventa entre quienes buscan más metros por euro. En 2026 el precio orientativo ronda <strong>2.750–3.200 €/m²</strong>: un piso de 3 habitaciones suele situarse entre 220.000 y 320.000 € según barrio interno, ascensor y estado. Centre y la zona de Rambla Just Oliveras (metro L1) compiten distinto que Pubilla Cases o Bellvitge junto al hospital.</p><h2>Un municipio con varios mercados internos</h2><p>Centre concentra la mayor demanda por su cercanía a la Rambla Just Oliveras y la buena red de metro y autobús; Bellvitge, junto al hospital universitario, tiene un comprador vinculado al ámbito sanitario que valora sobre todo la cercanía al trabajo; Pubilla Cases y Santa Eulàlia funcionan con un perfil más familiar y estable, mientras que Granvia L'H se beneficia de la proximidad a zonas de oficinas y del acceso rápido a la Ronda Litoral. Tratar L'Hospitalet como un único bloque homogéneo lleva a errores de valoración de miles de euros entre un extremo y otro del municipio.</p><h2>Por qué somos la opción natural desde Les Corts</h2><p>Nuestra oficina está en <strong>Carrer de Mejía Lequerica, 42 (Les Corts)</strong> —a pocos minutos en metro o bus de L'Hospitalet—. Conocemos el mercado local porque muchos compradores de nuestra cartera buscan precisamente aquí tras quedarse fuera de precio en Barcelona ciudad. Valoramos con comparables de tu código postal (08901, 08902, 08907), no con medias del Eixample ni de otros distritos de la capital.</p><h2>Cómo influye la conexión con Barcelona ciudad en el precio</h2><p>La proximidad y calidad de la conexión de transporte hacia Barcelona ciudad es, junto con el precio de entrada, el factor que más pesa en la decisión de compra en L'Hospitalet: un piso a pocos minutos a pie de la Rambla Just Oliveras o de una parada de metro L1 tiene una demanda claramente superior a uno que requiera combinar varios transportes. Cuantificar con precisión estos minutos reales de trayecto, en lugar de hablar en términos genéricos de «bien comunicado», ayuda al comprador a valorar objetivamente esta ventaja frente a otras opciones que esté comparando en el área metropolitana.</p><h2>El potencial de inversión en un municipio de alta rotación</h2><p>Además del comprador de vivienda habitual, L'Hospitalet atrae a un volumen significativo de inversores que buscan rentabilidad de alquiler superior a la que obtendrían en Barcelona ciudad, dado el menor precio de entrada y la demanda constante de alquiler en el municipio. Presentar el inmueble también desde esta perspectiva de rentabilidad potencial, con cifras orientativas de alquiler comparable en la zona, puede abrir la operación a un segundo perfil de comprador además del familiar, ampliando las posibilidades reales de cierre.</p><h2>Perfil de vendedor y comprador en L'Hospitalet</h2><p>Quién vende en L'Hospitalet suele ser herencia entre herederos, un inversor que liquida un piso de alquiler antiguo o una familia que se traslada al Baix Llobregat. Quién compra prioriza metro, colegios y precio de entrada. Si llevas meses en <a href=\"/nuevahabitat-vs-idealista-particular\">Idealista</a> sin cerrar, el problema casi nunca es falta de demanda —es precio, filtro de compradores o documentación pendiente—, y lo resolvemos con una valoración basada en operaciones reales de tu barrio.</p><h2>Bellvitge y la demanda vinculada al hospital</h2><p>El entorno del Hospital de Bellvitge genera una demanda constante de profesionales sanitarios que buscan minimizar el trayecto diario, un perfil de comprador con necesidad real de vivienda cercana al lugar de trabajo, menos sensible a modas o ciclos especulativos que en otras zonas del municipio. Presentar el inmueble destacando esta cercanía real, con tiempos de trayecto a pie concretos, ayuda a captar la atención de este segmento de comprador de forma más efectiva que una descripción genérica del barrio.</p><h2>Qué esperar en las visitas si tu piso está cerca de una gran avenida</h2><p>Los pisos situados junto a ejes de tráfico importante, como la Gran Via, generan dudas habituales sobre ruido que conviene anticipar en el propio anuncio: aclarar si las ventanas tienen doble acristalamiento, si la orientación principal da a una calle interior más tranquila, o si el edificio cuenta con algún tipo de aislamiento adicional evita que el comprador descarte la vivienda por una preocupación que, en muchos casos, tiene fácil solución o ya está resuelta.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender en L'Hospitalet",
+    "intro": "Documentación clave para acelerar la venta en un municipio de alto volumen de operaciones.",
+    "items": [
+      "Cédula de habitabilidad y certificado energético vigentes",
+      "Nota simple actualizada del Registro de la Propiedad",
+      "Recibos de comunidad e IBI al día",
+      "Confirmar minutos a metro L1 o autobús a Barcelona ciudad",
+      "Documentar plaza de parking si está incluida",
+      "Preparar la vivienda para tasación bancaria del comprador"
+    ]
+  },
   "faq": [
-    { "q": "¿Cuánto cuesta el m² en L'Hospitalet frente a Barcelona ciudad?", "a": "Orientativamente 2.750–3.200 €/m² en L'Hospitalet frente a 4.000–6.000 €/m² en buena parte de Barcelona ciudad. Un piso similar puede costar 80.000–150.000 € menos, lo que explica el alto volumen de búsquedas." },
-    { "q": "¿Se vende bien un piso en Bellvitge o Pubilla Cases?", "a": "Sí, con pricing correcto. Bellvitge atrae compradores vinculados al hospital; Pubilla Cases y Granvia L'H tienen demanda familiar estable. La tasación debe usar comparables del mismo entorno, no del centro de Barcelona." },
-    { "q": "¿Trabajáis L'Hospitalet desde la oficina de Les Corts?", "a": "Sí. Atendemos todo el municipio desde Les Corts (metro directo). Visitas en tu horario y compradores filtrados por solvencia antes de abrir agenda." },
-    { "q": "¿Cuánto cuesta vender con NuevaHabitat en L'Hospitalet?", "a": "3.000 € + IVA, precio fijo, solo en escritura. Sin venta, no pagas honorarios." },
-    { "q": "¿Puedo vender si ya tengo el anuncio en Idealista?", "a": "Sí. Muchos propietarios empiezan solos en portales. Podemos activar cartera de compradores cualificados y negociación profesional sin exclusiva de 12 meses." },
-    { "q": "¿Cuánto tarda vender un piso bien de precio en L'Hospitalet?", "a": "Con valoración alineada al mercado del barrio, muchos inmuebles cierran en 60–90 días. Te damos escenario realista en la valoración gratuita." }
+    {
+      "q": "¿Cuánto cuesta el m² en L'Hospitalet frente a Barcelona ciudad?",
+      "a": "Orientativamente 2.750–3.200 €/m² en L'Hospitalet frente a 4.000–6.000 €/m² en buena parte de Barcelona ciudad. Un piso similar puede costar 80.000–150.000 € menos, lo que explica el alto volumen de búsquedas."
+    },
+    {
+      "q": "¿Se vende bien un piso en Bellvitge o Pubilla Cases?",
+      "a": "Sí, con pricing correcto. Bellvitge atrae compradores vinculados al hospital; Pubilla Cases y Granvia L'H tienen demanda familiar estable. La tasación debe usar comparables del mismo entorno, no del centro de Barcelona."
+    },
+    {
+      "q": "¿Trabajáis L'Hospitalet desde la oficina de Les Corts?",
+      "a": "Sí. Atendemos todo el municipio desde Les Corts (metro directo). Visitas en tu horario y compradores filtrados por solvencia antes de abrir agenda."
+    },
+    {
+      "q": "¿Cuánto cuesta vender con NuevaHabitat en L'Hospitalet?",
+      "a": "3.000 € + IVA, precio fijo, solo en escritura. Sin venta, no pagas honorarios."
+    },
+    {
+      "q": "¿Puedo vender si ya tengo el anuncio en Idealista?",
+      "a": "Sí. Muchos propietarios empiezan solos en portales. Podemos activar cartera de compradores cualificados y negociación profesional sin exclusiva de 12 meses."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso bien de precio en L'Hospitalet?",
+      "a": "Con valoración alineada al mercado del barrio, muchos inmuebles cierran en 60–90 días. Te damos escenario realista en la valoración gratuita."
+    },
+    {
+      "q": "¿Por qué hay tanta diferencia de precio entre Centre y Bellvitge?",
+      "a": "Cada zona tiene un comprador distinto: Centre por transporte y comercio, Bellvitge por proximidad al hospital. Usamos comparables específicos de cada barrio interno del municipio."
+    },
+    {
+      "q": "¿L'Hospitalet es una buena opción para inversores?",
+      "a": "Sí, es uno de los municipios del área metropolitana con mejor relación entre precio de compra y rentabilidad de alquiler, gracias a su alta demanda de vivienda de alquiler."
+    }
   ],
   "relacionadas": [
-    { "slug": "vender-les-corts", "label": "Vender en Les Corts" },
-    { "slug": "vender-sants", "label": "Vender en Sants" },
-    { "slug": "vender-nou-barris", "label": "Vender en Nou Barris" },
-    { "slug": "nuevahabitat-vs-idealista-particular", "label": "NuevaHabitat vs Idealista" }
+    {
+      "slug": "vender-les-corts",
+      "label": "Vender en Les Corts"
+    },
+    {
+      "slug": "vender-sants",
+      "label": "Vender en Sants"
+    },
+    {
+      "slug": "vender-nou-barris",
+      "label": "Vender en Nou Barris"
+    },
+    {
+      "slug": "nuevahabitat-vs-idealista-particular",
+      "label": "NuevaHabitat vs Idealista"
+    }
   ],
   "keywords_footer": "vender piso L'Hospitalet · vender piso Hospitalet Barcelona · inmobiliaria L'Hospitalet · Bellvitge · Pubilla Cases · 08901 · área metropolitana",
   "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20L%27Hospitalet",

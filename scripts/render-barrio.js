@@ -12,7 +12,7 @@ function heroPicture(L) {
 }
 
 function renderBarrio(L, deps) {
-  const { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock, buildJsonLd, calcBlock, navBar, callBanner } = deps;
+  const { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock } = deps;
   const cp = (L.postalCodes && L.postalCodes[0]) || '08000';
   const precio = L.ejemploPrecio;
   const comision6 = formatEuro(Math.round(precio * 0.06));
@@ -68,9 +68,11 @@ ${callBanner()}
       <h2>Vender piso en ${L.barrio} con precio fijo y compradores filtrados</h2>
       ${L.argumento_principal}
       <p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Micro-zonas:</strong> ${L.zonas.join(', ')}.</p>
+      ${marketStatsBlock(L)}
     </div>
     ${formBlock(L)}
   </div>
+  ${buyerProfileBlock(L) ? `<div class="container">${buyerProfileBlock(L)}</div>` : ''}
 </section>
 ${calcBlock(L)}
 <section class="lc-section" style="background:var(--blanco)">
@@ -126,7 +128,8 @@ ${relatedBlock()}
 ${callBanner('prefaq')}
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container" style="max-width:800px">
-    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en ${L.barrio} — preguntas frecuentes</h2></div>
+    ${checklistBlock(L.checklist?.title || `Checklist antes de vender en ${L.barrio}`, L.checklist?.items, L.checklist?.intro)}
+    <div class="text-center fade-up" style="margin-bottom:2rem;margin-top:${L.checklist?.items?.length ? '3rem' : '0'}"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en ${L.barrio} — preguntas frecuentes</h2></div>
     <div class="faq-list fade-up">${faqHtml(L.faq)}</div>
     <div class="lc-kw fade-up"><strong>Búsquedas relacionadas:</strong> ${L.keywords_footer}</div>
   </div>

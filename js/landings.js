@@ -13,17 +13,31 @@ window.NH_LANDING_ORDER = [
   "vender-sarria",
   "vender-horta",
   "vender-nou-barris",
+  "vender-sant-antoni",
+  "vender-sant-gervasi",
+  "vender-el-clot-la-sagrera-barcelona",
   "vender-l-hospitalet",
+  "vender-poble-sec",
+  "vender-sant-andreu",
   "vender-esplugues",
+  "vender-cornella",
+  "vender-sant-just-sant-joan-despi",
+  "cuanto-vale-mi-piso-barcelona",
   "vender-piso-alquilado-barcelona",
   "vender-piso-antes-comprar-otro-barcelona",
+  "vender-piso-herencia-barcelona",
+  "vender-piso-hipoteca-pendiente-barcelona",
   "vender-piso-inquilino-vencer-barcelona",
+  "vender-piso-okupado-barcelona",
+  "vender-piso-separacion-divorcio-barcelona",
   "vender-piso-traslado-barcelona",
   "vender-segunda-residencia-barcelona",
   "vender-piso-rapido-barcelona",
   "vender-piso-sin-exclusividad-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
+  "nuevahabitat-vs-clikalia-barcelona",
   "nuevahabitat-vs-fotocasa-particular",
+  "nuevahabitat-vs-housfy-barcelona",
   "nuevahabitat-vs-idealista-particular",
   "vender-por-tu-cuenta-vs-nuevahabitat-barcelona"
 ];
@@ -34,6 +48,22 @@ window.NH_LANDING_CLUSTERS = {
   comparativa: { label: 'Comparativas', slugs: [] },
 };
 window.NH_LANDINGS = {
+  "vender-cornella": {
+    "slug": "vender-cornella",
+    "cluster": "barrio",
+    "barrio": "Cornellà de Llobregat",
+    "footerLabel": "Vender en Cornellà",
+    "zonas": [
+      "Centre",
+      "Sant Ildefons",
+      "Almeda",
+      "Riera",
+      "Gavarra"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": false
+  },
   "vender-eixample": {
     "slug": "vender-eixample",
     "cluster": "barrio",
@@ -41,13 +71,30 @@ window.NH_LANDINGS = {
     "footerLabel": "Vender en el Eixample",
     "zonas": [
       "Eixample Derecho",
+      "Eixample Esquerre",
       "Sagrada Família",
       "Passeig de Gràcia",
-      "Fort Pienc"
+      "Fort Pienc",
+      "Sant Antoni"
     ],
     "priority": 0.88,
     "indexable": true,
     "testimonials": true
+  },
+  "vender-el-clot-la-sagrera-barcelona": {
+    "slug": "vender-el-clot-la-sagrera-barcelona",
+    "cluster": "barrio",
+    "barrio": "El Clot - La Sagrera",
+    "footerLabel": "Vender en El Clot / La Sagrera",
+    "zonas": [
+      "El Clot",
+      "La Sagrera",
+      "Sant Martí de Provençals",
+      "Congrés"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false
   },
   "vender-esplugues": {
     "slug": "vender-esplugues",
@@ -218,6 +265,21 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": false
   },
+  "vender-poble-sec": {
+    "slug": "vender-poble-sec",
+    "cluster": "barrio",
+    "barrio": "Poble Sec",
+    "footerLabel": "Vender en Poble Sec",
+    "zonas": [
+      "Avinguda del Paral·lel",
+      "Falda de Montjuïc",
+      "Parc de les Tres Xemeneies",
+      "Plaça del Sortidor"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false
+  },
   "vender-poblenou": {
     "slug": "vender-poblenou",
     "cluster": "barrio",
@@ -231,6 +293,68 @@ window.NH_LANDINGS = {
       "Plaça de la Primera Junta"
     ],
     "priority": 0.88,
+    "indexable": true,
+    "testimonials": false
+  },
+  "vender-sant-andreu": {
+    "slug": "vender-sant-andreu",
+    "cluster": "barrio",
+    "barrio": "Sant Andreu",
+    "footerLabel": "Vender en Sant Andreu",
+    "zonas": [
+      "Sant Andreu de Palomar",
+      "Congrés-Indians",
+      "Bon Pastor",
+      "Baró de Viver",
+      "Fabra i Coats"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false
+  },
+  "vender-sant-antoni": {
+    "slug": "vender-sant-antoni",
+    "cluster": "barrio",
+    "barrio": "Sant Antoni",
+    "footerLabel": "Vender en Sant Antoni",
+    "zonas": [
+      "Mercat de Sant Antoni",
+      "Ronda de Sant Antoni",
+      "Carrer Comte Borrell",
+      "Superilla de Sant Antoni"
+    ],
+    "priority": 0.87,
+    "indexable": true,
+    "testimonials": false
+  },
+  "vender-sant-gervasi": {
+    "slug": "vender-sant-gervasi",
+    "cluster": "barrio",
+    "barrio": "Sant Gervasi",
+    "footerLabel": "Vender en Sant Gervasi",
+    "zonas": [
+      "El Putxet",
+      "El Farró",
+      "Via Augusta",
+      "Muntaner alto"
+    ],
+    "priority": 0.87,
+    "indexable": true,
+    "testimonials": false
+  },
+  "vender-sant-just-sant-joan-despi": {
+    "slug": "vender-sant-just-sant-joan-despi",
+    "cluster": "barrio",
+    "barrio": "Sant Just Desvern y Sant Joan Despí",
+    "footerLabel": "Vender en Sant Just / Sant Joan Despí",
+    "zonas": [
+      "Sant Just Centre",
+      "La Bonaigua",
+      "Sant Joan Despí Centre",
+      "Riera de Sant Joan Despí",
+      "Fontsanta"
+    ],
+    "priority": 0.85,
     "indexable": true,
     "testimonials": false
   },
@@ -258,10 +382,21 @@ window.NH_LANDINGS = {
       "Galvany",
       "Bonanova",
       "Tres Torres",
-      "Sant Gervasi"
+      "Sarrià poble",
+      "Vallvidrera"
     ],
     "priority": 0.88,
     "indexable": true,
+    "testimonials": false
+  },
+  "cuanto-vale-mi-piso-barcelona": {
+    "slug": "cuanto-vale-mi-piso-barcelona",
+    "cluster": "situacion",
+    "footerLabel": "Cuánto vale mi piso",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "cuanto vale mi piso barcelona",
+    "badge": "Valoración gratuita · Sin compromiso",
     "testimonials": false
   },
   "vender-piso-alquilado-barcelona": {
@@ -271,6 +406,7 @@ window.NH_LANDINGS = {
     "priority": 0.87,
     "indexable": true,
     "keyword_principal": "vender piso alquilado barcelona",
+    "badge": "Situación · Piso con inquilino",
     "testimonials": false
   },
   "vender-piso-antes-comprar-otro-barcelona": {
@@ -280,6 +416,27 @@ window.NH_LANDINGS = {
     "priority": 0.87,
     "indexable": true,
     "keyword_principal": "vender piso antes de comprar otro barcelona",
+    "badge": "Situación · Venta + compra",
+    "testimonials": false
+  },
+  "vender-piso-herencia-barcelona": {
+    "slug": "vender-piso-herencia-barcelona",
+    "cluster": "situacion",
+    "footerLabel": "Vender piso heredado",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "vender piso herencia barcelona",
+    "badge": "Situación · Piso heredado",
+    "testimonials": false
+  },
+  "vender-piso-hipoteca-pendiente-barcelona": {
+    "slug": "vender-piso-hipoteca-pendiente-barcelona",
+    "cluster": "situacion",
+    "footerLabel": "Hipoteca pendiente",
+    "priority": 0.87,
+    "indexable": true,
+    "keyword_principal": "vender piso con hipoteca pendiente barcelona",
+    "badge": "Situación · Hipoteca pendiente",
     "testimonials": false
   },
   "vender-piso-inquilino-vencer-barcelona": {
@@ -289,6 +446,27 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "keyword_principal": "vender piso inquilino contrato vencer barcelona",
+    "badge": "Situación · Contrato por vencer",
+    "testimonials": false
+  },
+  "vender-piso-okupado-barcelona": {
+    "slug": "vender-piso-okupado-barcelona",
+    "cluster": "situacion",
+    "footerLabel": "Piso ocupado",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso okupado barcelona",
+    "badge": "Situación · Piso ocupado",
+    "testimonials": false
+  },
+  "vender-piso-separacion-divorcio-barcelona": {
+    "slug": "vender-piso-separacion-divorcio-barcelona",
+    "cluster": "situacion",
+    "footerLabel": "Separación / divorcio",
+    "priority": 0.87,
+    "indexable": true,
+    "keyword_principal": "vender piso separacion divorcio barcelona",
+    "badge": "Situación · Separación o divorcio",
     "testimonials": false
   },
   "vender-piso-traslado-barcelona": {
@@ -298,6 +476,7 @@ window.NH_LANDINGS = {
     "priority": 0.87,
     "indexable": true,
     "keyword_principal": "vender piso traslado trabajo barcelona",
+    "badge": "Situación · Traslado / mudanza",
     "testimonials": false
   },
   "vender-segunda-residencia-barcelona": {
@@ -307,6 +486,7 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "keyword_principal": "vender segunda residencia barcelona",
+    "badge": "Situación · Piso vacío / 2ª residencia",
     "testimonials": false
   },
   "vender-piso-rapido-barcelona": {
@@ -316,6 +496,7 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "vender piso rapido barcelona",
+    "badge": "Urgencia · Venta ágil",
     "testimonials": false
   },
   "vender-piso-sin-exclusividad-barcelona": {
@@ -325,6 +506,7 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "vender piso sin exclusividad barcelona",
+    "badge": "Particular · Sin exclusiva",
     "testimonials": false
   },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
@@ -334,6 +516,17 @@ window.NH_LANDINGS = {
     "priority": 0.91,
     "indexable": true,
     "keyword_principal": "comision inmobiliaria barcelona vs precio fijo",
+    "badge": "Comparativa · 6% vs 3.000€ fijos",
+    "testimonials": false
+  },
+  "nuevahabitat-vs-clikalia-barcelona": {
+    "slug": "nuevahabitat-vs-clikalia-barcelona",
+    "cluster": "comparativa",
+    "footerLabel": "NH vs Clikalia",
+    "priority": 0.87,
+    "indexable": true,
+    "keyword_principal": "nuevahabitat vs clikalia barcelona",
+    "badge": "Comparativa · Venta instantánea vs precio de mercado",
     "testimonials": false
   },
   "nuevahabitat-vs-fotocasa-particular": {
@@ -343,6 +536,17 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "nuevahabitat vs fotocasa particular",
+    "badge": "Comparativa · Fotocasa vs precio fijo",
+    "testimonials": false
+  },
+  "nuevahabitat-vs-housfy-barcelona": {
+    "slug": "nuevahabitat-vs-housfy-barcelona",
+    "cluster": "comparativa",
+    "footerLabel": "NH vs Housfy",
+    "priority": 0.87,
+    "indexable": true,
+    "keyword_principal": "nuevahabitat vs housfy barcelona",
+    "badge": "Comparativa · Dos modelos de precio fijo",
     "testimonials": false
   },
   "nuevahabitat-vs-idealista-particular": {
@@ -352,6 +556,7 @@ window.NH_LANDINGS = {
     "priority": 0.9,
     "indexable": true,
     "keyword_principal": "nuevahabitat vs idealista particular",
+    "badge": "Comparativa · Particular vs precio fijo",
     "testimonials": false
   },
   "vender-por-tu-cuenta-vs-nuevahabitat-barcelona": {
@@ -361,6 +566,7 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "vender piso por tu cuenta vs inmobiliaria barcelona",
+    "badge": "Comparativa · Solo vs acompañado",
     "testimonials": false
   }
 };

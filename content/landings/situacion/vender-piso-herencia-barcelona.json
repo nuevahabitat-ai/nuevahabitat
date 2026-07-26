@@ -1,0 +1,133 @@
+{
+  "slug": "vender-piso-herencia-barcelona",
+  "cluster": "situacion",
+  "indexable": true,
+  "keyword_principal": "vender piso herencia barcelona",
+  "footerLabel": "Vender piso heredado",
+  "priority": 0.88,
+  "origen_lead": "vender-piso-herencia-barcelona",
+  "checklistLabel": "vender un piso heredado",
+  "meta": {
+    "title": "Vender piso heredado en Barcelona · Trámites y plazos · NuevaHabitat",
+    "description": "¿Has heredado un piso en Barcelona y quieres venderlo? Te explicamos aceptación de herencia, plusvalía, IRPF entre herederos y cómo evitar bloqueos. Precio fijo 3.000€ + IVA.",
+    "keywords": "vender piso herencia barcelona, vender piso heredado, plusvalia herencia venta piso, vender piso entre hermanos barcelona, impuesto sucesiones venta vivienda"
+  },
+  "hero": {
+    "badge": "Situación · Piso heredado",
+    "h1": "¿Has heredado un piso en Barcelona y quieres venderlo?",
+    "lead": "Vender un piso heredado exige antes completar la aceptación de la herencia, liquidar el Impuesto de Sucesiones y, si hay varios herederos, poneros de acuerdo en precio y reparto. Te acompañamos en todo el proceso con honorarios fijos de 3.000 € + IVA.",
+    "image": "imagenes/contrato1.jpg",
+    "imageAlt": "Documentación de herencia y venta de piso en Barcelona"
+  },
+  "breadcrumbCurrent": "Piso heredado",
+  "argumento_principal": "<p>Vender un <strong>piso heredado en Barcelona</strong> tiene un orden de pasos que conviene conocer antes de publicar nada: primero hay que completar la aceptación de la herencia ante notario, después inscribir el piso a nombre de los herederos en el Registro de la Propiedad, y solo entonces se puede formalizar la venta. Saltarse este orden, o intentar acelerar la venta antes de tener la titularidad clara, es el error más habitual y el que más retrasa las operaciones.</p><h2>El proceso legal antes de poder vender</h2><p>La aceptación de herencia requiere escritura notarial (cuaderno particional) donde se detalla cómo se reparten los bienes entre los herederos. Antes de firmar esa escritura hay que liquidar el Impuesto de Sucesiones y Donaciones —que en Cataluña tiene bonificaciones importantes entre padres e hijos, pero plazos estrictos de presentación—. Una vez inscrita la herencia en el Registro, el piso queda a nombre de los herederos y ya se puede vender con normalidad.</p><h2>Cuando hay varios herederos: el reto de ponerse de acuerdo</h2><p>La situación se complica cuando el piso se hereda entre varios hermanos o familiares con opiniones distintas: unos quieren vender rápido, otros prefieren esperar, y a veces alguno quiere quedarse la vivienda y comprar la parte de los demás. Es habitual que estas negociaciones internas tarden más que la propia venta del piso. Contar con una valoración objetiva y externa —no la opinión de ninguno de los herederos— suele destrabar estas conversaciones, porque aporta un número neutral sobre el que negociar.</p><h2>Plusvalía municipal e IRPF en una venta por herencia</h2><p>Al vender un piso heredado, la <a href=\"blog-articulo.html?slug=gastos-compraventa\">plusvalía municipal</a> se calcula sobre el incremento de valor desde la fecha de la herencia (no desde que lo compró el fallecido), lo que en herencias recientes suele reducir bastante el importe a pagar. En el IRPF, la ganancia patrimonial se calcula tomando como valor de adquisición el declarado en el Impuesto de Sucesiones, por lo que es clave que ese valor esté bien documentado desde el principio del proceso.</p><h2>Por qué conviene vender pronto tras la aceptación</h2><p>Mantener un piso heredado vacío genera gastos recurrentes —comunidad, IBI, seguro, suministros mínimos— sin ningún beneficio si nadie va a vivir en él. Además, cuanto más tiempo pasa entre la herencia y la venta, mayor es la posible plusvalía a tributar en el IRPF de cada heredero. Por eso, en la mayoría de casos, iniciar el proceso de venta en paralelo a la tramitación de la herencia —una vez clara la titularidad— acelera todo el proceso sin necesidad de esperar a que esté absolutamente todo cerrado.</p><h2>Qué pasa si uno de los herederos es menor de edad o incapaz</h2><p>Cuando entre los herederos hay menores de edad o personas con capacidad modificada judicialmente, la venta requiere habitualmente autorización judicial adicional, un trámite que alarga el proceso varias semanas o meses respecto a una herencia entre herederos mayores de edad con plena capacidad. Anticipar este trámite desde el inicio del proceso de aceptación de herencia, en lugar de descubrirlo cuando ya hay un comprador esperando, evita que la operación se retrase de forma imprevista en la recta final.</p><h2>Cómo trabajamos con varios herederos que viven en distintas ciudades</h2><p>Es habitual que los herederos de un piso en Barcelona vivan repartidos en distintas ciudades o incluso países, lo que complica coordinar firmas, visitas y decisiones conjuntas. Centralizar la comunicación a través de un único interlocutor, con informes claros y la posibilidad de firmar mediante apoderamiento notarial quienes no puedan desplazarse, facilita notablemente el proceso frente a intentar coordinar directamente entre todos los herederos sin ningún punto de gestión unificado.</p><h2>Cómo te ayudamos en NuevaHabitat</h2><p>Coordinamos con tu gestoría o abogado el momento adecuado para publicar el piso, damos una valoración objetiva que sirve como referencia neutral entre herederos, y gestionamos toda la venta —fotos, visitas, negociación, documentación— con honorarios fijos de <strong>3.000 € + IVA solo en escritura</strong>, repartidos entre los herederos según vuestro acuerdo interno.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender un piso heredado",
+    "intro": "Pasos legales que conviene tener claros antes de publicar el piso.",
+    "items": [
+      "Escritura de aceptación y adjudicación de herencia firmada",
+      "Impuesto de Sucesiones liquidado dentro de plazo",
+      "Piso inscrito a nombre de los herederos en el Registro de la Propiedad",
+      "Acuerdo entre herederos sobre precio mínimo y reparto",
+      "Valor declarado en el Impuesto de Sucesiones bien documentado (referencia para el IRPF futuro)",
+      "Cédula de habitabilidad y certificado energético actualizados"
+    ]
+  },
+  "bloque_legal_fiscal": {
+    "title": "Qué debes saber legal y fiscalmente al vender un piso heredado",
+    "items": [
+      {
+        "title": "Aceptación de herencia primero",
+        "body": "No se puede vender legalmente hasta completar la aceptación de herencia e inscribir el piso a nombre de los herederos. Intentar adelantarse a este paso suele generar bloqueos con notarías y registros."
+      },
+      {
+        "title": "Impuesto de Sucesiones y Donaciones",
+        "body": "Debe liquidarse dentro de los plazos legales (con posibilidad de prórroga en Cataluña). Las bonificaciones varían según el grado de parentesco con el fallecido."
+      },
+      {
+        "title": "Plusvalía municipal desde la herencia",
+        "body": "Se calcula sobre el incremento de valor desde la fecha de la herencia, no desde la compra original del fallecido, lo que suele reducir el importe en herencias recientes."
+      },
+      {
+        "title": "IRPF de cada heredero",
+        "body": "La ganancia patrimonial se calcula individualmente para cada heredero, tomando como valor de adquisición el declarado en el Impuesto de Sucesiones sobre su parte correspondiente."
+      }
+    ]
+  },
+  "como_ayudamos": {
+    "title": "Cómo acompañamos la venta de un piso heredado",
+    "steps": [
+      {
+        "title": "Coordinación con tu gestoría",
+        "body": "Nos ajustamos al momento adecuado del proceso de aceptación de herencia."
+      },
+      {
+        "title": "Valoración neutral",
+        "body": "Damos una referencia objetiva de precio útil para acordar entre herederos."
+      },
+      {
+        "title": "Gestión completa de la venta",
+        "body": "Fotos, difusión, visitas y negociación con compradores filtrados."
+      },
+      {
+        "title": "Escritura con precio fijo",
+        "body": "3.000 € + IVA solo al cerrar, repartido según vuestro acuerdo."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Puedo vender un piso heredado antes de aceptar la herencia?",
+      "a": "No. Primero debe completarse la escritura de aceptación y adjudicación de herencia e inscribirse el piso a nombre de los herederos en el Registro."
+    },
+    {
+      "q": "¿Qué pasa si los herederos no se ponen de acuerdo en el precio?",
+      "a": "Una valoración objetiva y externa suele destrabar la conversación al aportar un número neutral sobre el que negociar, en lugar de la opinión de cada heredero."
+    },
+    {
+      "q": "¿Cuánto tarda el proceso de herencia antes de poder vender?",
+      "a": "Depende de la complejidad del caso y de la gestoría o abogado que lo lleve, pero suele tardar entre varias semanas y unos meses. Podemos empezar a preparar la venta en paralelo."
+    },
+    {
+      "q": "¿Cómo se calcula el IRPF al vender un piso heredado?",
+      "a": "Tomando como valor de adquisición el declarado en el Impuesto de Sucesiones. Por eso es importante que ese valor esté bien documentado y actualizado."
+    },
+    {
+      "q": "¿Cuánto cuesta vender con NuevaHabitat un piso heredado?",
+      "a": "3.000 € + IVA, precio fijo cobrado solo en escritura, repartido entre los herederos según acordéis."
+    },
+    {
+      "q": "¿Podéis ayudarnos si somos varios hermanos herederos?",
+      "a": "Sí. Damos una valoración objetiva y coordinamos visitas y comunicación con todos los herederos para evitar malentendidos."
+    },
+    {
+      "q": "¿La plusvalía municipal se calcula desde que compró el piso el fallecido?",
+      "a": "No, se calcula desde la fecha de la herencia, lo que en herencias recientes suele reducir el importe a pagar."
+    },
+    {
+      "q": "¿Puedo vender solo mi parte del piso heredado?",
+      "a": "Es posible vender una cuota indivisa, aunque en la práctica suele ser más sencillo y rentable para todos vender el piso completo y repartir el importe."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-segunda-residencia-barcelona",
+      "label": "Vender segunda residencia"
+    },
+    {
+      "slug": "cuanto-vale-mi-piso-barcelona",
+      "label": "Cuánto vale mi piso"
+    },
+    {
+      "slug": "vender-piso-hipoteca-pendiente-barcelona",
+      "label": "Vender con hipoteca pendiente"
+    },
+    {
+      "slug": "vender-eixample",
+      "label": "Vender en el Eixample"
+    }
+  ],
+  "keywords_footer": "vender piso herencia barcelona · vender piso heredado · plusvalia herencia venta piso · vender piso entre hermanos · impuesto sucesiones venta vivienda",
+  "whatsappText": "Hola%2C%20he%20heredado%20un%20piso%20en%20Barcelona%20y%20quiero%20venderlo",
+  "formPlaceholder": "Dirección del piso y estado del proceso de herencia…"
+}

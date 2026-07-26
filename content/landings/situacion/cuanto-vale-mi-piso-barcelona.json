@@ -1,0 +1,133 @@
+{
+  "slug": "cuanto-vale-mi-piso-barcelona",
+  "cluster": "situacion",
+  "indexable": true,
+  "keyword_principal": "cuanto vale mi piso barcelona",
+  "footerLabel": "Cuánto vale mi piso",
+  "priority": 0.9,
+  "origen_lead": "cuanto-vale-mi-piso-barcelona",
+  "checklistLabel": "conocer el valor real de tu piso",
+  "meta": {
+    "title": "¿Cuánto vale mi piso en Barcelona? Valoración gratuita · NuevaHabitat",
+    "description": "Descubre cuánto vale tu piso en Barcelona con una valoración gratuita basada en comparables reales, no en estimaciones automáticas de portal. Sin compromiso, respuesta en 24h.",
+    "keywords": "cuanto vale mi piso barcelona, valoracion vivienda gratis barcelona, tasacion online barcelona, precio m2 barcelona, cuanto vale mi casa barcelona, valorar piso barcelona gratis"
+  },
+  "hero": {
+    "badge": "Valoración gratuita · Sin compromiso",
+    "h1": "¿Cuánto vale tu piso en Barcelona?",
+    "lead": "Antes de decidir si vender, es normal querer saber <strong>cuánto vale realmente tu piso en Barcelona</strong>. Te damos una valoración con comparables reales de tu zona, no una estimación automática de portal, en menos de 24 horas y sin ningún compromiso de venta.",
+    "image": "imagenes/interior2.jpg",
+    "imageAlt": "Salón luminoso en un piso en Barcelona, valoración de vivienda"
+  },
+  "breadcrumbCurrent": "Cuánto vale mi piso",
+  "argumento_principal": "<p>Preguntarte <strong>cuánto vale mi piso en Barcelona</strong> es, casi siempre, el primer paso antes de tomar cualquier decisión: vender ahora, esperar, reformar antes o simplemente saber en qué posición patrimonial estás. El problema es que la mayoría de herramientas gratuitas que responden a esta pregunta —los estimadores automáticos de los grandes portales— dan una cifra basada en algoritmos que no han pisado tu piso, y el margen de error puede superar fácilmente el 15-20% del valor real.</p><h2>Por qué las valoraciones automáticas de portal fallan tanto</h2><p>Los estimadores automáticos de <a href=\"/nuevahabitat-vs-idealista-particular\">Idealista</a>, <a href=\"/nuevahabitat-vs-fotocasa-particular\">Fotocasa</a> o similares calculan un rango de precio cruzando datos catastrales y anuncios activos —no cierres reales— de tu código postal. No saben si tu piso tiene el ascensor recién instalado, si la cocina está reformada, si la comunidad tiene una derrama pendiente, ni si tu quinta planta tiene vistas despejadas mientras la del vecino da a un patio interior. En zonas de Barcelona con mucha heterogeneidad interna —el Eixample, Gràcia, Ciutat Vella— esta falta de matiz puede traducirse en decenas de miles de euros de diferencia entre la estimación automática y el precio real de mercado.</p><h2>Qué factores determinan realmente el precio de tu piso</h2><p>Una valoración seria combina varios elementos que un algoritmo genérico no puede ponderar bien: ubicación exacta dentro del micro-barrio (no solo el barrio en general), superficie útil frente a construida, planta y orientación, si el edificio tiene ascensor y en qué estado están las zonas comunes, antigüedad de las instalaciones eléctricas y de fontanería, certificado energético, si hay ITE pendiente, y comparables de operaciones <em>realmente cerradas</em> en los últimos meses en tu misma calle o manzana —no anuncios que llevan un año sin venderse—.</p><h2>Valoración online vs. valoración con visita</h2><p>Una estimación puede darse de forma orientativa con los datos básicos que nos facilites (dirección, metros, habitaciones, estado general), pero una valoración precisa siempre mejora con una visita presencial: permite comprobar el estado real de reformas, luz natural, ruido, y detalles que no aparecen en ninguna base de datos. En NuevaHabitat combinamos ambas fases: una primera estimación rápida basada en comparables, y si decides seguir adelante, una visita sin compromiso para afinar el precio antes de publicar nada.</p><h2>Qué hacer con la valoración una vez la tienes</h2><p>Tener un número no es el objetivo final: lo importante es entender qué significa para tu situación. Si el valor estimado supera tus expectativas, quizá sea buen momento para vender. Si está por debajo, puede convenir esperar, hacer alguna mejora concreta (pintura, pequeñas reparaciones) antes de publicar, o simplemente descartar la venta por ahora. Sea cual sea tu conclusión, la valoración gratuita no te compromete a nada: muchos propietarios la piden solo para tomar una decisión informada, sin intención inmediata de vender.</p><h2>Por qué pedir varias valoraciones puede darte una imagen más clara</h2><p>Igual que se recomienda comparar varias ofertas antes de contratar cualquier servicio, pedir la valoración de tu piso a más de una fuente —siempre que sea una valoración basada en comparables reales y no en estimadores automáticos genéricos— te da una imagen más completa del rango real de mercado. Si varias valoraciones independientes coinciden en un rango similar, puedes tener más confianza en esa cifra a la hora de tomar decisiones; si difieren mucho entre sí, es una señal de que conviene profundizar en qué datos concretos está usando cada una para llegar a su estimación.</p><h2>Cómo funciona la valoración gratuita de NuevaHabitat</h2><p>Rellenas un formulario breve con dirección, metros, habitaciones y estado general del piso. En menos de 24 horas te devolvemos un rango de precio orientativo basado en comparables reales de tu zona en Barcelona, junto con el razonamiento detrás de la cifra —no un número sin explicación—. Si decides que quieres vender, seguimos con una visita presencial y, si nos eliges, con honorarios fijos de 3.000 € + IVA, cobrados solo si finalmente vendes. Si no, te quedas simplemente con la información.</p>",
+  "checklist": {
+    "title": "Qué información preparar antes de pedir tu valoración",
+    "intro": "Cuanta más información aportes, más precisa será la primera estimación.",
+    "items": [
+      "Metros cuadrados útiles y construidos (si los conoces)",
+      "Año de construcción del edificio y si tiene ascensor",
+      "Planta y orientación de la vivienda",
+      "Reformas realizadas (cocina, baños, instalaciones)",
+      "Si hay ITE pendiente o derramas aprobadas en la comunidad",
+      "Certificado energético, si ya dispones de él"
+    ]
+  },
+  "bloque_legal_fiscal": {
+    "title": "Qué debes saber sobre el valor de tu piso antes de decidir",
+    "items": [
+      {
+        "title": "Valor de mercado vs. valor catastral",
+        "body": "El valor catastral (el que aparece en el IBI) no tiene por qué coincidir con el valor de mercado real. Usar el catastral como referencia de venta es uno de los errores más habituales entre propietarios que no venden habitualmente."
+      },
+      {
+        "title": "Comparables cerrados, no anuncios activos",
+        "body": "Un anuncio activo en portal solo indica el precio que pide otro vendedor, no lo que finalmente aceptó un comprador. Las valoraciones fiables se basan en operaciones ya cerradas en tu zona."
+      },
+      {
+        "title": "El estado del edificio también cuenta",
+        "body": "Una ITE pendiente, una derrama aprobada o unas zonas comunes deterioradas pueden reducir el valor percibido de tu piso aunque la vivienda en sí esté en buen estado."
+      },
+      {
+        "title": "La valoración no te compromete a vender",
+        "body": "Puedes pedir una valoración gratuita simplemente para saber en qué posición estás patrimonialmente, sin ninguna obligación de publicar ni de contratar ningún servicio."
+      }
+    ]
+  },
+  "como_ayudamos": {
+    "title": "Cómo te damos una valoración precisa en 24 horas",
+    "steps": [
+      {
+        "title": "Formulario breve",
+        "body": "Nos cuentas dirección, metros, habitaciones y estado general del piso."
+      },
+      {
+        "title": "Análisis de comparables",
+        "body": "Cruzamos operaciones cerradas reales en tu zona, no anuncios activos ni catastro."
+      },
+      {
+        "title": "Rango de precio razonado",
+        "body": "Te devolvemos una cifra orientativa explicando en qué se basa, en menos de 24h."
+      },
+      {
+        "title": "Visita opcional para afinar",
+        "body": "Si decides avanzar, ajustamos el precio con una visita presencial sin compromiso."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Cuánto vale mi piso en Barcelona realmente?",
+      "a": "Depende de ubicación exacta, superficie, planta, estado del edificio y comparables reales de tu zona. Te damos un rango orientativo gratuito en menos de 24 horas."
+    },
+    {
+      "q": "¿Por qué la valoración de Idealista o Fotocasa da un precio distinto al vuestro?",
+      "a": "Los estimadores automáticos de portal usan datos catastrales y anuncios activos, no cierres reales ni el estado específico de tu vivienda. El margen de error puede ser de decenas de miles de euros."
+    },
+    {
+      "q": "¿La valoración gratuita me compromete a vender?",
+      "a": "No. Muchos propietarios la piden solo para saber en qué posición están, sin intención inmediata de publicar el piso ni contratar ningún servicio."
+    },
+    {
+      "q": "¿Necesito una visita para saber el precio de mi piso?",
+      "a": "Una primera estimación puede darse con los datos básicos, pero una valoración precisa mejora con una visita presencial que confirme estado, reformas y luz natural."
+    },
+    {
+      "q": "¿Cuánto tarda NuevaHabitat en darme una valoración?",
+      "a": "Menos de 24 horas desde que recibimos el formulario con los datos básicos de tu piso."
+    },
+    {
+      "q": "¿Qué pasa si el valor estimado es más bajo de lo que esperaba?",
+      "a": "Te explicamos el razonamiento detrás de la cifra y qué factores concretos la condicionan. En algunos casos, pequeñas mejoras o esperar unos meses pueden cambiar el resultado."
+    },
+    {
+      "q": "¿Puedo pedir valoración si mi piso tiene inquilino o está en herencia?",
+      "a": "Sí. Indícanoslo en el formulario y ajustamos la valoración según la situación (piso alquilado, en proceso de herencia, con hipoteca pendiente, etc.)."
+    },
+    {
+      "q": "¿La valoración tiene algún coste?",
+      "a": "No, es completamente gratuita y sin compromiso, la pidas o no finalmente vender con nosotros."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-piso-sin-exclusividad-barcelona",
+      "label": "Vender sin exclusividad"
+    },
+    {
+      "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
+      "label": "NH vs agencia 6%"
+    },
+    {
+      "slug": "vender-eixample",
+      "label": "Vender en el Eixample"
+    },
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "label": "Vender piso rápido"
+    }
+  ],
+  "keywords_footer": "cuanto vale mi piso barcelona · valoracion vivienda gratis barcelona · tasacion online barcelona · precio m2 barcelona · valorar piso barcelona gratis · cuanto vale mi casa barcelona",
+  "whatsappText": "Hola%2C%20quiero%20saber%20cu%C3%A1nto%20vale%20mi%20piso%20en%20Barcelona",
+  "formPlaceholder": "Dirección, m² y estado general del piso…"
+}

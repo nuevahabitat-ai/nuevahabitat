@@ -150,6 +150,76 @@
       "source": "/vender-piso-ciutat-vella-barcelona.html",
       "destination": "/vender-piso-ciutat-vella-barcelona",
       "permanent": true
+    },
+    {
+      "source": "/vender-cornella.html",
+      "destination": "/vender-cornella",
+      "permanent": true
+    },
+    {
+      "source": "/vender-el-clot-la-sagrera-barcelona.html",
+      "destination": "/vender-el-clot-la-sagrera-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-sant-andreu.html",
+      "destination": "/vender-sant-andreu",
+      "permanent": true
+    },
+    {
+      "source": "/vender-sant-antoni.html",
+      "destination": "/vender-sant-antoni",
+      "permanent": true
+    },
+    {
+      "source": "/vender-sant-gervasi.html",
+      "destination": "/vender-sant-gervasi",
+      "permanent": true
+    },
+    {
+      "source": "/vender-sant-just-sant-joan-despi.html",
+      "destination": "/vender-sant-just-sant-joan-despi",
+      "permanent": true
+    },
+    {
+      "source": "/vender-poble-sec.html",
+      "destination": "/vender-poble-sec",
+      "permanent": true
+    },
+    {
+      "source": "/cuanto-vale-mi-piso-barcelona.html",
+      "destination": "/cuanto-vale-mi-piso-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-hipoteca-pendiente-barcelona.html",
+      "destination": "/vender-piso-hipoteca-pendiente-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-herencia-barcelona.html",
+      "destination": "/vender-piso-herencia-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-separacion-divorcio-barcelona.html",
+      "destination": "/vender-piso-separacion-divorcio-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/vender-piso-okupado-barcelona.html",
+      "destination": "/vender-piso-okupado-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/nuevahabitat-vs-housfy-barcelona.html",
+      "destination": "/nuevahabitat-vs-housfy-barcelona",
+      "permanent": true
+    },
+    {
+      "source": "/nuevahabitat-vs-clikalia-barcelona.html",
+      "destination": "/nuevahabitat-vs-clikalia-barcelona",
+      "permanent": true
     }
   ],
   "rewrites": [

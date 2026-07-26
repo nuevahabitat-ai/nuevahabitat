@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://www.nuevahabitat.com/vender-poblenou"/>
   <meta property="og:title" content="Vender piso en Poblenou, Barcelona · Precio fijo 3.000€"/>
   <meta property="og:description" content="¿Vendes tu piso en Poblenou o Vila Olímpica? NuevaHabitat: honorarios fijos de 3.000€ + IVA. Compradores cualificados y visitas en tu horario. Sin comisión del 6%."/>
-  <meta property="og:image" content="https://www.nuevahabitat.com/imagenes/interior12.jpg"/>
+  <meta property="og:image" content="https://www.nuevahabitat.com/imagenes/interior3.jpg"/>
   <meta property="og:locale" content="es_ES"/>
   <meta property="og:site_name" content="NuevaHabitat"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -119,7 +119,23 @@
         "name": "¿Cuánto tarda vender un piso en Poblenou?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Con precio bien ajustado, muchos inmuebles se venden en 60–90 días; te damos una estimación en la valoración gratuita."
+          "text": "Con precio bien ajustado, muchos inmuebles se venden en 55–90 días; te damos una estimación en la valoración gratuita."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué ha subido tanto el precio en Poblenou?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El desarrollo del distrito 22@ y la proximidad al mar han atraído compradores e inversores con alto poder adquisitivo, sosteniendo la demanda incluso en pisos sin reformar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿La Vila Olímpica y Diagonal Mar tienen el mismo precio por metro que el Poblenou histórico?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No siempre. Diagonal Mar y Vila Olímpica suelen tener más servicios y obra más reciente; el Poblenou histórico compite en carácter de barrio y precio de entrada."
         }
       }
     ]
@@ -169,7 +185,21 @@
     .lc-pilar-card p{font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 .75rem}
     .lc-pilar-meta{font-size:.8125rem;color:var(--gris-medio);margin-bottom:.75rem}
     .lc-pilar-link{font-size:.875rem;font-weight:600;color:var(--oro)}
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
+    .lc-stats-wrap{margin-top:2rem}
+    .lc-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .lc-stat-box{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);padding:1.25rem;text-align:center}
+    .lc-stat-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--gris-medio);margin-bottom:.4rem}
+    .lc-stat-value{font-family:var(--font-serif);font-size:1.375rem;color:var(--negro);font-weight:700}
+    .lc-stats-note{font-size:.8125rem;color:var(--gris-medio);margin-top:.85rem;text-align:center}
+    .lc-buyer-grid h3{font-family:var(--font-serif);color:var(--negro);margin-bottom:.5rem}
+    .lc-buyer-grid p{font-size:.9375rem;color:var(--gris-texto);line-height:1.7}
+    .lc-checklist{background:var(--crema);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin-top:2rem}
+    .lc-checklist h3{font-family:var(--font-serif);color:var(--negro);margin:0 0 .5rem}
+    .lc-checklist-intro{font-size:.9375rem;color:var(--gris-texto);margin-bottom:1rem}
+    .lc-checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem}
+    .lc-checklist li{display:flex;align-items:flex-start;gap:.5rem;font-size:.9375rem;color:var(--gris-texto);line-height:1.5}
+    .lc-checklist li svg{flex-shrink:0;color:var(--oro);margin-top:.15rem}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -186,7 +216,7 @@
 <nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
 <div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Poblenou</span></nav></div>
 <section class="lc-hero">
-  <div class="lc-hero-media"><img src="imagenes/interior12.jpg" alt="Piso luminoso en Poblenou, Barcelona" fetchpriority="high" decoding="async"/></div>
+  <div class="lc-hero-media"><img src="imagenes/interior3.jpg" alt="Piso luminoso en Poblenou, Barcelona" fetchpriority="high" decoding="async"/></div>
   <div class="lc-hero-overlay"></div>
   <div class="container"><div class="lc-hero-content fade-up">
     <span class="lc-badge">Poblenou · 08005 · Barcelona</span>
@@ -215,8 +245,9 @@
     <div class="lc-prose fade-up">
       <span class="overline">Vender en Poblenou</span>
       <h2>Vender piso en Poblenou con precio fijo y compradores filtrados</h2>
-      <p>Poblenou ha cambiado mucho en la última década: de barrio industrial y obrer a una de las zonas con más demanda de familias jóvenes, teletrabajadores y compradores que buscan pisos amplios, terrazas y proximidad al mar sin pagar precios de la Barceloneta. Eso genera un mercado heterogéneo: lofts en antiguas naves, pisos de finca en la Rambla del Poblenou, promociones en Diagonal Mar y vivienda de obra nueva en la Vila Olímpica. Vender aquí sin conocer el micro-mercado suele traducirse en semanas de visitas con curiosos o en un precio de salida mal calibrado.</p><p>En NuevaHabitat valoramos tu piso con comparables reales de Poblenou — no con la media genérica de Sant Martí — y presentamos la ficha al comprador que encaja: familia que busca colegios y espacio, pareja que prioriza playa y metro, o inversor que mira rentabilidad en zona 22@. Honorarios fijos de 3.000 € + IVA, cobro solo en escritura, sin la comisión del 6% de una agencia tradicional.</p>
+      <p>Poblenou ha cambiado mucho en la última década: de barrio industrial y obrero a una de las zonas con más demanda de familias jóvenes, teletrabajadores y compradores que buscan pisos amplios, terrazas y proximidad al mar sin pagar los precios de la Barceloneta. Eso genera un mercado heterogéneo: lofts en antiguas naves, pisos de finca en la Rambla del Poblenou, promociones en Diagonal Mar y vivienda de obra nueva en la Vila Olímpica.</p><h2>Tres barrios dentro de un mismo nombre</h2><p>Vender aquí sin conocer el micro-mercado suele traducirse en semanas de visitas con curiosos o en un precio de salida mal calibrado. El Poblenou histórico, alrededor de la Rambla y Plaça de la Primera Junta, conserva el carácter de barrio con finca antigua y comercio de proximidad; la Vila Olímpica ofrece promociones de los años 90 con más servicios y proximidad directa a la playa; Diagonal Mar, más reciente, atrae a compradores que priorizan obra nueva, piscina comunitaria y centro comercial cercano por encima del carácter histórico.</p><h2>La transformación del distrito 22@</h2><p>El desarrollo tecnológico y de oficinas del 22@ ha traído a Poblenou un perfil de comprador e inquilino con alto poder adquisitivo, lo que sostiene la demanda tanto de vivienda habitual como de inversión para alquiler. Esta dinámica ha empujado los precios al alza de forma constante en la última década, con especial fuerza en los pisos reformados cerca de la Rambla del Poblenou y el frente marítimo.</p><h2>Lofts industriales: un producto que exige comprador específico</h2><p>Los antiguos espacios industriales reconvertidos en loft son uno de los productos más singulares de Poblenou, pero también uno de los que peor encaja en una comercialización genérica: techos muy altos, distribuciones abiertas y, en ocasiones, ausencia de las habitaciones cerradas que busca una familia convencional. Vender bien un loft exige dirigirse específicamente a un comprador que valore ese formato —perfiles creativos, parejas sin hijos, teletrabajadores— en lugar de intentar encajarlo en el perfil de comprador familiar que predomina en otras zonas del barrio.</p><h2>Qué revisar antes de vender en Diagonal Mar o Vila Olímpica</h2><p>En las promociones más recientes de Diagonal Mar y Vila Olímpica, buena parte del valor percibido depende de los servicios comunitarios: piscina, portería, zonas ajardinadas y su estado de mantenimiento. Antes de fijar el precio de salida conviene revisar el importe de las cuotas de comunidad y si hay derramas previstas para renovar estos servicios, ya que un comprador de este segmento suele comparar directamente estas cuotas con las de otras promociones similares en Barcelona antes de decidirse.</p><h2>Cómo valoramos cada tipología</h2><p>En NuevaHabitat valoramos tu piso con comparables reales de Poblenou —no con la media genérica del distrito de Sant Martí— y presentamos la ficha al comprador que mejor encaja: familia que busca colegios y espacio, pareja que prioriza playa y metro, o inversor que mira rentabilidad en la zona 22@. Un loft en antigua nave industrial se comercializa de forma muy distinta a un piso de finca clásica, y lo reflejamos tanto en el reportaje fotográfico como en el canal de difusión.</p><h2>Honorarios fijos y proceso transparente</h2><p>Honorarios fijos de 3.000 € + IVA, cobro solo en escritura, sin la <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">comisión del 6%</a> de una agencia tradicional. Tu panel digital de vendedor centraliza visitas, ofertas y documentación, y tú decides cuándo abrir tu piso a compradores previamente filtrados por solvencia.</p><h2>Perfil habitual de vendedor y comprador en Poblenou</h2><p>Quien vende en Poblenou suele ser un propietario que compró antes de la gran transformación del distrito y ahora aprovecha la revalorización, o un inversor que liquida un <a href="/vender-piso-alquilado-barcelona">piso alquilado</a> a profesionales del 22@. El comprador combina familias jóvenes atraídas por la vida de barrio y la playa, con inversores que apuestan por la demanda constante de alquiler vinculada al polo tecnológico.</p><h2>Por qué la playa cercana pesa tanto en la decisión final</h2><p>La posibilidad de llegar caminando o en bicicleta hasta la playa es un factor que muchos compradores de Poblenou priorizan por encima de otros aspectos del propio piso, especialmente familias con niños y teletrabajadores que valoran poder desconectar sin coger el coche. Cuantificar esta distancia real, en minutos concretos, ayuda a justificar el precio frente a barrios interiores sin ese acceso directo al mar.</p>
       <p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Micro-zonas:</strong> Rambla del Poblenou, Vila Olímpica, Diagonal Mar, Poblenou industrial, Plaça de la Primera Junta.</p>
+      <div class="lc-stats-wrap fade-up"><div class="lc-stats-grid"><div class="lc-stat-box"><div class="lc-stat-label">Precio orientativo</div><div class="lc-stat-value">4.200 – 5.600 €/m²</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tiempo medio de venta</div><div class="lc-stat-value">55 – 90 días</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tendencia 2026</div><div class="lc-stat-value">Fuerte revalorización de la última década, demanda creciente de teletrabajadores</div></div></div><p class="lc-stats-note">Rangos orientativos de mercado 2026 basados en datos públicos del sector. No sustituyen una valoración personalizada de tu vivienda.</p></div>
     </div>
     <div class="lc-form fade-up" id="valorar">
       <span class="overline">Sin compromiso</span>
@@ -231,6 +262,10 @@
       </form>
     </div>
   </div>
+  <div class="container"><div class="lc-grid-2 lc-buyer-grid fade-up">
+    <div><h3>Perfil de comprador habitual</h3><p>Poblenou atrae hoy a un comprador muy distinto del que había hace quince años: familias jóvenes y teletrabajadores que buscan espacio, luz y proximidad al mar sin pagar el precio de la Barceloneta; inversores que compran en la zona 22@ pensando en el alquiler a profesionales del sector tecnológico; y compradores de obra nueva en Diagonal Mar que priorizan servicios y piscina comunitaria por encima del carácter histórico del barrio.</p></div>
+    <div><h3>Tipología de vivienda</h3><p>Coexisten tres tipologías muy distintas: fincas de barrio obrero de principios del siglo XX en torno a la Rambla del Poblenou, antiguas naves industriales reconvertidas en lofts, y promociones de obra nueva o semi-nueva en Diagonal Mar y Vila Olímpica con más servicios comunitarios. Cada tipología exige una estrategia de fotografía y de comprador objetivo distinta.</p></div>
+  </div></div>
 </section>
 <section class="lc-section" style="background:var(--crema)" id="calc">
   <div class="container">
@@ -319,7 +354,12 @@
 </section>
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container" style="max-width:800px">
-    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en Poblenou — preguntas frecuentes</h2></div>
+    <div class="lc-checklist fade-up">
+    <h3>Checklist antes de vender en Poblenou</h3>
+    <p class="lc-checklist-intro">La tipología de tu vivienda condiciona qué documentación y argumentos conviene preparar primero.</p>
+    <ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Identificar si tu vivienda es finca clásica, loft industrial u obra nueva/semi-nueva</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Cédula de habitabilidad y certificado energético vigentes</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Nota simple actualizada y recibos de comunidad al día</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Si es promoción con servicios (piscina, portería), documentar cuotas y estado</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Revisar potencial de alquiler para perfil inversor de la zona 22@</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>Fotografías que resalten luz, altura de techos o proximidad al mar según el caso</span></li></ul>
+  </div>
+    <div class="text-center fade-up" style="margin-bottom:2rem;margin-top:3rem"><span class="overline">FAQ</span><h2 class="section-title">Vender piso en Poblenou — preguntas frecuentes</h2></div>
     <div class="faq-list fade-up"><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto cuesta vender un piso en Poblenou con NuevaHabitat?</button>
         <div class="faq-a"><div class="faq-a-inner">3.000 € + IVA, precio fijo, solo en escritura.</div></div>
@@ -337,7 +377,13 @@
         <div class="faq-a"><div class="faq-a-inner">Priorizamos cartera con solvencia contrastada antes de agendar visitas.</div></div>
       </div><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto tarda vender un piso en Poblenou?</button>
-        <div class="faq-a"><div class="faq-a-inner">Con precio bien ajustado, muchos inmuebles se venden en 60–90 días; te damos una estimación en la valoración gratuita.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Con precio bien ajustado, muchos inmuebles se venden en 55–90 días; te damos una estimación en la valoración gratuita.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Por qué ha subido tanto el precio en Poblenou?</button>
+        <div class="faq-a"><div class="faq-a-inner">El desarrollo del distrito 22@ y la proximidad al mar han atraído compradores e inversores con alto poder adquisitivo, sosteniendo la demanda incluso en pisos sin reformar.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿La Vila Olímpica y Diagonal Mar tienen el mismo precio por metro que el Poblenou histórico?</button>
+        <div class="faq-a"><div class="faq-a-inner">No siempre. Diagonal Mar y Vila Olímpica suelen tener más servicios y obra más reciente; el Poblenou histórico compite en carácter de barrio y precio de entrada.</div></div>
       </div></div>
     <div class="lc-kw fade-up"><strong>Búsquedas relacionadas:</strong> vender piso Poblenou · vender piso Poblenou Barcelona · inmobiliaria Poblenou · Vila Olímpica · Rambla del Poblenou · 08005</div>
   </div>

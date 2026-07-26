@@ -1,0 +1,133 @@
+{
+  "slug": "vender-piso-okupado-barcelona",
+  "cluster": "situacion",
+  "indexable": true,
+  "keyword_principal": "vender piso okupado barcelona",
+  "footerLabel": "Piso ocupado",
+  "priority": 0.86,
+  "origen_lead": "vender-piso-okupado-barcelona",
+  "checklistLabel": "vender un piso ocupado",
+  "meta": {
+    "title": "Vender piso ocupado en Barcelona · Con o sin okupas dentro · NuevaHabitat",
+    "description": "¿Tienes un piso ocupado en Barcelona y quieres venderlo? Te explicamos las opciones legales y de mercado, con o sin desalojo previo. Precio fijo 3.000€ + IVA.",
+    "keywords": "vender piso okupado barcelona, vender piso con okupas, comprar piso ocupado barcelona, desalojo okupas barcelona, vender vivienda ocupada precio"
+  },
+  "hero": {
+    "badge": "Situación · Piso ocupado",
+    "h1": "¿Tienes un piso ocupado en Barcelona y quieres venderlo?",
+    "lead": "Un piso ocupado se puede vender, con o sin desalojo previo, aunque el proceso y el precio cambian según la situación legal concreta. Te orientamos sobre las opciones reales de mercado y te acompañamos con honorarios fijos de 3.000 € + IVA.",
+    "image": "imagenes/contrato1.jpg",
+    "imageAlt": "Puerta de piso en Barcelona, situación de ocupación ilegal"
+  },
+  "breadcrumbCurrent": "Piso ocupado",
+  "argumento_principal": "<p>Tener un <strong>piso ocupado en Barcelona</strong> es una de las situaciones más estresantes para cualquier propietario, y una de las que genera más dudas sobre si realmente se puede vender. La respuesta es sí, aunque el camino depende de si el objetivo es vender antes o después de recuperar la posesión, y de cuánto tiempo y recursos estés dispuesto a dedicar al proceso legal de desalojo.</p><h2>Vender con okupas dentro: el mercado de compradores inversores</h2><p>Existe un mercado real, aunque especializado, de compradores —principalmente inversores y fondos con experiencia en gestión de este tipo de activos— dispuestos a comprar un piso ocupado a un precio con descuento sobre el valor de mercado, asumiendo ellos mismos el proceso de recuperación de la posesión. El descuento suele ser significativo, habitualmente entre el 30% y el 50% del valor libre de ocupantes, dependiendo del tipo de ocupación (okupación ilegal sin título, inquiokupación con impago de renta, etc.) y de la fase legal en la que se encuentre el proceso.</p><h2>Vender después de recuperar la posesión</h2><p>La alternativa es iniciar (o continuar) el proceso legal de desalojo antes de publicar el piso, lo que permite venderlo posteriormente a precio de mercado completo, sin el descuento asociado a la ocupación. Esta vía requiere más tiempo —los plazos judiciales varían mucho según el juzgado y el tipo de procedimiento— pero maximiza el precio final obtenido. La decisión entre una vía u otra depende de tu situación personal: si necesitas liquidez urgente, vender ocupado con descuento puede ser preferible a esperar meses o años a un desalojo.</p><h2>Diferencias entre okupación ilegal e inquiokupación</h2><p>No es lo mismo un okupa que ha entrado sin ningún título en una vivienda vacía, que un inquilino que dejó de pagar la renta tras un contrato de alquiler legítimo (lo que se conoce popularmente como inquiokupación). Los procedimientos legales aplicables —y sus plazos— son distintos en cada caso, y esto también condiciona cómo se presenta la situación a un comprador inversor: cuanto más clara y documentada esté la situación legal, más fácil es encontrar comprador y mejor precio se puede negociar.</p><h2>Qué documentación necesitas para vender en esta situación</h2><p>Independientemente de la vía elegida, es fundamental tener bien documentada la situación: denuncia policial si corresponde, fecha estimada de entrada de los ocupantes, si existe procedimiento judicial abierto y en qué fase está, y cualquier comunicación previa con los ocupantes. Esta documentación es lo primero que pedirá cualquier comprador inversor serio antes de hacer una oferta.</p><h2>Qué papel juega el seguro de hogar o de impago en esta situación</h2><p>Si contratabas un seguro de hogar con cobertura de defensa jurídica, o un seguro específico de protección frente a la ocupación ilegal, es el primer punto que conviene revisar antes de iniciar cualquier proceso: algunas pólizas cubren total o parcialmente los costes legales del desalojo, e incluso ofrecen asistencia especializada que puede acelerar considerablemente los plazos habituales. Comprobar esta cobertura desde el primer momento, antes de contratar servicios legales <a href=\"/vender-por-tu-cuenta-vs-nuevahabitat-barcelona\">por tu cuenta</a>, puede suponer un ahorro significativo en el coste total del proceso.</p><h2>Cómo se presenta esta situación a un comprador potencial</h2><p>Presentar con total transparencia la situación de ocupación desde el primer contacto con un posible comprador, incluyendo toda la documentación disponible sobre el proceso legal, es la única forma de generar confianza suficiente para cerrar una operación de este tipo. Cualquier intento de minimizar u ocultar la complejidad de la situación suele descubrirse durante la due diligence del comprador inversor, lo que además de hacer caer la operación, puede dañar la credibilidad para negociar con otros interesados posteriormente.</p><h2>Cómo te ayudamos en NuevaHabitat</h2><p>Te damos una valoración realista tanto del escenario «vender ahora, ocupado» como de «esperar al desalojo y vender a precio completo», para que decidas con toda la información. Si eliges vender ocupado, contactamos con compradores inversores de nuestra cartera especializados en este tipo de operaciones. Cobramos <strong>3.000 € + IVA solo en escritura</strong>, el mismo modelo de precio fijo en cualquier caso.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender un piso ocupado",
+    "intro": "Documentación clave para presentar la situación a un comprador inversor.",
+    "items": [
+      "Denuncia policial o judicial presentada, si corresponde",
+      "Fecha estimada de entrada de los ocupantes",
+      "Estado del procedimiento judicial de desalojo, si existe",
+      "Diferenciar si es okupación ilegal o impago de alquiler (inquiokupación)",
+      "Nota simple actualizada del Registro de la Propiedad",
+      "Fotografías del exterior y, si es posible, informe del estado interior"
+    ]
+  },
+  "bloque_legal_fiscal": {
+    "title": "Qué debes saber legalmente sobre vender un piso ocupado",
+    "items": [
+      {
+        "title": "Okupación ilegal vs. inquiokupación",
+        "body": "Son situaciones legalmente distintas con procedimientos y plazos diferentes. Identificar correctamente cuál aplica a tu caso es el primer paso para elegir la estrategia adecuada."
+      },
+      {
+        "title": "Venta con ocupantes dentro",
+        "body": "Es legal vender un piso ocupado; el comprador adquiere la propiedad y, en su caso, asume el proceso de recuperación de la posesión, normalmente a cambio de un descuento significativo sobre el precio de mercado."
+      },
+      {
+        "title": "Plazos del proceso judicial de desalojo",
+        "body": "Varían según el juzgado, el tipo de procedimiento y si existen menores o personas vulnerables implicadas. Conviene un asesoramiento legal específico para estimar plazos realistas."
+      },
+      {
+        "title": "Responsabilidad sobre suministros y gastos",
+        "body": "Mientras el piso esté ocupado, sigues siendo responsable de comunidad e IBI. Revisa si los suministros están a tu nombre para evitar deudas acumuladas."
+      }
+    ]
+  },
+  "como_ayudamos": {
+    "title": "Cómo te ayudamos a vender un piso ocupado",
+    "steps": [
+      {
+        "title": "Valoración de ambos escenarios",
+        "body": "Vender ahora con descuento o esperar al desalojo y vender a precio completo."
+      },
+      {
+        "title": "Documentación de la situación",
+        "body": "Te orientamos sobre qué información necesitará un comprador inversor."
+      },
+      {
+        "title": "Compradores especializados",
+        "body": "Contactamos con inversores de nuestra cartera con experiencia en este tipo de activos."
+      },
+      {
+        "title": "Escritura con precio fijo",
+        "body": "3.000 € + IVA solo al cerrar, sea cual sea la vía elegida."
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Se puede vender un piso mientras está ocupado ilegalmente?",
+      "a": "Sí. Existe un mercado de compradores inversores dispuestos a comprarlo con descuento, asumiendo ellos el proceso de recuperación de la posesión."
+    },
+    {
+      "q": "¿Cuánto descuento hay que aplicar para vender un piso ocupado?",
+      "a": "Orientativamente entre un 30% y un 50% sobre el valor de mercado libre de ocupantes, según el tipo de ocupación y la fase legal del proceso."
+    },
+    {
+      "q": "¿Es mejor esperar al desalojo antes de vender?",
+      "a": "Depende de tu situación: esperar permite vender a precio de mercado completo, pero puede tardar meses o años según el procedimiento judicial. Si necesitas liquidez, vender ocupado puede ser preferible."
+    },
+    {
+      "q": "¿Qué diferencia hay entre okupación ilegal e inquiokupación?",
+      "a": "La okupación ilegal es entrada sin ningún título en la vivienda; la inquiokupación es un inquilino legítimo que deja de pagar la renta. Los procedimientos legales aplicables son distintos."
+    },
+    {
+      "q": "¿Cuánto cuesta vender con NuevaHabitat un piso ocupado?",
+      "a": "3.000 € + IVA, precio fijo cobrado solo en escritura, sea cual sea la estrategia de venta elegida."
+    },
+    {
+      "q": "¿Tenéis compradores interesados en pisos ocupados?",
+      "a": "Sí, contactamos con inversores de nuestra cartera especializados en este tipo de operaciones."
+    },
+    {
+      "q": "¿Sigo pagando comunidad e IBI mientras el piso está ocupado?",
+      "a": "Sí, como propietario sigues siendo responsable de estos gastos mientras no se transmita la propiedad o se resuelva la situación."
+    },
+    {
+      "q": "¿Necesito abogado además de una inmobiliaria?",
+      "a": "Recomendamos asesoramiento legal específico para el procedimiento de desalojo si optas por esa vía; nosotros nos encargamos de la valoración y venta del inmueble."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "vender-piso-alquilado-barcelona",
+      "label": "Vender piso alquilado"
+    },
+    {
+      "slug": "vender-piso-inquilino-vencer-barcelona",
+      "label": "Inquilino vence pronto"
+    },
+    {
+      "slug": "cuanto-vale-mi-piso-barcelona",
+      "label": "Cuánto vale mi piso"
+    },
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "label": "Vender piso rápido"
+    }
+  ],
+  "keywords_footer": "vender piso okupado barcelona · vender piso con okupas · comprar piso ocupado barcelona · desalojo okupas barcelona · vender vivienda ocupada",
+  "whatsappText": "Hola%2C%20tengo%20un%20piso%20ocupado%20en%20Barcelona%20y%20quiero%20venderlo",
+  "formPlaceholder": "Dirección del piso y situación de la ocupación (fecha, denuncia, proceso judicial…)"
+}

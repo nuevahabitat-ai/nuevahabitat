@@ -8,13 +8,29 @@
   "breadcrumbCurrent": "Ciutat Vella",
   "priority": 0.9,
   "testimonials": false,
-  "postalCodes": ["08001", "08002", "08003"],
-  "zonas": ["Gòtic", "Born", "Raval", "Barceloneta"],
+  "postalCodes": [
+    "08001",
+    "08002",
+    "08003"
+  ],
+  "zonas": [
+    "Gòtic",
+    "Born",
+    "Raval",
+    "Barceloneta"
+  ],
   "inmueblesQuery": "Ciutat Vella",
   "ejemploPrecio": 500000,
   "ahorro": "30.000",
+  "datosMercado": {
+    "precioM2": "3.000 – 6.900 €/m² según barrio",
+    "tiempoVenta": "50 – 95 días",
+    "tendencia": "Mercado muy heterogéneo, con fuerte peso del comprador internacional"
+  },
+  "perfilComprador": "Ciutat Vella no tiene un único comprador tipo: conviven inversores que buscan rentabilidad con licencia turística, compradores internacionales que quieren vivir en el centro histórico de Barcelona, y residentes locales que buscan reposicionarse dentro del mismo distrito. El barrio concreto —Gòtic, Born, Raval o Barceloneta— determina cuál de estos perfiles predomina y a qué precio.",
+  "tipologiaEdificios": "Predomina la finca histórica de entre los siglos XV y XIX, con techos altos, superficies muchas veces irregulares y un porcentaje relevante de edificios sin ascensor. El estado de conservación de la finca y la existencia de licencias urbanísticas específicas (protección patrimonial, vivienda turística) condicionan buena parte del valor final.",
   "origen_lead": "vender-piso-ciutat-vella-barcelona",
-  "heroImage": "imagenes/interior11.jpg",
+  "heroImage": "imagenes/equipo1.jpg",
   "heroImageAlt": "Piso en el centro histórico de Barcelona, Ciutat Vella",
   "meta": {
     "title": "Vender piso en Ciutat Vella, Barcelona · Gòtic, Born, Raval · NuevaHabitat",
@@ -25,7 +41,19 @@
     "h1": "¿Vendes tu piso en Ciutat Vella?",
     "lead": "El centro de Barcelona no es un solo mercado: Gòtic, Born, Raval y Barceloneta tienen compradores y precios distintos. NuevaHabitat te ayuda con <strong>honorarios fijos de 3.000€ + IVA</strong> y guías específicas por barrio."
   },
-  "argumento_principal": "<p>Vender en Ciutat Vella sin distinguir barrio es el error más habitual: un piso en el Born no compite con uno en el Raval, y la Barceloneta atrae un comprador distinto al del Gòtic. Las agencias que aplican la misma estrategia en todo el distrito suelen sobrevalorar o infravalorar según el edificio, la planta y si el comprador busca vivienda habitual, segunda residencia o inversión.</p><p>En NuevaHabitat trabajamos con valoración comparativa por micro-zona — finca histórica, ascensor, licencia turística, estado de la comunidad — y con honorarios fijos de 3.000 € + IVA, cobrados solo en escritura. Si tu piso está en el Gòtic, el Born, el Raval o la Barceloneta, tenemos una landing específica con precios de referencia y FAQ del barrio; si aún no lo tienes claro, empieza aquí y te orientamos en la valoración gratuita.</p>",
+  "argumento_principal": "<p>Vender en Ciutat Vella sin distinguir barrio es el error más habitual: un piso en el Born no compite con uno en el Raval, y la Barceloneta atrae un comprador distinto al del Gòtic. Las agencias que aplican la misma estrategia en todo el distrito suelen sobrevalorar o infravalorar según el edificio, la planta y si el comprador busca vivienda habitual, <a href=\"/vender-segunda-residencia-barcelona\">segunda residencia</a> o inversión.</p><h2>Cuatro barrios, cuatro mercados</h2><p>El Gòtic combina finca medieval y renacentista con fuerte presión turística y comprador internacional; el Born premia la reforma de calidad y el carácter arquitectónico, con el mercado más rápido del distrito cuando el precio es correcto; el Raval ofrece el precio de entrada más accesible al centro histórico, con una zona norte en plena transformación cerca del MACBA; y la Barceloneta concentra al comprador que prioriza playa y mar por encima de casi cualquier otro factor, aceptando fincas más compactas a cambio de ubicación.</p><h2>Por qué el distrito exige valoración por micro-zona</h2><p>Ciutat Vella tiene, probablemente, la mayor dispersión de precios por metro cuadrado de toda Barcelona dentro de un radio tan reducido: entre 3.000 y casi 7.000 €/m² según el barrio exacto, el edificio y la orientación. Aplicar una única referencia de precio a todo el distrito —como hacen muchas agencias generalistas— produce sistemáticamente errores de valoración, ya sea sobrevalorando pisos en el Raval o infravalorando propiedades singulares del Born.</p><h2>Documentación común, particularidades por barrio</h2><p>Independientemente del barrio, la venta en Ciutat Vella suele requerir revisar con atención la situación de licencias de vivienda turística, el estado de conservación de la finca (muchas veces con protección patrimonial) y la presencia o ausencia de ascensor. Estos factores condicionan tanto el precio de venta como el perfil de comprador que finalmente cierra la operación.</p><h2>El comprador internacional y sus particularidades administrativas</h2><p>Una parte relevante de la demanda en Ciutat Vella, especialmente en el Gòtic y el Born, procede de compradores extranjeros que buscan residencia, inversión o segunda vivienda en pleno centro histórico. Estas operaciones suelen requerir gestión de NIE, apoderamientos notariales desde el extranjero y, en ocasiones, plazos de financiación distintos a los de un comprador local. Anticipar estos trámites desde el primer contacto evita que una oferta sólida se pierda por falta de previsión en los tiempos administrativos.</p><h2>Cómo afecta la normativa de vivienda turística a cada barrio</h2><p>La regulación sobre licencias de uso turístico varía su impacto real según el barrio concreto dentro de Ciutat Vella: en el Gòtic y el Born, donde la presión turística histórica ha sido mayor, el valor de una licencia vigente puede suponer una diferencia notable de precio frente a un inmueble sin ella; en el Raval y la Barceloneta, aunque también existe demanda inversora, el peso de este factor en la decisión final del comprador es distinto. Conocer esta normativa al detalle, barrio por barrio, es imprescindible para no infravalorar ni sobrevalorar un inmueble con licencia turística activa.</p><h2>Cómo te ayudamos desde NuevaHabitat</h2><p>Trabajamos con valoración comparativa por micro-zona —finca histórica, ascensor, licencia turística, estado de la comunidad— y con honorarios fijos de 3.000 € + IVA, cobrados solo en escritura. Si tu piso está en el Gòtic, el Born, el Raval o la Barceloneta, tenemos una landing específica con precios de referencia y FAQ del barrio; si aún no lo tienes claro, empieza aquí y te orientamos en la <a href=\"/cuanto-vale-mi-piso-barcelona\">valoración gratuita</a>.</p><h2>Perfil habitual de vendedor en el distrito</h2><p>Quien vende en Ciutat Vella suele ser una familia que lleva varias generaciones en el mismo edificio y decide liquidar una herencia, o un inversor que compró hace años para alquiler turístico o de larga duración y ahora prefiere realizar la inversión. En cualquiera de los casos, conocer con precisión el submercado exacto —Gòtic, Born, Raval o Barceloneta— es lo que realmente permite fijar un precio de salida realista, competitivo y sostenido en el tiempo desde el primer día de publicación del anuncio en los portales.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender en Ciutat Vella",
+    "intro": "Puntos comunes a todo el distrito, con independencia del barrio exacto.",
+    "items": [
+      "Identificar en qué barrio y micro-zona está exactamente tu piso",
+      "Revisar situación de licencia de vivienda turística del edificio",
+      "Confirmar si la finca tiene protección patrimonial",
+      "Cédula de habitabilidad y certificado energético vigentes",
+      "Nota simple actualizada del Registro de la Propiedad",
+      "Recibos de comunidad e IBI al día"
+    ]
+  },
   "subBarrios": [
     {
       "slug": "vender-piso-gotic-barcelona",
@@ -57,17 +85,52 @@
     }
   ],
   "faq": [
-    { "q": "¿Cuánto cuesta vender un piso en Ciutat Vella con NuevaHabitat?", "a": "3.000 € + IVA, precio fijo, solo en escritura — igual en Gòtic, Born, Raval y Barceloneta." },
-    { "q": "¿Debo elegir barrio antes de contactaros?", "a": "No es obligatorio. Si tu piso está en Ciutat Vella, indícanos la dirección o zona en el formulario y te orientamos; también puedes entrar directamente en la guía de tu barrio." },
-    { "q": "¿Por qué hay landings distintas por barrio del centro?", "a": "Porque el comprador y el precio de mercado cambian mucho entre el Born y el Raval. Así evitamos contenido genérico y mejoramos la valoración." },
-    { "q": "¿Puedo elegir cuándo recibir visitas?", "a": "Sí, tú decides días y horarios en todo el distrito." },
-    { "q": "¿Los compradores están verificados financieramente?", "a": "Sí, priorizamos cartera con hipoteca preaprobada o capacidad demostrada antes de agendar visitas." },
-    { "q": "¿Cuánto tarda vender un piso en Ciutat Vella?", "a": "Depende del barrio, precio y estado. Con pricing correcto, muchos inmuebles se venden en 60–90 días; te damos estimación en la valoración gratuita." }
+    {
+      "q": "¿Cuánto cuesta vender un piso en Ciutat Vella con NuevaHabitat?",
+      "a": "3.000 € + IVA, precio fijo, solo en escritura — igual en Gòtic, Born, Raval y Barceloneta."
+    },
+    {
+      "q": "¿Debo elegir barrio antes de contactaros?",
+      "a": "No es obligatorio. Si tu piso está en Ciutat Vella, indícanos la dirección o zona en el formulario y te orientamos; también puedes entrar directamente en la guía de tu barrio."
+    },
+    {
+      "q": "¿Por qué hay landings distintas por barrio del centro?",
+      "a": "Porque el comprador y el precio de mercado cambian mucho entre el Born y el Raval. Así evitamos contenido genérico y mejoramos la valoración."
+    },
+    {
+      "q": "¿Puedo elegir cuándo recibir visitas?",
+      "a": "Sí, tú decides días y horarios en todo el distrito."
+    },
+    {
+      "q": "¿Los compradores están verificados financieramente?",
+      "a": "Sí, priorizamos cartera con hipoteca preaprobada o capacidad demostrada antes de agendar visitas."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en Ciutat Vella?",
+      "a": "Depende del barrio, precio y estado. Con pricing correcto, muchos inmuebles se venden en 50–95 días; te damos estimación en la valoración gratuita."
+    },
+    {
+      "q": "¿Por qué hay tanta diferencia de precio dentro de un distrito tan pequeño?",
+      "a": "Cada barrio de Ciutat Vella tiene un comprador y una dinámica distinta: turístico e internacional en el Gòtic y el Born, más accesible en el Raval, y orientado al mar en la Barceloneta."
+    },
+    {
+      "q": "¿Puedo vender un piso con licencia de uso turístico en Ciutat Vella?",
+      "a": "Sí, y en muchos casos es un valor añadido para compradores inversores. Verificamos la situación exacta de la licencia antes de publicar el inmueble."
+    }
   ],
   "relacionadas": [
-    { "slug": "vender-piso-rapido-barcelona", "label": "Vender piso rápido" },
-    { "slug": "vender-eixample", "label": "Vender en el Eixample" },
-    { "slug": "vender-piso-alquilado-barcelona", "label": "Vender piso con inquilino" }
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "label": "Vender piso rápido"
+    },
+    {
+      "slug": "vender-eixample",
+      "label": "Vender en el Eixample"
+    },
+    {
+      "slug": "vender-piso-alquilado-barcelona",
+      "label": "Vender piso con inquilino"
+    }
   ],
   "keywords_footer": "vender piso Ciutat Vella · vender piso centro Barcelona · Gòtic Born Raval Barceloneta · inmobiliaria Ciutat Vella · precio fijo centro histórico",
   "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Ciutat%20Vella",

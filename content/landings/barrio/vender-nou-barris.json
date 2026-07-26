@@ -7,13 +7,30 @@
   "breadcrumbCurrent": "Nou Barris",
   "priority": 0.87,
   "testimonials": false,
-  "postalCodes": ["08016", "08031", "08042"],
-  "zonas": ["Verdum", "Roquetes", "Trinitat Vella", "Porta", "Torre Baró"],
+  "postalCodes": [
+    "08016",
+    "08031",
+    "08042"
+  ],
+  "zonas": [
+    "Verdum",
+    "Roquetes",
+    "Trinitat Vella",
+    "Porta",
+    "Torre Baró"
+  ],
   "inmueblesQuery": "Nou Barris",
   "ejemploPrecio": 295000,
   "ahorro": "18.500",
+  "datosMercado": {
+    "precioM2": "2.900 – 3.400 €/m²",
+    "tiempoVenta": "60 – 95 días",
+    "tendencia": "Precio de entrada más accesible de Barcelona ciudad, demanda estable de primera vivienda"
+  },
+  "perfilComprador": "El comprador de Nou Barris es mayoritariamente de primera vivienda: parejas jóvenes y familias que priorizan metros útiles y buena conexión de metro (L3, L4, L5) por encima del prestigio de la dirección. También hay demanda de inversores que buscan rentabilidad por alquiler, atraídos por precios de entrada muy por debajo de la media de la ciudad.",
+  "tipologiaEdificios": "Predominan los bloques de los años 60-70 en Verdum, Roquetes, Trinitat Vella y Porta, con ascensor desigual según la promoción. Torre Baró y las zonas más elevadas del distrito tienen construcción algo más reciente pero menor densidad de servicios cercanos.",
   "origen_lead": "vender-nou-barris",
-  "heroImage": "imagenes/interior3.jpg",
+  "heroImage": "imagenes/interior12.jpg",
   "heroImageAlt": "Piso en Nou Barris, Barcelona",
   "meta": {
     "title": "Vender piso en Nou Barris, Barcelona · Precio fijo 3.000€ · NuevaHabitat",
@@ -24,20 +41,70 @@
     "h1": "¿Vendes tu piso en Nou Barris, Barcelona?",
     "lead": "Vende en Verdum, Roquetes o Trinitat Vella con <strong>honorarios fijos de 3.000€ + IVA</strong>, valoración basada en el mercado real del distrito (~2.900–3.400 €/m²) y compradores filtrados — sin comisión del 6%."
   },
-  "argumento_principal": "<p>Nou Barris es uno de los distritos de <strong>Barcelona ciudad</strong> con precio de entrada más accesible: en 2026 el rango habitual ronda <strong>2.900–3.400 €/m²</strong>, frente a más de 5.000 €/m² en el Eixample. Eso atrae compradores de primera vivienda y familias que buscan 75–95 m² con metro (L3, L4, L5) sin pagar prima de centro. Pero también significa que un piso mal puesto — demasiado caro “porque es Barcelona” o demasiado barato por miedo a negociar — se estanca semanas en portales.</p><p>El parque es mayoritariamente de bloques de los años 60 y 70 en Verdum, Roquetes, Trinitat Vella y Porta; hay diferencias claras entre una planta alta con ascensor reformado y una baja sin luz en Torre Baró. En NuevaHabitat valoramos con comparables de tu micro-zona, no con medias de toda la ciudad. Filtramos compradores con estudio hipotecario previo antes de abrir visitas y cobramos <strong>3.000 € + IVA solo en escritura</strong>.</p><p>Quién vende aquí suele ser herencia repartida entre hermanos, un inversor que liquida un alquiler antiguo o una familia que se traslada al área metropolitana. Quién compra busca metros útiles por euro invertido. Si ya anuncias como particular en Idealista, podemos integrarlo en la valoración gratuita: te decimos si el precio encaja con Roquetes, Verdum o Trinitat Vella y cuánto tarda un piso bien posicionado en cerrarse (habitualmente 60–90 días con pricing correcto).</p>",
+  "argumento_principal": "<p>Nou Barris es uno de los distritos de <strong>Barcelona ciudad</strong> con precio de entrada más accesible: en 2026 el rango habitual ronda <strong>2.900–3.400 €/m²</strong>, frente a más de 5.000 €/m² en el Eixample. Eso atrae compradores de primera vivienda y familias que buscan 75–95 m² con metro (L3, L4, L5) sin pagar prima de centro. Pero también significa que un piso mal puesto —demasiado caro «porque es Barcelona» o demasiado barato por miedo a negociar— se estanca semanas en portales.</p><h2>Diferencias reales entre los barrios internos</h2><p>El parque es mayoritariamente de bloques de los años 60 y 70 en Verdum, Roquetes, Trinitat Vella y Porta; hay diferencias claras entre una planta alta con ascensor reformado y una baja sin luz en Torre Baró. Verdum y Roquetes concentran la mayor densidad de comercio y transporte; Trinitat Vella, junto a la Ronda de Dalt y el nudo de la Trinitat, tiene un mercado algo más lento pero con precio de entrada todavía más bajo. En NuevaHabitat valoramos con comparables de tu micro-zona, no con medias de toda la ciudad.</p><p>Filtramos compradores con estudio hipotecario previo antes de abrir visitas y cobramos <strong>3.000 € + IVA solo en escritura</strong>. Esto es especialmente relevante en un distrito donde el comprador de primera vivienda depende en gran medida de la aprobación bancaria, y donde una oferta que finalmente no se financia puede hacer perder semanas de negociación.</p><h2>Por qué el filtro hipotecario importa tanto en este distrito</h2><p>En un distrito donde la mayoría de compradores dependen de la aprobación bancaria para completar la compra, verificar que el interesado tiene una preaprobación real —no solo una simulación orientativa hecha por su cuenta— antes de agendar una visita evita perder semanas negociando con alguien cuya operación finalmente no sale adelante. Este filtro es especialmente relevante en Nou Barris, donde el margen de negociación suele ser más ajustado que en distritos de precio más alto, y cada semana de retraso pesa proporcionalmente más sobre el vendedor.</p><h2>Cómo se presenta un piso sin grandes reformas para vender bien</h2><p>Muchos pisos en Nou Barris no han sido reformados integralmente, lo que no impide venderlos bien si se presentan con honestidad: fotografías que muestren el estado real sin generar falsas expectativas, un precio ajustado que refleje el margen de reforma necesario, y una comunicación clara sobre qué elementos sí están actualizados (instalación eléctrica, ventanas, calderas). Esta transparencia atrae a un comprador que ya cuenta con presupuesto de reforma propio y evita visitas de quien esperaba encontrar un piso ya reformado a ese precio.</p><h2>Quién vende y quién compra aquí</h2><p>Quién vende aquí suele ser herencia repartida entre hermanos, un inversor que liquida un alquiler antiguo o una familia que se traslada al área metropolitana. Quién compra busca metros útiles por euro invertido. Si ya anuncias como particular en <a href=\"/nuevahabitat-vs-idealista-particular\">Idealista</a>, podemos integrarlo en la <a href=\"/cuanto-vale-mi-piso-barcelona\">valoración gratuita</a>: te decimos si el precio encaja con Roquetes, Verdum o Trinitat Vella y cuánto tarda un piso bien posicionado en cerrarse (habitualmente 60–95 días con pricing correcto).</p><h2>Cómo afecta la Ronda de Dalt a la valoración de Trinitat Vella</h2><p>La proximidad a la Ronda de Dalt y el nudo viario de la Trinitat es percibida de forma distinta según el comprador: quien se desplaza habitualmente en coche valora positivamente la rapidez de acceso a otras zonas de Barcelona y del área metropolitana, mientras que quien prioriza la tranquilidad puede ver esta cercanía como un inconveniente. Identificar correctamente qué perfil de comprador es más probable para tu vivienda concreta ayuda a enfocar mejor la comunicación del anuncio y evita descartar interesados por un factor que, para muchos, es en realidad una ventaja.</p><h2>Ayudas y programas de rehabilitación que pueden influir en el precio</h2><p>Varios edificios de Nou Barris se han beneficiado o son candidatos a programas públicos de rehabilitación de fachadas y ascensores, con financiación parcial que reduce el coste para los propietarios. Informarse sobre si tu comunidad tiene alguna de estas ayudas solicitada o en trámite, y comunicarlo con claridad al comprador, puede ser un argumento de venta relevante frente a edificios similares sin ninguna mejora prevista a corto plazo.</p>",
+  "checklist": {
+    "title": "Checklist antes de vender en Nou Barris",
+    "intro": "En un mercado de comprador de primera vivienda, la claridad documental acelera la aprobación bancaria.",
+    "items": [
+      "Cédula de habitabilidad y certificado energético vigentes",
+      "Nota simple actualizada del Registro de la Propiedad",
+      "Recibos de comunidad e IBI al día",
+      "Confirmar estado del ascensor y posibles derramas asociadas",
+      "Documentar minutos a pie a la parada de metro más cercana",
+      "Preparar la vivienda para tasación bancaria del comprador"
+    ]
+  },
   "faq": [
-    { "q": "¿Cuánto cuesta el m² en Nou Barris en 2026?", "a": "Orientativamente entre 2.900 y 3.400 €/m² según barrio interno, planta, ascensor y estado. En la valoración gratuita cruzamos anuncios activos con operaciones cerradas en tu CP (08016, 08031, 08042)." },
-    { "q": "¿Un piso en Roquetes o Verdum se valora igual que en Trinitat Vella?", "a": "No siempre. Cada micro-zona tiene demanda distinta: ascensor, orientación, ruido y acceso a metro pesan. Usamos comparables del mismo edificio o calle cuando existen." },
-    { "q": "¿Puedo vender en Nou Barris si ya lo tengo en Idealista como particular?", "a": "Sí. Muchos propietarios empiezan solos y luego necesitan filtro de solvencia y negociación de arras. Podemos activar cartera de compradores cualificados sin exclusiva de 12 meses ni comisión del 6%." },
-    { "q": "¿Cuánto tarda vender un piso en Nou Barris bien de precio?", "a": "Con precio alineado al mercado del barrio y compradores filtrados, muchos inmuebles cierran en 60–90 días. Si llevas meses sin ofertas serias, suele ser señal de sobreprecio o mala presentación." },
-    { "q": "¿Cuánto cuesta vender con NuevaHabitat en Nou Barris?", "a": "3.000 € + IVA, precio fijo, cobro únicamente en escritura. Sin venta, sin factura de honorarios." },
-    { "q": "¿Trabajáis Verdum, Roquetes, Trinitat Vella y Porta?", "a": "Sí, todo el distrito de Nou Barris en Barcelona ciudad, desde nuestras oficinas en Les Corts (metro directo)." }
+    {
+      "q": "¿Cuánto cuesta el m² en Nou Barris en 2026?",
+      "a": "Orientativamente entre 2.900 y 3.400 €/m² según barrio interno, planta, ascensor y estado. En la valoración gratuita cruzamos anuncios activos con operaciones cerradas en tu CP (08016, 08031, 08042)."
+    },
+    {
+      "q": "¿Un piso en Roquetes o Verdum se valora igual que en Trinitat Vella?",
+      "a": "No siempre. Cada micro-zona tiene demanda distinta: ascensor, orientación, ruido y acceso a metro pesan. Usamos comparables del mismo edificio o calle cuando existen."
+    },
+    {
+      "q": "¿Puedo vender en Nou Barris si ya lo tengo en Idealista como particular?",
+      "a": "Sí. Muchos propietarios empiezan solos y luego necesitan filtro de solvencia y negociación de arras. Podemos activar cartera de compradores cualificados sin exclusiva de 12 meses ni comisión del 6%."
+    },
+    {
+      "q": "¿Cuánto tarda vender un piso en Nou Barris bien de precio?",
+      "a": "Con precio alineado al mercado del barrio y compradores filtrados, muchos inmuebles cierran en 60–90 días. Si llevas meses sin ofertas serias, suele ser señal de sobreprecio o mala presentación."
+    },
+    {
+      "q": "¿Cuánto cuesta vender con NuevaHabitat en Nou Barris?",
+      "a": "3.000 € + IVA, precio fijo, cobro únicamente en escritura. Sin venta, sin factura de honorarios."
+    },
+    {
+      "q": "¿Trabajáis Verdum, Roquetes, Trinitat Vella y Porta?",
+      "a": "Sí, todo el distrito de Nou Barris en Barcelona ciudad, desde nuestras oficinas en Les Corts (metro directo)."
+    },
+    {
+      "q": "¿Por qué el precio de entrada es tan bajo comparado con el resto de Barcelona?",
+      "a": "Nou Barris se desarrolló principalmente en los años 60-70 como distrito residencial obrero, con menos presión turística y de inversión internacional que el centro, lo que mantiene precios más accesibles."
+    },
+    {
+      "q": "¿Es un distrito con demanda real o solo precio bajo?",
+      "a": "Tiene demanda real y sostenida de compradores de primera vivienda, especialmente en zonas bien conectadas por metro; el precio bajo no significa falta de interés, sino un perfil de comprador distinto."
+    }
   ],
   "relacionadas": [
-    { "slug": "vender-horta", "label": "Vender en Horta-Guinardó" },
-    { "slug": "vender-sants", "label": "Vender en Sants" },
-    { "slug": "vender-gracia", "label": "Vender en Gràcia" },
-    { "slug": "vender-poblenou", "label": "Vender en Poblenou" }
+    {
+      "slug": "vender-horta",
+      "label": "Vender en Horta-Guinardó"
+    },
+    {
+      "slug": "vender-sants",
+      "label": "Vender en Sants"
+    },
+    {
+      "slug": "vender-gracia",
+      "label": "Vender en Gràcia"
+    },
+    {
+      "slug": "vender-poblenou",
+      "label": "Vender en Poblenou"
+    }
   ],
   "keywords_footer": "vender piso Nou Barris Barcelona · vender piso Roquetes · inmobiliaria Nou Barris · Verdum · Trinitat Vella · 08016 · precio fijo vendedor",
   "whatsappText": "Hola%2C%20quiero%20vender%20mi%20piso%20en%20Nou%20Barris",
