@@ -37,11 +37,111 @@
     @media(max-width:640px){
       .cmpr-4col   { grid-template-columns:1fr; gap:1rem; }
       .cmpr-regcol > div:last-child { order:-1; }
-      /* Secciones con padding grande — reducir en mobile */
       section[style*="padding:100px"] { padding: 60px 0 !important; }
       section[style*="padding:80px"]  { padding: 48px 0 !important; }
-      /* Proceso: cards más compactas */
       .cmpr-4col > div { padding: 1.5rem 1rem !important; }
+    }
+    /* NH_BUYER_PLATFORM_STYLES_START */
+.lc-nh-servicio-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:start}
+    .lc-nh-lead{font-size:1.0625rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:1.25rem}
+    .lc-nh-features{list-style:none;margin:0;padding:0;display:grid;gap:.85rem}
+    .lc-nh-features li{font-size:.9375rem;line-height:1.6;color:rgba(255,255,255,.78);padding-left:1.1rem;border-left:2px solid var(--oro)}
+    .lc-nh-servicio-cards{display:grid;gap:1rem}
+    .lc-nh-mini-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-md);padding:1.25rem}
+    .lc-nh-mini-card span{display:inline-block;font-family:var(--font-serif);font-size:1.25rem;color:var(--oro-claro);font-weight:700;margin-bottom:.35rem}
+    .lc-nh-mini-card h3{font-size:1rem;color:#fff;margin:0 0 .4rem}
+    .lc-nh-mini-card p{font-size:.875rem;color:rgba(255,255,255,.65);margin:0;line-height:1.55}
+    .lc-steps-6{grid-template-columns:repeat(3,1fr)!important}
+    .lc-steps-6 .lc-step{text-align:left;padding:1.35rem}
+    .lc-steps-6 .lc-step h4{font-size:.9375rem;margin:.5rem 0 .35rem}
+    .lc-steps-6 .lc-step p{font-size:.8125rem;color:var(--gris-texto);margin:0;line-height:1.55}
+    .lc-nh-panel-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:2.5rem;align-items:center;margin-bottom:2.5rem}
+    .lc-nh-panel-list{list-style:none;margin:0 0 1rem;padding:0;display:grid;gap:.65rem}
+    .lc-nh-panel-list li{font-size:.9375rem;color:var(--gris-texto);line-height:1.6;padding-left:1rem;border-left:3px solid var(--oro)}
+    .lc-pm-wrap{background:var(--crema);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid var(--crema-dark)}
+    .lc-pm-header{background:var(--negro);color:#fff;padding:.85rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .lc-pm-brand{display:flex;align-items:center;gap:.65rem;font-size:.8125rem;font-weight:600}
+    .lc-pm-brand small{display:block;font-size:.625rem;font-weight:400;color:var(--oro-claro);letter-spacing:.06em;text-transform:uppercase}
+    .lc-pm-logo{width:32px;height:32px;border-radius:6px;background:var(--oro);color:var(--negro);display:grid;place-items:center;font-weight:700;font-size:.75rem}
+    .lc-pm-user{display:flex;align-items:center;gap:.5rem;font-size:.75rem;color:rgba(255,255,255,.75)}
+    .lc-pm-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--oro),var(--oro-oscuro));display:grid;place-items:center;font-size:.65rem;font-weight:700;color:#fff}
+    .lc-pm-body{display:grid;grid-template-columns:130px 1fr;min-height:280px}
+    .lc-pm-sidebar{background:#fff;border-right:1px solid var(--crema-dark);padding:.75rem .5rem;display:flex;flex-direction:column;gap:.25rem}
+    .lc-pm-nav{font-size:.6875rem;padding:.45rem .55rem;border-radius:6px;color:var(--gris-texto)}
+    .lc-pm-nav.active{background:var(--negro);color:#fff;font-weight:600}
+    .lc-pm-main{padding:.85rem;display:grid;gap:.75rem;align-content:start}
+    .lc-pm-card{background:#fff;border-radius:var(--radius-md);padding:1rem;border:1px solid var(--crema-dark)}
+    .lc-pm-card-sm{padding:.85rem}
+    .lc-pm-card-title{font-size:.75rem;font-weight:600;margin-bottom:.75rem;color:var(--negro)}
+    .lc-pm-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+    .lc-pm-stat{text-align:center;padding:.5rem .25rem;background:var(--crema);border-radius:8px}
+    .lc-pm-stat-val{font-family:var(--font-serif);font-size:1.125rem;font-weight:700;color:var(--negro);line-height:1.2}
+    .lc-pm-stat-val.lc-pm-stat-pub{font-size:.875rem;color:var(--oro-oscuro)}
+    .lc-pm-stat-lbl{font-size:.5625rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gris-medio);margin-top:.2rem}
+    .lc-pm-visit{display:flex;flex-direction:column;gap:.15rem;padding:.55rem 0;border-bottom:1px solid var(--crema-dark);font-size:.75rem}
+    .lc-pm-visit:last-child{border-bottom:0;padding-bottom:0}
+    .lc-pm-visit span{color:var(--gris-medio);font-size:.6875rem}
+    .lc-pm-screens{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    .lc-pm-screen{background:var(--crema);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--crema-dark)}
+    .lc-pm-screen-label{font-size:.6875rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gris-medio);margin-bottom:.75rem}
+    .lc-pm-pub{display:flex;gap:.75rem;align-items:center}
+    .lc-pm-pub img{width:72px;height:54px;object-fit:cover;border-radius:8px;flex-shrink:0}
+    .lc-pm-pub p{font-size:.75rem;color:var(--gris-texto);margin:.15rem 0}
+    .lc-pm-tag{display:inline-block;font-size:.625rem;background:#ecfdf5;color:#166534;padding:.15rem .45rem;border-radius:999px;font-weight:600}
+    .lc-pm-cal p{font-size:.8125rem;color:var(--gris-texto);margin:0 0 .5rem}
+    .lc-pm-cal-slots{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.5rem}
+    .lc-pm-cal-slots span{font-size:.6875rem;padding:.3rem .55rem;border-radius:999px;background:#fff;border:1px solid var(--crema-dark);color:var(--gris-medio)}
+    .lc-pm-cal-slots span.on{background:var(--negro);color:#fff;border-color:var(--negro)}
+    .lc-pm-cal-note{font-size:.6875rem!important;color:var(--gris-medio)!important}
+    .lc-pm-docs{display:grid;gap:.5rem}
+    .lc-pm-doc{display:flex;align-items:center;gap:.65rem;background:#fff;border-radius:8px;padding:.65rem .75rem;font-size:.8125rem}
+    .lc-pm-doc small{display:block;font-size:.6875rem;color:var(--gris-medio)}
+    .lc-pm-doc-ok{color:#16a34a;font-weight:700;margin-left:auto}
+    .lc-pm-timeline{display:grid;gap:.45rem}
+    .lc-pm-tl{display:flex;align-items:flex-start;gap:.55rem;font-size:.75rem;padding:.45rem .5rem;border-radius:8px;background:#fff}
+    .lc-pm-tl span{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.625rem;font-weight:700;flex-shrink:0;background:var(--crema);color:var(--gris-medio)}
+    .lc-pm-tl.done span{background:#ecfdf5;color:#166534}
+    .lc-pm-tl.active span{background:var(--negro);color:#fff}
+    .lc-pm-tl small{display:block;font-size:.6875rem;color:var(--gris-medio);margin-top:.1rem}
+    @media(max-width:900px){
+      .lc-nh-servicio-grid,.lc-nh-panel-grid,.lc-pm-screens{grid-template-columns:1fr}
+      .lc-pm-screens{grid-template-columns:repeat(2,1fr)}
+      .lc-steps-6{grid-template-columns:repeat(2,1fr)!important}
+      .lc-pm-body{grid-template-columns:1fr}
+      .lc-pm-sidebar{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--crema-dark)}
+    }
+    @media(max-width:600px){.lc-steps-6{grid-template-columns:1fr!important}.lc-pm-stats{grid-template-columns:1fr}.lc-pm-screens{grid-template-columns:1fr}}
+.lc-nh-comprador-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:start}
+    .lc-nh-comprador-copy .lc-nh-lead{font-size:1.0625rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:1.25rem}
+    .lc-nh-comprador-cards{display:grid;gap:1rem}
+    .lc-steps-5{grid-template-columns:repeat(5,1fr)!important}
+    .lc-steps-5 .lc-step{text-align:left;padding:1.25rem}
+    .lc-steps-5 .lc-step h4{font-size:.875rem;margin:.45rem 0 .35rem}
+    .lc-steps-5 .lc-step p{font-size:.8125rem;color:var(--gris-texto);margin:0;line-height:1.55}
+    .lc-pb-rec{display:flex;gap:.65rem;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--crema-dark);font-size:.75rem}
+    .lc-pb-rec:last-child{border-bottom:0}
+    .lc-pb-rec img{width:48px;height:36px;object-fit:cover;border-radius:6px;flex-shrink:0}
+    .lc-pb-rec small{display:block;font-size:.6875rem;color:var(--gris-medio);margin-top:.1rem}
+    .lc-pb-favs{display:grid;gap:.4rem}
+    .lc-pb-fav{display:flex;align-items:center;gap:.55rem;background:#fff;border-radius:8px;padding:.5rem .65rem;font-size:.75rem}
+    .lc-pb-fav>span{color:#e11d48;font-size:.875rem}
+    .lc-pb-fav small{display:block;font-size:.6875rem;color:var(--gris-medio)}
+    .lc-pb-rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+    .lc-pb-rec-card{background:var(--crema);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--crema-dark)}
+    .lc-pb-rec-card img{width:100%;height:140px;object-fit:cover;display:block}
+    .lc-pb-rec-body{padding:1rem}
+    .lc-pb-rec-body strong{font-family:var(--font-serif);font-size:1.125rem;color:var(--negro);display:block;margin:.35rem 0 .2rem}
+    .lc-pb-rec-body p{font-size:.8125rem;color:var(--gris-texto);margin:0}
+    @media(max-width:1100px){.lc-steps-5{grid-template-columns:repeat(3,1fr)!important}.lc-pb-rec-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:900px){
+      .lc-nh-comprador-grid{grid-template-columns:1fr}
+      .lc-steps-5{grid-template-columns:repeat(2,1fr)!important}
+      .lc-pb-rec-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){.lc-steps-5{grid-template-columns:1fr!important}}
+/* NH_BUYER_PLATFORM_STYLES_END */
+    @media (min-width: 901px) {
+      .lc-section { padding: 4rem 0; }
     }
   </style>
 </head>
@@ -115,6 +215,143 @@
   </div>
 </div>
 
+<!-- NH_BUYER_PLATFORM_START -->
+<section class="lc-section lc-nh-comprador" style="background:var(--negro);color:#fff">
+  <div class="container">
+    <div class="lc-nh-comprador-grid fade-up">
+      <div class="lc-nh-comprador-copy">
+        <span class="overline" style="color:var(--oro)">Ecosistema de compradores</span>
+        <h2 class="section-title light">NuevaHabitat es una plataforma de compradores buscando vivienda en Barcelona</h2>
+        <p class="lc-nh-lead">No somos un portal donde cualquiera hace clic. Tenemos <strong>clientes compradores ya registrados</strong> en nuestra plataforma: cada uno está <strong>cualificado financieramente</strong>, conocemos sus condiciones de hipoteca, su capacidad de endeudamiento y su presupuesto real. Son personas <strong>preparadas para comprar en cualquier momento</strong>.</p>
+        <ul class="lc-nh-features">
+          <li><strong>Perfil financiero verificado</strong> — hipoteca preaprobada o liquidez acreditada antes de empezar la búsqueda.</li>
+          <li><strong>Búsqueda activa en el área metropolitana</strong> — Barcelona, L'Hospitalet, Badalona, Sant Cugat, Cornellà y municipios del entorno.</li>
+          <li><strong>Encaje con el vendedor</strong> — cada visita que organizamos cumple el estándar de precio y ratio de financiación del inmueble.</li>
+          <li><strong>Contacto constante</strong> — Juan Cárdenas y el equipo buscan viviendas activamente para cada comprador registrado.</li>
+        </ul>
+      </div>
+      <div class="lc-nh-comprador-cards">
+        <div class="lc-nh-mini-card"><span>01</span><h3>Compradores cualificados</h3><p>Sabemos cuánto puedes pagar, tu hipoteca y tu plazo de compra.</p></div>
+        <div class="lc-nh-mini-card"><span>02</span><h3>Cartera privada</h3><p>Inmuebles en exclusiva que no suelen aparecer en portales genéricos.</p></div>
+        <div class="lc-nh-mini-card"><span>03</span><h3>Panel comprador 24/7</h3><p>Visitas, favoritos, documentación y proceso guiado en un solo lugar.</p></div>
+      </div>
+    </div>
+  </div>
+</section><section class="lc-section" style="background:var(--crema)">
+  <div class="container">
+    <div class="text-center fade-up" style="max-width:760px;margin:0 auto 2.5rem">
+      <span class="overline">Cómo trabajamos contigo</span>
+      <h2 class="section-title">Tu proceso de compra con NuevaHabitat</h2>
+      <p style="color:var(--gris-texto);line-height:1.7">Desde el registro hasta las llaves: acompañamiento total con gestor dedicado y cada acción registrada en tu panel de comprador.</p>
+    </div>
+    <div class="lc-steps lc-steps-5 fade-up">
+      <div class="lc-step"><div class="lc-step-num">1</div><h4>Registro y perfil</h4><p>Creas tu cuenta. Analizamos tu situación financiera, hipoteca y zonas de interés.</p></div>
+      <div class="lc-step"><div class="lc-step-num">2</div><h4>Reunión con tu agente</h4><p>Juan Cárdenas define contigo presupuesto real, barrios y tipo de vivienda.</p></div>
+      <div class="lc-step"><div class="lc-step-num">3</div><h4>Búsqueda activa</h4><p>Seleccionamos inmuebles de la cartera privada y del mercado que encajan contigo.</p></div>
+      <div class="lc-step"><div class="lc-step-num">4</div><h4>Visitas y oferta</h4><p>Visitas presenciales registradas en tu panel. Negociamos el precio en tu nombre.</p></div>
+      <div class="lc-step"><div class="lc-step-num">5</div><h4>Arras y escritura</h4><p>Reserva, arras, hipoteca y firma ante notario. Honorarios solo al cerrar.</p></div>
+    </div>
+  </div>
+</section><section class="lc-section lc-nh-panel-comprador" style="background:var(--blanco)">
+  <div class="container">
+    <div class="lc-nh-panel-grid fade-up">
+      <div class="lc-nh-panel-copy">
+        <span class="overline">Panel del comprador</span>
+        <h2 class="section-title">Tu búsqueda de hogar, organizada y bajo control</h2>
+        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada comprador tiene su <strong>panel personal</strong> con un gestor especializado que le acompaña en todo momento. Toda acción queda registrada: inmuebles vistos, visitas solicitadas, favoritos y documentación — reserva, arras, cédula de habitabilidad, certificado energético.</p>
+        <ul class="lc-nh-panel-list">
+          <li><strong>Expediente en tiempo real</strong> — 9 inmuebles vistos, 2 visitas programadas, 4 favoritos guardados.</li>
+          <li><strong>Recomendaciones personalizadas</strong> — pisos seleccionados según tu perfil financiero y zonas.</li>
+          <li><strong>Exclusiva off-market</strong> — acceso a viviendas en venta que no están en portales inmobiliarios.</li>
+          <li><strong>Documentación centralizada</strong> — contratos, arras y documentos del inmueble en un solo lugar.</li>
+        </ul>
+        <a href="registro.html" class="btn btn-gold" style="margin-top:.5rem">Crear cuenta de comprador →</a>
+      </div>
+      <div class="lc-pm-wrap lc-pm-wrap--comprador" aria-hidden="true">
+        <div class="lc-pm-header">
+          <div class="lc-pm-brand"><span class="lc-pm-logo">NH</span><span>Nueva Habitat <small>Panel Comprador</small></span></div>
+          <div class="lc-pm-user"><span class="lc-pm-avatar">DA</span><span>Daniel · Comprador</span></div>
+        </div>
+        <div class="lc-pm-body">
+          <div class="lc-pm-sidebar">
+            <div class="lc-pm-nav active">Resumen</div>
+            <div class="lc-pm-nav">Mi proceso</div>
+            <div class="lc-pm-nav">Mis visitas</div>
+            <div class="lc-pm-nav">Favoritos</div>
+            <div class="lc-pm-nav">Contratos y arras</div>
+          </div>
+          <div class="lc-pm-main">
+            <div class="lc-pm-card">
+              <div class="lc-pm-card-title">Resumen de tu expediente</div>
+              <div class="lc-pm-stats">
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val">9</div><div class="lc-pm-stat-lbl">Inmuebles vistos</div></div>
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val">2</div><div class="lc-pm-stat-lbl">Visitas programadas</div></div>
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val">4</div><div class="lc-pm-stat-lbl">Favoritos guardados</div></div>
+              </div>
+            </div>
+            <div class="lc-pm-card lc-pm-card-sm">
+              <div class="lc-pm-card-title">Recomendados para ti</div>
+              <div class="lc-pb-rec"><img src="imagenes/interior11.jpg" alt=""/><div><strong>385.000 € · Eixample</strong><small>3 hab. · 92 m² · Exclusiva NH</small></div></div>
+              <div class="lc-pb-rec"><img src="imagenes/interior8.jpg" alt=""/><div><strong>295.000 € · Gràcia</strong><small>2 hab. · 68 m²</small></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lc-pm-screens fade-up">
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Mi proceso de compra</div>
+        <div class="lc-pm-timeline">
+          <div class="lc-pm-tl done"><span>✓</span><div><strong>Registro completado</strong><small>Julio 2026</small></div></div>
+          <div class="lc-pm-tl done"><span>✓</span><div><strong>Reunión con Juan Cárdenas</strong><small>Perfil y presupuesto OK</small></div></div>
+          <div class="lc-pm-tl done"><span>✓</span><div><strong>Búsqueda activa</strong><small>9 inmuebles revisados</small></div></div>
+          <div class="lc-pm-tl active"><span>4</span><div><strong>Visitas y oferta</strong><small>2 visitas · negociación abierta</small></div></div>
+          <div class="lc-pm-tl"><span>5</span><div><strong>Arras y escritura</strong><small>5.000 € + IVA al cerrar</small></div></div>
+        </div>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Mis visitas solicitadas</div>
+        <div class="lc-pm-visit"><span>Vie 18 · 11:00</span><strong>Piso 3 hab. · Eixample · 385.000 €</strong></div>
+        <div class="lc-pm-visit"><span>Sáb 19 · 12:30</span><strong>Ático reformado · Poblenou · 420.000 €</strong></div>
+        <p class="lc-pm-cal-note">Cada visita queda registrada en tu panel con fecha, inmueble y agente.</p>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Favoritos guardados</div>
+        <div class="lc-pb-favs">
+          <div class="lc-pb-fav"><span>♥</span><div><strong>210.000 € · L'Hospitalet</strong><small>Gran oportunidad · 3 hab.</small></div></div>
+          <div class="lc-pb-fav"><span>♥</span><div><strong>295.000 € · Gràcia</strong><small>2 hab. · terraza</small></div></div>
+          <div class="lc-pb-fav"><span>♥</span><div><strong>385.000 € · Eixample</strong><small>Exclusiva cartera NH</small></div></div>
+          <div class="lc-pb-fav"><span>♥</span><div><strong>340.000 € · Sants</strong><small>Reformado · 85 m²</small></div></div>
+        </div>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Documentación del inmueble</div>
+        <div class="lc-pm-docs">
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de reserva</strong><small>Firmado · FIRMACERT</small></div><span class="lc-pm-doc-ok">✓</span></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de arras</strong><small>En preparación</small></div></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Certificado energético</strong><small>Clase D · subido</small></div><span class="lc-pm-doc-ok">✓</span></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Cédula de habitabilidad</strong><small>Vigente · disponible</small></div><span class="lc-pm-doc-ok">✓</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="lc-pb-rec-grid fade-up">
+      <div class="lc-pb-rec-card">
+        <img src="imagenes/interior11.jpg" alt="Piso en Eixample" loading="lazy"/>
+        <div class="lc-pb-rec-body"><span class="lc-pm-tag">Exclusiva NH</span><strong>385.000 €</strong><p>Piso 3 hab. · Eixample · 92 m²</p></div>
+      </div>
+      <div class="lc-pb-rec-card">
+        <img src="imagenes/interior2.jpg" alt="Piso en Gràcia" loading="lazy"/>
+        <div class="lc-pb-rec-body"><strong>295.000 €</strong><p>Piso 2 hab. · Gràcia · terraza</p></div>
+      </div>
+      <div class="lc-pb-rec-card">
+        <img src="imagenes/interior1.jpg" alt="Piso en L'Hospitalet" loading="lazy"/>
+        <div class="lc-pb-rec-body"><strong>210.000 €</strong><p>Gran oportunidad · L'Hospitalet</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- NH_BUYER_PLATFORM_END -->
+
 <!-- POR QUÉ COMPRADORES NOS ELIGEN -->
 <section style="padding:100px 0;background:var(--crema)">
   <div class="container">
@@ -174,38 +411,6 @@
       <!-- imagen: inmobiliario5 exclusiva -->
       <div class="fade-up fade-up-delay-1 cmpr-img" style="border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5">
         <img src="imagenes/inmobiliario5.jpg" alt="Equipo NuevaHabitat ayudando a compradores" style="width:100%;height:100%;object-fit:cover"/>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CÓMO FUNCIONA EL PROCESO DE COMPRA -->
-<section class="proceso" style="background:var(--blanco)">
-  <div class="container">
-    <div class="text-center" style="margin-bottom:4rem">
-      <span class="overline">Proceso de compra</span>
-      <h2 class="section-title">De la primera reunión<br/>a las llaves en mano</h2>
-    </div>
-    <div class="cmpr-4col">
-      <div class="fade-up" style="text-align:center;padding:2.25rem 1.5rem;background:var(--crema);border-radius:var(--radius-md);border-top:3px solid var(--oro)">
-        <div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--oro);font-weight:700;margin-bottom:.75rem">1</div>
-        <h4 style="font-size:1rem;margin-bottom:.5rem">Reunión inicial</h4>
-        <p style="font-size:.875rem;color:var(--gris-texto)">Analizamos tu situación, presupuesto real y zonas de interés. Sin compromiso.</p>
-      </div>
-      <div class="fade-up fade-up-delay-1" style="text-align:center;padding:2.25rem 1.5rem;background:var(--crema);border-radius:var(--radius-md);border-top:3px solid var(--oro)">
-        <div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--oro);font-weight:700;margin-bottom:.75rem">2</div>
-        <h4 style="font-size:1rem;margin-bottom:.5rem">Búsqueda activa</h4>
-        <p style="font-size:.875rem;color:var(--gris-texto)">Buscamos en nuestra cartera y en el mercado inmuebles que encajen al 100% con tu perfil.</p>
-      </div>
-      <div class="fade-up fade-up-delay-2" style="text-align:center;padding:2.25rem 1.5rem;background:var(--crema);border-radius:var(--radius-md);border-top:3px solid var(--oro)">
-        <div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--oro);font-weight:700;margin-bottom:.75rem">3</div>
-        <h4 style="font-size:1rem;margin-bottom:.5rem">Visitas y oferta</h4>
-        <p style="font-size:.875rem;color:var(--gris-texto)">Organizamos visitas y, cuando encuentras el tuyo, negociamos el mejor precio en tu nombre.</p>
-      </div>
-      <div class="fade-up fade-up-delay-3" style="text-align:center;padding:2.25rem 1.5rem;background:var(--crema);border-radius:var(--radius-md);border-top:3px solid var(--oro)">
-        <div style="font-family:var(--font-serif);font-size:2.5rem;color:var(--oro);font-weight:700;margin-bottom:.75rem">4</div>
-        <h4 style="font-size:1rem;margin-bottom:.5rem">Arras y escritura</h4>
-        <p style="font-size:.875rem;color:var(--gris-texto)">Gestionamos todo el papeleo. Cobramos nuestro fee fijo el día de la firma. Enhorabuena.</p>
       </div>
     </div>
   </div>

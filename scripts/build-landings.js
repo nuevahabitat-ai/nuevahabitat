@@ -3,6 +3,7 @@ const path = require('path');
 const { renderBarrio } = require('./render-barrio');
 const { renderPilar } = require('./render-pilar');
 const { nhPlatformBundle, nhPlatformStyles, zoneLabel } = require('./landing-nh-blocks');
+const { nhBuyerPlatformBundle, nhBuyerPlatformStyles } = require('./landing-nh-buyer-blocks');
 
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content', 'landings');
@@ -705,6 +706,16 @@ function replaceBetween(text, start, end, replacement) {
   return text.slice(0, i + start.length) + '\n' + replacement + '\n' + text.slice(j);
 }
 
+function syncComprarHub() {
+  const p = path.join(ROOT, 'comprar.html');
+  let html = fs.readFileSync(p, 'utf8');
+  html = replaceBetween(html, '<!-- NH_BUYER_PLATFORM_START -->', '<!-- NH_BUYER_PLATFORM_END -->', nhBuyerPlatformBundle());
+  const styles = nhPlatformStyles().trim() + '\n' + nhBuyerPlatformStyles().trim();
+  html = replaceBetween(html, '/* NH_BUYER_PLATFORM_STYLES_START */', '/* NH_BUYER_PLATFORM_STYLES_END */', styles);
+  fs.writeFileSync(p, html, 'utf8');
+  console.log('Updated comprar.html buyer platform blocks');
+}
+
 function syncVenderHub() {
   const p = path.join(ROOT, 'vender.html');
   let html = fs.readFileSync(p, 'utf8');
@@ -793,6 +804,7 @@ function main() {
   fs.writeFileSync(path.join(ROOT, 'content', 'landings-index.json'), JSON.stringify(index, null, 2));
   writeGaConfig();
   syncVenderHub();
+  syncComprarHub();
   console.log('Updated js/landings.js and content/landings-index.json');
 }
 
