@@ -16,8 +16,8 @@
     "badge": "Situación · Separación o divorcio",
     "h1": "¿Vendes un piso tras una separación o divorcio en Barcelona?",
     "lead": "Vender la vivienda común tras una separación o divorcio implica acordar precio, reparto del importe y, si hay hipoteca conjunta, cómo se cancela. Actuamos como interlocutor neutral entre ambas partes, con honorarios fijos de 3.000 € + IVA.",
-    "image": "imagenes/contrato1.jpg",
-    "imageAlt": "Firma de documentos de venta de vivienda tras separación en Barcelona"
+    "image": "imagenes/familia5.jpg",
+    "imageAlt": "Gestión de venta de vivienda por separación o divorcio"
   },
   "breadcrumbCurrent": "Separación / divorcio",
   "argumento_principal": "<p>Vender un <strong>piso por separación o divorcio en Barcelona</strong> añade una capa de complejidad que no existe en una venta estándar: hay dos partes que deben ponerse de acuerdo en precio, plazos y reparto del importe, muchas veces en un momento personal difícil. Contar con un interlocutor externo y neutral —que no favorezca a ninguna de las dos partes— suele ser la diferencia entre un proceso ágil y uno que se alarga durante meses por desacuerdos.</p><h2>Qué determina cómo se reparte la vivienda</h2><p>El reparto depende del régimen económico del matrimonio o de cómo esté escriturada la vivienda en caso de pareja de hecho: en régimen de gananciales, lo habitual es repartir al 50%; en separación de bienes, depende de la proporción de la titularidad registral. El convenio regulador de la separación o divorcio, o un acuerdo privado entre las partes, suele fijar si la vivienda se vende, si uno de los dos compra la parte del otro, o si se mantiene en copropiedad temporalmente por los hijos.</p><h2>La hipoteca conjunta: un punto especialmente delicado</h2><p>Si la vivienda tiene hipoteca a nombre de ambos, venderla cancela la deuda conjunta y libera a ambas partes de la responsabilidad solidaria frente al banco, algo que muchas parejas separadas no consiguen si uno de los dos se queda la vivienda y el otro sigue figurando como cotitular del préstamo sin estar ya vinculado a la propiedad. Esta es, de hecho, una de las razones más habituales por las que finalmente se opta por vender en lugar de mantener la propiedad compartida tras la ruptura.</p><h2>Cómo evitar que el desacuerdo bloquee la venta</h2><p>Es habitual que una de las partes quiera vender rápido y la otra prefiera esperar un mejor precio, o que exista desacuerdo sobre el valor real de la vivienda. Una valoración externa y objetiva —no la opinión de ninguna de las dos partes ni de sus respectivos entornos— suele ser el punto de partida más eficaz para desbloquear la conversación, porque aporta un número neutral verificable con comparables reales del mercado.</p><h2>Coordinar visitas y comunicación cuando la relación es tensa</h2><p>Cuando la relación entre las partes es tensa, coordinar visitas, firmas y comunicación directa puede añadir fricción innecesaria al proceso. Actuar como intermediario único frente a ambas partes —centralizando toda la comunicación sobre ofertas, visitas y documentación— reduce los puntos de fricción y evita que la venta se convierta en un nuevo foco de conflicto.</p><h2>Qué pasa si una de las partes sigue viviendo en la vivienda</h2><p>Es habitual que, tras la separación, una de las partes continúe residiendo en la vivienda mientras se gestiona la venta, ya sea por acuerdo mutuo o por atribución temporal del uso en el convenio regulador. Esta situación exige coordinar visitas con especial sensibilidad, respetando tanto la privacidad de quien vive en el piso como la necesidad de mostrarlo en condiciones adecuadas a los compradores interesados, evitando que el proceso de venta se convierta en un motivo adicional de tensión entre las partes.</p><h2>Cómo se reparte el uso del dinero de las arras durante el proceso</h2><p>Cuando se recibe una señal o parte del precio en concepto de arras antes de la firma definitiva, conviene acordar por escrito y con antelación cómo se gestionará ese importe hasta la escritura final, especialmente si una de las partes necesita liquidez inmediata para su nueva vivienda mientras la otra prefiere esperar al cierre completo de la operación. Dejar este punto claro desde el principio evita malentendidos que puedan tensar todavía más una situación ya de por sí delicada.</p><h2>Cómo trabajamos en NuevaHabitat</h2><p>Damos una valoración objetiva basada en comparables reales, centralizamos la comunicación con ambas partes de forma equitativa, coordinamos visitas y documentación, y gestionamos la venta hasta la escritura, donde se reparte el importe según lo acordado en vuestro convenio. Cobramos <strong>3.000 € + IVA solo en escritura</strong>, repartidos entre las partes según corresponda entre ambos copropietarios de forma equitativa. Si la vivienda tiene <a href=\"/vender-piso-hipoteca-pendiente-barcelona\">hipoteca pendiente</a> a nombre de ambos, te explicamos también cómo se gestiona la cancelación en el mismo acto de la venta.</p>",
@@ -57,27 +57,75 @@
   "como_ayudamos": {
     "title": "Cómo acompañamos una venta tras separación o divorcio",
     "steps": [
-      { "title": "Valoración neutral", "body": "Un número objetivo basado en comparables reales, sin favorecer a ninguna parte." },
-      { "title": "Comunicación centralizada", "body": "Un único interlocutor para ambas partes, reduciendo fricción en el proceso." },
-      { "title": "Visitas y negociación", "body": "Coordinamos con compradores filtrados y gestionamos ofertas de forma transparente." },
-      { "title": "Escritura con reparto claro", "body": "3.000 € + IVA solo al cerrar; el importe se reparte según lo acordado." }
+      {
+        "title": "Valoración neutral",
+        "body": "Un número objetivo basado en comparables reales, sin favorecer a ninguna parte."
+      },
+      {
+        "title": "Comunicación centralizada",
+        "body": "Un único interlocutor para ambas partes, reduciendo fricción en el proceso."
+      },
+      {
+        "title": "Visitas y negociación",
+        "body": "Coordinamos con compradores filtrados y gestionamos ofertas de forma transparente."
+      },
+      {
+        "title": "Escritura con reparto claro",
+        "body": "3.000 € + IVA solo al cerrar; el importe se reparte según lo acordado."
+      }
     ]
   },
   "faq": [
-    { "q": "¿Cómo se reparte el dinero de la venta tras un divorcio?", "a": "Según el régimen económico del matrimonio (habitualmente 50% en gananciales) o según la titularidad registral en caso de pareja de hecho, y siempre conforme al convenio regulador si existe." },
-    { "q": "¿Qué pasa si uno de los dos no quiere vender?", "a": "Depende de lo acordado en el convenio regulador o de si existe resolución judicial al respecto. Podemos ayudar aportando una valoración objetiva que facilite el acuerdo." },
-    { "q": "¿Se puede vender si la hipoteca está a nombre de los dos?", "a": "Sí, y de hecho vender cancela la hipoteca conjunta y libera a ambas partes de la responsabilidad solidaria frente al banco." },
-    { "q": "¿Cuánto cuesta vender con NuevaHabitat en esta situación?", "a": "3.000 € + IVA, precio fijo cobrado solo en escritura, repartido entre las partes según corresponda." },
-    { "q": "¿Podéis coordinar la venta si la relación entre las partes es complicada?", "a": "Sí. Centralizamos toda la comunicación sobre visitas, ofertas y documentación con ambas partes de forma equitativa para reducir fricción." },
-    { "q": "¿Necesitamos abogado además de vosotros?", "a": "Recomendamos que el convenio regulador o el acuerdo de reparto esté revisado por vuestros respectivos abogados; nosotros nos encargamos de la venta y la valoración de la vivienda." },
-    { "q": "¿Cuánto tarda en venderse un piso en esta situación?", "a": "El proceso de venta en sí no es distinto de uno estándar; lo que puede alargarse es llegar al acuerdo previo entre las partes sobre precio y condiciones." },
-    { "q": "¿Qué pasa con la plusvalía municipal en una venta por divorcio?", "a": "Se calcula igual que en cualquier venta y se reparte entre ambas partes según su porcentaje de titularidad en la vivienda." }
+    {
+      "q": "¿Cómo se reparte el dinero de la venta tras un divorcio?",
+      "a": "Según el régimen económico del matrimonio (habitualmente 50% en gananciales) o según la titularidad registral en caso de pareja de hecho, y siempre conforme al convenio regulador si existe."
+    },
+    {
+      "q": "¿Qué pasa si uno de los dos no quiere vender?",
+      "a": "Depende de lo acordado en el convenio regulador o de si existe resolución judicial al respecto. Podemos ayudar aportando una valoración objetiva que facilite el acuerdo."
+    },
+    {
+      "q": "¿Se puede vender si la hipoteca está a nombre de los dos?",
+      "a": "Sí, y de hecho vender cancela la hipoteca conjunta y libera a ambas partes de la responsabilidad solidaria frente al banco."
+    },
+    {
+      "q": "¿Cuánto cuesta vender con NuevaHabitat en esta situación?",
+      "a": "3.000 € + IVA, precio fijo cobrado solo en escritura, repartido entre las partes según corresponda."
+    },
+    {
+      "q": "¿Podéis coordinar la venta si la relación entre las partes es complicada?",
+      "a": "Sí. Centralizamos toda la comunicación sobre visitas, ofertas y documentación con ambas partes de forma equitativa para reducir fricción."
+    },
+    {
+      "q": "¿Necesitamos abogado además de vosotros?",
+      "a": "Recomendamos que el convenio regulador o el acuerdo de reparto esté revisado por vuestros respectivos abogados; nosotros nos encargamos de la venta y la valoración de la vivienda."
+    },
+    {
+      "q": "¿Cuánto tarda en venderse un piso en esta situación?",
+      "a": "El proceso de venta en sí no es distinto de uno estándar; lo que puede alargarse es llegar al acuerdo previo entre las partes sobre precio y condiciones."
+    },
+    {
+      "q": "¿Qué pasa con la plusvalía municipal en una venta por divorcio?",
+      "a": "Se calcula igual que en cualquier venta y se reparte entre ambas partes según su porcentaje de titularidad en la vivienda."
+    }
   ],
   "relacionadas": [
-    { "slug": "vender-piso-hipoteca-pendiente-barcelona", "label": "Vender con hipoteca pendiente" },
-    { "slug": "cuanto-vale-mi-piso-barcelona", "label": "Cuánto vale mi piso" },
-    { "slug": "vender-piso-antes-comprar-otro-barcelona", "label": "Vender antes de comprar" },
-    { "slug": "vender-piso-rapido-barcelona", "label": "Vender piso rápido" }
+    {
+      "slug": "vender-piso-hipoteca-pendiente-barcelona",
+      "label": "Vender con hipoteca pendiente"
+    },
+    {
+      "slug": "cuanto-vale-mi-piso-barcelona",
+      "label": "Cuánto vale mi piso"
+    },
+    {
+      "slug": "vender-piso-antes-comprar-otro-barcelona",
+      "label": "Vender antes de comprar"
+    },
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "label": "Vender piso rápido"
+    }
   ],
   "keywords_footer": "vender piso separacion barcelona · vender piso divorcio barcelona · reparto vivienda divorcio · vender piso ex pareja · liquidacion gananciales vivienda",
   "whatsappText": "Hola%2C%20necesito%20vender%20un%20piso%20tras%20una%20separaci%C3%B3n%20o%20divorcio%20en%20Barcelona",

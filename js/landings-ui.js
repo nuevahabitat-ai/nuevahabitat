@@ -25,6 +25,35 @@
     return '<ul>' + items.join('') + '</ul>';
   }
 
+  function cardImage(cfg) {
+    if (cfg.cardImage) return cfg.cardImage;
+    if (cfg.cluster === 'barrio') return 'imagenes/barcelona2.jpg';
+    if (cfg.cluster === 'comparativa') return 'imagenes/inmobiliario1.jpg';
+    if (cfg.cluster === 'situacion') return 'imagenes/interior2.jpg';
+    return 'imagenes/interior11.jpg';
+  }
+
+  function landingCard(slug, cfg, opts) {
+    opts = opts || {};
+    var badge = cfg.badge || (cfg.cluster === 'comparativa' ? 'Comparativa' : cfg.cluster === 'intencion' ? 'Guía' : cfg.cluster === 'barrio' ? cfg.barrio : 'Situación');
+    var title = footerLabel(cfg);
+    var teaser = cfg.cardTeaser || (cfg.zonas || []).slice(0, 3).join(', ') || '';
+    var img = cardImage(cfg);
+    var alt = title + ' · NuevaHabitat Barcelona';
+    var cta = opts.cta || 'Ver guía →';
+
+    return (
+      '<a href="/' + slug + '" class="nh-landing-card">' +
+      '<div class="nh-landing-card-media"><img src="' + img + '" alt="' + alt + '" loading="lazy" decoding="async"/></div>' +
+      '<div class="nh-landing-card-body">' +
+      '<span class="nh-landing-card-badge">' + badge + '</span>' +
+      '<h3 class="nh-landing-card-title">' + title + '</h3>' +
+      (teaser ? '<p class="nh-landing-card-teaser">' + teaser + '</p>' : '') +
+      '<span class="nh-landing-card-cta">' + cta + '</span>' +
+      '</div></a>'
+    );
+  }
+
   function renderFooterLinks(container) {
     if (!container || !window.NH_LANDINGS) return;
 
@@ -108,16 +137,7 @@
     var cards = barrioSlugs.map(function (slug) {
       var cfg = window.NH_LANDINGS[slug];
       if (!cfg) return '';
-
-      var zonas = (cfg.zonas || []).slice(0, 3).join(', ') || cfg.barrio;
-
-      return (
-        '<div style="background:var(--blanco);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-sm);border-left:4px solid var(--oro)">' +
-        '<div style="font-size:.8125rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gris-medio);margin-bottom:.35rem">' + cfg.barrio + '</div>' +
-        '<p style="font-size:.9375rem;color:var(--negro);margin:0 0 1rem;line-height:1.5">' + zonas + '</p>' +
-        '<a href="/' + slug + '" class="btn btn-gold" style="width:100%;justify-content:center">Vender en ' + cfg.barrio + ' →</a>' +
-        '</div>'
-      );
+      return landingCard(slug, cfg, { cta: 'Vender en ' + cfg.barrio + ' →' });
     }).join('');
 
     container.innerHTML = cards;
@@ -142,16 +162,7 @@
     var cards = guiaSlugs.map(function (slug) {
       var cfg = window.NH_LANDINGS[slug];
       if (!cfg) return '';
-
-      var badge = cfg.badge || (cfg.cluster === 'comparativa' ? 'Comparativa' : cfg.cluster === 'intencion' ? 'Guía' : 'Situación');
-
-      return (
-        '<div style="background:var(--blanco);border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-sm);border-left:4px solid var(--oro)">' +
-        '<div style="font-size:.8125rem;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--gris-medio);margin-bottom:.35rem">' + badge + '</div>' +
-        '<p style="font-size:.9375rem;color:var(--negro);margin:0 0 1rem;line-height:1.5">' + footerLabel(cfg) + '</p>' +
-        '<a href="/' + slug + '" class="btn btn-gold" style="width:100%;justify-content:center">Ver guía →</a>' +
-        '</div>'
-      );
+      return landingCard(slug, cfg);
     }).join('');
 
     container.innerHTML = cards;

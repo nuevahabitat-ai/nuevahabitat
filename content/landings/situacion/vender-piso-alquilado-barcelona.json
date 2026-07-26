@@ -15,8 +15,8 @@
     "badge": "Situación · Piso con inquilino",
     "h1": "¿Vendes un piso alquilado en Barcelona?",
     "lead": "Vender con inquilino dentro no es igual que vender una vivienda vacía. Hay un contrato de arrendamiento en vigor, plazos legales y compradores que valoran (o descartan) la renta existente. En NuevaHabitat te acompañamos con precio fijo de 3.000 € + IVA y experiencia en operaciones con inquilino en Cataluña.",
-    "image": "imagenes/contrato1.jpg",
-    "imageAlt": "Contrato de alquiler y venta de vivienda en Barcelona"
+    "image": "imagenes/interior4.jpg",
+    "imageAlt": "Piso alquilado en Barcelona"
   },
   "breadcrumbCurrent": "Piso alquilado",
   "argumento_principal": "<p>Vender un <strong>piso alquilado en Barcelona</strong> implica que la vivienda no está libre de ocupantes: el arrendatario tiene derechos reconocidos por la Ley de Arrendamientos Urbanos (LAU) y, en muchos casos, por la normativa catalana de vivienda. Eso condiciona el calendario de visitas, el perfil de comprador y hasta el precio final.</p><h2>Qué compra realmente quien adquiere un piso alquilado</h2><p>El comprador adquiere la propiedad <em>con el contrato en vigor</em>, salvo que las partes acuerden la entrega de llaves antes de la escritura —algo poco habitual si el inquilino cumple con sus obligaciones—. Por eso la due diligence debe incluir: duración restante del contrato, importe de la renta, fianza depositada, recibos al día y si existe subrogación o cláusula de no subarrendamiento. Cualquier omisión en esta información suele aparecer más tarde en la negociación y puede hacer caer una operación que parecía cerrada.</p><h2>Dos tipos de comprador, dos estrategias de precio</h2><p>Un piso alquilado en Barcelona atrae principalmente a dos perfiles de comprador: inversores que valoran la rentabilidad bruta y neta del activo, y compradores de vivienda habitual que aceptan esperar al fin del contrato a cambio de un descuento sobre el precio de mercado. Presentar el inmueble con ambos escenarios de precio calculados —como activo de inversión y como vivienda a futuro— amplía el número de compradores potenciales y acelera la decisión.</p><h2>Cómo se calcula la rentabilidad que interesa al inversor</h2><p>Para el comprador inversor, lo relevante no es solo la renta mensual actual, sino la rentabilidad bruta sobre el precio de compra y el margen de revisión de renta al finalizar el contrato vigente. Preparar esta información de forma clara y verificable —renta actual, IPC de referencia, gastos de comunidad e IBI— transmite seriedad y evita negociaciones a la baja basadas en desconocimiento.</p><h2>Qué pasa si el inquilino deja de pagar durante el proceso de venta</h2><p>Si durante el proceso de venta el inquilino deja de pagar la renta, la situación se complica notablemente: la mayoría de compradores, tanto inversores como de vivienda habitual, preferirán esperar a que se resuelva el impago o el eventual proceso de desahucio antes de formalizar la compra, o exigirán un descuento adicional sobre el precio para asumir ese riesgo. Detectar cualquier retraso en los pagos cuanto antes, y actuar en consecuencia según lo previsto en el contrato de arrendamiento, evita que esta situación se prolongue justo cuando ya hay un comprador interesado esperando resolución.</p><h2>Cómo se comunica la venta al inquilino sin generar conflicto</h2><p>Comunicar la intención de vender a un inquilino que cumple correctamente con sus obligaciones requiere cierta delicadeza: no está obligado a facilitar el proceso más allá de lo que exige la ley, y una comunicación brusca o poco transparente puede generar fricciones que compliquen las visitas y la relación durante los meses que dure la venta. Explicar con claridad qué implica la venta para su contrato —que en la inmensa mayoría de casos se mantiene en las mismas condiciones con el nuevo propietario— suele facilitar la colaboración necesaria para coordinar visitas sin tensiones innecesarias.</p><h2>Cómo lo gestionamos en NuevaHabitat</h2><p>En NuevaHabitat filtramos compradores que aceptan activamente la situación de alquilado (inversores, carteras de renta) y explicamos con transparencia la rentabilidad bruta del activo. No prometemos visitas ilimitadas ignorando al inquilino: coordinamos con la legalidad vigente y reducimos fricción entre propietario, arrendatario y comprador durante todo el proceso. Si el contrato está a punto de vencer, consulta también nuestra guía específica para <a href=\"/vender-piso-inquilino-vencer-barcelona\">vender cuando el inquilino deja el piso libre</a>.</p><h2>Qué documentación adicional pide un comprador inversor</h2><p>Además de la documentación habitual de cualquier venta, un comprador inversor de piso alquilado pedirá el contrato de arrendamiento completo, el historial de pagos de los últimos meses, el justificante del depósito de la fianza en el organismo correspondiente y, si existe, cualquier acuerdo adicional entre propietario e inquilino que no conste en el contrato original. Tener esta documentación reunida desde el primer contacto acelera notablemente la due diligence y transmite profesionalidad frente a un comprador que suele comparar varias oportunidades de inversión en paralelo.</p><h2>Cómo influye la actualización de renta en el precio de venta</h2><p>Un contrato con renta desactualizada respecto al mercado actual reduce el precio que un inversor está dispuesto a pagar, ya que la rentabilidad se calcula sobre el ingreso real, no sobre el potencial futuro tras una eventual renovación. Explicar con transparencia cuándo se podrá actualizar la renta conforme a la normativa vigente, y con qué margen realista, ayuda al comprador a proyectar la rentabilidad futura del activo con mayor precisión.</p>",
@@ -56,10 +56,22 @@
   "como_ayudamos": {
     "title": "Cómo vendemos tu piso alquilado sin sorpresas",
     "steps": [
-      { "title": "Auditoría del alquiler", "body": "Revisamos contrato, renta, fianza, recibos y situación del inquilino antes de fijar precio." },
-      { "title": "Compradores adecuados", "body": "Priorizamos inversores y compradores informados sobre la renta y plazos legales." },
-      { "title": "Visitas coordinadas", "body": "Agendamos respetando LAU y al inquilino. Menos conflicto, más seriedad." },
-      { "title": "Escritura con precio fijo", "body": "3.000 € + IVA solo al cerrar. Si no vendes, no pagas honorarios." }
+      {
+        "title": "Auditoría del alquiler",
+        "body": "Revisamos contrato, renta, fianza, recibos y situación del inquilino antes de fijar precio."
+      },
+      {
+        "title": "Compradores adecuados",
+        "body": "Priorizamos inversores y compradores informados sobre la renta y plazos legales."
+      },
+      {
+        "title": "Visitas coordinadas",
+        "body": "Agendamos respetando LAU y al inquilino. Menos conflicto, más seriedad."
+      },
+      {
+        "title": "Escritura con precio fijo",
+        "body": "3.000 € + IVA solo al cerrar. Si no vendes, no pagas honorarios."
+      }
     ]
   },
   "faq": [
@@ -97,10 +109,22 @@
     }
   ],
   "relacionadas": [
-    { "slug": "vender-piso-inquilino-vencer-barcelona", "label": "Inquilino vence pronto" },
-    { "slug": "vender-piso-rapido-barcelona", "label": "Vender piso rápido" },
-    { "slug": "vender-sarria", "label": "Vender en Sarrià" },
-    { "slug": "vender-les-corts", "label": "Vender en Les Corts" }
+    {
+      "slug": "vender-piso-inquilino-vencer-barcelona",
+      "label": "Inquilino vence pronto"
+    },
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "label": "Vender piso rápido"
+    },
+    {
+      "slug": "vender-sarria",
+      "label": "Vender en Sarrià"
+    },
+    {
+      "slug": "vender-les-corts",
+      "label": "Vender en Les Corts"
+    }
   ],
   "keywords_footer": "vender piso alquilado barcelona · vender piso con inquilino · vender vivienda alquilada cataluña · contrato alquiler venta · derecho tanteo inquilino · inmobiliaria precio fijo barcelona",
   "whatsappText": "Hola%2C%20quiero%20vender%20un%20piso%20alquilado%20en%20Barcelona",

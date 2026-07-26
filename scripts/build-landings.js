@@ -21,6 +21,15 @@ const MIN_WORDS_BY_CLUSTER = {
 const MIN_WORDS_DEFAULT = 650;
 const SIMILARITY_THRESHOLD = 0.38;
 
+function cardTeaserFrom(L) {
+  if (L.cardTeaser) return L.cardTeaser;
+  const d = L.meta && L.meta.description;
+  if (!d) return '';
+  const cut = d.indexOf('. ');
+  if (cut > 0 && cut < 120) return d.slice(0, cut + 1);
+  return d.length > 110 ? d.slice(0, 107) + '…' : d;
+}
+
 function loadJsonFiles(dir) {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir)
@@ -684,7 +693,7 @@ function main() {
   const allMap = {};
   generated.forEach((L) => {
     if (L.cluster === 'barrio') {
-      allMap[L.slug] = {
+    allMap[L.slug] = {
         slug: L.slug,
         cluster: 'barrio',
         barrio: L.barrio,
@@ -693,6 +702,8 @@ function main() {
         priority: L.priority,
         indexable: L.indexable !== false,
         testimonials: L.testimonials === false ? false : true,
+        cardImage: L.heroImage,
+        cardTeaser: cardTeaserFrom(L) || ('Vender en ' + L.barrio + ' con precio fijo 3.000€ + IVA.'),
       };
       return;
     }
@@ -705,6 +716,8 @@ function main() {
       keyword_principal: L.keyword_principal,
       badge: L.hero && L.hero.badge,
       testimonials: false,
+      cardImage: (L.hero && L.hero.image) || L.heroImage || null,
+      cardTeaser: cardTeaserFrom(L),
     };
   });
 

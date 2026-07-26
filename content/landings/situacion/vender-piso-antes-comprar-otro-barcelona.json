@@ -19,8 +19,8 @@
     "badge": "Situación · Venta + compra",
     "h1": "¿Vendes tu piso en Barcelona para comprar otro?",
     "lead": "La <strong>cadena compraventa</strong> es el escenario más habitual en Barcelona: vendes en un barrio y compras en otro (o más metros en la periferia). NuevaHabitat coordina plazos de venta con precio fijo <strong>3.000 € + IVA</strong> para que no te quedes en el limbo entre firma y entrega de llaves.",
-    "image": "imagenes/firma1.jpg",
-    "imageAlt": "Cadena compraventa vender piso antes de comprar otro en Barcelona"
+    "image": "imagenes/familia3.jpg",
+    "imageAlt": "Familia planificando venta y compra de vivienda en Barcelona"
   },
   "breadcrumbCurrent": "Antes de comprar",
   "argumento_principal": "<p><strong>Vender piso antes de comprar otro en Barcelona</strong> implica gestionar dos operaciones con calendarios distintos: tu comprador quiere escritura en X semanas, el vendedor del piso que te interesa exige arras ya, y tu hipoteca (si la hay) depende de la venta previa. En un mercado con stock limitado en Eixample, Sarrià o Gràcia, perder dos semanas puede significar perder el piso de destino.</p><h2>Las tres estrategias habituales en una cadena de compraventa</h2><p>La primera opción es vender primero y alquilar temporalmente: es la más segura financieramente, porque no dependes de plazos ajenos para disponer de liquidez, aunque implica una mudanza intermedia y el coste de un alquiler puente. La segunda es comprar con cláusula suspensiva ligada a tu venta, lo que requiere encontrar un vendedor paciente dispuesto a esperar; no siempre es fácil en zonas de alta demanda como el Eixample. La tercera, y la más ajustada en tiempo, es alinear fechas de arras y escritura en ambas operaciones el mismo día o con pocos días de diferencia, lo que exige compradores y vendedores coordinados y abogados o gestores alineados en ambas partes.</p><h2>Qué falla habitualmente en una cadena de compraventa</h2><p>La causa más frecuente de que una cadena se rompa no es la falta de interés, sino la falta de solvencia verificada del comprador de tu piso: si su hipoteca se retrasa o finalmente no se aprueba, toda la cadena se paraliza justo cuando ya has comprometido arras en tu compra. Por eso, en una operación de este tipo, filtrar la capacidad financiera real del comprador desde el primer contacto es incluso más importante que en una venta estándar.</p><h2>Cómo coordinamos los tiempos con tu compra</h2><p>NuevaHabitat no sustituye asesoramiento hipotecario, pero sí acelera y ordena la <em>venta</em>: valoración realista para vender en plazo, compradores con financiación clara desde el primer contacto, negociación de arras que deje margen para tu compra, y comunicación transparente sobre fechas con todas las partes implicadas. Trabajamos con el calendario de tu operación de compra como referencia, no como un dato secundario.</p><h2>Qué hacer si tu piso tarda más de lo previsto en venderse</h2><p>Cuando la venta de tu piso se retrasa más de lo previsto y ya has comprometido arras en la compra de tu siguiente vivienda, conviene tener preparado un plan alternativo desde el principio: financiación puente a corto plazo, ampliar el plazo de arras negociando con el vendedor de destino, o incluso valorar un ajuste de precio en tu propia venta para acelerar el cierre. Anticipar este escenario, en lugar de reaccionar solo cuando ya se ha producido el retraso, reduce significativamente el riesgo de perder la señal entregada en la compra del piso de destino.</p><h2>Cómo afecta el momento de mercado a la estrategia de cadena</h2><p>En un mercado con stock limitado como el de muchos barrios de Barcelona, el orden de las operaciones puede depender también del momento concreto: si hay pocos compradores activos pero también poca oferta de la vivienda que buscas, el riesgo de vender rápido pero no encontrar tu siguiente piso a tiempo es real. Evaluar el nivel de competencia tanto en tu venta como en tu búsqueda de compra, antes de decidir la estrategia de cadena, ayuda a dimensionar mejor los plazos y a negociar con más seguridad en ambas operaciones.</p><h2>Honorarios fijos también en operaciones complejas</h2><p>Honorarios fijos: <strong>3.000 € + IVA solo en escritura</strong> —en una cadena, ahorrar un mes de incertidumbre suele valer más que discutir comisiones, y un precio fijo te permite calcular con precisión cuánto dinero neto tendrás disponible para tu siguiente compra. Si aún no tienes claro el valor real de tu piso actual, empieza por <a href=\"/cuanto-vale-mi-piso-barcelona\">una valoración gratuita</a>.</p><h2>Qué papel juega la hipoteca puente en una cadena de compraventa</h2><p>Cuando los plazos no encajan de forma natural, una hipoteca puente permite disponer de liquidez para la nueva compra antes de completar la venta del piso actual, a cambio de un coste financiero temporal que conviene calcular con precisión frente al riesgo de perder el piso de destino. No todas las entidades ofrecen este producto en las mismas condiciones, por lo que conviene explorarlo con antelación, antes de necesitarlo con urgencia en plena negociación.</p>",
@@ -60,10 +60,22 @@
   "como_ayudamos": {
     "title": "Cómo sincronizamos tu venta en Barcelona con la compra del siguiente piso",
     "steps": [
-      { "title": "Valoración con plazo objetivo", "body": "Definimos precio y calendario según la operación de compra que tienes en mente." },
-      { "title": "Compradores con fecha flexible", "body": "Priorizamos quien puede adaptar escritura a tu cadena, no solo quien ofrece más." },
-      { "title": "Coordinación de arras", "body": "Alineamos hitos de tu venta con los requisitos del vendedor del piso que compras." },
-      { "title": "Escritura y precio fijo", "body": "3.000 € + IVA solo al cerrar tu venta. Sin comisión del 6%." }
+      {
+        "title": "Valoración con plazo objetivo",
+        "body": "Definimos precio y calendario según la operación de compra que tienes en mente."
+      },
+      {
+        "title": "Compradores con fecha flexible",
+        "body": "Priorizamos quien puede adaptar escritura a tu cadena, no solo quien ofrece más."
+      },
+      {
+        "title": "Coordinación de arras",
+        "body": "Alineamos hitos de tu venta con los requisitos del vendedor del piso que compras."
+      },
+      {
+        "title": "Escritura y precio fijo",
+        "body": "3.000 € + IVA solo al cerrar tu venta. Sin comisión del 6%."
+      }
     ]
   },
   "faq": [
@@ -101,10 +113,22 @@
     }
   ],
   "relacionadas": [
-    { "slug": "vender-piso-rapido-barcelona", "label": "Vender piso rápido" },
-    { "slug": "vender-piso-traslado-barcelona", "label": "Traslado de ciudad" },
-    { "slug": "vender-eixample", "label": "Vender en el Eixample" },
-    { "slug": "nuevahabitat-vs-agencia-tradicional-barcelona", "label": "NH vs agencia 6%" }
+    {
+      "slug": "vender-piso-rapido-barcelona",
+      "label": "Vender piso rápido"
+    },
+    {
+      "slug": "vender-piso-traslado-barcelona",
+      "label": "Traslado de ciudad"
+    },
+    {
+      "slug": "vender-eixample",
+      "label": "Vender en el Eixample"
+    },
+    {
+      "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
+      "label": "NH vs agencia 6%"
+    }
   ],
   "keywords_footer": "vender piso antes de comprar otro barcelona · cadena compraventa · vender para comprar vivienda · sincronizar venta y compra · precio fijo barcelona",
   "whatsappText": "Hola%2C%20vendo%20en%20Barcelona%20para%20comprar%20otro%20piso",

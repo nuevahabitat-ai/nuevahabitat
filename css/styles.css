@@ -1399,6 +1399,88 @@ footer {
   line-height: 1.35;
 }
 
+/* ── Tarjetas de landings (hub vender + grids dinámicos) ─── */
+.nh-landing-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--blanco);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--crema-dark);
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.nh-landing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(184, 147, 106, .45);
+}
+.nh-landing-card-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--negro-soft);
+}
+.nh-landing-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+.nh-landing-card:hover .nh-landing-card-media img {
+  transform: scale(1.04);
+}
+.nh-landing-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.15rem 1.25rem 1.25rem;
+}
+.nh-landing-card-badge {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: .45rem;
+}
+.nh-landing-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--negro);
+  margin: 0 0 .5rem;
+}
+.nh-landing-card-teaser {
+  font-size: .8125rem;
+  line-height: 1.55;
+  color: var(--gris-texto);
+  margin: 0 0 .85rem;
+  flex: 1;
+}
+.nh-landing-card-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: .7rem 1rem;
+  background: var(--oro);
+  color: var(--negro);
+  font-size: .8125rem;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: background .2s ease;
+}
+.nh-landing-card:hover .nh-landing-card-cta {
+  background: var(--oro-oscuro);
+  color: var(--blanco);
+}
+
 .footer-bottom {
   padding: 1.75rem 0;
   display: flex;

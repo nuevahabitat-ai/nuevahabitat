@@ -62,7 +62,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona1.jpeg",
+    "cardTeaser": "¿Vendes en Cornellà de Llobregat? Mercado ~2.600–3.100 €/m²."
   },
   "vender-eixample": {
     "slug": "vender-eixample",
@@ -79,7 +81,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": true
+    "testimonials": true,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "¿Vendes tu piso en el Eixample? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-el-clot-la-sagrera-barcelona": {
     "slug": "vender-el-clot-la-sagrera-barcelona",
@@ -94,7 +98,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "¿Vendes tu piso en El Clot, La Sagrera o Sant Martí de Provençals? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-esplugues": {
     "slug": "vender-esplugues",
@@ -110,7 +116,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.855,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/esplugues1.jpg",
+    "cardTeaser": "¿Vendes en Esplugues? Mercado ~3.200–3.800 €/m²."
   },
   "vender-gracia": {
     "slug": "vender-gracia",
@@ -125,7 +133,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/gracia1.jpg",
+    "cardTeaser": "¿Vendes tu piso en Gràcia? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-horta": {
     "slug": "vender-horta",
@@ -141,7 +151,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/horta1.jpg",
+    "cardTeaser": "¿Vendes en Horta-Guinardó, Montbau o Vall d'Hebron? Mercado ~3.900–4.300 €/m²."
   },
   "vender-l-hospitalet": {
     "slug": "vender-l-hospitalet",
@@ -157,7 +169,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/hospitalet1.jpg",
+    "cardTeaser": "¿Vendes en L'Hospitalet? Mercado ~2.750–3.200 €/m²."
   },
   "vender-les-corts": {
     "slug": "vender-les-corts",
@@ -172,7 +186,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": true
+    "testimonials": true,
+    "cardImage": "imagenes/lescorts1.jpg",
+    "cardTeaser": "¿Vendes tu piso en Les Corts? NuevaHabitat: plataforma para vendedores con honorarios fijos de 3.000€ + IVA."
   },
   "vender-nou-barris": {
     "slug": "vender-nou-barris",
@@ -188,7 +204,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "¿Vendes tu piso en Nou Barris, Roquetes o Verdum? Honorarios fijos 3.000€ + IVA."
   },
   "vender-piso-barceloneta": {
     "slug": "vender-piso-barceloneta",
@@ -203,7 +221,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona2.jpg",
+    "cardTeaser": "¿Vendes tu piso en la Barceloneta? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-piso-born-barcelona": {
     "slug": "vender-piso-born-barcelona",
@@ -218,7 +238,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/born1.jpg",
+    "cardTeaser": "¿Vendes tu piso en el Born o Sant Pere? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-piso-ciutat-vella-barcelona": {
     "slug": "vender-piso-ciutat-vella-barcelona",
@@ -233,7 +255,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.9,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/ciutatvella2.jpg",
+    "cardTeaser": "¿Vendes tu piso en Ciutat Vella? Guía por barrios (Gòtic, Born, Raval, Barceloneta)."
   },
   "vender-piso-gotic-barcelona": {
     "slug": "vender-piso-gotic-barcelona",
@@ -248,7 +272,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/gotic1.jpg",
+    "cardTeaser": "¿Vendes tu piso en el Barri Gòtic? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-piso-raval-barcelona": {
     "slug": "vender-piso-raval-barcelona",
@@ -263,7 +289,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/raval1.jpg",
+    "cardTeaser": "¿Vendes tu piso en el Raval? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-poble-sec": {
     "slug": "vender-poble-sec",
@@ -278,7 +306,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "¿Vendes tu piso en Poble Sec? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-poblenou": {
     "slug": "vender-poblenou",
@@ -294,7 +324,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/poblenou1.jpeg",
+    "cardTeaser": "¿Vendes tu piso en Poblenou o Vila Olímpica? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-sant-andreu": {
     "slug": "vender-sant-andreu",
@@ -310,7 +342,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona5.jpg",
+    "cardTeaser": "¿Vendes tu piso en Sant Andreu de Palomar? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-sant-antoni": {
     "slug": "vender-sant-antoni",
@@ -325,7 +359,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "¿Vendes tu piso en Sant Antoni? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-sant-gervasi": {
     "slug": "vender-sant-gervasi",
@@ -340,7 +376,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/eixample4.jpg",
+    "cardTeaser": "¿Vendes tu piso en Sant Gervasi (El Putxet, El Farró, Via Augusta)? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-sant-just-sant-joan-despi": {
     "slug": "vender-sant-just-sant-joan-despi",
@@ -356,7 +394,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/santjust1.webp",
+    "cardTeaser": "¿Vendes en Sant Just Desvern o Sant Joan Despí? Honorarios fijos 3.000€ + IVA desde nuestra oficina en Les Corts."
   },
   "vender-sants": {
     "slug": "vender-sants",
@@ -371,7 +411,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": true
+    "testimonials": true,
+    "cardImage": "imagenes/sants1.jpg",
+    "cardTeaser": "¿Vendes tu piso en Sants? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "vender-sarria": {
     "slug": "vender-sarria",
@@ -387,7 +429,9 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/eixample5.jpg",
+    "cardTeaser": "¿Vendes tu piso en Sarrià? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
   "cuanto-vale-mi-piso-barcelona": {
     "slug": "cuanto-vale-mi-piso-barcelona",
@@ -397,7 +441,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "cuanto vale mi piso barcelona",
     "badge": "Valoración gratuita · Sin compromiso",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/interior13.jpg",
+    "cardTeaser": "Descubre cuánto vale tu piso en Barcelona con una valoración gratuita basada en comparables reales, no en e…"
   },
   "vender-piso-alquilado-barcelona": {
     "slug": "vender-piso-alquilado-barcelona",
@@ -407,7 +453,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso alquilado barcelona",
     "badge": "Situación · Piso con inquilino",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/interior4.jpg",
+    "cardTeaser": "¿Vendes un piso con inquilino en Barcelona? Te explicamos contrato en vigor, derecho de tanteo, visitas y p…"
   },
   "vender-piso-antes-comprar-otro-barcelona": {
     "slug": "vender-piso-antes-comprar-otro-barcelona",
@@ -417,7 +465,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso antes de comprar otro barcelona",
     "badge": "Situación · Venta + compra",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/familia3.jpg",
+    "cardTeaser": "¿Vendes en Barcelona para comprar otra vivienda? Sincroniza plazos, arras, hipoteca y entrega de llaves."
   },
   "vender-piso-herencia-barcelona": {
     "slug": "vender-piso-herencia-barcelona",
@@ -427,7 +477,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso herencia barcelona",
     "badge": "Situación · Piso heredado",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/familia2.jpg",
+    "cardTeaser": "¿Has heredado un piso en Barcelona y quieres venderlo? Te explicamos aceptación de herencia, plusvalía, IRP…"
   },
   "vender-piso-hipoteca-pendiente-barcelona": {
     "slug": "vender-piso-hipoteca-pendiente-barcelona",
@@ -437,7 +489,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso con hipoteca pendiente barcelona",
     "badge": "Situación · Hipoteca pendiente",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/firma1.jpg",
+    "cardTeaser": "¿Puedes vender un piso con hipoteca pendiente en Barcelona? Te explicamos cancelación registral, subrogació…"
   },
   "vender-piso-inquilino-vencer-barcelona": {
     "slug": "vender-piso-inquilino-vencer-barcelona",
@@ -447,7 +501,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso inquilino contrato vencer barcelona",
     "badge": "Situación · Contrato por vencer",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/interior9.jpg",
+    "cardTeaser": "¿Vendes en Barcelona y el contrato de alquiler vence pronto? Planifica entrega de llaves, visitas, precio y compradores."
   },
   "vender-piso-okupado-barcelona": {
     "slug": "vender-piso-okupado-barcelona",
@@ -457,7 +513,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso okupado barcelona",
     "badge": "Situación · Piso ocupado",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/interior8.jpg",
+    "cardTeaser": "¿Tienes un piso ocupado en Barcelona y quieres venderlo? Te explicamos las opciones legales y de mercado, c…"
   },
   "vender-piso-separacion-divorcio-barcelona": {
     "slug": "vender-piso-separacion-divorcio-barcelona",
@@ -467,7 +525,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso separacion divorcio barcelona",
     "badge": "Situación · Separación o divorcio",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/familia5.jpg",
+    "cardTeaser": "¿Vendes un piso tras una separación o divorcio en Barcelona? Te explicamos reparto del precio, hipoteca com…"
   },
   "vender-piso-traslado-barcelona": {
     "slug": "vender-piso-traslado-barcelona",
@@ -477,7 +537,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso traslado trabajo barcelona",
     "badge": "Situación · Traslado / mudanza",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona7.webp",
+    "cardTeaser": "¿Te mudas y vendes tu piso en Barcelona? Traslado laboral, expatriación o cambio de ciudad."
   },
   "vender-segunda-residencia-barcelona": {
     "slug": "vender-segunda-residencia-barcelona",
@@ -487,7 +549,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender segunda residencia barcelona",
     "badge": "Situación · Piso vacío / 2ª residencia",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/interior12.webp",
+    "cardTeaser": "¿Vendes un piso vacío o segunda residencia en Barcelona? Fiscalidad distinta, visitas flexibles y comprador…"
   },
   "vender-piso-rapido-barcelona": {
     "slug": "vender-piso-rapido-barcelona",
@@ -497,7 +561,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso rapido barcelona",
     "badge": "Urgencia · Venta ágil",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/comercial2.jpg",
+    "cardTeaser": "¿Necesitas vender tu piso rápido en Barcelona? Calcula tu ahorro, compara modelos (agencia, particular, por…"
   },
   "vender-piso-sin-exclusividad-barcelona": {
     "slug": "vender-piso-sin-exclusividad-barcelona",
@@ -507,7 +573,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso sin exclusividad barcelona",
     "badge": "Particular · Sin exclusiva",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/agente inmobiliario2.jpg",
+    "cardTeaser": "¿Quieres vender tu piso en Barcelona sin exclusiva ni permanencia abusiva? Guía para particulares: compara …"
   },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
     "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
@@ -517,7 +585,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "comision inmobiliaria barcelona vs precio fijo",
     "badge": "Comparativa · 6% vs 3.000€ fijos",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/equipo1.jpg",
+    "cardTeaser": "¿Cuánto cobra una inmobiliaria en Barcelona? Compara comisión del 6% + IVA vs precio fijo 3.000€ + IVA de NuevaHabitat."
   },
   "nuevahabitat-vs-clikalia-barcelona": {
     "slug": "nuevahabitat-vs-clikalia-barcelona",
@@ -527,7 +597,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "nuevahabitat vs clikalia barcelona",
     "badge": "Comparativa · Venta instantánea vs precio de mercado",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/inmobiliario4.jpg",
+    "cardTeaser": "¿Vender a un comprador instantáneo como Clikalia o con NuevaHabitat? Compara el descuento del iBuyer frente…"
   },
   "nuevahabitat-vs-fotocasa-particular": {
     "slug": "nuevahabitat-vs-fotocasa-particular",
@@ -537,7 +609,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "nuevahabitat vs fotocasa particular",
     "badge": "Comparativa · Fotocasa vs precio fijo",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/interior5.jpg",
+    "cardTeaser": "¿Vender en Fotocasa como particular o con NuevaHabitat en Barcelona? Coste del anuncio, filtro de comprador…"
   },
   "nuevahabitat-vs-housfy-barcelona": {
     "slug": "nuevahabitat-vs-housfy-barcelona",
@@ -547,7 +621,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "nuevahabitat vs housfy barcelona",
     "badge": "Comparativa · Dos modelos de precio fijo",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/inmobiliario2.jpg",
+    "cardTeaser": "¿Housfy o NuevaHabitat para vender tu piso en Barcelona? Compara acompañamiento local, visitas presenciales…"
   },
   "nuevahabitat-vs-idealista-particular": {
     "slug": "nuevahabitat-vs-idealista-particular",
@@ -557,7 +633,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "nuevahabitat vs idealista particular",
     "badge": "Comparativa · Particular vs precio fijo",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/comercial1.jpg",
+    "cardTeaser": "¿Vender en Idealista como particular o con NuevaHabitat? Compara coste real, filtro de compradores, negocia…"
   },
   "vender-por-tu-cuenta-vs-nuevahabitat-barcelona": {
     "slug": "vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
@@ -567,7 +645,9 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso por tu cuenta vs inmobiliaria barcelona",
     "badge": "Comparativa · Solo vs acompañado",
-    "testimonials": false
+    "testimonials": false,
+    "cardImage": "imagenes/familia1.jpg",
+    "cardTeaser": "¿Vender el piso solo o con NuevaHabitat en Barcelona? Compara tiempo, riesgos legales, filtro de compradore…"
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){
