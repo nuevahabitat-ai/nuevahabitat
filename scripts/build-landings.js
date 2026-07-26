@@ -4,6 +4,7 @@ const { renderBarrio } = require('./render-barrio');
 const { renderPilar } = require('./render-pilar');
 const { nhPlatformBundle, nhPlatformStyles, zoneLabel } = require('./landing-nh-blocks');
 const { nhBuyerPlatformBundle, nhBuyerPlatformStyles } = require('./landing-nh-buyer-blocks');
+const { nhHomeEcosystemBundle, nhHomeEcosystemStyles } = require('./landing-nh-hub-blocks');
 
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content', 'landings');
@@ -706,6 +707,15 @@ function replaceBetween(text, start, end, replacement) {
   return text.slice(0, i + start.length) + '\n' + replacement + '\n' + text.slice(j);
 }
 
+function syncIndexHub() {
+  const p = path.join(ROOT, 'index.html');
+  let html = fs.readFileSync(p, 'utf8');
+  html = replaceBetween(html, '<!-- NH_ECOSYSTEM_HUB_START -->', '<!-- NH_ECOSYSTEM_HUB_END -->', nhHomeEcosystemBundle());
+  html = replaceBetween(html, '/* NH_ECOSYSTEM_HUB_STYLES_START */', '/* NH_ECOSYSTEM_HUB_STYLES_END */', nhHomeEcosystemStyles().trim());
+  fs.writeFileSync(p, html, 'utf8');
+  console.log('Updated index.html ecosystem blocks');
+}
+
 function syncComprarHub() {
   const p = path.join(ROOT, 'comprar.html');
   let html = fs.readFileSync(p, 'utf8');
@@ -805,6 +815,7 @@ function main() {
   writeGaConfig();
   syncVenderHub();
   syncComprarHub();
+  syncIndexHub();
   console.log('Updated js/landings.js and content/landings-index.json');
 }
 
