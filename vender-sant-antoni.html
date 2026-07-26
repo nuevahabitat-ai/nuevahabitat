@@ -277,7 +277,22 @@
     .lc-pm-tl.done span{background:#ecfdf5;color:#166534}
     .lc-pm-tl.active span{background:var(--negro);color:#fff}
     .lc-pm-tl small{display:block;font-size:.6875rem;color:var(--gris-medio);margin-top:.1rem}
+    .lc-nh-compradores-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:2.5rem;align-items:start;margin-bottom:2.5rem}
+    .lc-nh-compradores-pillars{display:grid;gap:.85rem;margin-top:.5rem}
+    .lc-nh-pillar{background:var(--crema);border-radius:var(--radius-md);padding:1rem 1.15rem;border-left:3px solid var(--oro)}
+    .lc-nh-pillar strong{display:block;font-size:.9375rem;color:var(--negro);margin-bottom:.25rem}
+    .lc-nh-pillar p{font-size:.8125rem;color:var(--gris-texto);margin:0;line-height:1.55}
+    .lc-nh-comprador-demo{align-self:stretch}
+    .lc-nh-perfil-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+    .lc-nh-tag{font-size:.6875rem;padding:.3rem .55rem;border-radius:999px;background:#fff;border:1px solid var(--crema-dark);color:var(--gris-medio)}
+    .lc-nh-tag-ok{background:#ecfdf5;color:#166534;border-color:#bbf7d0;font-weight:600}
+    .lc-nh-compare-wrap{margin-bottom:2rem}
+    .lc-nh-compare-title{font-family:var(--font-serif);font-size:1.25rem;color:var(--negro);margin:0 0 1rem;text-align:center}
+    .lc-nh-compare-table .win{background:#f0fdf4;color:#166534;font-weight:600}
+    .lc-nh-compradores-footer{max-width:820px;margin:0 auto;text-align:center}
+    .lc-nh-compradores-footer p{font-size:.9375rem;color:var(--gris-texto);line-height:1.75;margin:0}
     @media(max-width:900px){
+      .lc-nh-compradores-grid{grid-template-columns:1fr}
       .lc-nh-servicio-grid,.lc-nh-panel-grid,.lc-pm-screens{grid-template-columns:1fr}
       .lc-pm-screens{grid-template-columns:repeat(2,1fr)}
       .lc-steps-6{grid-template-columns:repeat(2,1fr)!important}
@@ -404,6 +419,71 @@
         <div class="lc-nh-mini-card"><span>02</span><h3>Plataforma propia</h3><p>Publicamos en nuestra cartera, no solo en portales genéricos.</p></div>
         <div class="lc-nh-mini-card"><span>03</span><h3>Panel vendedor 24/7</h3><p>Visitas, ofertas, contratos y proceso guiado en un solo lugar.</p></div>
       </div>
+    </div>
+  </div>
+</section><section class="lc-section lc-nh-compradores-v" style="background:var(--blanco)">
+  <div class="container">
+    <div class="lc-nh-compradores-grid fade-up">
+      <div class="lc-nh-compradores-copy">
+        <span class="overline">Tu comprador no llega de un portal</span>
+        <h2 class="section-title">NuevaHabitat es un ecosistema de compradores buscando vivienda en Barcelona</h2>
+        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1rem">Cuando publicas tu inmueble con nosotros, no esperamos llamadas al azar. Tu piso se muestra a <strong>clientes compradores ya registrados</strong> en nuestra plataforma: personas que buscan activamente vivienda en Sant Antoni y en toda el <strong>área metropolitana de Barcelona</strong>.</p>
+        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada comprador está <strong>cualificado financieramente</strong> antes de la primera visita. Conocemos sus condiciones de hipoteca, su capacidad de endeudamiento, su presupuesto real y su plazo de compra. Son clientes <strong>preparados para comprar en cualquier momento</strong> — y Juan Cárdenas está en contacto constante con ellos buscándoles viviendas que encajen.</p>
+        <div class="lc-nh-compradores-pillars">
+          <div class="lc-nh-pillar"><strong>Hipoteca preaprobada o liquidez</strong><p>Verificamos solvencia antes de agendar. No entran curiosos sin financiación.</p></div>
+          <div class="lc-nh-pillar"><strong>Encaje con tu precio</strong><p>Cada visita cumple el estándar de precio y ratio de endeudamiento de tu inmueble.</p></div>
+          <div class="lc-nh-pillar"><strong>Búsqueda activa continua</strong><p>Nuestro equipo propone tu piso a compradores cuyo perfil encaja con la zona y el importe.</p></div>
+        </div>
+      </div>
+      <div class="lc-pm-wrap lc-pm-wrap--comprador lc-nh-comprador-demo" aria-hidden="true">
+        <div class="lc-pm-header">
+          <div class="lc-pm-brand"><span class="lc-pm-logo">NH</span><span>Nueva Habitat <small>Panel Comprador</small></span></div>
+          <div class="lc-pm-user"><span class="lc-pm-avatar">CR</span><span>Cliente cualificado</span></div>
+        </div>
+        <div class="lc-pm-body">
+          <div class="lc-pm-sidebar">
+            <div class="lc-pm-nav">Resumen</div>
+            <div class="lc-pm-nav">Mi proceso</div>
+            <div class="lc-pm-nav active">Mis visitas</div>
+            <div class="lc-pm-nav">Favoritos</div>
+          </div>
+          <div class="lc-pm-main">
+            <div class="lc-pm-card">
+              <div class="lc-pm-card-title">Perfil financiero verificado</div>
+              <div class="lc-nh-perfil-tags">
+                <span class="lc-nh-tag lc-nh-tag-ok">Hipoteca preaprobada</span>
+                <span class="lc-nh-tag lc-nh-tag-ok">Presupuesto: 380–420 k€</span>
+                <span class="lc-nh-tag lc-nh-tag-ok">Compra: 1–3 meses</span>
+              </div>
+              <p class="lc-pm-cal-note" style="margin-top:.65rem">Ratio de endeudamiento acorde al precio de tu inmueble en Sant Antoni.</p>
+            </div>
+            <div class="lc-pm-card lc-pm-card-sm">
+              <div class="lc-pm-card-title">Visita solicitada a tu inmueble</div>
+              <div class="lc-pm-visit"><span>Vie 18 · 11:00</span><strong>Piso 3 hab. · Sant Antoni</strong></div>
+              <div class="lc-pm-visit"><span>Documentación</span><strong>Hipoteca OK · FIRMACERT listo</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lc-nh-compare-wrap fade-up">
+      <h3 class="lc-nh-compare-title">Visita desde un portal vs. visita con NuevaHabitat</h3>
+      <div style="overflow-x:auto">
+        <table class="lc-compare lc-nh-compare-table">
+          <thead><tr><th></th><th>Visitante de portal</th><th>Comprador NuevaHabitat</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Financiación</strong></td><td>Desconocida hasta el final</td><td class="win">Hipoteca o liquidez verificada antes de visitar</td></tr>
+            <tr><td><strong>Presupuesto</strong></td><td>Puede no encajar con tu precio</td><td class="win">Presupuesto acorde al precio de venta</td></tr>
+            <tr><td><strong>Endeudamiento</strong></td><td>Sin filtrar</td><td class="win">Ratio de financiación validado por nuestro equipo</td></tr>
+            <tr><td><strong>Intención de compra</strong></td><td>Curiosos, comparadores, sin urgencia</td><td class="win">Busca activamente en Barcelona · preparado para comprar</td></tr>
+            <tr><td><strong>Seguimiento</strong></td><td>Email suelto del particular</td><td class="win">Gestor dedicado · visita registrada en ambos paneles</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="lc-nh-compradores-footer fade-up">
+      <p><strong>En la práctica:</strong> cuando alguien visita tu piso con NuevaHabitat, no es un desconocido de Idealista. Es un comprador de nuestra cartera, con perfil financiero revisado, al que hemos presentado tu inmueble porque encaja en precio, zona y condiciones. Tú controlas las visitas desde tu panel; ellos llevan el seguimiento desde el suyo. Así vendes más rápido y con menos riesgo de operaciones que se caen en el último momento.</p>
+      <a href="comprar.html" class="btn btn-outline" style="margin-top:1rem">Conoce la plataforma de compradores →</a>
     </div>
   </div>
 </section><section class="lc-section" style="background:var(--crema)">
