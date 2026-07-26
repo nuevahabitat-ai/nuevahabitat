@@ -1,14 +1,28 @@
+const fs = require('fs');
+const path = require('path');
+
 function formatEuro(n) {
   return Number(n).toLocaleString('es-ES');
 }
 
+function jpgFallbackExists(img) {
+  const jpg = img.replace('.webp', '.jpg');
+  return fs.existsSync(path.join(__dirname, '..', jpg));
+}
+
 function heroPicture(L) {
   const img = L.heroImage;
-  if (img.endsWith('.webp')) {
+  if (img.endsWith('.webp') && jpgFallbackExists(img)) {
     const jpg = img.replace('.webp', '.jpg');
     return `<picture class="lc-hero-media"><source srcset="${img}" type="image/webp"/><img src="${jpg}" alt="${L.heroImageAlt}" width="1920" height="1280" fetchpriority="high" decoding="async"/></picture>`;
   }
   return `<div class="lc-hero-media"><img src="${img}" alt="${L.heroImageAlt}" fetchpriority="high" decoding="async"/></div>`;
+}
+
+function ogImage(L) {
+  const img = L.heroImage;
+  if (img.endsWith('.webp') && !jpgFallbackExists(img)) return img;
+  return img.replace('.webp', '.jpg');
 }
 
 function renderBarrio(L, deps) {
@@ -34,7 +48,7 @@ function renderBarrio(L, deps) {
   <meta property="og:url" content="${SITE}/${L.slug}"/>
   <meta property="og:title" content="${L.meta.title.replace(' · NuevaHabitat', '')}"/>
   <meta property="og:description" content="${L.meta.description}"/>
-  <meta property="og:image" content="${SITE}/${L.heroImage.replace('.webp', '.jpg')}"/>
+  <meta property="og:image" content="${SITE}/${ogImage(L)}"/>
   <meta property="og:locale" content="es_ES"/>
   <meta property="og:site_name" content="NuevaHabitat"/>
   <meta name="twitter:card" content="summary_large_image"/>
