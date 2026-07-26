@@ -4,6 +4,8 @@
  * Usa Resend (resend.com) como proveedor de email.
  */
 
+import { createAvailabilityEvents } from './lib/google-calendar.js';
+
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || 'info@nuevahabitat.com';
 /** Destinatarios internos: todas las alertas de leads/registros van a ambos por igual */
@@ -211,7 +213,7 @@ function tplConfirmacionDisponibilidad({ nombre, mensaje, extra }) {
           <tr><td>Disponibilidad</td><td>${mensaje || '–'}</td></tr>
         </table>
       </div>
-      <div class="tip">Te contactaremos en menos de 24h para confirmar o ajustar la franja.</div>
+      <div class="tip">Te contactaremos en menos de 24h para confirmar o ajustar la franja. Si usas Google Calendar, recibirás también una invitación con la franja indicada.</div>
       <div class="btns">
         <a href="https://www.nuevahabitat.com/panel.html" class="btn btn-gold">Ir a mi panel →</a>
       </div>
@@ -367,10 +369,9 @@ export default async function handler(req, res) {
   if (req.method !== 'POST')   return res.status(405).json({ error: 'Method not allowed' });
 
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return res.status(200).json({ ok: true, skipped: true });
 
   const body = req.body || {};
-  const { nombre, telefono, email, mensaje, tipo, inmueble, template, extra } = body;
+  const { nombre, telefono, email, mensaje, tipo, inmueble, template, extra, calendar } = body;
 
   async function send(to, tpl) {
     const r = await fetch('https://api.resend.com/emails', {
@@ -384,29 +385,49 @@ export default async function handler(req, res) {
   try {
     const jobs = [];
 
-    /* 1. Notificación interna a admin + contacto corporativo */
-    if (template === 'disponibilidad') {
-      jobs.push(send(NOTIFY_RECIPIENTS, tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra: extra||{} })));
-    } else {
-      jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
+    if (apiKey) {
+      /* 1. Notificación interna a admin + contacto corporativo */
+      if (template === 'disponibilidad') {
+        jobs.push(send(NOTIFY_RECIPIENTS, tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra: extra||{} })));
+      } else {
+        jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
+      }
+
+      /* 2. Email al cliente según plantilla */
+      if (email) {
+        const tmpl = template || tipo;
+        if      (tmpl === 'bienvenida')  jobs.push(send(email, tplBienvenida({ nombre, email, tipo: extra?.tipo || tipo })));
+        else if (tmpl === 'visita')      jobs.push(send(email, tplConfirmacionVisita({ nombre, mensaje, inmueble })));
+        else if (tmpl === 'disponibilidad') jobs.push(send(email, tplConfirmacionDisponibilidad({ nombre, mensaje, extra: extra||{} })));
+        else if (tmpl === 'contacto')    jobs.push(send(email, tplConfirmacionContacto({ nombre, inmueble })));
+        else if (tmpl === 'valoracion' || tmpl === 'vender' || tmpl === 'venta') jobs.push(send(email, tplValoracion({ nombre })));
+        else if (tmpl === 'compra' || tmpl === 'comprar') jobs.push(send(email, tplCompra({ nombre })));
+        else if (tmpl === 'hipoteca')    jobs.push(send(email, tplHipoteca({ nombre, ...(extra||{}) })));
+        else if (tmpl === 'newsletter')  jobs.push(send(email, tplNewsletter({ email })));
+        else if (tmpl === 'documentos')  jobs.push(send(email, tplDocumentosListos({ nombre, documentos: extra?.documentos })));
+      }
     }
 
-    /* 2. Email al cliente según plantilla */
-    if (email) {
-      const tmpl = template || tipo;
-      if      (tmpl === 'bienvenida')  jobs.push(send(email, tplBienvenida({ nombre, email, tipo: extra?.tipo || tipo })));
-      else if (tmpl === 'visita')      jobs.push(send(email, tplConfirmacionVisita({ nombre, mensaje, inmueble })));
-      else if (tmpl === 'disponibilidad') jobs.push(send(email, tplConfirmacionDisponibilidad({ nombre, mensaje, extra: extra||{} })));
-      else if (tmpl === 'contacto')    jobs.push(send(email, tplConfirmacionContacto({ nombre, inmueble })));
-      else if (tmpl === 'valoracion' || tmpl === 'vender' || tmpl === 'venta') jobs.push(send(email, tplValoracion({ nombre })));
-      else if (tmpl === 'compra' || tmpl === 'comprar') jobs.push(send(email, tplCompra({ nombre })));
-      else if (tmpl === 'hipoteca')    jobs.push(send(email, tplHipoteca({ nombre, ...(extra||{}) })));
-      else if (tmpl === 'newsletter')  jobs.push(send(email, tplNewsletter({ email })));
-      else if (tmpl === 'documentos')  jobs.push(send(email, tplDocumentosListos({ nombre, documentos: extra?.documentos })));
+    const results = apiKey ? await Promise.allSettled(jobs) : [];
+
+    let calendarResult = null;
+    if (template === 'disponibilidad' && calendar?.start) {
+      try {
+        calendarResult = await createAvailabilityEvents({
+          nombre, email, telefono, mensaje, extra: extra || {}, calendar,
+        });
+      } catch (calErr) {
+        console.error('google calendar:', calErr);
+        calendarResult = { ok: false, error: calErr.message };
+      }
     }
 
-    const results = await Promise.allSettled(jobs);
-    return res.status(200).json({ ok: true, sent: results.length });
+    return res.status(200).json({
+      ok: true,
+      sent: results.length,
+      emailSkipped: !apiKey,
+      calendar: calendarResult,
+    });
   } catch (err) {
     console.error('notify error:', err);
     return res.status(500).json({ error: err.message });

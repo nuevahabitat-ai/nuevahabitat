@@ -183,23 +183,30 @@ window.nhAuth = {
     const telefono = user.user_metadata?.telefono || null;
     const email = user.email;
 
-    await window.nhSupabase.from('perfiles').upsert({
+    const { error: perfilErr } = await window.nhSupabase.from('perfiles').upsert({
       id: user.id,
       nombre,
       telefono,
     }, { onConflict: 'id' });
+    if (perfilErr) {
+      console.error('ensureClientRecord perfil', perfilErr);
+      return false;
+    }
 
     if (tipo === 'vendedor') {
       const { data } = await window.nhSupabase.from('vendedores').select('id').eq('email', email).maybeSingle();
       if (!data) {
-        await window.nhSupabase.from('vendedores').insert({ nombre, email, telefono });
+        const { error } = await window.nhSupabase.from('vendedores').insert({ nombre, email, telefono });
+        if (error) console.error('ensureClientRecord vendedor', error);
       }
     } else {
       const { data } = await window.nhSupabase.from('compradores').select('id').eq('email', email).maybeSingle();
       if (!data) {
-        await window.nhSupabase.from('compradores').insert({ nombre, email, telefono, activo: true });
+        const { error } = await window.nhSupabase.from('compradores').insert({ nombre, email, telefono, activo: true });
+        if (error) console.error('ensureClientRecord comprador', error);
       }
     }
+    return true;
   },
 
   /** Query inmuebles respetando cartera privada (solo registrados ven privados) */

@@ -15,6 +15,17 @@
     return d;
   }
 
+  function parseDateHourEnd(dateStr, hourRange) {
+    const d = parseDateHour(dateStr, hourRange);
+    d.setHours(d.getHours() + 2);
+    return d;
+  }
+
+  function formatCalendarDateTime(d) {
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:00`;
+  }
+
   function minDateStr() {
     const d = new Date();
     return d.toISOString().slice(0, 10);
@@ -88,6 +99,12 @@
     const label = role === 'vendedor' ? 'Disponibilidad vendedor' : 'Disponibilidad comprador';
     const mensaje = `${label}: ${dateStr} · ${hourRange}${notes ? ' · ' + notes : ''}`;
     const fechaVisita = parseDateHour(dateStr, hourRange);
+    const fechaFin = parseDateHourEnd(dateStr, hourRange);
+    const calendar = {
+      start: formatCalendarDateTime(fechaVisita),
+      end: formatCalendarDateTime(fechaFin),
+      timeZone: 'Europe/Madrid',
+    };
 
     if (saveBtn) {
       saveBtn.disabled = true;
@@ -96,11 +113,34 @@
 
     try {
       await window.nhWaitSupabase?.();
-      await window.nhAuth?.ensureClientRecord?.(user);
+      const perfilOk = await window.nhAuth?.ensureClientRecord?.(user);
+      if (perfilOk === false) {
+        throw new Error('No se pudo preparar tu perfil. Recarga la página e inténtalo de nuevo.');
+      }
 
-      let leadId = null;
+      if (!window.nhSupabase) throw new Error('Sin conexión con la base de datos');
+
+      const row = {
+        perfil_id: user.id,
+        estado: 'pendiente',
+        fecha_hora: fechaVisita.toISOString(),
+        notas: mensaje,
+        tipo_solicitud: tipoSolicitud,
+      };
+      if (inmuebleId) row.inmueble_id = inmuebleId;
+
+      const { error: visitaErr } = await window.nhSupabase.from('visitas').insert(row);
+      if (visitaErr) throw visitaErr;
+
+      window.nhToast?.('Disponibilidad registrada. Recibirás confirmación por email y en tu calendario.');
+      if (notesInput) notesInput.value = '';
+      root.querySelectorAll('.p-cal-hour').forEach(b => b.classList.remove('sel'));
+      await loadSavedAvailability(root, user.id, role);
+      if (typeof window.loadVisitas === 'function') window.loadVisitas();
+      if (typeof window.loadVisitasVendedor === 'function') window.loadVisitasVendedor();
+
       if (window.nhSubmitLead) {
-        const ok = await window.nhSubmitLead({
+        window.nhSubmitLead({
           nombre,
           telefono,
           email: user.email,
@@ -113,32 +153,10 @@
           method: 'panel_calendar',
           notifyExtra: { rol: role },
           extra: { landing: 'panel', rol: role },
+          calendar,
           errorMsg: false,
-          onLeadCreated(row) { leadId = row?.id || null; },
-        });
-        if (!ok) throw new Error('No se pudo registrar la solicitud');
+        }).catch((err) => console.warn('panel-calendar lead/notify', err));
       }
-
-      if (window.nhSupabase) {
-        const row = {
-          lead_id: leadId,
-          perfil_id: user.id,
-          estado: 'pendiente',
-          fecha_hora: fechaVisita.toISOString(),
-          notas: mensaje,
-          tipo_solicitud: tipoSolicitud,
-        };
-        if (inmuebleId) row.inmueble_id = inmuebleId;
-        const { error } = await window.nhSupabase.from('visitas').insert(row);
-        if (error) throw error;
-      }
-
-      window.nhToast?.('Disponibilidad registrada. El equipo te contactará para confirmar.');
-      if (notesInput) notesInput.value = '';
-      root.querySelectorAll('.p-cal-hour').forEach(b => b.classList.remove('sel'));
-      await loadSavedAvailability(root, user.id, role);
-      if (typeof window.loadVisitas === 'function') window.loadVisitas();
-      if (typeof window.loadVisitasVendedor === 'function') window.loadVisitasVendedor();
     } catch (err) {
       console.error('panel-calendar', err);
       const msg = err?.message || err?.details || err?.hint || '';

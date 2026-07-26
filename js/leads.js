@@ -41,11 +41,15 @@
     try {
       let leadRow = null;
       if (window.nhSupabase) {
-        const { data, error } = await window.nhSupabase.from('leads').insert(row).select('id').single();
+        const { data, error } = await window.nhSupabase
+          .from('leads')
+          .insert(row)
+          .select('id')
+          .maybeSingle();
         if (error) throw error;
         leadRow = data;
       }
-      if (window.nhNotify) {
+      if (window.nhNotify && opts.notify !== false) {
         window.nhNotify({
           nombre,
           telefono,
@@ -55,6 +59,7 @@
           template: opts.template || row.tipo,
           inmueble: opts.inmueble,
           extra: opts.notifyExtra || opts.extra,
+          calendar: opts.calendar,
         });
       }
       opts.onLeadCreated?.(leadRow);
