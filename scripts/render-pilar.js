@@ -25,7 +25,7 @@ function pilarGrid(L) {
 }
 
 function renderPilar(L, deps) {
-  const { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock } = deps;
+  const { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock, nhPlatformBundle } = deps;
   const cp = (L.postalCodes && L.postalCodes[0]) || '08002';
   const precio = L.ejemploPrecio;
   const comision6 = formatEuro(Math.round(precio * 0.06));
@@ -116,27 +116,7 @@ ${calcBlock(L)}
     <p style="text-align:center;margin-top:1.5rem;font-size:.9375rem;color:var(--gris-texto)">En un piso de ${precioFmt} € te ahorras más de <strong>${L.ahorro} €</strong> frente a una comisión del 6%.</p>
   </div>
 </section>
-<section class="lc-section" style="background:var(--negro);color:#fff">
-  <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:2.5rem"><span class="overline" style="color:var(--oro)">Plataforma</span><h2 class="section-title light">Vender en Ciutat Vella con tecnología y agente local</h2></div>
-    <div class="lc-cards">
-      <div class="lc-card fade-up" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)"><h3 style="color:var(--oro-claro)">Panel vendedor</h3><p style="color:rgba(255,255,255,.7)">Estado de la venta 24/7: valoración, visitas, ofertas y escritura.</p></div>
-      <div class="lc-card fade-up" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)"><h3 style="color:var(--oro-claro)">Compradores cualificados</h3><p style="color:rgba(255,255,255,.7)">Filtramos por capacidad financiera antes de agendar visitas en el centro.</p></div>
-      <div class="lc-card fade-up" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)"><h3 style="color:var(--oro-claro)">Visitas a tu medida</h3><p style="color:rgba(255,255,255,.7)">Tú decides cuándo recibir visitas en tu piso del centro histórico.</p></div>
-    </div>
-  </div>
-</section>
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:2.5rem"><span class="overline">Proceso</span><h2 class="section-title">Cómo vendemos tu piso en Ciutat Vella</h2></div>
-    <div class="lc-steps fade-up">
-      <div class="lc-step"><div class="lc-step-num">1</div><h4>Valoración</h4><p style="font-size:.875rem;color:var(--gris-texto)">Precio según barrio, finca y tipo de comprador real.</p></div>
-      <div class="lc-step"><div class="lc-step-num">2</div><h4>Publicación</h4><p style="font-size:.875rem;color:var(--gris-texto)">Fotos profesionales y ficha optimizada por micro-zona.</p></div>
-      <div class="lc-step"><div class="lc-step-num">3</div><h4>Visitas</h4><p style="font-size:.875rem;color:var(--gris-texto)">Agenda en tus horarios con compradores filtrados.</p></div>
-      <div class="lc-step"><div class="lc-step-num">4</div><h4>Escritura</h4><p style="font-size:.875rem;color:var(--gris-texto)">Honorarios solo al cerrar. Si no vendes, no pagas.</p></div>
-    </div>
-  </div>
-</section>
+${nhPlatformBundle(L)}
 <section class="lc-section" style="background:var(--crema);padding-top:3rem;padding-bottom:3rem">
   <div class="container text-center fade-up">
     <span class="overline">Cartera activa</span>

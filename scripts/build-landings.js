@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { renderBarrio } = require('./render-barrio');
 const { renderPilar } = require('./render-pilar');
+const { nhPlatformBundle, nhPlatformStyles } = require('./landing-nh-blocks');
 
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content', 'landings');
@@ -351,6 +352,7 @@ function sharedStyles() {
     .nh-sticky-cta__btn{width:100%;justify-content:center}
     @media(min-width:769px){.nh-sticky-cta{display:none!important}}
     @media(max-width:768px){.lc-hero-content{padding:96px 0 48px}.lc-section{padding:3rem 0}.lc-form input,.lc-form textarea{font-size:16px}}
+    ${nhPlatformStyles()}
   </style>`;
 }
 
@@ -543,6 +545,7 @@ ${callBanner()}
     <div class="lc-steps">${steps}</div>
   </div>
 </section>
+${nhPlatformBundle(L)}
 ${relatedBlock(L, ctx)}
 ${callBanner('prefaq')}
 <section class="lc-section" style="background:var(--blanco)">
@@ -629,6 +632,7 @@ ${callBanner()}
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container lc-grid-2">${formBlock(L)}<div class="lc-prose fade-up"><h2 class="section-title">Valoración gratuita en 24h</h2><p>${L.form_side_text || 'Cuéntanos si vendes como particular o si quieres salir de una exclusiva. Te proponemos un plan realista — sin comisión del 6% ni permanencias abusivas.'}</p></div></div>
 </section>
+${nhPlatformBundle(L)}
 ${relatedBlock(L, ctx)}
 ${callBanner('prefaq')}
 <section class="lc-section" style="background:var(--crema)">
@@ -640,7 +644,7 @@ ${footerAndScripts(L)}
 
 function renderLanding(L, ctx) {
   const rb = () => relatedBlock(L, ctx);
-  const deps = { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock: rb, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock };
+  const deps = { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock: rb, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock, nhPlatformBundle };
   if (L.pilar) return renderPilar(L, deps);
   if (L.cluster === 'barrio') return renderBarrio(L, deps);
   if (L.cluster === 'situacion') return renderSituacion(L, ctx);
