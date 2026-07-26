@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { renderBarrio } = require('./render-barrio');
 const { renderPilar } = require('./render-pilar');
-const { nhPlatformBundle, nhPlatformStyles } = require('./landing-nh-blocks');
+const { nhPlatformBundle, nhPlatformStyles, zoneLabel } = require('./landing-nh-blocks');
 
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content', 'landings');
@@ -346,7 +346,18 @@ function sharedStyles() {
     .lc-checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.65rem 1.5rem}
     .lc-checklist li{display:flex;align-items:flex-start;gap:.5rem;font-size:.9375rem;color:var(--gris-texto);line-height:1.5}
     .lc-checklist li svg{flex-shrink:0;color:var(--oro);margin-top:.15rem}
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}}
+    @media(min-width:901px){
+      .lc-grid-2{grid-template-columns:1.35fr .85fr;gap:3rem;align-items:start}
+      .lc-grid-2 .lc-form{position:sticky;top:96px;align-self:start}
+      .lc-prose{max-width:none}
+      .lc-article-layout{display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start}
+      .lc-article-aside{position:sticky;top:96px;background:#fff;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-md);border:1px solid var(--crema-dark)}
+      .lc-prose--cols{column-count:2;column-gap:2.5rem}
+      .lc-prose--cols>h2,.lc-prose--cols>h3{column-span:all;break-after:avoid}
+      .lc-prose--cols>p,.lc-prose--cols>ul,.lc-prose--cols>ol{break-inside:avoid}
+      .lc-section{padding:4rem 0}
+    }
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}.lc-article-aside{display:none}}
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -384,6 +395,17 @@ function navSub(L) {
   if (L.municipio) return (L.barrio || L.breadcrumbCurrent) + ' · Área metropolitana';
   if (L.cluster === 'comparativa') return 'Comparativa · Barcelona';
   return (L.breadcrumbCurrent || L.barrio || 'Barcelona') + ' · Barcelona';
+}
+
+function asideCtaBlock(L) {
+  const zona = zoneLabel(L);
+  return `<aside class="lc-article-aside fade-up">
+    <span class="overline">Precio fijo · ${zona}</span>
+    <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin:.35rem 0 .65rem;line-height:1.3">3.000 € + IVA solo en escritura</h3>
+    <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin-bottom:1rem">Compradores cualificados, panel vendedor y gestor dedicado. Si no vendes, no pagas.</p>
+    <a href="#valorar" class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:.65rem">Valoración gratuita</a>
+    <a href="tel:+34603656587" class="btn btn-outline" style="width:100%;justify-content:center">603 656 587</a>
+  </aside>`;
 }
 
 function formBlock(L) {
@@ -528,7 +550,7 @@ ${navBar(L)}
 ${callBanner()}
 <section class="lc-section" style="background:var(--crema)">
   <div class="container lc-grid-2">
-    <div class="lc-prose fade-up">${L.argumento_principal}</div>
+    <div class="lc-prose lc-prose--cols fade-up">${L.argumento_principal}</div>
     ${formBlock(L)}
   </div>
 </section>
@@ -616,7 +638,10 @@ ${callBanner()}
   </div>
 </section>
 <section class="lc-section" style="background:var(--crema)">
-  <div class="container lc-prose fade-up">${L.argumento_principal}</div>
+  <div class="container lc-article-layout">
+    <div class="lc-prose lc-prose--cols fade-up">${L.argumento_principal}</div>
+    ${asideCtaBlock(L)}
+  </div>
 </section>
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container">
@@ -671,6 +696,23 @@ function writeLandingsJs(allMap, order) {
     '',
   ];
   fs.writeFileSync(path.join(ROOT, 'js', 'landings.js'), lines.join('\n'));
+}
+
+function replaceBetween(text, start, end, replacement) {
+  const i = text.indexOf(start);
+  const j = text.indexOf(end);
+  if (i === -1 || j === -1) throw new Error('Marcadores no encontrados: ' + start);
+  return text.slice(0, i + start.length) + '\n' + replacement + '\n' + text.slice(j);
+}
+
+function syncVenderHub() {
+  const p = path.join(ROOT, 'vender.html');
+  let html = fs.readFileSync(p, 'utf8');
+  const bundle = nhPlatformBundle({ footerLabel: 'Barcelona' });
+  html = replaceBetween(html, '<!-- NH_PLATFORM_HUB_START -->', '<!-- NH_PLATFORM_HUB_END -->', bundle);
+  html = replaceBetween(html, '/* NH_PLATFORM_STYLES_START */', '/* NH_PLATFORM_STYLES_END */', nhPlatformStyles().trim());
+  fs.writeFileSync(p, html, 'utf8');
+  console.log('Updated vender.html hub blocks');
 }
 
 function main() {
@@ -750,6 +792,7 @@ function main() {
   };
   fs.writeFileSync(path.join(ROOT, 'content', 'landings-index.json'), JSON.stringify(index, null, 2));
   writeGaConfig();
+  syncVenderHub();
   console.log('Updated js/landings.js and content/landings-index.json');
 }
 

@@ -77,7 +77,7 @@ ${navBar(L)}
 ${callBanner()}
 <section class="lc-section" style="background:var(--crema)">
   <div class="container lc-grid-2">
-    <div class="lc-prose fade-up">
+    <div class="lc-prose lc-prose--cols fade-up">
       <span class="overline">Vender en ${L.barrio}</span>
       <h2>Vender piso en ${L.barrio} con precio fijo y compradores filtrados</h2>
       ${L.argumento_principal}
