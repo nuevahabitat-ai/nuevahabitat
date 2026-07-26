@@ -70,34 +70,25 @@
       return linkItem('/' + slug, footerLabel(cfg));
     }).filter(Boolean);
 
-    var split = Math.ceil(barrioLinks.length / 2);
-    var barrioA = barrioLinks.slice(0, split);
-    var barrioB = barrioLinks.slice(split);
-
-    var cols = [
-      {
-        label: hub.length > 1 ? 'General' : '',
-        items: hub.concat(barrioA),
-      },
-      {
-        label: barrioB.length ? 'Por barrio' : '',
-        items: barrioB,
-      },
-      {
-        label: guiaLinks.length ? 'Guías vendedor' : '',
-        items: guiaLinks,
-      },
-    ].filter(function (col) {
-      return col.items.length;
+    // Un único flujo continuo (sin partir "a mano" en columnas): el CSS
+    // multi-columna reparte automáticamente el alto entre las 3 columnas,
+    // así el footer queda siempre equilibrado sin importar cuántas landings
+    // por barrio o guías se añadan en el futuro.
+    var groups = [
+      { label: hub.length > 1 ? 'General' : '', items: hub },
+      { label: 'Por barrio', items: barrioLinks },
+      { label: 'Guías vendedor', items: guiaLinks },
+    ].filter(function (g) {
+      return g.items.length;
     });
 
     container.innerHTML =
       '<div class="nh-footer-links-grid">' +
-      cols.map(function (col) {
+      groups.map(function (g) {
         return (
-          '<div class="nh-footer-links-col">' +
-          (col.label ? '<span class="nh-footer-group-label">' + col.label + '</span>' : '') +
-          linkList(col.items) +
+          '<div class="nh-footer-group">' +
+          (g.label ? '<span class="nh-footer-group-label">' + g.label + '</span>' : '') +
+          linkList(g.items) +
           '</div>'
         );
       }).join('') +

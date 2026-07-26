@@ -1361,20 +1361,28 @@ footer {
 .footer-col ul a:hover { color: var(--oro-claro); }
 
 .footer-col--servicios { min-width: 0; }
+/* Multi-columna nativa: el navegador reparte el ALTO real del contenido
+   entre las 3 columnas (column-fill: balance), en vez de un grid fijo que
+   deja columnas desiguales cuando un grupo (p.ej. "Guías vendedor") tiene
+   muchos más enlaces que otro. Así el footer queda siempre uniforme sin
+   importar cuántas landings se añadan por barrio o por guía. */
 .nh-footer-links-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: .75rem 1.25rem;
+  column-count: 3;
+  column-gap: 1.25rem;
+  column-fill: balance;
 }
-.nh-footer-links-col ul {
-  display: flex;
-  flex-direction: column;
-  gap: .4rem;
+.nh-footer-group {
+  margin: 0 0 1rem;
+}
+.nh-footer-links-grid ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.nh-footer-links-col + .nh-footer-links-col .nh-footer-group-label { margin-top: 0; }
+.nh-footer-links-grid li {
+  break-inside: avoid-column;
+  margin-bottom: .4rem;
+}
 .nh-footer-group-label {
   display: block;
   font-size: .65rem;
@@ -1383,8 +1391,10 @@ footer {
   text-transform: uppercase;
   color: rgba(255, 255, 255, .42);
   margin-bottom: .45rem;
+  break-after: avoid-column;
+  break-inside: avoid-column;
 }
-.footer-col--servicios .nh-footer-links-col a {
+.footer-col--servicios .nh-footer-links-grid a {
   font-size: .8125rem;
   line-height: 1.35;
 }
@@ -1646,7 +1656,7 @@ footer {
   .lead-strip-inner      { gap: 2rem; }
   .blog-grid             { grid-template-columns: repeat(2, 1fr); }
   .footer-top            { grid-template-columns: 1fr 1fr; }
-  .nh-footer-links-grid  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nh-footer-links-grid  { column-count: 2; }
   .proceso-inner         { gap: 3rem; }
   .nosotros-inner        { gap: 3rem; }
 }
