@@ -96,6 +96,7 @@
 
     try {
       await window.nhWaitSupabase?.();
+      await window.nhAuth?.ensureClientRecord?.(user);
 
       let leadId = null;
       if (window.nhSubmitLead) {
@@ -140,11 +141,14 @@
       if (typeof window.loadVisitasVendedor === 'function') window.loadVisitasVendedor();
     } catch (err) {
       console.error('panel-calendar', err);
-      const msg = err?.message || err?.details || '';
-      const hint = /tipo_solicitud|inmueble_id|column/.test(msg)
-        ? ' Falta aplicar la migración 023 en Supabase.'
-        : '';
-      window.nhToast?.('Error al guardar. Inténtalo de nuevo o contacta por WhatsApp.' + hint);
+      const msg = err?.message || err?.details || err?.hint || '';
+      let toast = 'No se pudo guardar la disponibilidad. Inténtalo de nuevo.';
+      if (/tipo_solicitud|inmueble_id|column/.test(msg)) {
+        toast += ' Falta aplicar la migración 023 en Supabase.';
+      } else if (/perfil|foreign key|violates/.test(msg)) {
+        toast += ' Recarga la página e inténtalo otra vez.';
+      }
+      window.nhToast?.(toast);
     } finally {
       if (saveBtn) {
         saveBtn.disabled = false;

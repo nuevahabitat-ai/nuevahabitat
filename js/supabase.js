@@ -175,13 +175,19 @@ window.nhAuth = {
     return normalizeEmail(user?.email) === normalizeEmail(ADMIN_EMAIL);
   },
 
-  /** Crea fila en compradores o vendedores si no existe (respaldo del trigger SQL) */
+  /** Crea perfil + fila en compradores o vendedores si no existe */
   async ensureClientRecord(user) {
     if (!window.nhSupabase || !user?.email || nhAuth.isAdmin(user)) return;
     const tipo = nhAuth.getUserTipo(user);
     const nombre = (user.user_metadata?.nombre || user.email.split('@')[0] || 'Cliente').trim();
     const telefono = user.user_metadata?.telefono || null;
     const email = user.email;
+
+    await window.nhSupabase.from('perfiles').upsert({
+      id: user.id,
+      nombre,
+      telefono,
+    }, { onConflict: 'id' });
 
     if (tipo === 'vendedor') {
       const { data } = await window.nhSupabase.from('vendedores').select('id').eq('email', email).maybeSingle();
