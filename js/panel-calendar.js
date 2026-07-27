@@ -129,7 +129,17 @@
       };
       if (inmuebleId) row.inmueble_id = inmuebleId;
 
-      const { error: visitaErr } = await window.nhSupabase.from('visitas').insert(row);
+      let { error: visitaErr } = await window.nhSupabase.from('visitas').insert(row);
+      if (visitaErr && /tipo_solicitud|column/.test(visitaErr.message || '')) {
+        const rowLegacy = { ...row };
+        delete rowLegacy.tipo_solicitud;
+        ({ error: visitaErr } = await window.nhSupabase.from('visitas').insert(rowLegacy));
+      }
+      if (visitaErr && /perfil|foreign key|violates/.test(visitaErr.message || '')) {
+        const rowNoPerfil = { ...row };
+        delete rowNoPerfil.perfil_id;
+        ({ error: visitaErr } = await window.nhSupabase.from('visitas').insert(rowNoPerfil));
+      }
       if (visitaErr) throw visitaErr;
 
       window.nhToast?.('Disponibilidad registrada. Revisa tu email para añadir la cita al calendario.');
@@ -162,9 +172,11 @@
       const msg = err?.message || err?.details || err?.hint || '';
       let toast = 'No se pudo guardar la disponibilidad. Inténtalo de nuevo.';
       if (/tipo_solicitud|inmueble_id|column/.test(msg)) {
-        toast += ' Falta aplicar la migración 023 en Supabase.';
+        toast += ' Ejecuta la migración 023 en Supabase.';
       } else if (/perfil|foreign key|violates/.test(msg)) {
-        toast += ' Recarga la página e inténtalo otra vez.';
+        toast += ' Ejecuta también la migración 024 en Supabase.';
+      } else if (/not authenticated/i.test(msg)) {
+        toast = 'Sesión caducada. Vuelve a iniciar sesión.';
       }
       window.nhToast?.(toast);
     } finally {

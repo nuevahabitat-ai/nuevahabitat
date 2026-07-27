@@ -177,21 +177,28 @@ window.nhAuth = {
 
   /** Crea perfil + fila en compradores o vendedores si no existe */
   async ensureClientRecord(user) {
-    if (!window.nhSupabase || !user?.email || nhAuth.isAdmin(user)) return;
+    if (!window.nhSupabase || !user?.email || nhAuth.isAdmin(user)) return true;
     const tipo = nhAuth.getUserTipo(user);
     const nombre = (user.user_metadata?.nombre || user.email.split('@')[0] || 'Cliente').trim();
     const telefono = user.user_metadata?.telefono || null;
     const email = user.email;
 
-    const { error: perfilErr } = await window.nhSupabase.from('perfiles').upsert({
-      id: user.id,
-      nombre,
-      telefono,
-    }, { onConflict: 'id' });
-    if (perfilErr) {
-      console.error('ensureClientRecord perfil', perfilErr);
-      return false;
+    const { error: rpcErr } = await window.nhSupabase.rpc('ensure_perfil');
+    if (rpcErr) {
+      const { error: perfilErr } = await window.nhSupabase.from('perfiles').upsert({
+        id: user.id,
+        nombre,
+        telefono,
+        rol: 'cliente',
+      }, { onConflict: 'id' });
+      if (perfilErr) {
+        console.error('ensureClientRecord perfil', perfilErr, rpcErr);
+        return false;
+      }
     }
+
+    const { data: perfilRow } = await window.nhSupabase.from('perfiles').select('id').eq('id', user.id).maybeSingle();
+    if (!perfilRow?.id) return false;
 
     if (tipo === 'vendedor') {
       const { data } = await window.nhSupabase.from('vendedores').select('id').eq('email', email).maybeSingle();
