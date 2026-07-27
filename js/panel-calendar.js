@@ -48,22 +48,67 @@
     </div>`;
   }
 
-  async function loadSavedAvailability(root, userId, role) {
+  async function loadSavedAvailability(root, userId, role, userEmail) {
     const listEl = root.querySelector('.p-cal-saved-list');
     if (!listEl || !window.nhSupabase || !userId) return;
     const tipo = role === 'vendedor' ? 'disponibilidad_vendedor' : 'disponibilidad_comprador';
-    const { data } = await window.nhSupabase
+    const label = role === 'vendedor' ? 'Disponibilidad vendedor' : 'Disponibilidad comprador';
+
+    let q = window.nhSupabase
       .from('visitas')
       .select('id, fecha_hora, notas, tipo_solicitud, estado')
-      .eq('perfil_id', userId)
-      .eq('tipo_solicitud', tipo)
       .order('fecha_hora', { ascending: false })
-      .limit(8);
-    if (!data?.length) {
+      .limit(20);
+
+    if (userEmail) {
+      q = q.or(`perfil_id.eq.${userId},notas.ilike.%${userEmail}%`);
+    } else {
+      q = q.eq('perfil_id', userId);
+    }
+
+    const { data, error } = await q;
+    const rows = (data || []).filter((v) => {
+      if (v.tipo_solicitud) return v.tipo_solicitud === tipo;
+      return (v.notas || '').includes(label);
+    }).slice(0, 8);
+
+    if (error || !rows.length) {
       listEl.innerHTML = '<p class="p-cal-empty">Aún no has registrado franjas horarias.</p>';
       return;
     }
-    listEl.innerHTML = data.map(formatSavedRow).join('');
+    listEl.innerHTML = rows.map(formatSavedRow).join('');
+  }
+
+  async function insertVisitaRow(supabase, base) {
+    const notas = userEmailTag(base.notas, base.userEmail);
+    const attempts = [
+      { perfil_id: base.perfilId, tipo_solicitud: base.tipoSolicitud, inmueble_id: base.inmuebleId },
+      { perfil_id: base.perfilId, inmueble_id: base.inmuebleId },
+      { tipo_solicitud: base.tipoSolicitud, inmueble_id: base.inmuebleId },
+      { inmueble_id: base.inmuebleId },
+      {},
+    ];
+
+    let lastErr = null;
+    for (const extra of attempts) {
+      const row = {
+        estado: 'pendiente',
+        fecha_hora: base.fecha_hora,
+        notas,
+      };
+      Object.entries(extra).forEach(([k, v]) => {
+        if (v != null && v !== '') row[k] = v;
+      });
+      const { error } = await supabase.from('visitas').insert(row);
+      if (!error) return;
+      lastErr = error;
+    }
+    throw lastErr;
+  }
+
+  function userEmailTag(notas, email) {
+    if (!email || (notas || '').includes(email)) return notas;
+    return `${notas} · ${email}`;
   }
 
   async function saveAvailability(root, opts) {
@@ -113,39 +158,34 @@
 
     try {
       await window.nhWaitSupabase?.();
-      const perfilOk = await window.nhAuth?.ensureClientRecord?.(user);
-      if (perfilOk === false) {
-        throw new Error('No se pudo preparar tu perfil. Recarga la página e inténtalo de nuevo.');
-      }
-
       if (!window.nhSupabase) throw new Error('Sin conexión con la base de datos');
 
-      const row = {
-        perfil_id: user.id,
-        estado: 'pendiente',
+      try {
+        await window.nhSupabase.rpc('ensure_perfil');
+      } catch (_) { /* migración 024 opcional */ }
+      await window.nhAuth?.ensureClientRecord?.(user);
+
+      let perfilId = null;
+      const { data: perfilRow } = await window.nhSupabase
+        .from('perfiles')
+        .select('id')
+        .eq('id', user.id)
+        .maybeSingle();
+      if (perfilRow?.id) perfilId = perfilRow.id;
+
+      await insertVisitaRow(window.nhSupabase, {
+        perfilId,
+        tipoSolicitud,
+        inmuebleId: inmuebleId || null,
         fecha_hora: fechaVisita.toISOString(),
         notas: mensaje,
-        tipo_solicitud: tipoSolicitud,
-      };
-      if (inmuebleId) row.inmueble_id = inmuebleId;
-
-      let { error: visitaErr } = await window.nhSupabase.from('visitas').insert(row);
-      if (visitaErr && /tipo_solicitud|column/.test(visitaErr.message || '')) {
-        const rowLegacy = { ...row };
-        delete rowLegacy.tipo_solicitud;
-        ({ error: visitaErr } = await window.nhSupabase.from('visitas').insert(rowLegacy));
-      }
-      if (visitaErr && /perfil|foreign key|violates/.test(visitaErr.message || '')) {
-        const rowNoPerfil = { ...row };
-        delete rowNoPerfil.perfil_id;
-        ({ error: visitaErr } = await window.nhSupabase.from('visitas').insert(rowNoPerfil));
-      }
-      if (visitaErr) throw visitaErr;
+        userEmail: user.email,
+      });
 
       window.nhToast?.('Disponibilidad registrada. Revisa tu email para añadir la cita al calendario.');
       if (notesInput) notesInput.value = '';
       root.querySelectorAll('.p-cal-hour').forEach(b => b.classList.remove('sel'));
-      await loadSavedAvailability(root, user.id, role);
+      await loadSavedAvailability(root, user.id, role, user.email);
       if (typeof window.loadVisitas === 'function') window.loadVisitas();
       if (typeof window.loadVisitasVendedor === 'function') window.loadVisitasVendedor();
 
@@ -171,10 +211,8 @@
       console.error('panel-calendar', err);
       const msg = err?.message || err?.details || err?.hint || '';
       let toast = 'No se pudo guardar la disponibilidad. Inténtalo de nuevo.';
-      if (/tipo_solicitud|inmueble_id|column/.test(msg)) {
-        toast += ' Ejecuta la migración 023 en Supabase.';
-      } else if (/perfil|foreign key|violates/.test(msg)) {
-        toast += ' Ejecuta también la migración 024 en Supabase.';
+      if (/tipo_solicitud|inmueble_id|column|not-null/.test(msg)) {
+        toast += ' Ejecuta la migración 023 en Supabase (SQL Editor).';
       } else if (/not authenticated/i.test(msg)) {
         toast = 'Sesión caducada. Vuelve a iniciar sesión.';
       }
@@ -195,7 +233,7 @@
       });
     });
     root.querySelector('.p-cal-save')?.addEventListener('click', () => saveAvailability(root, opts));
-    loadSavedAvailability(root, opts.user?.id, opts.role);
+    loadSavedAvailability(root, opts.user?.id, opts.role, opts.user?.email);
   }
 
   window.nhInitPanelCalendar = function (opts) {
