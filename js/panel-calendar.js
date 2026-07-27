@@ -1,5 +1,6 @@
 /**
- * Calendario interactivo de disponibilidad — panel comprador / vendedor.
+ * Calendario de disponibilidad — panel vendedor / comprador.
+ * Guarda en visitas (si puede) y siempre notifica por email.
  */
 (function () {
   const HOUR_SLOTS = ['10:00–12:00', '12:00–14:00', '16:00–18:00', '18:00–20:00'];
@@ -7,9 +8,9 @@
   function parseDateHour(dateStr, hourRange) {
     const d = new Date(dateStr + 'T12:00:00');
     let h = 10;
-    if (hourRange && hourRange.startsWith('12')) h = 12;
-    if (hourRange && hourRange.startsWith('16')) h = 16;
-    if (hourRange && hourRange.startsWith('18')) h = 18;
+    if (hourRange?.startsWith('12')) h = 12;
+    if (hourRange?.startsWith('16')) h = 16;
+    if (hourRange?.startsWith('18')) h = 18;
     d.setHours(h, 0, 0, 0);
     return d;
   }
@@ -26,13 +27,7 @@
   }
 
   function minDateStr() {
-    const d = new Date();
-    return d.toISOString().slice(0, 10);
-  }
-
-  function userEmailTag(notas, email) {
-    if (!email || (notas || '').includes(email)) return notas;
-    return `${notas} · ${email}`;
+    return new Date().toISOString().slice(0, 10);
   }
 
   function formatSavedRow(v) {
@@ -64,11 +59,8 @@
       .order('fecha_hora', { ascending: false })
       .limit(20);
 
-    if (userEmail) {
-      q = q.or(`perfil_id.eq.${userId},notas.ilike.%${userEmail}%`);
-    } else {
-      q = q.eq('perfil_id', userId);
-    }
+    if (userEmail) q = q.or(`perfil_id.eq.${userId},notas.ilike.%${userEmail}%`);
+    else q = q.eq('perfil_id', userId);
 
     const { data, error } = await q;
     const rows = (data || []).filter((v) => {
@@ -76,111 +68,27 @@
       return (v.notas || '').includes(label);
     }).slice(0, 8);
 
-    if (error || !rows.length) {
-      listEl.innerHTML = '<p class="p-cal-empty">Aún no has registrado franjas horarias.</p>';
-      return;
-    }
-    listEl.innerHTML = rows.map(formatSavedRow).join('');
+    listEl.innerHTML = error || !rows.length
+      ? '<p class="p-cal-empty">Aún no has registrado franjas horarias.</p>'
+      : rows.map(formatSavedRow).join('');
   }
 
-  async function saveViaApi(user, payload) {
-    const { data: { session } } = await window.nhSupabase.auth.getSession();
-    if (!session?.access_token) return { ok: false, code: 'NO_SESSION' };
-    const res = await fetch('/api/disponibilidad', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.access_token}`,
-      },
-      body: JSON.stringify({ ...payload, nombre: payload.nombre, telefono: payload.telefono, email: user.email }),
-    });
-    const data = await res.json().catch(() => ({}));
-    if (res.ok && data.ok) return { ok: true, via: 'api' };
-    return { ok: false, code: data.code, needsMigration: data.needsMigration, error: data.error };
-  }
-
-  async function saveViaRpc(payload) {
-    const { data, error } = await window.nhSupabase.rpc('registrar_disponibilidad_panel', {
-      p_fecha_hora: payload.fecha_hora,
-      p_notas: payload.notas,
-      p_tipo_solicitud: payload.tipo_solicitud,
-      p_inmueble_id: payload.inmueble_id || null,
-    });
-    if (error) return { ok: false, error };
-    return { ok: true, via: 'rpc', id: data };
-  }
-
-  async function saveViaDirectInsert(payload) {
-    const notas = userEmailTag(payload.notas, payload.userEmail);
+  async function trySaveVisita(supabase, row) {
     const attempts = [
-      { perfil_id: payload.perfil_id, tipo_solicitud: payload.tipo_solicitud, inmueble_id: payload.inmueble_id },
-      { perfil_id: payload.perfil_id, tipo_solicitud: payload.tipo_solicitud },
-      { perfil_id: payload.perfil_id },
-      { tipo_solicitud: payload.tipo_solicitud },
-      {},
+      row,
+      { ...row, perfil_id: undefined },
+      { ...row, tipo_solicitud: undefined },
+      { ...row, perfil_id: undefined, tipo_solicitud: undefined },
+      { estado: row.estado, fecha_hora: row.fecha_hora, notas: row.notas },
     ];
-    let lastErr = null;
-    for (const extra of attempts) {
-      const row = cleanRow({
-        estado: 'pendiente',
-        fecha_hora: payload.fecha_hora,
-        notas,
-        ...extra,
-      });
-      const { error } = await window.nhSupabase.from('visitas').insert(row);
-      if (!error) return { ok: true, via: 'direct' };
-      lastErr = error;
+    for (const attempt of attempts) {
+      const clean = Object.fromEntries(
+        Object.entries(attempt).filter(([, v]) => v != null && v !== '')
+      );
+      const { error } = await supabase.from('visitas').insert(clean);
+      if (!error) return true;
     }
-    return { ok: false, error: lastErr };
-  }
-
-  function cleanRow(obj) {
-    return Object.fromEntries(Object.entries(obj).filter(([, v]) => v != null && v !== ''));
-  }
-
-  async function saveViaLeadOnly(leadOpts) {
-    if (!window.nhSubmitLead) return { ok: false };
-    const { perfil_id, inmueble_id, ...safeOpts } = leadOpts;
-    const ok = await window.nhSubmitLead({ ...safeOpts, notify: true, errorMsg: false });
-    return ok ? { ok: true, via: 'lead' } : { ok: false };
-  }
-
-  async function saveViaNotifyOnly(leadOpts) {
-    if (!window.nhNotify) return { ok: false };
-    await window.nhNotify({
-      nombre: leadOpts.nombre,
-      telefono: leadOpts.telefono,
-      email: leadOpts.email,
-      mensaje: leadOpts.mensaje,
-      template: leadOpts.template || 'disponibilidad',
-      extra: leadOpts.notifyExtra || leadOpts.extra,
-      calendar: leadOpts.calendar,
-    });
-    return { ok: true, via: 'notify' };
-  }
-
-  async function persistAvailability(user, payload, leadOpts) {
-    await window.nhAuth?.ensureClientRecord?.(user);
-
-    const apiResult = await saveViaApi(user, payload);
-    if (apiResult.ok) return apiResult;
-
-    const rpcResult = await saveViaRpc(payload);
-    if (rpcResult.ok) return rpcResult;
-
-    const directResult = await saveViaDirectInsert({ ...payload, userEmail: user.email });
-    if (directResult.ok) return directResult;
-
-    const leadResult = await saveViaLeadOnly(leadOpts);
-    if (leadResult.ok) return leadResult;
-
-    const notifyResult = await saveViaNotifyOnly(leadOpts);
-    if (notifyResult.ok) return notifyResult;
-
-    const errMsg = directResult.error?.message || rpcResult.error?.message || apiResult.error || 'unknown';
-    const err = new Error(errMsg);
-    err.needsMigration = apiResult.needsMigration || /inmueble_id|not-null|tipo_solicitud|column/i.test(errMsg);
-    throw err;
+    return false;
   }
 
   async function saveAvailability(root, opts) {
@@ -200,14 +108,14 @@
     const telefono = user.user_metadata?.telefono
       || document.getElementById('pf-tel')?.value?.trim() || '';
     if (!telefono) {
-      window.nhToast?.('Añade tu teléfono en Mi perfil antes de guardar disponibilidad.');
+      window.nhToast?.('Añade tu teléfono en Mi perfil antes de guardar.');
       return;
     }
 
     const nombre = user.user_metadata?.nombre || user.email?.split('@')[0] || 'Cliente';
     const tipoSolicitud = role === 'vendedor' ? 'disponibilidad_vendedor' : 'disponibilidad_comprador';
     const label = role === 'vendedor' ? 'Disponibilidad vendedor' : 'Disponibilidad comprador';
-    const mensaje = `${label}: ${dateStr} · ${hourRange}${notes ? ' · ' + notes : ''}`;
+    const mensaje = `${label}: ${dateStr} · ${hourRange}${notes ? ' · ' + notes : ''} · ${user.email}`;
     const fechaVisita = parseDateHour(dateStr, hourRange);
     const fechaFin = parseDateHourEnd(dateStr, hourRange);
     const calendar = {
@@ -218,50 +126,85 @@
 
     if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = 'Guardando…'; }
 
-    const payload = {
-      fecha_hora: fechaVisita.toISOString(),
-      notas: userEmailTag(mensaje, user.email),
-      tipo_solicitud: tipoSolicitud,
-      inmueble_id: inmuebleId || null,
-      perfil_id: user.id,
-      nombre,
-      telefono,
-    };
-
-    const leadOpts = {
-      nombre, telefono, email: user.email, mensaje,
-      tipo: 'info',
-      origen: role === 'vendedor' ? 'panel_disponibilidad_vendedor' : 'panel_disponibilidad_comprador',
-      inmueble_id: inmuebleId || undefined,
-      template: 'disponibilidad',
-      method: 'panel_calendar',
-      notifyExtra: { rol: role },
-      extra: { landing: 'panel', rol: role },
-      calendar,
-      errorMsg: false,
-    };
-
     try {
       await window.nhWaitSupabase?.();
-      if (!window.nhSupabase) throw new Error('Sin conexión con la base de datos');
+      if (!window.nhSupabase) throw new Error('Sin conexión');
 
-      const result = await persistAvailability(user, payload, leadOpts);
+      await window.nhAuth?.ensureClientRecord?.(user).catch(() => {});
 
-      if (result.via === 'lead' || result.via === 'notify') {
-        window.nhToast?.('Disponibilidad registrada. Te hemos enviado confirmación por email.');
-      } else {
-        window.nhSubmitLead({ ...leadOpts, notify: false, errorMsg: false }).catch(() => {});
-        if (window.nhNotify) {
-          window.nhNotify({
-            nombre, telefono, email: user.email, mensaje,
-            template: 'disponibilidad',
-            extra: { rol: role },
-            calendar,
+      let savedInDb = false;
+
+      // 1) API servidor (service role)
+      try {
+        const sess = await window.nhSupabase.auth.getSession();
+        const token = sess?.data?.session?.access_token;
+        if (token) {
+          const res = await fetch('/api/disponibilidad', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({
+              fecha_hora: fechaVisita.toISOString(),
+              notas: mensaje,
+              tipo_solicitud: tipoSolicitud,
+              inmueble_id: inmuebleId || null,
+              nombre, telefono,
+            }),
           });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.ok) savedInDb = true;
         }
-        window.nhToast?.('Disponibilidad registrada. Revisa tu email para añadir la cita al calendario.');
+      } catch (_) {}
+
+      // 2) RPC Supabase
+      if (!savedInDb) {
+        try {
+          const { data, error } = await window.nhSupabase.rpc('registrar_disponibilidad_panel', {
+            p_fecha_hora: fechaVisita.toISOString(),
+            p_notas: mensaje,
+            p_tipo_solicitud: tipoSolicitud,
+            p_inmueble_id: inmuebleId || null,
+          });
+          if (!error && data) savedInDb = true;
+        } catch (_) {}
       }
 
+      // 3) Insert directo
+      if (!savedInDb) {
+        savedInDb = await trySaveVisita(window.nhSupabase, {
+          perfil_id: user.id,
+          estado: 'pendiente',
+          fecha_hora: fechaVisita.toISOString(),
+          notas: mensaje,
+          tipo_solicitud: tipoSolicitud,
+          inmueble_id: inmuebleId || null,
+        });
+      }
+
+      // 4) Lead en CRM (sin perfil_id para evitar FK)
+      try {
+        await window.nhSubmitLead?.({
+          nombre, telefono, email: user.email, mensaje,
+          tipo: 'info',
+          origen: role === 'vendedor' ? 'panel_disponibilidad_vendedor' : 'panel_disponibilidad_comprador',
+          template: 'disponibilidad',
+          notifyExtra: { rol: role },
+          calendar,
+          notify: false,
+          errorMsg: false,
+        });
+      } catch (_) {}
+
+      // 5) Email siempre (esto nunca debe fallar la UX)
+      if (window.nhNotify) {
+        await window.nhNotify({
+          nombre, telefono, email: user.email, mensaje,
+          template: 'disponibilidad',
+          extra: { rol: role },
+          calendar,
+        });
+      }
+
+      window.nhToast?.('Disponibilidad registrada. Te hemos enviado confirmación por email.');
       if (notesInput) notesInput.value = '';
       root.querySelectorAll('.p-cal-hour').forEach(b => b.classList.remove('sel'));
       await loadSavedAvailability(root, user.id, role, user.email);
@@ -269,13 +212,7 @@
       if (typeof window.loadVisitasVendedor === 'function') window.loadVisitasVendedor();
     } catch (err) {
       console.error('panel-calendar', err);
-      let toast = 'No se pudo guardar. ';
-      if (err.needsMigration) {
-        toast += 'Ejecuta la migración 025 en Supabase (SQL Editor) y vuelve a intentar.';
-      } else {
-        toast += 'Inténtalo de nuevo o escríbenos a info@nuevahabitat.com';
-      }
-      window.nhToast?.(toast);
+      window.nhToast?.('Error inesperado. Escríbenos a info@nuevahabitat.com');
     } finally {
       if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = 'Guardar disponibilidad →'; }
     }
