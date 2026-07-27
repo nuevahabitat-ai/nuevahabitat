@@ -1,5 +1,5 @@
 /**
- * Google Calendar — service account (calendario compartido con la cuenta de servicio).
+ * Google Calendar — OAuth (refresh token) o cuenta de servicio.
  * Crea eventos con invitaciones a cliente + equipo NH.
  */
 import crypto from 'crypto';
@@ -17,7 +17,7 @@ function b64url(input) {
     .replace(/\//g, '_');
 }
 
-function parseCredentials() {
+function parseServiceAccountCredentials() {
   const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
   if (!raw) return null;
   try {
@@ -27,7 +27,7 @@ function parseCredentials() {
   }
 }
 
-async function getAccessToken(credentials) {
+async function getAccessTokenFromServiceAccount(credentials) {
   const now = Math.floor(Date.now() / 1000);
   const header = b64url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }));
   const claim = b64url(JSON.stringify({
@@ -57,9 +57,43 @@ async function getAccessToken(credentials) {
   });
   const data = await res.json();
   if (!data.access_token) {
-    throw new Error(data.error_description || data.error || 'No access token from Google');
+    throw new Error(data.error_description || data.error || 'No access token (service account)');
   }
   return data.access_token;
+}
+
+/** OAuth refresh token — alternativa si Google bloquea claves de cuenta de servicio */
+async function getAccessTokenFromOAuth() {
+  const clientId = process.env.GOOGLE_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
+  if (!clientId || !clientSecret || !refreshToken) return null;
+
+  const res = await fetch(TOKEN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id: clientId,
+      client_secret: clientSecret,
+      refresh_token: refreshToken,
+      grant_type: 'refresh_token',
+    }),
+  });
+  const data = await res.json();
+  if (!data.access_token) {
+    throw new Error(data.error_description || data.error || 'No access token (OAuth)');
+  }
+  return data.access_token;
+}
+
+async function getAccessToken() {
+  const oauthToken = await getAccessTokenFromOAuth().catch(() => null);
+  if (oauthToken) return oauthToken;
+
+  const credentials = parseServiceAccountCredentials();
+  if (credentials) return getAccessTokenFromServiceAccount(credentials);
+
+  return null;
 }
 
 function uniqueEmails(list) {
@@ -102,12 +136,17 @@ export async function createAvailabilityEvents({
   extra,
   calendar,
 }) {
-  const credentials = parseCredentials();
-  if (!credentials) {
-    return { ok: true, skipped: true, reason: 'GOOGLE_SERVICE_ACCOUNT_JSON no configurado' };
-  }
   if (!calendar?.start || !calendar?.end) {
     return { ok: true, skipped: true, reason: 'sin fechas de calendario' };
+  }
+
+  const accessToken = await getAccessToken();
+  if (!accessToken) {
+    return {
+      ok: true,
+      skipped: true,
+      reason: 'Configura GOOGLE_REFRESH_TOKEN (+ CLIENT_ID/SECRET) o GOOGLE_SERVICE_ACCOUNT_JSON',
+    };
   }
 
   const timeZone = calendar.timeZone || 'Europe/Madrid';
@@ -138,7 +177,6 @@ export async function createAvailabilityEvents({
     },
   };
 
-  const accessToken = await getAccessToken(credentials);
   const primaryCalendarId = process.env.GOOGLE_CALENDAR_ID || ADMIN_EMAIL;
   const secondaryCalendarId = process.env.GOOGLE_CALENDAR_ID_INFO || CONTACT_EMAIL;
 
