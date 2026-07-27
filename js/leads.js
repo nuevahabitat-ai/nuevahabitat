@@ -39,15 +39,9 @@
     };
 
     try {
-      let leadRow = null;
       if (window.nhSupabase) {
-        const { data, error } = await window.nhSupabase
-          .from('leads')
-          .insert(row)
-          .select('id')
-          .maybeSingle();
+        const { error } = await window.nhSupabase.from('leads').insert(row);
         if (error) throw error;
-        leadRow = data;
       }
       if (window.nhNotify && opts.notify !== false) {
         window.nhNotify({
@@ -62,7 +56,7 @@
           calendar: opts.calendar,
         });
       }
-      opts.onLeadCreated?.(leadRow);
+      opts.onLeadCreated?.(null);
       opts.onSuccess?.();
       const landingSlug = opts.extra?.landing || row.origen;
       const trackParams = {

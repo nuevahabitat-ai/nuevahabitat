@@ -140,9 +140,23 @@
 
   async function saveViaLeadOnly(leadOpts) {
     if (!window.nhSubmitLead) return { ok: false };
-    const { perfil_id, ...safeOpts } = leadOpts;
-    const ok = await window.nhSubmitLead({ ...safeOpts, errorMsg: false });
+    const { perfil_id, inmueble_id, ...safeOpts } = leadOpts;
+    const ok = await window.nhSubmitLead({ ...safeOpts, notify: true, errorMsg: false });
     return ok ? { ok: true, via: 'lead' } : { ok: false };
+  }
+
+  async function saveViaNotifyOnly(leadOpts) {
+    if (!window.nhNotify) return { ok: false };
+    await window.nhNotify({
+      nombre: leadOpts.nombre,
+      telefono: leadOpts.telefono,
+      email: leadOpts.email,
+      mensaje: leadOpts.mensaje,
+      template: leadOpts.template || 'disponibilidad',
+      extra: leadOpts.notifyExtra || leadOpts.extra,
+      calendar: leadOpts.calendar,
+    });
+    return { ok: true, via: 'notify' };
   }
 
   async function persistAvailability(user, payload, leadOpts) {
@@ -159,6 +173,9 @@
 
     const leadResult = await saveViaLeadOnly(leadOpts);
     if (leadResult.ok) return leadResult;
+
+    const notifyResult = await saveViaNotifyOnly(leadOpts);
+    if (notifyResult.ok) return notifyResult;
 
     const errMsg = directResult.error?.message || rpcResult.error?.message || apiResult.error || 'unknown';
     const err = new Error(errMsg);
@@ -230,7 +247,7 @@
 
       const result = await persistAvailability(user, payload, leadOpts);
 
-      if (result.via === 'lead') {
+      if (result.via === 'lead' || result.via === 'notify') {
         window.nhToast?.('Disponibilidad registrada. Te hemos enviado confirmación por email.');
       } else {
         window.nhSubmitLead({ ...leadOpts, notify: false, errorMsg: false }).catch(() => {});

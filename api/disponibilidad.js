@@ -20,7 +20,7 @@ function cleanRow(obj) {
 }
 
 async function ensurePerfil(user, nombre, telefono) {
-  await fetch(`${SB_URL}/rest/v1/perfiles?on_conflict=id`, {
+  const res = await fetch(`${SB_URL}/rest/v1/perfiles?on_conflict=id`, {
     method: 'POST',
     headers: svcHeaders('resolution=merge-duplicates'),
     body: JSON.stringify(cleanRow({
@@ -30,6 +30,9 @@ async function ensurePerfil(user, nombre, telefono) {
       rol: 'cliente',
     })),
   });
+  if (!res.ok) {
+    console.warn('ensurePerfil', await res.text());
+  }
 }
 
 async function insertVisita(payload) {
@@ -73,6 +76,10 @@ export default async function handler(req, res) {
 
   if (!SB_SERVICE) {
     return res.status(503).json({ ok: false, error: 'SERVICE_ROLE_KEY missing', code: 'NO_SERVICE_KEY' });
+  }
+
+  if (!SB_ANON) {
+    return res.status(503).json({ ok: false, error: 'SUPABASE_ANON_KEY missing', code: 'NO_ANON_KEY' });
   }
 
   const auth = req.headers.authorization || '';
