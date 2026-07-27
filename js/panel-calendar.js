@@ -204,7 +204,7 @@
         });
       }
 
-      window.nhToast?.('Disponibilidad registrada. Te hemos enviado confirmación por email.');
+      window.nhToast?.('Disponibilidad registrada. Te hemos enviado confirmación por email.', 'success');
       if (notesInput) notesInput.value = '';
       root.querySelectorAll('.p-cal-hour').forEach(b => b.classList.remove('sel'));
       await loadSavedAvailability(root, user.id, role, user.email);
