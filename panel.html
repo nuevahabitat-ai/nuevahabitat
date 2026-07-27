@@ -91,7 +91,52 @@
     .p-field label{display:block;font-size:.75rem;font-weight:600;color:var(--gris-medio);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem}
     .p-field input,.p-field select{width:100%;padding:.7rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;background:var(--blanco);color:var(--negro);outline:none}
     .p-field input:focus,.p-field select:focus{border-color:var(--oro)}
+    .p-field textarea{width:100%;padding:.7rem 1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-family:var(--font-sans);font-size:.875rem;background:var(--blanco);color:var(--negro);outline:none;resize:vertical;min-height:72px}
+    .p-field textarea:focus{border-color:var(--oro)}
     .p-field-full{grid-column:1/-1}
+
+    /* Onboarding vendedor modal */
+    .vend-onboard-overlay{
+      position:fixed;inset:0;background:rgba(10,10,10,.72);backdrop-filter:blur(4px);
+      z-index:100010;display:none;align-items:center;justify-content:center;
+      padding:max(1rem, env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px)) max(1rem, env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+      overscroll-behavior:contain;-webkit-overflow-scrolling:touch
+    }
+    .vend-onboard-overlay.open{display:flex}
+    .vend-onboard-modal{
+      background:var(--blanco);border-radius:var(--radius-lg);padding:2rem 1.75rem;
+      max-width:520px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.28);
+      max-height:min(92vh, 92dvh);overflow-y:auto;-webkit-overflow-scrolling:touch
+    }
+    .vend-onboard-modal .overline{display:block;margin-bottom:.5rem}
+    .vend-onboard-modal h2{font-family:var(--font-serif);font-size:1.45rem;margin:0 0 .5rem;color:var(--negro);line-height:1.25}
+    .vend-onboard-modal > p{font-size:.9rem;color:var(--gris-texto);line-height:1.6;margin:0 0 1.25rem}
+    .vend-onboard-error{background:#fef2f2;border:1px solid #fca5a5;color:#b91c1c;border-radius:6px;padding:.65rem .85rem;font-size:.82rem;margin-top:.75rem}
+    .vend-onboard-modal input[readonly]{background:var(--crema);color:var(--gris-medio);cursor:default}
+    .vend-onboard-modal .btn{min-height:48px;touch-action:manipulation}
+    .vend-onboard-modal .p-field input,.vend-onboard-modal .p-field textarea{font-size:1rem}
+    body.vend-onboard-open .mbn{display:none!important}
+    @media(max-width:600px){
+      .vend-onboard-overlay{align-items:flex-end;padding:0}
+      .vend-onboard-modal{
+        max-width:none;width:100%;max-height:min(96dvh, 96vh);
+        border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+        padding:1.35rem 1.15rem calc(1.35rem + env(safe-area-inset-bottom, 0px));
+        box-shadow:0 -8px 40px rgba(0,0,0,.22)
+      }
+      .vend-onboard-modal h2{font-size:1.25rem}
+      .vend-onboard-modal > p{font-size:.875rem;margin-bottom:1rem}
+      .vend-onboard-modal .p-field{margin-bottom:.15rem}
+      .vend-onboard-modal .p-field label{font-size:.7rem}
+      .vend-onboard-modal .p-field input,.vend-onboard-modal .p-field textarea{
+        padding:.85rem 1rem;font-size:16px
+      }
+      .vend-onboard-modal .p-field textarea{min-height:88px}
+      .vend-onboard-modal #vo-submit{
+        position:sticky;bottom:0;margin-top:.5rem;
+        padding-top:.95rem;padding-bottom:.95rem;font-size:1rem
+      }
+    }
 
     /* Pronto */
     .p-soon{text-align:center;padding:2.5rem 1.5rem}
@@ -563,10 +608,42 @@
   <div class="cookie-btns"><button class="cookie-btn-accept" id="cookie-accept">Aceptar</button><button class="cookie-btn-reject" id="cookie-reject">Solo necesarias</button></div>
 </div>
 
+<!-- Onboarding vendedor (obligatorio si no hay inmueble vinculado) -->
+<div id="vendOnboardOverlay" class="vend-onboard-overlay" aria-hidden="true">
+  <div class="vend-onboard-modal" role="dialog" aria-modal="true" aria-labelledby="vendOnboardTitle">
+    <span class="overline">Bienvenido a NuevaHabitat</span>
+    <h2 id="vendOnboardTitle">Cuéntanos sobre tu inmueble</h2>
+    <p>Para activar tu panel de vendedor necesitamos tus datos y la dirección del piso que quieres vender.</p>
+    <form id="vendOnboardForm" class="p-form-grid" style="grid-template-columns:1fr">
+      <div class="p-field p-field-full">
+        <label for="vo-nombre">Nombre completo *</label>
+        <input type="text" id="vo-nombre" required autocomplete="name" placeholder="Nombre y apellidos"/>
+      </div>
+      <div class="p-field p-field-full">
+        <label for="vo-email">Correo electrónico *</label>
+        <input type="email" id="vo-email" readonly required autocomplete="email"/>
+      </div>
+      <div class="p-field p-field-full">
+        <label for="vo-tel">Teléfono *</label>
+        <input type="tel" id="vo-tel" required autocomplete="tel" inputmode="tel" placeholder="600 000 000"/>
+      </div>
+      <div class="p-field p-field-full">
+        <label for="vo-direccion">Dirección completa del inmueble *</label>
+        <textarea id="vo-direccion" required placeholder="Calle, número, piso, código postal, municipio"></textarea>
+      </div>
+      <p id="vo-error" class="vend-onboard-error" style="display:none"></p>
+      <div class="p-field p-field-full">
+        <button type="submit" class="btn btn-gold btn-lg" id="vo-submit" style="width:100%;justify-content:center">Aceptar y continuar →</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script src="js/supabase.js"></script>
 <script src="js/leads.js"></script>
 <script src="js/notify.js"></script>
 <script src="js/panel-calendar.js?v=20260727e"></script>
+<script src="js/panel-vendedor-onboarding.js?v=20260727a"></script>
 <script src="js/site-config.js"></script>
 <script src="js/ga-config.js"></script>
 <script src="js/seo.js"></script>
@@ -776,16 +853,29 @@ async function initPanel() {
   });
 
   currentUser = user;
-  await nhAuth.ensureClientRecord(user);
+
+  const urlTipo = new URLSearchParams(location.search).get('tipo');
+  let tipo = nhAuth.resolvePanelTipo(user, urlTipo);
+
+  if (urlTipo === 'vendedor' || urlTipo === 'comprador') {
+    const metaTipo = nhAuth.metaTipoFromPanel(tipo);
+    if (user.user_metadata?.tipo !== metaTipo) {
+      const { error: metaErr } = await window.nhSupabase.auth.updateUser({ data: { tipo: metaTipo } });
+      if (!metaErr) {
+        const { data: { user: refreshed } } = await window.nhSupabase.auth.getUser();
+        if (refreshed) {
+          currentUser = refreshed;
+          user = refreshed;
+        }
+      }
+    }
+  }
+
+  await nhAuth.ensureClientRecord(user, { tipo });
+
   const nombre = currentUser.user_metadata?.nombre || currentUser.email?.split('@')[0] || 'Cliente';
 
   setHeaderUser(currentUser);
-
-  // Tipo de panel: URL param > metadata > localStorage
-  const urlTipo = new URLSearchParams(location.search).get('tipo');
-  const tipo = (urlTipo === 'vendedor' || urlTipo === 'comprador')
-    ? urlTipo
-    : nhAuth.getUserTipo(currentUser);
   applyPanelMode(tipo);
 
   // Fecha registro en timeline
@@ -822,6 +912,10 @@ async function initPanel() {
     loadVisitas();
     await loadExpedienteTimeline('comprador');
   } else {
+    if (window.nhVendedorOnboarding) {
+      const pending = await window.nhVendedorOnboarding.needsOnboarding(currentUser);
+      if (pending) await window.nhVendedorOnboarding.show(currentUser);
+    }
     loadPublicacion();
     await loadDashboardStats('vendedor');
     loadVisitasVendedor();

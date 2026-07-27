@@ -68,6 +68,16 @@ window.nhAuth = {
     return 'comprador';
   },
 
+  /** Panel: URL ?tipo= > metadata > localStorage */
+  resolvePanelTipo(user, urlTipo) {
+    if (urlTipo === 'vendedor' || urlTipo === 'comprador') return urlTipo;
+    return nhAuth.getUserTipo(user);
+  },
+
+  metaTipoFromPanel(tipo) {
+    return tipo === 'vendedor' ? 'vender' : 'comprar';
+  },
+
   getPanelUrl(user) {
     if (nhAuth.isAdmin(user)) return 'admin-panel.html';
     const tipo = nhAuth.getUserTipo(user);
@@ -84,7 +94,11 @@ window.nhAuth = {
     });
     if (!error && data?.user) {
       localStorage.setItem('nh_reg_tipo', tipo || 'comprar');
-      if (data.session?.user) await nhAuth.ensureClientRecord(data.session.user);
+      if (data.session?.user) {
+        await nhAuth.ensureClientRecord(data.session.user, {
+          tipo: tipo === 'vender' ? 'vendedor' : 'comprador',
+        });
+      }
       if (window.nhNotify) {
         nhNotify({ nombre, email, tipo: 'bienvenida', template: 'bienvenida', extra: { tipo } });
         nhNotify({ nombre, email, telefono: telefono || '', mensaje: `Nuevo registro · tipo: ${tipo || '–'}`, tipo: tipo === 'vender' ? 'vender' : 'comprar' });
@@ -175,13 +189,17 @@ window.nhAuth = {
     return normalizeEmail(user?.email) === normalizeEmail(ADMIN_EMAIL);
   },
 
-  /** Crea perfil + fila en compradores o vendedores si no existe */
-  async ensureClientRecord(user) {
+  /** Crea perfil + fila en compradores o vendedores (exclusivo: solo una tabla) */
+  async ensureClientRecord(user, opts = {}) {
     if (!window.nhSupabase || !user?.email || nhAuth.isAdmin(user)) return true;
-    const tipo = nhAuth.getUserTipo(user);
+    const tipo = opts.tipo || nhAuth.getUserTipo(user);
+    const pTipo = tipo === 'vendedor' ? 'vendedor' : 'comprador';
     const nombre = (user.user_metadata?.nombre || user.email.split('@')[0] || 'Cliente').trim();
     const telefono = user.user_metadata?.telefono || null;
     const email = user.email;
+
+    const { error: syncErr } = await window.nhSupabase.rpc('sync_cliente_tipo', { p_tipo: pTipo });
+    if (!syncErr) return true;
 
     const { error: rpcErr } = await window.nhSupabase.rpc('ensure_perfil');
     if (rpcErr) {

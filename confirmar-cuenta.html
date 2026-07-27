@@ -126,8 +126,8 @@ async function onConfirmed(initialUser) {
     }
 
     confirmedUser = user;
-    await nhAuth.ensureClientRecord(user);
     const tipo = nhAuth.getUserTipo(user);
+    await nhAuth.ensureClientRecord(user, { tipo });
     const isAdmin = nhAuth.isAdmin(user);
     const isVendedor = !isAdmin && tipo === 'vendedor';
     document.getElementById('success-tipo').textContent = isAdmin ? 'Panel Administración' : (isVendedor ? 'Panel Vendedor' : 'Panel Comprador');

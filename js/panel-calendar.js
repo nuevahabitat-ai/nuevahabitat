@@ -198,7 +198,7 @@
       await window.nhWaitSupabase?.();
       if (!window.nhSupabase) throw new Error('Sin conexión');
 
-      await window.nhAuth?.ensureClientRecord?.(user).catch(() => {});
+      await window.nhAuth?.ensureClientRecord?.(user, { tipo: role }).catch(() => {});
 
       let savedInDb = false;
 
