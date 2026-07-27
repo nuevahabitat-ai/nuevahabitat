@@ -140,7 +140,8 @@
 
   async function saveViaLeadOnly(leadOpts) {
     if (!window.nhSubmitLead) return { ok: false };
-    const ok = await window.nhSubmitLead({ ...leadOpts, errorMsg: false });
+    const { perfil_id, ...safeOpts } = leadOpts;
+    const ok = await window.nhSubmitLead({ ...safeOpts, errorMsg: false });
     return ok ? { ok: true, via: 'lead' } : { ok: false };
   }
 
@@ -215,7 +216,6 @@
       tipo: 'info',
       origen: role === 'vendedor' ? 'panel_disponibilidad_vendedor' : 'panel_disponibilidad_comprador',
       inmueble_id: inmuebleId || undefined,
-      perfil_id: user.id,
       template: 'disponibilidad',
       method: 'panel_calendar',
       notifyExtra: { rol: role },

@@ -4,7 +4,7 @@
  */
 const SB_URL = process.env.SUPABASE_URL || 'https://xxodawayoogthxnjpouq.supabase.co';
 const SB_ANON = process.env.SUPABASE_ANON_KEY || 'sb_publishable_fZ9IgW5VfsF_Gf_zFsxqnA_jOaH2yri';
-const SB_SERVICE = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const SB_SERVICE = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE;
 
 function svcHeaders(prefer = 'return=representation') {
   return {
