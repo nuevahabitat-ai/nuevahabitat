@@ -132,7 +132,7 @@
       const { error: visitaErr } = await window.nhSupabase.from('visitas').insert(row);
       if (visitaErr) throw visitaErr;
 
-      window.nhToast?.('Disponibilidad registrada. Recibirás confirmación por email y en tu calendario.');
+      window.nhToast?.('Disponibilidad registrada. Revisa tu email para añadir la cita al calendario.');
       if (notesInput) notesInput.value = '';
       root.querySelectorAll('.p-cal-hour').forEach(b => b.classList.remove('sel'));
       await loadSavedAvailability(root, user.id, role);

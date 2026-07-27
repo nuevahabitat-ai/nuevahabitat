@@ -213,11 +213,47 @@ function tplConfirmacionDisponibilidad({ nombre, mensaje, extra }) {
           <tr><td>Disponibilidad</td><td>${mensaje || '–'}</td></tr>
         </table>
       </div>
-      <div class="tip">Te contactaremos en menos de 24h para confirmar o ajustar la franja. Si usas Google Calendar, recibirás también una invitación con la franja indicada.</div>
+      <div class="tip">Adjuntamos un archivo <strong>.ics</strong> para añadir la franja a tu calendario (Google, Apple u Outlook) con un clic. Te contactaremos en menos de 24h para confirmar.</div>
       <div class="btns">
         <a href="https://www.nuevahabitat.com/panel.html" class="btn btn-gold">Ir a mi panel →</a>
       </div>
     </div>` + FOOTER,
+  };
+}
+
+/** Archivo .ics — añade la cita al calendario sin configurar Google Cloud */
+function buildIcsAttachment({ nombre, mensaje, telefono, email, extra, calendar }) {
+  if (!calendar?.start || !calendar?.end) return null;
+  const tz = calendar.timeZone || 'Europe/Madrid';
+  const esVendedor = extra?.rol === 'vendedor';
+  const rolLabel = esVendedor ? 'Vendedor' : 'Comprador';
+  const summary = `[NH] Disponibilidad ${rolLabel} — ${nombre || 'Cliente'}`;
+  const description = [mensaje, telefono ? `Tel: ${telefono}` : '', email ? `Email: ${email}` : '']
+    .filter(Boolean).join('\\n');
+  const fmt = (s) => String(s).replace(/-/g, '').replace(/:/g, '').slice(0, 15);
+  const uid = `${Date.now()}-${Math.random().toString(36).slice(2)}@nuevahabitat.com`;
+  const now = fmt(new Date().toISOString());
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//NuevaHabitat//ES',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    `UID:${uid}`,
+    `DTSTAMP:${now}`,
+    `DTSTART;TZID=${tz}:${fmt(calendar.start)}`,
+    `DTEND;TZID=${tz}:${fmt(calendar.end)}`,
+    `SUMMARY:${summary}`,
+    `DESCRIPTION:${description}`,
+    `ORGANIZER;CN=NuevaHabitat:mailto:${CONTACT_EMAIL}`,
+    'STATUS:TENTATIVE',
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ].join('\r\n');
+  return {
+    filename: 'disponibilidad-nuevahabitat.ics',
+    content: Buffer.from(ics, 'utf8').toString('base64'),
   };
 }
 
@@ -386,9 +422,15 @@ export default async function handler(req, res) {
     const jobs = [];
 
     if (apiKey) {
+      const ics = template === 'disponibilidad'
+        ? buildIcsAttachment({ nombre, mensaje, telefono, email, extra: extra || {}, calendar })
+        : null;
+
       /* 1. Notificación interna a admin + contacto corporativo */
       if (template === 'disponibilidad') {
-        jobs.push(send(NOTIFY_RECIPIENTS, tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra: extra||{} })));
+        const adminTpl = tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra: extra || {} });
+        if (ics) adminTpl.attachments = [ics];
+        jobs.push(send(NOTIFY_RECIPIENTS, adminTpl));
       } else {
         jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
       }
@@ -398,7 +440,11 @@ export default async function handler(req, res) {
         const tmpl = template || tipo;
         if      (tmpl === 'bienvenida')  jobs.push(send(email, tplBienvenida({ nombre, email, tipo: extra?.tipo || tipo })));
         else if (tmpl === 'visita')      jobs.push(send(email, tplConfirmacionVisita({ nombre, mensaje, inmueble })));
-        else if (tmpl === 'disponibilidad') jobs.push(send(email, tplConfirmacionDisponibilidad({ nombre, mensaje, extra: extra||{} })));
+        else if (tmpl === 'disponibilidad') {
+          const clientTpl = tplConfirmacionDisponibilidad({ nombre, mensaje, extra: extra || {} });
+          if (ics) clientTpl.attachments = [ics];
+          jobs.push(send(email, clientTpl));
+        }
         else if (tmpl === 'contacto')    jobs.push(send(email, tplConfirmacionContacto({ nombre, inmueble })));
         else if (tmpl === 'valoracion' || tmpl === 'vender' || tmpl === 'venta') jobs.push(send(email, tplValoracion({ nombre })));
         else if (tmpl === 'compra' || tmpl === 'comprar') jobs.push(send(email, tplCompra({ nombre })));
@@ -411,7 +457,8 @@ export default async function handler(req, res) {
     const results = apiKey ? await Promise.allSettled(jobs) : [];
 
     let calendarResult = null;
-    if (template === 'disponibilidad' && calendar?.start) {
+    const hasGoogleCal = process.env.GOOGLE_REFRESH_TOKEN || process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+    if (hasGoogleCal && template === 'disponibilidad' && calendar?.start) {
       try {
         calendarResult = await createAvailabilityEvents({
           nombre, email, telefono, mensaje, extra: extra || {}, calendar,
