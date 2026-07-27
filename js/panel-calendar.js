@@ -1,9 +1,27 @@
 /**
  * Calendario de disponibilidad — panel vendedor / comprador.
- * Guarda en visitas (si puede) y siempre notifica por email.
  */
 (function () {
   const HOUR_SLOTS = ['10:00–12:00', '12:00–14:00', '16:00–18:00', '18:00–20:00'];
+  const calendarInstances = [];
+
+  function storageKey(userId, role) {
+    return `nh_cal_${userId}_${role}`;
+  }
+
+  function getLocalSlots(userId, role) {
+    try {
+      return JSON.parse(localStorage.getItem(storageKey(userId, role)) || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function addLocalSlot(userId, role, slot) {
+    const list = getLocalSlots(userId, role).filter((s) => s.notas !== slot.notas);
+    list.unshift(slot);
+    localStorage.setItem(storageKey(userId, role), JSON.stringify(list.slice(0, 12)));
+  }
 
   function parseDateHour(dateStr, hourRange) {
     const d = new Date(dateStr + 'T12:00:00');
@@ -47,11 +65,27 @@
     </div>`;
   }
 
-  async function loadSavedAvailability(root, userId, role, userEmail) {
-    const listEl = root.querySelector('.p-cal-saved-list');
-    if (!listEl || !window.nhSupabase || !userId) return;
+  function mergeSlots(rows, tipo, label) {
+    const seen = new Set();
+    return rows
+      .filter((v) => {
+        if (v.tipo_solicitud && v.tipo_solicitud !== tipo) return false;
+        if (!v.tipo_solicitud && v.notas && !v.notas.includes(label)) return false;
+        const key = (v.notas || '') + (v.fecha_hora || '');
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .sort((a, b) => new Date(b.fecha_hora) - new Date(a.fecha_hora))
+      .slice(0, 8);
+  }
+
+  async function fetchSlotsFromDb(userId, role, userEmail) {
     const tipo = role === 'vendedor' ? 'disponibilidad_vendedor' : 'disponibilidad_comprador';
     const label = role === 'vendedor' ? 'Disponibilidad vendedor' : 'Disponibilidad comprador';
+    const rows = [...getLocalSlots(userId, role)];
+
+    if (!window.nhSupabase) return mergeSlots(rows, tipo, label);
 
     let q = window.nhSupabase
       .from('visitas')
@@ -62,15 +96,49 @@
     if (userEmail) q = q.or(`perfil_id.eq.${userId},notas.ilike.%${userEmail}%`);
     else q = q.eq('perfil_id', userId);
 
-    const { data, error } = await q;
-    const rows = (data || []).filter((v) => {
-      if (v.tipo_solicitud) return v.tipo_solicitud === tipo;
-      return (v.notas || '').includes(label);
-    }).slice(0, 8);
+    const { data: visitas } = await q;
+    if (visitas?.length) rows.push(...visitas);
 
-    listEl.innerHTML = error || !rows.length
-      ? '<p class="p-cal-empty">Aún no has registrado franjas horarias.</p>'
-      : rows.map(formatSavedRow).join('');
+    const origen = role === 'vendedor' ? 'panel_disponibilidad_vendedor' : 'panel_disponibilidad_comprador';
+    if (userEmail) {
+      const { data: leads } = await window.nhSupabase
+        .from('leads')
+        .select('id, mensaje, created_at, origen')
+        .eq('email', userEmail)
+        .eq('origen', origen)
+        .order('created_at', { ascending: false })
+        .limit(10);
+      (leads || []).forEach((l) => {
+        rows.push({
+          id: l.id,
+          fecha_hora: l.created_at,
+          notas: l.mensaje,
+          tipo_solicitud: tipo,
+          estado: 'pendiente',
+        });
+      });
+    }
+
+    return mergeSlots(rows, tipo, label);
+  }
+
+  async function loadSavedAvailability(root, userId, role, userEmail) {
+    const listEl = root.querySelector('.p-cal-saved-list');
+    if (!listEl || !userId) return;
+
+    const rows = await fetchSlotsFromDb(userId, role, userEmail);
+    listEl.innerHTML = rows.length
+      ? rows.map(formatSavedRow).join('')
+      : '<p class="p-cal-empty">Aún no has registrado franjas horarias.</p>';
+  }
+
+  function refreshAllCalendars(userId, role, userEmail) {
+    calendarInstances
+      .filter((c) => c.role === role && c.user?.id === userId)
+      .forEach((c) => {
+        const root = document.getElementById(c.rootId);
+        if (root) loadSavedAvailability(root, userId, role, userEmail);
+      });
   }
 
   async function trySaveVisita(supabase, row) {
@@ -134,7 +202,6 @@
 
       let savedInDb = false;
 
-      // 1) API servidor (service role)
       try {
         const sess = await window.nhSupabase.auth.getSession();
         const token = sess?.data?.session?.access_token;
@@ -155,7 +222,6 @@
         }
       } catch (_) {}
 
-      // 2) RPC Supabase
       if (!savedInDb) {
         try {
           const { data, error } = await window.nhSupabase.rpc('registrar_disponibilidad_panel', {
@@ -168,7 +234,6 @@
         } catch (_) {}
       }
 
-      // 3) Insert directo
       if (!savedInDb) {
         savedInDb = await trySaveVisita(window.nhSupabase, {
           perfil_id: user.id,
@@ -180,7 +245,6 @@
         });
       }
 
-      // 4) Lead en CRM (sin perfil_id para evitar FK)
       try {
         await window.nhSubmitLead?.({
           nombre, telefono, email: user.email, mensaje,
@@ -194,7 +258,6 @@
         });
       } catch (_) {}
 
-      // 5) Email siempre (esto nunca debe fallar la UX)
       if (window.nhNotify) {
         await window.nhNotify({
           nombre, telefono, email: user.email, mensaje,
@@ -204,10 +267,18 @@
         });
       }
 
+      addLocalSlot(user.id, role, {
+        id: `local-${Date.now()}`,
+        fecha_hora: fechaVisita.toISOString(),
+        notas: mensaje,
+        tipo_solicitud: tipoSolicitud,
+        estado: 'pendiente',
+      });
+
       window.nhToast?.('Disponibilidad registrada. Te hemos enviado confirmación por email.', 'success');
       if (notesInput) notesInput.value = '';
       root.querySelectorAll('.p-cal-hour').forEach(b => b.classList.remove('sel'));
-      await loadSavedAvailability(root, user.id, role, user.email);
+      refreshAllCalendars(user.id, role, user.email);
       if (typeof window.loadVisitas === 'function') window.loadVisitas();
       if (typeof window.loadVisitasVendedor === 'function') window.loadVisitasVendedor();
     } catch (err) {
@@ -232,6 +303,10 @@
   window.nhInitPanelCalendar = function (opts) {
     const root = document.getElementById(opts.rootId);
     if (!root || !opts.user) return;
+
+    if (!calendarInstances.some((c) => c.rootId === opts.rootId)) {
+      calendarInstances.push({ rootId: opts.rootId, role: opts.role, user: opts.user });
+    }
 
     const intro = opts.role === 'vendedor'
       ? 'Indica qué días y horas tienes disponible para que tu asesor haga visitas con compradores cualificados en tu inmueble.'
@@ -263,4 +338,6 @@
 
     bindCalendar(root, opts);
   };
+
+  window.nhRefreshPanelCalendars = refreshAllCalendars;
 })();
