@@ -199,7 +199,7 @@
     const title = post.titulo || post.title || '';
     const desc = (post.extracto || post.excerpt || '').slice(0, 160);
     const img = post.imagen_url || post.image || NH_SEO.defaultImage;
-    const url = absUrl('blog-articulo.html?slug=' + encodeURIComponent(slug || post.slug || ''));
+    const url = absUrl('blog-articulo?slug=' + encodeURIComponent(slug || post.slug || ''));
     setMeta('property', 'og:type', 'article');
     setMeta('property', 'og:title', title + ' · NuevaHabitat');
     setMeta('property', 'og:description', desc);

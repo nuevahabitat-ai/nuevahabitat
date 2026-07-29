@@ -150,6 +150,22 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .adm-match-banner{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.35);border-radius:8px;padding:.75rem 1rem;margin-bottom:1rem;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
 .adm-match-banner.visible{display:flex}
 .adm-match-badge{display:inline-flex;align-items:center;gap:.35rem;background:rgba(184,147,106,.15);color:var(--gold-light);font-size:.72rem;font-weight:600;padding:.25rem .6rem;border-radius:20px}
+.adm-match-badge-btn{border:none;cursor:pointer;font-family:inherit;transition:background .2s,border-color .2s}
+.adm-match-badge-btn:hover{background:rgba(184,147,106,.28);box-shadow:0 0 0 1px rgba(184,147,106,.35)}
+.comp-match-modal-panel{width:min(640px,100%)}
+.comp-match-list{display:flex;flex-direction:column;gap:.65rem;margin-top:.75rem}
+.comp-match-item{display:flex;align-items:center;gap:.75rem;padding:.65rem .75rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .2s}
+.comp-match-item:hover{border-color:rgba(184,147,106,.45)}
+.comp-match-item input[type=checkbox]{width:18px;height:18px;flex-shrink:0;accent-color:var(--gold);cursor:pointer}
+.comp-match-thumb{width:72px;height:54px;object-fit:cover;border-radius:6px;border:1px solid var(--border);background:var(--surface);flex-shrink:0}
+.comp-match-info{flex:1;min-width:0}
+.comp-match-info strong{display:block;font-size:.85rem;color:var(--text);line-height:1.3;margin-bottom:.2rem}
+.comp-match-info span{display:block;font-size:.72rem;color:var(--muted);line-height:1.4}
+.comp-match-open{flex-shrink:0;background:transparent;border:1px solid var(--border);color:var(--muted);font-size:.68rem;padding:.35rem .55rem;border-radius:5px;cursor:pointer}
+.comp-match-open:hover{border-color:var(--gold);color:var(--gold)}
+.comp-match-toolbar{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-bottom:.5rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
+.comp-match-toolbar label{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--text);cursor:pointer}
+.comp-match-criteria{font-size:.75rem;color:var(--muted);line-height:1.5;margin-top:.25rem}
 .adm-match-alert{padding:.65rem .85rem;border-bottom:1px solid var(--border);font-size:.8rem;line-height:1.5}
 .adm-match-alert:last-child{border-bottom:none}
 .adm-match-alert time{font-size:.68rem;color:var(--muted)}
@@ -695,6 +711,23 @@ input,select,textarea{font-family:'Inter',sans-serif}
         <!-- Grid de compradores -->
         <div id="comp-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
       </section>
+
+      <!-- Modal inmuebles compatibles + WhatsApp -->
+      <div id="comp-match-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="comp-match-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closeCompMatchModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="comp-match-kicker">Comprador</div>
+              <h3 id="comp-match-title">Inmuebles compatibles</h3>
+              <div class="comp-match-criteria" id="comp-match-criteria"></div>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closeCompMatchModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body" id="comp-match-body"></div>
+          <div class="dash-modal-foot" id="comp-match-foot"></div>
+        </div>
+      </div>
 
       <!-- ══ VENDEDORES ════════════════════════════════════════ -->
       <section class="adm-section" id="sec-vendedores">
@@ -2202,6 +2235,146 @@ function countMatchesForComprador(comprador){
   return (_pubData || []).filter(p => matchCompradorInmueble(comprador, p)).length;
 }
 
+function getMatchesForComprador(comprador){
+  return (_pubData || []).filter(p => matchCompradorInmueble(comprador, p));
+}
+
+function inmueblePublicUrl(id){
+  return `https://www.nuevahabitat.com/inmueble-detalle?id=${encodeURIComponent(id)}`;
+}
+
+let _compMatchState = null;
+
+function compMatchCriteriaText(c){
+  const parts = [];
+  if(c.presupuesto_max) parts.push(`≤ ${Number(c.presupuesto_max).toLocaleString('es-ES')} €`);
+  if(c.habitaciones_min) parts.push(`min. ${c.habitaciones_min} hab.`);
+  if(c.ascensor) parts.push('ascensor');
+  if(c.zona_buscada) parts.push(c.zona_buscada);
+  return parts.join(' · ') || 'Sin criterios extra';
+}
+
+function renderCompMatchList(matches){
+  if(!matches.length){
+    return `<p class="text-muted" style="padding:.5rem 0">No hay inmuebles compatibles con este comprador ahora mismo.</p>`;
+  }
+  return `
+    <div class="comp-match-toolbar">
+      <label><input type="checkbox" id="comp-match-all" checked onchange="toggleCompMatchAll(this.checked)"/> Seleccionar todos (${matches.length})</label>
+      <span class="text-muted" style="font-size:.72rem">Marca los que quieras enviar por WhatsApp</span>
+    </div>
+    <div class="comp-match-list" id="comp-match-list">
+      ${matches.map(p => {
+        const img = p.imagen_principal || 'imagenes/interior1.jpg';
+        const loc = [p.barrio, p.municipio].filter(Boolean).join(', ');
+        const meta = [
+          p.precio != null ? Number(p.precio).toLocaleString('es-ES') + ' €' : '',
+          p.habitaciones != null ? p.habitaciones + ' hab.' : '',
+          p.m2_utiles != null ? p.m2_utiles + ' m²' : '',
+        ].filter(Boolean).join(' · ');
+        return `<label class="comp-match-item">
+          <input type="checkbox" class="comp-match-cb" data-id="${p.id}" checked onchange="syncCompMatchAllCheckbox()"/>
+          <img class="comp-match-thumb" src="${dashEsc(img)}" alt="" onerror="this.src='imagenes/interior1.jpg'"/>
+          <div class="comp-match-info">
+            <strong>${dashEsc(p.titulo || p.ref || 'Inmueble')}</strong>
+            <span>${dashEsc([meta, loc].filter(Boolean).join(' — '))}</span>
+          </div>
+          <button type="button" class="comp-match-open" onclick="event.preventDefault();window.open('inmueble-detalle.html?id=${p.id}','_blank')">Ver web</button>
+        </label>`;
+      }).join('')}
+    </div>`;
+}
+
+async function openCompMatchModal(id){
+  const c = _compData.find(x => x.id === id);
+  if(!c){ nhToast('Comprador no encontrado', 'error'); return; }
+  if(!_pubData.length) await ensurePubData();
+  const matches = getMatchesForComprador(c);
+  _compMatchState = { comprador: c, matches };
+
+  document.getElementById('comp-match-kicker').textContent = 'Inmuebles compatibles';
+  document.getElementById('comp-match-title').textContent = c.nombre || 'Comprador';
+  document.getElementById('comp-match-criteria').textContent = matches.length
+    ? `${matches.length} resultado(s) · ${compMatchCriteriaText(c)}`
+    : compMatchCriteriaText(c);
+  document.getElementById('comp-match-body').innerHTML = renderCompMatchList(matches);
+
+  const foot = document.getElementById('comp-match-foot');
+  const hasPhone = !!normalizePhoneWa(c.telefono);
+  foot.innerHTML = `
+    ${hasPhone && matches.length ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="sendCompMatchWhatsApp()">Enviar WhatsApp con seleccionados</button>` : ''}
+    ${matches.length ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeCompMatchModal();showCompatiblesInGrid('${c.id}')">Ver en grid de inmuebles</button>` : ''}
+    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeCompMatchModal()">Cerrar</button>`;
+
+  const m = document.getElementById('comp-match-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+window.openCompMatchModal = openCompMatchModal;
+
+function closeCompMatchModal(){
+  const m = document.getElementById('comp-match-modal');
+  if(!m) return;
+  m.classList.remove('open');
+  m.hidden = true;
+  document.body.style.overflow = '';
+  _compMatchState = null;
+}
+window.closeCompMatchModal = closeCompMatchModal;
+
+function toggleCompMatchAll(checked){
+  document.querySelectorAll('.comp-match-cb').forEach(cb => { cb.checked = checked; });
+}
+window.toggleCompMatchAll = toggleCompMatchAll;
+
+function syncCompMatchAllCheckbox(){
+  const all = document.querySelectorAll('.comp-match-cb');
+  const master = document.getElementById('comp-match-all');
+  if(!master || !all.length) return;
+  const checked = [...all].filter(cb => cb.checked).length;
+  master.checked = checked === all.length;
+  master.indeterminate = checked > 0 && checked < all.length;
+}
+window.syncCompMatchAllCheckbox = syncCompMatchAllCheckbox;
+
+function getSelectedCompMatches(){
+  if(!_compMatchState) return [];
+  const ids = new Set([...document.querySelectorAll('.comp-match-cb:checked')].map(cb => cb.dataset.id));
+  return _compMatchState.matches.filter(p => ids.has(String(p.id)));
+}
+
+function sendCompMatchWhatsApp(){
+  if(!_compMatchState){ nhToast('Abre el modal de compatibles primero', 'info'); return; }
+  const c = _compMatchState.comprador;
+  const phone = normalizePhoneWa(c.telefono);
+  if(!phone){ nhToast('Este comprador no tiene teléfono.', 'info'); return; }
+  const selected = getSelectedCompMatches();
+  if(!selected.length){ nhToast('Selecciona al menos un inmueble.', 'info'); return; }
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildCompWhatsAppMsg(c, selected))}`;
+  window.open(url, '_blank', 'noopener');
+  closeCompMatchModal();
+}
+window.sendCompMatchWhatsApp = sendCompMatchWhatsApp;
+
+function showCompatiblesInGrid(id){
+  const c = _compData.find(x => x.id === id);
+  if(!c) return;
+  _activeMatchComprador = c;
+  document.getElementById('if-precio-max').value = c.presupuesto_max || '';
+  document.getElementById('if-precio-min').value = '';
+  document.getElementById('if-hab').value = c.habitaciones_min ? String(c.habitaciones_min) : '';
+  document.getElementById('if-ascensor').value = c.ascensor ? 'si' : '';
+  document.getElementById('if-zona').value = c.zona_buscada || '';
+  document.getElementById('if-estado').value = '';
+  document.getElementById('if-cartera').value = '';
+  switchSection('inmuebles');
+  showInmTab('pub');
+  renderPublications();
+  document.getElementById('inm-match-banner')?.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+window.showCompatiblesInGrid = showCompatiblesInGrid;
+
 function getMatchesForInmueble(inmueble, compradores){
   return (compradores || _compData || []).filter(c => matchCompradorInmueble(c, inmueble));
 }
@@ -2268,20 +2441,7 @@ async function notifyMatchesForNewInmueble(inmueble){
 }
 
 function showCompatiblesForComprador(id){
-  const c = _compData.find(x => x.id === id);
-  if(!c) return;
-  _activeMatchComprador = c;
-  document.getElementById('if-precio-max').value = c.presupuesto_max || '';
-  document.getElementById('if-precio-min').value = '';
-  document.getElementById('if-hab').value = c.habitaciones_min ? String(c.habitaciones_min) : '';
-  document.getElementById('if-ascensor').value = c.ascensor ? 'si' : '';
-  document.getElementById('if-zona').value = c.zona_buscada || '';
-  document.getElementById('if-estado').value = '';
-  document.getElementById('if-cartera').value = '';
-  switchSection('inmuebles');
-  showInmTab('pub');
-  renderPublications();
-  document.getElementById('inm-match-banner')?.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  openCompMatchModal(id);
 }
 window.showCompatiblesForComprador = showCompatiblesForComprador;
 
@@ -3313,14 +3473,21 @@ function telHref(telefono){
   return wa ? `+${wa}` : '';
 }
 
-function buildCompWhatsAppMsg(c){
-  const nombre = (c.nombre || '').trim().split(/\s+/)[0] || 'cliente';
-  const partes = [`Hola ${nombre}, soy de NuevaHabitat.`];
-  if(c.zona_buscada) partes.push(`Te escribo por tu búsqueda en ${c.zona_buscada}.`);
-  else partes.push('Te escribo por tu búsqueda de vivienda.');
-  if(c.presupuesto_max) partes.push(`Presupuesto hasta ${Number(c.presupuesto_max).toLocaleString('es-ES')} €.`);
-  partes.push('¿Tienes un momento para hablar?');
-  return partes.join(' ');
+function buildCompWhatsAppMsg(c, inmuebles){
+  const nombre = (c.nombre || '').trim().split(/\s+/)[0] || '';
+  const saludo = nombre ? `Hola buenas, ${nombre},` : 'Hola buenas,';
+  if(inmuebles && inmuebles.length){
+    const n = inmuebles.length;
+    const intro = `${saludo} soy de NuevaHabitat. Queremos saber si sigues buscando piso, ya que nos ha llegado ${n === 1 ? 'un inmueble' : 'algunos inmuebles'} que creemos que te podría cuadrar:\n\n`;
+    const links = inmuebles.map(p => {
+      const loc = [p.barrio, p.municipio].filter(Boolean).join(', ');
+      const price = p.precio != null ? Number(p.precio).toLocaleString('es-ES') + ' €' : '';
+      const line1 = [p.titulo || p.ref || 'Inmueble', loc, price].filter(Boolean).join(' — ');
+      return `• ${line1}\n${inmueblePublicUrl(p.id)}`;
+    }).join('\n\n');
+    return intro + links + '\n\n¿Te interesa?';
+  }
+  return `${saludo} soy de NuevaHabitat. Queremos saber si sigues buscando piso, ya que nos ha llegado un inmueble que creemos que te podría cuadrar, ¿te interesa?`;
 }
 
 function admWhatsAppComprador(id){
@@ -3402,7 +3569,7 @@ function renderCompradores(){
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;flex-wrap:wrap;gap:.35rem">
           <div class="pub-ref">COMPRADOR</div>
           <div style="display:flex;align-items:center;gap:.35rem;flex-wrap:wrap">
-            ${matchN ? `<span class="adm-match-badge">🎯 ${matchN} compatible${matchN===1?'':'s'}</span>` : ''}
+            ${matchN ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver inmuebles compatibles" onclick="openCompMatchModal('${c.id}')">🎯 ${matchN} compatible${matchN===1?'':'s'}</button>` : ''}
             <span class="badge ${c.activo?'badge-ok':'badge-warn'}">${c.activo?'Activo':'Inactivo'}</span>
           </div>
         </div>
@@ -3421,10 +3588,11 @@ function renderCompradores(){
         ${c.notas?`<div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding:.4rem;background:var(--surface2);border-radius:4px;line-height:1.5">${c.notas}</div>`:''}
         <div class="pub-quick-actions">
           ${c.telefono ? `<button type="button" class="pub-btn-wa" onclick="admWhatsAppComprador('${c.id}')">WhatsApp</button><button type="button" class="pub-btn-call" onclick="admCallComprador('${c.id}')">Llamar</button>` : ''}
+          ${c.telefono && matchN ? `<button type="button" class="pub-btn-wa" style="background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4)" onclick="openCompMatchModal('${c.id}')">WhatsApp + inmuebles</button>` : ''}
           ${c.email ? `<button type="button" class="pub-btn-mail" onclick="admEmailComprador('${c.id}')">Email</button>` : ''}
         </div>
         <div class="pub-actions" style="margin-top:.6rem">
-          <button class="pub-btn-web" onclick="showCompatiblesForComprador('${c.id}')">Ver compatibles</button>
+          <button class="pub-btn-web" onclick="openCompMatchModal('${c.id}')">Ver compatibles</button>
           <button class="pub-btn-edit" onclick="editComprador('${c.id}')">Editar</button>
           <button class="pub-btn-del"  onclick="deleteComprador('${c.id}')">Eliminar</button>
           <button class="pub-btn-web"  onclick="toggleActivoComp('${c.id}',${!c.activo})">${c.activo?'Pausar':'Activar'}</button>

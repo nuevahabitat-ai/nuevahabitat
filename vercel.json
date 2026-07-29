@@ -220,6 +220,21 @@
       "source": "/nuevahabitat-vs-clikalia-barcelona.html",
       "destination": "/nuevahabitat-vs-clikalia-barcelona",
       "permanent": true
+    },
+    {
+      "source": "/blog-articulo.html",
+      "destination": "/blog-articulo",
+      "permanent": true
+    },
+    {
+      "source": "/comprar.html",
+      "destination": "/comprar",
+      "permanent": true
+    },
+    {
+      "source": "/blog.html",
+      "destination": "/blog",
+      "permanent": true
     }
   ],
   "rewrites": [

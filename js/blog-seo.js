@@ -88,7 +88,7 @@
     const title = post.titulo || post.title || 'Artículo';
     const desc = metaDescription(post);
     const kw = keywordsForPost(post, slug);
-    const url = SITE + '/blog-articulo.html?slug=' + encodeURIComponent(slug || post.slug || '');
+    const url = SITE + '/blog-articulo?slug=' + encodeURIComponent(slug || post.slug || '');
     const img = post.imagen_url || post.image || SITE + '/imagenes/interior2.jpg';
     const absImg = /^https?:\/\//.test(img) ? img : SITE + '/' + img.replace(/^\//, '');
 
@@ -140,17 +140,17 @@
     const items = (posts || []).slice(0, 30).map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      url: SITE + '/blog-articulo.html?slug=' + encodeURIComponent(p.slug),
+      url: SITE + '/blog-articulo?slug=' + encodeURIComponent(p.slug),
       name: p.titulo || p.title || 'Artículo',
     }));
     return [
       {
         '@context': 'https://schema.org',
         '@type': 'Blog',
-        '@id': SITE + '/blog.html#blog',
+        '@id': SITE + '/blog#blog',
         name: 'Blog inmobiliario NuevaHabitat Barcelona',
         description: 'Guías para vender y comprar vivienda en Barcelona y área metropolitana. Valoraciones, hipotecas, mercado y consejos legales.',
-        url: SITE + '/blog.html',
+        url: SITE + '/blog',
         inLanguage: 'es-ES',
         publisher: { '@id': SITE + '/#organization' },
         keywords: ALL.slice(0, 40).join(', '),
@@ -160,7 +160,7 @@
         '@type': 'CollectionPage',
         name: 'Blog inmobiliario · Comprar y vender en Barcelona',
         description: 'Artículos sobre comprar piso, vender casa, hipotecas y mercado inmobiliario en Barcelona.',
-        url: SITE + '/blog.html',
+        url: SITE + '/blog',
         isPartOf: { '@id': SITE + '/#website' },
         about: [
           { '@type': 'Thing', name: 'Comprar vivienda Barcelona' },
@@ -177,13 +177,24 @@
     ].filter(Boolean);
   }
 
+  function parseArticleDate(post) {
+    const raw = post.publicado_at || post.publicado_en || post.created_at || post._date || post.date;
+    if (!raw) return undefined;
+    if (/^\d{4}-\d{2}-\d{2}/.test(String(raw))) return raw.slice(0, 10);
+    const months = { ene: '01', feb: '02', mar: '03', abr: '04', may: '05', jun: '06', jul: '07', ago: '08', sep: '09', oct: '10', nov: '11', dic: '12' };
+    const m = String(raw).match(/(\d{1,2})\s+(\w{3})\s+(\d{4})/i);
+    if (m && months[m[2].toLowerCase()]) return `${m[3]}-${months[m[2].toLowerCase()]}-${m[1].padStart(2, '0')}`;
+    return undefined;
+  }
+
   function enhancedArticleSchema(post, slug, keywords) {
     const title = post.titulo || post.title || '';
     const desc = metaDescription(post).slice(0, 160);
     const img = post.imagen_url || post.image || SITE + '/imagenes/interior2.jpg';
     const absImg = /^https?:\/\//.test(img) ? img : SITE + '/' + img.replace(/^\//, '');
-    const url = SITE + '/blog-articulo.html?slug=' + encodeURIComponent(slug || post.slug || '');
+    const url = SITE + '/blog-articulo?slug=' + encodeURIComponent(slug || post.slug || '');
     const text = (post.contenido || post.body || '').replace(/<[^>]+>/g, ' ');
+    const published = parseArticleDate(post);
     return {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -195,15 +206,42 @@
       articleSection: post.categoria || post.cat || 'Inmobiliaria',
       keywords: (keywords || []).join(', '),
       wordCount: (text.match(/\S+/g) || []).length,
-      datePublished: post.publicado_at || post.publicado_en || post.created_at || undefined,
-      dateModified: post.updated_at || undefined,
-      author: { '@type': 'Organization', name: 'NuevaHabitat', url: SITE + '/' },
+      datePublished: published,
+      dateModified: post.updated_at ? String(post.updated_at).slice(0, 10) : published,
+      author: {
+        '@type': 'Organization',
+        name: 'NuevaHabitat',
+        url: SITE + '/',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Carrer de Mejía Lequerica, 42',
+          addressLocality: 'Barcelona',
+          postalCode: '08028',
+          addressCountry: 'ES',
+        },
+      },
       publisher: {
         '@type': 'Organization',
         name: 'NuevaHabitat',
         logo: { '@type': 'ImageObject', url: SITE + '/imagenes/Logo/logosinfondo2.png' },
       },
       mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      isPartOf: { '@id': SITE + '/blog#blog' },
+    };
+  }
+
+  function faqSchema(faqItems, slug) {
+    if (!faqItems || !faqItems.length) return null;
+    const url = SITE + '/blog-articulo?slug=' + encodeURIComponent(slug || '');
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map(item => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+      url,
     };
   }
 
@@ -216,5 +254,6 @@
     applyArticleMeta,
     blogCollectionSchema,
     enhancedArticleSchema,
+    faqSchema,
   };
 })();

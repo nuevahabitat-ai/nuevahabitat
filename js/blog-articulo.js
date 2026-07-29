@@ -1,4 +1,19 @@
 (function(){
+  async function injectRelated(currentSlug, currentPost){
+    const cat = currentPost.categoria || currentPost.cat || '';
+    const all = await nhBlog.fetchPosts();
+    const related = all.filter(p => p.slug !== currentSlug && (p.categoria || p.cat) === cat).slice(0, 3);
+    if (!related.length) return;
+    const href = slug => (window.nhBlogUrl ? nhBlogUrl(slug) : '/blog-articulo?slug=' + encodeURIComponent(slug));
+    const html = `<section class="blog-related" style="margin-top:3rem;padding-top:2rem;border-top:1px solid #eee">
+      <h2 style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:1.25rem">Artículos relacionados</h2>
+      <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.75rem">
+        ${related.map(p => `<li><a href="${href(p.slug)}" style="color:var(--negro);text-decoration:none;font-weight:500">${p.titulo || p.title}</a> <span style="color:var(--gris-medio);font-size:.85rem">· ${nhBlog.readMin(p)} min</span></li>`).join('')}
+      </ul>
+    </section>`;
+    document.getElementById('postBody').insertAdjacentHTML('beforeend', html);
+  }
+
   async function loadPost(){
     const params = new URLSearchParams(location.search);
     const slug = params.get('slug') || '';
@@ -20,6 +35,7 @@
     document.getElementById('postDate').textContent = nhBlog.formatDate(post);
     document.getElementById('postRead').textContent = nhBlog.readMin(post) + ' min lectura';
     document.getElementById('postBody').innerHTML = post.contenido || post.body || ('<p>' + (post.extracto || '') + '</p>');
+    await injectRelated(slug, post);
     if (window.nhSeo) {
       const kw = window.NH_BLOG_SEO ? NH_BLOG_SEO.keywordsForPost(post, slug) : [];
       if (window.NH_BLOG_SEO) NH_BLOG_SEO.applyArticleMeta(post, slug);
@@ -28,9 +44,10 @@
         window.NH_BLOG_SEO ? NH_BLOG_SEO.enhancedArticleSchema(post, slug, kw) : nhSeo.articleSchema(post, slug),
         nhSeo.breadcrumbSchema([
           { name: 'Inicio', url: '/' },
-          { name: 'Blog', url: 'blog.html' },
-          { name: post.titulo || post.title || 'Artículo', url: 'blog-articulo.html?slug=' + encodeURIComponent(slug) },
+          { name: 'Blog', url: '/blog' },
+          { name: post.titulo || post.title || 'Artículo', url: (window.nhBlogUrl ? nhBlogUrl(slug) : '/blog-articulo?slug=' + encodeURIComponent(slug)) },
         ]),
+        ...(post.faq && post.faq.length && window.NH_BLOG_SEO ? [NH_BLOG_SEO.faqSchema(post.faq, slug)] : []),
       ]);
     }
   }
