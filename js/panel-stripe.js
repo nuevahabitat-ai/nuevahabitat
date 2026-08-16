@@ -48,7 +48,7 @@
     const token = await getSessionToken();
     if (!token) return null;
     try {
-      const res = await fetch(`/api/honorarios-transferencia?tipo=${encodeURIComponent(getTipo())}`, {
+      const res = await fetch(`/api/stripe-checkout?transfer=1&tipo=${encodeURIComponent(getTipo())}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -276,13 +276,13 @@
       const token = await getSessionToken();
       if (!token) throw new Error('Sesión expirada.');
 
-      const res = await fetch('/api/honorarios-transferencia', {
+      const res = await fetch('/api/stripe-checkout?transfer=1', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ tipo: getTipo() }),
+        body: JSON.stringify({ tipo: getTipo(), transfer: true }),
       });
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || 'No se pudo registrar el aviso');
