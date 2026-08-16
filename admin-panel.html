@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Panel Admin – Nueva Habitat</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -152,6 +152,9 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .adm-match-badge{display:inline-flex;align-items:center;gap:.35rem;background:rgba(184,147,106,.15);color:var(--gold-light);font-size:.72rem;font-weight:600;padding:.25rem .6rem;border-radius:20px}
 .adm-match-badge-btn{border:none;cursor:pointer;font-family:inherit;transition:background .2s,border-color .2s}
 .adm-match-badge-btn:hover{background:rgba(184,147,106,.28);box-shadow:0 0 0 1px rgba(184,147,106,.35)}
+.adm-pay-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;font-weight:700;padding:.22rem .55rem;border-radius:20px;white-space:nowrap}
+.adm-pay-badge--ok{background:rgba(34,197,94,.18);color:#86efac;border:1px solid rgba(34,197,94,.35)}
+.adm-pay-badge--pend{background:rgba(249,115,22,.12);color:#fdba74;border:1px solid rgba(249,115,22,.35)}
 .comp-match-modal-panel{width:min(640px,100%)}
 .comp-match-list{display:flex;flex-direction:column;gap:.65rem;margin-top:.75rem}
 .comp-match-item{display:flex;align-items:center;gap:.75rem;padding:.65rem .75rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .2s}
@@ -2291,6 +2294,15 @@ function inmueblePublicUrl(id){
   return `https://www.nuevahabitat.com/inmueble-detalle?id=${encodeURIComponent(id)}`;
 }
 
+function honorariosPagoBadge(row){
+  const amt = row.honorarios != null ? Number(row.honorarios).toLocaleString('es-ES') + ' €' : '';
+  if(row.honorarios_pagado){
+    const d = row.honorarios_pagado_at ? new Date(row.honorarios_pagado_at).toLocaleDateString('es-ES') : '';
+    return `<span class="adm-pay-badge adm-pay-badge--ok" title="Pagado${d ? ' · '+d : ''}">✓ Pagado${amt ? ' · '+amt : ''}</span>`;
+  }
+  return `<span class="adm-pay-badge adm-pay-badge--pend">Pendiente${amt ? ' · '+amt : ''}</span>`;
+}
+
 let _compMatchState = null;
 
 function compMatchCriteriaText(c){
@@ -3341,7 +3353,30 @@ async function loadVisitas(){
 }
 
 async function setVisitaEstado(id, estado) {
-  await window.nhSupabase.from('visitas').update({ estado }).eq('id', id);
+  const { data: v } = await window.nhSupabase.from('visitas')
+    .select('id, estado, fecha_hora, notas, inmuebles(titulo, ref), leads(nombre, email, telefono), perfiles(nombre, telefono)')
+    .eq('id', id).maybeSingle();
+  const { error } = await window.nhSupabase.from('visitas').update({ estado }).eq('id', id);
+  if (error) { nhToast('Error: ' + error.message, 'error'); return; }
+  if (v && (estado === 'confirmada' || estado === 'cancelada')) {
+    const email = v.leads?.email || null;
+    const nombre = v.leads?.nombre || v.perfiles?.nombre || 'Cliente';
+    const telefono = v.leads?.telefono || v.perfiles?.telefono || null;
+    const inmueble = v.inmuebles?.titulo || v.inmuebles?.ref || '';
+    const fecha = v.fecha_hora ? new Date(v.fecha_hora).toLocaleString('es-ES') : '';
+    try {
+      await fetch('/api/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          template: estado === 'confirmada' ? 'visita_confirmada' : 'visita_cancelada',
+          nombre, email, telefono, inmueble, mensaje: fecha,
+          extra: { estado, notas: v.notas },
+        }),
+      });
+    } catch (e) { console.warn('visita notify', e); }
+    nhToast(estado === 'confirmada' ? 'Visita confirmada · email enviado' : 'Visita cancelada · email enviado', 'success');
+  }
   loadVisitas();
 }
 
@@ -3571,7 +3606,7 @@ async function loadCompradores(){
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
   const [compRes] = await Promise.all([
     window.nhSupabase
-      .from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,created_at').order('created_at',{ascending:false}),
+      .from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,created_at').order('created_at',{ascending:false}),
     ensurePubData()
   ]);
   const { data, error } = compRes;
@@ -3618,6 +3653,7 @@ function renderCompradores(){
           <div class="pub-ref">COMPRADOR</div>
           <div style="display:flex;align-items:center;gap:.35rem;flex-wrap:wrap">
             ${matchN ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver inmuebles compatibles" onclick="openCompMatchModal('${c.id}')">🎯 ${matchN} compatible${matchN===1?'':'s'}</button>` : ''}
+            ${honorariosPagoBadge(c)}
             <span class="badge ${c.activo?'badge-ok':'badge-warn'}">${c.activo?'Activo':'Inactivo'}</span>
           </div>
         </div>
@@ -3745,7 +3781,7 @@ async function loadVendedores(){
   const tbl = document.getElementById('vend-table');
   if(tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
   const { data, error } = await window.nhSupabase
-    .from('vendedores').select('id,nombre,email,telefono,precio_minimo,inmueble_ref,descripcion,created_at').order('created_at',{ascending:false});
+    .from('vendedores').select('id,nombre,email,telefono,precio_minimo,inmueble_ref,descripcion,honorarios,honorarios_pagado,honorarios_pagado_at,created_at').order('created_at',{ascending:false});
   if(error){
     console.error('loadVendedores:', error);
     nhToast('No se pudieron cargar vendedores: '+error.message, 'error');
@@ -3764,12 +3800,13 @@ function renderVendedores(){
     return;
   }
   tbl.innerHTML=`<table class="adm-table">
-    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th><th>Precio mín.</th><th>Inmueble</th><th>Notas</th><th>Fecha</th><th></th></tr></thead>
+    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th><th>Honorarios</th><th>Precio mín.</th><th>Inmueble</th><th>Notas</th><th>Fecha</th><th></th></tr></thead>
     <tbody>${_vendData.map(v=>`
       <tr>
         <td style="font-weight:600">${v.nombre}</td>
         <td>${v.telefono||'–'}</td>
         <td>${v.email||'–'}</td>
+        <td>${honorariosPagoBadge(v)}</td>
         <td>${v.precio_minimo?Number(v.precio_minimo).toLocaleString('es-ES')+' €':'–'}</td>
         <td>${v.inmueble_ref?`<span class="badge badge-new">${v.inmueble_ref}</span>`:'–'}</td>
         <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v.descripcion||''}">${v.descripcion||'–'}</td>

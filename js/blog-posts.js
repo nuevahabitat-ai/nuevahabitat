@@ -301,8 +301,7 @@ window.NH_BLOG_POSTS = {
     image: 'imagenes/interior11.jpg',
     excerpt: 'Comparables reales, visita presencial y rango de precio: qué debe incluir una valoración seria antes de publicar.',
     keywords: ['valoración piso Barcelona', 'cuánto vale mi piso Barcelona', 'tasación vivienda Barcelona 2026', 'valorar casa Barcelona'],
-    metaDescription: 'Guía para valorar tu piso en Barcelona en 2026: comparables, ITE, certificado energético y rango de precio realista. Valoración gratuita NuevaHabitat.',
-    body: `<p>Placeholder — contenido ampliado en blog-posts-rich.js</p>`
+    metaDescription: 'Guía para valorar tu piso en Barcelona en 2026: comparables, ITE, certificado energético y rango de precio realista. Valoración gratuita NuevaHabitat.'
   },
 
   'housfy-vs-precio-fijo-barcelona': {
@@ -313,8 +312,7 @@ window.NH_BLOG_POSTS = {
     image: 'imagenes/inmobiliario2.jpg',
     excerpt: 'Comisión variable, servicios incluidos y coste total en una venta de 400.000 €: comparativa honesta.',
     keywords: ['Housfy Barcelona', 'NuevaHabitat vs Housfy', 'comisión vender piso Barcelona', 'precio fijo inmobiliaria'],
-    metaDescription: 'Comparativa Housfy vs NuevaHabitat en Barcelona: comisión, servicios y coste total al vender. Precio fijo 3.000 € + IVA solo en escritura.',
-    body: `<p>Placeholder</p>`
+    metaDescription: 'Comparativa Housfy vs NuevaHabitat en Barcelona: comisión, servicios y coste total al vender. Precio fijo 3.000 € + IVA solo en escritura.'
   },
 
   'vender-piso-horta-guia': {
@@ -325,8 +323,7 @@ window.NH_BLOG_POSTS = {
     image: 'imagenes/interior14.jpg',
     excerpt: 'Montbau, Vall d\'Hebron y Horta centre: cómo posicionar tu vivienda en un distrito con demanda familiar estable.',
     keywords: ['vender piso Horta Barcelona', 'vender piso Horta-Guinardó', 'precio piso Horta 2026', 'inmobiliaria Horta'],
-    metaDescription: 'Guía para vender piso en Horta-Guinardó Barcelona: precios por zona, perfil comprador y cómo vender con precio fijo NuevaHabitat.',
-    body: `<p>Placeholder</p>`
+    metaDescription: 'Guía para vender piso en Horta-Guinardó Barcelona: precios por zona, perfil comprador y cómo vender con precio fijo NuevaHabitat.'
   },
 
   'vender-hipoteca-pendiente-guia': {
@@ -337,7 +334,6 @@ window.NH_BLOG_POSTS = {
     image: 'imagenes/inmobiliario4.jpg',
     excerpt: 'Qué ocurre con la hipoteca en arras y escritura, quién cancela y cómo evitar retrasos de última hora.',
     keywords: ['vender piso hipoteca pendiente Barcelona', 'cancelar hipoteca venta', 'vender con hipoteca Cataluña'],
-    metaDescription: 'Vender piso con hipoteca pendiente en Barcelona: cancelación registral, arras, banco comprador y plazos. Guía NuevaHabitat.',
-    body: `<p>Placeholder</p>`
+    metaDescription: 'Vender piso con hipoteca pendiente en Barcelona: cancelación registral, arras, banco comprador y plazos. Guía NuevaHabitat.'
   }
 };

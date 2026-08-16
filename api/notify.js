@@ -271,10 +271,111 @@ function tplConfirmacionVisita({ nombre, mensaje, inmueble }) {
           ${mensaje  ? `<tr><td>Disponibilidad</td><td>${mensaje}</td></tr>` : ''}
         </table>
       </div>
-      <div class="tip">⚠️ Esta no es una reserva confirmada. Tu gestor te llamará para acordar fecha y hora exactas.</div>
+      <div class="tip">Esta no es una reserva confirmada. Tu gestor te llamará para acordar fecha y hora exactas.</div>
       <div class="btns">
         <a href="https://wa.me/34603656587?text=Hola%2C%20he%20solicitado%20una%20visita" class="btn btn-wa">Adelantar por WhatsApp</a>
         <a href="https://www.nuevahabitat.com/inmuebles" class="btn btn-gold">Ver más inmuebles</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplVisitaConfirmada({ nombre, inmueble, mensaje }) {
+  return {
+    subject: `Visita confirmada · NuevaHabitat`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Visita confirmada</div>
+      <h1>Tu visita está confirmada</h1>
+      <p class="intro">Hola <strong>${nombre || 'cliente'}</strong>, hemos confirmado tu visita${inmueble ? ` a <strong>${inmueble}</strong>` : ''}.</p>
+      <div class="card">
+        <div class="card-title">Detalles</div>
+        <table>
+          ${inmueble ? `<tr><td>Inmueble</td><td>${inmueble}</td></tr>` : ''}
+          ${mensaje ? `<tr><td>Fecha y hora</td><td>${mensaje}</td></tr>` : ''}
+        </table>
+      </div>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/panel?tipo=comprador" class="btn btn-gold">Ver en mi panel</a>
+        <a href="https://wa.me/34603656587?text=Hola%2C%20tengo%20una%20visita%20confirmada" class="btn btn-wa">WhatsApp</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplVisitaCancelada({ nombre, inmueble, mensaje }) {
+  return {
+    subject: `Visita cancelada · NuevaHabitat`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Visita cancelada</div>
+      <h1>Tu visita ha sido cancelada</h1>
+      <p class="intro">Hola <strong>${nombre || 'cliente'}</strong>, te informamos de que la visita${inmueble ? ` a <strong>${inmueble}</strong>` : ''} ha sido cancelada.</p>
+      ${mensaje ? `<div class="card"><div class="card-title">Fecha prevista</div><p style="font-size:.88rem;color:#555">${mensaje}</p></div>` : ''}
+      <div class="tip">Si quieres reprogramar, escríbenos por WhatsApp o desde tu panel.</div>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/panel" class="btn btn-gold">Ir a mi panel</a>
+        <a href="https://wa.me/34603656587?text=Hola%2C%20quiero%20reprogramar%20mi%20visita" class="btn btn-wa">Reprogramar por WhatsApp</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplVisitaEstadoAdmin({ nombre, email, telefono, inmueble, mensaje, extra }) {
+  const est = extra?.estado === 'confirmada' ? 'Confirmada' : 'Cancelada';
+  return {
+    subject: `[NH] Visita ${est.toLowerCase()} — ${nombre || email || 'Cliente'}`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Visitas</div>
+      <h1>Visita ${est.toLowerCase()}</h1>
+      <div class="card">
+        <table>
+          <tr><td>Estado</td><td>${est}</td></tr>
+          <tr><td>Cliente</td><td>${nombre || '–'}</td></tr>
+          <tr><td>Email</td><td>${email || '–'}</td></tr>
+          <tr><td>Teléfono</td><td>${telefono || '–'}</td></tr>
+          ${inmueble ? `<tr><td>Inmueble</td><td>${inmueble}</td></tr>` : ''}
+          ${mensaje ? `<tr><td>Fecha</td><td>${mensaje}</td></tr>` : ''}
+        </table>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplHonorariosPagadoCliente({ nombre, extra }) {
+  const tipo = extra?.tipo === 'vendedor' ? 'venta' : 'compra';
+  const amt = extra?.amount != null ? `${Number(extra.amount).toLocaleString('es-ES')} €` : '';
+  return {
+    subject: `Pago de honorarios recibido · NuevaHabitat`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Pago confirmado</div>
+      <h1>Gracias por tu pago</h1>
+      <p class="intro">Hola <strong>${nombre || 'cliente'}</strong>, hemos recibido correctamente el pago de tus honorarios de ${tipo}${amt ? ` (<strong>${amt}</strong>)` : ''}.</p>
+      <div class="card">
+        <div class="card-title">Comprobante</div>
+        <p style="font-size:.88rem;color:#555;line-height:1.6">Recibirás el recibo de Stripe en este email. También puedes ver el estado en tu panel, sección <strong>Honorarios</strong>.</p>
+      </div>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/panel?tipo=${extra?.tipo === 'vendedor' ? 'vendedor' : 'comprador'}" class="btn btn-gold">Ver mi panel</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplHonorariosPagadoAdmin({ nombre, email, extra }) {
+  const tipo = extra?.tipo === 'vendedor' ? 'Vendedor' : 'Comprador';
+  const amt = extra?.amount != null ? `${Number(extra.amount).toLocaleString('es-ES')} €` : '–';
+  return {
+    subject: `[NH] Honorarios pagados — ${tipo}: ${nombre || email}`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Stripe</div>
+      <h1>Honorarios pagados</h1>
+      <div class="card">
+        <table>
+          <tr><td>Tipo</td><td>${tipo}</td></tr>
+          <tr><td>Cliente</td><td>${nombre || '–'}</td></tr>
+          <tr><td>Email</td><td>${email || '–'}</td></tr>
+          <tr><td>Importe</td><td>${amt}</td></tr>
+          ${extra?.sessionId ? `<tr><td>Sesión Stripe</td><td style="font-size:.75rem">${extra.sessionId}</td></tr>` : ''}
+        </table>
       </div>
     </div>` + FOOTER,
   };
@@ -431,6 +532,10 @@ export default async function handler(req, res) {
         const adminTpl = tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra: extra || {} });
         if (ics) adminTpl.attachments = [ics];
         jobs.push(send(NOTIFY_RECIPIENTS, adminTpl));
+      } else if (template === 'honorarios_pago') {
+        jobs.push(send(NOTIFY_RECIPIENTS, tplHonorariosPagadoAdmin({ nombre, email, extra: extra || {} })));
+      } else if (template === 'visita_confirmada' || template === 'visita_cancelada') {
+        jobs.push(send(NOTIFY_RECIPIENTS, tplVisitaEstadoAdmin({ nombre, email, telefono, inmueble, mensaje, extra: extra || {} })));
       } else {
         jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
       }
@@ -451,6 +556,9 @@ export default async function handler(req, res) {
         else if (tmpl === 'hipoteca')    jobs.push(send(email, tplHipoteca({ nombre, ...(extra||{}) })));
         else if (tmpl === 'newsletter')  jobs.push(send(email, tplNewsletter({ email })));
         else if (tmpl === 'documentos')  jobs.push(send(email, tplDocumentosListos({ nombre, documentos: extra?.documentos })));
+        else if (tmpl === 'honorarios_pago') jobs.push(send(email, tplHonorariosPagadoCliente({ nombre, extra: extra || {} })));
+        else if (tmpl === 'visita_confirmada') jobs.push(send(email, tplVisitaConfirmada({ nombre, inmueble, mensaje })));
+        else if (tmpl === 'visita_cancelada') jobs.push(send(email, tplVisitaCancelada({ nombre, inmueble, mensaje })));
       }
     }
 

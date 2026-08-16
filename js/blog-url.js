@@ -1,16 +1,21 @@
-/** URLs canónicas del blog (sin .html) */
+/** URLs canónicas del blog — /blog/slug */
 (function () {
-  const BASE = '/blog-articulo';
-
   function blogArticleUrl(slug) {
     if (!slug) return '/blog';
-    return `${BASE}?slug=${encodeURIComponent(slug)}`;
+    return `/blog/${encodeURIComponent(slug)}`;
   }
 
   function blogArticleAbs(slug) {
     return 'https://www.nuevahabitat.com' + blogArticleUrl(slug);
   }
 
+  function parseBlogSlugFromPath() {
+    const path = (location.pathname || '').replace(/\/$/, '');
+    const m = path.match(/^\/blog\/([^/?#]+)$/);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
   window.nhBlogUrl = blogArticleUrl;
   window.nhBlogAbs = blogArticleAbs;
+  window.nhBlogSlugFromPath = parseBlogSlugFromPath;
 })();

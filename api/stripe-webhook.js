@@ -4,6 +4,7 @@
  */
 import Stripe from 'stripe';
 import { markHonorariosPaid } from './lib/supabase-server.js';
+import { notifyHonorariosPaid } from './lib/payment-notify.js';
 
 async function readRawBody(req) {
   if (req.body && typeof req.body === 'string') return Buffer.from(req.body);
@@ -51,6 +52,13 @@ export default async function handler(req, res) {
             paymentIntentId: typeof session.payment_intent === 'string'
               ? session.payment_intent
               : session.payment_intent?.id,
+          });
+          await notifyHonorariosPaid({
+            email: meta.nh_email,
+            nombre: meta.nh_email?.split('@')[0],
+            tipo,
+            amount: session.amount_total ? session.amount_total / 100 : null,
+            sessionId: session.id,
           });
         } catch (err) {
           console.error('stripe-webhook mark paid:', err);

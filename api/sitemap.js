@@ -53,7 +53,7 @@ export default async function handler(req, res) {
     changefreq: 'monthly',
   }));
   STATIC_BLOG.forEach(slug => urls.push({
-    loc: `${SITE}/blog-articulo?slug=${encodeURIComponent(slug)}`,
+    loc: `${SITE}/blog/${encodeURIComponent(slug)}`,
     priority: '0.75',
     changefreq: 'monthly',
   }));
@@ -79,7 +79,7 @@ export default async function handler(req, res) {
     if (blogRes.ok) {
       const posts = await blogRes.json();
       posts.forEach(p => urls.push({
-        loc: `${SITE}/blog-articulo?slug=${encodeURIComponent(p.slug)}`,
+        loc: `${SITE}/blog/${encodeURIComponent(p.slug)}`,
         lastmod: p.updated_at ? p.updated_at.slice(0, 10) : undefined,
         priority: '0.7',
       }));

@@ -16,7 +16,7 @@
 
   async function loadPost(){
     const params = new URLSearchParams(location.search);
-    const slug = params.get('slug') || '';
+    const slug = (window.nhBlogSlugFromPath && nhBlogSlugFromPath()) || params.get('slug') || '';
     if(!window.nhBlog){
       document.getElementById('postTitle').textContent = 'Error al cargar';
       return;

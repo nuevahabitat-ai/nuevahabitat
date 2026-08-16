@@ -111,11 +111,42 @@
   }
 
   function initWhatsappFloat() {
-    document.querySelectorAll('.whatsapp-float a.whatsapp-btn').forEach((link) => {
+    const { slug } = landingMeta();
+    const WA_NUM = '34603656587';
+    const MESSAGES = {
+      'cuanto-vale-mi-piso-barcelona': 'Hola, me gustaría una valoración gratuita de mi piso en Barcelona.',
+      'vender-horta': 'Hola, quiero información para vender mi piso en Horta-Guinardó.',
+      'vender-piso-hipoteca-pendiente-barcelona': 'Hola, vendo un piso con hipoteca pendiente en Barcelona y necesito orientación.',
+      'nuevahabitat-vs-housfy-barcelona': 'Hola, estoy comparando Housfy con NuevaHabitat para vender mi piso.',
+      'vender-piso-rapido-barcelona': 'Hola, necesito vender mi piso en Barcelona con cierta urgencia.',
+      'vender-eixample': 'Hola, quiero valorar y vender mi piso en el Eixample.',
+      'vender-gracia': 'Hola, quiero valorar y vender mi piso en Gràcia.',
+      'vender-sarria': 'Hola, quiero valorar y vender mi piso en Sarrià.',
+      'vender-poblenou': 'Hola, quiero valorar y vender mi piso en Poblenou.',
+    };
+    let msg = MESSAGES[slug];
+    if (!msg && slug.startsWith('vender-')) {
+      const place = slug.replace(/^vender-/, '').replace(/-barcelona$/, '').replace(/-/g, ' ');
+      msg = `Hola, quiero información para vender mi piso en ${place}.`;
+    }
+    if (!msg && slug.startsWith('nuevahabitat-vs-')) {
+      msg = 'Hola, estoy comparando opciones para vender mi piso en Barcelona y me gustaría hablar con vosotros.';
+    }
+    if (!msg) msg = 'Hola, me interesa información sobre vender/comprar con NuevaHabitat en Barcelona.';
+    const waUrl = `https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`;
+
+    document.querySelectorAll('.whatsapp-float a, a.whatsapp-btn, .lc-cta-wa, [data-nh-wa-auto]').forEach((link) => {
+      if (link.dataset.nhWaCustom === '1') return;
+      link.href = waUrl;
+      link.target = '_blank';
+      link.rel = 'noopener';
+    });
+
+    document.querySelectorAll('.whatsapp-float a, a.whatsapp-btn').forEach((link) => {
       if (link.dataset.nhWaBound) return;
       link.dataset.nhWaBound = '1';
       link.addEventListener('click', () => {
-        track('whatsapp_click', { event_category: 'conversion', method: 'whatsapp', link_url: link.href });
+        track('whatsapp_click', { event_category: 'conversion', method: 'whatsapp', link_url: link.href, landing_slug: slug });
       });
     });
   }
