@@ -37,6 +37,8 @@ const STATIC_BLOG = [
   'documentos-vender-piso', 'buscar-piso-hipoteca-barcelona', 'vender-piso-herencia-barcelona',
   'guia-valoracion-piso-barcelona-2026', 'housfy-vs-precio-fijo-barcelona',
   'vender-piso-horta-guia', 'vender-hipoteca-pendiente-guia',
+  'vender-piso-alquilado-guia-barcelona', 'vender-piso-divorcio-guia-barcelona',
+  'idealista-fotocasa-vs-inmobiliaria-barcelona', 'vender-piso-poblenou-guia-2026',
 ];
 
 export default async function handler(req, res) {

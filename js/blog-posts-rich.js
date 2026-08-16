@@ -301,7 +301,7 @@
           <tr><td>Badalona / Sant Cugat</td><td>50 – 80 días</td><td>Perfil comprador (familias vs inversión)</td></tr>
         </tbody>
       </table>
-      <p><a href="/vender">Solicita valoración gratuita</a> · <a href="/vender-les-corts">Vender en Les Corts</a> · <a href="/inmuebles">Ver comparables en tu zona</a>.</p>
+      <p><a href="/vender">Solicita valoración gratuita</a> · <a href="/vender-piso-rapido-barcelona">Vender rápido en Barcelona</a> · <a href="/blog/vender-piso-poblenou-guia-2026">Guía Poblenou 2026</a> · <a href="/vender-les-corts">Vender en Les Corts</a> · <a href="/inmuebles">Ver comparables en tu zona</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto tarda de media vender un piso en Barcelona?</summary><p>Un piso bien posicionado y con precio realista se vende en 45–75 días en 2026. Si el precio está inflado un 10% o más, el tiempo puede triplicarse. Distritos prime como Eixample o Sarrià cierran más rápido cuando el inmueble está reformado y documentado.</p></details>
@@ -991,7 +991,7 @@
         </tbody>
       </table>
       <h2 id="modelo-fijo">Alternativa: precio fijo NuevaHabitat</h2>
-      <p><strong>3.000 € + IVA</strong>, cobrados solo en escritura. Todo incluido: valoración, fotografía, publicación, filtrado, visitas, negociación, revisión documental (nota simple, ITE, certificado energético) y acompañamiento legal. Sin exclusivas abusivas. Si no vendes, no pagas. Compara en <a href="/vender-les-corts">Les Corts</a>: ahorro de más de 21.000 € en piso de 400.000 € vs agencia al 6%.</p>
+      <p><strong>3.000 € + IVA</strong>, cobrados solo en escritura. Todo incluido: valoración, fotografía, publicación, filtrado, visitas, negociación, revisión documental (nota simple, ITE, certificado energético) y acompañamiento legal. Sin exclusivas abusivas. Si no vendes, no pagas. Compara <a href="/blog/idealista-fotocasa-vs-inmobiliaria-barcelona">Idealista/Fotocasa vs inmobiliaria</a>, <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">vs agencia tradicional</a> y <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>. En <a href="/vender-les-corts">Les Corts</a>: ahorro de más de 21.000 € en piso de 400.000 € vs agencia al 6%.</p>
       <h2 id="preguntas-agencia">Preguntas antes de firmar con cualquier agencia</h2>
       <p>¿Qué incluye la comisión exactamente? ¿Duración de exclusiva y condiciones de rescisión? ¿Qué pasa si no venden en plazo? ¿Publicación en qué portales? ¿Quién paga fotografía y certificado energético? ¿Cómo filtran compradores? ¿Acompañan arras y escritura? <a href="/vender">Consulta condiciones NuevaHabitat</a>.</p>
       <section class="blog-faq" id="faq">
@@ -1362,7 +1362,7 @@
       <h2 id="inscripcion-registral">Inscripción registral: requisito para vender</h2>
       <p>Tras aceptación e impuesto pagado, inscribe la herencia en el Registro de la Propiedad. Obtendrás nota simple a tu nombre, libre de cargas del causante (salvo hipoteca que deba cancelarse). Reúne también certificado energético e informa situación de ITE del edificio: el comprador lo pedirá igual que en cualquier venta.</p>
       <h2 id="coherederos">Varios herederos: acuerdos necesarios</h2>
-      <p>Si sois varios titulares, acordad antes de publicar: precio mínimo de venta, reparto de proventos, quién firma arras y escritura, y qué ocurre si uno no quiere vender. La indivisión puede bloquear la operación; la partición judicial es lenta y costosa. Un mediador o agente con experiencia en herencias facilita consenso.</p>
+      <p>Si sois varios titulares, acordad antes de publicar: precio mínimo de venta, reparto de proventos, quién firma arras y escritura, y qué ocurre si uno no quiere vender. La indivisión puede bloquear la operación; la partición judicial es lenta y costosa. Situaciones similares en ventas por separación: <a href="/blog/vender-piso-divorcio-guia-barcelona">vender piso por divorcio</a>.</p>
       <h2 id="plusvalia-fiscalidad">Plusvalía y fiscalidad de la venta</h2>
       <p>Al vender, el heredero puede deber: <strong>plusvalía municipal</strong> (IIVTNU) si el valor catastral del suelo subió desde la fecha de adquisición por herencia hasta la venta; <strong>IRPF</strong> por ganancia patrimonial (precio venta menos valor de adquisición en herencia más gastos). Consulta con asesor fiscal: el timing de venta puede optimizar carga tributaria.</p>
       <h2 id="tabla-plazos">Tabla de plazos orientativos</h2>
@@ -1464,7 +1464,7 @@
           <li>Housfy compite por comisión variable; NuevaHabitat por precio fijo en escritura.</li>
           <li>En un piso de 450.000 €, una comisión del 5% + IVA supera los 27.000 €.</li>
           <li>Compara coste total, servicios incluidos y compradores filtrados, no solo el titular del anuncio.</li>
-          <li>Análisis detallado en <a href="/nuevahabitat-vs-housfy-barcelona">NuevaHabitat vs Housfy Barcelona</a>.</li>
+          <li>Análisis detallado en <a href="/nuevahabitat-vs-housfy-barcelona">NuevaHabitat vs Housfy Barcelona</a> y <a href="/blog/idealista-fotocasa-vs-inmobiliaria-barcelona">Idealista/Fotocasa vs precio fijo</a>.</li>
         </ul>
       </aside>
       <p>Al comparar <strong>Housfy vs NuevaHabitat</strong> en Barcelona, la pregunta no es quién publica más rápido, sino <em>cuánto pagas al cerrar</em> y qué servicios recibes de verdad: valoración, fotografía, filtrado de compradores, negociación y acompañamiento hasta escritura.</p>
@@ -1565,6 +1565,177 @@
       <aside class="blog-cta">
         <p>¿Vendes con hipoteca pendiente en Barcelona?</p>
         <a href="/vender-piso-hipoteca-pendiente-barcelona" class="btn">Guía hipoteca pendiente</a>
+      </aside>
+      `,
+    },
+
+    'vender-piso-alquilado-guia-barcelona': {
+      readMin: 8,
+      faq: [
+        { q: '¿Puedo vender un piso con inquilino en Barcelona?', a: 'Sí. El contrato de alquiler se transmite al comprador si sigue vigente. Debes informar en el anuncio, coordinar visitas con el inquilino y respetar plazos de preaviso según LAU.' },
+        { q: '¿El inquilino tiene derecho de tanteo al vender?', a: 'En vivienda habitual con contrato vigente, el inquilino puede tener derecho de tanteo y retracto según duración del contrato y normativa aplicable. Conviene verificarlo antes de aceptar ofertas.' },
+        { q: '¿Cómo organizar visitas con inquilino dentro?', a: 'Acuerda horarios por escrito, avisa con antelación mínima legal y ofrece alternativas. Visitas mal gestionadas alargan la venta y pueden generar conflictos que el comprador detecta al instante.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Vender con inquilino es legal y habitual; el contrato suele transmitirse al comprador.</li>
+          <li>Informa en anuncio, arras y escritura: renta, fianza, duración y estado del contrato.</li>
+          <li>Verifica derecho de tanteo/retracto antes de cerrar con un tercero.</li>
+          <li>Guía específica: <a href="/vender-piso-alquilado-barcelona">vender piso alquilado en Barcelona</a>.</li>
+        </ul>
+      </aside>
+      <p><strong>Vender piso alquilado en Barcelona</strong> no es un escenario excepcional: inversores, herencias y traslados dejan contratos vigentes en el momento de la venta. El error más caro es publicar como si la vivienda estuviera libre, descubrir el inquilino en la primera visita y perder compradores que buscan posesión inmediata — o, al contrario, no comunicar a inversores interesados en rentabilidad.</p>
+      <h2>Contrato vigente: qué debe saber el comprador</h2>
+      <p>Entrega copia del contrato, recibos de renta, fianza depositada y estado de comunidad. Si el inquilino está al corriente, es un activo para compradores inversores en Poblenou, Sant Andreu o Nou Barris. Si hay impagos o conflictos, resuélvelos antes de publicar: la due diligence los sacará a la luz.</p>
+      <p>En arras, especifica si la venta es <em>libre de ocupación</em> en fecha concreta o <em>con inquilino</em> subrogado. La ambigüedad aquí rompe operaciones a días de escritura.</p>
+      <h2>Derecho de tanteo y retracto</h2>
+      <p>Con contrato de vivienda habitual, el inquilino puede tener preferencia para comprar en las mismas condiciones. El procedimiento tiene plazos estrictos. Si los incumples, el inquilino puede ejercer retracto. Consulta el caso con asesoría antes de aceptar arras con un tercero.</p>
+      <p>Si el contrato está próximo a vencer, revisa la guía <a href="/vender-piso-inquilino-vencer-barcelona">vender con inquilino a punto de marcharse</a> para alinear precio y calendario con compradores que quieren entrar a vivir.</p>
+      <h2>Visitas con inquilino: protocolo que funciona</h2>
+      <p>Acuerda con el inquilino franjas fijas (por ejemplo martes y jueves 18:00–20:00). Comunica por escrito cada visita con 48 h de antelación cuando la ley lo exija. Un agente que filtra compradores antes de llamar al timbre reduce fricción y protege la relación contractual.</p>
+      <h2>Precio y comprador objetivo</h2>
+      <p>Un piso alquilado a 1.200 €/mes en zona consolidada atrae inversores que capitalizan renta. Un piso en Eixample o Les Corts con inquilino solvente puede venderse con prima si la renta está por debajo de mercado (contrato antiguo). Ajusta el precio y el discurso comercial al perfil real, no al comprador genérico.</p>
+      <p>NuevaHabitat gestiona ventas con inquilino por <strong>3.000 € + IVA</strong>, solo en escritura. Más detalle en <a href="/vender-piso-alquilado-barcelona">vender piso alquilado</a> o en la guía de <a href="/blog/vender-hipoteca-pendiente-guia">hipoteca pendiente</a> si hay préstamo asociado.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Puedo vender un piso con inquilino en Barcelona?</summary><p>Sí. El contrato se transmite al comprador si sigue vigente. Informa en anuncio y coordina visitas respetando la LAU.</p></details>
+        <details class="blog-faq-item"><summary>¿El inquilino tiene derecho de tanteo al vender?</summary><p>En vivienda habitual puede tener tanteo y retracto según duración del contrato. Verifícalo antes de cerrar con un tercero.</p></details>
+        <details class="blog-faq-item"><summary>¿Cómo organizar visitas con inquilino dentro?</summary><p>Acuerda horarios por escrito, avisa con antelación y filtra compradores antes de agendar.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Vendes un piso alquilado en Barcelona?</p>
+        <a href="/vender-piso-alquilado-barcelona" class="btn">Guía piso alquilado</a>
+      </aside>
+      `,
+    },
+
+    'vender-piso-divorcio-guia-barcelona': {
+      readMin: 8,
+      faq: [
+        { q: '¿Hace falta el consentimiento de ambos cónyuges para vender?', a: 'Si ambos son titulares registrales, sí: la venta requiere firma de los dos en arras y escritura, salvo que un convenio judicial autorice a uno a actuar.' },
+        { q: '¿Qué pasa si no nos ponemos de acuerdo en el precio?', a: 'Sin acuerdo sobre precio mínimo o reparto, la venta se bloquea. El convenio regulador o la vía judicial deben fijar condiciones antes de publicar.' },
+        { q: '¿Cómo se reparte el dinero de la venta en un divorcio?', a: 'Según régimen económico matrimonial y convenio: gananciales, separación de bienes o pacto específico. El notario y la escritura reflejan destino de fondos acordado.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Con dos titulares registrales, ambos deben firmar arras y escritura.</li>
+          <li>Acuerda precio mínimo y reparto de proventos antes de publicar.</li>
+          <li>El comprador detecta tensiones internas; neutralidad profesional acelera el cierre.</li>
+          <li>Guía completa: <a href="/vender-piso-separacion-divorcio-barcelona">vender por divorcio en Barcelona</a>.</li>
+        </ul>
+      </aside>
+      <p><strong>Vender piso por divorcio o separación</strong> en Barcelona combina una operación inmobiliaria con una situación personal delicada. El mercado no espera: compradores comparan tu anuncio con decenas de alternativas en el mismo barrio. Si la venta se publica sin acuerdo previo sobre precio, plazos y reparto, cada oferta reabre el conflicto y la operación se cae.</p>
+      <h2>Titularidad y documentación</h2>
+      <p>Revisa nota simple: ¿titularidad conjunta, gananciales o separación de bienes? ¿Hipoteca a nombre de ambos? ¿Usufructo o cargas? El comprador y su banco pedirán claridad total. Si el piso fue adquirido en herencia o con aportación desigual, el reparto puede no ser 50/50: refleja lo acordado en convenio o sentencia.</p>
+      <h2>Convenio regulador y precio mínimo</h2>
+      <p>Antes de valorar y publicar, fija por escrito: precio mínimo aceptable, plazo máximo de venta, quién habilita visitas y cómo se depositan arras hasta reparto final. Un mediador o gestor inmobiliario neutral evita que cada visita sea una negociación matrimonial.</p>
+      <p>Si uno de los cónyuges necesita comprar otra vivienda, consulta también <a href="/vender-piso-traslado-barcelona">vender por traslado</a> para encadenar plazos sin quedarte sin techo.</p>
+      <h2>Comprador, visitas y discreción</h2>
+      <p>Filtra compradores con financiación verificada: una operación emocionalmente cargada no aguanta tres meses de comprador que no cierra. Las visitas conviene centralizarlas con un interlocutor único. En distritos prime — Sarrià, Eixample, Gràcia — la demanda es alta, pero la exigencia documental también.</p>
+      <h2>Fiscalidad y plusvalía</h2>
+      <p>Cada titular tributa según su parte en la ganancia patrimonial y plusvalía municipal si aplica. Planifica con asesor fiscal antes de aceptar ofertas por debajo del mínimo acordado solo para "terminar ya". A veces el coste fiscal y emocional supera el ahorro aparente.</p>
+      <p>NuevaHabitat acompaña ventas por separación con discreción y <strong>3.000 € + IVA</strong>, solo en escritura. Casos con herencia previa: <a href="/blog/vender-piso-herencia-barcelona">vender piso heredado</a>. Guía específica: <a href="/vender-piso-separacion-divorcio-barcelona">vender por divorcio</a>.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Hace falta el consentimiento de ambos cónyuges para vender?</summary><p>Si ambos son titulares registrales, sí, salvo autorización judicial para que uno actúe solo.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué pasa si no nos ponemos de acuerdo en el precio?</summary><p>La venta se bloquea hasta fijar precio mínimo y reparto en convenio o vía judicial.</p></details>
+        <details class="blog-faq-item"><summary>¿Cómo se reparte el dinero de la venta en un divorcio?</summary><p>Según régimen económico y convenio. La escritura refleja el destino acordado de los fondos.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Vendéis la vivienda familiar por separación?</p>
+        <a href="/vender-piso-separacion-divorcio-barcelona" class="btn">Guía venta por divorcio</a>
+      </aside>
+      `,
+    },
+
+    'idealista-fotocasa-vs-inmobiliaria-barcelona': {
+      readMin: 9,
+      faq: [
+        { q: '¿Cuánto cuesta publicar en Idealista como particular?', a: 'Idealista y Fotocasa cobran packs de anuncio al particular (desde decenas de euros a varios cientos según visibilidad y duración). Es solo el coste de publicación, no incluye filtrado, negociación ni revisión legal.' },
+        { q: '¿Qué riesgos tiene vender por tu cuenta en Barcelona?', a: 'Compradores sin financiación, arras mal redactadas, ocultar cargas o ITE desfavorable, y meses de visitas improductivas. El coste "ahorrado" en comisión suele ir a tiempo perdido y descuentos finales.' },
+        { q: '¿NuevaHabitat exige exclusiva como una agencia tradicional?', a: 'No aplicamos exclusivas abusivas. Cobramos 3.000 € + IVA solo en escritura, con servicios completos incluidos.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Idealista/Fotocasa cobran por anuncio; no filtran compradores ni negocian por ti.</li>
+          <li>El coste oculto: tiempo, visitas sin perfil, errores en arras y descuentos de última hora.</li>
+          <li>Comparativas: <a href="/nuevahabitat-vs-idealista-particular">vs Idealista particular</a> y <a href="/nuevahabitat-vs-fotocasa-particular">vs Fotocasa</a>.</li>
+          <li>Alternativa precio fijo: <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona">vender por tu cuenta vs NuevaHabitat</a>.</li>
+        </ul>
+      </aside>
+      <p>Publicar en <strong>Idealista o Fotocasa como particular</strong> en Barcelona parece la opción más barata: pagas un pack de anuncio y evitas "la comisión". Pero la comisión de una agencia tradicional no se paga por aparecer en un portal — se paga (o debería pagarse) por valoración, fotografía, filtrado, negociación y cierre. Cuando vendes solo, esos costes no desaparecen: los asumes tú en horas, errores y descuentos.</p>
+      <h2>Qué compras realmente en un anuncio particular</h2>
+      <p>Un pack destacado en Idealista o Fotocasa te da visibilidad durante X semanas. No incluye: comparables cerrados para fijar precio, pre-calificación bancaria del interesado, coordinación de visitas, redacción de arras, gestión de hipoteca pendiente ni acompañamiento a escritura. En un mercado donde el comprador compara 40 anuncios en una tarde, la diferencia está en la ejecución, no en el titular del anuncio.</p>
+      <h2>Costes ocultos de vender por tu cuenta</h2>
+      <p><strong>Tiempo:</strong> media de 15–25 visitas para una oferta seria en Barcelona; muchas serán curiosos sin hipoteca. <strong>Errores legales:</strong> arras sin cláusulas sobre cargas, ITE o inquilino generan litigios. <strong>Descuento final:</strong> compradores que detectan urgencia o falta de profesionalidad piden 5–10% menos. <strong>Oportunidad:</strong> meses de anuncio activo mientras pagas IBI, comunidad y posible hipoteca.</p>
+      <p>Lee el análisis completo en <a href="/nuevahabitat-vs-idealista-particular">NuevaHabitat vs Idealista particular</a> y <a href="/nuevahabitat-vs-fotocasa-particular">vs Fotocasa particular</a>.</p>
+      <h2>Cuándo tiene sentido cada modelo</h2>
+      <p>Vender solo encaja si dominas precio de mercado, tienes comprador conocido o el inmueble es muy líquido (piso estándar en zona demandada, libre, documentado). En operaciones de 350.000 €+ en Eixample, Poblenou o Sarrià, el coste de equivocar el precio de salida supera con creces cualquier honorario fijo.</p>
+      <p>Compara también con <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a> (comisión 3–5%) y <a href="/blog/housfy-vs-precio-fijo-barcelona">Housfy vs precio fijo</a>. NuevaHabitat: <strong>3.000 € + IVA</strong>, todo incluido, solo en escritura. Sin exclusiva abusiva: <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>.</p>
+      <h2>Tabla orientativa: particular vs NuevaHabitat</h2>
+      <table class="blog-table">
+        <thead><tr><th>Concepto</th><th>Particular (Idealista/Fotocasa)</th><th>NuevaHabitat</th></tr></thead>
+        <tbody>
+          <tr><td>Coste publicación portal</td><td>50–300 € (pack)</td><td>Incluido</td></tr>
+          <tr><td>Valoración con comparables</td><td>Manual / estimador</td><td>Visita + informe</td></tr>
+          <tr><td>Filtrado compradores</td><td>No</td><td>Pre-calificación</td></tr>
+          <tr><td>Honorarios al cerrar (piso 400k)</td><td>0 € (pero riesgo descuento)</td><td>3.630 € fijo</td></tr>
+        </tbody>
+      </table>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Cuánto cuesta publicar en Idealista como particular?</summary><p>Packs desde decenas a cientos de euros según visibilidad. Solo cubre publicación, no gestión de la venta.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué riesgos tiene vender por tu cuenta en Barcelona?</summary><p>Visitas sin financiación, arras mal redactadas y descuentos finales suelen costar más que una comisión bien ejecutada.</p></details>
+        <details class="blog-faq-item"><summary>¿NuevaHabitat exige exclusiva como una agencia tradicional?</summary><p>No aplicamos exclusivas abusivas. 3.000 € + IVA solo en escritura.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Comparas vender solo vs precio fijo?</p>
+        <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona" class="btn">Particular vs NuevaHabitat</a>
+      </aside>
+      `,
+    },
+
+    'vender-piso-poblenou-guia-2026': {
+      readMin: 8,
+      faq: [
+        { q: '¿Cuánto vale un piso en Poblenou en 2026?', a: 'Entre 4.500 y 6.200 €/m² según sub-zona: Rambla del Poblenou y 22@ en el tramo alto; interior o planta baja, por debajo. Pisos reformados con terraza en primera línea marcan premium.' },
+        { q: '¿Qué comprador busca piso en Poblenou?', a: 'Perfil tech y creativo (22@), familias jóvenes en Rambla y compradores por calidad de vida cerca del mar. Diagonal Mar atrae perfil más corporativo.' },
+        { q: '¿Cuánto tarda vender en Poblenou?', a: 'Con precio correcto, 45–70 días. Sobreprecio o documentación incompleta (ITE, certificado energético) alarga la operación.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Poblenou no es un solo mercado: 22@, Rambla, Bogatell y Diagonal Mar cotizan distinto.</li>
+          <li>Demanda estable de familias y profesionales tech; premium en terraza y reforma.</li>
+          <li>Guía del distrito: <a href="/vender-poblenou">vender piso en Poblenou</a>.</li>
+          <li>Venta rápida: <a href="/vender-piso-rapido-barcelona">estrategia vender rápido</a> · Sin exclusiva: <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>.</li>
+        </ul>
+      </aside>
+      <p><strong>Vender piso en Poblenou</strong> en 2026 sigue siendo una de las operaciones más dinámicas de Barcelona: proximidad al mar, transformación del 22@ y oferta de vivienda de reconversión industrial atraen compradores con perfiles distintos al Eixample clásico. Publicar con un precio "de Barcelona genérico" es el error más habitual en este distrito.</p>
+      <h2>Micro-mercados dentro de Poblenou</h2>
+      <p><strong>22@ y entorno Rambla:</strong> pisos de 70–90 m² reformados entre 380.000 y 550.000 €; comprador tech, parejas sin hijos o inversión premium. <strong>Rambla del Poblenou y calles transversales:</strong> demanda familiar, terrazas y vida de barrio. <strong>Bogatell / Mar:</strong> premium por orientación y playa. <strong>Diagonal Mar:</strong> torres más recientes, comprador corporativo y expatriado.</p>
+      <h2>Qué valora el comprador en 2026</h2>
+      <p>Reforma integrada (cocina abierta, domótica básica), certificado energético C o superior, parking si existe y claridad sobre obras de finca. En edificios industriales reconvertidos, pregunta por licencias, ITE y derramas: el comprador informado las exige antes de arras.</p>
+      <h2>Estrategia de precio y tiempos</h2>
+      <p>Cruza comparables cerrados en tu calle, no anuncios activos. Un 8% de sobreprecio puede triplicar el tiempo en mercado. Si necesitas velocidad, alinea precio de salida con el percentil 40–50 del barrio y documentación lista desde el día uno. Más tácticas en <a href="/blog/como-vender-rapido">cómo vender rápido en Barcelona</a> y en <a href="/vender-piso-rapido-barcelona">vender piso rápido</a>.</p>
+      <h2>Vender con NuevaHabitat en Poblenou</h2>
+      <p>Honorarios <strong>3.000 € + IVA</strong>, solo en escritura. Incluye valoración con comparables del distrito, reportaje, filtrado de compradores de cartera y negociación. Sin exclusiva abusiva: <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>. Guía completa del barrio: <a href="/vender-poblenou">vender en Poblenou</a>. Comparativa barrios: <a href="/blog/vender-piso-horta-guia">Horta-Guinardó</a>.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Cuánto vale un piso en Poblenou en 2026?</summary><p>Entre 4.500 y 6.200 €/m² según sub-zona y estado. Terraza y reforma marcan premium.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué comprador busca piso en Poblenou?</summary><p>Perfil tech en 22@, familias en Rambla y compradores por proximidad al mar en Bogatell.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto tarda vender en Poblenou?</summary><p>45–70 días con precio correcto y documentación al día.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Vendes en Poblenou, 22@ o Diagonal Mar?</p>
+        <a href="/vender-poblenou" class="btn">Guía vender en Poblenou</a>
       </aside>
       `,
     },

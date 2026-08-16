@@ -335,5 +335,49 @@ window.NH_BLOG_POSTS = {
     excerpt: 'Qué ocurre con la hipoteca en arras y escritura, quién cancela y cómo evitar retrasos de última hora.',
     keywords: ['vender piso hipoteca pendiente Barcelona', 'cancelar hipoteca venta', 'vender con hipoteca Cataluña'],
     metaDescription: 'Vender piso con hipoteca pendiente en Barcelona: cancelación registral, arras, banco comprador y plazos. Guía NuevaHabitat.'
+  },
+
+  'vender-piso-alquilado-guia-barcelona': {
+    title: 'Vender piso alquilado en Barcelona: inquilino, contrato y visitas',
+    cat: 'Vender',
+    date: '16 ago 2026',
+    readMin: 8,
+    image: 'imagenes/interior8.jpg',
+    excerpt: 'Contrato vigente, derecho de tanteo, visitas con inquilino y cómo no perder compradores por mala planificación.',
+    keywords: ['vender piso alquilado Barcelona', 'vender con inquilino Barcelona', 'contrato alquiler venta piso', 'derecho tanteo inquilino'],
+    metaDescription: 'Guía para vender piso alquilado en Barcelona: contrato vigente, visitas, derecho de tanteo y plazos. NuevaHabitat precio fijo 3.000 € + IVA.'
+  },
+
+  'vender-piso-divorcio-guia-barcelona': {
+    title: 'Vender piso por divorcio o separación en Barcelona: acuerdos y plazos',
+    cat: 'Vender',
+    date: '16 ago 2026',
+    readMin: 8,
+    image: 'imagenes/interior6.jpg',
+    excerpt: 'Titularidad compartida, convenio regulador, precio mínimo y cómo cerrar sin bloquear la operación.',
+    keywords: ['vender piso divorcio Barcelona', 'vender piso separación Barcelona', 'venta vivienda matrimonial Cataluña', 'liquidación gananciales piso'],
+    metaDescription: 'Vender piso por divorcio o separación en Barcelona: titularidad, convenio, plusvalía y venta coordinada. Guía NuevaHabitat.'
+  },
+
+  'idealista-fotocasa-vs-inmobiliaria-barcelona': {
+    title: 'Idealista y Fotocasa vs inmobiliaria: coste real de vender por tu cuenta en Barcelona',
+    cat: 'Vender',
+    date: '16 ago 2026',
+    readMin: 9,
+    image: 'imagenes/inmobiliario3.jpg',
+    excerpt: 'Anuncio particular, filtrado de compradores, negociación y riesgos legales: qué ahorras y qué pierdes.',
+    keywords: ['vender piso Idealista Barcelona', 'vender por tu cuenta Barcelona', 'Fotocasa particular vs inmobiliaria', 'NuevaHabitat vs Idealista'],
+    metaDescription: 'Idealista y Fotocasa vs inmobiliaria en Barcelona: coste oculto de vender como particular y alternativa precio fijo NuevaHabitat.'
+  },
+
+  'vender-piso-poblenou-guia-2026': {
+    title: 'Vender piso en Poblenou en 2026: precios, perfil comprador y estrategia',
+    cat: 'Vender',
+    date: '16 ago 2026',
+    readMin: 8,
+    image: 'imagenes/interior12.jpg',
+    excerpt: '22@, Rambla del Poblenou y Diagonal Mar: cómo posicionar tu vivienda en un mercado con demanda tech y familiar.',
+    keywords: ['vender piso Poblenou Barcelona', 'precio piso Poblenou 2026', 'inmobiliaria Poblenou', 'vender 22@ Barcelona'],
+    metaDescription: 'Guía para vender piso en Poblenou Barcelona 2026: precios por zona, compradores y venta con precio fijo NuevaHabitat.'
   }
 };
