@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Roadmap SEO · NuevaHabitat</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #2b2620;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+  h1, h2, h3, h4 { color: #1a1712; font-family: Georgia, 'Times New Roman', serif; }
+  .cover {
+    height: 245mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    page-break-after: always;
+    border-bottom: 6px solid #b8952f;
+  }
+  .cover .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #b8952f;
+    font-weight: 600;
+    font-size: 11pt;
+    margin-bottom: 12px;
+  }
+  .cover h1 { font-size: 34pt; margin: 0 0 10px; line-height: 1.15; }
+  .cover .subtitle { font-size: 13pt; color: #55503f; margin-bottom: 40px; max-width: 460px; }
+  .cover .meta { font-size: 10pt; color: #7a7563; border-top: 1px solid #ddd6c4; padding-top: 14px; margin-top: 30px; width: 100%; }
+  h2 {
+    font-size: 16pt;
+    border-bottom: 2px solid #b8952f;
+    padding-bottom: 6px;
+    margin-top: 34px;
+    page-break-after: avoid;
+  }
+  h3 { font-size: 12.5pt; color: #4a4230; margin-top: 22px; page-break-after: avoid; }
+  h4 { font-size: 11pt; margin-top: 14px; page-break-after: avoid; }
+  p { margin: 6px 0 10px; }
+  ul, ol { margin: 6px 0 12px 0; padding-left: 20px; }
+  li { margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 18px; font-size: 9.5pt; }
+  th, td { border: 1px solid #ddd6c4; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #f5f1e6; color: #2b2620; font-weight: 700; }
+  tr:nth-child(even) td { background: #fbfaf5; }
+  .badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #fff;
+  }
+  .badge-done { background: #2e8b57; }
+  .badge-pending { background: #c0392b; }
+  .badge-account { background: #b8952f; }
+  .badge-mid { background: #4a7ab5; }
+  .callout {
+    background: #f5f1e6;
+    border-left: 4px solid #b8952f;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 9.8pt;
+  }
+  .grid2 { display: flex; gap: 16px; }
+  .grid2 > div { flex: 1; }
+  .kpi-box {
+    border: 1px solid #ddd6c4;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    background: #fffdf8;
+  }
+  .kpi-box strong { color: #b8952f; }
+  .small { font-size: 9pt; color: #6b6656; }
+  .section-num {
+    display: inline-block;
+    background: #1a1712;
+    color: #f5f1e6;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 26px;
+    font-weight: 700;
+    margin-right: 10px;
+    font-size: 11pt;
+    font-family: Georgia, serif;
+  }
+  .footer-note { margin-top: 40px; font-size: 8.5pt; color: #999; border-top: 1px solid #eee; padding-top: 10px; }
+  code { background: #f5f1e6; padding: 1px 5px; border-radius: 3px; font-size: 9pt; }
+  .toc { list-style: none; padding-left: 0; }
+  .toc li { margin-bottom: 8px; font-size: 11pt; }
+  .toc a { text-decoration: none; color: #2b2620; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="eyebrow">Informe técnico · SEO &amp; Contenidos</div>
+  <h1>Roadmap SEO<br>Landing Pages NuevaHabitat</h1>
+  <div class="subtitle">Auditoría, estrategia de contenidos programáticos, expansión de cobertura geográfica y trabajo técnico de indexación para las páginas de venta de inmuebles en Barcelona y área metropolitana.</div>
+  <div class="meta">
+    <strong>Cliente:</strong> NuevaHabitat&nbsp;&nbsp;|&nbsp;&nbsp;
+    <strong>Ámbito:</strong> www.nuevahabitat.com&nbsp;&nbsp;|&nbsp;&nbsp;
+    <strong>Fecha de cierre de fase:</strong> 26 de julio de 2026<br>
+    <strong>Estado global:</strong> Fases 0–4 completadas · 40 landing pages activas
+  </div>
+</div>
+
+<!-- TOC -->
+<h2>Índice</h2>
+<ul class="toc">
+  <li>1. Resumen ejecutivo</li>
+  <li>2. Diagnóstico inicial (auditoría SEO)</li>
+  <li>3. Estrategia y fases del roadmap</li>
+  <li>4. Fase 0 — Base técnica de contenidos</li>
+  <li>5. Fase 1 — Ampliación de contenido existente</li>
+  <li>6. Fase 2 — Nuevas landings de zona</li>
+  <li>7. Fase 3 — Nuevas landings de situación y comparativas</li>
+  <li>8. Fase 4 — Interlinking, limpieza técnica e indexación</li>
+  <li>9. Inventario completo de landing pages (40)</li>
+  <li>10. Qué queda por implementar</li>
+  <li>11. KPIs y seguimiento recomendado</li>
+</ul>
+
+<!-- 1. RESUMEN EJECUTIVO -->
+<div class="page-break"></div>
+<h2><span class="section-num">1</span>Resumen ejecutivo</h2>
+<p>El objetivo de este proyecto fue mejorar el posicionamiento orgánico de NuevaHabitat en Google para búsquedas de intención de venta de vivienda en Barcelona y su área metropolitana (p. ej. <em>«vender piso en Barcelona»</em>, <em>«vender piso particular Barcelona»</em>, <em>«vender piso Gràcia»</em>, <em>«vender piso sin exclusividad»</em>, etc.), partiendo de una base de landing pages con contenido insuficiente, cobertura geográfica incompleta y problemas técnicos de indexación.</p>
+<p>Se ha ejecutado un roadmap de <strong>5 fases</strong> (Fase 0 a Fase 4), pasando de un puñado de páginas con contenido superficial a un ecosistema de <strong>40 landing pages únicas</strong>, todas con contenido extenso (650–1200 palabras reales), datos de mercado, FAQs con schema, checklists, interlinking contextual y JSON-LD estático validado.</p>
+<table>
+  <tr><th>Métrica</th><th>Antes</th><th>Ahora</th></tr>
+  <tr><td>Landing pages indexables</td><td>~15, muchas con contenido fino (thin content)</td><td><strong>40</strong>, todas por encima del mínimo de palabras exigido</td></tr>
+  <tr><td>Cobertura de barrios/municipios</td><td>7</td><td><strong>22</strong></td></tr>
+  <tr><td>Páginas de "situación" (herencia, hipoteca, alquiler, etc.)</td><td>2</td><td><strong>10</strong></td></tr>
+  <tr><td>Comparativas vs. competencia</td><td>0</td><td><strong>6</strong> (Idealista, Fotocasa, agencia tradicional, venta por tu cuenta, Housfy, Clikalia)</td></tr>
+  <tr><td>Umbral mínimo de palabras por página</td><td>No definido / no auditado</td><td>650 (barrio/situación) · 900 (intención/comparativa)</td></tr>
+  <tr><td>Similitud máxima entre páginas (anti-duplicado)</td><td>No controlada</td><td>Validada automáticamente (umbral 0.38)</td></tr>
+  <tr><td>Enlaces contextuales dentro del cuerpo</td><td>0</td><td>~58 enlaces distribuidos en 39 páginas</td></tr>
+  <tr><td>JSON-LD (datos estructurados)</td><td>Parcial, con código duplicado en <code>js/seo.js</code></td><td>100% de páginas con JSON-LD estático validado; ~340 líneas de código muerto eliminadas</td></tr>
+  <tr><td>Sitemap</td><td>Estático, desactualizado</td><td>Dinámico (<code>/api/sitemap</code>), se autoactualiza con cada build</td></tr>
+</table>
+
+<!-- 2. DIAGNOSTICO -->
+<h2><span class="section-num">2</span>Diagnóstico inicial (auditoría SEO)</h2>
+<p>Antes de iniciar la implementación se realizó una auditoría completa que detectó los siguientes problemas estructurales:</p>
+<h3>2.1 Contenido</h3>
+<ul>
+  <li><strong>Contenido fino (thin content):</strong> la mayoría de landings tenían menos de 400 palabras de texto real (una vez eliminado el HTML/markup), muy por debajo de lo que Google espera para páginas que compiten por keywords de alta intención comercial.</li>
+  <li><strong>Riesgo de "Scaled Content Abuse":</strong> las páginas de barrio compartían una estructura casi idéntica, cambiando solo el nombre del barrio — un patrón que el sistema de contenido útil de Google penaliza activamente si se detecta a escala.</li>
+  <li><strong>Cobertura incompleta:</strong> faltaban páginas para barrios y municipios con volumen de búsqueda relevante (Sant Andreu, Sant Antoni, Sant Gervasi, Poble Sec, Cornellà, El Clot/La Sagrera, Sant Just/Sant Joan Despí) y para situaciones de venta muy buscadas (herencia, hipoteca pendiente, separación/divorcio, okupas).</li>
+  <li><strong>Sin páginas de comparación directa</strong> frente a competidores con mucho tráfico de marca (Idealista, Fotocasa, Housfy, Clikalia, agencia tradicional), que son búsquedas de altísima intención.</li>
+</ul>
+<h3>2.2 Técnico</h3>
+<ul>
+  <li>Código duplicado/muerto en <code>js/seo.js</code>: 21 entradas de metadatos SEO para páginas que ya generaban su propio JSON-LD estático en el build, nunca llegaban a ejecutarse.</li>
+  <li>Interlinking limitado a un bloque final de "también te puede interesar", sin enlaces contextuales dentro del propio texto (peor distribución de link equity interno).</li>
+  <li>Imágenes hero muy repetidas entre landings (una misma imagen usada hasta 4 veces).</li>
+  <li>Faltaban redirecciones 301 de la versión <code>.html</code> a la URL limpia para varias páginas nuevas, lo que genera contenido duplicado potencial.</li>
+</ul>
+
+<!-- 3. ESTRATEGIA -->
+<h2><span class="section-num">3</span>Estrategia y fases del roadmap</h2>
+<p>El roadmap se estructuró en 5 fases secuenciales para poder entregar valor de forma incremental y controlar el riesgo de penalización por escalar contenido de baja calidad:</p>
+<table>
+  <tr><th>Fase</th><th>Objetivo</th><th>Estado</th></tr>
+  <tr><td><strong>Fase 0</strong></td><td>Base técnica: subir los mínimos de calidad exigidos y ampliar las plantillas de renderizado con nuevos bloques de contenido</td><td><span class="badge badge-done">Completada</span></td></tr>
+  <tr><td><strong>Fase 1</strong></td><td>Ampliar el contenido de las landings ya existentes hasta cumplir los nuevos mínimos</td><td><span class="badge badge-done">Completada</span></td></tr>
+  <tr><td><strong>Fase 2</strong></td><td>Crear landings nuevas para barrios/municipios sin cobertura</td><td><span class="badge badge-done">Completada</span></td></tr>
+  <tr><td><strong>Fase 3</strong></td><td>Crear landings de valoración, nuevas situaciones de venta y comparativas vs. competidores</td><td><span class="badge badge-done">Completada</span></td></tr>
+  <tr><td><strong>Fase 4</strong></td><td>Interlinking contextual, limpieza técnica, diferenciación de imágenes y preparación de indexación</td><td><span class="badge badge-done">Completada</span></td></tr>
+</table>
+
+<!-- 4. FASE 0 -->
+<div class="page-break"></div>
+<h2><span class="section-num">4</span>Fase 0 — Base técnica de contenidos</h2>
+<p>Antes de escribir una sola línea de contenido nuevo, se rehízo la "regla del juego" para que todo lo que se creara a partir de ese momento cumpliera un estándar de calidad verificable automáticamente.</p>
+<h3>Qué se hizo</h3>
+<ul>
+  <li>Se subieron los mínimos de palabras exigidos por <code>scripts/build-landings.js</code>: <strong>650 palabras</strong> para páginas de barrio y situación, <strong>900 palabras</strong> para páginas de intención y comparativa (medidas sobre el texto real, sin etiquetas HTML).</li>
+  <li>Se bajó el umbral de similitud aceptado entre páginas (<code>SIMILARITY_THRESHOLD = 0.38</code>) para forzar que cada landing tenga argumentos y estructura realmente distintos, no una plantilla con find-and-replace del nombre del barrio.</li>
+  <li>Se amplió el esquema JSON de cada landing con bloques estructurados nuevos: <code>datosMercado</code> (precios €/m² por sub-zona), <code>perfilComprador</code>, <code>tipologiaEdificios</code> y <code>checklist</code> pre-venta.</li>
+  <li>Se actualizaron los scripts de renderizado (<code>render-barrio.js</code>, <code>render-pilar.js</code>, <code>build-landings.js</code>) y los estilos compartidos para soportar estos nuevos bloques visualmente.</li>
+  <li>Se reescribió <code>vender.html</code> (página pilar) con el ángulo diferencial "particular vs. agencia" y una parrilla de enlaces hacia todas las guías/landings.</li>
+</ul>
+<div class="callout">Esta fase fue la más importante desde el punto de vista de riesgo: sin unos mínimos de calidad medibles y automáticos, escalar a 40 páginas habría significado escalar también el riesgo de contenido duplicado o superficial.</div>
+
+<!-- 5. FASE 1 -->
+<h2><span class="section-num">5</span>Fase 1 — Ampliación de contenido existente</h2>
+<p>Con la nueva regla ya definida, se auditaron y ampliaron todas las landings que ya existían pero no llegaban al mínimo de palabras real.</p>
+<h3>Páginas ampliadas</h3>
+<ul>
+  <li><strong>Página pilar:</strong> <code>vender.html</code></li>
+  <li><strong>4 comparativas + 2 páginas de intención</strong> llevadas a 900–1200 palabras: vs. Idealista, vs. Fotocasa, vs. agencia tradicional, vender por tu cuenta vs. NuevaHabitat, vender piso rápido, vender sin exclusividad.</li>
+  <li><strong>7 barrios prioritarios:</strong> Eixample, Gràcia, Sants, Les Corts, Sarrià, Ciutat Vella, Poblenou.</li>
+  <li><strong>5 páginas de situación</strong> ya existentes: piso alquilado, antes de comprar otro, inquilino por vencer, separación/divorcio, traslado laboral.</li>
+  <li><strong>4 barrios/municipios restantes:</strong> Horta-Guinardó, Nou Barris, L'Hospitalet, Esplugues.</li>
+</ul>
+<h3>Tipo de contenido añadido por página</h3>
+<p>En cada página se añadieron 2–4 secciones temáticas nuevas y realmente específicas de la zona o situación (no genéricas), por ejemplo:</p>
+<ul>
+  <li>Impacto del ascensor / desnivel del terreno en el precio (Horta, Nou Barris).</li>
+  <li>Perfil habitual de comprador y vendedor por sub-zona (todos los barrios).</li>
+  <li>Cómo afecta la actualización de renta al precio de venta con inquilino (piso alquilado).</li>
+  <li>Qué hacer si hay más de una hipoteca o cargas registrales (hipoteca pendiente).</li>
+  <li>Coordinación con herederos menores de edad o repartidos en varias ciudades (herencia).</li>
+  <li>Papel del seguro de hogar frente a la ocupación ilegal (okupas).</li>
+</ul>
+
+<!-- 6. FASE 2 -->
+<div class="page-break"></div>
+<h2><span class="section-num">6</span>Fase 2 — Nuevas landings de zona</h2>
+<p>Se identificaron y crearon <strong>7 landings de barrio/municipio</strong> nuevas para zonas con volumen de búsqueda que no tenían página propia, cada una con datos de mercado, tipología de edificio y perfil de comprador específicos:</p>
+<table>
+  <tr><th>Landing</th><th>Zona</th></tr>
+  <tr><td><code>vender-cornella</code></td><td>Cornellà de Llobregat</td></tr>
+  <tr><td><code>vender-el-clot-la-sagrera-barcelona</code></td><td>El Clot / La Sagrera</td></tr>
+  <tr><td><code>vender-poble-sec</code></td><td>Poble Sec</td></tr>
+  <tr><td><code>vender-sant-andreu</code></td><td>Sant Andreu (incl. Bon Pastor, Baró de Viver)</td></tr>
+  <tr><td><code>vender-sant-antoni</code></td><td>Sant Antoni</td></tr>
+  <tr><td><code>vender-sant-gervasi</code></td><td>Sant Gervasi (diferenciado de Sarrià para evitar canibalización de keywords)</td></tr>
+  <tr><td><code>vender-sant-just-sant-joan-despi</code></td><td>Sant Just Desvern / Sant Joan Despí</td></tr>
+</table>
+<p class="small">Nota: se identificó y corrigió un riesgo de canibalización de keywords entre Sarrià y Sant Gervasi ajustando el ámbito y las zonas de cada página para que compitan por búsquedas distintas.</p>
+
+<!-- 7. FASE 3 -->
+<h2><span class="section-num">7</span>Fase 3 — Nuevas landings de situación y comparativas</h2>
+<h3>7.1 Landing de valoración</h3>
+<p><code>cuanto-vale-mi-piso-barcelona</code> — página dirigida a la keyword de altísimo volumen "cuánto vale mi piso en Barcelona", con foco en el proceso de valoración gratuita.</p>
+<h3>7.2 Nuevas páginas de situación de venta</h3>
+<table>
+  <tr><th>Landing</th><th>Situación cubierta</th></tr>
+  <tr><td><code>vender-piso-hipoteca-pendiente-barcelona</code></td><td>Venta con hipoteca sin cancelar, incluyendo casos con varias cargas registrales</td></tr>
+  <tr><td><code>vender-piso-herencia-barcelona</code></td><td>Venta de piso heredado, con casos de herederos menores o repartidos en distintas ciudades</td></tr>
+  <tr><td><code>vender-piso-separacion-divorcio-barcelona</code></td><td>Venta por separación/divorcio, gestión del cónyuge residente y reparto de arras</td></tr>
+  <tr><td><code>vender-piso-okupado-barcelona</code></td><td>Venta con okupación ilegal, seguros de defensa jurídica y presentación transparente al comprador</td></tr>
+</table>
+<h3>7.3 Nuevas comparativas vs. competencia</h3>
+<table>
+  <tr><th>Landing</th><th>Comparativa</th></tr>
+  <tr><td><code>nuevahabitat-vs-housfy-barcelona</code></td><td>Modelo de precio fijo digital/remoto vs. acompañamiento presencial local</td></tr>
+  <tr><td><code>nuevahabitat-vs-clikalia-barcelona</code></td><td>Comprador instantáneo (iBuyer) con descuento vs. venta a precio de mercado</td></tr>
+</table>
+
+<!-- 8. FASE 4 -->
+<div class="page-break"></div>
+<h2><span class="section-num">8</span>Fase 4 — Interlinking, limpieza técnica e indexación</h2>
+<h3>8.1 Validación de calidad de contenido</h3>
+<p>Antes de dar por cerrada la fase de contenido se ejecutó <code>scripts/build-landings.js</code> con validación estricta y se detectó que 9 páginas todavía no llegaban al mínimo real de palabras (contando solo texto, sin HTML). Se corrigieron todas: <code>vender-segunda-residencia-barcelona</code>, <code>vender-sants</code>, <code>vender-sarria</code>, <code>vender-poblenou</code>, <code>vender-les-corts</code>, <code>vender-piso-born-barcelona</code>, <code>vender-piso-ciutat-vella-barcelona</code>, <code>vender-piso-raval-barcelona</code>, <code>vender-sant-just-sant-joan-despi</code>. El build final pasa <strong>sin ningún error</strong> de validación.</p>
+<h3>8.2 Interlinking contextual</h3>
+<p>Se desarrolló <code>scripts/add-interlinks.js</code>, un script reutilizable que analiza el texto de cada landing y convierte automáticamente frases clave ya existentes en enlaces hacia otras páginas relevantes del sitio (sin tocar los títulos <code>&lt;h2&gt;</code> ni duplicar enlaces), por ejemplo:</p>
+<ul>
+  <li>«vender piso sin exclusividad» → landing de exclusividad</li>
+  <li>«comisión del 6% / agencia tradicional» → comparativa vs. agencia tradicional</li>
+  <li>«Idealista» / «Fotocasa» → comparativas correspondientes</li>
+  <li>«hipoteca pendiente», «herencia», «okupa», «separación/divorcio» → landings de situación específicas</li>
+  <li>«contrato de arras», «plusvalía municipal», «nota simple» → artículos del blog</li>
+</ul>
+<p>Resultado: <strong>~58 enlaces contextuales</strong> insertados de forma natural dentro del cuerpo del texto en <strong>39 de las 40 páginas</strong>, mejorando la distribución interna de relevancia (link equity) más allá del bloque final de "también te puede interesar" que ya existía.</p>
+<h3>8.3 Limpieza de código</h3>
+<p>Se eliminaron de <code>js/seo.js</code> 21 entradas de metadatos SEO (~340 líneas) para landings que desde el build ya generan su propio JSON-LD estático (<code>#nh-seo-static</code>): el código antiguo nunca se ejecutaba pero aumentaba el peso del archivo y la complejidad de mantenimiento.</p>
+<h3>8.4 Imágenes diferenciadas</h3>
+<p>Se redistribuyeron las imágenes hero de las 22 landings de barrio para reducir la repetición (antes una misma foto se usaba hasta 4 veces; ahora el máximo es 2 repeticiones, bien espaciadas entre sí).</p>
+<h3>8.5 Redirecciones e indexación</h3>
+<ul>
+  <li>Se añadieron en <code>vercel.json</code> las redirecciones 301 de <code>.html</code> a URL limpia que faltaban para las 14 páginas nuevas creadas en Fases 2 y 3.</li>
+  <li>Se verificó que el sitemap dinámico (<code>/api/sitemap</code>, servido en <code>/sitemap.xml</code> vía rewrite) lee automáticamente <code>content/landings-index.json</code>, por lo que las 40 landings quedan incluidas sin mantenimiento manual.</li>
+  <li>Se validó que el JSON-LD estático generado en build es JSON válido en una muestra representativa de páginas.</li>
+</ul>
+
+<!-- 9. INVENTARIO -->
+<div class="page-break"></div>
+<h2><span class="section-num">9</span>Inventario completo de landing pages (40)</h2>
+<h3>9.1 Barrio / municipio (22)</h3>
+<table>
+<tr><th>#</th><th>URL</th><th>Origen</th></tr>
+<tr><td>1</td><td>vender-eixample</td><td>Ya existía · ampliada</td></tr>
+<tr><td>2</td><td>vender-gracia</td><td>Ya existía · ampliada</td></tr>
+<tr><td>3</td><td>vender-sants</td><td>Ya existía · ampliada</td></tr>
+<tr><td>4</td><td>vender-les-corts</td><td>Ya existía · ampliada</td></tr>
+<tr><td>5</td><td>vender-sarria</td><td>Ya existía · ampliada</td></tr>
+<tr><td>6</td><td>vender-piso-ciutat-vella-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>7</td><td>vender-poblenou</td><td>Ya existía · ampliada</td></tr>
+<tr><td>8</td><td>vender-horta</td><td>Ya existía · ampliada</td></tr>
+<tr><td>9</td><td>vender-nou-barris</td><td>Ya existía · ampliada</td></tr>
+<tr><td>10</td><td>vender-l-hospitalet</td><td>Ya existía · ampliada</td></tr>
+<tr><td>11</td><td>vender-esplugues</td><td>Ya existía · ampliada</td></tr>
+<tr><td>12</td><td>vender-piso-gotic-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>13</td><td>vender-piso-born-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>14</td><td>vender-piso-raval-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>15</td><td>vender-piso-barceloneta</td><td>Ya existía · ampliada</td></tr>
+<tr><td>16</td><td>vender-cornella</td><td><strong>Nueva (Fase 2)</strong></td></tr>
+<tr><td>17</td><td>vender-el-clot-la-sagrera-barcelona</td><td><strong>Nueva (Fase 2)</strong></td></tr>
+<tr><td>18</td><td>vender-poble-sec</td><td><strong>Nueva (Fase 2)</strong></td></tr>
+<tr><td>19</td><td>vender-sant-andreu</td><td><strong>Nueva (Fase 2)</strong></td></tr>
+<tr><td>20</td><td>vender-sant-antoni</td><td><strong>Nueva (Fase 2)</strong></td></tr>
+<tr><td>21</td><td>vender-sant-gervasi</td><td><strong>Nueva (Fase 2)</strong></td></tr>
+<tr><td>22</td><td>vender-sant-just-sant-joan-despi</td><td><strong>Nueva (Fase 2)</strong></td></tr>
+</table>
+<h3>9.2 Situación de venta (10)</h3>
+<table>
+<tr><th>#</th><th>URL</th><th>Origen</th></tr>
+<tr><td>1</td><td>vender-piso-alquilado-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>2</td><td>vender-piso-antes-comprar-otro-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>3</td><td>vender-piso-inquilino-vencer-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>4</td><td>vender-piso-separacion-divorcio-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>5</td><td>vender-piso-traslado-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>6</td><td>vender-segunda-residencia-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>7</td><td>cuanto-vale-mi-piso-barcelona</td><td><strong>Nueva (Fase 3)</strong></td></tr>
+<tr><td>8</td><td>vender-piso-hipoteca-pendiente-barcelona</td><td><strong>Nueva (Fase 3)</strong></td></tr>
+<tr><td>9</td><td>vender-piso-herencia-barcelona</td><td><strong>Nueva (Fase 3)</strong></td></tr>
+<tr><td>10</td><td>vender-piso-okupado-barcelona</td><td><strong>Nueva (Fase 3)</strong></td></tr>
+</table>
+<h3>9.3 Intención de venta (2)</h3>
+<table>
+<tr><th>#</th><th>URL</th><th>Origen</th></tr>
+<tr><td>1</td><td>vender-piso-rapido-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>2</td><td>vender-piso-sin-exclusividad-barcelona</td><td>Ya existía · ampliada</td></tr>
+</table>
+<h3>9.4 Comparativas vs. competencia (6)</h3>
+<table>
+<tr><th>#</th><th>URL</th><th>Origen</th></tr>
+<tr><td>1</td><td>nuevahabitat-vs-idealista-particular</td><td>Ya existía · ampliada</td></tr>
+<tr><td>2</td><td>nuevahabitat-vs-fotocasa-particular</td><td>Ya existía · ampliada</td></tr>
+<tr><td>3</td><td>nuevahabitat-vs-agencia-tradicional-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>4</td><td>vender-por-tu-cuenta-vs-nuevahabitat-barcelona</td><td>Ya existía · ampliada</td></tr>
+<tr><td>5</td><td>nuevahabitat-vs-housfy-barcelona</td><td><strong>Nueva (Fase 3)</strong></td></tr>
+<tr><td>6</td><td>nuevahabitat-vs-clikalia-barcelona</td><td><strong>Nueva (Fase 3)</strong></td></tr>
+</table>
+
+<!-- 10. PENDIENTE -->
+<div class="page-break"></div>
+<h2><span class="section-num">10</span>Qué queda por implementar</h2>
+<p>El trabajo de código e infraestructura del roadmap está <strong>100% completado y desplegable</strong>. Lo que queda pendiente se divide en dos bloques: acciones de cuenta/plataforma que requieren acceso a paneles externos, y mejoras de contenido a medio plazo que conviene planificar como "Fase 5".</p>
+
+<h3>10.1 Acciones de cuenta / plataforma (no requieren código, sí acceso a los paneles)</h3>
+<table>
+  <tr><th>Acción</th><th>Por qué importa</th><th>Prioridad</th></tr>
+  <tr><td>Confirmar variable de entorno <code>GA_MEASUREMENT_ID</code> en Vercel</td><td>El build ya lee esta variable para generar <code>js/ga-config.js</code>; si no está configurada en producción, Analytics no registrará tráfico real</td><td><span class="badge badge-account">Cuenta</span></td></tr>
+  <tr><td>Verificar la propiedad del dominio en Google Search Console</td><td>Sin esto no se puede confirmar indexación real ni ver impresiones/clics por keyword</td><td><span class="badge badge-account">Cuenta</span></td></tr>
+  <tr><td>Enviar el sitemap dinámico en GSC y solicitar indexación manual de las 40 landings</td><td>Acelera la primera indexación en vez de esperar al rastreo orgánico de Google</td><td><span class="badge badge-account">Cuenta</span></td></tr>
+  <tr><td>Optimizar ficha de Google Business Profile (categorías, fotos, horario, reseñas)</td><td>Impacta directamente en el paquete local (Google Maps) para búsquedas "inmobiliaria cerca de mí" / "vender piso + barrio"</td><td><span class="badge badge-account">Cuenta</span></td></tr>
+  <tr><td>Configurar seguimiento de conversiones en GA4 (envíos de formulario, clics a WhatsApp/teléfono)</td><td>Sin esto no se puede medir qué landing convierte mejor</td><td><span class="badge badge-account">Cuenta</span></td></tr>
+</table>
+
+<h3>10.2 Mejoras de contenido y producto a medio plazo (Fase 5 sugerida)</h3>
+<table>
+  <tr><th>Mejora</th><th>Detalle</th><th>Esfuerzo</th></tr>
+  <tr><td>Fotografía real diferenciada por zona</td><td>Actualmente solo hay 13 imágenes de interior/equipo distintas repartidas entre 22 landings de barrio. Encargar un reportaje fotográfico (o banco de imágenes con licencia) específico por distrito eliminaría por completo la repetición y reforzaría la percepción de contenido único ante Google y ante el usuario</td><td><span class="badge badge-mid">Medio</span></td></tr>
+  <tr><td>Contenido para municipios metropolitanos restantes</td><td>Badalona, Sant Cugat, Castelldefels, Viladecans, El Prat u otros municipios de la corona metropolitana con volumen de búsqueda no cubierto todavía</td><td><span class="badge badge-mid">Medio</span></td></tr>
+  <tr><td>Ampliar el blog con artículos de apoyo a las nuevas landings</td><td>Las landings de herencia, hipoteca pendiente, separación/divorcio y okupas no tienen todavía un artículo de blog "hermano" que profundice y enlace de vuelta (actualmente solo se enlaza a artículos ya existentes como contrato de arras, gastos de compraventa, etc.)</td><td><span class="badge badge-mid">Medio</span></td></tr>
+  <tr><td>Programa de backlinks / menciones locales</td><td>Ninguna cantidad de contenido on-page sustituye la autoridad de dominio; conviene un plan de relaciones con medios locales, directorios inmobiliarios y colaboraciones para conseguir enlaces externos de calidad hacia las landings de barrio</td><td><span class="badge badge-pending">Alto</span></td></tr>
+  <tr><td>Monitorización de Core Web Vitals en producción</td><td>Con 40 páginas nuevas conviene revisar en Search Console &gt; Core Web Vitals que el LCP/CLS se mantiene saludable, especialmente en móvil, una vez el tráfico real empiece a llegar</td><td><span class="badge badge-mid">Medio</span></td></tr>
+  <tr><td>Revisión trimestral de canibalización de keywords</td><td>Con 40 páginas activas, revisar cada 3 meses en Search Console qué páginas compiten entre sí por la misma keyword (ya se corrigió un caso entre Sarrià y Sant Gervasi) y ajustar el enfoque de cada una si es necesario</td><td><span class="badge badge-mid">Medio</span></td></tr>
+  <tr><td>Ampliar interlinking contextual con nuevas reglas</td><td>El script <code>scripts/add-interlinks.js</code> queda documentado y es reutilizable: cada vez que se añada una landing o artículo de blog nuevo, basta con añadir una regla de palabra clave y volver a ejecutarlo</td><td><span class="badge badge-mid">Bajo</span></td></tr>
+</table>
+
+<div class="callout"><strong>Nota técnica:</strong> todos los scripts creados (<code>scripts/build-landings.js</code>, <code>scripts/add-interlinks.js</code>, <code>scripts/validate-jsonld.js</code>) quedan en el repositorio y se ejecutan automáticamente en cada despliegue de Vercel (<code>buildCommand</code>), por lo que cualquier nueva landing que se añada como JSON en <code>content/landings/</code> heredará automáticamente todas las validaciones y mejoras de esta fase.</div>
+
+<!-- 11. KPIs -->
+<div class="page-break"></div>
+<h2><span class="section-num">11</span>KPIs y seguimiento recomendado</h2>
+<p>Una vez desplegado y con Search Console/GA4 correctamente conectados, se recomienda revisar mensualmente:</p>
+<div class="grid2">
+<div>
+<div class="kpi-box"><strong>Páginas indexadas</strong><br><span class="small">Objetivo: 40/40 landings indexadas en GSC en los primeros 30–45 días</span></div>
+<div class="kpi-box"><strong>Impresiones y clics por keyword</strong><br><span class="small">Especial atención a "vender piso + [barrio]" y "vender piso sin exclusividad/rápido"</span></div>
+<div class="kpi-box"><strong>Posición media por landing</strong><br><span class="small">Comparar barrios prioritarios (Eixample, Gràcia, Sants...) vs. barrios nuevos (Fase 2) para medir velocidad de posicionamiento</span></div>
+</div>
+<div>
+<div class="kpi-box"><strong>Tasa de conversión a lead</strong><br><span class="small">Formulario de valoración / clics a WhatsApp por landing, para priorizar qué páginas merecen más inversión de contenido o enlaces</span></div>
+<div class="kpi-box"><strong>Core Web Vitals</strong><br><span class="small">LCP, CLS e INP en Search Console, sobre todo en las páginas con más imágenes</span></div>
+<div class="kpi-box"><strong>Canibalización de keywords</strong><br><span class="small">Informe de rendimiento por consulta en GSC, filtrando páginas que compiten entre sí</span></div>
+</div>
+</div>
+
+<div class="footer-note">
+  Documento generado automáticamente a partir del trabajo de implementación del roadmap SEO de landing pages de NuevaHabitat. Fases 0–4 completadas el 26 de julio de 2026.
+</div>
+
+</body>
+</html>

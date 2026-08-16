@@ -70,7 +70,7 @@ ${navBar(L)}
     <p>${L.hero.lead}</p>
     <div style="display:flex;gap:.75rem;flex-wrap:wrap">
       <a href="#valorar" class="btn btn-gold btn-lg">Valoración gratuita en ${L.barrio}</a>
-      <a href="tel:+34603656587" class="btn btn-outline-light btn-lg">603 656 587</a>
+      <a href="tel:+34603656587" class="btn btn-outline-light btn-lg">${require('./phone-config').displayBoth()}</a>
     </div>
   </div></div>
 </section>
@@ -115,7 +115,7 @@ ${L.testimonials === false ? '' : '<section class="testimonios" data-nh-testimon
   <div class="container text-center fade-up">
     <span class="overline">Cartera activa</span>
     <h2 class="section-title">Inmuebles en venta en ${L.barrio}</h2>
-    <a href="inmuebles.html?q=${encodeURIComponent(L.inmueblesQuery)}" class="btn btn-gold btn-lg">Ver inmuebles en ${L.barrio} →</a>
+    <a href="/inmuebles?q=${encodeURIComponent(L.inmueblesQuery)}" class="btn btn-gold btn-lg">Ver inmuebles en ${L.barrio} →</a>
   </div>
 </section>
 ${relatedBlock()}

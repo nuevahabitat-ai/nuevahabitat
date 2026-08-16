@@ -28,7 +28,7 @@ window.nhFavoritos = {
     if (!window.nhSupabase) return;
     const { data: { session } } = await window.nhSupabase.auth.getSession();
     if (!session) {
-      window.location.href = 'login.html?redirect=' + encodeURIComponent(location.href);
+      window.location.href = '/login?redirect=' + encodeURIComponent(location.href);
       return;
     }
     const btn = e.currentTarget;

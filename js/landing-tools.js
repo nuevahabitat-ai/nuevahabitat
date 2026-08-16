@@ -1,6 +1,5 @@
-/** Calculadora 6% vs 3.000€ + CTAs de conversión en landings */
+/** CTAs de conversión en landings — llamadas, WhatsApp, sticky bars */
 (function () {
-  const NH_FEE = 3630;
   const STICKY_THRESHOLD = 400;
 
   function landingMeta() {
@@ -8,10 +7,7 @@
     const slug = body.dataset.nhLandingSlug
       || location.pathname.replace(/^\//, '').replace(/\.html$/, '')
       || '';
-    return {
-      slug,
-      cluster: body.dataset.nhCluster || '',
-    };
+    return { slug, cluster: body.dataset.nhCluster || '' };
   }
 
   function track(eventName, params) {
@@ -23,53 +19,14 @@
     });
   }
 
-  function formatEuro(n) {
-    return Math.round(n).toLocaleString('es-ES') + ' €';
-  }
-
-  function bindCalculator(root) {
-    const range = root.querySelector('#lc-precio, [data-lc-precio]');
-    if (!range) return;
-
-    const label = root.querySelector('#lc-precio-label');
-    const trad = root.querySelector('#lc-trad');
-    const save = root.querySelector('#lc-save');
-    let tracked = false;
-
-    function upd() {
-      const p = Number(range.value) || Number(document.body.dataset.nhPrecioDefault) || 420000;
-      const tradVal = Math.round(p * 0.06 * 1.21);
-      const saveVal = Math.max(0, tradVal - NH_FEE);
-      if (label) label.textContent = p.toLocaleString('es-ES') + ' €';
-      if (trad) trad.textContent = formatEuro(tradVal);
-      if (save) save.textContent = formatEuro(saveVal);
-    }
-
-    range.addEventListener('input', () => {
-      upd();
-      if (!tracked) {
-        tracked = true;
-        track('calculator_interaction', { precio: Number(range.value) });
-      }
-    });
-    upd();
-  }
-
-  function initCalculator() {
-    const roots = document.querySelectorAll('[data-lc-calc], .lc-calc');
-    if (!roots.length && document.getElementById('lc-precio')) {
-      bindCalculator(document);
-      return;
-    }
-    roots.forEach(bindCalculator);
-  }
-
   function initCallTracking() {
     document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
       if (link.dataset.nhCallBound) return;
       link.dataset.nhCallBound = '1';
       link.addEventListener('click', () => {
         track('click_to_call', {
+          event_category: 'conversion',
+          method: 'phone',
           link_url: link.getAttribute('href') || '',
           call_placement: link.dataset.nhCall || (link.classList.contains('nav-tel') ? 'header' : 'banner'),
         });
@@ -87,11 +44,11 @@
     el.className = 'nh-sticky-cta';
     el.hidden = true;
     el.setAttribute('aria-hidden', 'true');
-    el.innerHTML = '<a href="#valorar" class="nh-sticky-cta__btn btn btn-gold">Valoración gratis</a>';
+    el.innerHTML = '<a href="#valorar" class="nh-sticky-cta__btn btn btn-gold" data-nh-track-cta>Valoración gratis</a>';
     document.body.appendChild(el);
 
     el.querySelector('a')?.addEventListener('click', () => {
-      track('sticky_cta_click', {});
+      track('sticky_cta_click', { event_category: 'engagement' });
     });
     return el;
   }
@@ -107,12 +64,12 @@
     el.href = 'tel:+34603656587';
     el.setAttribute('aria-label', 'Llamar a NuevaHabitat');
     el.dataset.nhCall = 'sticky-mobile';
-    el.innerHTML = '<span class="nh-sticky-call__icon" aria-hidden="true">📞</span><span>Llamar</span>';
+    el.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span>Llamar</span>';
     el.hidden = true;
     document.body.appendChild(el);
 
     el.addEventListener('click', () => {
-      track('click_to_call', { call_placement: 'sticky-mobile' });
+      track('click_to_call', { event_category: 'conversion', method: 'phone', call_placement: 'sticky-mobile' });
     });
     return el;
   }
@@ -158,13 +115,12 @@
       if (link.dataset.nhWaBound) return;
       link.dataset.nhWaBound = '1';
       link.addEventListener('click', () => {
-        track('whatsapp_click', { link_url: link.href });
+        track('whatsapp_click', { event_category: 'conversion', method: 'whatsapp', link_url: link.href });
       });
     });
   }
 
   function init() {
-    initCalculator();
     initCallTracking();
     initStickyBars();
     initWhatsappFloat();

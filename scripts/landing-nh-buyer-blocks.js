@@ -56,7 +56,7 @@ function nhBuyerPanelDemoBlock() {
           <li><strong>Exclusiva off-market</strong> — acceso a viviendas en venta que no están en portales inmobiliarios.</li>
           <li><strong>Documentación centralizada</strong> — contratos, arras y documentos del inmueble en un solo lugar.</li>
         </ul>
-        <a href="registro.html" class="btn btn-gold" style="margin-top:.5rem">Crear cuenta de comprador →</a>
+        <a href="/registro" class="btn btn-gold" style="margin-top:.5rem">Crear cuenta de comprador →</a>
       </div>
       <div class="lc-pm-wrap lc-pm-wrap--comprador" aria-hidden="true">
         <div class="lc-pm-header">

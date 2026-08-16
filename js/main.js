@@ -151,8 +151,8 @@
   window.handleSearch = function () {
     const q = input ? input.value.trim() : '';
     const url = mode === 'vender'
-      ? `vender.html${q ? '?zona=' + encodeURIComponent(q) : ''}`
-      : `comprar.html${q ? '?zona=' + encodeURIComponent(q) : ''}`;
+      ? `/vender${q ? '?zona=' + encodeURIComponent(q) : ''}`
+      : `/comprar${q ? '?zona=' + encodeURIComponent(q) : ''}`;
     window.location.href = url;
   };
 
@@ -365,16 +365,19 @@
   if (!tabs.length) return;
 
   const path = window.location.pathname.toLowerCase();
-  const file = path.split('/').pop() || 'index.html';
+  const file = (path.split('/').pop() || '').replace(/\.html$/, '');
 
   const map = {
-    'index.html': 'inicio',
-    '':           'inicio',
-    'inmuebles.html': 'inmuebles',
-    'vender.html': 'vender',
-    'comprar.html': 'comprar',
-    'login.html': 'cuenta',
-    'registro.html': 'cuenta',
+    '': 'inicio',
+    'index': 'inicio',
+    'inmuebles': 'inmuebles',
+    'inmueble-detalle': 'inmuebles',
+    'vender': 'vender',
+    'comprar': 'comprar',
+    'login': 'cuenta',
+    'registro': 'cuenta',
+    'confirmar-cuenta': 'cuenta',
+    'panel': 'cuenta',
   };
 
   // inmueble detail pages → inmuebles tab
@@ -465,7 +468,8 @@ window.nhLoadAnalytics = function () {
   function gtag(){ dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag('js', new Date());
-  gtag('config', id, { anonymize_ip: true });
+  gtag('config', id, { anonymize_ip: true, send_page_view: true });
+  document.dispatchEvent(new CustomEvent('nh:analytics-ready'));
 };
 
 window.nhCookiePrefs = function (mode) {
@@ -491,7 +495,7 @@ window.nhCookiePrefs = function (mode) {
   msb.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       const val = msb.value.trim();
-      if (val) window.location.href = `inmuebles.html?q=${encodeURIComponent(val)}`;
+      if (val) window.location.href = `/inmuebles?q=${encodeURIComponent(val)}`;
     }
   });
 
@@ -499,7 +503,7 @@ window.nhCookiePrefs = function (mode) {
   if (btn) {
     btn.addEventListener('click', () => {
       const val = msb.value.trim();
-      window.location.href = `inmuebles.html${val ? '?q=' + encodeURIComponent(val) : ''}`;
+      window.location.href = `/inmuebles${val ? '?q=' + encodeURIComponent(val) : ''}`;
     });
   }
 })();

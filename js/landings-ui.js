@@ -58,12 +58,12 @@
     if (!container || !window.NH_LANDINGS) return;
 
     var extraLinks = {
-      comprar: linkItem('comprar.html', 'Comprar'),
-      hipotecas: linkItem('hipotecas.html', 'Hipotecas'),
-      inmuebles: linkItem('inmuebles.html', 'Inmuebles'),
+      comprar: linkItem('/comprar', 'Comprar'),
+      hipotecas: linkItem('/hipotecas', 'Hipotecas'),
+      inmuebles: linkItem('/inmuebles', 'Inmuebles'),
     };
 
-    var hub = [linkItem('vender.html', 'Vender')];
+    var hub = [linkItem('/vender', 'Vender')];
     var extra = (container.getAttribute('data-nh-footer-extra') || '').split(',').map(function (s) {
       return s.trim();
     }).filter(Boolean);

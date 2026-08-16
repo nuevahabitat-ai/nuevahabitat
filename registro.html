@@ -26,7 +26,7 @@
   <div class="auth-visual">
     <img src="imagenes/interior3.jpg" alt="Interior NuevaHabitat"/>
     <div class="auth-visual-overlay"></div>
-    <div class="auth-visual-brand"><a href="index.html"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/></a></div>
+    <div class="auth-visual-brand"><a href="/"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/></a></div>
     <div class="auth-visual-copy">
       <h2>Sin adelantos.<br/>Sin sorpresas.</h2>
       <p>Regístrate y tu agente se pondrá en contacto en menos de 24 horas para empezar el proceso.</p>
@@ -83,11 +83,11 @@
         </div>
         <div style="display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem;font-size:.8125rem;color:var(--gris-texto)">
           <input type="checkbox" id="regPrivacy" required style="margin-top:2px;accent-color:var(--oro)"/>
-          <span>Acepto la <a href="privacidad.html" style="color:var(--oro)">política de privacidad</a> y el tratamiento de mis datos.</span>
+          <span>Acepto la <a href="/privacidad" style="color:var(--oro)">política de privacidad</a> y el tratamiento de mis datos.</span>
         </div>
         <button type="submit" class="btn btn-gold btn-lg" id="regBtn" style="width:100%;justify-content:center">Crear mi cuenta →</button>
       </form>
-      <p class="auth-link">¿Ya tienes cuenta? <a href="login.html">Iniciar sesión</a></p>
+      <p class="auth-link">¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
     </div>
   </div>
 </div>
@@ -150,7 +150,7 @@ document.addEventListener('supabase:ready', async () => {
     } else {
       localStorage.setItem('nh_reg_email', email);
       window.nhSeo?.track('sign_up', { method: 'email', user_type: tipo });
-      window.location.href = 'confirmar-cuenta.html?pending=1&email=' + encodeURIComponent(email);
+      window.location.href = '/confirmar-cuenta?pending=1&email=' + encodeURIComponent(email);
     }
   });
 });

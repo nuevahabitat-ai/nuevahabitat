@@ -57,7 +57,7 @@
         Ya confirmé — Ir a mi panel →
       </button>
       <button class="btn btn-outline" id="btn-resend" style="width:100%;justify-content:center;font-size:.85rem">Reenviar email de confirmación</button>
-      <a href="login.html" class="cf-back">¿Ya confirmaste? Iniciar sesión</a>
+      <a href="/login" class="cf-back">¿Ya confirmaste? Iniciar sesión</a>
     </div>
 
     <!-- Estado: confirmado -->
@@ -71,7 +71,7 @@
       <button class="btn btn-gold btn-lg" id="btn-panel" style="width:100%;justify-content:center;font-size:1rem;padding:1rem">
         Ir a mi panel →
       </button>
-      <a href="index.html" class="cf-back">Volver al inicio</a>
+      <a href="/" class="cf-back">Volver al inicio</a>
     </div>
 
     <!-- Estado: error -->
@@ -79,8 +79,8 @@
       <div class="cf-error" id="error-msg">No pudimos confirmar tu cuenta.</div>
       <h1>Algo ha fallado</h1>
       <p>El enlace puede haber caducado. Intenta iniciar sesión o regístrate de nuevo.</p>
-      <a href="login.html" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;display:inline-flex;margin-bottom:.75rem">Iniciar sesión</a>
-      <a href="registro.html" class="cf-back">Crear nueva cuenta</a>
+      <a href="/login" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;display:inline-flex;margin-bottom:.75rem">Iniciar sesión</a>
+      <a href="/registro" class="cf-back">Crear nueva cuenta</a>
     </div>
 
   </div>
@@ -158,7 +158,7 @@ async function onConfirmed(initialUser) {
 async function initConfirm() {
   if (!window.nhSupabase) { document.addEventListener('supabase:ready', initConfirm); return; }
   if (new URLSearchParams(location.search).get('logout') === '1') {
-    window.location.replace('login.html?logout=1');
+    window.location.replace('/login?logout=1');
     return;
   }
 
@@ -223,7 +223,7 @@ async function initConfirm() {
 
 document.getElementById('btn-panel').addEventListener('click', () => {
   if (confirmedUser) nhAuth.redirectAfterLogin(confirmedUser);
-  else window.location.href = 'login.html';
+  else window.location.href = '/login';
 });
 
 document.getElementById('btn-check').addEventListener('click', async () => {
@@ -242,7 +242,7 @@ document.getElementById('btn-check').addEventListener('click', async () => {
   } else {
     btn.textContent = 'Ya confirmé — Ir a mi panel →';
     btn.disabled = false;
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   }
 });
 
@@ -255,7 +255,7 @@ document.getElementById('btn-resend').addEventListener('click', async () => {
   const { error } = await window.nhSupabase.auth.resend({
     type: 'signup',
     email,
-    options: { emailRedirectTo: window.location.origin + '/confirmar-cuenta.html' }
+    options: { emailRedirectTo: window.location.origin + '/confirmar-cuenta' }
   });
   btn.textContent = 'Reenviar email de confirmación';
   btn.disabled = false;

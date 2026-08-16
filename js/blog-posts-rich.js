@@ -1397,6 +1397,177 @@
       </aside>
       `,
     },
+
+    'guia-valoracion-piso-barcelona-2026': {
+      readMin: 9,
+      faq: [
+        { q: '¿Cuánto cuesta una valoración de piso en Barcelona?', a: 'NuevaHabitat ofrece valoración gratuita con visita presencial en Barcelona y área metropolitana. Agencias tradicionales suelen incluirla en la comisión; tasadores independientes pueden cobrar 200–400 €.' },
+        { q: '¿Qué diferencia hay entre valoración y tasación hipotecaria?', a: 'La valoración de mercado orienta el precio de venta. La tasación hipotecaria la encarga el banco del comprador y puede ser inferior si el tasador aplica criterios más conservadores.' },
+        { q: '¿Puedo fiarme del precio de Idealista para valorar?', a: 'No como única fuente. Los anuncios suelen estar 5–12% por encima del precio de cierre. Hay que cruzar operaciones reales, estado del inmueble y demanda actual.' },
+        { q: '¿Cuánto tarda una valoración profesional?', a: 'Entre 24 y 72 horas desde la visita presencial, según complejidad del inmueble y disponibilidad de comparables en el barrio.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Una valoración seria combina comparables cerrados, visita presencial y factores del edificio (ITE, certificado energético).</li>
+          <li>Los estimadores online son orientativos; no sustituyen el análisis de micro-mercado por barrio.</li>
+          <li>Fijar un precio de salida realista reduce el tiempo en mercado y evita rebajas posteriores.</li>
+          <li>NuevaHabitat incluye valoración gratuita antes de decidir vender. Consulta la <a href="/cuanto-vale-mi-piso-barcelona">guía de valoración en Barcelona</a>.</li>
+        </ul>
+      </aside>
+      <nav class="blog-toc">
+        <p>Contenido del artículo</p>
+        <ol>
+          <li><a href="#metodo">Método de valoración profesional</a></li>
+          <li><a href="#comparables">Comparables: qué mirar</a></li>
+          <li><a href="#edificio">Edificio e ITE</a></li>
+          <li><a href="#rango">Cómo fijar el rango de precio</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ol>
+      </nav>
+      <p>Si te preguntas <strong>cuánto vale tu piso en Barcelona</strong>, la respuesta no está en una cifra única de portal inmobiliario. En 2026, la dispersión entre Eixample y Nou Barris supera los 2.000 €/m²; dentro del mismo barrio, planta, orientación e ITE pueden mover el valor más de un 15%.</p>
+      <h2 id="metodo">Método de valoración profesional</h2>
+      <p>Una valoración rigurosa sigue cuatro pasos: recopilar comparables de operaciones cerradas (no solo anuncios activos), inspeccionar el inmueble in situ, analizar la situación registral y de la finca, y proponer un rango de precio con tiempo estimado de venta. En NuevaHabitat entregamos ese informe sin coste ni exclusiva.</p>
+      <h2 id="comparables">Comparables: qué mirar</h2>
+      <p>Filtra por misma tipología (piso, ático, bajo), superficie ±10%, estado de reforma y distancia máxima de 500 m. Ajusta por ascensor, parking, terraza y certificado energético. Un comparable en la misma finca pesa más que uno en la calle paralela.</p>
+      <h2 id="edificio">Edificio, ITE y certificado energético</h2>
+      <p>En edificios anteriores a 1960 — habituales en Ciutat Vella, Gràcia o Horta — la ITE favorable o pendiente condiciona el precio y el perfil de comprador. El certificado energético clase E o inferior suele exigir descuento o inversión previa.</p>
+      <h2 id="rango">Cómo fijar el rango de precio</h2>
+      <p>Define precio objetivo (cierre esperado), precio de salida (publicación) y suelo mínimo (arras). Publicar un 5–8% por encima del objetivo es habitual, pero sobreprecios superiores al 10% generan estancamiento. Usa la <a href="/vender#calc">calculadora de ahorro</a> para comparar honorarios antes de elegir agencia.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Cuánto cuesta una valoración de piso en Barcelona?</summary><p>NuevaHabitat ofrece valoración gratuita con visita presencial en Barcelona y área metropolitana. Agencias tradicionales suelen incluirla en la comisión; tasadores independientes pueden cobrar 200–400 €.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué diferencia hay entre valoración y tasación hipotecaria?</summary><p>La valoración de mercado orienta el precio de venta. La tasación hipotecaria la encarga el banco del comprador y puede ser inferior si el tasador aplica criterios más conservadores.</p></details>
+        <details class="blog-faq-item"><summary>¿Puedo fiarme del precio de Idealista para valorar?</summary><p>No como única fuente. Los anuncios suelen estar 5–12% por encima del precio de cierre. Hay que cruzar operaciones reales, estado del inmueble y demanda actual.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto tarda una valoración profesional?</summary><p>Entre 24 y 72 horas desde la visita presencial, según complejidad del inmueble y disponibilidad de comparables en el barrio.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Quieres saber cuánto vale tu piso con datos reales de tu barrio?</p>
+        <a href="/cuanto-vale-mi-piso-barcelona" class="btn">Guía valoración Barcelona</a>
+        <a href="/vender" class="btn btn-outline" style="margin-left:.5rem">Valoración gratuita</a>
+      </aside>
+      `,
+    },
+
+    'housfy-vs-precio-fijo-barcelona': {
+      readMin: 8,
+      faq: [
+        { q: '¿Housfy cobra comisión al vendedor en Barcelona?', a: 'Housfy trabaja con modelo de comisión porcentual sobre el precio de venta, con tramos variables según servicios. Conviene calcular el coste total en tu precio concreto, no solo el porcentaje publicitado.' },
+        { q: '¿Qué ventaja tiene el precio fijo de NuevaHabitat?', a: 'Sabes desde el primer día que pagarás 3.000 € + IVA en escritura, con servicios incluidos. En ventas de 350.000 € o más, el ahorro frente a comisiones del 3–6% es muy significativo.' },
+        { q: '¿Puedo vender sin exclusiva con NuevaHabitat?', a: 'Sí. No exigimos exclusividad abusiva. Puedes comparar modelos y decidir con información completa.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Housfy compite por comisión variable; NuevaHabitat por precio fijo en escritura.</li>
+          <li>En un piso de 450.000 €, una comisión del 5% + IVA supera los 27.000 €.</li>
+          <li>Compara coste total, servicios incluidos y compradores filtrados, no solo el titular del anuncio.</li>
+          <li>Análisis detallado en <a href="/nuevahabitat-vs-housfy-barcelona">NuevaHabitat vs Housfy Barcelona</a>.</li>
+        </ul>
+      </aside>
+      <p>Al comparar <strong>Housfy vs NuevaHabitat</strong> en Barcelona, la pregunta no es quién publica más rápido, sino <em>cuánto pagas al cerrar</em> y qué servicios recibes de verdad: valoración, fotografía, filtrado de compradores, negociación y acompañamiento hasta escritura.</p>
+      <h2>Comisión variable vs precio fijo</h2>
+      <p>Las plataformas porcentuales encajan cuando el precio de venta es bajo o el vendedor prioriza pagar solo si cierra. En viviendas de 350.000–600.000 € — el rango habitual en Eixample, Gràcia, Les Corts o Sarrià — el coste porcentual crece linealmente con el precio, aunque el esfuerzo operativo sea similar.</p>
+      <p>NuevaHabitat cobra <strong>3.000 € + IVA</strong>, únicamente en escritura. Si no vendes, no pagas. Incluye reportaje fotográfico, panel vendedor, gestor dedicado y acceso a compradores cualificados de cartera.</p>
+      <h2>Tabla orientativa de coste total</h2>
+      <table class="blog-table">
+        <thead><tr><th>Precio venta</th><th>Comisión ~5% + IVA</th><th>NuevaHabitat</th><th>Ahorro orientativo</th></tr></thead>
+        <tbody>
+          <tr><td>300.000 €</td><td>~18.150 €</td><td>3.630 €</td><td>~14.500 €</td></tr>
+          <tr><td>450.000 €</td><td>~27.225 €</td><td>3.630 €</td><td>~23.600 €</td></tr>
+          <tr><td>600.000 €</td><td>~36.300 €</td><td>3.630 €</td><td>~32.700 €</td></tr>
+        </tbody>
+      </table>
+      <p>Usa la <a href="/vender#calc">calculadora de ahorro</a> con tu precio estimado. Para el comparativo completo de servicios, visita <a href="/nuevahabitat-vs-housfy-barcelona">NuevaHabitat vs Housfy</a> o <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">vs agencia tradicional</a>.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Housfy cobra comisión al vendedor en Barcelona?</summary><p>Housfy trabaja con modelo de comisión porcentual sobre el precio de venta, con tramos variables según servicios. Conviene calcular el coste total en tu precio concreto.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué ventaja tiene el precio fijo de NuevaHabitat?</summary><p>Sabes desde el primer día que pagarás 3.000 € + IVA en escritura. En ventas de 350.000 € o más, el ahorro frente a comisiones del 3–6% es muy significativo.</p></details>
+        <details class="blog-faq-item"><summary>¿Puedo vender sin exclusiva con NuevaHabitat?</summary><p>Sí. No exigimos exclusividad abusiva. Puedes comparar modelos y decidir con información completa.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>Compara el coste real de vender tu piso en Barcelona.</p>
+        <a href="/nuevahabitat-vs-housfy-barcelona" class="btn">Ver comparativa Housfy</a>
+      </aside>
+      `,
+    },
+
+    'vender-piso-horta-guia': {
+      readMin: 8,
+      faq: [
+        { q: '¿Cuánto tarda vender un piso en Horta-Guinardó?', a: 'Con precio ajustado y documentación al día, entre 45 y 90 días es habitual. Pisos en Montbau o Vall d\'Hebron con buena orientación suelen moverse más rápido que bajos interiores en La Teixonera.' },
+        { q: '¿Qué comprador busca piso en Horta?', a: 'Familias que priorizan metros, terraza y precio por m² por debajo del Eixample. También profesionales del entorno Vall d\'Hebron y Montbau.' },
+        { q: '¿Afecta el desnivel al precio en Horta?', a: 'Sí. Calles con pendiente pronunciada o acceso complicado pueden restar 5–10% frente a fincas en zonas planas bien comunicadas con metro L5.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Horta-Guinardó cotiza en 2026 entre 3.900 y 4.300 €/m² según sub-zona.</li>
+          <li>Demanda familiar estable: metros, terraza y metro L5.</li>
+          <li>Montbau y Vall d\'Hebron concentran compradores de perfil profesional sanitario.</li>
+          <li>Guía específica del distrito: <a href="/vender-horta">vender piso en Horta-Guinardó</a>.</li>
+        </ul>
+      </aside>
+      <p><strong>Vender piso en Horta-Guinardó</strong> exige entender que no es un mercado único: Horta centre, Montbau, La Teixonera y el entorno del Vall d\'Hebron tienen compradores, precios y tiempos de venta distintos. Publicar con un precio pensado para "Barcelona genérico" suele alargar la operación.</p>
+      <h2>Precios por micro-zona en 2026</h2>
+      <p>En Horta centre y zonas planas bien comunicadas, pisos de 3 habitaciones reformados se mueven entre 320.000 y 480.000 €. En Montbau, la demanda de familias con vinculación al hospital empuja los precios en fincas con parking y orientación exterior. La Teixonera y calles con fuerte desnivel requieren ajuste fino del precio de salida.</p>
+      <h2>Cómo preparar la venta en Horta</h2>
+      <p>Revisa ITE de la finca, certificado energético y estado de terrazas comunitarias. En edificios de los 60–70, los compradores preguntan por ascensor, fachada y derramas. Un reportaje fotográfico que muestre luminosidad y vistas — cuando las hay — compensa la distancia al centro frente a compradores que comparan con Eixample.</p>
+      <h2>Vender con precio fijo en el distrito</h2>
+      <p>NuevaHabitat trabaja Horta-Guinardó desde nuestras oficinas en Les Corts, con metro directo. Honorarios: <strong>3.000 € + IVA</strong>, solo en escritura. Consulta la landing <a href="/vender-horta">vender piso en Horta</a> o pide <a href="/vender">valoración gratuita</a>.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Cuánto tarda vender un piso en Horta-Guinardó?</summary><p>Con precio ajustado y documentación al día, entre 45 y 90 días es habitual.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué comprador busca piso en Horta?</summary><p>Familias que priorizan metros, terraza y precio por m² por debajo del Eixample.</p></details>
+        <details class="blog-faq-item"><summary>¿Afecta el desnivel al precio en Horta?</summary><p>Sí. Calles con pendiente pronunciada pueden restar 5–10% frente a zonas planas bien comunicadas.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Vendes en Horta, Montbau o Vall d\'Hebron?</p>
+        <a href="/vender-horta" class="btn">Guía vender en Horta</a>
+      </aside>
+      `,
+    },
+
+    'vender-hipoteca-pendiente-guia': {
+      readMin: 9,
+      faq: [
+        { q: '¿Se cancela la hipoteca en la misma escritura de venta?', a: 'Sí, es lo habitual. El notario destina parte del precio a cancelar la hipoteca pendiente y el comprador recibe el inmueble libre de cargas.' },
+        { q: '¿Qué pasa si la venta no cubre la deuda hipotecaria?', a: 'Debes aportar la diferencia (dación en pago parcial no es automática). Valora deuda pendiente antes de fijar precio mínimo.' },
+        { q: '¿El banco del comprador retrasa la operación?', a: 'Puede alargar plazos si la cancelación no está preparada. Solicita certificado de deuda y autorización de venta con antelación.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>La hipoteca pendiente no impide vender; debe cancelarse en escritura o antes.</li>
+          <li>Pide al banco certificado de deuda actualizado y autorización de venta.</li>
+          <li>En arras, deja claro quién gestiona la cancelación y en qué plazo.</li>
+          <li>Guía completa: <a href="/vender-piso-hipoteca-pendiente-barcelona">vender con hipoteca pendiente en Barcelona</a>.</li>
+        </ul>
+      </aside>
+      <p><strong>Vender piso con hipoteca pendiente</strong> es habitual en Barcelona: la mayoría de vendedores aún tienen préstamo vigente. El proceso es estándar si la documentación bancaria está preparada antes de firmar arras; se complica cuando la deuda supera el precio de venta o hay varias cargas registrales.</p>
+      <h2>Pasos previos con tu banco</h2>
+      <p>Solicita certificado de deuda con desglose de capital pendiente, intereses y comisión de cancelación anticipada si aplica. Pide autorización de venta y confirma si el banco exige cancelación total en escritura o admite subrogación del comprador.</p>
+      <h2>Arras y escritura con hipoteca</h2>
+      <p>En el contrato de arras, incluye cláusula sobre cancelación hipotecaria, plazo hasta escritura y consecuencias si el banco retrasa la operación. El notario, en escritura, retiene del precio lo necesario para cancelar la carga y entrega el resto al vendedor.</p>
+      <h2>Cuando la deuda supera el valor de venta</h2>
+      <p>Si el precio de mercado no cubre la hipoteca, valora aportación adicional, negociación con la entidad o venta asistida. Ocultar la deuda al comprador solo genera fallos en due diligence y pérdida de arras.</p>
+      <p>NuevaHabitat coordina valoración, compradores filtrados y documentación bancaria por <strong>3.000 € + IVA</strong>, solo en escritura. Más detalle en <a href="/vender-piso-hipoteca-pendiente-barcelona">vender piso con hipoteca pendiente</a>.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Se cancela la hipoteca en la misma escritura de venta?</summary><p>Sí, es lo habitual. El notario destina parte del precio a cancelar la hipoteca pendiente.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué pasa si la venta no cubre la deuda hipotecaria?</summary><p>Debes aportar la diferencia. Valora deuda pendiente antes de fijar precio mínimo.</p></details>
+        <details class="blog-faq-item"><summary>¿El banco del comprador retrasa la operación?</summary><p>Puede alargar plazos si la cancelación no está preparada. Solicita certificado de deuda con antelación.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Vendes con hipoteca pendiente en Barcelona?</p>
+        <a href="/vender-piso-hipoteca-pendiente-barcelona" class="btn">Guía hipoteca pendiente</a>
+      </aside>
+      `,
+    },
   };
   for (const [slug, patch] of Object.entries(PATCHES)) {
     if (window.NH_BLOG_POSTS && NH_BLOG_POSTS[slug]) Object.assign(NH_BLOG_POSTS[slug], patch);

@@ -8,7 +8,9 @@
     /** Sustituir por tu ID real de GA4 (Admin → Flujos de datos → ID de medición) */
     gaId: window.NH_GA_ID || 'G-XXXXXXXXXX',
     phone: '+34603656587',
-    phoneDisplay: '603 656 587',
+    phone2: '+34643877644',
+    phoneDisplay: '603 656 587 · 643 877 644',
+    phones: ['+34603656587', '+34643877644'],
     email: window.NH_CONTACT_EMAIL || 'info@nuevahabitat.com',
     logo: SITE + '/imagenes/Logo/logosinfondo2.png',
     defaultImage: SITE + '/imagenes/interior2.jpg',
@@ -78,7 +80,7 @@
       url: o.pageUrl ? absUrl(o.pageUrl) : SITE + '/',
       logo: NH_SEO.logo,
       image: o.image || NH_SEO.logo,
-      telephone: NH_SEO.phone,
+      telephone: NH_SEO.phones || NH_SEO.phone,
       email: NH_SEO.email,
       priceRange: '€€',
       areaServed: o.areaServed || NH_SEO.areaServed,
@@ -112,7 +114,7 @@
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: SITE + '/inmuebles.html?q={search_term_string}',
+          urlTemplate: SITE + '/inmuebles?q={search_term_string}',
         },
         'query-input': 'required name=search_term_string',
       },
@@ -189,7 +191,7 @@
       itemListElement: items.slice(0, 20).map((p, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: absUrl('inmueble-detalle.html?id=' + p.id),
+        url: absUrl('inmueble-detalle?id=' + p.id),
         name: p.titulo || 'Inmueble',
       })),
     };

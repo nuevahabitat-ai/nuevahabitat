@@ -114,7 +114,7 @@ function nhCompradoresEcosystemBlock(L) {
     </div>
     <div class="lc-nh-compradores-footer fade-up">
       <p><strong>En la práctica:</strong> cuando alguien visita tu piso con NuevaHabitat, no es un desconocido de Idealista. Es un comprador de nuestra cartera, con perfil financiero revisado, al que hemos presentado tu inmueble porque encaja en precio, zona y condiciones. Tú controlas las visitas desde tu panel; ellos llevan el seguimiento desde el suyo. Así vendes más rápido y con menos riesgo de operaciones que se caen en el último momento.</p>
-      <a href="comprar.html" class="btn btn-outline" style="margin-top:1rem">Conoce la plataforma de compradores →</a>
+      <a href="/comprar" class="btn btn-outline" style="margin-top:1rem">Conoce la plataforma de compradores →</a>
     </div>
   </div>
 </section>`;
@@ -134,7 +134,7 @@ function nhPanelDemoBlock(L) {
           <li><strong>Resumen en tiempo real</strong> — publicación, visitas recibidas y ofertas en un vistazo.</li>
           <li><strong>Contratos y arras</strong> — documentación firmada disponible en tu panel.</li>
         </ul>
-        <a href="registro.html" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
+        <a href="/registro" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
       </div>
       <div class="lc-pm-wrap" aria-hidden="true">
         <div class="lc-pm-header">

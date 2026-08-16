@@ -166,6 +166,19 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .comp-match-toolbar{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-bottom:.5rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
 .comp-match-toolbar label{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--text);cursor:pointer}
 .comp-match-criteria{font-size:.75rem;color:var(--muted);line-height:1.5;margin-top:.25rem}
+.part-tpl-pick-list{display:flex;flex-direction:column;gap:.75rem}
+.part-tpl-pick-item{border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;cursor:pointer;transition:border-color .2s,background .2s}
+.part-tpl-pick-item:hover{border-color:rgba(184,147,106,.45)}
+.part-tpl-pick-item.selected{border-color:var(--gold);background:rgba(184,147,106,.08)}
+.part-tpl-pick-head{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.part-tpl-pick-head input{accent-color:var(--gold);width:16px;height:16px}
+.part-tpl-pick-head strong{font-size:.82rem;color:var(--gold-light)}
+.part-tpl-pick-text{font-size:.78rem;line-height:1.55;color:var(--text);white-space:pre-wrap}
+.part-tpl-edit-grid{display:grid;gap:.85rem}
+.part-wa-tpl-item label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.35rem;font-weight:600}
+.part-wa-tpl-item textarea{width:100%;min-height:88px;padding:.55rem .65rem;font-size:.78rem;line-height:1.5;background:var(--surface2);border:1px solid var(--border);border-radius:6px;color:var(--text);resize:vertical;font-family:inherit}
+.part-wa-tpl-item textarea:focus{outline:none;border-color:var(--gold)}
+.part-wa-tpl-vars{font-size:.68rem;color:var(--muted);margin-top:.25rem;line-height:1.5}
 .adm-match-alert{padding:.65rem .85rem;border-bottom:1px solid var(--border);font-size:.8rem;line-height:1.5}
 .adm-match-alert:last-child{border-bottom:none}
 .adm-match-alert time{font-size:.68rem;color:var(--muted)}
@@ -378,7 +391,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
   </svg>
   <p style="color:#f87171;font-weight:600">Acceso restringido</p>
   <p style="color:var(--muted);font-size:.82rem">Solo accesible para administradores.</p>
-  <a href="login.html" style="color:var(--gold);font-size:.85rem">← Ir al login</a>
+  <a href="/login" style="color:var(--gold);font-size:.85rem">← Ir al login</a>
 </div>
 
 <!-- ══ App ════════════════════════════════════════════════════ -->
@@ -1363,6 +1376,39 @@ input,select,textarea{font-family:'Inter',sans-serif}
         <div id="part-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
       </section>
 
+      <!-- Modal: avisar compradores compatibles al captar/publicar -->
+      <div id="captura-comp-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="captura-comp-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closeCapturaCompradoresModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="captura-comp-kicker">Inmueble captado</div>
+              <h3 id="captura-comp-title">Compradores compatibles</h3>
+              <div class="comp-match-criteria" id="captura-comp-sub"></div>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closeCapturaCompradoresModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body" id="captura-comp-body"></div>
+          <div class="dash-modal-foot" id="captura-comp-foot"></div>
+        </div>
+      </div>
+
+      <!-- Modal plantillas WhatsApp particulares -->
+      <div id="part-tpl-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="part-tpl-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closePartTemplatesModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="part-tpl-kicker">Particular</div>
+              <h3 id="part-tpl-title">Plantillas WhatsApp</h3>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closePartTemplatesModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body" id="part-tpl-body"></div>
+          <div class="dash-modal-foot" id="part-tpl-foot"></div>
+        </div>
+      </div>
+
       <!-- ── Blog ─────────────────────────────────────────────── -->
       <section class="adm-section" id="sec-blog">
         <div class="adm-card">
@@ -1562,11 +1608,11 @@ async function initAdmin() {
 
     window.nhSupabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT') {
-        window.location.replace('login.html?logout=1');
+        window.location.replace('/login?logout=1');
         return;
       }
       if (session?.user && !nhAuth.isAdmin(session.user)) {
-        window.location.replace('login.html');
+        window.location.replace('/login');
         return;
       }
       if (session?.user && nhAuth.isAdmin(session.user)) {
@@ -2043,9 +2089,11 @@ async function publishProperty(){
       loadVendedores();
       await notifyMatchesForNewInmueble(data);
       if(_fromParticularId){
-        await markParticularCaptadoAfterPublish(_fromParticularId, refVal);
+        const partId = _fromParticularId;
+        await markParticularCaptadoAfterPublish(partId, refVal, true);
         _fromParticularId = null;
         setWizFromParticularBanner(null);
+        setTimeout(() => showCapturaCompradoresModal(data, partId), 500);
       }
     }
 
@@ -2279,7 +2327,7 @@ function renderCompMatchList(matches){
             <strong>${dashEsc(p.titulo || p.ref || 'Inmueble')}</strong>
             <span>${dashEsc([meta, loc].filter(Boolean).join(' — '))}</span>
           </div>
-          <button type="button" class="comp-match-open" onclick="event.preventDefault();window.open('inmueble-detalle.html?id=${p.id}','_blank')">Ver web</button>
+          <button type="button" class="comp-match-open" onclick="event.preventDefault();window.open('/inmueble-detalle?id=${p.id}','_blank')">Ver web</button>
         </label>`;
       }).join('')}
     </div>`;
@@ -2634,7 +2682,7 @@ function renderPublications(){
           <div class="pub-actions">
             <button type="button" class="pub-btn-edit" data-action="edit-inmueble" data-id="${p.id}">Editar</button>
             <button type="button" class="pub-btn-del" data-action="delete-inmueble" data-id="${p.id}">Eliminar</button>
-            <button type="button" class="pub-btn-web" onclick="window.open('inmueble-detalle.html?id=${p.id}','_blank')">Web</button>
+            <button type="button" class="pub-btn-web" onclick="window.open('/inmueble-detalle?id=${p.id}','_blank')">Web</button>
           </div>
         </div>
       </div>`;
@@ -2899,7 +2947,7 @@ function openDashModal(tipo, id){
       ${p.descripcion ? `<div class="dash-modal-block"><strong>Descripción</strong>${dashEsc(p.descripcion)}</div>` : ''}`;
     actions = `
       <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeDashModal(); editProperty('${p.id}')">Editar</button>
-      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="window.open('inmueble-detalle.html?id=${p.id}','_blank')">Ver en web</button>
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="window.open('/inmueble-detalle?id=${p.id}','_blank')">Ver en web</button>
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeDashModal(); switchSection('inmuebles')">Ir a inmuebles</button>`;
   }
 
@@ -3483,7 +3531,7 @@ function buildCompWhatsAppMsg(c, inmuebles){
       const loc = [p.barrio, p.municipio].filter(Boolean).join(', ');
       const price = p.precio != null ? Number(p.precio).toLocaleString('es-ES') + ' €' : '';
       const line1 = [p.titulo || p.ref || 'Inmueble', loc, price].filter(Boolean).join(' — ');
-      return `• ${line1}\n${inmueblePublicUrl(p.id)}`;
+      return `• ${line1}\n${p.id ? inmueblePublicUrl(p.id) : 'https://www.nuevahabitat.com/inmuebles'}`;
     }).join('\n\n');
     return intro + links + '\n\n¿Te interesa?';
   }
@@ -3977,9 +4025,306 @@ window.admEmailColaborador = admEmailColaborador;
 const PART_ESTADOS = { nuevo:'Nuevo', contactado:'Contactado', visita:'Visita', negociacion:'Negociación', captado:'Captado', descartado:'Descartado' };
 const PART_FUENTES = { kelify:'Kelify', idealista:'Idealista', fotocasa:'Fotocasa', habitaclia:'Habitaclia', manual:'Manual', otro:'Otro' };
 const PART_ALARM_DAYS = 7;
+const PART_WA_TPL_STORAGE = 'nh_part_wa_templates';
+const PART_WA_TPL_LABELS = { primer_contacto:'1.er contacto', seguimiento:'Seguimiento', visita:'Propuesta visita' };
+const PART_WA_NORMAL_MSG = `Hola, soy de NuevaHabitat, vi tu anuncio de particular, y me gustaria saber si podemso hacer una colaboracion, tenemos una plataforma dedicada a compradores cualificados financieramente, me gustaria saber si podemso hacer una viista puntual con nuestros compradores, ellos mismos pagan nuestros honorarios, seria posible hacer una visita esta semana?`;
+const PART_WA_TEMPLATES_DEFAULT = {
+  primer_contacto: PART_WA_NORMAL_MSG,
+  seguimiento: `Hola buenas{{nombre}}, soy de NuevaHabitat. Te escribo para saber si sigue disponible el inmueble{{titulo}} y si podemos colaborar, ya que tenemos compradores cualificados financieramente para comprar; ellos se hacen cargo de nuestros honorarios. ¿Podríamos hacer una visita esta semana?`,
+  visita: `Hola buenas tardes{{nombre}}, somos de NuevaHabitat. Tengo un cliente interesado en ver el inmueble{{titulo}}; el abona nuestros honorarios. ¿Te encaja una visita esta semana?`,
+};
 let _partData = [];
 let _partFilter = 'todos';
 let _partDetailId = null;
+let _capturaCompState = null;
+let _partTplModalId = null;
+let _partTplSelectedKey = 'seguimiento';
+let _partTplEditMode = false;
+
+function getPartWaTemplates(){
+  try {
+    const raw = localStorage.getItem(PART_WA_TPL_STORAGE);
+    if(raw){
+      const parsed = JSON.parse(raw);
+      return { ...PART_WA_TEMPLATES_DEFAULT, ...parsed };
+    }
+  } catch(e){}
+  return { ...PART_WA_TEMPLATES_DEFAULT };
+}
+
+function savePartWaTemplates(templates){
+  localStorage.setItem(PART_WA_TPL_STORAGE, JSON.stringify(templates));
+}
+
+function previewPartWaTemplate(templateKey, p){
+  if(templateKey === 'primer_contacto'){
+    const tpl = getPartWaTemplates().primer_contacto || '';
+    if(!tpl.includes('{{')) return tpl;
+  }
+  return applyPartWaTemplate(templateKey, p || {});
+}
+
+function renderPartTemplatesModalBody(){
+  const p = _partData.find(x => x.id === _partTplModalId) || {};
+  const body = document.getElementById('part-tpl-body');
+  const foot = document.getElementById('part-tpl-foot');
+  if(!body || !foot) return;
+  if(_partTplEditMode){
+    const t = getPartWaTemplates();
+    body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Edita las plantillas y pulsa Guardar. Variables: {{nombre}} {{titulo}} {{zona}} {{precio}} {{portal}} {{web}}</p><div class="part-tpl-edit-grid"><div class="part-wa-tpl-item"><label>1.er contacto</label><textarea id="part-tpl-edit-primer" rows="5">${dashEsc(t.primer_contacto || '')}</textarea></div><div class="part-wa-tpl-item"><label>Seguimiento</label><textarea id="part-tpl-edit-seguimiento" rows="4">${dashEsc(t.seguimiento || '')}</textarea></div><div class="part-wa-tpl-item"><label>Propuesta visita</label><textarea id="part-tpl-edit-visita" rows="3">${dashEsc(t.visita || '')}</textarea></div></div>`;
+    foot.innerHTML = `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="savePartTemplatesFromModal()">Guardar plantillas</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resetPartTemplatesModal()">Restaurar predeterminadas</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="setPartTemplatesEditMode(false)">Volver</button>`;
+    return;
+  }
+  const keys = ['primer_contacto', 'seguimiento', 'visita'];
+  body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Elige una plantilla para enviar por WhatsApp a <strong>${dashEsc(p.contacto_nombre || p.titulo || 'este particular')}</strong>.</p><div class="part-tpl-pick-list">${keys.map(key => { const preview = previewPartWaTemplate(key, p); const sel = _partTplSelectedKey === key; return `<label class="part-tpl-pick-item${sel ? ' selected' : ''}" onclick="selectPartTemplateKey('${key}')"><div class="part-tpl-pick-head"><input type="radio" name="part-tpl-pick" value="${key}" ${sel ? 'checked' : ''} onchange="selectPartTemplateKey('${key}')"/><strong>${PART_WA_TPL_LABELS[key]}</strong></div><div class="part-tpl-pick-text">${dashEsc(preview)}</div></label>`; }).join('')}</div>`;
+  const hasPhone = !!normalizePhoneWa(p.telefono);
+  foot.innerHTML = `${hasPhone ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="sendSelectedPartTemplate()">Enviar plantilla por WhatsApp</button>` : '<span class="text-muted" style="font-size:.78rem">Sin teléfono en la ficha.</span>'}<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="setPartTemplatesEditMode(true)">Editar plantillas</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closePartTemplatesModal()">Cerrar</button>`;
+}
+
+function openPartTemplatesModal(particularId){
+  _partTplModalId = particularId;
+  _partTplEditMode = false;
+  _partTplSelectedKey = 'seguimiento';
+  const p = _partData.find(x => x.id === particularId);
+  document.getElementById('part-tpl-kicker').textContent = 'Plantillas WhatsApp';
+  document.getElementById('part-tpl-title').textContent = p?.titulo || p?.contacto_nombre || 'Elegir plantilla';
+  renderPartTemplatesModalBody();
+  const m = document.getElementById('part-tpl-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+window.openPartTemplatesModal = openPartTemplatesModal;
+
+function closePartTemplatesModal(){
+  const m = document.getElementById('part-tpl-modal');
+  if(m){ m.classList.remove('open'); m.hidden = true; }
+  document.body.style.overflow = '';
+  _partTplModalId = null;
+  _partTplEditMode = false;
+}
+window.closePartTemplatesModal = closePartTemplatesModal;
+
+function selectPartTemplateKey(key){ _partTplSelectedKey = key; renderPartTemplatesModalBody(); }
+window.selectPartTemplateKey = selectPartTemplateKey;
+
+function setPartTemplatesEditMode(on){ _partTplEditMode = !!on; renderPartTemplatesModalBody(); }
+window.setPartTemplatesEditMode = setPartTemplatesEditMode;
+
+function savePartTemplatesFromModal(){
+  savePartWaTemplates({
+    primer_contacto: document.getElementById('part-tpl-edit-primer')?.value.trim() || PART_WA_TEMPLATES_DEFAULT.primer_contacto,
+    seguimiento: document.getElementById('part-tpl-edit-seguimiento')?.value.trim() || PART_WA_TEMPLATES_DEFAULT.seguimiento,
+    visita: document.getElementById('part-tpl-edit-visita')?.value.trim() || PART_WA_TEMPLATES_DEFAULT.visita,
+  });
+  nhToast('Plantillas guardadas.', 'success');
+  setPartTemplatesEditMode(false);
+}
+window.savePartTemplatesFromModal = savePartTemplatesFromModal;
+
+function resetPartTemplatesModal(){
+  if(!confirm('¿Restaurar las plantillas predeterminadas?')) return;
+  localStorage.removeItem(PART_WA_TPL_STORAGE);
+  nhToast('Plantillas restauradas.', 'success');
+  renderPartTemplatesModalBody();
+}
+window.resetPartTemplatesModal = resetPartTemplatesModal;
+
+async function sendSelectedPartTemplate(){
+  if(!_partTplModalId) return;
+  await admWhatsAppParticularTemplate(_partTplModalId, _partTplSelectedKey);
+  closePartTemplatesModal();
+}
+window.sendSelectedPartTemplate = sendSelectedPartTemplate;
+
+function applyPartWaTemplate(templateKey, p){
+  const tpl = getPartWaTemplates()[templateKey] || '';
+  const nombreRaw = (p.contacto_nombre || '').trim().split(/\s+/)[0];
+  const vars = {
+    nombre: nombreRaw ? ` ${nombreRaw}` : '',
+    titulo: (p.titulo || p.direccion) ? ` (${p.titulo || p.direccion})` : '',
+    zona: [p.zona, p.barrio, p.municipio].filter(Boolean).length ? ` en ${[p.zona, p.barrio, p.municipio].filter(Boolean).join(', ')}` : '',
+    precio: p.precio != null ? ` (${Number(p.precio).toLocaleString('es-ES')} €)` : '',
+    portal: p.fuente && p.fuente !== 'manual' ? ` en ${PART_FUENTES[p.fuente] || p.fuente}` : '',
+    web: 'https://www.nuevahabitat.com',
+  };
+  return tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? '');
+}
+
+function partWaButtonsHtml(p){
+  const tplBtn = `<button type="button" class="pub-btn-web" onclick="openPartTemplatesModal('${p.id}')">Plantillas</button>`;
+  if(!p.telefono) return tplBtn;
+  return `
+    <button type="button" class="pub-btn-wa" onclick="admWhatsAppParticular('${p.id}')">WhatsApp</button>
+    <button type="button" class="pub-btn-call" onclick="admCallParticular('${p.id}')">Llamar</button>
+    ${tplBtn}`;
+}
+
+function particularAsInmueble(p, inmueble){
+  if(inmueble && (inmueble.id || inmueble.precio)) return inmueble;
+  const asc = partInferAscensor(p);
+  return {
+    id: inmueble?.id || null,
+    titulo: p.titulo || p.direccion || 'Inmueble',
+    ref: inmueble?.ref || p.titulo || 'Captado',
+    precio: p.precio,
+    habitaciones: p.habitaciones,
+    barrio: p.barrio || p.zona,
+    municipio: p.municipio,
+    ascensor: asc === true,
+    estado: 'disponible',
+  };
+}
+
+function getMatchesForInmuebleObj(inmueble){
+  return (_compData || []).filter(c => matchCompradorInmueble(c, inmueble));
+}
+
+async function logParticularSeguimientoAuto(particularId, comentario){
+  if(!particularId || !comentario) return;
+  await window.nhSupabase.from('particulares_seguimientos').insert({ particular_id: particularId, comentario });
+}
+
+function renderCapturaCompradoresList(matches){
+  if(!matches.length){
+    return `<p class="text-muted">No hay compradores activos que encajen con este inmueble ahora mismo.</p>`;
+  }
+  return `
+    <div class="comp-match-toolbar">
+      <label><input type="checkbox" id="captura-comp-all" checked onchange="toggleCapturaCompAll(this.checked)"/> Seleccionar todos (${matches.length})</label>
+    </div>
+    <div class="comp-match-list" id="captura-comp-list">
+      ${matches.map(c => `
+        <label class="comp-match-item">
+          <input type="checkbox" class="captura-comp-cb" data-id="${c.id}" checked onchange="syncCapturaCompAllCheckbox()"/>
+          <div class="comp-match-info" style="padding-left:0">
+            <strong>${dashEsc(c.nombre || 'Comprador')}</strong>
+            <span>${dashEsc([
+              c.presupuesto_max != null ? '≤ '+Number(c.presupuesto_max).toLocaleString('es-ES')+' €' : '',
+              c.habitaciones_min ? 'min. '+c.habitaciones_min+' hab.' : '',
+              c.zona_buscada || '',
+              c.telefono || 'Sin teléfono',
+            ].filter(Boolean).join(' · '))}</span>
+          </div>
+          ${c.telefono ? `<button type="button" class="comp-match-open" onclick="event.preventDefault();sendCapturaWaOne('${c.id}')">Solo este</button>` : ''}
+        </label>`).join('')}
+    </div>`;
+}
+
+async function showCapturaCompradoresModal(inmueble, particularId){
+  if(!window.nhSupabase) return;
+  await ensureCompData();
+  const inm = particularAsInmueble(_partData.find(x => x.id === particularId) || {}, inmueble);
+  const matches = getMatchesForInmuebleObj(inm);
+  _capturaCompState = { inmueble: inm, particularId, matches };
+
+  if(!matches.length){
+    if(particularId){
+      await logParticularSeguimientoAuto(particularId, `Inmueble captado${inm.ref ? ' ('+inm.ref+')' : ''}. Sin compradores compatibles detectados.`);
+      if(_partDetailId === particularId) await loadPartSeguimientos(particularId);
+    }
+    nhToast('Captado. No hay compradores compatibles ahora.', 'info', 6000);
+    return;
+  }
+
+  document.getElementById('captura-comp-kicker').textContent = 'Cruce compradores';
+  document.getElementById('captura-comp-title').textContent = matches.length === 1
+    ? `Este piso encaja con ${matches[0].nombre || '1 comprador'}`
+    : `Este piso encaja con ${matches[0].nombre || 'un comprador'} y ${matches.length - 1} más`;
+  document.getElementById('captura-comp-sub').textContent = [
+    inm.ref,
+    inm.precio != null ? Number(inm.precio).toLocaleString('es-ES')+' €' : '',
+    [inm.barrio, inm.municipio].filter(Boolean).join(', '),
+  ].filter(Boolean).join(' · ');
+  document.getElementById('captura-comp-body').innerHTML = renderCapturaCompradoresList(matches);
+
+  const foot = document.getElementById('captura-comp-foot');
+  const withPhone = matches.filter(c => normalizePhoneWa(c.telefono));
+  foot.innerHTML = `
+    ${withPhone.length ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="sendCapturaCompradoresWhatsApp()">Enviar WhatsApp a seleccionados</button>` : ''}
+    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeCapturaCompradoresModal(true)">Cerrar sin avisar</button>`;
+
+  const m = document.getElementById('captura-comp-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+window.showCapturaCompradoresModal = showCapturaCompradoresModal;
+
+function closeCapturaCompradoresModal(skipLog){
+  const m = document.getElementById('captura-comp-modal');
+  if(m){ m.classList.remove('open'); m.hidden = true; }
+  document.body.style.overflow = '';
+  _capturaCompState = null;
+}
+window.closeCapturaCompradoresModal = closeCapturaCompradoresModal;
+
+function toggleCapturaCompAll(checked){
+  document.querySelectorAll('.captura-comp-cb').forEach(cb => { cb.checked = checked; });
+}
+window.toggleCapturaCompAll = toggleCapturaCompAll;
+
+function syncCapturaCompAllCheckbox(){
+  const all = document.querySelectorAll('.captura-comp-cb');
+  const master = document.getElementById('captura-comp-all');
+  if(!master || !all.length) return;
+  const checked = [...all].filter(cb => cb.checked).length;
+  master.checked = checked === all.length;
+  master.indeterminate = checked > 0 && checked < all.length;
+}
+window.syncCapturaCompAllCheckbox = syncCapturaCompAllCheckbox;
+
+function getSelectedCapturaCompradores(){
+  if(!_capturaCompState) return [];
+  const ids = new Set([...document.querySelectorAll('.captura-comp-cb:checked')].map(cb => cb.dataset.id));
+  return _capturaCompState.matches.filter(c => ids.has(String(c.id)));
+}
+
+function openCapturaWaForComprador(comprador){
+  if(!_capturaCompState) return;
+  const phone = normalizePhoneWa(comprador.telefono);
+  if(!phone){ nhToast('Sin teléfono válido.', 'info'); return; }
+  const msg = buildCompWhatsAppMsg(comprador, [_capturaCompState.inmueble]);
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+}
+
+async function finalizeCapturaNotify(compradores){
+  if(!_capturaCompState?.particularId) return;
+  const inm = _capturaCompState.inmueble;
+  const names = compradores.map(c => c.nombre).filter(Boolean);
+  const ref = inm.ref || inm.titulo || '';
+  let comentario = `Inmueble publicado${ref ? ' ('+ref+')' : ''}.`;
+  if(names.length){
+    comentario += ` Avisados ${names.length} comprador${names.length===1?'':'es'} por WhatsApp: ${names.join(', ')}.`;
+  } else {
+    comentario += ' Sin avisos WhatsApp a compradores.';
+  }
+  await logParticularSeguimientoAuto(_capturaCompState.particularId, comentario);
+  if(_partDetailId === _capturaCompState.particularId) await loadPartSeguimientos(_capturaCompState.particularId);
+  loadParticulares();
+}
+
+function sendCapturaWaOne(compradorId){
+  const c = _capturaCompState?.matches.find(x => x.id === compradorId);
+  if(!c) return;
+  openCapturaWaForComprador(c);
+}
+
+async function sendCapturaCompradoresWhatsApp(){
+  const selected = getSelectedCapturaCompradores().filter(c => normalizePhoneWa(c.telefono));
+  if(!selected.length){ nhToast('Selecciona compradores con teléfono.', 'info'); return; }
+  if(selected.length > 1 && !confirm(`Se abrirá WhatsApp para ${selected.length} compradores (puede que el navegador bloquee varias ventanas). ¿Continuar?`)) return;
+  selected.forEach((c, i) => {
+    setTimeout(() => openCapturaWaForComprador(c), i * 600);
+  });
+  setTimeout(async () => {
+    await finalizeCapturaNotify(selected);
+    closeCapturaCompradoresModal();
+    nhToast(`WhatsApp preparado para ${selected.length} comprador${selected.length===1?'':'es'}.`, 'success', 7000);
+  }, selected.length * 600 + 200);
+}
+window.sendCapturaCompradoresWhatsApp = sendCapturaCompradoresWhatsApp;
+window.sendCapturaWaOne = sendCapturaWaOne;
 
 function partAlarmDate(fromDate){
   const d = fromDate ? new Date(fromDate) : new Date();
@@ -4175,20 +4520,40 @@ async function setParticularEstado(id, accion){
   nhToast(`Marcado como ${PART_ESTADOS[accion]}.`, 'success');
   await loadParticulares();
   if(_partDetailId === id) await openPartDetail(id);
+  if(accion === 'captado'){
+    const p = _partData.find(x => x.id === id);
+    if(p){
+      await ensureCompData();
+      await ensurePubData();
+      setTimeout(() => showCapturaCompradoresModal(particularAsInmueble(p), id), 350);
+    }
+  }
 }
 
 function buildPartWhatsAppMsg(p){
-  const nombre = (p.contacto_nombre || 'cliente').trim().split(/\s+/)[0];
-  const ref = p.titulo || p.direccion || 'su vivienda';
-  return `Hola ${nombre}, soy de NuevaHabitat. Me pongo en contacto respecto a ${ref}. ¿Tienes un momento?`;
+  return PART_WA_NORMAL_MSG;
 }
 
-function admWhatsAppParticular(id){
+async function admWhatsAppParticularTemplate(id, templateKey){
   const p = _partData.find(x => x.id === id);
   if(!p?.telefono){ nhToast('Sin teléfono.', 'info'); return; }
   const phone = normalizePhoneWa(p.telefono);
   if(!phone){ nhToast('Teléfono no válido.', 'error'); return; }
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(buildPartWhatsAppMsg(p))}`, '_blank', 'noopener');
+  const msg = previewPartWaTemplate(templateKey, p);
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  const label = PART_WA_TPL_LABELS[templateKey] || templateKey;
+  await logParticularSeguimientoAuto(id, `WhatsApp (${label}) enviado.`);
+  if(_partDetailId === id) await loadPartSeguimientos(id);
+}
+
+async function admWhatsAppParticular(id){
+  const p = _partData.find(x => x.id === id);
+  if(!p?.telefono){ nhToast('Sin teléfono.', 'info'); return; }
+  const phone = normalizePhoneWa(p.telefono);
+  if(!phone){ nhToast('Teléfono no válido.', 'error'); return; }
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(PART_WA_NORMAL_MSG)}`, '_blank', 'noopener');
+  await logParticularSeguimientoAuto(id, 'WhatsApp (contacto normal) enviado.');
+  if(_partDetailId === id) await loadPartSeguimientos(id);
 }
 
 function admCallParticular(id){
@@ -4404,7 +4769,7 @@ function publishFromParticular(id){
   nhToast('Datos precargados. Completa lo que falte, sube fotos y publica.', 'success');
 }
 
-async function markParticularCaptadoAfterPublish(particularId, refInmueble){
+async function markParticularCaptadoAfterPublish(particularId, refInmueble, skipSeguimiento){
   if(!particularId) return;
   const now = new Date().toISOString();
   const { error } = await window.nhSupabase.from('particulares').update({
@@ -4416,10 +4781,12 @@ async function markParticularCaptadoAfterPublish(particularId, refInmueble){
     console.warn('markParticularCaptadoAfterPublish:', error);
     return;
   }
-  await window.nhSupabase.from('particulares_seguimientos').insert({
-    particular_id: particularId,
-    comentario: `Inmueble publicado${refInmueble ? ' (' + refInmueble + ')' : ''}. Marcado como captado.`,
-  });
+  if(!skipSeguimiento){
+    await window.nhSupabase.from('particulares_seguimientos').insert({
+      particular_id: particularId,
+      comentario: `Inmueble publicado${refInmueble ? ' (' + refInmueble + ')' : ''}. Marcado como captado.`,
+    });
+  }
 }
 
 async function deleteParticular(id, skipConfirm){
@@ -4446,7 +4813,7 @@ async function openPartDetail(id){
     ${p.proxima_alarma_at ? ' · Próxima alarma: '+new Date(p.proxima_alarma_at).toLocaleString('es-ES') : ''}
     ${p.url ? '<br><a href="'+p.url+'" target="_blank" rel="noopener" style="color:var(--gold)">Ver anuncio original</a>' : ''}`;
   document.getElementById('part-detail-actions').innerHTML = `
-    ${p.telefono ? `<button type="button" class="pub-btn-wa" onclick="admWhatsAppParticular('${p.id}')">WhatsApp</button><button type="button" class="pub-btn-call" onclick="admCallParticular('${p.id}')">Llamar</button>` : ''}
+    ${partWaButtonsHtml(p)}
     <button type="button" class="pub-btn-publish" onclick="publishFromParticular('${p.id}')">🚀 Publicar inmueble</button>
     <button type="button" class="pub-btn-edit" onclick="editParticular('${p.id}')">Editar ficha</button>`;
   const estadoBarHost = document.getElementById('part-detail-estado-bar');
@@ -4540,7 +4907,7 @@ function renderParticulares(){
         </div>
         ${p.ultimo_contacto_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">Último contacto: ${new Date(p.ultimo_contacto_at).toLocaleString('es-ES')}</div>` : `<div style="font-size:.68rem;color:var(--orange);margin-top:.35rem">Sin contacto registrado</div>`}
         <div class="pub-quick-actions">
-          ${p.telefono ? `<button type="button" class="pub-btn-wa" onclick="admWhatsAppParticular('${p.id}')">WhatsApp</button><button type="button" class="pub-btn-call" onclick="admCallParticular('${p.id}')">Llamar</button>` : ''}
+          ${partWaButtonsHtml(p)}
         </div>
         <div class="pub-actions" style="margin-top:.6rem">
           <button class="pub-btn-publish" onclick="publishFromParticular('${p.id}')">Publicar</button>
@@ -4567,6 +4934,7 @@ window.openPartDetail = openPartDetail;
 window.closePartDetail = closePartDetail;
 window.savePartSeguimiento = savePartSeguimiento;
 window.admWhatsAppParticular = admWhatsAppParticular;
+window.admWhatsAppParticularTemplate = admWhatsAppParticularTemplate;
 window.admCallParticular = admCallParticular;
 
 /* Auto-crear o vincular vendedor desde datos del wizard (respaldo del trigger SQL) */

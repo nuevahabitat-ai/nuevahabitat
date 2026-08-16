@@ -12,7 +12,7 @@ window.NH_BLOG_POSTS = {
       <p>En zonas prime como Sarrià-Sant Gervasi o el Eixample, los pisos reformados se mueven entre <strong>5.500 y 7.000 €/m²</strong>. En barrios emergentes como Poblenou o Sant Andreu, los precios rondan los <strong>3.800–4.500 €/m²</strong>, con mayor rotación y más margen de negociación. En <strong>Les Corts</strong> — Numància, Zona Universitaria y entorno del Camp Nou — la demanda es estable y el precio medio suele situarse entre <strong>4.200 y 5.800 €/m²</strong> según planta y estado.</p>
       <p>Si tu vivienda está en Les Corts, consulta nuestra guía específica para vender en el distrito: <a href="/vender-les-corts">vender piso en Les Corts</a>.</p>
       <p>Para calcular el valor real de tu vivienda hay que tener en cuenta orientación, planta, estado de la finca, ITE, y la comparativa con operaciones cerradas en los últimos 6 meses — no solo con anuncios publicados.</p>
-      <p>En NuevaHabitat realizamos valoraciones gratuitas basadas en datos de mercado y visita presencial. Si estás pensando en vender, <a href="vender.html">solicita tu valoración</a> sin compromiso.</p>
+      <p>En NuevaHabitat realizamos valoraciones gratuitas basadas en datos de mercado y visita presencial. Si estás pensando en vender, <a href="/vender">solicita tu valoración</a> sin compromiso.</p>
     `
   },
   'contrato-arras': {
@@ -26,7 +26,7 @@ window.NH_BLOG_POSTS = {
       <p>El contrato de arras es el momento en que una operación de compraventa pasa de ser una intención a un compromiso con consecuencias jurídicas. En Cataluña es habitual firmarlo entre 2 y 4 semanas después de aceptar la oferta.</p>
       <p>Existen tres tipos principales: <strong>arras penitenciales</strong> (cada parte puede desistir perdiendo o devolviendo el doble), <strong>arras confirmatorias</strong> (refuerzan el compromiso sin penalización automática) y <strong>arras penales</strong> (fijan una indemnización concreta por incumplimiento).</p>
       <p>Antes de firmar, verifica que el plazo para la escritura es realista, que las condiciones suspensivas (hipoteca, licencias, etc.) están bien redactadas, y que el pago se realiza mediante transferencia trazable.</p>
-      <p>En NuevaHabitat acompañamos tanto a compradores como vendedores en todo el proceso legal. <a href="contacto.html">Consúltanos</a> si tienes dudas sobre un contrato que vas a firmar.</p>
+      <p>En NuevaHabitat acompañamos tanto a compradores como vendedores en todo el proceso legal. <a href="/contacto">Consúltanos</a> si tienes dudas sobre un contrato que vas a firmar.</p>
     `
   },
   'guia-hipotecas': {
@@ -40,7 +40,7 @@ window.NH_BLOG_POSTS = {
       <p>Tras los movimientos de tipos de los últimos años, en 2026 el euríbor se ha estabilizado en torno al 2,5–3%. Esto reabre el debate clásico: ¿hipoteca fija, variable o mixta?</p>
       <p>La <strong>hipoteca fija</strong> sigue siendo la opción preferida de quienes buscan certeza: sabes exactamente cuánto pagarás cada mes durante 20 o 30 años. La <strong>variable</strong> puede resultar más barata a corto plazo si el euríbor no sube, pero conlleva riesgo. La <strong>mixta</strong> combina ambos mundos: tipo fijo los primeros años y variable después.</p>
       <p>La clave no es solo el tipo de interés, sino el <strong>TIN vs TAE</strong>, las comisiones de apertura, la vinculación con seguros, y tu capacidad de ahorro para afrontar subidas futuras.</p>
-      <p>En NuevaHabitat negociamos con varios bancos para conseguir las mejores condiciones. El servicio está incluido en nuestro precio fijo de compra. <a href="hipotecas.html">Calcula tu cuota</a> o pide asesoría gratuita.</p>
+      <p>En NuevaHabitat negociamos con varios bancos para conseguir las mejores condiciones. El servicio está incluido en nuestro precio fijo de compra. <a href="/hipotecas">Calcula tu cuota</a> o pide asesoría gratuita.</p>
     `
   },
   'como-vender-rapido': {
@@ -61,7 +61,7 @@ window.NH_BLOG_POSTS = {
         <li><strong>Transparencia documental</strong> desde el primer día (ITE, comunidad, cargas).</li>
         <li><strong>Negociación profesional</strong> para cerrar sin regateos interminables.</li>
       </ol>
-      <p>Con NuevaHabitat pagas <strong>3.000 € + IVA</strong>, solo en escritura. <a href="vender.html">Empieza aquí</a>.</p>
+      <p>Con NuevaHabitat pagas <strong>3.000 € + IVA</strong>, solo en escritura. <a href="/vender">Empieza aquí</a>.</p>
     `
   },
   'home-staging': {
@@ -74,7 +74,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>El home staging no consiste en reformar: consiste en <strong>presentar</strong> tu vivienda de forma que el comprador potencial se visualice viviendo en ella. Estudios del sector estiman que un buen staging puede acelerar la venta un 50% y mejorar el precio final hasta un 15%.</p>
       <p>Los cambios de mayor impacto son los más sencillos: despersonalizar (quitar fotos y objetos personales), pintar paredes en tonos neutros, mejorar la iluminación, ordenar armarios y despejar superficies.</p>
-      <p>En NuevaHabitat incluimos reportaje fotográfico en el servicio de venta. Si tu piso necesita algo más, te orientamos sobre qué merece la pena invertir y qué no. <a href="vender.html">Solicita valoración gratuita</a>.</p>
+      <p>En NuevaHabitat incluimos reportaje fotográfico en el servicio de venta. Si tu piso necesita algo más, te orientamos sobre qué merece la pena invertir y qué no. <a href="/vender">Solicita valoración gratuita</a>.</p>
     `
   },
   'primera-vivienda': {
@@ -88,7 +88,7 @@ window.NH_BLOG_POSTS = {
       <p>Comprar tu primera vivienda en Barcelona es emocionante, pero los costes ocultos pueden sorprenderte. Más allá del precio del inmueble, necesitarás aproximadamente un <strong>12–15% adicional</strong> para impuestos (ITP o IVA), notaría, registro y gestoría.</p>
       <p>El banco normalmente financia hasta el 80% del valor de tasación (no del precio de compra, si este es superior). Eso significa que necesitas ahorro propio para el 20% restante más los gastos de compra.</p>
       <p>También conviene verificar la situación de la comunidad de propietarios, si hay obras pendientes, derramas, o problemas de ITE. Un buen agente te ahorra sorpresas desagradables en el momento de la escritura.</p>
-      <p>En NuevaHabitat acompañamos todo el proceso por <strong>5.000 € + IVA</strong>, cobrados solo en escritura. <a href="comprar.html">Descubre cómo funciona</a>.</p>
+      <p>En NuevaHabitat acompañamos todo el proceso por <strong>5.000 € + IVA</strong>, cobrados solo en escritura. <a href="/comprar">Descubre cómo funciona</a>.</p>
     `
   },
   'mercado-2026': {
@@ -102,7 +102,7 @@ window.NH_BLOG_POSTS = {
       <p>Barcelona cierra el primer semestre de 2026 con un mercado activo pero más selectivo. La demanda se concentra en pisos reformados, bien comunicados y con certificado energético favorable.</p>
       <p>La oferta de obra nueva sigue siendo limitada en el centro, lo que mantiene la presión al alza en Eixample, Gràcia y Poblenou. En cambio, en el área metropolitana (Hospitalet, Badalona, Santa Coloma) la oferta es mayor y los precios más accesibles.</p>
       <p>Para compradores con financiación aprobada, es buen momento: hay más margen de negociación que en 2024. Para vendedores con pisos bien posicionados, la demanda sigue siendo sólida si el precio es realista.</p>
-      <p>¿Quieres saber qué está pasando en tu barrio concreto? <a href="contacto.html">Escríbenos</a> y te preparamos un informe personalizado.</p>
+      <p>¿Quieres saber qué está pasando en tu barrio concreto? <a href="/contacto">Escríbenos</a> y te preparamos un informe personalizado.</p>
     `
   },
   'gastos-compraventa': {
@@ -115,7 +115,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>En una compraventa de vivienda usada en Cataluña, el comprador asume la mayor parte de los gastos. El más importante es el <strong>Impuesto de Transmisiones Patrimoniales (ITP)</strong>, que en 2026 se sitúa entre el 10% y el 11% del precio de compra según el tramo.</p>
       <p>Además, el comprador paga notaría (300–800 €), registro de la propiedad (400–650 €) y gestoría (300–500 €). Si hay hipoteca, se añaden gastos de tasación y comisión de apertura bancaria.</p>
-      <p>El vendedor, por su parte, debe abonar la plusvalía municipal (si aplica), el certificado energético y cualquier deuda pendiente de la comunidad. En NuevaHabitat te preparamos un desglose completo antes de firmar. <a href="comprar.html">Más información</a>.</p>
+      <p>El vendedor, por su parte, debe abonar la plusvalía municipal (si aplica), el certificado energético y cualquier deuda pendiente de la comunidad. En NuevaHabitat te preparamos un desglose completo antes de firmar. <a href="/comprar">Más información</a>.</p>
     `
   },
   'negociar-precio': {
@@ -128,7 +128,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>Negociar el precio de un piso no es regatear por regatear: es presentar argumentos sólidos que justifiquen una rebaja. Los agentes profesionales usan comparables de mercado, defectos detectados en la visita, y el tiempo que lleva el inmueble publicado.</p>
       <p>Un error frecuente es hacer una oferta demasiado baja que ofende al vendedor y cierra la puerta a futuras negociaciones. Lo ideal es una oferta razonable (5–8% por debajo del precio de salida) acompañada de justificación y rapidez en la respuesta.</p>
-      <p>En NuevaHabitat negociamos en tu nombre con datos reales de mercado. Es parte de nuestro servicio de compra. <a href="comprar.html">Conoce el proceso</a>.</p>
+      <p>En NuevaHabitat negociamos en tu nombre con datos reales de mercado. Es parte de nuestro servicio de compra. <a href="/comprar">Conoce el proceso</a>.</p>
     `
   },
   'euribor-2026': {
@@ -143,7 +143,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>Tras la volatilidad de 2023–2024, el euríbor a 12 meses se ha estabilizado en torno al 2,5–3% en 2026. La mayoría de analistas prevén que se mantenga en ese rango durante la segunda mitad del año, con posibles recortes del BCE si la inflación sigue moderándose.</p>
       <p>Para quienes tienen hipoteca variable, esto significa cuotas más predecibles que hace dos años. Para quienes van a contratar, la decisión fija vs. variable depende más de tu perfil de riesgo que del tipo en sí.</p>
-      <p>En NuevaHabitat comparamos ofertas de varios bancos para encontrar la mejor hipoteca para tu situación. <a href="hipotecas.html">Usa nuestra calculadora</a> o pide asesoría gratuita.</p>
+      <p>En NuevaHabitat comparamos ofertas de varios bancos para encontrar la mejor hipoteca para tu situación. <a href="/hipotecas">Usa nuestra calculadora</a> o pide asesoría gratuita.</p>
     `
   },
 
@@ -160,7 +160,7 @@ window.NH_BLOG_POSTS = {
       <p>Si buscas <strong>vender piso en Barcelona</strong>, lo primero que te preguntarás es cuánto te costará la inmobiliaria. En el modelo tradicional, las comisiones suelen oscilar entre el 3% y el 5% del precio de venta — en un piso de 350.000 €, eso supone hasta 17.500 €.</p>
       <p>En <strong>NuevaHabitat</strong> aplicamos un modelo de <strong>precio fijo: 3.000 € + IVA</strong>, cobrados únicamente en el momento de la escritura. Sin permanencias, sin exclusivas abusivas y sin comisiones ocultas. Si no vendes, no pagas.</p>
       <p>El servicio incluye valoración de mercado, reportaje fotográfico, publicación en portales, filtrado de compradores cualificados, visitas, negociación y acompañamiento hasta la firma.</p>
-      <p>¿Quieres saber cuánto vale tu vivienda antes de decidir? <a href="vender.html">Solicita una valoración gratuita</a> sin compromiso. Si vives en Les Corts, también puedes ver el detalle del servicio en nuestra <a href="/vender-les-corts">landing de venta en Les Corts</a>.</p>
+      <p>¿Quieres saber cuánto vale tu vivienda antes de decidir? <a href="/vender">Solicita una valoración gratuita</a> sin compromiso. Si vives en Les Corts, también puedes ver el detalle del servicio en nuestra <a href="/vender-les-corts">landing de venta en Les Corts</a>.</p>
     `
   },
 
@@ -176,7 +176,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>Buscar <strong>valoración gratuita piso Barcelona</strong> en internet devuelve cifras muy dispares. Los estimadores automáticos sirven como orientación, pero no contemplan orientación, estado de la finca, ITE, reformas recientes ni operaciones cerradas en tu edificio.</p>
       <p>Una <strong>tasación vivienda Barcelona</strong> fiable combina comparables de operaciones reales (no solo anuncios), visita presencial y conocimiento del micro-mercado de tu barrio — Eixample no se comporta igual que Nou Barris, Les Corts o Poblenou.</p>
-      <p>En NuevaHabitat la valoración es gratuita y sin compromiso. Te entregamos un informe con rango de precio recomendado, tiempo estimado de venta y plan de acción. <a href="vender.html">Pide tu valoración aquí</a>. ¿Tu piso está en Les Corts? <a href="/vender-les-corts">Consulta condiciones para vender en el distrito</a>.</p>
+      <p>En NuevaHabitat la valoración es gratuita y sin compromiso. Te entregamos un informe con rango de precio recomendado, tiempo estimado de venta y plan de acción. <a href="/vender">Pide tu valoración aquí</a>. ¿Tu piso está en Les Corts? <a href="/vender-les-corts">Consulta condiciones para vender en el distrito</a>.</p>
     `
   },
 
@@ -192,7 +192,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>La <strong>comisión inmobiliaria Barcelona</strong> media ronda el 3%–5% del precio de venta más IVA. En operaciones de 300.000–500.000 €, el coste para el vendedor puede superar los 15.000 €, independientemente del tiempo que tarde la venta.</p>
       <p>Antes de firmar una exclusiva, pregunta qué incluye: ¿fotografía profesional? ¿publicación en portales? ¿filtrado de compradores? ¿negociación? ¿gestión de arras y escritura? Muchas agencias cobran extras por cada servicio.</p>
-      <p>NuevaHabitat cobra <strong>3.000 € + IVA solo en escritura</strong>, con todo incluido. Transparencia total desde el primer día. <a href="vender.html">Consulta condiciones</a> o compara con tu presupuesto actual. En Les Corts, un piso de 400.000 € supone un ahorro de más de 21.000 € frente a una agencia al 6% — <a href="/vender-les-corts">ver comparativa en Les Corts</a>.</p>
+      <p>NuevaHabitat cobra <strong>3.000 € + IVA solo en escritura</strong>, con todo incluido. Transparencia total desde el primer día. <a href="/vender">Consulta condiciones</a> o compara con tu presupuesto actual. En Les Corts, un piso de 400.000 € supone un ahorro de más de 21.000 € frente a una agencia al 6% — <a href="/vender-les-corts">ver comparativa en Les Corts</a>.</p>
     `
   },
 
@@ -217,7 +217,7 @@ window.NH_BLOG_POSTS = {
         <li>Firma arras con condiciones suspensivas bien redactadas.</li>
         <li>Escritura pública y registro de la propiedad.</li>
       </ol>
-      <p>NuevaHabitat acompaña todo el proceso por <strong>5.000 € + IVA</strong>, cobrados solo en escritura. Acceso a compradores cualificados y negociación profesional. <a href="comprar.html">Empieza tu búsqueda</a>.</p>
+      <p>NuevaHabitat acompaña todo el proceso por <strong>5.000 € + IVA</strong>, cobrados solo en escritura. Acceso a compradores cualificados y negociación profesional. <a href="/comprar">Empieza tu búsqueda</a>.</p>
     `
   },
 
@@ -233,7 +233,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>No todo el mundo puede o quiere <strong>comprar piso en Barcelona</strong> ciudad. El área metropolitana ofrece alternativas con mejor relación calidad-precio y buenas conexiones de transporte.</p>
       <p><strong>Sant Cugat del Vallès</strong> atrae a familias por sus colegios y espacios verdes; <strong>Badalona</strong> y <strong>L'Hospitalet</strong> concentran oferta más accesible con metro directo; <strong>Sant Adrià</strong> y el <strong>22@</strong> ganan peso entre jóvenes profesionales.</p>
-      <p>La clave es comparar precio/m², tiempo de desplazamiento y perspectiva de revalorización a 5–10 años. NuevaHabitat trabaja toda el área metropolitana con datos de mercado actualizados. <a href="inmuebles.html">Ver inmuebles disponibles</a> o <a href="comprar.html">activar búsqueda personalizada</a>.</p>
+      <p>La clave es comparar precio/m², tiempo de desplazamiento y perspectiva de revalorización a 5–10 años. NuevaHabitat trabaja toda el área metropolitana con datos de mercado actualizados. <a href="/inmuebles">Ver inmuebles disponibles</a> o <a href="/comprar">activar búsqueda personalizada</a>.</p>
     `
   },
 
@@ -257,7 +257,7 @@ window.NH_BLOG_POSTS = {
         <li>Plano de la vivienda (si existe).</li>
         <li>Contrato de alquiler vigente, si hay inquilino.</li>
       </ul>
-      <p>En NuevaHabitat te guiamos en la preparación documental para acelerar la venta. <a href="vender.html">Solicita valoración gratuita</a>.</p>
+      <p>En NuevaHabitat te guiamos en la preparación documental para acelerar la venta. <a href="/vender">Solicita valoración gratuita</a>.</p>
     `
   },
 
@@ -273,7 +273,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p><strong>Buscar piso con hipoteca Barcelona</strong> exige orden: primero la viabilidad bancaria, después la búsqueda intensiva. Los bancos financian hasta el 80% del valor de tasación (no siempre del precio de compra).</p>
       <p>Consigue una preaprobación o estudio de viabilidad antes de visitar decenas de pisos. Así podrás hacer ofertas creíbles y negociar con fuerza. Revisa TAE, vinculaciones de seguros y comisiones de apertura — no solo el TIN.</p>
-      <p>NuevaHabitat incluye asesoría hipotecaria en el servicio de compra. Comparamos entidades y te ayudamos a estructurar la oferta. <a href="hipotecas.html">Calculadora hipotecaria</a> · <a href="comprar.html">Activar búsqueda</a>.</p>
+      <p>NuevaHabitat incluye asesoría hipotecaria en el servicio de compra. Comparamos entidades y te ayudamos a estructurar la oferta. <a href="/hipotecas">Calculadora hipotecaria</a> · <a href="/comprar">Activar búsqueda</a>.</p>
     `
   },
 
@@ -289,7 +289,55 @@ window.NH_BLOG_POSTS = {
     body: `
       <p><strong>Vender piso herencia Barcelona</strong> implica pasos previos: aceptación de herencia, pago del Impuesto de Sucesiones, inscripción registral a tu nombre y, en muchos casos, acuerdo entre herederos sobre el precio mínimo de venta.</p>
       <p>La fiscalidad incluye posible plusvalía municipal si ha habido incremento del valor catastral del suelo. Planifica el timing: vender antes o después de completar trámites puede afectar a compradores y al precio final.</p>
-      <p>NuevaHabitat acompaña a familias en ventas por herencia con discreción y precio fijo de 3.000 € + IVA. <a href="contacto.html">Consulta tu caso</a> o <a href="vender.html">solicita valoración</a>.</p>
+      <p>NuevaHabitat acompaña a familias en ventas por herencia con discreción y precio fijo de 3.000 € + IVA. <a href="/contacto">Consulta tu caso</a> o <a href="/vender-piso-herencia-barcelona">guía completa vender piso heredado</a>.</p>
     `
+  },
+
+  'guia-valoracion-piso-barcelona-2026': {
+    title: 'Cómo valorar tu piso en Barcelona en 2026: método profesional paso a paso',
+    cat: 'Vender',
+    date: '16 ago 2026',
+    readMin: 9,
+    image: 'imagenes/interior11.jpg',
+    excerpt: 'Comparables reales, visita presencial y rango de precio: qué debe incluir una valoración seria antes de publicar.',
+    keywords: ['valoración piso Barcelona', 'cuánto vale mi piso Barcelona', 'tasación vivienda Barcelona 2026', 'valorar casa Barcelona'],
+    metaDescription: 'Guía para valorar tu piso en Barcelona en 2026: comparables, ITE, certificado energético y rango de precio realista. Valoración gratuita NuevaHabitat.',
+    body: `<p>Placeholder — contenido ampliado en blog-posts-rich.js</p>`
+  },
+
+  'housfy-vs-precio-fijo-barcelona': {
+    title: 'Housfy vs precio fijo: qué pagas realmente al vender en Barcelona',
+    cat: 'Vender',
+    date: '16 ago 2026',
+    readMin: 8,
+    image: 'imagenes/inmobiliario2.jpg',
+    excerpt: 'Comisión variable, servicios incluidos y coste total en una venta de 400.000 €: comparativa honesta.',
+    keywords: ['Housfy Barcelona', 'NuevaHabitat vs Housfy', 'comisión vender piso Barcelona', 'precio fijo inmobiliaria'],
+    metaDescription: 'Comparativa Housfy vs NuevaHabitat en Barcelona: comisión, servicios y coste total al vender. Precio fijo 3.000 € + IVA solo en escritura.',
+    body: `<p>Placeholder</p>`
+  },
+
+  'vender-piso-horta-guia': {
+    title: 'Vender piso en Horta-Guinardó: precios, compradores y estrategia 2026',
+    cat: 'Vender',
+    date: '16 ago 2026',
+    readMin: 8,
+    image: 'imagenes/interior14.jpg',
+    excerpt: 'Montbau, Vall d\'Hebron y Horta centre: cómo posicionar tu vivienda en un distrito con demanda familiar estable.',
+    keywords: ['vender piso Horta Barcelona', 'vender piso Horta-Guinardó', 'precio piso Horta 2026', 'inmobiliaria Horta'],
+    metaDescription: 'Guía para vender piso en Horta-Guinardó Barcelona: precios por zona, perfil comprador y cómo vender con precio fijo NuevaHabitat.',
+    body: `<p>Placeholder</p>`
+  },
+
+  'vender-hipoteca-pendiente-guia': {
+    title: 'Vender piso con hipoteca pendiente en Barcelona: cancelación, arras y plazos',
+    cat: 'Vender',
+    date: '16 ago 2026',
+    readMin: 9,
+    image: 'imagenes/inmobiliario4.jpg',
+    excerpt: 'Qué ocurre con la hipoteca en arras y escritura, quién cancela y cómo evitar retrasos de última hora.',
+    keywords: ['vender piso hipoteca pendiente Barcelona', 'cancelar hipoteca venta', 'vender con hipoteca Cataluña'],
+    metaDescription: 'Vender piso con hipoteca pendiente en Barcelona: cancelación registral, arras, banco comprador y plazos. Guía NuevaHabitat.',
+    body: `<p>Placeholder</p>`
   }
 };

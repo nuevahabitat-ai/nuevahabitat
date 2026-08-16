@@ -10,7 +10,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_fZ9IgW5VfsF_Gf_zFsxqnA_jOaH2yri';
 /* Email del administrador — redirige a admin-panel en lugar de panel */
 const ADMIN_EMAIL = 'admin.nuevahabitat@gmail.com';
 
-const CONFIRM_URL = () => window.location.origin + '/confirmar-cuenta.html';
+const CONFIRM_URL = () => window.location.origin + '/confirmar-cuenta';
 
 function clearAuthStorage() {
   localStorage.removeItem('nh_reg_tipo');
@@ -79,9 +79,9 @@ window.nhAuth = {
   },
 
   getPanelUrl(user) {
-    if (nhAuth.isAdmin(user)) return 'admin-panel.html';
+    if (nhAuth.isAdmin(user)) return '/admin-panel';
     const tipo = nhAuth.getUserTipo(user);
-    return 'panel.html?tipo=' + tipo;
+    return '/panel?tipo=' + tipo;
   },
 
   async register({ email, password, nombre, tipo, telefono }) {
@@ -114,7 +114,7 @@ window.nhAuth = {
 
   async loginGoogle(redirectPath) {
     const tipo = localStorage.getItem('nh_reg_tipo') || 'comprar';
-    const path = redirectPath || '/confirmar-cuenta.html';
+    const path = redirectPath || '/confirmar-cuenta';
     const { data, error } = await window.nhSupabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
@@ -133,7 +133,7 @@ window.nhAuth = {
       try { await window.nhSupabase.auth.signOut({ scope: 'local' }); } catch (_) {}
     }
     clearAuthStorage();
-    window.location.replace('login.html?logout=1');
+    window.location.replace('/login?logout=1');
   },
 
   async getSession() {
@@ -153,7 +153,7 @@ window.nhAuth = {
 
   async resetPassword(email) {
     const { error } = await window.nhSupabase.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + '/login.html?recovery=1'
+      redirectTo: window.location.origin + '/login?recovery=1'
     });
     return { error };
   },

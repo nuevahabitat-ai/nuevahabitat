@@ -25,7 +25,7 @@
     const post = await nhBlog.getPost(slug);
     if(!post){
       document.getElementById('postTitle').textContent = 'Artículo no encontrado';
-      document.getElementById('postBody').innerHTML = '<p>Este artículo no existe o ha sido movido. <a href="blog.html">Vuelve al blog</a>.</p>';
+      document.getElementById('postBody').innerHTML = '<p>Este artículo no existe o ha sido movido. <a href="/blog">Vuelve al blog</a>.</p>';
       return;
     }
     document.title = (post.titulo || post.title) + ' · NuevaHabitat';

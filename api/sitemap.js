@@ -23,9 +23,9 @@ function loadLandingsFromIndex() {
   }
 }
 const STATIC = [
-  '', 'vender.html', 'comprar.html', 'inmuebles.html', 'hipotecas.html',
-  'nosotros.html', 'blog.html', 'contacto.html',
-  'privacidad.html', 'aviso-legal.html', 'cookies.html'
+  '', 'vender', 'comprar', 'inmuebles', 'hipotecas',
+  'nosotros', 'blog', 'contacto',
+  'privacidad', 'aviso-legal', 'cookies'
 ];
 
 const STATIC_BLOG = [
@@ -35,11 +35,13 @@ const STATIC_BLOG = [
   'valoracion-gratis-barcelona', 'comision-inmobiliaria-barcelona',
   'comprar-piso-barcelona-guia', 'comprar-casa-area-metropolitana',
   'documentos-vender-piso', 'buscar-piso-hipoteca-barcelona', 'vender-piso-herencia-barcelona',
+  'guia-valoracion-piso-barcelona-2026', 'housfy-vs-precio-fijo-barcelona',
+  'vender-piso-horta-guia', 'vender-hipoteca-pendiente-guia',
 ];
 
 export default async function handler(req, res) {
   const urls = STATIC.map(p => ({
-    loc: p === '' ? `${SITE}/` : `${SITE}/${p.replace(/\.html$/, '')}`,
+    loc: p === '' ? `${SITE}/` : `${SITE}/${p}`,
     priority: p === '' ? '1.0' : '0.8',
   }));
 

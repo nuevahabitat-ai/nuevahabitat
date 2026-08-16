@@ -24,7 +24,10 @@
     "@type": "RealEstateAgent",
     "name": "NuevaHabitat",
     "image": "https://www.nuevahabitat.com/imagenes/Logo/logosinfondo2.png",
-    "telephone": "+34603656587",
+    "telephone": [
+      "+34603656587",
+      "+34643877644"
+    ],
     "email": "info@nuevahabitat.com",
     "address": {
       "@type": "PostalAddress",
@@ -313,11 +316,11 @@
 </head>
 <body data-nh-cluster="barrio" data-nh-landing-slug="vender-poble-sec" data-nh-precio-default="340000">
 <nav id="navbar"><div class="nav-inner">
-  <a href="index.html" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">Poble Sec · Barcelona</span></div></a>
-  <ul class="nav-links"><li><a href="vender.html" style="color:var(--oro)">Vender</a></li><li><a href="comprar.html">Comprar</a></li><li><a href="inmuebles.html">Inmuebles</a></li><li><a href="contacto.html">Contacto</a></li></ul>
-  <div class="nav-actions"><a href="tel:+34603656587" class="nav-tel nh-call-link" data-nh-call="header">603 656 587</a><a href="#valorar" class="nav-cta">Valorar mi piso</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
+  <a href="/" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">Poble Sec · Barcelona</span></div></a>
+  <ul class="nav-links"><li><a href="/vender" style="color:var(--oro)">Vender</a></li><li><a href="/comprar">Comprar</a></li><li><a href="/inmuebles">Inmuebles</a></li><li><a href="/contacto">Contacto</a></li></ul>
+  <div class="nav-actions"><span class="nav-tels"><a href="tel:+34603656587" class="nh-call-link nav-tel" data-nh-call="header">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link nav-tel" data-nh-call="header">643 877 644</a></span><a href="#valorar" class="nav-cta">Valorar mi piso</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
 </div></nav>
-<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
+<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="/vender">Vender</a><a href="/comprar">Comprar</a><a href="/inmuebles">Inmuebles</a><span class="mobile-nav-phones"><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link" data-nh-call="mobile-menu">643 877 644</a></span><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
 <div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Poble Sec</span></nav></div>
 <section class="lc-hero">
   <div class="lc-hero-media"><img src="imagenes/poblesec1.jpg" alt="Piso en Poble Sec, Barcelona" fetchpriority="high" decoding="async"/></div>
@@ -328,7 +331,7 @@
     <p>Vende junto al Paral·lel o la falda de Montjuïc con <strong>honorarios fijos de 3.000€ + IVA</strong>, valoración con comparables reales del barrio y compradores filtrados por solvencia — sin comisión del 6%.</p>
     <div style="display:flex;gap:.75rem;flex-wrap:wrap">
       <a href="#valorar" class="btn btn-gold btn-lg">Valoración gratuita en Poble Sec</a>
-      <a href="tel:+34603656587" class="btn btn-outline-light btn-lg">603 656 587</a>
+      <a href="tel:+34603656587" class="btn btn-outline-light btn-lg">603 656 587 · 643 877 644</a>
     </div>
   </div></div>
 </section>
@@ -340,7 +343,7 @@
         <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
         <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
       </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="hero">Llama ahora · 603 656 587</a>
+      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="hero">Llama · 603 656 587 · 643 877 644</a>
     </div>
   </div>
 </section>
@@ -371,19 +374,60 @@
     <div><h3>Tipología de vivienda</h3><p>Predominan fincas de finales del siglo XIX y principios del XX, muchas sin ascensor y con superficies medias inferiores a las del Eixample, junto a edificios rehabilitados en los últimos quince años que han elevado notablemente el precio por metro cuadrado. La reforma reciente y la orientación (muchas calles estrechas condicionan la luz) son factores determinantes del valor final.</p></div>
   </div></div>
 </section>
-<section class="lc-section" style="background:var(--crema)" id="calc">
+<section class="nh-savings-calc-section nh-savings-calc-section--dark" id="calc">
   <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:2rem">
-      <span class="overline">Calculadora</span>
-      <h2 class="section-title">¿Cuánto te ahorras en Poble Sec?</h2>
-      <p style="color:var(--gris-texto)">Mueve el slider y compara comisión tradicional (~6%) vs NuevaHabitat (3.000 € + IVA).</p>
+    <div class="nh-savings-calc-head fade-up">
+      <span class="overline">Comparativa de honorarios</span>
+      <h2 class="section-title light">¿Cuánto te ahorras vendiendo en Poble Sec?</h2>
+      <p class="nh-savings-calc-sub light">Compara la comisión habitual de una agencia inmobiliaria en Barcelona con el precio fijo de NuevaHabitat: 3.000 € + IVA, cobrados solo en escritura.</p>
     </div>
-    <div class="lc-calc fade-up" data-lc-calc>
-      <label for="lc-precio">Precio estimado de venta: <strong id="lc-precio-label">340.000 €</strong></label>
-      <input type="range" id="lc-precio" min="150000" max="1200000" step="10000" value="340000"/>
-      <div class="lc-calc-result">
-        <div class="lc-calc-box lose"><div style="font-size:.75rem;text-transform:uppercase">Agencia ~6%</div><div id="lc-trad" style="font-size:1.35rem;font-weight:700">24.684 €</div></div>
-        <div class="lc-calc-box win"><div style="font-size:.75rem;text-transform:uppercase">NuevaHabitat</div><div style="font-size:1.35rem;font-weight:700">3.630 €</div><div style="font-size:.8rem">Ahorro: <strong id="lc-save">21.054 €</strong></div></div>
+    <div class="nh-savings-calc fade-up" data-nh-savings-calc data-lc-calc>
+      <div class="nh-sc-panel nh-sc-panel--controls">
+        <div class="nh-sc-field">
+          <div class="nh-sc-field-top">
+            <label for="nh-sc-precio">Precio de venta estimado</label>
+            <output id="nh-sc-precio-label" for="nh-sc-precio" class="nh-sc-price-out">340.000 €</output>
+          </div>
+          <input type="range" id="nh-sc-precio" class="nh-sc-range" min="150000" max="1500000" step="10000" value="340000" aria-valuemin="150000" aria-valuemax="1500000" aria-valuenow="340000"/>
+          <div class="nh-sc-range-labels"><span>150.000 €</span><span>1,5 M€</span></div>
+        </div>
+        <div class="nh-sc-field">
+          <span class="nh-sc-field-label">Comisión agencia tradicional</span>
+          <div class="nh-sc-pct-row" role="group" aria-label="Porcentaje de comisión">
+            <button type="button" class="nh-sc-pct" data-pct="3" aria-pressed="false">3%</button><button type="button" class="nh-sc-pct" data-pct="4" aria-pressed="false">4%</button><button type="button" class="nh-sc-pct" data-pct="5" aria-pressed="false">5%</button><button type="button" class="nh-sc-pct is-active" data-pct="6" aria-pressed="true">6%</button>
+          </div>
+        </div>
+        <p class="nh-sc-note">Cálculo orientativo: comisión + IVA (21%) frente a 3.000 € + IVA de NuevaHabitat, cobrados únicamente en escritura.</p>
+      </div>
+      <div class="nh-sc-panel nh-sc-panel--viz">
+        <div class="nh-sc-save-block">
+          <span class="nh-sc-save-label">Ahorro estimado</span>
+          <div class="nh-sc-save-value" id="nh-sc-save" data-value="21054">21.054 €</div>
+          <span class="nh-sc-save-hint">respecto a agencia al 6% + IVA</span>
+        </div>
+        <div class="nh-sc-bars" aria-hidden="true">
+          <div class="nh-sc-bar-row">
+            <span class="nh-sc-bar-name">Agencia ~6% + IVA</span>
+            <div class="nh-sc-bar-track"><div class="nh-sc-bar-fill nh-sc-bar-fill--agency" id="nh-sc-bar-agency" style="width:87%"></div></div>
+            <span class="nh-sc-bar-amount" id="nh-sc-trad">24.684 €</span>
+          </div>
+          <div class="nh-sc-bar-row">
+            <span class="nh-sc-bar-name">NuevaHabitat</span>
+            <div class="nh-sc-bar-track"><div class="nh-sc-bar-fill nh-sc-bar-fill--nh" id="nh-sc-bar-nh" style="width:13%"></div></div>
+            <span class="nh-sc-bar-amount nh-sc-bar-amount--gold">3630 €</span>
+          </div>
+        </div>
+        <div class="nh-sc-breakdown">
+          <div class="nh-sc-breakdown-item">
+            <span>Honorarios agencia</span>
+            <strong id="nh-sc-trad-inline">24.684 €</strong>
+          </div>
+          <div class="nh-sc-breakdown-item nh-sc-breakdown-item--nh">
+            <span>NuevaHabitat (escritura)</span>
+            <strong>3630 €</strong>
+          </div>
+        </div>
+        <a href="#valorar" class="btn btn-gold nh-sc-cta">Solicitar valoración gratuita</a>
       </div>
     </div>
   </div>
@@ -491,7 +535,7 @@
     </div>
     <div class="lc-nh-compradores-footer fade-up">
       <p><strong>En la práctica:</strong> cuando alguien visita tu piso con NuevaHabitat, no es un desconocido de Idealista. Es un comprador de nuestra cartera, con perfil financiero revisado, al que hemos presentado tu inmueble porque encaja en precio, zona y condiciones. Tú controlas las visitas desde tu panel; ellos llevan el seguimiento desde el suyo. Así vendes más rápido y con menos riesgo de operaciones que se caen en el último momento.</p>
-      <a href="comprar.html" class="btn btn-outline" style="margin-top:1rem">Conoce la plataforma de compradores →</a>
+      <a href="/comprar" class="btn btn-outline" style="margin-top:1rem">Conoce la plataforma de compradores →</a>
     </div>
   </div>
 </section><section class="lc-section" style="background:var(--crema)">
@@ -523,7 +567,7 @@
           <li><strong>Resumen en tiempo real</strong> — publicación, visitas recibidas y ofertas en un vistazo.</li>
           <li><strong>Contratos y arras</strong> — documentación firmada disponible en tu panel.</li>
         </ul>
-        <a href="registro.html" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
+        <a href="/registro" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
       </div>
       <div class="lc-pm-wrap" aria-hidden="true">
         <div class="lc-pm-header">
@@ -598,7 +642,7 @@
   <div class="container text-center fade-up">
     <span class="overline">Cartera activa</span>
     <h2 class="section-title">Inmuebles en venta en Poble Sec</h2>
-    <a href="inmuebles.html?q=Poble%20Sec" class="btn btn-gold btn-lg">Ver inmuebles en Poble Sec →</a>
+    <a href="/inmuebles?q=Poble%20Sec" class="btn btn-gold btn-lg">Ver inmuebles en Poble Sec →</a>
   </div>
 </section>
 <section class="lc-section" style="background:var(--crema);padding:3rem 0">
@@ -616,7 +660,7 @@
         <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
         <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
       </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="prefaq">Llama ahora · 603 656 587</a>
+      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="prefaq">Llama · 603 656 587 · 643 877 644</a>
     </div>
   </div>
 </section>
@@ -662,23 +706,23 @@
     <div class="footer-top" style="grid-template-columns:1.5fr 2.5fr 1fr">
       <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo 3.000€ + IVA, cobro solo en escritura.</p></div>
       <div class="footer-col footer-col--servicios"><h4>Servicios</h4><div data-nh-landing-footer></div></div>
-      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34603656587">603 656 587</a></li><li><a href="mailto:info@nuevahabitat.com">info@nuevahabitat.com</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34603656587">603 656 587</a> · <a href="tel:+34643877644">643 877 644</a></li><li><a href="mailto:info@nuevahabitat.com">info@nuevahabitat.com</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="privacidad.html">Privacidad</a><a href="aviso-legal.html">Aviso legal</a></div></div>
+    <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="/privacidad">Privacidad</a><a href="/aviso-legal">Aviso legal</a></div></div>
   </div>
 </footer>
 <div class="whatsapp-float"><a href="https://wa.me/34603656587?text=Hola%2C%20quiero%20vender%20mi%20piso%20en%20Poble%20Sec" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
 <nav class="mbn" id="mbn">
-  <a href="index.html" class="mbn-tab" data-tab="inicio" aria-label="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>Inicio</span></a>
-  <a href="inmuebles.html" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg><span>Inmuebles</span></a>
-  <a href="vender.html" class="mbn-tab active" data-tab="vender" aria-label="Vender"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/></svg><span>Vender</span></a>
-  <a href="comprar.html" class="mbn-tab" data-tab="comprar" aria-label="Comprar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg><span>Comprar</span></a>
-  <a href="login.html" class="mbn-tab" data-tab="cuenta" aria-label="Mi cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><span>Cuenta</span></a>
+  <a href="/" class="mbn-tab" data-tab="inicio" aria-label="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>Inicio</span></a>
+  <a href="/inmuebles" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg><span>Inmuebles</span></a>
+  <a href="/vender" class="mbn-tab active" data-tab="vender" aria-label="Vender"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/></svg><span>Vender</span></a>
+  <a href="/comprar" class="mbn-tab" data-tab="comprar" aria-label="Comprar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg><span>Comprar</span></a>
+  <a href="/login" class="mbn-tab" data-tab="cuenta" aria-label="Mi cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><span>Cuenta</span></a>
 </nav>
 <div id="cookie-banner">
   <div class="cookie-banner-inner">
     <button type="button" class="cookie-btn-close" id="cookie-close" aria-label="Cerrar y usar solo cookies necesarias">&times;</button>
-    <p>Usamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptar todas o solo las necesarias. <a href="cookies.html">Más información</a>.</p>
+    <p>Usamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptar todas o solo las necesarias. <a href="/cookies">Más información</a>.</p>
     <div class="cookie-btns">
       <button type="button" class="cookie-btn-accept" id="cookie-accept">Aceptar todo</button>
       <button type="button" class="cookie-btn-reject" id="cookie-reject">Solo necesarias</button>
@@ -690,6 +734,8 @@
 <script src="js/landings.js"></script>
 <script src="js/landings-ui.js"></script>
 <script src="js/seo.js"></script>
+<script src="js/savings-calculator.js"></script>
+<script src="js/analytics-events.js"></script>
 <script src="js/landing-tools.js"></script>
 <script src="js/main.js" defer></script>
 <script defer src="js/supabase.js"></script>

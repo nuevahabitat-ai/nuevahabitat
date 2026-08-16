@@ -63,8 +63,8 @@ const HEAD = `
 const FOOTER = `
 <div class="ftr">
   <p>NuevaHabitat Barcelona · Carrer de Mejía Lequerica, 42, 08028 Barcelona<br/>
-  <a href="tel:+34603656587">603 656 587</a> · <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a><br/><br/>
-  <a href="https://www.nuevahabitat.com/privacidad.html">Privacidad</a> · <a href="https://www.nuevahabitat.com/cookies.html">Cookies</a> · 
+  <a href="tel:+34603656587">603 656 587</a> · <a href="tel:+34643877644">643 877 644</a> · <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a><br/><br/>
+  <a href="https://www.nuevahabitat.com/privacidad">Privacidad</a> · <a href="https://www.nuevahabitat.com/cookies">Cookies</a> · 
   <a href="https://www.nuevahabitat.com">nuevahabitat.com</a>
   </p>
 </div>
@@ -133,8 +133,8 @@ function tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble }) {
 function tplBienvenida({ nombre, email, tipo }) {
   const esVendedor = tipo === 'vender' || tipo === 'vendedor';
   const panelUrl = esVendedor
-    ? 'https://www.nuevahabitat.com/panel.html?tipo=vendedor'
-    : 'https://www.nuevahabitat.com/panel.html?tipo=comprador';
+    ? 'https://www.nuevahabitat.com/panel?tipo=vendedor'
+    : 'https://www.nuevahabitat.com/panel?tipo=comprador';
   const intro = esVendedor
     ? 'Nos alegra tenerte en NuevaHabitat. Desde tu <strong>panel de vendedor</strong> podrás seguir el proceso de venta de tu inmueble en tiempo real: documentos, visitas y comunicación con tu agente.'
     : 'Nos alegra tenerte en NuevaHabitat. Desde tu <strong>panel de comprador</strong> podrás seguir tu búsqueda de vivienda: favoritos, visitas y el estado de tu expediente.';
@@ -192,7 +192,7 @@ function tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra }
         </table>
       </div>
       <div class="btns">
-        <a href="https://www.nuevahabitat.com/admin-panel.html#visitas" class="btn btn-gold">Ver en panel admin →</a>
+        <a href="https://www.nuevahabitat.com/admin-panel#visitas" class="btn btn-gold">Ver en panel admin →</a>
         ${telefono ? `<a href="https://wa.me/34${telefono.replace(/\D/g,'')}" class="btn btn-wa">WhatsApp</a>` : ''}
       </div>
     </div>` + FOOTER,
@@ -215,7 +215,7 @@ function tplConfirmacionDisponibilidad({ nombre, mensaje, extra }) {
       </div>
       <div class="tip">Adjuntamos un archivo <strong>.ics</strong> para añadir la franja a tu calendario (Google, Apple u Outlook) con un clic. Te contactaremos en menos de 24h para confirmar.</div>
       <div class="btns">
-        <a href="https://www.nuevahabitat.com/panel.html" class="btn btn-gold">Ir a mi panel →</a>
+        <a href="https://www.nuevahabitat.com/panel" class="btn btn-gold">Ir a mi panel →</a>
       </div>
     </div>` + FOOTER,
   };
@@ -274,7 +274,7 @@ function tplConfirmacionVisita({ nombre, mensaje, inmueble }) {
       <div class="tip">⚠️ Esta no es una reserva confirmada. Tu gestor te llamará para acordar fecha y hora exactas.</div>
       <div class="btns">
         <a href="https://wa.me/34603656587?text=Hola%2C%20he%20solicitado%20una%20visita" class="btn btn-wa">Adelantar por WhatsApp</a>
-        <a href="https://www.nuevahabitat.com/inmuebles.html" class="btn btn-gold">Ver más inmuebles</a>
+        <a href="https://www.nuevahabitat.com/inmuebles" class="btn btn-gold">Ver más inmuebles</a>
       </div>
     </div>` + FOOTER,
   };
@@ -289,7 +289,7 @@ function tplConfirmacionContacto({ nombre, inmueble }) {
       <p class="intro">Hola <strong>${nombre || ''}</strong>, hemos recibido tu solicitud de información${inmueble ? ` sobre <strong>${inmueble}</strong>` : ''}. Te responderemos en menos de 24 horas.</p>
       <div class="tip">Mientras esperas, puedes explorar más inmuebles en nuestra cartera o calcular tu hipoteca directamente en la ficha.</div>
       <div class="btns">
-        <a href="https://www.nuevahabitat.com/inmuebles.html" class="btn btn-gold">Ver inmuebles disponibles</a>
+        <a href="https://www.nuevahabitat.com/inmuebles" class="btn btn-gold">Ver inmuebles disponibles</a>
         <a href="https://wa.me/34603656587" class="btn btn-wa">WhatsApp directo</a>
       </div>
     </div>` + FOOTER,
@@ -326,7 +326,7 @@ function tplCompra({ nombre }) {
       <h1>Estamos buscando tu hogar</h1>
       <p class="intro">Hola <strong>${nombre || ''}</strong>, hemos registrado tu solicitud de compra. Nuestro equipo revisará tu perfil y te contactará con inmuebles de nuestra cartera, incluidos los de acceso privado.</p>
       <div class="btns">
-        <a href="https://www.nuevahabitat.com/panel.html?tipo=comprador" class="btn btn-gold">Ir a mi panel</a>
+        <a href="https://www.nuevahabitat.com/panel?tipo=comprador" class="btn btn-gold">Ir a mi panel</a>
         <a href="https://wa.me/34603656587" class="btn btn-wa">WhatsApp</a>
       </div>
     </div>` + FOOTER,
@@ -341,7 +341,7 @@ function tplNewsletter({ email }) {
       <h1>¡Gracias por suscribirte!</h1>
       <p class="intro">Recibirás en <strong>${email || ''}</strong> novedades del mercado inmobiliario en Barcelona, consejos de compra y venta, y las últimas publicaciones del blog.</p>
       <div class="btns">
-        <a href="https://www.nuevahabitat.com/blog.html" class="btn btn-gold">Leer el blog</a>
+        <a href="https://www.nuevahabitat.com/blog" class="btn btn-gold">Leer el blog</a>
       </div>
     </div>` + FOOTER,
   };
@@ -362,7 +362,7 @@ function tplDocumentosListos({ nombre, documentos }) {
         <table>${docList}</table>
       </div>
       <div class="btns">
-        <a href="https://www.nuevahabitat.com/panel.html" class="btn btn-gold">Ver en mi panel →</a>
+        <a href="https://www.nuevahabitat.com/panel" class="btn btn-gold">Ver en mi panel →</a>
         <a href="https://wa.me/34603656587?text=Hola%2C%20he%20visto%20los%20documentos" class="btn btn-wa">WhatsApp</a>
       </div>
     </div>` + FOOTER,
@@ -388,7 +388,7 @@ function tplHipoteca({ nombre, cuota, prestamo, anos, tasa }) {
       <div class="tip">La gestión hipotecaria está <strong>incluida en nuestro servicio</strong>. Trabajamos con los principales bancos para conseguirte las mejores condiciones.</div>
       <div class="btns">
         <a href="https://wa.me/34603656587?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20hipoteca" class="btn btn-wa">WhatsApp</a>
-        <a href="https://www.nuevahabitat.com/hipotecas.html" class="btn btn-gold">Más sobre hipotecas</a>
+        <a href="https://www.nuevahabitat.com/hipotecas" class="btn btn-gold">Más sobre hipotecas</a>
       </div>
     </div>` + FOOTER,
   };

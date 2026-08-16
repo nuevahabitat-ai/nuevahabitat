@@ -80,7 +80,7 @@ function build(cfg) {
   rep('Cómo vendemos tu piso en Sants', `Cómo vendemos tu piso en ${cfg.titleShort}`);
   rep('tu piso en Sants y fijamos', `tu piso en ${cfg.titleShort} y fijamos`);
   rep('Inmuebles en venta en Sants', `Inmuebles en venta en ${cfg.titleShort}`);
-  rep('inmuebles.html?q=Sants', `inmuebles.html?q=${encodeURIComponent(cfg.query)}`);
+  rep('/inmuebles?q=Sants', `/inmuebles?q=${encodeURIComponent(cfg.query)}`);
   rep('Ver inmuebles en Sants', `Ver inmuebles en ${cfg.titleShort}`);
   rep('Vender piso en Sants — FAQ', `Vender piso en ${cfg.titleShort} — FAQ`);
   rep('vender un piso en Sants con', `vender un piso en ${cfg.titleShort} con`);

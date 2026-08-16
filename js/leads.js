@@ -75,7 +75,7 @@
     } catch (err) {
       console.error('nhSubmitLead', err);
       if (opts.errorMsg !== false) {
-        window.nhToast?.(opts.errorMsg || 'Error al enviar. Llámanos al 603 656 587 o por WhatsApp.');
+        window.nhToast?.(opts.errorMsg || 'Error al enviar. Llámanos al 603 656 587 · 643 877 644 · 643 877 644 o por WhatsApp.');
       }
       opts.onError?.(err);
       return false;

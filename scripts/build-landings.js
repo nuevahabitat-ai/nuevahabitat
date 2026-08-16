@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { renderBarrio } = require('./render-barrio');
 const { renderPilar } = require('./render-pilar');
+const { savingsCalcMarkup } = require('./savings-calc-markup');
+const { PHONES, displayBoth, telLinksInline, footerPhonesLi, schemaTelephones } = require('./phone-config');
 const { nhPlatformBundle, nhPlatformStyles, zoneLabel } = require('./landing-nh-blocks');
 const { nhBuyerPlatformBundle, nhBuyerPlatformStyles } = require('./landing-nh-buyer-blocks');
 const { nhHomeEcosystemBundle, nhHomeEcosystemStyles } = require('./landing-nh-hub-blocks');
@@ -136,7 +138,7 @@ function buildJsonLd(L) {
       '@type': 'RealEstateAgent',
       name: 'NuevaHabitat',
       image: `${SITE}/imagenes/Logo/logosinfondo2.png`,
-      telephone: '+34603656587',
+      telephone: schemaTelephones(),
       email: CONTACT_EMAIL,
       address: {
         '@type': 'PostalAddress',
@@ -199,11 +201,11 @@ function calcInitial(precio) {
 function navBar(L) {
   const ctaLabel = L.cluster === 'comparativa' || L.cluster === 'intencion' ? 'Valorar' : 'Valorar mi piso';
   return `<nav id="navbar"><div class="nav-inner">
-  <a href="index.html" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">${navSub(L)}</span></div></a>
-  <ul class="nav-links"><li><a href="vender.html" style="color:var(--oro)">Vender</a></li><li><a href="comprar.html">Comprar</a></li><li><a href="inmuebles.html">Inmuebles</a></li><li><a href="contacto.html">Contacto</a></li></ul>
-  <div class="nav-actions"><a href="tel:+34603656587" class="nav-tel nh-call-link" data-nh-call="header">603 656 587</a><a href="#valorar" class="nav-cta">${ctaLabel}</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
+  <a href="/" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">${navSub(L)}</span></div></a>
+  <ul class="nav-links"><li><a href="/vender" style="color:var(--oro)">Vender</a></li><li><a href="/comprar">Comprar</a></li><li><a href="/inmuebles">Inmuebles</a></li><li><a href="/contacto">Contacto</a></li></ul>
+  <div class="nav-actions"><span class="nav-tels">${telLinksInline('nav-tel', 'header')}</span><a href="#valorar" class="nav-cta">${ctaLabel}</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
 </div></nav>
-<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="vender.html">Vender</a><a href="comprar.html">Comprar</a><a href="inmuebles.html">Inmuebles</a><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>`;
+<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="/vender">Vender</a><a href="/comprar">Comprar</a><a href="/inmuebles">Inmuebles</a><span class="mobile-nav-phones">${telLinksInline('', 'mobile-menu')}</span><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>`;
 }
 
 function callBanner(variant) {
@@ -217,7 +219,7 @@ function callBanner(variant) {
         <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
         <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
       </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="${preFaq ? 'prefaq' : 'hero'}">Llama ahora · 603 656 587</a>
+      <a href="tel:${PHONES[0].e164}" class="btn btn-gold btn-lg nh-call-link" data-nh-call="${preFaq ? 'prefaq' : 'hero'}">Llama · ${displayBoth()}</a>
     </div>
   </div>
 </section>`;
@@ -370,27 +372,13 @@ function sharedStyles() {
 }
 
 function calcBlock(L) {
-  const calc = calcInitial(L.ejemploPrecio || L.calculadora?.precioDefault || 420000);
   const barrio = L.barrio || 'Barcelona';
-  const titulo = L.calculadora?.titulo || `¿Cuánto te ahorras en ${barrio}?`;
-  const subtitulo = L.calculadora?.subtitulo || 'Mueve el slider y compara comisión tradicional (~6%) vs NuevaHabitat (3.000 € + IVA).';
-  return `<section class="lc-section" style="background:var(--crema)" id="calc">
-  <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:2rem">
-      <span class="overline">Calculadora</span>
-      <h2 class="section-title">${titulo}</h2>
-      <p style="color:var(--gris-texto)">${subtitulo}</p>
-    </div>
-    <div class="lc-calc fade-up" data-lc-calc>
-      <label for="lc-precio">Precio estimado de venta: <strong id="lc-precio-label">${calc.precioFmt} €</strong></label>
-      <input type="range" id="lc-precio" min="150000" max="1200000" step="10000" value="${calc.precio}"/>
-      <div class="lc-calc-result">
-        <div class="lc-calc-box lose"><div style="font-size:.75rem;text-transform:uppercase">Agencia ~6%</div><div id="lc-trad" style="font-size:1.35rem;font-weight:700">${calc.tradFmt}</div></div>
-        <div class="lc-calc-box win"><div style="font-size:.75rem;text-transform:uppercase">NuevaHabitat</div><div style="font-size:1.35rem;font-weight:700">3.630 €</div><div style="font-size:.8rem">Ahorro: <strong id="lc-save">${calc.saveFmt}</strong></div></div>
-      </div>
-    </div>
-  </div>
-</section>`;
+  return savingsCalcMarkup({
+    titulo: L.calculadora?.titulo || `¿Cuánto te ahorras vendiendo en ${barrio}?`,
+    subtitulo: L.calculadora?.subtitulo || 'Compara la comisión habitual de una agencia inmobiliaria en Barcelona con el precio fijo de NuevaHabitat: 3.000 € + IVA, cobrados solo en escritura.',
+    precio: L.ejemploPrecio || L.calculadora?.precioDefault || 420000,
+    dark: true,
+  });
 }
 
 function navSub(L) {
@@ -406,7 +394,7 @@ function asideCtaBlock(L) {
     <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin:.35rem 0 .65rem;line-height:1.3">3.000 € + IVA solo en escritura</h3>
     <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin-bottom:1rem">Compradores cualificados, panel vendedor y gestor dedicado. Si no vendes, no pagas.</p>
     <a href="#valorar" class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:.65rem">Valoración gratuita</a>
-    <a href="tel:+34603656587" class="btn btn-outline" style="width:100%;justify-content:center">603 656 587</a>
+    <a href="tel:${PHONES[0].e164}" class="btn btn-outline" style="width:100%;justify-content:center">${displayBoth()}</a>
   </aside>`;
 }
 
@@ -441,7 +429,10 @@ function writeGaConfig() {
   );
   fs.writeFileSync(
     path.join(ROOT, 'js', 'site-config.js'),
-    '/** Generado por scripts/build-landings.js — CONTACT_EMAIL en Vercel */\nwindow.NH_CONTACT_EMAIL = ' + JSON.stringify(contact) + ';\n'
+    '/** Generado por scripts/build-landings.js */\n'
+      + 'window.NH_CONTACT_EMAIL = ' + JSON.stringify(contact) + ';\n'
+      + 'window.NH_PHONES = ' + JSON.stringify(PHONES) + ';\n'
+      + 'window.NH_PHONE_DISPLAY = ' + JSON.stringify(displayBoth()) + ';\n'
   );
 }
 
@@ -451,23 +442,23 @@ function footerAndScripts(L) {
     <div class="footer-top" style="grid-template-columns:1.5fr 2.5fr 1fr">
       <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo 3.000€ + IVA, cobro solo en escritura.</p></div>
       <div class="footer-col footer-col--servicios"><h4>Servicios</h4><div data-nh-landing-footer${L.footerExtra ? ` data-nh-footer-extra="${L.footerExtra}"` : ''}></div></div>
-      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34603656587">603 656 587</a></li><li><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li>${footerPhonesLi()}</li><li><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="privacidad.html">Privacidad</a><a href="aviso-legal.html">Aviso legal</a></div></div>
+    <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="/privacidad">Privacidad</a><a href="/aviso-legal">Aviso legal</a></div></div>
   </div>
 </footer>
 <div class="whatsapp-float"><a href="https://wa.me/34603656587?text=${L.whatsappText}" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
 <nav class="mbn" id="mbn">
-  <a href="index.html" class="mbn-tab" data-tab="inicio" aria-label="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>Inicio</span></a>
-  <a href="inmuebles.html" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg><span>Inmuebles</span></a>
-  <a href="vender.html" class="mbn-tab active" data-tab="vender" aria-label="Vender"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/></svg><span>Vender</span></a>
-  <a href="comprar.html" class="mbn-tab" data-tab="comprar" aria-label="Comprar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg><span>Comprar</span></a>
-  <a href="login.html" class="mbn-tab" data-tab="cuenta" aria-label="Mi cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><span>Cuenta</span></a>
+  <a href="/" class="mbn-tab" data-tab="inicio" aria-label="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>Inicio</span></a>
+  <a href="/inmuebles" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg><span>Inmuebles</span></a>
+  <a href="/vender" class="mbn-tab active" data-tab="vender" aria-label="Vender"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/></svg><span>Vender</span></a>
+  <a href="/comprar" class="mbn-tab" data-tab="comprar" aria-label="Comprar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg><span>Comprar</span></a>
+  <a href="/login" class="mbn-tab" data-tab="cuenta" aria-label="Mi cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><span>Cuenta</span></a>
 </nav>
 <div id="cookie-banner">
   <div class="cookie-banner-inner">
     <button type="button" class="cookie-btn-close" id="cookie-close" aria-label="Cerrar y usar solo cookies necesarias">&times;</button>
-    <p>Usamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptar todas o solo las necesarias. <a href="cookies.html">Más información</a>.</p>
+    <p>Usamos cookies propias y de terceros para mejorar tu experiencia. Puedes aceptar todas o solo las necesarias. <a href="/cookies">Más información</a>.</p>
     <div class="cookie-btns">
       <button type="button" class="cookie-btn-accept" id="cookie-accept">Aceptar todo</button>
       <button type="button" class="cookie-btn-reject" id="cookie-reject">Solo necesarias</button>
@@ -479,6 +470,8 @@ function footerAndScripts(L) {
 <script src="js/landings.js"></script>
 <script src="js/landings-ui.js"></script>
 <script src="js/seo.js"></script>
+<script src="js/savings-calculator.js"></script>
+<script src="js/analytics-events.js"></script>
 <script src="js/landing-tools.js"></script>
 <script src="js/main.js" defer></script>
 <script defer src="js/supabase.js"></script>

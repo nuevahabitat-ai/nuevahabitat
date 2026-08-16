@@ -121,7 +121,7 @@ ${nhPlatformBundle(L)}
   <div class="container text-center fade-up">
     <span class="overline">Cartera activa</span>
     <h2 class="section-title">Inmuebles en venta en Ciutat Vella</h2>
-    <a href="inmuebles.html?q=${encodeURIComponent(L.inmueblesQuery)}" class="btn btn-gold btn-lg">Ver inmuebles en el centro →</a>
+    <a href="/inmuebles?q=${encodeURIComponent(L.inmueblesQuery)}" class="btn btn-gold btn-lg">Ver inmuebles en el centro →</a>
   </div>
 </section>
 ${relatedBlock()}

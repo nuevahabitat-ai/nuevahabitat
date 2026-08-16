@@ -130,32 +130,32 @@
 <!-- NAV -->
 <nav id="navbar" class="scrolled" style="background:rgba(13,13,13,.97)">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
+    <a href="/" class="nav-logo">
       <img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/>
       <div class="nav-logo-divider"></div>
       <div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">Barcelona · Inmobiliaria</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="vender.html">Vender</a></li>
-      <li><a href="comprar.html">Comprar</a></li>
-      <li><a href="inmuebles.html" style="color:var(--oro)">Inmuebles</a></li>
-      <li><a href="hipotecas.html">Hipotecas</a></li>
-      <li><a href="nosotros.html">Nosotros</a></li>
-      <li><a href="blog.html">Blog</a></li>
+      <li><a href="/vender">Vender</a></li>
+      <li><a href="/comprar">Comprar</a></li>
+      <li><a href="/inmuebles" style="color:var(--oro)">Inmuebles</a></li>
+      <li><a href="/hipotecas">Hipotecas</a></li>
+      <li><a href="/nosotros">Nosotros</a></li>
+      <li><a href="/blog">Blog</a></li>
     </ul>
     <div class="nav-actions">
-      <a href="tel:+34603656587" class="nav-tel">603 656 587</a>
-      <a href="registro.html" class="nav-cta">Empezar ahora</a>
+      <span class="nav-tels"><a href="tel:+34603656587" class="nh-call-link nav-tel" data-nh-call="header">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link nav-tel" data-nh-call="header">643 877 644</a></span>
+      <a href="/registro" class="nav-cta">Empezar ahora</a>
       <button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 <nav class="mobile-nav" id="mobileNav">
   <button class="mobile-nav-close" id="menuClose">&#x2715;</button>
-  <a href="vender.html">Vender</a><a href="comprar.html">Comprar</a>
-  <a href="inmuebles.html">Inmuebles</a><a href="hipotecas.html">Hipotecas</a>
-  <a href="nosotros.html">Nosotros</a><a href="blog.html">Blog</a>
-  <a href="registro.html" style="color:var(--oro)">Empezar ahora &#x2192;</a>
+  <a href="/vender">Vender</a><a href="/comprar">Comprar</a>
+  <a href="/inmuebles">Inmuebles</a><a href="/hipotecas">Hipotecas</a>
+  <a href="/nosotros">Nosotros</a><a href="/blog">Blog</a>
+  <a href="/registro" style="color:var(--oro)">Empezar ahora &#x2192;</a>
 </nav>
 
 <!-- BREADCRUMB + PRECIO (sticky) -->
@@ -165,9 +165,9 @@
 
       <!-- Breadcrumb (oculto en mobile) -->
       <nav class="prop-breadcrumb" style="flex:1;min-width:0">
-        <a href="index.html">Inicio</a>
+        <a href="/">Inicio</a>
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-        <a href="inmuebles.html">Inmuebles</a>
+        <a href="/inmuebles">Inmuebles</a>
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         <span id="det-breadcrumb-loc" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px">–</span>
       </nav>
@@ -212,7 +212,7 @@
 <div class="det-error det-page-pad" id="det-error" style="display:none;background:var(--crema)">
   <h2>Inmueble no encontrado</h2>
   <p>No pudimos cargar la información de este inmueble.</p>
-  <a href="inmuebles.html" class="btn btn-gold" style="margin-top:1.5rem;display:inline-flex">Ver todos los inmuebles</a>
+  <a href="/inmuebles" class="btn btn-gold" style="margin-top:1.5rem;display:inline-flex">Ver todos los inmuebles</a>
 </div>
 
 <!-- GALERÍA -->
@@ -302,7 +302,7 @@
               <h4>¿Tienes un inmueble que vender?</h4>
               <p>Valoración gratuita en 24h. Sin comisión hasta escritura. Publicamos en todos los portales.</p>
             </div>
-            <a href="vender.html" class="det-sell-banner-btn">Vender gratis →</a>
+            <a href="/vender" class="det-sell-banner-btn">Vender gratis →</a>
           </div>
         </div>
 
@@ -484,23 +484,23 @@
 
 <!-- Mobile bottom nav -->
 <nav class="mbn" id="mbn">
-  <a href="index.html" class="mbn-tab" data-tab="inicio" aria-label="Inicio">
+  <a href="/" class="mbn-tab" data-tab="inicio" aria-label="Inicio">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
     <span>Inicio</span>
   </a>
-  <a href="inmuebles.html" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles">
+  <a href="/inmuebles" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg>
     <span>Inmuebles</span>
   </a>
-  <a href="vender.html" class="mbn-tab" data-tab="vender" aria-label="Vender">
+  <a href="/vender" class="mbn-tab" data-tab="vender" aria-label="Vender">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/></svg>
     <span>Vender</span>
   </a>
-  <a href="comprar.html" class="mbn-tab" data-tab="comprar" aria-label="Comprar">
+  <a href="/comprar" class="mbn-tab" data-tab="comprar" aria-label="Comprar">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
     <span>Comprar</span>
   </a>
-  <a href="login.html" class="mbn-tab" data-tab="cuenta" aria-label="Mi cuenta">
+  <a href="/login" class="mbn-tab" data-tab="cuenta" aria-label="Mi cuenta">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
     <span>Cuenta</span>
   </a>
@@ -508,7 +508,7 @@
 
 <!-- Cookie banner -->
 <div id="cookie-banner">
-  <p>Usamos cookies propias y de terceros para mejorar tu experiencia. <a href="cookies.html">Más información</a>.</p>
+  <p>Usamos cookies propias y de terceros para mejorar tu experiencia. <a href="/cookies">Más información</a>.</p>
   <div class="cookie-btns">
     <button class="cookie-btn-accept" id="cookie-accept">Aceptar todo</button>
     <button class="cookie-btn-reject" id="cookie-reject">Solo necesarias</button>
@@ -580,7 +580,7 @@ function showPrivateListing(){
   el.querySelector('h2').textContent = 'Cartera privada';
   el.querySelector('p').textContent = 'Este inmueble solo está disponible para compradores registrados en NuevaHabitat.';
   const link = el.querySelector('a');
-  link.href = 'registro.html?tipo=comprar';
+  link.href = '/registro?tipo=comprar';
   link.textContent = 'Crear cuenta de comprador →';
   el.style.display = 'block';
 }
@@ -628,7 +628,7 @@ function renderProperty(p){
       nhSeo.listingSchema(p),
       nhSeo.breadcrumbSchema([
         { name: 'Inicio', url: '/' },
-        { name: 'Inmuebles', url: 'inmuebles.html' },
+        { name: 'Inmuebles', url: '/inmuebles' },
         { name: p.titulo || 'Inmueble', url: location.pathname + location.search },
       ]),
     ]);
@@ -828,7 +828,7 @@ async function loadSimilar(current){
         <div class="similar-card-body">
           <div class="similar-card-price">${pr?pr.toLocaleString('es-ES')+' EUR':''} · ${loc}</div>
           <div style="font-size:.82rem;color:var(--gris-medio);margin:.3rem 0">${p.titulo||''}</div>
-          <a href="inmueble-detalle.html?id=${p.id}" class="btn btn-outline" style="font-size:.8125rem;padding:.45rem 1rem;margin-top:.5rem;display:inline-flex">Ver ficha</a>
+          <a href="/inmueble-detalle?id=${p.id}" class="btn btn-outline" style="font-size:.8125rem;padding:.45rem 1rem;margin-top:.5rem;display:inline-flex">Ver ficha</a>
         </div>
       </div>`;
     }).join('');
@@ -1125,7 +1125,7 @@ function updateFavBtn(){
 async function toggleFavorito(){
   if(!window.nhSupabase){ nhToast('Inicia sesión para guardar favoritos.', 'info'); return; }
   const { data: { session } } = await window.nhSupabase.auth.getSession();
-  if(!session){ window.location.href = 'login.html?redirect=' + encodeURIComponent(location.href); return; }
+  if(!session){ window.location.href = '/login?redirect=' + encodeURIComponent(location.href); return; }
   if(!currentProp) return;
   if(_isFav && _favId){
     await window.nhSupabase.from('favoritos').delete().eq('id', _favId);

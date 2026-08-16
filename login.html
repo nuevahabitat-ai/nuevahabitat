@@ -28,7 +28,7 @@
     <img src="imagenes/interior3.jpg" alt="Interior NuevaHabitat"/>
     <div class="auth-visual-overlay"></div>
     <div class="auth-visual-brand">
-      <a href="index.html"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/></a>
+      <a href="/"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/></a>
     </div>
     <div class="auth-visual-copy">
       <h2>Tu expediente,<br/>en tiempo real.</h2>
@@ -70,7 +70,7 @@
             Guardar contraseña
           </button>
         </form>
-        <p style="text-align:center;margin-top:1.25rem"><a href="login.html" style="font-size:.8125rem;color:var(--gris-medio)">← Volver al login</a></p>
+        <p style="text-align:center;margin-top:1.25rem"><a href="/login" style="font-size:.8125rem;color:var(--gris-medio)">← Volver al login</a></p>
       </div>
 
       <form id="loginForm">
@@ -88,8 +88,8 @@
         </button>
       </form>
 
-      <p class="auth-link">¿No tienes cuenta? <a href="registro.html">Regístrate gratis</a></p>
-      <p style="text-align:center;margin-top:2rem"><a href="index.html" style="font-size:.8125rem;color:var(--gris-medio)">← Volver al inicio</a></p>
+      <p class="auth-link">¿No tienes cuenta? <a href="/registro">Regístrate gratis</a></p>
+      <p style="text-align:center;margin-top:2rem"><a href="/" style="font-size:.8125rem;color:var(--gris-medio)">← Volver al inicio</a></p>
     </div>
   </div>
 </div>
@@ -129,7 +129,7 @@ document.addEventListener('supabase:ready', async () => {
   if (recoveryMode) {
     showRecoveryUI();
   } else if (justLoggedOut) {
-    history.replaceState(null, '', 'login.html');
+    history.replaceState(null, '', '/login');
   } else {
     const user = await nhAuth.getUser();
     if (user) { nhAuth.redirectAfterLogin(user); return; }
@@ -173,7 +173,7 @@ document.addEventListener('supabase:ready', async () => {
       btn.disabled = false;
       return;
     }
-    history.replaceState(null, '', 'login.html');
+    history.replaceState(null, '', '/login');
     const user = await nhAuth.getUser();
     if (user) nhAuth.redirectAfterLogin(user);
     else {
@@ -187,7 +187,7 @@ document.addEventListener('supabase:ready', async () => {
 
   /* Login con Google */
   document.getElementById('btnGoogle').addEventListener('click', async () => {
-    await nhAuth.loginGoogle('/login.html');
+    await nhAuth.loginGoogle('/login');
   });
 
   /* Login con email */
