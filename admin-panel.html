@@ -155,6 +155,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .adm-pay-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;font-weight:700;padding:.22rem .55rem;border-radius:20px;white-space:nowrap}
 .adm-pay-badge--ok{background:rgba(34,197,94,.18);color:#86efac;border:1px solid rgba(34,197,94,.35)}
 .adm-pay-badge--pend{background:rgba(249,115,22,.12);color:#fdba74;border:1px solid rgba(249,115,22,.35)}
+.adm-pay-badge--transf{background:rgba(59,130,246,.15);color:#93c5fd;border:1px solid rgba(59,130,246,.35)}
 .comp-match-modal-panel{width:min(640px,100%)}
 .comp-match-list{display:flex;flex-direction:column;gap:.65rem;margin-top:.75rem}
 .comp-match-item{display:flex;align-items:center;gap:.75rem;padding:.65rem .75rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .2s}
@@ -2298,9 +2299,33 @@ function honorariosPagoBadge(row){
   const amt = row.honorarios != null ? Number(row.honorarios).toLocaleString('es-ES') + ' €' : '';
   if(row.honorarios_pagado){
     const d = row.honorarios_pagado_at ? new Date(row.honorarios_pagado_at).toLocaleDateString('es-ES') : '';
-    return `<span class="adm-pay-badge adm-pay-badge--ok" title="Pagado${d ? ' · '+d : ''}">✓ Pagado${amt ? ' · '+amt : ''}</span>`;
+    const m = row.honorarios_metodo_pago === 'transferencia' ? ' · Transf.' : row.honorarios_metodo_pago === 'stripe' ? ' · Stripe' : '';
+    return `<span class="adm-pay-badge adm-pay-badge--ok" title="Pagado${d ? ' · '+d : ''}">✓ Pagado${m}${amt ? ' · '+amt : ''}</span>`;
+  }
+  if(row.honorarios_transferencia_pendiente){
+    return `<span class="adm-pay-badge adm-pay-badge--transf" title="Cliente avisó transferencia">⏳ Transf. pendiente${amt ? ' · '+amt : ''}</span>`;
   }
   return `<span class="adm-pay-badge adm-pay-badge--pend">Pendiente${amt ? ' · '+amt : ''}</span>`;
+}
+
+async function confirmHonorariosTransferencia(tipo, id, nombre){
+  if(!confirm(`¿Confirmar que has recibido la transferencia de ${nombre || 'este cliente'} en N26?`)) return;
+  const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
+  const { error } = await window.nhSupabase.from(tabla).update({
+    honorarios_pagado: true,
+    honorarios_pagado_at: new Date().toISOString(),
+    honorarios_transferencia_pendiente: false,
+    honorarios_metodo_pago: 'transferencia',
+  }).eq('id', id);
+  if(error){ nhToast('Error: '+error.message, 'error'); return; }
+  nhToast('Pago por transferencia confirmado', 'success');
+  if(tipo === 'vendedor') loadVendedores(); else loadCompradores();
+}
+
+function honorariosTransferConfirmBtn(tipo, row){
+  if(row.honorarios_pagado || !row.honorarios_transferencia_pendiente) return '';
+  const nom = (row.nombre || '').replace(/'/g, "\\'");
+  return `<button type="button" class="adm-btn adm-btn-sm adm-btn-gold" onclick="confirmHonorariosTransferencia('${tipo}','${row.id}','${nom}')" title="Confirmar ingreso en N26">✓ Confirmar transf.</button>`;
 }
 
 let _compMatchState = null;
@@ -3606,7 +3631,7 @@ async function loadCompradores(){
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
   const [compRes] = await Promise.all([
     window.nhSupabase
-      .from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,created_at').order('created_at',{ascending:false}),
+      .from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at').order('created_at',{ascending:false}),
     ensurePubData()
   ]);
   const { data, error } = compRes;
@@ -3654,6 +3679,7 @@ function renderCompradores(){
           <div style="display:flex;align-items:center;gap:.35rem;flex-wrap:wrap">
             ${matchN ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver inmuebles compatibles" onclick="openCompMatchModal('${c.id}')">🎯 ${matchN} compatible${matchN===1?'':'s'}</button>` : ''}
             ${honorariosPagoBadge(c)}
+            ${honorariosTransferConfirmBtn('comprador', c)}
             <span class="badge ${c.activo?'badge-ok':'badge-warn'}">${c.activo?'Activo':'Inactivo'}</span>
           </div>
         </div>
@@ -3781,7 +3807,7 @@ async function loadVendedores(){
   const tbl = document.getElementById('vend-table');
   if(tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
   const { data, error } = await window.nhSupabase
-    .from('vendedores').select('id,nombre,email,telefono,precio_minimo,inmueble_ref,descripcion,honorarios,honorarios_pagado,honorarios_pagado_at,created_at').order('created_at',{ascending:false});
+    .from('vendedores').select('id,nombre,email,telefono,precio_minimo,inmueble_ref,descripcion,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at').order('created_at',{ascending:false});
   if(error){
     console.error('loadVendedores:', error);
     nhToast('No se pudieron cargar vendedores: '+error.message, 'error');
@@ -3806,7 +3832,7 @@ function renderVendedores(){
         <td style="font-weight:600">${v.nombre}</td>
         <td>${v.telefono||'–'}</td>
         <td>${v.email||'–'}</td>
-        <td>${honorariosPagoBadge(v)}</td>
+        <td>${honorariosPagoBadge(v)} ${honorariosTransferConfirmBtn('vendedor', v)}</td>
         <td>${v.precio_minimo?Number(v.precio_minimo).toLocaleString('es-ES')+' €':'–'}</td>
         <td>${v.inmueble_ref?`<span class="badge badge-new">${v.inmueble_ref}</span>`:'–'}</td>
         <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v.descripcion||''}">${v.descripcion||'–'}</td>

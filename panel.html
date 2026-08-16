@@ -157,6 +157,25 @@
     .nh-pay-chip--ok{background:rgba(34,197,94,.12);color:#15803d}
     .nh-pay-chip--pending{background:rgba(184,147,106,.15);color:var(--oro)}
     .nh-pay-btn:disabled{opacity:.65;cursor:wait}
+    .nh-bank-block{margin-top:.85rem;padding:1rem;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.04)}
+    .nh-bank-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--oro);margin-bottom:.5rem}
+    .nh-bank-note{font-size:.75rem;color:rgba(255,255,255,.55);line-height:1.5;margin:0 0 .75rem}
+    .nh-bank-dl{margin:0}
+    .nh-bank-row{display:grid;grid-template-columns:minmax(5rem,28%) 1fr;gap:.35rem .65rem;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:.78rem}
+    .nh-bank-row:last-child{border:none}
+    .nh-bank-row dt{color:rgba(255,255,255,.5);margin:0}
+    .nh-bank-row dd{margin:0;color:rgba(255,255,255,.88);word-break:break-word}
+    .nh-bank-iban{font-size:.76rem;letter-spacing:.02em}
+    .nh-bank-copy{font-size:.68rem;padding:.2rem .45rem;margin-left:.35rem;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--oro);border-radius:4px;cursor:pointer}
+    .nh-pay-badge--pending{background:rgba(184,147,106,.15);color:#fcd34d;border:1px solid rgba(184,147,106,.35)}
+    #honorariosSectionContent .nh-bank-block{border-color:var(--crema-dark);background:var(--crema)}
+    #honorariosSectionContent .nh-bank-note{color:var(--gris-texto)}
+    #honorariosSectionContent .nh-bank-row{border-color:var(--crema-dark)}
+    #honorariosSectionContent .nh-bank-row dt{color:var(--gris-texto)}
+    #honorariosSectionContent .nh-bank-row dd{color:var(--negro)}
+    #honorariosSectionContent .nh-bank-copy{border-color:var(--crema-dark);color:var(--oro-oscuro)}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff}
+    #honorariosSectionContent .btn-outline{border-color:var(--negro);color:var(--negro)}
 
     /* Mobile expediente nav */
     .mbn-panel .mbn-tab{border:none;background:none;font-family:var(--font-sans);cursor:pointer;width:100%}
@@ -694,7 +713,7 @@
 <script src="js/panel-vendedor-onboarding.js?v=20260727a"></script>
 <script src="js/comprador-matching.js"></script>
 <script src="js/panel-compatibles.js"></script>
-<script src="js/panel-stripe.js?v=20260816a"></script>
+<script src="js/panel-stripe.js?v=20260816b"></script>
 <script src="js/toast.js"></script>
 <script src="js/site-config.js"></script>
 <script src="js/ga-config.js"></script>

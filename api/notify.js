@@ -381,6 +381,47 @@ function tplHonorariosPagadoAdmin({ nombre, email, extra }) {
   };
 }
 
+function tplTransferenciaPendienteCliente({ nombre, extra }) {
+  const amt = extra?.amount != null ? `${Number(extra.amount).toLocaleString('es-ES')} €` : '';
+  return {
+    subject: `Hemos recibido tu aviso de transferencia · NuevaHabitat`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Transferencia bancaria</div>
+      <h1>Aviso recibido</h1>
+      <p class="intro">Hola <strong>${nombre || 'cliente'}</strong>, hemos registrado que has realizado o vas a realizar la transferencia${amt ? ` de <strong>${amt}</strong>` : ''}.</p>
+      <div class="card">
+        <div class="card-title">Referencia</div>
+        <p style="font-size:.88rem;color:#555;line-height:1.6">Concepto: <strong>${extra?.concept || extra?.reference || '–'}</strong><br/>Confirmaremos el pago en cuanto recibamos el ingreso en cuenta (habitualmente 1–2 días laborables).</p>
+      </div>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/panel?tipo=${extra?.tipo === 'vendedor' ? 'vendedor' : 'comprador'}" class="btn btn-gold">Ver mi panel</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
+function tplTransferenciaPendienteAdmin({ nombre, email, extra }) {
+  const tipo = extra?.tipo === 'vendedor' ? 'Vendedor' : 'Comprador';
+  const amt = extra?.amount != null ? `${Number(extra.amount).toLocaleString('es-ES')} €` : '–';
+  return {
+    subject: `[NH] Transferencia pendiente — ${tipo}: ${nombre || email}`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Revisar N26</div>
+      <h1>Cliente avisa transferencia</h1>
+      <div class="card">
+        <table>
+          <tr><td>Tipo</td><td>${tipo}</td></tr>
+          <tr><td>Cliente</td><td>${nombre || '–'}</td></tr>
+          <tr><td>Email</td><td>${email || '–'}</td></tr>
+          <tr><td>Importe esperado</td><td>${amt}</td></tr>
+          <tr><td>Concepto</td><td><strong>${extra?.concept || extra?.reference || '–'}</strong></td></tr>
+        </table>
+      </div>
+      <p style="font-size:.85rem;color:#666;margin-top:1rem">Comprueba el ingreso en N26 y confirma el pago en el panel de administración.</p>
+    </div>` + FOOTER,
+  };
+}
+
 function tplConfirmacionContacto({ nombre, inmueble }) {
   return {
     subject: `Hemos recibido tu consulta · NuevaHabitat`,
@@ -534,6 +575,8 @@ export default async function handler(req, res) {
         jobs.push(send(NOTIFY_RECIPIENTS, adminTpl));
       } else if (template === 'honorarios_pago') {
         jobs.push(send(NOTIFY_RECIPIENTS, tplHonorariosPagadoAdmin({ nombre, email, extra: extra || {} })));
+      } else if (template === 'honorarios_transferencia_pendiente') {
+        jobs.push(send(NOTIFY_RECIPIENTS, tplTransferenciaPendienteAdmin({ nombre, email, extra: extra || {} })));
       } else if (template === 'visita_confirmada' || template === 'visita_cancelada') {
         jobs.push(send(NOTIFY_RECIPIENTS, tplVisitaEstadoAdmin({ nombre, email, telefono, inmueble, mensaje, extra: extra || {} })));
       } else {
@@ -557,6 +600,7 @@ export default async function handler(req, res) {
         else if (tmpl === 'newsletter')  jobs.push(send(email, tplNewsletter({ email })));
         else if (tmpl === 'documentos')  jobs.push(send(email, tplDocumentosListos({ nombre, documentos: extra?.documentos })));
         else if (tmpl === 'honorarios_pago') jobs.push(send(email, tplHonorariosPagadoCliente({ nombre, extra: extra || {} })));
+        else if (tmpl === 'honorarios_transferencia_pendiente') jobs.push(send(email, tplTransferenciaPendienteCliente({ nombre, extra: extra || {} })));
         else if (tmpl === 'visita_confirmada') jobs.push(send(email, tplVisitaConfirmada({ nombre, inmueble, mensaje })));
         else if (tmpl === 'visita_cancelada') jobs.push(send(email, tplVisitaCancelada({ nombre, inmueble, mensaje })));
       }

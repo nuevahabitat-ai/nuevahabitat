@@ -19,3 +19,20 @@ export async function notifyHonorariosPaid({ email, nombre, tipo, amount, sessio
     console.error('notifyHonorariosPaid:', err);
   }
 }
+
+export async function notifyTransferenciaPendiente({ email, nombre, tipo, amount, reference, concept }) {
+  try {
+    await fetch(NOTIFY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        template: 'honorarios_transferencia_pendiente',
+        email,
+        nombre: nombre || email?.split('@')[0] || 'Cliente',
+        extra: { tipo, amount, reference, concept },
+      }),
+    });
+  } catch (err) {
+    console.error('notifyTransferenciaPendiente:', err);
+  }
+}

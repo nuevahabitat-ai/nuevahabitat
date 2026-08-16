@@ -52,13 +52,30 @@ export async function fetchClienteRowAsUser(tipo, email, jwt) {
   return rows?.[0] || null;
 }
 
-export async function markHonorariosPaid({ tipo, recordId, sessionId, paymentIntentId }) {
+export async function markHonorariosPaid({ tipo, recordId, sessionId, paymentIntentId, metodoPago = 'stripe' }) {
   const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
   const patch = {
     honorarios_pagado: true,
     honorarios_pagado_at: new Date().toISOString(),
+    honorarios_transferencia_pendiente: false,
+    honorarios_metodo_pago: metodoPago,
     stripe_session_id: sessionId || null,
     stripe_payment_intent_id: paymentIntentId || null,
+  };
+  const res = await fetch(`${SB_URL}/rest/v1/${tabla}?id=eq.${recordId}`, {
+    method: 'PATCH',
+    headers: svcHeaders(),
+    body: JSON.stringify(patch),
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return true;
+}
+
+export async function markTransferenciaPendiente({ tipo, recordId }) {
+  const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
+  const patch = {
+    honorarios_transferencia_pendiente: true,
+    honorarios_transferencia_at: new Date().toISOString(),
   };
   const res = await fetch(`${SB_URL}/rest/v1/${tabla}?id=eq.${recordId}`, {
     method: 'PATCH',
