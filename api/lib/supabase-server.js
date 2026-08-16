@@ -34,6 +34,24 @@ export async function fetchClienteRow(tipo, email) {
   return rows?.[0] || null;
 }
 
+/** Lectura con JWT del cliente (RLS own_read) — no requiere service role */
+export async function fetchClienteRowAsUser(tipo, email, jwt) {
+  const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
+  const res = await fetch(
+    `${SB_URL}/rest/v1/${tabla}?email=ilike.${encodeURIComponent(email)}&select=*&limit=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+        apikey: SB_ANON,
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  if (!res.ok) throw new Error(await res.text());
+  const rows = await res.json();
+  return rows?.[0] || null;
+}
+
 export async function markHonorariosPaid({ tipo, recordId, sessionId, paymentIntentId }) {
   const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
   const patch = {

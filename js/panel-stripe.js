@@ -157,7 +157,10 @@
       });
       const data = await res.json();
       if (!res.ok || !data.ok) {
-        throw new Error(data.error || 'No se pudo iniciar el pago');
+        const msg = data.code === 'NO_SERVICE_KEY'
+          ? 'Configuración del servidor incompleta. Escríbenos por WhatsApp y lo resolvemos en minutos.'
+          : (data.error || 'No se pudo iniciar el pago');
+        throw new Error(msg);
       }
 
       if (window.gtag) {

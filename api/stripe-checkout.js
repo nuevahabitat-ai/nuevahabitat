@@ -3,7 +3,7 @@
  * Requiere: STRIPE_SECRET_KEY, SUPABASE_SERVICE_ROLE_KEY
  */
 import Stripe from 'stripe';
-import { SB_SERVICE, getUserFromJwt, fetchClienteRow } from './lib/supabase-server.js';
+import { getUserFromJwt, fetchClienteRowAsUser } from './lib/supabase-server.js';
 
 const DEFAULT_HONORARIOS = { comprador: 6050, vendedor: 3630 };
 
@@ -28,21 +28,17 @@ export default async function handler(req, res) {
   if (!secretKey) {
     return res.status(503).json({ ok: false, error: 'Stripe no configurado', code: 'NO_STRIPE' });
   }
-  if (!SB_SERVICE) {
-    return res.status(503).json({ ok: false, error: 'SERVICE_ROLE_KEY missing', code: 'NO_SERVICE_KEY' });
-  }
-
   const auth = req.headers.authorization || '';
   const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
   const user = await getUserFromJwt(jwt);
-  if (!user?.email) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+  if (!user?.email || !jwt) return res.status(401).json({ ok: false, error: 'Not authenticated' });
 
   const body = req.body || {};
   const tipo = body.tipo === 'vendedor' ? 'vendedor' : 'comprador';
   const email = user.email.trim();
 
   try {
-    const row = await fetchClienteRow(tipo, email);
+    const row = await fetchClienteRowAsUser(tipo, email, jwt);
     if (!row) {
       return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
     }
