@@ -138,16 +138,31 @@
       }
     }
 
+    /* Documentos */
+    .p-doc-row{display:flex;align-items:center;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--crema-dark)}
+    .p-doc-row:last-child{border:none;padding-bottom:0}
+    .p-doc-icon{width:40px;height:40px;border-radius:10px;background:rgba(184,147,106,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+    /* Pagos Stripe */
+    .nh-honorarios-card{min-height:180px}
+    .nh-pay-badge{display:inline-flex;align-items:center;gap:.45rem;background:rgba(34,197,94,.15);color:#86efac;border:1px solid rgba(34,197,94,.35);padding:.55rem .85rem;border-radius:8px;font-size:.82rem;font-weight:600}
+    .nh-pay-summary{background:var(--crema);border-radius:var(--radius-md);padding:1rem 1.15rem;margin-bottom:.5rem}
+    .nh-pay-row{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;font-size:.875rem;color:var(--gris-texto);border-bottom:1px solid var(--crema-dark)}
+    .nh-pay-row:last-child{border:none}
+    .nh-pay-row--total{font-size:1rem;color:var(--negro);font-weight:600;padding-top:.65rem;margin-top:.25rem;border-top:2px solid var(--crema-dark)}
+    .nh-pay-status{background:#ecfdf5;border:1px solid #86efac;border-radius:var(--radius-md);padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.25rem}
+    .nh-pay-status strong{color:#166534;font-size:.9375rem}
+    .nh-pay-status span,.nh-pay-status small{font-size:.8rem;color:#15803d}
+    .nh-pay-chip{display:inline-block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .55rem;border-radius:20px}
+    .nh-pay-chip--ok{background:rgba(34,197,94,.12);color:#15803d}
+    .nh-pay-chip--pending{background:rgba(184,147,106,.15);color:var(--oro)}
+    .nh-pay-btn:disabled{opacity:.65;cursor:wait}
+
     /* Pronto */
     .p-soon{text-align:center;padding:2.5rem 1.5rem}
     .p-soon-icon{font-size:2.5rem;margin-bottom:.75rem}
     .p-soon h4{font-size:1rem;margin-bottom:.4rem}
     .p-soon p{font-size:.85rem;color:var(--gris-texto)}
-
-    /* Documentos */
-    .p-doc-row{display:flex;align-items:center;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--crema-dark)}
-    .p-doc-row:last-child{border:none;padding-bottom:0}
-    .p-doc-icon{width:40px;height:40px;border-radius:10px;background:rgba(184,147,106,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .p-doc-info{flex:1}
     .p-doc-name{font-size:.875rem;font-weight:600;color:var(--negro)}
     .p-doc-status{font-size:.75rem;margin-top:.15rem}
@@ -271,6 +286,10 @@
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
           Mi publicación
         </button>
+        <button class="p-nav-btn" data-sec="honorarios">
+          <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path stroke-linecap="round" d="M2 10h20"/></svg>
+          Honorarios
+        </button>
         <div class="p-sep"></div>
         <div class="p-nav-label">Documentos</div>
         <button class="p-nav-btn" data-sec="contratos">
@@ -297,6 +316,7 @@
             <div class="p-card-title">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
               Resumen de tu expediente
+              <span id="nhPayResumenBadge" style="margin-left:auto"></span>
             </div>
             <div class="p-stats" data-only="comprador">
               <div class="p-stat"><div class="p-stat-val" id="statVistos">0</div><div class="p-stat-lbl">Inmuebles vistos</div></div>
@@ -389,11 +409,10 @@
               </div>
             </div>
           </div>
-          <div class="p-card" style="background:linear-gradient(135deg,var(--negro),#1a1a1a);color:#fff">
+          <div class="p-card nh-honorarios-card" id="honorariosCardComprador" data-only="comprador" style="background:linear-gradient(135deg,var(--negro),#1a1a1a);color:#fff">
             <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Honorarios transparentes</div>
-            <div style="font-family:var(--font-serif);font-size:1.5rem;margin-bottom:.3rem">5.000 € + IVA · 6.050 € total</div>
-            <p style="font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem">Solo cobramos en el momento de la escritura. Sin costes por adelantado. Sin letra pequeña.</p>
-            <a href="tel:+34603656587" class="btn btn-gold" style="font-size:.84rem">Llamar a Juan Cárdenas</a>
+            <div style="font-family:var(--font-serif);font-size:1.5rem;margin-bottom:.3rem">5.000 € + IVA</div>
+            <p style="font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem">Cargando estado de pago…</p>
           </div>
         </div>
 
@@ -439,11 +458,10 @@
               </div>
             </div>
           </div>
-          <div class="p-card" style="background:linear-gradient(135deg,var(--negro),#1a1a1a);color:#fff">
+          <div class="p-card nh-honorarios-card" id="honorariosCardVendedor" data-only="vendedor" style="display:none;background:linear-gradient(135deg,var(--negro),#1a1a1a);color:#fff">
             <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Honorarios transparentes</div>
-            <div style="font-family:var(--font-serif);font-size:1.5rem;margin-bottom:.3rem">3.000 € + IVA · 3.630 € total</div>
-            <p style="font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem">Solo cobramos en escritura. Si no vendes, no pagas nada.</p>
-            <a href="tel:+34603656587" class="btn btn-gold" style="font-size:.84rem">Llamar a Juan Cárdenas</a>
+            <div style="font-family:var(--font-serif);font-size:1.5rem;margin-bottom:.3rem">3.000 € + IVA</div>
+            <p style="font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem">Cargando estado de pago…</p>
           </div>
         </div>
 
@@ -523,6 +541,13 @@
           <div class="p-card" style="background:var(--crema);text-align:center">
             <p style="font-size:.875rem;color:var(--gris-texto);margin-bottom:1rem">Guarda los inmuebles que más te gusten pulsando el corazón en cualquier ficha de propiedad.</p>
             <a href="/inmuebles" class="btn btn-gold">Explorar inmuebles</a>
+          </div>
+        </div>
+
+        <!-- ── HONORARIOS / PAGO ── -->
+        <div class="p-section" id="sec-honorarios">
+          <div id="honorariosSectionContent">
+            <div class="p-card"><p style="color:var(--gris-medio)">Cargando información de pago…</p></div>
           </div>
         </div>
 
@@ -644,6 +669,8 @@
 <script src="js/notify.js"></script>
 <script src="js/panel-calendar.js?v=20260727e"></script>
 <script src="js/panel-vendedor-onboarding.js?v=20260727a"></script>
+<script src="js/panel-stripe.js?v=20260816a"></script>
+<script src="js/toast.js"></script>
 <script src="js/site-config.js"></script>
 <script src="js/ga-config.js"></script>
 <script src="js/seo.js"></script>
@@ -665,6 +692,7 @@ document.querySelectorAll('.p-nav-btn').forEach(btn => {
     if (sec === 'visitas-vendedor') loadVisitasVendedor();
     if (sec === 'favoritos') loadFavoritos();
     if (sec === 'publicacion') loadPublicacion();
+    if (sec === 'honorarios' && window.nhStripe) window.nhStripe.loadHonorarios();
     if (sec === 'contratos' || sec === 'tasacion') loadDocumentos();
     document.querySelector('.p-sidebar')?.classList.remove('open');
     document.getElementById('pSidebarBackdrop')?.classList.remove('open');
@@ -772,6 +800,7 @@ async function loadExpedienteTimeline(tipo) {
 
 function applyPanelMode(tipo) {
   userTipo = tipo;
+  window.userTipo = tipo;
   const isVendedor = tipo === 'vendedor';
   document.getElementById('panelTipoBadge').textContent = isVendedor ? 'Vendedor' : 'Comprador';
   document.getElementById('panelSub').textContent = isVendedor ? 'Panel vendedor' : 'Panel comprador';
@@ -848,11 +877,13 @@ async function initPanel() {
     }
     if (session.user.id !== currentUser?.id) {
       currentUser = session.user;
+      window.currentUser = session.user;
       setHeaderUser(session.user);
     }
   });
 
   currentUser = user;
+  window.currentUser = user;
 
   const urlTipo = new URLSearchParams(location.search).get('tipo');
   let tipo = nhAuth.resolvePanelTipo(user, urlTipo);
@@ -923,6 +954,10 @@ async function initPanel() {
   }
   loadDocumentos();
   await initPanelCalendars(tipo);
+  if (window.nhStripe) {
+    await window.nhStripe.verifyReturnSession();
+    await window.nhStripe.loadHonorarios();
+  }
 }
 
 async function initPanelCalendars(tipo) {
