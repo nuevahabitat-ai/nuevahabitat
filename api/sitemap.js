@@ -24,7 +24,7 @@ function loadLandingsFromIndex() {
 }
 const STATIC = [
   '', 'vender', 'comprar', 'inmuebles', 'hipotecas',
-  'nosotros', 'blog', 'contacto',
+  'nosotros', 'blog', 'contacto', 'mapa-del-sitio',
   'privacidad', 'aviso-legal', 'cookies'
 ];
 

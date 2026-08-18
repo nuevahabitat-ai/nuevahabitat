@@ -809,6 +809,7 @@ function main() {
   syncVenderHub();
   syncComprarHub();
   syncIndexHub();
+  require('./build-html-sitemap').main();
   console.log('Updated js/landings.js and content/landings-index.json');
 }
 

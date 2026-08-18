@@ -24,6 +24,12 @@
       "permanent": true
     },
     {
+      "source": "/inmuebles",
+      "has": [{ "type": "query", "key": "q" }],
+      "destination": "/inmuebles",
+      "permanent": true
+    },
+    {
       "source": "/vender-les-corts.html",
       "destination": "/vender-les-corts",
       "permanent": true
