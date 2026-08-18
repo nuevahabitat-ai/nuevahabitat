@@ -84,11 +84,19 @@
     return (ex + suffix).slice(0, 160);
   }
 
+  function blogPath(slug) {
+    return '/blog/' + encodeURIComponent(slug || '');
+  }
+
+  function blogAbs(slug) {
+    return SITE + blogPath(slug);
+  }
+
   function applyArticleMeta(post, slug) {
     const title = post.titulo || post.title || 'Artículo';
     const desc = metaDescription(post);
     const kw = keywordsForPost(post, slug);
-    const url = SITE + '/blog-articulo?slug=' + encodeURIComponent(slug || post.slug || '');
+    const url = blogAbs(slug || post.slug || '');
     const img = post.imagen_url || post.image || SITE + '/imagenes/interior2.jpg';
     const absImg = /^https?:\/\//.test(img) ? img : SITE + '/' + img.replace(/^\//, '');
 
@@ -140,7 +148,7 @@
     const items = (posts || []).slice(0, 30).map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      url: SITE + '/blog-articulo?slug=' + encodeURIComponent(p.slug),
+      url: blogAbs(p.slug),
       name: p.titulo || p.title || 'Artículo',
     }));
     return [
@@ -192,7 +200,7 @@
     const desc = metaDescription(post).slice(0, 160);
     const img = post.imagen_url || post.image || SITE + '/imagenes/interior2.jpg';
     const absImg = /^https?:\/\//.test(img) ? img : SITE + '/' + img.replace(/^\//, '');
-    const url = SITE + '/blog-articulo?slug=' + encodeURIComponent(slug || post.slug || '');
+    const url = blogAbs(slug || post.slug || '');
     const text = (post.contenido || post.body || '').replace(/<[^>]+>/g, ' ');
     const published = parseArticleDate(post);
     return {
@@ -232,7 +240,7 @@
 
   function faqSchema(faqItems, slug) {
     if (!faqItems || !faqItems.length) return null;
-    const url = SITE + '/blog-articulo?slug=' + encodeURIComponent(slug || '');
+    const url = blogAbs(slug || '');
     return {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',

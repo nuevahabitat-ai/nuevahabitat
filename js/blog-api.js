@@ -86,7 +86,7 @@ window.nhBlog = {
     const date = this.formatDate(post);
     const mins = this.readMin(post);
     const excerpt = post.extracto || '';
-    const href = (window.nhBlogUrl ? nhBlogUrl(slug) : '/blog-articulo?slug=' + encodeURIComponent(slug));
+    const href = (window.nhBlogUrl ? nhBlogUrl(slug) : '/blog/' + encodeURIComponent(slug));
     return `<a href="${href}" class="blog-card fade-up visible" data-cat="${cat}" style="text-decoration:none;color:inherit">
       <div class="blog-card-img"><img src="${img}" alt="${post.titulo || ''}" loading="lazy" onerror="this.src='imagenes/interior1.jpg'"/></div>
       <div class="blog-card-body">

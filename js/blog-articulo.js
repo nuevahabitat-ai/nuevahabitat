@@ -4,7 +4,7 @@
     const all = await nhBlog.fetchPosts();
     const related = all.filter(p => p.slug !== currentSlug && (p.categoria || p.cat) === cat).slice(0, 3);
     if (!related.length) return;
-    const href = slug => (window.nhBlogUrl ? nhBlogUrl(slug) : '/blog-articulo?slug=' + encodeURIComponent(slug));
+    const href = slug => (window.nhBlogUrl ? nhBlogUrl(slug) : '/blog/' + encodeURIComponent(slug));
     const html = `<section class="blog-related" style="margin-top:3rem;padding-top:2rem;border-top:1px solid #eee">
       <h2 style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:1.25rem">Artículos relacionados</h2>
       <ul style="list-style:none;padding:0;margin:0;display:grid;gap:.75rem">
@@ -45,7 +45,7 @@
         nhSeo.breadcrumbSchema([
           { name: 'Inicio', url: '/' },
           { name: 'Blog', url: '/blog' },
-          { name: post.titulo || post.title || 'Artículo', url: (window.nhBlogUrl ? nhBlogUrl(slug) : '/blog-articulo?slug=' + encodeURIComponent(slug)) },
+          { name: post.titulo || post.title || 'Artículo', url: (window.nhBlogUrl ? nhBlogUrl(slug) : '/blog/' + encodeURIComponent(slug)) },
         ]),
         ...(post.faq && post.faq.length && window.NH_BLOG_SEO ? [NH_BLOG_SEO.faqSchema(post.faq, slug)] : []),
       ]);

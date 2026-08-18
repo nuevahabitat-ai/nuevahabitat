@@ -50,7 +50,7 @@ const RULES = [
 ];
 
 function urlFor(rule) {
-  return rule.slug ? `/${rule.slug}` : `/blog-articulo?slug=${rule.blogSlug}`;
+  return rule.slug ? `/${rule.slug}` : `/blog/${rule.blogSlug}`;
 }
 
 function linkKeyFor(rule) {
