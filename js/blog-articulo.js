@@ -21,7 +21,13 @@
       document.getElementById('postTitle').textContent = 'Error al cargar';
       return;
     }
-    if(!window.nhSupabase) await new Promise(r => document.addEventListener('supabase:ready', r, {once:true}));
+    if(!window.nhSupabase) {
+      await Promise.race([
+        new Promise(r => document.addEventListener('supabase:ready', r, {once:true})),
+        new Promise(r => document.addEventListener('supabase:error', r, {once:true})),
+        new Promise(r => setTimeout(r, 8000)),
+      ]);
+    }
     const post = await nhBlog.getPost(slug);
     if(!post){
       document.getElementById('postTitle').textContent = 'Artículo no encontrado';
