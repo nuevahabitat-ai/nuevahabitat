@@ -19,7 +19,7 @@
   <meta name="twitter:description" content="Explora nuestra cartera de viviendas en Barcelona y área metropolitana. Pisos, áticos y casas con precio fijo de compra." />
   <meta name="twitter:image"      content="https://www.nuevahabitat.com/imagenes/interior4.jpg" />
   <link rel="canonical"           href="https://www.nuevahabitat.com/inmuebles" />
-  <script>(function(){if(/[?&]q=/.test(location.search)){var m=document.createElement('meta');m.name='robots';m.content='noindex, follow';document.head.appendChild(m);}})();</script>
+  <script>(function(){var p=new URLSearchParams(location.search),q=p.get('q');if(q){history.replaceState(null,'','/inmuebles#q='+encodeURIComponent(q));}if(/[?&]q=/.test(location.search)){var m=document.createElement('meta');m.name='robots';m.content='noindex, follow';document.head.appendChild(m);}})();</script>
 <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo1.png" />
   <style>
@@ -423,7 +423,10 @@ async function loadSupabaseProps(){
 });
 document.getElementById('filtroBtn')?.addEventListener('click', applyFilters);
 
-const urlQ = new URLSearchParams(location.search).get('q');
+const urlQ = (function(){
+  if (location.hash.startsWith('#q=')) return decodeURIComponent(location.hash.slice(3).replace(/\+/g, ' '));
+  return new URLSearchParams(location.search).get('q') || '';
+})();
 if (urlQ) {
   const qEl = document.getElementById('filtroQ');
   if (qEl) qEl.value = urlQ;

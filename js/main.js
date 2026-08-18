@@ -495,7 +495,7 @@ window.nhCookiePrefs = function (mode) {
   msb.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       const val = msb.value.trim();
-      if (val) window.location.href = `/inmuebles?q=${encodeURIComponent(val)}`;
+      if (val) window.location.href = `/inmuebles#q=${encodeURIComponent(val)}`;
     }
   });
 
