@@ -338,15 +338,60 @@
     </div>
   </div>
 </section>
-<section class="lc-section" style="background:var(--blanco)" id="calc">
+<section class="nh-savings-calc-section nh-savings-calc-section--dark" id="calc">
   <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">Calculadora</span><h2 class="section-title">Calcula cuánto te ahorras vendiendo con precio fijo</h2><p style="color:var(--gris-texto)">Introduce el precio estimado de venta. Comparamos comisión tradicional (~6%) vs NuevaHabitat (3.000 € + IVA).</p></div>
-    <div class="lc-calc fade-up" data-lc-calc>
-      <label for="lc-precio">Precio estimado de venta: <strong id="lc-precio-label">420.000 €</strong></label>
-      <input type="range" id="lc-precio" min="150000" max="1200000" step="10000" value="420000"/>
-      <div class="lc-calc-result">
-        <div class="lc-calc-box lose"><div style="font-size:.75rem;text-transform:uppercase">Agencia ~6%</div><div id="lc-trad" style="font-size:1.35rem;font-weight:700">30.492 €</div></div>
-        <div class="lc-calc-box win"><div style="font-size:.75rem;text-transform:uppercase">NuevaHabitat</div><div style="font-size:1.35rem;font-weight:700">3.630 €</div><div style="font-size:.8rem">Ahorro: <strong id="lc-save">26.862 €</strong></div></div>
+    <div class="nh-savings-calc-head fade-up">
+      <span class="overline">Comparativa de honorarios</span>
+      <h2 class="section-title light">Calcula cuánto te ahorras vendiendo con precio fijo</h2>
+      <p class="nh-savings-calc-sub light">Introduce el precio estimado de venta. Comparamos comisión tradicional (~6%) vs NuevaHabitat (3.000 € + IVA).</p>
+    </div>
+    <div class="nh-savings-calc fade-up" data-nh-savings-calc data-lc-calc>
+      <div class="nh-sc-panel nh-sc-panel--controls">
+        <div class="nh-sc-field">
+          <div class="nh-sc-field-top">
+            <label for="nh-sc-precio">Precio de venta estimado</label>
+            <output id="nh-sc-precio-label" for="nh-sc-precio" class="nh-sc-price-out">420.000 €</output>
+          </div>
+          <input type="range" id="nh-sc-precio" class="nh-sc-range" min="150000" max="1500000" step="10000" value="420000" aria-valuemin="150000" aria-valuemax="1500000" aria-valuenow="420000"/>
+          <div class="nh-sc-range-labels"><span>150.000 €</span><span>1,5 M€</span></div>
+        </div>
+        <div class="nh-sc-field">
+          <span class="nh-sc-field-label">Comisión agencia tradicional</span>
+          <div class="nh-sc-pct-row" role="group" aria-label="Porcentaje de comisión">
+            <button type="button" class="nh-sc-pct" data-pct="3" aria-pressed="false">3%</button><button type="button" class="nh-sc-pct" data-pct="4" aria-pressed="false">4%</button><button type="button" class="nh-sc-pct" data-pct="5" aria-pressed="false">5%</button><button type="button" class="nh-sc-pct is-active" data-pct="6" aria-pressed="true">6%</button>
+          </div>
+        </div>
+        <p class="nh-sc-note">Cálculo orientativo: comisión + IVA (21%) frente a 3.000 € + IVA de NuevaHabitat, cobrados únicamente en escritura.</p>
+      </div>
+      <div class="nh-sc-panel nh-sc-panel--viz">
+        <div class="nh-sc-save-block">
+          <span class="nh-sc-save-label">Ahorro estimado</span>
+          <div class="nh-sc-save-value" id="nh-sc-save" data-value="26862">26.862 €</div>
+          <span class="nh-sc-save-hint">respecto a agencia al 6% + IVA</span>
+        </div>
+        <div class="nh-sc-bars" aria-hidden="true">
+          <div class="nh-sc-bar-row">
+            <span class="nh-sc-bar-name">Agencia ~6% + IVA</span>
+            <div class="nh-sc-bar-track"><div class="nh-sc-bar-fill nh-sc-bar-fill--agency" id="nh-sc-bar-agency" style="width:89%"></div></div>
+            <span class="nh-sc-bar-amount" id="nh-sc-trad">30.492 €</span>
+          </div>
+          <div class="nh-sc-bar-row">
+            <span class="nh-sc-bar-name">NuevaHabitat</span>
+            <div class="nh-sc-bar-track"><div class="nh-sc-bar-fill nh-sc-bar-fill--nh" id="nh-sc-bar-nh" style="width:11%"></div></div>
+            <span class="nh-sc-bar-amount nh-sc-bar-amount--gold">3630 €</span>
+          </div>
+        </div>
+        <div class="nh-sc-breakdown">
+          <div class="nh-sc-breakdown-item">
+            <span>Honorarios agencia</span>
+            <strong id="nh-sc-trad-inline">30.492 €</strong>
+          </div>
+          <div class="nh-sc-breakdown-item nh-sc-breakdown-item--nh">
+            <span>NuevaHabitat (escritura)</span>
+            <strong>3630 €</strong>
+          </div>
+        </div>
+        <a href="#valorar" class="btn btn-gold nh-sc-cta">Solicitar valoración gratuita</a>
       </div>
     </div>
   </div>

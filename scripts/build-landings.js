@@ -175,6 +175,20 @@ function buildJsonLd(L) {
       })),
     });
   }
+  if ((L.cluster === 'intencion' || L.cluster === 'comparativa') && L.como_ayudamos) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: L.como_ayudamos.title,
+      description: L.como_ayudamos.description || '',
+      step: L.como_ayudamos.steps.map((s, i) => ({
+        '@type': 'HowToStep',
+        position: i + 1,
+        name: s.title,
+        text: s.body,
+      })),
+    });
+  }
   return JSON.stringify(schemas, null, 2);
 }
 
@@ -619,19 +633,7 @@ ${navBar(L)}
   </div></div>
 </section>
 ${callBanner()}
-<section class="lc-section" style="background:var(--blanco)" id="calc">
-  <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">Calculadora</span><h2 class="section-title">${L.calculadora.titulo}</h2><p style="color:var(--gris-texto)">${L.calculadora.subtitulo}</p></div>
-    <div class="lc-calc fade-up" data-lc-calc>
-      <label for="lc-precio">Precio estimado de venta: <strong id="lc-precio-label">${calc.precioFmt} €</strong></label>
-      <input type="range" id="lc-precio" min="150000" max="1200000" step="10000" value="${calc.precio}"/>
-      <div class="lc-calc-result">
-        <div class="lc-calc-box lose"><div style="font-size:.75rem;text-transform:uppercase">Agencia ~6%</div><div id="lc-trad" style="font-size:1.35rem;font-weight:700">${calc.tradFmt}</div></div>
-        <div class="lc-calc-box win"><div style="font-size:.75rem;text-transform:uppercase">NuevaHabitat</div><div style="font-size:1.35rem;font-weight:700">3.630 €</div><div style="font-size:.8rem">Ahorro: <strong id="lc-save">${calc.saveFmt}</strong></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+${calcBlock(L)}
 <section class="lc-section" style="background:var(--crema)">
   <div class="container lc-article-layout">
     <div class="lc-prose lc-prose--cols fade-up">${L.argumento_principal}</div>

@@ -32,6 +32,7 @@ window.NH_LANDING_ORDER = [
   "vender-piso-separacion-divorcio-barcelona",
   "vender-piso-traslado-barcelona",
   "vender-segunda-residencia-barcelona",
+  "inmobiliaria-precio-fijo-barcelona",
   "vender-piso-rapido-barcelona",
   "vender-piso-sin-exclusividad-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
@@ -552,6 +553,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/interior12.webp",
     "cardTeaser": "¿Vendes un piso vacío o segunda residencia en Barcelona? Fiscalidad distinta, visitas flexibles y comprador…"
+  },
+  "inmobiliaria-precio-fijo-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Inmobiliaria precio fijo",
+    "priority": 0.92,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo barcelona",
+    "badge": "Inmobiliaria · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/comercial2.jpg",
+    "cardTeaser": "Inmobiliaria tecnológica con precio fijo: 3.000€ + IVA solo en escritura."
   },
   "vender-piso-rapido-barcelona": {
     "slug": "vender-piso-rapido-barcelona",

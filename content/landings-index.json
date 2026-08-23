@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-18T16:53:56.707Z",
+  "updated": "2026-08-23T17:21:46.471Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -192,6 +192,12 @@
       "cluster": "situacion",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.92
     },
     {
       "slug": "vender-piso-rapido-barcelona",
