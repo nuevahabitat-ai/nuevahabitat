@@ -15,6 +15,8 @@ window.NH_LANDING_ORDER = [
   "vender-nou-barris",
   "vender-sant-antoni",
   "vender-sant-gervasi",
+  "vender-sant-marti",
+  "vender-badalona",
   "vender-el-clot-la-sagrera-barcelona",
   "vender-l-hospitalet",
   "vender-poble-sec",
@@ -32,6 +34,7 @@ window.NH_LANDING_ORDER = [
   "vender-piso-separacion-divorcio-barcelona",
   "vender-piso-traslado-barcelona",
   "vender-segunda-residencia-barcelona",
+  "inmobiliaria-precio-fijo-badalona-barcelona",
   "inmobiliaria-precio-fijo-barcelona",
   "inmobiliaria-precio-fijo-cornella-barcelona",
   "inmobiliaria-precio-fijo-eixample-barcelona",
@@ -56,6 +59,25 @@ window.NH_LANDING_CLUSTERS = {
   comparativa: { label: 'Comparativas', slugs: [] },
 };
 window.NH_LANDINGS = {
+  "vender-badalona": {
+    "slug": "vender-badalona",
+    "cluster": "barrio",
+    "barrio": "Badalona",
+    "footerLabel": "Vender en Badalona",
+    "zonas": [
+      "Centre",
+      "Gorg",
+      "Montigalà",
+      "La Salut",
+      "Sant Roc",
+      "Artigues"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "¿Vendes en Badalona? Mercado ~2.650–3.100 €/m²."
+  },
   "vender-cornella": {
     "slug": "vender-cornella",
     "cluster": "barrio",
@@ -406,6 +428,25 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/santjust1.webp",
     "cardTeaser": "¿Vendes en Sant Just Desvern o Sant Joan Despí? Honorarios fijos 3.000€ + IVA desde nuestra oficina en Les Corts."
   },
+  "vender-sant-marti": {
+    "slug": "vender-sant-marti",
+    "cluster": "barrio",
+    "barrio": "Sant Martí",
+    "footerLabel": "Vender en Sant Martí",
+    "zonas": [
+      "Poblenou",
+      "El Clot",
+      "La Sagrera",
+      "Diagonal Mar",
+      "22@",
+      "El Besòs"
+    ],
+    "priority": 0.87,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "¿Vendes en Sant Martí? Poblenou, El Clot, 22@ ~3.900–5.200 €/m²."
+  },
   "vender-sants": {
     "slug": "vender-sants",
     "cluster": "barrio",
@@ -560,6 +601,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/interior12.webp",
     "cardTeaser": "¿Vendes un piso vacío o segunda residencia en Barcelona? Fiscalidad distinta, visitas flexibles y comprador…"
+  },
+  "inmobiliaria-precio-fijo-badalona-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-badalona-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Badalona",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo badalona barcelona",
+    "badge": "Badalona · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Inmobiliaria con precio fijo en Badalona: 3.000€ + IVA solo en escritura."
   },
   "inmobiliaria-precio-fijo-barcelona": {
     "slug": "inmobiliaria-precio-fijo-barcelona",

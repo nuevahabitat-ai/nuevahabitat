@@ -1,16 +1,7 @@
-/** Blog unificado: Supabase blog_posts + fallback estático NH_BLOG_POSTS */
+/** Blog unificado: Supabase CMS como fuente principal; estático solo fallback offline */
 window.nhBlog = {
   wordCount(html) {
     return (String(html || '').replace(/<[^>]+>/g, ' ').match(/\S+/g) || []).length;
-  },
-
-  preferRichStatic(slug, post) {
-    const staticP = window.NH_BLOG_POSTS && window.NH_BLOG_POSTS[slug];
-    if (!staticP || !staticP.body) return post;
-    const staticWords = this.wordCount(staticP.body);
-    const postWords = post ? this.wordCount(post.contenido || post.body) : 0;
-    if (!post || staticWords > postWords + 100) return this.fromStatic(slug, staticP);
-    return post;
   },
 
   slugify(t) {
@@ -39,6 +30,10 @@ window.nhBlog = {
     };
   },
 
+  staticPosts() {
+    return Object.entries(window.NH_BLOG_POSTS || {}).map(([slug, p]) => this.fromStatic(slug, p));
+  },
+
   formatDate(post) {
     if (post.publicado_en) {
       return new Date(post.publicado_en).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -60,20 +55,18 @@ window.nhBlog = {
         .order('publicado_en', { ascending: false, nullsFirst: false });
       if (limit) q = q.limit(limit);
       const { data, error } = await q;
-      if (!error && data && data.length) {
-        return data.map(p => this.preferRichStatic(p.slug, p));
-      }
+      if (!error && data && data.length) return data;
     }
-    const staticPosts = Object.entries(window.NH_BLOG_POSTS || {}).map(([slug, p]) => this.fromStatic(slug, p));
+    const staticPosts = this.staticPosts();
     return limit ? staticPosts.slice(0, limit) : staticPosts;
   },
 
   async getPost(slug) {
     if (!slug) return null;
     if (window.nhSupabase) {
-      const { data } = await window.nhSupabase.from('blog_posts')
+      const { data, error } = await window.nhSupabase.from('blog_posts')
         .select('*').eq('slug', slug).eq('publicado', true).maybeSingle();
-      if (data) return this.preferRichStatic(slug, data);
+      if (!error && data) return data;
     }
     const p = window.NH_BLOG_POSTS && window.NH_BLOG_POSTS[slug];
     return p ? this.fromStatic(slug, p) : null;

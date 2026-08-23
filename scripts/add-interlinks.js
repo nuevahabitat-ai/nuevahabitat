@@ -28,6 +28,9 @@ function listFiles() {
 
 // Orden de prioridad: primera regla que matchee y no sea auto-enlace se aplica.
 const RULES = [
+  { re: /Badalona\b/i, slug: 'vender-badalona' },
+  { re: /Sant Mart[ií]|Poblenou|22@/i, slug: 'vender-sant-marti' },
+  { re: /[áa]rea metropolitana|L'Hospitalet|Baix Llobregat/i, slug: 'inmobiliaria-precio-fijo-barcelona' },
   { re: /vender (tu )?piso sin exclusividad/i, slug: 'vender-piso-sin-exclusividad-barcelona' },
   { re: /comisión del 6%|6% sobre el precio|agencias? tradicional(es)?/i, slug: 'nuevahabitat-vs-agencia-tradicional-barcelona' },
   { re: /vender (tu )?piso r[aá]pido/i, slug: 'vender-piso-rapido-barcelona' },

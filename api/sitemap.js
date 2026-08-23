@@ -28,18 +28,17 @@ const STATIC = [
   'privacidad', 'aviso-legal', 'cookies'
 ];
 
-const STATIC_BLOG = [
-  'precio-pisos-barcelona', 'contrato-arras', 'guia-hipotecas', 'como-vender-rapido',
-  'home-staging', 'primera-vivienda', 'mercado-2026', 'gastos-compraventa',
-  'negociar-precio', 'euribor-2026', 'vender-piso-barcelona-precio-fijo',
-  'valoracion-gratis-barcelona', 'comision-inmobiliaria-barcelona',
-  'comprar-piso-barcelona-guia', 'comprar-casa-area-metropolitana',
-  'documentos-vender-piso', 'buscar-piso-hipoteca-barcelona', 'vender-piso-herencia-barcelona',
-  'guia-valoracion-piso-barcelona-2026', 'housfy-vs-precio-fijo-barcelona',
-  'vender-piso-horta-guia', 'vender-hipoteca-pendiente-guia',
-  'vender-piso-alquilado-guia-barcelona', 'vender-piso-divorcio-guia-barcelona',
-  'idealista-fotocasa-vs-inmobiliaria-barcelona', 'vender-piso-poblenou-guia-2026',
-];
+function loadStaticBlogSlugs() {
+  try {
+    const fs = require('fs');
+    const path = require('path');
+    const p = path.join(process.cwd(), 'js', 'blog-posts.js');
+    const src = fs.readFileSync(p, 'utf8');
+    return [...src.matchAll(/^\s+'([^']+)':\s*\{/gm)].map((m) => m[1]);
+  } catch (_) {
+    return [];
+  }
+}
 
 export default async function handler(req, res) {
   const urls = STATIC.map(p => ({
@@ -54,12 +53,8 @@ export default async function handler(req, res) {
     priority: String(priority || 0.88),
     changefreq: 'monthly',
   }));
-  STATIC_BLOG.forEach(slug => urls.push({
-    loc: `${SITE}/blog/${encodeURIComponent(slug)}`,
-    priority: '0.75',
-    changefreq: 'monthly',
-  }));
 
+  let blogFromSupabase = false;
   try {
     const inmRes = await fetch(
       `${SB_URL}/rest/v1/inmuebles?select=id,updated_at&estado=neq.retirado&cartera_privada=eq.false&order=updated_at.desc`,
@@ -80,6 +75,7 @@ export default async function handler(req, res) {
     );
     if (blogRes.ok) {
       const posts = await blogRes.json();
+      if (posts.length) blogFromSupabase = true;
       posts.forEach(p => urls.push({
         loc: `${SITE}/blog/${encodeURIComponent(p.slug)}`,
         lastmod: p.updated_at ? p.updated_at.slice(0, 10) : undefined,
@@ -87,6 +83,14 @@ export default async function handler(req, res) {
       }));
     }
   } catch (_) {}
+
+  if (!blogFromSupabase) {
+    loadStaticBlogSlugs().forEach(slug => urls.push({
+      loc: `${SITE}/blog/${encodeURIComponent(slug)}`,
+      priority: '0.75',
+      changefreq: 'monthly',
+    }));
+  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

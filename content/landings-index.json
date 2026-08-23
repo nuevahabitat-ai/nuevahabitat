@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23T17:32:25.827Z",
+  "updated": "2026-08-23T18:36:49.043Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -90,6 +90,18 @@
       "cluster": "barrio",
       "indexable": true,
       "priority": 0.87
+    },
+    {
+      "slug": "vender-sant-marti",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "vender-badalona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "vender-el-clot-la-sagrera-barcelona",
@@ -192,6 +204,12 @@
       "cluster": "situacion",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-badalona-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
     },
     {
       "slug": "inmobiliaria-precio-fijo-barcelona",

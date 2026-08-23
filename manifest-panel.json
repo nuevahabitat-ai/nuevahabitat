@@ -1,0 +1,28 @@
+{
+  "name": "NuevaHabitat — Mi Panel",
+  "short_name": "NH Panel",
+  "description": "Sigue tu expediente, visitas y documentos en NuevaHabitat",
+  "start_url": "/panel",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f5f0ea",
+  "theme_color": "#0d0d0d",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/imagenes/Logo/logosinfondo2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/imagenes/Logo/logosinfondo2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "finance"],
+  "prefer_related_applications": false
+}

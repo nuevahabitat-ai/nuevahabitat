@@ -1532,6 +1532,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
 </div>
 
 <script src="js/supabase.js"></script>
+<script src="js/comprador-matching.js"></script>
 <script src="js/toast.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
@@ -2257,30 +2258,8 @@ let _matchAlerts = [];
 try { _matchAlerts = JSON.parse(sessionStorage.getItem('nh_match_alerts') || '[]'); } catch(e) { _matchAlerts = []; }
 let _activeMatchComprador = null;
 
-function zonaCoincide(zonaBuscada, barrio, municipio){
-  if(!zonaBuscada || !String(zonaBuscada).trim()) return true;
-  const needle = String(zonaBuscada).toLowerCase().trim();
-  const haystack = `${barrio||''} ${municipio||''}`.toLowerCase().trim();
-  if(!haystack) return needle.length < 3;
-  if(haystack.includes(needle) || needle.includes(haystack)) return true;
-  const terms = needle.split(/[,·\s]+/).filter(t => t.length >= 3);
-  return terms.some(t => haystack.includes(t) || needle.includes((barrio||'').toLowerCase()) || needle.includes((municipio||'').toLowerCase()));
-}
-
 function matchCompradorInmueble(comprador, inmueble){
-  if(!comprador || !inmueble) return false;
-  if(comprador.activo === false) return false;
-  const estado = inmueble.estado || 'disponible';
-  if(!['disponible','reservado'].includes(estado)) return false;
-  if(comprador.presupuesto_max != null && inmueble.precio != null){
-    if(Number(inmueble.precio) > Number(comprador.presupuesto_max)) return false;
-  }
-  if(comprador.habitaciones_min != null){
-    if(!inmueble.habitaciones || Number(inmueble.habitaciones) < Number(comprador.habitaciones_min)) return false;
-  }
-  if(comprador.ascensor && !inmueble.ascensor) return false;
-  if(!zonaCoincide(comprador.zona_buscada, inmueble.barrio, inmueble.municipio)) return false;
-  return true;
+  return window.nhMatching ? nhMatching.matchCompradorInmueble(comprador, inmueble) : false;
 }
 
 function countMatchesForComprador(comprador){
@@ -2288,7 +2267,8 @@ function countMatchesForComprador(comprador){
 }
 
 function getMatchesForComprador(comprador){
-  return (_pubData || []).filter(p => matchCompradorInmueble(comprador, p));
+  if (!window.nhMatching) return (_pubData || []).filter(p => matchCompradorInmueble(comprador, p));
+  return nhMatching.rankMatches(comprador, _pubData || [], { limit: 50 }).map(r => r.inmueble);
 }
 
 function inmueblePublicUrl(id){
