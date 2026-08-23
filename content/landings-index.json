@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23T17:21:46.471Z",
+  "updated": "2026-08-23T17:32:25.827Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -198,6 +198,48 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.92
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-cornella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-eixample-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-gracia-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-horta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-l-hospitalet-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-les-corts-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-sant-andreu-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "vender-piso-rapido-barcelona",
