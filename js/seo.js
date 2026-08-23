@@ -114,7 +114,7 @@
         '@type': 'SearchAction',
         target: {
           '@type': 'EntryPoint',
-          urlTemplate: SITE + '/inmuebles',
+          urlTemplate: SITE + '/inmuebles#q={search_term_string}',
         },
         'query-input': 'required name=search_term_string',
       },

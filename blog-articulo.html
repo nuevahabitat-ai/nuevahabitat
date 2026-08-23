@@ -8,7 +8,7 @@
   <meta name="description" content="Artículo del blog inmobiliario NuevaHabitat: comprar piso, vender casa, hipotecas y mercado inmobiliario en Barcelona."/>
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large"/>
   <link rel="canonical" href="https://www.nuevahabitat.com/blog"/>
-  <script>(function(){var p=new URLSearchParams(location.search),s=p.get('slug');if(s&&!/^\/blog\//.test(location.pathname))location.replace('/blog/'+encodeURIComponent(s));})();</script>
+  <script>(function(){var p=new URLSearchParams(location.search),path=location.pathname||'',s=p.get('slug');if(/^\/blog\/[^/?#]+/.test(path)&&p.has('slug')){history.replaceState(null,'',path);return;}if(s&&!/^\/blog\//.test(path))location.replace('/blog/'+encodeURIComponent(s));})();</script>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
   <style>

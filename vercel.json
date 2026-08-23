@@ -20,13 +20,19 @@
     {
       "source": "/inmuebles.html",
       "has": [{ "type": "query", "key": "q" }],
-      "destination": "/inmuebles",
+      "destination": "/inmuebles?",
       "permanent": true
     },
     {
       "source": "/inmuebles",
       "has": [{ "type": "query", "key": "q" }],
-      "destination": "/inmuebles",
+      "destination": "/inmuebles?",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug",
+      "has": [{ "type": "query", "key": "slug" }],
+      "destination": "/blog/:slug?",
       "permanent": true
     },
     {
