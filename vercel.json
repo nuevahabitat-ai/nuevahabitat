@@ -266,7 +266,8 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    { "source": "/blog/:slug", "destination": "/blog-articulo?slug=:slug" }
+    { "source": "/blog/:slug", "destination": "/blog-articulo?slug=:slug" },
+    { "source": "/api/stripe-verify-session", "destination": "/api/stripe-checkout?__action=verify-session" }
   ],
   "headers": [
     {
