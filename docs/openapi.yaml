@@ -48,6 +48,11 @@ paths:
     post:
       summary: Crear comprador
       operationId: createComprador
+      security:
+        - bearerAuth: []
+        - {}
+      description: |
+        Autenticación: Bearer NH_PANEL_API_KEY **o** campo `pin` (NH_CAPTAR_PIN) en el JSON.
       requestBody:
         required: true
         content:
@@ -123,6 +128,9 @@ components:
           format: email
         notas:
           type: string
+        pin:
+          type: string
+          description: PIN de captación (alternativa a Bearer; solo POST)
     Comprador:
       type: object
       properties:

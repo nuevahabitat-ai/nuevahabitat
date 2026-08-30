@@ -1,7 +1,8 @@
 /**
- * POST /api/compradores — crear comprador (IAs externas, Captador-compatible)
+ * POST /api/compradores — crear comprador (IAs externas, formulario móvil, Captador)
  * GET  /api/compradores — listar compradores
- * Auth: Authorization: Bearer NH_PANEL_API_KEY
+ * Auth POST: Bearer NH_PANEL_API_KEY  o  body.pin === NH_CAPTAR_PIN (solo crear)
+ * Auth GET:  Bearer NH_PANEL_API_KEY
  */
 import { SB_SERVICE } from '../lib/server/supabase-server.js';
 import { verifyPanelApiKey, checkRateLimit, logApiAction } from '../lib/server/panel-api-auth.js';
@@ -16,6 +17,20 @@ import {
 function json(res, status, body) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.status(status).json(body);
+}
+
+function pinAuth(body) {
+  const pin = String(body?.pin || '').trim();
+  const expected = process.env.NH_CAPTAR_PIN;
+  return !!(expected && pin && pin === expected);
+}
+
+function requireService(res) {
+  if (!SB_SERVICE) {
+    json(res, 503, { ok: false, error: 'Supabase service role no configurado' });
+    return false;
+  }
+  return true;
 }
 
 function requireAuth(req, res) {
@@ -36,9 +51,10 @@ function requireAuth(req, res) {
   return true;
 }
 
-async function handlePost(req, res) {
+async function handlePost(req, res, meta = {}) {
   const body = req.body || {};
   const row = buildCompradorRow(body);
+  const source = meta.viaPin ? 'captar.pin' : 'api.bearer';
 
   if (!row.nombre) {
     return json(res, 400, { ok: false, error: 'El campo nombre es obligatorio' });
@@ -58,7 +74,7 @@ async function handlePost(req, res) {
 
   try {
     const created = await insertComprador(row);
-    logApiAction('comprador.create', { nombre: row.nombre, telefono: row.telefono });
+    logApiAction('comprador.create', { nombre: row.nombre, telefono: row.telefono, source });
     return json(res, 201, { ok: true, comprador: publicComprador(created) });
   } catch (err) {
     console.error('compradores.create:', err.message || err);
@@ -91,6 +107,18 @@ async function handleGet(req, res) {
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
+  }
+
+  if (!requireService(res)) return;
+
+  const body = req.body || {};
+  const viaPin = req.method === 'POST' && pinAuth(body);
+
+  if (viaPin) {
+    const rate = checkRateLimit(req);
+    if (!rate.ok) return json(res, rate.status, { ok: false, error: rate.error });
+    if (req.method === 'POST') return handlePost(req, res, { viaPin: true });
+    return json(res, 405, { ok: false, error: 'Método no permitido' });
   }
 
   if (!requireAuth(req, res)) return;

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Captar comprador · NuevaHabitat</title>
+  <meta name="robots" content="noindex,nofollow"/>
+  <meta name="theme-color" content="#0d0d0d"/>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+  <style>
+    body{background:var(--crema);min-height:100vh;padding:1.25rem 0 3rem}
+    .cap-wrap{max-width:420px;margin:0 auto;padding:0 1rem}
+    .cap-logo{text-align:center;margin-bottom:1.5rem}
+    .cap-logo img{height:40px}
+    .cap-card{background:#fff;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-sm)}
+    .cap-card h1{font-family:var(--font-serif);font-size:1.35rem;margin:0 0 .35rem}
+    .cap-card p{font-size:.85rem;color:var(--gris-texto);margin:0 0 1.25rem;line-height:1.5}
+    .cap-field{margin-bottom:1rem}
+    .cap-field label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gris-medio);margin-bottom:.35rem}
+    .cap-field input,.cap-field textarea{width:100%;padding:.75rem .85rem;border:1px solid var(--crema-dark);border-radius:var(--radius-sm);font-size:1rem;font-family:var(--font-sans)}
+    .cap-field textarea{min-height:72px;resize:vertical}
+    .cap-msg{padding:.75rem;border-radius:var(--radius-sm);font-size:.85rem;margin-bottom:1rem;display:none}
+    .cap-msg.ok{display:block;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}
+    .cap-msg.err{display:block;background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+    .cap-btn{width:100%;padding:.9rem;border:none;border-radius:var(--radius-sm);background:var(--negro);color:#fff;font-weight:600;font-size:.95rem;cursor:pointer;font-family:var(--font-sans)}
+    .cap-btn:disabled{opacity:.6;cursor:not-allowed}
+    .cap-pin-row{display:flex;gap:.5rem;align-items:center;margin-bottom:1rem;font-size:.8rem;color:var(--gris-medio)}
+    .cap-pin-row input{width:auto;flex:1}
+  </style>
+</head>
+<body>
+  <div class="cap-wrap">
+    <div class="cap-logo">
+      <img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/>
+    </div>
+    <div class="cap-card">
+      <h1>Nuevo comprador</h1>
+      <p>Alta rápida desde móvil o cualquier navegador. Aparece en el panel admin al instante.</p>
+      <div id="capMsg" class="cap-msg"></div>
+      <form id="capForm">
+        <div class="cap-field" id="pinField">
+          <label for="pin">PIN de captación</label>
+          <input type="password" id="pin" inputmode="numeric" autocomplete="off" placeholder="••••••" required/>
+        </div>
+        <div class="cap-field">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" required autocomplete="name"/>
+        </div>
+        <div class="cap-field">
+          <label for="telefono">Teléfono móvil *</label>
+          <input type="tel" id="telefono" required inputmode="tel" placeholder="612 345 678"/>
+        </div>
+        <div class="cap-field">
+          <label for="zona">Zona buscada</label>
+          <input type="text" id="zona" placeholder="Eixample, Hospitalet…"/>
+        </div>
+        <div class="cap-field">
+          <label for="presupuesto">Presupuesto máx. (€)</label>
+          <input type="number" id="presupuesto" inputmode="numeric" min="0" step="1000"/>
+        </div>
+        <div class="cap-field">
+          <label for="habitaciones">Habitaciones mín.</label>
+          <input type="number" id="habitaciones" inputmode="numeric" min="0" max="10"/>
+        </div>
+        <div class="cap-field">
+          <label for="notas">Notas</label>
+          <textarea id="notas" placeholder="Origen, observaciones…"></textarea>
+        </div>
+        <button type="submit" class="cap-btn" id="capSubmit">Guardar comprador</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    const PIN_KEY = 'nh_captar_pin';
+    const pinInput = document.getElementById('pin');
+    const savedPin = sessionStorage.getItem(PIN_KEY);
+    if (savedPin) {
+      pinInput.value = savedPin;
+      document.getElementById('pinField').style.display = 'none';
+    }
+
+    function showMsg(text, ok) {
+      const el = document.getElementById('capMsg');
+      el.textContent = text;
+      el.className = 'cap-msg ' + (ok ? 'ok' : 'err');
+    }
+
+    document.getElementById('capForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('capSubmit');
+      btn.disabled = true;
+      showMsg('Guardando…', true);
+
+      const pin = pinInput.value.trim();
+      const payload = {
+        pin,
+        nombre: document.getElementById('nombre').value.trim(),
+        telefono: document.getElementById('telefono').value.trim(),
+        zona_buscada: document.getElementById('zona').value.trim() || undefined,
+        presupuesto_max: document.getElementById('presupuesto').value ? Number(document.getElementById('presupuesto').value) : undefined,
+        habitaciones_min: document.getElementById('habitaciones').value ? parseInt(document.getElementById('habitaciones').value, 10) : undefined,
+        notas: document.getElementById('notas').value.trim() || undefined,
+      };
+
+      try {
+        const res = await fetch('/api/compradores', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (res.status === 201 && data.ok) {
+          sessionStorage.setItem(PIN_KEY, pin);
+          document.getElementById('pinField').style.display = 'none';
+          showMsg('✓ ' + (data.comprador?.nombre || 'Comprador') + ' guardado. Ya está en el panel.', true);
+          e.target.reset();
+          if (savedPin || pin) pinInput.value = pin;
+          document.getElementById('nombre').focus();
+        } else if (res.status === 409) {
+          showMsg('Ya existe un comprador con ese teléfono (' + (data.comprador?.nombre || '') + ').', false);
+        } else if (res.status === 401 || res.status === 403) {
+          sessionStorage.removeItem(PIN_KEY);
+          document.getElementById('pinField').style.display = 'block';
+          showMsg('PIN incorrecto.', false);
+        } else {
+          showMsg(data.error || 'Error al guardar.', false);
+        }
+      } catch (_) {
+        showMsg('Sin conexión. Revisa la red e inténtalo de nuevo.', false);
+      }
+      btn.disabled = false;
+    });
+  </script>
+</body>
+</html>

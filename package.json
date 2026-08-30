@@ -8,6 +8,7 @@
     "build:landings": "node scripts/build-landings.js",
     "validate:landings": "node scripts/build-landings.js",
     "validate:jsonld": "node scripts/validate-jsonld.js",
-    "seed:blog": "node scripts/seed-blog-supabase.js"
+    "seed:blog": "node scripts/seed-blog-supabase.js",
+    "alta:comprador": "node scripts/alta-comprador-cli.js"
   }
 }

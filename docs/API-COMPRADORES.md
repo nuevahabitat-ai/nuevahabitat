@@ -6,14 +6,34 @@ API HTTP para que asistentes (Gemini, Claude, Cursor Cloud, scripts) creen compr
 
 ## Autenticación
 
-Todas las peticiones requieren:
+### Crear comprador (POST)
+
+Dos formas válidas:
+
+**A) Bearer (IAs, scripts, Postman)**
 
 ```
 Authorization: Bearer <NH_PANEL_API_KEY>
 Content-Type: application/json
 ```
 
+**B) PIN de captación (formulario móvil o POST sin Bearer)**
+
+Incluye en el JSON:
+
+```json
+{ "pin": "<NH_CAPTAR_PIN>", "nombre": "…", "telefono": "…" }
+```
+
+El PIN lo proporciona el administrador. Solo sirve para **crear**; no para listar.
+
+### Listar compradores (GET)
+
+Siempre requiere `Authorization: Bearer <NH_PANEL_API_KEY>`.
+
 La clave `NH_PANEL_API_KEY` la proporciona el administrador. **No** uses la service role de Supabase en clientes externos.
+
+Formulario móvil sin repo: **https://www.nuevahabitat.com/captar-comprador** — ver [API-CUALQUIER-DISPOSITIVO.md](./API-CUALQUIER-DISPOSITIVO.md).
 
 ---
 

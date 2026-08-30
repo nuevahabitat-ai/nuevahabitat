@@ -16,6 +16,7 @@ node_modules/
 .env.local
 .env.*.local
 .nh-panel-api-key.local
+.nh-captar-pin.local
 .env.vercel.tmp
 
 # Documentos internos (no subir contratos)
