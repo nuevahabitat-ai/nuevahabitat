@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: NuevaHabitat Panel API
+  description: API para crear y listar compradores (IAs externas, Captador-compatible)
+  version: 1.0.0
+servers:
+  - url: https://www.nuevahabitat.com
+security:
+  - bearerAuth: []
+paths:
+  /api/compradores:
+    get:
+      summary: Listar compradores
+      operationId: listCompradores
+      parameters:
+        - name: activo
+          in: query
+          schema:
+            type: boolean
+          description: Filtrar por activo (true/false)
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 50
+      responses:
+        '200':
+          description: Lista de compradores
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  count:
+                    type: integer
+                  compradores:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comprador'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    post:
+      summary: Crear comprador
+      operationId: createComprador
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompradorCreate'
+            example:
+              nombre: José Francisco Martínez
+              telefono: "+34683483132"
+              presupuesto_max: 220000
+              zona_buscada: Hospitalet de Llobregat
+              habitaciones_min: 3
+              notas: Alta vía Claude Code
+      responses:
+        '201':
+          description: Comprador creado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  comprador:
+                    $ref: '#/components/schemas/Comprador'
+        '400':
+          description: Datos inválidos
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: Teléfono duplicado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  error:
+                    type: string
+                  comprador:
+                    $ref: '#/components/schemas/Comprador'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          description: Error Supabase
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: NH_PANEL_API_KEY (solo server-side)
+  schemas:
+    CompradorCreate:
+      type: object
+      required:
+        - nombre
+        - telefono
+      properties:
+        nombre:
+          type: string
+        telefono:
+          type: string
+          description: Móvil español; se normaliza a E.164 (+34…)
+        presupuesto_max:
+          type: number
+        zona_buscada:
+          type: string
+        habitaciones_min:
+          type: integer
+        email:
+          type: string
+          format: email
+        notas:
+          type: string
+    Comprador:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        nombre:
+          type: string
+        telefono:
+          type: string
+        email:
+          type: string
+          nullable: true
+        zona_buscada:
+          type: string
+          nullable: true
+        presupuesto_max:
+          type: number
+          nullable: true
+        habitaciones_min:
+          type: integer
+          nullable: true
+        activo:
+          type: boolean
+        notas:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          nullable: true
+  responses:
+    Unauthorized:
+      description: Clave API ausente o inválida
+    TooManyRequests:
+      description: Rate limit (60 req/min por IP)
