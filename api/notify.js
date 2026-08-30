@@ -4,7 +4,7 @@
  * Usa Resend (resend.com) como proveedor de email.
  */
 
-import { createAvailabilityEvents } from './lib/google-calendar.js';
+import { createAvailabilityEvents } from '../lib/server/google-calendar.js';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || 'info@nuevahabitat.com';

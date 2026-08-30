@@ -3,15 +3,15 @@
  * GET  /api/compradores — listar compradores
  * Auth: Authorization: Bearer NH_PANEL_API_KEY
  */
-import { SB_SERVICE } from './lib/supabase-server.js';
-import { verifyPanelApiKey, checkRateLimit, logApiAction } from './lib/panel-api-auth.js';
+import { SB_SERVICE } from '../lib/server/supabase-server.js';
+import { verifyPanelApiKey, checkRateLimit, logApiAction } from '../lib/server/panel-api-auth.js';
 import {
   buildCompradorRow,
   findCompradorByTelefono,
   insertComprador,
   listCompradores,
   publicComprador,
-} from './lib/compradores-api.js';
+} from '../lib/server/compradores-api.js';
 
 function json(res, status, body) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');

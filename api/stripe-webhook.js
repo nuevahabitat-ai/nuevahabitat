@@ -3,8 +3,8 @@
  * Configurar en Stripe Dashboard → Webhooks → https://www.nuevahabitat.com/api/stripe-webhook
  */
 import Stripe from 'stripe';
-import { markHonorariosPaid } from './lib/supabase-server.js';
-import { notifyHonorariosPaid } from './lib/payment-notify.js';
+import { markHonorariosPaid } from '../lib/server/supabase-server.js';
+import { notifyHonorariosPaid } from '../lib/server/payment-notify.js';
 
 async function readRawBody(req) {
   if (req.body && typeof req.body === 'string') return Buffer.from(req.body);

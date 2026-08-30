@@ -4,7 +4,7 @@
  * POST /api/stripe-verify-session — Verificar sesión tras pago (rewrite → __action=verify-session)
  */
 import Stripe from 'stripe';
-import { getBankConfig, paymentReference } from './lib/bank-config.js';
+import { getBankConfig, paymentReference } from '../lib/server/bank-config.js';
 import {
   SB_SERVICE,
   getUserFromJwt,
@@ -12,8 +12,8 @@ import {
   fetchClienteRow,
   markTransferenciaPendiente,
   markHonorariosPaid,
-} from './lib/supabase-server.js';
-import { notifyTransferenciaPendiente } from './lib/payment-notify.js';
+} from '../lib/server/supabase-server.js';
+import { notifyTransferenciaPendiente } from '../lib/server/payment-notify.js';
 
 const DEFAULT_HONORARIOS = { comprador: 6050, vendedor: 3630 };
 
