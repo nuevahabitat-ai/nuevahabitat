@@ -335,6 +335,58 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .alert-success{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80}
 .divider{border:none;border-top:1px solid var(--border);margin:1rem 0}
 
+/* ─── Finanzas ───────────────────────────────────────────────── */
+.fin-stats{grid-template-columns:repeat(4,1fr)!important}
+.fin-layout{display:grid;grid-template-columns:1fr minmax(300px,380px);gap:1rem;align-items:start}
+.fin-month-nav{display:flex;align-items:center;gap:.35rem;flex-wrap:wrap}
+.fin-month-label{font-size:.88rem;font-weight:600;min-width:9rem;text-align:center;color:var(--gold-light)}
+.fin-tipo-tabs{display:flex;gap:.35rem;margin-bottom:1rem}
+.fin-tipo-tab{flex:1;padding:.55rem;border:1px solid var(--border);background:var(--surface2);border-radius:6px;font-size:.78rem;font-weight:600;color:var(--muted);transition:all .15s}
+.fin-tipo-tab.active.gasto{border-color:rgba(239,68,68,.55);color:#f87171;background:rgba(239,68,68,.12)}
+.fin-tipo-tab.active.ingreso{border-color:rgba(34,197,94,.55);color:#4ade80;background:rgba(34,197,94,.12)}
+.fin-cal-card{position:sticky;top:0}
+.fin-cal-head{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px}
+.fin-cal-head span{text-align:center;font-size:.62rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:.2rem 0}
+.fin-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.fin-cal-day{min-height:74px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:.3rem .35rem;cursor:pointer;transition:border-color .15s,background .15s;display:flex;flex-direction:column;text-align:left;color:inherit;font-family:inherit}
+.fin-cal-day:hover{border-color:rgba(184,147,106,.45)}
+.fin-cal-day.other{opacity:.32;pointer-events:none}
+.fin-cal-day.today{border-color:var(--gold)}
+.fin-cal-day.selected{border-color:var(--gold);background:rgba(184,147,106,.14)}
+.fin-cal-day-num{font-size:.72rem;font-weight:700;margin-bottom:.15rem;line-height:1}
+.fin-cal-day-gasto{font-size:.58rem;color:#f87171;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fin-cal-day-ingreso{font-size:.58rem;color:#4ade80;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fin-cal-legend{display:flex;gap:1rem;margin-top:.75rem;font-size:.68rem;color:var(--muted);flex-wrap:wrap}
+.fin-cal-legend span{display:inline-flex;align-items:center;gap:.35rem}
+.fin-cal-legend i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.fin-cat-bar{margin-bottom:.65rem}
+.fin-cat-bar-label{display:flex;justify-content:space-between;gap:.5rem;font-size:.72rem;margin-bottom:.25rem}
+.fin-cat-bar-track{height:7px;background:var(--surface2);border-radius:4px;overflow:hidden}
+.fin-cat-bar-fill{height:100%;border-radius:4px;background:var(--gold)}
+.fin-mov-importe.gasto{color:#f87171;font-weight:600}
+.fin-mov-importe.ingreso{color:#4ade80;font-weight:600}
+.fin-balance-pos{color:#4ade80}
+.fin-balance-neg{color:#f87171}
+.vend-modal-panel{width:min(680px,100%)!important}
+.vend-form-tabs,.vend-modal-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
+.vend-hon-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.vend-hon-pill{padding:.45rem .75rem;border:1px solid var(--border);background:var(--surface2);border-radius:999px;font-size:.72rem;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s}
+.vend-hon-pill.active{border-color:var(--gold);color:var(--gold-light);background:rgba(184,147,106,.14)}
+.vend-hon-pill.active.comprador{border-color:rgba(34,197,94,.55);color:#4ade80;background:rgba(34,197,94,.12)}
+.vend-hon-pill.active.vendedor{border-color:rgba(249,115,22,.55);color:#fb923c;background:rgba(249,115,22,.12)}
+.vend-hon-pill.active.ambos{border-color:rgba(59,130,246,.55);color:#93c5fd;background:rgba(59,130,246,.12)}
+.vend-hon-pill.active.exento{border-color:var(--border);color:var(--muted)}
+.vend-hon-summary{padding:.85rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;font-size:.78rem;line-height:1.6;margin-bottom:1rem}
+.vend-row-click{cursor:pointer}
+.vend-row-click:hover td{background:rgba(184,147,106,.06)}
+.vend-tab-pane{display:none}
+.vend-tab-pane.active{display:block}
+@media(max-width:1100px){
+  .fin-layout{grid-template-columns:1fr}
+  .fin-cal-card{position:static}
+  .fin-stats{grid-template-columns:repeat(2,1fr)!important}
+}
+
 /* ─── Mobile ─────────────────────────────────────────────────── */
 .adm-mobile-logout{display:none}
 @media(max-width:1100px) and (min-width:769px){
@@ -449,6 +501,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
         <span class="nav-alarm-dot" id="nav-alarm-badge" style="display:none">0</span>
       </div>
       <div class="adm-nav-group" style="margin-top:.5rem">Contenido</div>
+      <div class="adm-nav-item" data-sec="finanzas">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Finanzas
+      </div>
       <div class="adm-nav-item" data-sec="blog">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v10a2 2 0 01-2 2z"/></svg>
         Blog
@@ -761,6 +817,12 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendForm()">✕ Cancelar</button>
           </div>
           <input type="hidden" id="vend-edit-id"/>
+          <div class="vend-form-tabs adm-subtabs">
+            <button type="button" class="adm-subtab active" data-vend-tab="datos" onclick="vendFormTab('datos')">Datos</button>
+            <button type="button" class="adm-subtab" data-vend-tab="honorarios" onclick="vendFormTab('honorarios')">Honorarios</button>
+            <button type="button" class="adm-subtab" data-vend-tab="comprador" onclick="vendFormTab('comprador')">Comprador vinculado</button>
+          </div>
+          <div class="vend-tab-pane active" id="vend-pane-datos">
           <div class="wiz-section-label">Datos del vendedor</div>
           <div class="adm-form-grid">
             <div class="adm-field adm-form-col-full">
@@ -789,6 +851,40 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <label>Descripción / Notas de seguimiento</label>
             <textarea id="v-desc" rows="3" placeholder="Estado de la negociación, documentación pendiente, notas…"></textarea>
           </div>
+          </div>
+          <div class="vend-tab-pane" id="vend-pane-honorarios">
+            <div class="wiz-section-label">¿Quién paga los honorarios?</div>
+            <div class="vend-hon-pills" id="v-hon-pills">
+              <button type="button" class="vend-hon-pill vendedor" data-pago="vendedor" onclick="vendSetPagoPor('vendedor')">Solo vendedor · 3.630 €</button>
+              <button type="button" class="vend-hon-pill comprador" data-pago="comprador" onclick="vendSetPagoPor('comprador')">Solo comprador · 6.050 €</button>
+              <button type="button" class="vend-hon-pill ambos" data-pago="ambos" onclick="vendSetPagoPor('ambos')">Ambos pagan</button>
+              <button type="button" class="vend-hon-pill exento" data-pago="exento" onclick="vendSetPagoPor('exento')">Exento · 0 €</button>
+              <button type="button" class="vend-hon-pill" data-pago="personalizado" onclick="vendSetPagoPor('personalizado')">Personalizado</button>
+            </div>
+            <input type="hidden" id="v-honorarios-pago-por" value="vendedor"/>
+            <div class="vend-hon-summary" id="v-hon-summary"></div>
+            <div class="adm-form-grid">
+              <div class="adm-field">
+                <label>Honorarios vendedor (€, IVA incl.)</label>
+                <input type="number" id="v-honorarios" min="0" step="1" value="3630" oninput="vendUpdateHonSummary('form')"/>
+                <small class="text-muted" style="font-size:.68rem">Estándar: 3.000 € + 21% IVA = 3.630 €</small>
+              </div>
+              <div class="adm-field">
+                <label>Honorarios comprador vinculado (€)</label>
+                <input type="number" id="v-honorarios-comprador" min="0" step="1" value="6050" disabled oninput="vendUpdateHonSummary('form')"/>
+                <small class="text-muted" style="font-size:.68rem">Estándar: 5.000 € + 21% IVA = 6.050 €</small>
+              </div>
+            </div>
+          </div>
+          <div class="vend-tab-pane" id="vend-pane-comprador">
+            <div class="wiz-section-label">Comprador de la operación</div>
+            <p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Vincula el comprador que participa en esta venta para repartir honorarios.</p>
+            <div class="adm-field">
+              <label>Comprador</label>
+              <select id="v-comprador-id"><option value="">— Sin vincular —</option></select>
+            </div>
+            <div id="v-comprador-preview" class="vend-hon-summary" style="display:none"></div>
+          </div>
           <div id="vend-form-err" class="alert-box alert-error" style="display:none"></div>
           <div class="gap-row" style="margin-top:.5rem">
             <button class="adm-btn adm-btn-gold" onclick="saveVendedor()">💾 Guardar vendedor</button>
@@ -802,6 +898,27 @@ input,select,textarea{font-family:'Inter',sans-serif}
           <div id="vend-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
+
+      <!-- Modal detalle vendedor -->
+      <div id="vend-detail-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="vend-modal-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closeVendModal()"></div>
+        <div class="dash-modal-panel vend-modal-panel">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="vend-modal-kicker">Vendedor</div>
+              <h3 id="vend-modal-title">–</h3>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closeVendModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="vend-modal-tabs adm-subtabs" style="padding:0 1.25rem;margin:0;border-bottom:1px solid var(--border)">
+            <button type="button" class="adm-subtab active" data-vend-modal-tab="resumen" onclick="vendModalTab('resumen')">Resumen</button>
+            <button type="button" class="adm-subtab" data-vend-modal-tab="honorarios" onclick="vendModalTab('honorarios')">Honorarios</button>
+            <button type="button" class="adm-subtab" data-vend-modal-tab="comprador" onclick="vendModalTab('comprador')">Comprador</button>
+          </div>
+          <div class="dash-modal-body" id="vend-modal-body"></div>
+          <div class="dash-modal-foot" id="vend-modal-foot"></div>
+        </div>
+      </div>
 
       <!-- ══ INMUEBLES ══════════════════════════════════════════ -->
       <section class="adm-section" id="sec-inmuebles">
@@ -1438,6 +1555,113 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
       </section>
 
+      <!-- ── Finanzas ─────────────────────────────────────────── -->
+      <section class="adm-section" id="sec-finanzas">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Finanzas</div>
+          <div class="fin-month-nav">
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="finChangeMonth(-1)" aria-label="Mes anterior">‹</button>
+            <span class="fin-month-label" id="fin-month-label">–</span>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="finChangeMonth(1)" aria-label="Mes siguiente">›</button>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="finGoToday()">Hoy</button>
+          </div>
+        </div>
+
+        <div class="adm-stats fin-stats">
+          <div class="stat-card">
+            <div class="stat-num fin-balance-neg" id="fin-st-gastos" style="font-size:1.05rem">–</div>
+            <div class="stat-label">Gastos del mes</div>
+            <div class="stat-hint" id="fin-st-gastos-hint">–</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num fin-balance-pos" id="fin-st-ingresos" style="font-size:1.05rem">–</div>
+            <div class="stat-label">Ingresos del mes</div>
+            <div class="stat-hint" id="fin-st-ingresos-hint">–</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="fin-st-balance" style="font-size:1.05rem">–</div>
+            <div class="stat-label">Balance neto</div>
+            <div class="stat-hint">Ingresos − gastos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="fin-st-media" style="font-size:1.05rem">–</div>
+            <div class="stat-label">Media gasto / día</div>
+            <div class="stat-hint" id="fin-st-media-hint">Días con movimiento</div>
+          </div>
+        </div>
+
+        <div class="fin-layout">
+          <div class="fin-col-main">
+            <div class="adm-card" id="fin-form-card">
+              <div class="adm-card-head"><h3 id="fin-form-title">Nuevo movimiento</h3></div>
+              <div class="fin-tipo-tabs">
+                <button type="button" class="fin-tipo-tab gasto active" id="fin-tab-gasto" onclick="finSetTipo('gasto')">Gasto</button>
+                <button type="button" class="fin-tipo-tab ingreso" id="fin-tab-ingreso" onclick="finSetTipo('ingreso')">Ingreso</button>
+              </div>
+              <input type="hidden" id="fin-edit-id"/>
+              <input type="hidden" id="fin-tipo" value="gasto"/>
+              <div class="adm-grid-2" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+                <div class="adm-field" style="grid-column:1/-1">
+                  <label>Concepto *</label>
+                  <input type="text" id="fin-concepto" placeholder="Ej. Alquiler oficina, honorarios escritura…"/>
+                </div>
+                <div class="adm-field">
+                  <label>Importe (€) *</label>
+                  <input type="number" id="fin-importe" min="0.01" step="0.01" inputmode="decimal" placeholder="0,00"/>
+                </div>
+                <div class="adm-field">
+                  <label>Fecha *</label>
+                  <input type="date" id="fin-fecha"/>
+                </div>
+                <div class="adm-field">
+                  <label>Categoría</label>
+                  <select id="fin-categoria"></select>
+                </div>
+                <div class="adm-field" style="grid-column:1/-1">
+                  <label>Notas</label>
+                  <textarea id="fin-notas" rows="2" placeholder="Opcional…"></textarea>
+                </div>
+              </div>
+              <div id="fin-form-err" class="alert-box alert-error" style="display:none"></div>
+              <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap">
+                <button type="button" class="adm-btn adm-btn-gold" onclick="saveFinMovimiento()">Guardar</button>
+                <button type="button" class="adm-btn adm-btn-ghost" onclick="resetFinForm()">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="adm-card">
+              <div class="adm-card-head">
+                <h3 id="fin-list-title">Movimientos del mes</h3>
+                <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" id="fin-clear-day" style="display:none" onclick="finClearDayFilter()">Ver todo el mes</button>
+              </div>
+              <div id="fin-mov-list"><p class="text-muted">Cargando…</p></div>
+            </div>
+
+            <div class="adm-card">
+              <div class="adm-card-head"><h3>Análisis por categoría</h3></div>
+              <div id="fin-cat-analysis"><p class="text-muted">Sin datos este mes.</p></div>
+            </div>
+          </div>
+
+          <div class="fin-col-cal">
+            <div class="adm-card fin-cal-card">
+              <div class="adm-card-head"><h3>Calendario</h3></div>
+              <div class="fin-cal">
+                <div class="fin-cal-head">
+                  <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                </div>
+                <div class="fin-cal-grid" id="fin-cal-grid"></div>
+              </div>
+              <div class="fin-cal-legend">
+                <span><i style="background:#f87171"></i> Gastos</span>
+                <span><i style="background:#4ade80"></i> Ingresos</span>
+                <span><i style="background:var(--gold)"></i> Día seleccionado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- ── Newsletter ────────────────────────────────────────── -->
       <section class="adm-section" id="sec-newsletter">
         <div class="adm-card">
@@ -1725,7 +1949,7 @@ function switchSection(id){
   document.getElementById('sec-'+id).classList.add('active');
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Vendedores',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos',blog:'Blog',newsletter:'Newsletter'};
+  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Vendedores',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter'};
   document.getElementById('adm-section-title').textContent = titles[id]||id;
   if(id==='dashboard')   loadDashboard();
   if(id==='leads')       loadLeads();
@@ -1736,6 +1960,7 @@ function switchSection(id){
   if(id==='visitas')     loadVisitas();
   if(id==='documentos')  loadDocumentosAdmin();
   if(id==='seguimientos') loadParticulares();
+  if(id==='finanzas')     loadFinanzas();
   if(id==='blog')        loadBlog();
   if(id==='newsletter')  loadNewsletter();
 }
@@ -3796,13 +4021,121 @@ async function toggleActivoComp(id, nuevoValor){
 /* ═══════════════════════════════════════════════════════════════
    VENDEDORES
    ══════════════════════════════════════════════════════════════ */
+const HONORARIOS_VENDEDOR_IVA = 3630;
+const HONORARIOS_COMPRADOR_IVA = 6050;
+const HONORARIOS_PAGO_LABELS = {
+  vendedor: 'Solo vendedor paga (3.630 € IVA incl.)',
+  comprador: 'Solo comprador paga (6.050 € IVA incl.)',
+  ambos: 'Vendedor y comprador pagan cada uno sus honorarios',
+  exento: 'Operación exenta — honorarios a 0 €',
+  personalizado: 'Importes definidos manualmente',
+};
+const VEND_EXPEDIENTE_LABELS = {
+  registro:'Registro', valoracion:'Valoración', fotos:'Reportaje fotos', publicacion:'Publicado',
+  visitas:'Visitas', escritura:'Escritura', cerrado:'Cerrado',
+};
 let _vendData = [];
+let _vendModalId = null;
+let _vendModalTab = 'resumen';
+let _vendCompOptions = [];
+
+function vendFmtEuro(n){
+  if(n == null || n === '' || isNaN(n)) return '0 €';
+  return Number(n).toLocaleString('es-ES', { style:'currency', currency:'EUR', maximumFractionDigits:0 });
+}
+
+function vendHonorariosFromModo(modo, manualVend, manualComp){
+  const v = manualVend != null && manualVend !== '' ? Number(manualVend) : null;
+  const c = manualComp != null && manualComp !== '' ? Number(manualComp) : null;
+  switch(modo){
+    case 'comprador': return { vendedor: 0, comprador: HONORARIOS_COMPRADOR_IVA };
+    case 'ambos': return { vendedor: v ?? HONORARIOS_VENDEDOR_IVA, comprador: HONORARIOS_COMPRADOR_IVA };
+    case 'exento': return { vendedor: 0, comprador: 0 };
+    case 'personalizado': return { vendedor: v ?? 0, comprador: c ?? 0 };
+    default: return { vendedor: v ?? HONORARIOS_VENDEDOR_IVA, comprador: 0 };
+  }
+}
+
+function vendUpdateHonSummary(ctx){
+  const isForm = ctx !== 'modal';
+  const modo = document.getElementById(isForm ? 'v-honorarios-pago-por' : 'vend-modal-hon-pago')?.value || 'vendedor';
+  const honV = document.getElementById(isForm ? 'v-honorarios' : 'vend-modal-hon-v');
+  const honC = document.getElementById(isForm ? 'v-honorarios-comprador' : 'vend-modal-hon-c');
+  const amounts = vendHonorariosFromModo(modo, honV?.value, honC?.value);
+  if(honV && modo !== 'personalizado') honV.value = amounts.vendedor;
+  if(honC && modo !== 'personalizado' && modo !== 'vendedor') honC.value = amounts.comprador;
+  if(honV) honV.disabled = modo !== 'personalizado' && modo !== 'vendedor' && modo !== 'ambos';
+  if(honC) honC.disabled = modo !== 'personalizado' && modo !== 'ambos' && modo !== 'comprador';
+  const el = document.getElementById(isForm ? 'v-hon-summary' : 'vend-modal-hon-summary');
+  if(!el) return;
+  const compId = document.getElementById(isForm ? 'v-comprador-id' : 'vend-modal-comprador')?.value;
+  const compName = _vendCompOptions.find(c => c.id === compId)?.nombre;
+  el.innerHTML = `<strong>${HONORARIOS_PAGO_LABELS[modo] || modo}</strong><br>
+    Vendedor: <span style="color:#fb923c">${vendFmtEuro(amounts.vendedor)}</span>
+    · Comprador${compName ? ' ('+dashEsc(compName)+')' : ''}: <span style="color:#4ade80">${vendFmtEuro(amounts.comprador)}</span>
+    · Total operación: <strong>${vendFmtEuro(amounts.vendedor + amounts.comprador)}</strong>`;
+}
+
+function vendSetPagoPor(modo){
+  const hidden = document.getElementById('v-honorarios-pago-por');
+  if(hidden) hidden.value = modo;
+  document.querySelectorAll('#v-hon-pills .vend-hon-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.pago === modo);
+  });
+  vendUpdateHonSummary('form');
+}
+
+function vendFormTab(tab){
+  document.querySelectorAll('.vend-form-tabs .adm-subtab').forEach(b => b.classList.toggle('active', b.dataset.vendTab === tab));
+  document.querySelectorAll('#vend-form-wrap .vend-tab-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('vend-pane-' + tab)?.classList.add('active');
+  if(tab === 'comprador') vendPopulateCompradorSelect('v-comprador-id');
+}
+
+async function ensureVendCompOptions(){
+  if(_vendCompOptions.length) return _vendCompOptions;
+  const { data } = await window.nhSupabase
+    .from('compradores')
+    .select('id,nombre,telefono,honorarios,honorarios_pagado')
+    .eq('activo', true)
+    .order('nombre');
+  _vendCompOptions = data || [];
+  return _vendCompOptions;
+}
+
+async function vendPopulateCompradorSelect(selectId, selectedId){
+  await ensureVendCompOptions();
+  const sel = document.getElementById(selectId);
+  if(!sel) return;
+  sel.innerHTML = '<option value="">— Sin vincular —</option>' +
+    _vendCompOptions.map(c => `<option value="${c.id}">${dashEsc(c.nombre)}${c.telefono ? ' · '+c.telefono : ''}</option>`).join('');
+  if(selectedId) sel.value = selectedId;
+  sel.onchange = () => vendUpdateCompradorPreview(selectId);
+  vendUpdateCompradorPreview(selectId);
+}
+
+function vendUpdateCompradorPreview(selectId){
+  const sel = document.getElementById(selectId);
+  const previewId = selectId === 'v-comprador-id' ? 'v-comprador-preview' : 'vend-modal-comp-preview';
+  const box = document.getElementById(previewId);
+  if(!box || !sel) return;
+  const c = _vendCompOptions.find(x => x.id === sel.value);
+  if(!c){ box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  box.innerHTML = `<strong>${dashEsc(c.nombre)}</strong><br>
+    ${c.telefono ? '📞 '+dashEsc(c.telefono)+'<br>' : ''}
+    Honorarios actuales: ${vendFmtEuro(c.honorarios ?? HONORARIOS_COMPRADOR_IVA)}
+    ${c.honorarios_pagado ? ' · <span style="color:#4ade80">Pagado</span>' : ' · <span style="color:#fb923c">Pendiente</span>'}`;
+  vendUpdateHonSummary(selectId === 'v-comprador-id' ? 'form' : 'modal');
+}
 
 async function loadVendedores(){
   const tbl = document.getElementById('vend-table');
   if(tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
   const { data, error } = await window.nhSupabase
-    .from('vendedores').select('id,nombre,email,telefono,precio_minimo,inmueble_ref,descripcion,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at').order('created_at',{ascending:false});
+    .from('vendedores')
+    .select('id,nombre,email,telefono,dni,precio_minimo,inmueble_ref,descripcion,estado_expediente,comprador_id,honorarios_pago_por,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at,comprador:compradores(id,nombre,telefono,honorarios,honorarios_pagado)')
+    .order('created_at',{ascending:false});
   if(error){
     console.error('loadVendedores:', error);
     nhToast('No se pudieron cargar vendedores: '+error.message, 'error');
@@ -3813,6 +4146,12 @@ async function loadVendedores(){
   renderVendedores();
 }
 
+function vendPagoBadge(v){
+  const modo = v.honorarios_pago_por || 'vendedor';
+  const labels = { vendedor:'Vendedor paga', comprador:'Comprador paga', ambos:'Ambos', exento:'Exento', personalizado:'Custom' };
+  return `<span class="badge" title="${HONORARIOS_PAGO_LABELS[modo]||''}">${labels[modo]||modo}</span>`;
+}
+
 function renderVendedores(){
   const tbl = document.getElementById('vend-table');
   document.getElementById('vend-count').textContent = _vendData.length+' vendedores';
@@ -3821,25 +4160,29 @@ function renderVendedores(){
     return;
   }
   tbl.innerHTML=`<table class="adm-table">
-    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th><th>Honorarios</th><th>Precio mín.</th><th>Inmueble</th><th>Notas</th><th>Fecha</th><th></th></tr></thead>
-    <tbody>${_vendData.map(v=>`
-      <tr>
-        <td style="font-weight:600">${v.nombre}</td>
-        <td>${v.telefono||'–'}</td>
-        <td>${v.email||'–'}</td>
-        <td>${honorariosPagoBadge(v)} ${honorariosTransferConfirmBtn('vendedor', v)}</td>
+    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th><th>Honorarios</th><th>Pago</th><th>Comprador</th><th>Precio mín.</th><th>Inmueble</th><th>Fecha</th><th></th></tr></thead>
+    <tbody>${_vendData.map(v=>{
+      const comp = v.comprador;
+      return `<tr class="vend-row-click" onclick="openVendModal('${v.id}')">
+        <td style="font-weight:600">${dashEsc(v.nombre)}</td>
+        <td>${dashEsc(v.telefono||'–')}</td>
+        <td>${dashEsc(v.email||'–')}</td>
+        <td onclick="event.stopPropagation()">${honorariosPagoBadge(v)} ${honorariosTransferConfirmBtn('vendedor', v)}</td>
+        <td>${vendPagoBadge(v)}</td>
+        <td>${comp ? dashEsc(comp.nombre) : '–'}</td>
         <td>${v.precio_minimo?Number(v.precio_minimo).toLocaleString('es-ES')+' €':'–'}</td>
-        <td>${v.inmueble_ref?`<span class="badge badge-new">${v.inmueble_ref}</span>`:'–'}</td>
-        <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${v.descripcion||''}">${v.descripcion||'–'}</td>
+        <td>${v.inmueble_ref?`<span class="badge badge-new">${dashEsc(v.inmueble_ref)}</span>`:'–'}</td>
         <td>${v.created_at?new Date(v.created_at).toLocaleDateString('es-ES'):'–'}</td>
-        <td>
+        <td onclick="event.stopPropagation()">
           <div class="gap-row">
-            <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editVendedor('${v.id}')">✏</button>
-            <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteVendedor('${v.id}')">🗑</button>
+            <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editVendedor('${v.id}')" title="Editar">✏</button>
+            <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteVendedor('${v.id}')" title="Eliminar">🗑</button>
           </div>
         </td>
-      </tr>`).join('')}
-    </tbody></table>`;
+      </tr>`;
+    }).join('')}
+    </tbody></table>
+    <p class="text-muted" style="font-size:.72rem;margin-top:.75rem">Clic en una fila para ver el detalle completo.</p>`;
 }
 
 function openVendForm(prefill={}){
@@ -3854,7 +4197,12 @@ function openVendForm(prefill={}){
   document.getElementById('v-ref').value=prefill.inmueble_ref||'';
   document.getElementById('v-desc').value=prefill.descripcion||'';
   document.getElementById('v-expediente').value=prefill.estado_expediente||'registro';
+  vendSetPagoPor(prefill.honorarios_pago_por || 'vendedor');
+  document.getElementById('v-honorarios').value = prefill.honorarios ?? HONORARIOS_VENDEDOR_IVA;
+  vendPopulateCompradorSelect('v-comprador-id', prefill.comprador_id || '');
   document.getElementById('vend-form-err').style.display='none';
+  vendFormTab('datos');
+  vendUpdateHonSummary('form');
   document.getElementById('vend-form-wrap').scrollIntoView({behavior:'smooth'});
 }
 
@@ -3868,26 +4216,50 @@ function editVendedor(id){
   openVendForm(v);
   document.getElementById('vend-edit-id').value=id;
   document.getElementById('vend-form-title').textContent='Editar vendedor';
+  vendSetPagoPor(v.honorarios_pago_por || 'vendedor');
+  document.getElementById('v-honorarios').value = v.honorarios ?? HONORARIOS_VENDEDOR_IVA;
+  if(v.comprador) document.getElementById('v-honorarios-comprador').value = v.comprador.honorarios ?? HONORARIOS_COMPRADOR_IVA;
 }
 
 async function saveVendedor(){
   const nombre = document.getElementById('v-nombre').value.trim();
   if(!nombre){ document.getElementById('vend-form-err').textContent='El nombre es obligatorio.'; document.getElementById('vend-form-err').style.display='block'; return; }
+  const modo = document.getElementById('v-honorarios-pago-por').value || 'vendedor';
+  const amounts = vendHonorariosFromModo(modo, document.getElementById('v-honorarios').value, document.getElementById('v-honorarios-comprador').value);
+  const compradorId = document.getElementById('v-comprador-id').value || null;
+  if((modo === 'comprador' || modo === 'ambos') && !compradorId){
+    document.getElementById('vend-form-err').textContent='Vincula un comprador para el modo de pago seleccionado.';
+    document.getElementById('vend-form-err').style.display='block';
+    vendFormTab('comprador');
+    return;
+  }
   const payload = {
     nombre,
-    telefono:      document.getElementById('v-tel').value.trim()||null,
-    email:         document.getElementById('v-email').value.trim()||null,
-    dni:           document.getElementById('v-dni').value.trim()||null,
+    telefono: document.getElementById('v-tel').value.trim()||null,
+    email: document.getElementById('v-email').value.trim()||null,
+    dni: document.getElementById('v-dni').value.trim()||null,
     precio_minimo: parseFloat(document.getElementById('v-precio-min').value)||null,
-    inmueble_ref:  document.getElementById('v-ref').value.trim()||null,
-    descripcion:   document.getElementById('v-desc').value.trim()||null,
+    inmueble_ref: document.getElementById('v-ref').value.trim()||null,
+    descripcion: document.getElementById('v-desc').value.trim()||null,
     estado_expediente: document.getElementById('v-expediente').value || 'registro',
+    honorarios: amounts.vendedor,
+    honorarios_pago_por: modo,
+    comprador_id: compradorId,
   };
   const editId = document.getElementById('vend-edit-id').value;
   const error = await upsertClienteRow('vendedores', payload, editId);
-  if(error){ document.getElementById('vend-form-err').textContent='Error: '+error.message; document.getElementById('vend-form-err').style.display='block'; return; }
+  if(error){
+    document.getElementById('vend-form-err').textContent = error.message.includes('comprador_id') ? 'Error: ejecuta la migración 031_vendedores_comprador_link.sql en Supabase.' : 'Error: '+error.message;
+    document.getElementById('vend-form-err').style.display='block';
+    return;
+  }
+  if(compradorId && (modo === 'comprador' || modo === 'ambos' || modo === 'personalizado' || modo === 'exento')){
+    await window.nhSupabase.from('compradores').update({ honorarios: amounts.comprador }).eq('id', compradorId);
+  }
+  _vendCompOptions = [];
   closeVendForm();
   loadVendedores();
+  nhToast('Vendedor guardado', 'success');
 }
 
 async function deleteVendedor(id){
@@ -3895,6 +4267,163 @@ async function deleteVendedor(id){
   await window.nhSupabase.from('vendedores').delete().eq('id',id);
   loadVendedores();
 }
+
+function vendModalTab(tab){
+  _vendModalTab = tab;
+  document.querySelectorAll('#vend-detail-modal .vend-modal-tabs .adm-subtab').forEach(b => b.classList.toggle('active', b.dataset.vendModalTab === tab));
+  if(_vendModalId) renderVendModalBody(_vendData.find(x => x.id === _vendModalId));
+}
+
+function openVendModal(id){
+  const v = _vendData.find(x => x.id === id);
+  if(!v) return;
+  _vendModalId = id;
+  _vendModalTab = 'resumen';
+  document.getElementById('vend-modal-title').textContent = v.nombre || 'Vendedor';
+  document.getElementById('vend-modal-kicker').textContent = v.inmueble_ref ? 'Inmueble '+v.inmueble_ref : 'Vendedor';
+  vendModalTab('resumen');
+  const modal = document.getElementById('vend-detail-modal');
+  modal.hidden = false;
+  modal.classList.add('open');
+}
+
+function closeVendModal(){
+  _vendModalId = null;
+  const modal = document.getElementById('vend-detail-modal');
+  modal.classList.remove('open');
+  modal.hidden = true;
+}
+
+function renderVendModalBody(v){
+  if(!v) return;
+  const body = document.getElementById('vend-modal-body');
+  const foot = document.getElementById('vend-modal-foot');
+  const comp = v.comprador;
+  const modo = v.honorarios_pago_por || 'vendedor';
+  const amounts = vendHonorariosFromModo(modo, v.honorarios, comp?.honorarios);
+
+  if(_vendModalTab === 'resumen'){
+    body.innerHTML = `<dl class="dash-dl">
+      <dt>Teléfono</dt><dd>${dashEsc(v.telefono || '–')}</dd>
+      <dt>Email</dt><dd>${dashEsc(v.email || '–')}</dd>
+      <dt>DNI</dt><dd>${dashEsc(v.dni || '–')}</dd>
+      <dt>Expediente</dt><dd>${VEND_EXPEDIENTE_LABELS[v.estado_expediente] || v.estado_expediente || '–'}</dd>
+      <dt>Precio mínimo</dt><dd>${v.precio_minimo ? vendFmtEuro(v.precio_minimo) : '–'}</dd>
+      <dt>Inmueble ref.</dt><dd>${dashEsc(v.inmueble_ref || '–')}</dd>
+      <dt>Alta</dt><dd>${v.created_at ? admAltaWhenText(v.created_at, { label:'Registro' }) : '–'}</dd>
+      <dt>Honorarios vendedor</dt><dd>${honorariosPagoBadge(v)} · ${vendFmtEuro(v.honorarios)}</dd>
+      <dt>Modo de pago</dt><dd>${HONORARIOS_PAGO_LABELS[modo] || modo}</dd>
+      <dt>Comprador vinculado</dt><dd>${comp ? dashEsc(comp.nombre) + (comp.telefono ? ' · '+comp.telefono : '') : '–'}</dd>
+    </dl>
+    ${v.descripcion ? `<div class="dash-modal-block"><strong>Notas</strong>${dashEsc(v.descripcion)}</div>` : ''}`;
+    foot.innerHTML = `
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeVendModal();editVendedor('${v.id}')">Editar vendedor</button>
+      ${v.telefono ? `<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="window.location.href='tel:${telHref(v.telefono)}'">Llamar</button>` : ''}
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal()">Cerrar</button>`;
+    return;
+  }
+
+  if(_vendModalTab === 'honorarios'){
+    body.innerHTML = `
+      <div class="vend-hon-pills" id="vend-modal-hon-pills">
+        <button type="button" class="vend-hon-pill vendedor${modo==='vendedor'?' active':''}" data-pago="vendedor" onclick="vendModalSetPago('vendedor')">Solo vendedor · 3.630 €</button>
+        <button type="button" class="vend-hon-pill comprador${modo==='comprador'?' active':''}" data-pago="comprador" onclick="vendModalSetPago('comprador')">Solo comprador · 6.050 €</button>
+        <button type="button" class="vend-hon-pill ambos${modo==='ambos'?' active':''}" data-pago="ambos" onclick="vendModalSetPago('ambos')">Ambos pagan</button>
+        <button type="button" class="vend-hon-pill exento${modo==='exento'?' active':''}" data-pago="exento" onclick="vendModalSetPago('exento')">Exento · 0 €</button>
+        <button type="button" class="vend-hon-pill${modo==='personalizado'?' active':''}" data-pago="personalizado" onclick="vendModalSetPago('personalizado')">Personalizado</button>
+      </div>
+      <input type="hidden" id="vend-modal-hon-pago" value="${modo}"/>
+      <div class="vend-hon-summary" id="vend-modal-hon-summary"></div>
+      <div class="adm-form-grid">
+        <div class="adm-field">
+          <label>Honorarios vendedor (€)</label>
+          <input type="number" id="vend-modal-hon-v" min="0" step="1" value="${amounts.vendedor}" oninput="vendUpdateHonSummary('modal')"/>
+        </div>
+        <div class="adm-field">
+          <label>Honorarios comprador (€)</label>
+          <input type="number" id="vend-modal-hon-c" min="0" step="1" value="${amounts.comprador}" oninput="vendUpdateHonSummary('modal')"/>
+        </div>
+      </div>
+      <div class="dash-modal-block" style="margin-top:1rem"><strong>Estado de pago vendedor</strong>
+        ${honorariosPagoBadge(v)} ${honorariosTransferConfirmBtn('vendedor', v)}
+      </div>`;
+    foot.innerHTML = `
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveVendModalHonorarios()">Guardar honorarios</button>
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal()">Cerrar</button>`;
+    vendUpdateHonSummary('modal');
+    return;
+  }
+
+  if(_vendModalTab === 'comprador'){
+    body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Selecciona el comprador que participa en esta operación.</p>
+      <div class="adm-field">
+        <label>Comprador</label>
+        <select id="vend-modal-comprador"><option value="">— Sin vincular —</option></select>
+      </div>
+      <div id="vend-modal-comp-preview" class="vend-hon-summary" style="display:none"></div>
+      ${comp ? `<div class="dash-modal-block"><strong>Honorarios comprador</strong>${vendFmtEuro(comp.honorarios ?? HONORARIOS_COMPRADOR_IVA)} · ${comp.honorarios_pagado ? 'Pagado' : 'Pendiente'}</div>` : ''}`;
+    foot.innerHTML = `
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveVendModalComprador()">Guardar vínculo</button>
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal();switchSection('compradores')">Ir a compradores</button>
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal()">Cerrar</button>`;
+    vendPopulateCompradorSelect('vend-modal-comprador', v.comprador_id || '');
+  }
+}
+
+function vendModalSetPago(modo){
+  document.getElementById('vend-modal-hon-pago').value = modo;
+  document.querySelectorAll('#vend-modal-hon-pills .vend-hon-pill').forEach(p => p.classList.toggle('active', p.dataset.pago === modo));
+  vendUpdateHonSummary('modal');
+}
+
+async function saveVendModalHonorarios(){
+  const v = _vendData.find(x => x.id === _vendModalId);
+  if(!v) return;
+  const modo = document.getElementById('vend-modal-hon-pago').value;
+  const amounts = vendHonorariosFromModo(modo, document.getElementById('vend-modal-hon-v').value, document.getElementById('vend-modal-hon-c').value);
+  if((modo === 'comprador' || modo === 'ambos') && !v.comprador_id){
+    nhToast('Vincula un comprador en la pestaña Comprador primero.', 'info');
+    vendModalTab('comprador');
+    return;
+  }
+  const { error } = await window.nhSupabase.from('vendedores').update({
+    honorarios: amounts.vendedor,
+    honorarios_pago_por: modo,
+  }).eq('id', v.id);
+  if(error){ nhToast('Error: '+error.message, 'error'); return; }
+  if(v.comprador_id){
+    await window.nhSupabase.from('compradores').update({ honorarios: amounts.comprador }).eq('id', v.comprador_id);
+  }
+  nhToast('Honorarios actualizados', 'success');
+  await loadVendedores();
+  openVendModal(v.id);
+  vendModalTab('honorarios');
+}
+
+async function saveVendModalComprador(){
+  const v = _vendData.find(x => x.id === _vendModalId);
+  if(!v) return;
+  const compradorId = document.getElementById('vend-modal-comprador').value || null;
+  const { error } = await window.nhSupabase.from('vendedores').update({ comprador_id: compradorId }).eq('id', v.id);
+  if(error){
+    nhToast(error.message.includes('comprador_id') ? 'Ejecuta migración 031 en Supabase.' : 'Error: '+error.message, 'error');
+    return;
+  }
+  nhToast('Comprador vinculado', 'success');
+  _vendCompOptions = [];
+  await loadVendedores();
+  openVendModal(v.id);
+  vendModalTab('comprador');
+}
+
+window.vendFormTab = vendFormTab;
+window.vendSetPagoPor = vendSetPagoPor;
+window.openVendModal = openVendModal;
+window.closeVendModal = closeVendModal;
+window.vendModalTab = vendModalTab;
+window.vendModalSetPago = vendModalSetPago;
+window.saveVendModalHonorarios = saveVendModalHonorarios;
+window.saveVendModalComprador = saveVendModalComprador;
 
 /* ═══════════════════════════════════════════════════════════════
    COLABORADORES
@@ -5068,6 +5597,318 @@ async function syncVendedoresFromInmuebles(){
   loadVendedores();
   loadDashboard();
 }
+
+/* ── Finanzas ─────────────────────────────────────────────────── */
+const FIN_CATEGORIAS = {
+  gasto: ['Alquiler', 'Nóminas', 'Marketing', 'Software', 'Suministros', 'Seguros', 'Asesoría', 'Transporte', 'Otros gastos'],
+  ingreso: ['Honorarios', 'Comisiones', 'Colaboraciones', 'Otros ingresos'],
+};
+let _finData = [];
+let _finView = { year: new Date().getFullYear(), month: new Date().getMonth() };
+let _finSelectedDay = null;
+let _finTipo = 'gasto';
+
+function finFmtEuro(n){
+  if(n == null || n === '' || isNaN(n)) return '0 €';
+  return Number(n).toLocaleString('es-ES', { style:'currency', currency:'EUR', minimumFractionDigits:0, maximumFractionDigits:2 });
+}
+
+function finMonthKey(y, m){ return `${y}-${String(m + 1).padStart(2, '0')}`; }
+
+function finMonthBounds(y, m){
+  const start = `${finMonthKey(y, m)}-01`;
+  const last = new Date(y, m + 1, 0).getDate();
+  const end = `${finMonthKey(y, m)}-${String(last).padStart(2, '0')}`;
+  return { start, end, lastDay: last };
+}
+
+function finMonthLabel(y, m){
+  const d = new Date(y, m, 1);
+  return d.toLocaleDateString('es-ES', { month:'long', year:'numeric' });
+}
+
+function finPopulateCategorias(tipo){
+  const sel = document.getElementById('fin-categoria');
+  if(!sel) return;
+  const list = FIN_CATEGORIAS[tipo] || FIN_CATEGORIAS.gasto;
+  sel.innerHTML = list.map(c => `<option value="${c}">${c}</option>`).join('');
+}
+
+function finSetTipo(tipo){
+  _finTipo = tipo === 'ingreso' ? 'ingreso' : 'gasto';
+  document.getElementById('fin-tipo').value = _finTipo;
+  document.getElementById('fin-tab-gasto').classList.toggle('active', _finTipo === 'gasto');
+  document.getElementById('fin-tab-ingreso').classList.toggle('active', _finTipo === 'ingreso');
+  finPopulateCategorias(_finTipo);
+}
+
+function resetFinForm(){
+  document.getElementById('fin-edit-id').value = '';
+  document.getElementById('fin-form-title').textContent = 'Nuevo movimiento';
+  document.getElementById('fin-concepto').value = '';
+  document.getElementById('fin-importe').value = '';
+  document.getElementById('fin-notas').value = '';
+  const today = new Date();
+  const iso = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+  document.getElementById('fin-fecha').value = _finSelectedDay || iso;
+  document.getElementById('fin-form-err').style.display = 'none';
+  finSetTipo('gasto');
+}
+
+function finChangeMonth(delta){
+  _finView.month += delta;
+  if(_finView.month > 11){ _finView.month = 0; _finView.year++; }
+  if(_finView.month < 0){ _finView.month = 11; _finView.year--; }
+  _finSelectedDay = null;
+  loadFinanzas();
+}
+
+function finGoToday(){
+  const t = new Date();
+  _finView = { year: t.getFullYear(), month: t.getMonth() };
+  _finSelectedDay = null;
+  loadFinanzas();
+}
+
+function finSelectDay(iso){
+  _finSelectedDay = _finSelectedDay === iso ? null : iso;
+  renderFinanzas();
+}
+
+function finClearDayFilter(){
+  _finSelectedDay = null;
+  renderFinanzas();
+}
+
+function finByDayMap(movs){
+  const map = {};
+  for(const m of movs){
+    const k = m.fecha;
+    if(!map[k]) map[k] = { gasto: 0, ingreso: 0, items: [] };
+    const amt = Number(m.importe) || 0;
+    map[k][m.tipo] += amt;
+    map[k].items.push(m);
+  }
+  return map;
+}
+
+function finFilteredMovs(){
+  if(!_finSelectedDay) return _finData;
+  return _finData.filter(m => m.fecha === _finSelectedDay);
+}
+
+function renderFinCalendar(){
+  const grid = document.getElementById('fin-cal-grid');
+  const label = document.getElementById('fin-month-label');
+  if(!grid) return;
+  const { year, month } = _finView;
+  if(label) label.textContent = finMonthLabel(year, month);
+  const { lastDay } = finMonthBounds(year, month);
+  const firstDow = (new Date(year, month, 1).getDay() + 6) % 7;
+  const dayMap = finByDayMap(_finData);
+  const todayIso = (() => {
+    const t = new Date();
+    return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+  })();
+  let html = '';
+  for(let i = 0; i < firstDow; i++){
+    html += '<div class="fin-cal-day other"></div>';
+  }
+  for(let d = 1; d <= lastDay; d++){
+    const iso = `${finMonthKey(year, month)}-${String(d).padStart(2,'0')}`;
+    const info = dayMap[iso];
+    const cls = ['fin-cal-day'];
+    if(iso === todayIso) cls.push('today');
+    if(iso === _finSelectedDay) cls.push('selected');
+    html += `<button type="button" class="${cls.join(' ')}" onclick="finSelectDay('${iso}')">
+      <span class="fin-cal-day-num">${d}</span>
+      ${info?.gasto ? `<span class="fin-cal-day-gasto">−${finFmtEuro(info.gasto).replace(/\s/g,'')}</span>` : ''}
+      ${info?.ingreso ? `<span class="fin-cal-day-ingreso">+${finFmtEuro(info.ingreso).replace(/\s/g,'')}</span>` : ''}
+    </button>`;
+  }
+  grid.innerHTML = html;
+}
+
+function renderFinStats(){
+  let gastos = 0, ingresos = 0;
+  const daysWithGasto = new Set();
+  for(const m of _finData){
+    const amt = Number(m.importe) || 0;
+    if(m.tipo === 'gasto'){ gastos += amt; daysWithGasto.add(m.fecha); }
+    else ingresos += amt;
+  }
+  const balance = ingresos - gastos;
+  const media = daysWithGasto.size ? gastos / daysWithGasto.size : 0;
+  document.getElementById('fin-st-gastos').textContent = finFmtEuro(gastos);
+  document.getElementById('fin-st-ingresos').textContent = finFmtEuro(ingresos);
+  const balEl = document.getElementById('fin-st-balance');
+  balEl.textContent = (balance >= 0 ? '+' : '') + finFmtEuro(balance);
+  balEl.className = 'stat-num ' + (balance >= 0 ? 'fin-balance-pos' : 'fin-balance-neg');
+  document.getElementById('fin-st-media').textContent = finFmtEuro(media);
+  document.getElementById('fin-st-gastos-hint').textContent = _finData.filter(m => m.tipo === 'gasto').length + ' movimiento(s)';
+  document.getElementById('fin-st-ingresos-hint').textContent = _finData.filter(m => m.tipo === 'ingreso').length + ' movimiento(s)';
+  document.getElementById('fin-st-media-hint').textContent = daysWithGasto.size ? `${daysWithGasto.size} día(s) con gasto` : 'Sin gastos registrados';
+}
+
+function renderFinCategoryAnalysis(){
+  const el = document.getElementById('fin-cat-analysis');
+  if(!el) return;
+  const byCat = {};
+  for(const m of _finData){
+    const cat = m.categoria || (m.tipo === 'gasto' ? 'Otros gastos' : 'Otros ingresos');
+    const key = `${m.tipo}:${cat}`;
+    byCat[key] = (byCat[key] || 0) + (Number(m.importe) || 0);
+  }
+  const entries = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
+  if(!entries.length){ el.innerHTML = '<p class="text-muted">Sin datos este mes.</p>'; return; }
+  const max = entries[0][1];
+  el.innerHTML = entries.map(([key, total]) => {
+    const [tipo, cat] = key.split(':');
+    const pct = max ? Math.round((total / max) * 100) : 0;
+    const color = tipo === 'gasto' ? '#f87171' : '#4ade80';
+    return `<div class="fin-cat-bar">
+      <div class="fin-cat-bar-label"><span>${tipo === 'gasto' ? '↓' : '↑'} ${cat}</span><strong style="color:${color}">${finFmtEuro(total)}</strong></div>
+      <div class="fin-cat-bar-track"><div class="fin-cat-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderFinMovList(){
+  const el = document.getElementById('fin-mov-list');
+  const title = document.getElementById('fin-list-title');
+  const clearBtn = document.getElementById('fin-clear-day');
+  if(!el) return;
+  const list = finFilteredMovs().slice().sort((a, b) => (b.fecha + b.created_at).localeCompare(a.fecha + a.created_at));
+  if(_finSelectedDay){
+    title.textContent = 'Movimientos del ' + new Date(_finSelectedDay + 'T12:00:00').toLocaleDateString('es-ES', { day:'numeric', month:'long' });
+    clearBtn.style.display = '';
+  } else {
+    title.textContent = 'Movimientos del mes';
+    clearBtn.style.display = 'none';
+  }
+  if(!list.length){
+    el.innerHTML = '<p class="text-muted">' + (_finSelectedDay ? 'Sin movimientos este día.' : 'Sin movimientos este mes. Añade un gasto o ingreso arriba.') + '</p>';
+    return;
+  }
+  el.innerHTML = `<table class="adm-table"><thead><tr><th>Fecha</th><th>Concepto</th><th>Categoría</th><th>Tipo</th><th>Importe</th><th></th></tr></thead><tbody>${
+    list.map(m => `<tr>
+      <td>${new Date(m.fecha + 'T12:00:00').toLocaleDateString('es-ES')}</td>
+      <td>${dashEsc(m.concepto)}${m.notas ? `<br><small class="text-muted">${dashEsc(m.notas)}</small>` : ''}</td>
+      <td>${dashEsc(m.categoria || '–')}</td>
+      <td><span class="badge ${m.tipo === 'ingreso' ? 'badge-ok' : ''}">${m.tipo === 'ingreso' ? 'Ingreso' : 'Gasto'}</span></td>
+      <td class="fin-mov-importe ${m.tipo}">${m.tipo === 'gasto' ? '−' : '+'}${finFmtEuro(m.importe)}</td>
+      <td style="white-space:nowrap">
+        <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editFinMovimiento('${m.id}')">Editar</button>
+        <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteFinMovimiento('${m.id}')">Eliminar</button>
+      </td>
+    </tr>`).join('')
+  }</tbody></table>`;
+}
+
+function renderFinanzas(){
+  renderFinStats();
+  renderFinCalendar();
+  renderFinMovList();
+  renderFinCategoryAnalysis();
+}
+
+async function loadFinanzas(){
+  const { year, month } = _finView;
+  const { start, end } = finMonthBounds(year, month);
+  document.getElementById('fin-mov-list').innerHTML = '<p class="text-muted">Cargando…</p>';
+  const { data, error } = await window.nhSupabase
+    .from('finanzas_movimientos')
+    .select('id,tipo,concepto,importe,fecha,categoria,notas,created_at')
+    .gte('fecha', start)
+    .lte('fecha', end)
+    .order('fecha', { ascending: false })
+    .order('created_at', { ascending: false });
+  if(error){
+    console.error('loadFinanzas:', error);
+    _finData = [];
+    document.getElementById('fin-mov-list').innerHTML = `<p class="text-muted">No se pudieron cargar los movimientos.${error.message.includes('finanzas_movimientos') ? '<br><small>Ejecuta la migración <code>030_finanzas_movimientos.sql</code> en Supabase.</small>' : '<br>' + dashEsc(error.message)}</p>`;
+    renderFinCalendar();
+    return;
+  }
+  _finData = data || [];
+  renderFinanzas();
+  if(!document.getElementById('fin-edit-id').value) resetFinForm();
+}
+
+async function saveFinMovimiento(){
+  const errEl = document.getElementById('fin-form-err');
+  errEl.style.display = 'none';
+  const concepto = document.getElementById('fin-concepto').value.trim();
+  const importeRaw = document.getElementById('fin-importe').value;
+  const fecha = document.getElementById('fin-fecha').value;
+  const tipo = document.getElementById('fin-tipo').value;
+  const importe = parseFloat(String(importeRaw).replace(',', '.'));
+  if(!concepto){ errEl.textContent = 'El concepto es obligatorio.'; errEl.style.display = 'block'; return; }
+  if(!fecha){ errEl.textContent = 'La fecha es obligatoria.'; errEl.style.display = 'block'; return; }
+  if(!Number.isFinite(importe) || importe <= 0){ errEl.textContent = 'Indica un importe válido mayor que 0.'; errEl.style.display = 'block'; return; }
+  const payload = {
+    tipo,
+    concepto,
+    importe: Math.round(importe * 100) / 100,
+    fecha,
+    categoria: document.getElementById('fin-categoria').value || null,
+    notas: document.getElementById('fin-notas').value.trim() || null,
+  };
+  const editId = document.getElementById('fin-edit-id').value;
+  let error;
+  if(editId){
+    ({ error } = await window.nhSupabase.from('finanzas_movimientos').update(payload).eq('id', editId));
+  } else {
+    ({ error } = await window.nhSupabase.from('finanzas_movimientos').insert(payload));
+  }
+  if(error){ errEl.textContent = error.message; errEl.style.display = 'block'; return; }
+  nhToast(editId ? 'Movimiento actualizado' : 'Movimiento guardado', 'success');
+  const [y, mo] = fecha.split('-').map(Number);
+  if(y && mo) _finView = { year: y, month: mo - 1 };
+  resetFinForm();
+  loadFinanzas();
+}
+
+function editFinMovimiento(id){
+  const m = _finData.find(x => x.id === id);
+  if(!m) return;
+  document.getElementById('fin-edit-id').value = id;
+  document.getElementById('fin-form-title').textContent = 'Editar movimiento';
+  finSetTipo(m.tipo);
+  document.getElementById('fin-concepto').value = m.concepto || '';
+  document.getElementById('fin-importe').value = m.importe ?? '';
+  document.getElementById('fin-fecha').value = m.fecha || '';
+  document.getElementById('fin-notas').value = m.notas || '';
+  if(m.categoria){
+    const sel = document.getElementById('fin-categoria');
+    if(![...sel.options].some(o => o.value === m.categoria)){
+      const opt = document.createElement('option');
+      opt.value = m.categoria;
+      opt.textContent = m.categoria;
+      sel.appendChild(opt);
+    }
+    sel.value = m.categoria;
+  }
+  document.getElementById('fin-form-card').scrollIntoView({ behavior:'smooth' });
+}
+
+async function deleteFinMovimiento(id){
+  if(!confirm('¿Eliminar este movimiento?')) return;
+  const { error } = await window.nhSupabase.from('finanzas_movimientos').delete().eq('id', id);
+  if(error){ nhToast('Error: ' + error.message, 'error'); return; }
+  nhToast('Movimiento eliminado', 'success');
+  loadFinanzas();
+}
+
+window.finSetTipo = finSetTipo;
+window.finChangeMonth = finChangeMonth;
+window.finGoToday = finGoToday;
+window.finSelectDay = finSelectDay;
+window.finClearDayFilter = finClearDayFilter;
+window.saveFinMovimiento = saveFinMovimiento;
+window.resetFinForm = resetFinForm;
+window.editFinMovimiento = editFinMovimiento;
+window.deleteFinMovimiento = deleteFinMovimiento;
 
 /* ── Newsletter ─────────────────────────────────────────────────── */
 async function loadNewsletter(){
