@@ -2835,6 +2835,21 @@ function dashFmtDate(iso, withTime){
   if(withTime) return d.toLocaleString('es-ES', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
   return d.toLocaleDateString('es-ES', { day:'2-digit', month:'short', year:'numeric' });
 }
+function admFmtDateTime(iso){
+  if(!iso) return '';
+  return new Date(iso).toLocaleString('es-ES', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+function admAltaWhenText(createdAt, opts = {}){
+  if(!createdAt) return '';
+  const when = admFmtDateTime(createdAt);
+  const imported = opts.imported === true || (opts.notas && /importado/i.test(opts.notas));
+  const label = opts.label || (imported ? 'Importado' : 'Alta');
+  return `${label}: ${when}`;
+}
+function admAltaWhenHtml(createdAt, opts = {}){
+  if(!createdAt) return '';
+  return `<time datetime="${createdAt}" style="font-size:.68rem;opacity:.9">${admAltaWhenText(createdAt, opts)}</time>`;
+}
 function dashFmtPrice(n){
   if(n == null || n === '') return '';
   return Number(n).toLocaleString('es-ES') + ' €';
@@ -2928,7 +2943,7 @@ function renderDashCompradores(list){
       </div>
       <div class="dash-item-side">
         ${c.presupuesto_max != null ? `<div class="dash-item-price">${dashFmtPrice(c.presupuesto_max)}</div>` : ''}
-        <div class="dash-item-date">${dashFmtDate(c.created_at)}</div>
+        <div class="dash-item-date">${dashFmtDate(c.created_at, true)}</div>
       </div>
     </button>`).join('');
 }
@@ -3675,7 +3690,7 @@ function renderCompradores(){
           ${c.telefono?`<span>📞 ${c.telefono}</span>`:''}
           ${c.email?`<span>✉ ${c.email}</span>`:''}
         </div>
-        ${c.notas?`<div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding:.4rem;background:var(--surface2);border-radius:4px;line-height:1.5">${c.notas}</div>`:''}
+        ${c.notas || c.created_at ? `<div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding:.4rem;background:var(--surface2);border-radius:4px;line-height:1.5">${c.notas ? c.notas : ''}${c.created_at ? `${c.notas ? '<br>' : ''}${admAltaWhenHtml(c.created_at, { notas: c.notas })}` : ''}</div>` : ''}
         <div class="pub-quick-actions">
           ${c.telefono ? `<button type="button" class="pub-btn-wa" onclick="admWhatsAppComprador('${c.id}')">WhatsApp</button><button type="button" class="pub-btn-call" onclick="admCallComprador('${c.id}')">Llamar</button>` : ''}
           ${c.telefono && matchN ? `<button type="button" class="pub-btn-wa" style="background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4)" onclick="openCompMatchModal('${c.id}')">WhatsApp + inmuebles</button>` : ''}
@@ -4852,6 +4867,7 @@ async function openPartDetail(id){
     ${PART_FUENTES[p.fuente]||p.fuente} · ${PART_ESTADOS[p.estado]||p.estado}
     ${p.precio ? ' · '+Number(p.precio).toLocaleString('es-ES')+' €' : ''}
     ${alarm ? ' · <span class="adm-alarm-badge">⏰ Alarma contacto</span>' : ''}
+    ${p.created_at ? '<br>'+admAltaWhenText(p.created_at, { label: 'Importado' }) : ''}
     ${p.ultimo_contacto_at ? '<br>Último contacto: '+new Date(p.ultimo_contacto_at).toLocaleString('es-ES') : '<br>Sin contacto registrado'}
     ${p.proxima_alarma_at ? ' · Próxima alarma: '+new Date(p.proxima_alarma_at).toLocaleString('es-ES') : ''}
     ${p.url ? '<br><a href="'+p.url+'" target="_blank" rel="noopener" style="color:var(--gold)">Ver anuncio original</a>' : ''}`;
@@ -4948,6 +4964,7 @@ function renderParticulares(){
           ${p.contacto_nombre ? `<span>${p.contacto_nombre}</span>` : ''}
           ${p.telefono ? `<span>📞 ${p.telefono}</span>` : ''}
         </div>
+        ${p.created_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">${admAltaWhenHtml(p.created_at, { label: 'Importado' })}</div>` : ''}
         ${p.ultimo_contacto_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">Último contacto: ${new Date(p.ultimo_contacto_at).toLocaleString('es-ES')}</div>` : `<div style="font-size:.68rem;color:var(--orange);margin-top:.35rem">Sin contacto registrado</div>`}
         <div class="pub-quick-actions">
           ${partWaButtonsHtml(p)}
