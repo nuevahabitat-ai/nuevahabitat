@@ -1,0 +1,36 @@
+---
+description: Integración Captador (José captación Kelify + Alfredo compradores/seguimientos) con panel NH
+alwaysApply: true
+---
+
+# Captador ↔ Nueva Hábitat
+
+Antes de cambiar `admin-panel.html`, `/api/*`, `lib/server/*` o migraciones Supabase de **particulares/compradores**, lee:
+
+- `PROMPT-INTEGRACION-CAPTADOR.md` (spec completa)
+- `PROMPT-API-COMPRADORES.md` (compradores)
+
+## Bots (repo hermano Captador, VPS `/opt/captador`)
+
+| Bot | Función | Escribe en Supabase |
+|-----|---------|---------------------|
+| **José** | Kelify auto 9–20h cada 30 min | `particulares` + `particulares_seguimientos` (`fuente=kelify`, `estado=nuevo`) |
+| **Alfredo** | Telegram compradores/seguimientos | `compradores`, notas, algunos `particulares` |
+
+## APIs que Captador consume — no romper
+
+- `POST /api/import-particular` — José enriquece datos Kelify (sin auth)
+- `GET/POST /api/compradores` — Alfredo (Bearer `NH_PANEL_API_KEY`)
+- `GET /api/particulares?mode=activos|alarmas|hoy` — Alfredo listados
+
+## Reglas de diseño panel
+
+1. **Dedup**: índice único en `particulares.url` — no duplicar por URL Kelify
+2. **Estados/fuentes**: respetar CHECK de migración 021 (`nuevo`, `contactado`, … / `kelify`, `idealista`, …)
+3. **Import UI**: «Importar datos» debe seguir usando `POST /api/import-particular`
+4. **Origen visible**: badge KELIFY + «José (auto)» si comentario en seguimientos menciona José
+5. **Mejoras alineadas**: compatibles comprador↔particular, `POST /api/particulares` autenticado (futuro refactor José)
+
+Código Captador de referencia: `packages/shared/src/nh-panel.ts`, `syncNhParticularFromKelifyLead()`.
+
+Panel: https://www.nuevahabitat.com/admin-panel → Seguimientos - Particulares

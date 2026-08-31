@@ -1,5 +1,13 @@
 # Agentes Cursor / Cloud — NuevaHabitat
 
+## Integración Captador (José + Alfredo)
+
+Los bots del proyecto hermano **Captador** escriben en la misma Supabase que el admin-panel:
+
+- **Spec integración:** [PROMPT-INTEGRACION-CAPTADOR.md](../PROMPT-INTEGRACION-CAPTADOR.md) ← leer antes de tocar Seguimientos, particulares o APIs
+- **José:** captación Kelify auto → tabla `particulares` (fuente `kelify`, estado `nuevo`)
+- **Alfredo:** compradores + consulta seguimientos vía API
+
 ## API compradores (IAs externas)
 
 Para crear compradores desde Gemini, Claude o scripts sin abrir el admin:
