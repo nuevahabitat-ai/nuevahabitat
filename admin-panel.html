@@ -147,6 +147,19 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .adm-filter-bar input,.adm-filter-bar select{width:100%;padding:.45rem .65rem;font-size:.8rem;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text)}
 .adm-filter-bar input:focus,.adm-filter-bar select:focus{outline:none;border-color:var(--gold)}
 .adm-filter-count{font-size:.75rem;color:var(--muted);margin-left:auto;white-space:nowrap;padding-bottom:.35rem}
+.seo-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.75rem;margin-bottom:1.25rem}
+.seo-stat{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.75rem 1rem;text-align:center}
+.seo-stat-num{font-size:1.35rem;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif}
+.seo-stat-label{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:.15rem}
+.seo-cluster-badge{display:inline-block;font-size:.65rem;font-weight:600;padding:.18rem .5rem;border-radius:12px;text-transform:uppercase;letter-spacing:.03em}
+.seo-cluster-badge--barrio{background:rgba(59,130,246,.15);color:#93c5fd}
+.seo-cluster-badge--situacion{background:rgba(168,85,247,.15);color:#d8b4fe}
+.seo-cluster-badge--intencion{background:rgba(234,179,8,.15);color:#fde047}
+.seo-cluster-badge--comparativa{background:rgba(34,197,94,.15);color:#86efac}
+.seo-slug{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--muted)}
+.seo-link-btn{background:none;border:none;color:var(--gold);cursor:pointer;font-size:.72rem;padding:0;text-decoration:underline}
+.seo-zona-tags{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.2rem}
+.seo-zona-tag{font-size:.62rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:.1rem .35rem;border-radius:4px}
 .adm-match-banner{display:none;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.35);border-radius:8px;padding:.75rem 1rem;margin-bottom:1rem;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
 .adm-match-banner.visible{display:flex}
 .adm-match-badge{display:inline-flex;align-items:center;gap:.35rem;background:rgba(184,147,106,.15);color:var(--gold-light);font-size:.72rem;font-weight:600;padding:.25rem .6rem;border-radius:20px}
@@ -158,6 +171,9 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .adm-pay-badge--transf{background:rgba(59,130,246,.15);color:#93c5fd;border:1px solid rgba(59,130,246,.35)}
 .comp-match-modal-panel{width:min(640px,100%)}
 .comp-match-list{display:flex;flex-direction:column;gap:.65rem;margin-top:.75rem}
+.comp-match-item.already-wa-sent{opacity:.72;background:rgba(255,255,255,.02)}
+.comp-match-item.already-wa-sent .comp-match-info strong{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25)}
+.adm-wa-sent-badge{display:inline-flex;align-items:center;gap:.25rem;font-size:.65rem;font-weight:700;color:#94a3b8;background:rgba(148,163,184,.12);padding:.15rem .45rem;border-radius:12px;white-space:nowrap}
 .comp-match-item{display:flex;align-items:center;gap:.75rem;padding:.65rem .75rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .2s}
 .comp-match-item:hover{border-color:rgba(184,147,106,.45)}
 .comp-match-item input[type=checkbox]{width:18px;height:18px;flex-shrink:0;accent-color:var(--gold);cursor:pointer}
@@ -229,6 +245,15 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .pub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
 .pub-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border .2s}
 .pub-card:hover{border-color:var(--gold)}
+.pub-card-clickable{cursor:pointer}
+.pub-card-clickable .pub-body-clickzone:hover .pub-title{color:var(--gold-light)}
+.part-action-tabs{display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-right:.25rem}
+.part-action-tabs .part-tab-btn{border:none;background:var(--surface2);color:var(--muted);font-size:.72rem;font-weight:600;padding:.35rem .65rem;cursor:pointer;font-family:inherit;transition:background .15s,color .15s}
+.part-action-tabs .part-tab-btn:hover{color:var(--text);background:var(--surface)}
+.part-action-tabs .part-tab-btn.active{background:rgba(184,147,106,.18);color:var(--gold-light)}
+.part-card-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.5rem;font-size:.78rem;margin:.75rem 0}
+.part-card-detail-grid span{color:var(--muted);display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.04em}
+.part-card-detail-grid strong{color:var(--text);font-weight:600}
 .pub-img{position:relative;height:190px;overflow:hidden;background:var(--surface2)}
 .pub-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .pub-card:hover .pub-img img{transform:scale(1.04)}
@@ -356,6 +381,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .fin-cal-day-num{font-size:.72rem;font-weight:700;margin-bottom:.15rem;line-height:1}
 .fin-cal-day-gasto{font-size:.58rem;color:#f87171;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fin-cal-day-ingreso{font-size:.58rem;color:#4ade80;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fin-cal-day-op{font-size:.58rem;color:var(--gold-light);line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fin-cal-day-manual{font-size:.58rem;color:#86efac;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .fin-cal-legend{display:flex;gap:1rem;margin-top:.75rem;font-size:.68rem;color:var(--muted);flex-wrap:wrap}
 .fin-cal-legend span{display:inline-flex;align-items:center;gap:.35rem}
 .fin-cal-legend i{width:8px;height:8px;border-radius:50%;display:inline-block}
@@ -367,6 +394,14 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .fin-mov-importe.ingreso{color:#4ade80;font-weight:600}
 .fin-balance-pos{color:#4ade80}
 .fin-balance-neg{color:#f87171}
+.fin-sub-pane{display:none}
+.fin-sub-pane.active{display:block}
+.fin-prev-auto-row{display:flex;justify-content:space-between;align-items:center;gap:.75rem;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.78rem}
+.fin-prev-auto-row:last-child{border-bottom:none}
+.fin-prev-client-row{display:flex;align-items:center;gap:.65rem;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.78rem}
+.fin-prev-client-row:last-child{border-bottom:none}
+.fin-prev-client-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0}
+.fin-prev-client-main{flex:1;min-width:0}
 .vend-modal-panel{width:min(680px,100%)!important}
 .vend-form-tabs,.vend-modal-tabs{display:flex;gap:.35rem;margin-bottom:1rem;flex-wrap:wrap}
 .vend-hon-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
@@ -379,6 +414,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .vend-hon-summary{padding:.85rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;font-size:.78rem;line-height:1.6;margin-bottom:1rem}
 .vend-row-click{cursor:pointer}
 .vend-row-click:hover td{background:rgba(184,147,106,.06)}
+.vend-row-inactiva td{opacity:.55}
+.vend-row-inactiva:hover td{background:rgba(100,100,100,.06)}
+.vend-row-seguimiento td{background:rgba(251,191,36,.04)}
+.vend-row-seguimiento:hover td{background:rgba(251,191,36,.08)}
 .vend-tab-pane{display:none}
 .vend-tab-pane.active{display:block}
 @media(max-width:1100px){
@@ -472,10 +511,11 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <div class="adm-nav-item" data-sec="compradores">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6M17 13l1.5 6M9 19a1 1 0 100 2 1 1 0 000-2zm8 0a1 1 0 100 2 1 1 0 000-2z"/></svg>
         Compradores
+        <span class="nav-alarm-dot" id="nav-comp-alarm-badge" style="display:none">0</span>
       </div>
       <div class="adm-nav-item" data-sec="vendedores">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        Vendedores
+        Operaciones
       </div>
       <div class="adm-nav-item" data-sec="colaboradores">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -500,11 +540,12 @@ input,select,textarea{font-family:'Inter',sans-serif}
         Seguimientos
         <span class="nav-alarm-dot" id="nav-alarm-badge" style="display:none">0</span>
       </div>
-      <div class="adm-nav-group" style="margin-top:.5rem">Contenido</div>
+      <div class="adm-nav-group" style="margin-top:.5rem">Finanzas</div>
       <div class="adm-nav-item" data-sec="finanzas">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         Finanzas
       </div>
+      <div class="adm-nav-group" style="margin-top:.5rem">Contenido</div>
       <div class="adm-nav-item" data-sec="blog">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v10a2 2 0 01-2 2z"/></svg>
         Blog
@@ -517,6 +558,14 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <div class="adm-nav-item" onclick="window.open('index.html','_blank')">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
         Ver web pública
+      </div>
+      <div class="adm-nav-item" data-sec="seo">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        SEO
+      </div>
+      <div class="adm-nav-item" data-sec="configuraciones">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0"/></svg>
+        Configuraciones
       </div>
     </nav>
     <div class="adm-user">
@@ -549,7 +598,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
           </div>
           <div class="stat-card">
             <div class="stat-num" id="st-clientes" style="font-size:1.15rem">–</div>
-            <div class="stat-label">Compradores / Vendedores</div>
+            <div class="stat-label">Compradores / Operaciones</div>
             <div class="stat-hint">Cartera activa</div>
           </div>
           <div class="stat-card">
@@ -737,10 +786,16 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
 
         <!-- Filtros estado -->
+        <div id="comp-alarm-banner" class="adm-alarm-banner" style="display:none;margin-bottom:.75rem">
+          <span>⏰</span>
+          <span id="comp-alarm-text"></span>
+        </div>
+
         <div class="adm-subtabs" style="margin-bottom:.75rem">
           <button class="adm-subtab active" id="ctab-todos"   onclick="filterCompradores('todos')">Todos</button>
           <button class="adm-subtab"         id="ctab-activos" onclick="filterCompradores('activos')">Activos</button>
           <button class="adm-subtab"         id="ctab-inactivos" onclick="filterCompradores('inactivos')">Inactivos</button>
+          <button class="adm-subtab"         id="ctab-alarmas" onclick="filterCompradores('alarmas')">⏰ Alarmas</button>
         </div>
 
         <!-- Filtros criterios -->
@@ -802,31 +857,49 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
       </div>
 
-      <!-- ══ VENDEDORES ════════════════════════════════════════ -->
+      <!-- ══ OPERACIONES ════════════════════════════════════════ -->
       <section class="adm-section" id="sec-vendedores">
         <div class="adm-section-hdr">
-          <div class="adm-section-title">Vendedores</div>
-          <button class="adm-btn adm-btn-ghost" onclick="syncVendedoresFromInmuebles()" title="Crea vendedores desde los propietarios de inmuebles">↻ Sincronizar</button>
-          <button class="adm-btn adm-btn-gold" onclick="openVendForm()">+ Nuevo vendedor</button>
+          <div class="adm-section-title">Operaciones</div>
+          <button class="adm-btn adm-btn-ghost" onclick="syncVendedoresFromInmuebles()" title="Crea operaciones desde los propietarios de inmuebles">↻ Sincronizar</button>
+          <button class="adm-btn adm-btn-gold" onclick="openVendForm()">+ Nueva operación</button>
         </div>
 
-        <!-- Formulario vendedor -->
+        <div class="adm-stats fin-stats" style="grid-template-columns:repeat(3,1fr)!important;margin-bottom:1rem">
+          <div class="stat-card">
+            <div class="stat-num fin-balance-pos" id="vend-st-pendientes" style="font-size:1.05rem">–</div>
+            <div class="stat-label">Honorarios pendientes</div>
+            <div class="stat-hint" id="vend-st-pendientes-hint">Operaciones activas</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="vend-st-activas" style="font-size:1.05rem;color:var(--gold-light)">–</div>
+            <div class="stat-label">Operaciones activas</div>
+            <div class="stat-hint" id="vend-st-activas-hint">En cartera</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num fin-balance-pos" id="vend-st-total" style="font-size:1.05rem">–</div>
+            <div class="stat-label">Total honorarios</div>
+            <div class="stat-hint" id="vend-st-total-hint">Activas (pendiente + pagado)</div>
+          </div>
+        </div>
+
+        <!-- Formulario operación -->
         <div id="vend-form-wrap" style="display:none" class="adm-card">
           <div class="adm-card-head">
-            <h3 id="vend-form-title">Nuevo vendedor</h3>
+            <h3 id="vend-form-title">Nueva operación</h3>
             <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendForm()">✕ Cancelar</button>
           </div>
           <input type="hidden" id="vend-edit-id"/>
           <div class="vend-form-tabs adm-subtabs">
             <button type="button" class="adm-subtab active" data-vend-tab="datos" onclick="vendFormTab('datos')">Datos</button>
             <button type="button" class="adm-subtab" data-vend-tab="honorarios" onclick="vendFormTab('honorarios')">Honorarios</button>
-            <button type="button" class="adm-subtab" data-vend-tab="comprador" onclick="vendFormTab('comprador')">Comprador vinculado</button>
+            <button type="button" class="adm-subtab" data-vend-tab="comprador" onclick="vendFormTab('comprador')">Comprador</button>
           </div>
           <div class="vend-tab-pane active" id="vend-pane-datos">
-          <div class="wiz-section-label">Datos del vendedor</div>
+          <div class="wiz-section-label">Datos de la operación</div>
           <div class="adm-form-grid">
             <div class="adm-field adm-form-col-full">
-              <label>Nombre completo *</label>
+              <label>Nombre vendedor / propietario *</label>
               <input type="text" id="v-nombre" placeholder="María Sánchez López"/>
             </div>
             <div class="adm-field"><label>Teléfono</label><input type="tel" id="v-tel" placeholder="+34 600 000 000"/></div>
@@ -844,6 +917,14 @@ input,select,textarea{font-family:'Inter',sans-serif}
                 <option value="visitas">Visitas</option>
                 <option value="escritura">Escritura</option>
                 <option value="cerrado">Cerrado</option>
+              </select>
+            </div>
+            <div class="adm-field">
+              <label>Estado operación</label>
+              <select id="v-activo">
+                <option value="activa">Activa</option>
+                <option value="seguimiento">Seguimiento</option>
+                <option value="inactiva">No activa</option>
               </select>
             </div>
           </div>
@@ -870,42 +951,50 @@ input,select,textarea{font-family:'Inter',sans-serif}
                 <small class="text-muted" style="font-size:.68rem">Estándar: 3.000 € + 21% IVA = 3.630 €</small>
               </div>
               <div class="adm-field">
-                <label>Honorarios comprador vinculado (€)</label>
-                <input type="number" id="v-honorarios-comprador" min="0" step="1" value="6050" disabled oninput="vendUpdateHonSummary('form')"/>
-                <small class="text-muted" style="font-size:.68rem">Estándar: 5.000 € + 21% IVA = 6.050 €</small>
+                <label>Honorarios comprador (€)</label>
+                <input type="number" id="v-honorarios-comprador" min="0" step="1" value="6050" oninput="vendUpdateHonSummary('form')"/>
+                <small class="text-muted" style="font-size:.68rem">Estándar: 5.000 € + 21% IVA = 6.050 € · vinculado o predefinido</small>
               </div>
             </div>
           </div>
           <div class="vend-tab-pane" id="vend-pane-comprador">
-            <div class="wiz-section-label">Comprador de la operación</div>
-            <p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Vincula el comprador que participa en esta venta para repartir honorarios.</p>
+            <div class="wiz-section-label">Comprador</div>
+            <p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Vincula un comprador real o usa el comprador predefinido si aún no está asignado pero cobrarás al comprador.</p>
             <div class="adm-field">
-              <label>Comprador</label>
-              <select id="v-comprador-id"><option value="">— Sin vincular —</option></select>
+              <label>Comprador vinculado (opcional)</label>
+              <select id="v-comprador-id"><option value="">— Comprador predefinido —</option></select>
             </div>
             <div id="v-comprador-preview" class="vend-hon-summary" style="display:none"></div>
+            <div id="v-comprador-predef" class="vend-hon-summary">
+              <strong>Comprador predefinido</strong><br>
+              Sin comprador asignado todavía. Los honorarios del comprador se guardan en esta operación hasta que vincules uno.
+              <div class="adm-field" style="margin-top:.75rem;margin-bottom:0">
+                <label>Honorarios previstos comprador (€)</label>
+                <input type="number" id="v-honorarios-comprador-prev" min="0" step="1" value="6050" oninput="vendSyncCompradorHonInputs();vendUpdateHonSummary('form')"/>
+              </div>
+            </div>
           </div>
           <div id="vend-form-err" class="alert-box alert-error" style="display:none"></div>
           <div class="gap-row" style="margin-top:.5rem">
-            <button class="adm-btn adm-btn-gold" onclick="saveVendedor()">💾 Guardar vendedor</button>
+            <button class="adm-btn adm-btn-gold" onclick="saveVendedor()">💾 Guardar operación</button>
             <button class="adm-btn adm-btn-ghost" onclick="closeVendForm()">Cancelar</button>
           </div>
         </div>
 
-        <!-- Tabla vendedores -->
+        <!-- Tabla operaciones -->
         <div class="adm-card">
-          <div class="adm-card-head"><h3>Vendedores registrados</h3><span class="text-muted" id="vend-count"></span></div>
+          <div class="adm-card-head"><h3>Operaciones registradas</h3><span class="text-muted" id="vend-count"></span></div>
           <div id="vend-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
-      <!-- Modal detalle vendedor -->
+      <!-- Modal detalle operación -->
       <div id="vend-detail-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="vend-modal-title" hidden>
         <div class="dash-modal-backdrop" onclick="closeVendModal()"></div>
         <div class="dash-modal-panel vend-modal-panel">
           <div class="dash-modal-head">
             <div>
-              <div class="dash-modal-kicker" id="vend-modal-kicker">Vendedor</div>
+              <div class="dash-modal-kicker" id="vend-modal-kicker">Operación</div>
               <h3 id="vend-modal-title">–</h3>
             </div>
             <button type="button" class="dash-modal-close" onclick="closeVendModal()" aria-label="Cerrar">×</button>
@@ -1360,7 +1449,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <!-- ══ CAPTACIÓN · SEGUIMIENTOS (Particulares) ═════════════ -->
       <section class="adm-section" id="sec-seguimientos">
         <div class="adm-section-hdr">
-          <div class="adm-section-title">Seguimientos · Particulares</div>
+          <div class="adm-section-title">Seguimientos</div>
           <button class="adm-btn adm-btn-gold" onclick="openPartForm()">+ Nuevo particular</button>
         </div>
 
@@ -1444,19 +1533,30 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <textarea id="part-seg-comentario" rows="3" placeholder="Llamada, WhatsApp, visita, negociación…"></textarea>
           </div>
           <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="savePartSeguimiento()">Guardar seguimiento</button>
-          <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">Cada seguimiento registra fecha y hora, actualiza el último contacto y reprograma la alarma a 7 días.</p>
+          <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">Cada seguimiento registra fecha y hora, actualiza el último contacto y reprograma la alarma.</p>
           <div class="wiz-section-label" style="margin-top:1.25rem">Historial</div>
           <div id="part-seg-timeline" class="seg-timeline"><p class="text-muted">Sin entradas aún.</p></div>
         </div>
 
         <div class="adm-subtabs" style="margin-bottom:.75rem;flex-wrap:wrap">
-          <button class="adm-subtab active" id="part-tab-todos" onclick="filterParticulares('todos')">Todos</button>
+          <button class="adm-subtab" id="part-tab-operaciones" onclick="filterParticulares('operaciones')">Operaciones <span id="part-tab-operaciones-n" class="adm-tab-badge" style="display:none"></span></button>
+          <button class="adm-subtab active" id="part-tab-todos" onclick="filterParticulares('todos')">Particulares</button>
           <button class="adm-subtab" id="part-tab-alarmas" onclick="filterParticulares('alarmas')">⏰ Alarmas</button>
           <button class="adm-subtab" id="part-tab-nuevo" onclick="filterParticulares('nuevo')">Nuevos</button>
           <button class="adm-subtab" id="part-tab-contactado" onclick="filterParticulares('contactado')">Contactados</button>
           <button class="adm-subtab" id="part-tab-captado" onclick="filterParticulares('captado')">Captados</button>
         </div>
 
+        <div id="vend-seg-wrap" style="display:none;margin-bottom:1rem" class="adm-card">
+          <div class="adm-card-head">
+            <h3>Operaciones en seguimiento</h3>
+            <span class="text-muted" id="vend-seg-count"></span>
+          </div>
+          <p class="text-muted" style="font-size:.75rem;margin:-.35rem 0 .85rem;padding:0 1rem">Operaciones que pasaste a seguimiento. No aparecen en la cartera de Operaciones hasta que las reactives.</p>
+          <div id="vend-seg-table" style="padding:0 1rem 1rem"><p class="text-muted">Cargando…</p></div>
+        </div>
+
+        <div id="part-particulares-wrap">
         <div class="adm-filter-bar" id="part-filter-bar">
           <div class="adm-field">
             <label for="pf-precio-min">Precio mín. (€)</label>
@@ -1495,6 +1595,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
 
         <div id="part-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
+        </div><!-- part-particulares-wrap -->
       </section>
 
       <!-- Modal: avisar compradores compatibles al captar/publicar -->
@@ -1530,6 +1631,105 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
       </div>
 
+      <!-- Modal ficha + historial particular -->
+      <div id="part-card-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="part-card-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closePartCardModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel" style="max-width:720px">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="part-card-kicker">Seguimiento</div>
+              <h3 id="part-card-title">Particular</h3>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closePartCardModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body" id="part-card-body"></div>
+          <div class="dash-modal-foot" id="part-card-foot"></div>
+        </div>
+      </div>
+
+      <!-- ── SEO / Landing pages ─────────────────────────────── -->
+      <section class="adm-section" id="sec-seo">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">SEO · Landing pages</div>
+          <div class="gap-row">
+            <a href="mapa-del-sitio.html" target="_blank" rel="noopener" class="adm-btn adm-btn-ghost adm-btn-sm">Mapa del sitio</a>
+            <a href="vender.html" target="_blank" rel="noopener" class="adm-btn adm-btn-ghost adm-btn-sm">Hub vender</a>
+          </div>
+        </div>
+
+        <div class="seo-stats" id="seo-stats">
+          <div class="seo-stat"><div class="seo-stat-num" id="seo-st-total">–</div><div class="seo-stat-label">Total landings</div></div>
+          <div class="seo-stat"><div class="seo-stat-num" id="seo-st-barrio">–</div><div class="seo-stat-label">Barrios / zonas</div></div>
+          <div class="seo-stat"><div class="seo-stat-num" id="seo-st-situacion">–</div><div class="seo-stat-label">Por situación</div></div>
+          <div class="seo-stat"><div class="seo-stat-num" id="seo-st-intencion">–</div><div class="seo-stat-label">Intención</div></div>
+          <div class="seo-stat"><div class="seo-stat-num" id="seo-st-comparativa">–</div><div class="seo-stat-label">Comparativas</div></div>
+        </div>
+        <p class="text-muted" style="font-size:.72rem;margin:-.5rem 0 1rem" id="seo-updated-hint"></p>
+
+        <div class="adm-subtabs" id="seo-subtabs" style="flex-wrap:wrap">
+          <button type="button" class="adm-subtab active" data-seo-cluster="barrio" onclick="seoSubTab('barrio')">📍 Barrios</button>
+          <button type="button" class="adm-subtab" data-seo-cluster="situacion" onclick="seoSubTab('situacion')">🏠 Situación</button>
+          <button type="button" class="adm-subtab" data-seo-cluster="intencion" onclick="seoSubTab('intencion')">🎯 Intención</button>
+          <button type="button" class="adm-subtab" data-seo-cluster="comparativa" onclick="seoSubTab('comparativa')">⚖️ Comparativas</button>
+          <button type="button" class="adm-subtab" data-seo-cluster="all" onclick="seoSubTab('all')">Todas</button>
+        </div>
+
+        <div class="adm-filter-bar">
+          <div class="adm-field" style="flex:1;min-width:180px">
+            <label for="seo-search">Buscar</label>
+            <input type="search" id="seo-search" placeholder="Barrio, slug, keyword…" oninput="renderSeoTable()"/>
+          </div>
+          <div class="adm-field" style="min-width:120px">
+            <label for="seo-sort">Orden</label>
+            <select id="seo-sort" onchange="renderSeoTable()">
+              <option value="priority">Prioridad sitemap</option>
+              <option value="name">Nombre A–Z</option>
+              <option value="slug">Slug A–Z</option>
+            </select>
+          </div>
+          <span class="adm-filter-count" id="seo-filter-count"></span>
+        </div>
+
+        <div class="adm-card">
+          <div class="adm-card-head">
+            <h3 id="seo-table-title">Landings por barrio</h3>
+          </div>
+          <div id="seo-table-wrap"><p class="text-muted">Cargando landings…</p></div>
+        </div>
+      </section>
+
+      <!-- ── Configuraciones ─────────────────────────────────── -->
+      <section class="adm-section" id="sec-configuraciones">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Configuraciones</div>
+        </div>
+        <div class="adm-card" style="max-width:560px">
+          <div class="adm-card-head"><h3>Alarmas de contacto</h3></div>
+          <div style="padding:0 1rem 1rem">
+            <p class="text-muted" style="font-size:.78rem;margin-bottom:1rem">Define cuántos días deben pasar sin contacto antes de que aparezca una alarma en Seguimientos y Compradores.</p>
+            <div class="adm-form-grid">
+              <div class="adm-field adm-form-col-full">
+                <label class="adm-field-check"><input type="checkbox" id="cfg-part-alarms-enabled" checked/> Alarmas en seguimientos (particulares)</label>
+              </div>
+              <div class="adm-field">
+                <label for="cfg-part-alarm-days">Días sin contacto · seguimientos</label>
+                <input type="number" id="cfg-part-alarm-days" min="1" max="90" value="7"/>
+              </div>
+              <div class="adm-field adm-form-col-full" style="margin-top:.5rem">
+                <label class="adm-field-check"><input type="checkbox" id="cfg-comp-alarms-enabled" checked/> Alarmas en compradores</label>
+              </div>
+              <div class="adm-field">
+                <label for="cfg-comp-alarm-days">Días sin contacto · compradores</label>
+                <input type="number" id="cfg-comp-alarm-days" min="1" max="90" value="14"/>
+              </div>
+            </div>
+            <div class="gap-row" style="margin-top:1rem">
+              <button type="button" class="adm-btn adm-btn-gold" onclick="savePanelConfig()">Guardar configuración</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- ── Blog ─────────────────────────────────────────────── -->
       <section class="adm-section" id="sec-blog">
         <div class="adm-card">
@@ -1559,7 +1759,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <section class="adm-section" id="sec-finanzas">
         <div class="adm-section-hdr">
           <div class="adm-section-title">Finanzas</div>
-          <div class="fin-month-nav">
+          <div class="fin-month-nav" id="fin-month-nav">
             <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="finChangeMonth(-1)" aria-label="Mes anterior">‹</button>
             <span class="fin-month-label" id="fin-month-label">–</span>
             <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="finChangeMonth(1)" aria-label="Mes siguiente">›</button>
@@ -1567,6 +1767,12 @@ input,select,textarea{font-family:'Inter',sans-serif}
           </div>
         </div>
 
+        <div class="adm-subtabs fin-subtabs" style="margin-bottom:1rem">
+          <button type="button" class="adm-subtab active" id="fin-subtab-caja" onclick="finSubTab('caja')">Caja</button>
+          <button type="button" class="adm-subtab" id="fin-subtab-prevision" onclick="finSubTab('prevision')">Previsión</button>
+        </div>
+
+        <div class="fin-sub-pane active" id="fin-pane-caja">
         <div class="adm-stats fin-stats">
           <div class="stat-card">
             <div class="stat-num fin-balance-neg" id="fin-st-gastos" style="font-size:1.05rem">–</div>
@@ -1660,7 +1866,130 @@ input,select,textarea{font-family:'Inter',sans-serif}
             </div>
           </div>
         </div>
+        </div><!-- fin-pane-caja -->
+
+        <div class="fin-sub-pane" id="fin-pane-prevision">
+          <div class="adm-stats fin-stats" style="grid-template-columns:repeat(3,1fr)!important;margin-bottom:1rem">
+            <div class="stat-card">
+              <div class="stat-num fin-balance-pos" id="prev-st-vendedores" style="font-size:1.05rem">–</div>
+              <div class="stat-label">Previsión realista</div>
+              <div class="stat-hint" id="prev-st-vendedores-hint">Solo vendedores incluidos</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="prev-st-manual" style="font-size:1.05rem;color:var(--gold-light)">–</div>
+              <div class="stat-label">Proyecciones manuales</div>
+              <div class="stat-hint" id="prev-st-manual-hint">Mes seleccionado</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num fin-balance-pos" id="prev-st-total" style="font-size:1.05rem">–</div>
+              <div class="stat-label">Total estimado</div>
+              <div class="stat-hint" id="prev-st-cal-hint">En calendario del mes</div>
+            </div>
+          </div>
+
+        <div class="fin-layout">
+          <div class="fin-col-main">
+
+          <div class="adm-card">
+            <div class="adm-card-head">
+              <h3 id="prev-list-title">Ingresos previstos del mes</h3>
+              <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" id="prev-clear-day" style="display:none" onclick="prevClearDayFilter()">Ver todo el mes</button>
+            </div>
+            <div id="prev-day-detail" style="display:none;margin-bottom:1rem;padding:.75rem;background:var(--surface2);border:1px solid var(--border);border-radius:8px;font-size:.78rem"></div>
+            <div class="adm-card-head" style="padding-top:0;border:none;margin-bottom:.5rem">
+              <h4 style="font-size:.82rem;margin:0">Operaciones en previsión</h4>
+              <div class="gap-row">
+                <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="openPrevClientModal()">Gestionar</button>
+                <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="switchSection('vendedores')">Ir a operaciones</button>
+              </div>
+            </div>
+            <p class="text-muted" style="font-size:.75rem;margin:-.35rem 0 .85rem">Asigna <strong>fecha prevista</strong> a cada operación para verla en el calendario.</p>
+            <div id="prev-vendedores-list"><p class="text-muted">Cargando…</p></div>
+          </div>
+
+          <div class="adm-card" style="margin-top:1rem">
+            <div class="adm-card-head"><h3 id="prev-form-title">Nueva proyección manual</h3></div>
+            <input type="hidden" id="prev-edit-id"/>
+            <div class="adm-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+              <div class="adm-field" style="grid-column:1/-1">
+                <label>Concepto *</label>
+                <input type="text" id="prev-concepto" placeholder="Ej. Escritura piso Eixample, operación septiembre…"/>
+              </div>
+              <div class="adm-field">
+                <label>Importe previsto (€) *</label>
+                <input type="number" id="prev-importe" min="0.01" step="0.01" placeholder="6050"/>
+              </div>
+              <div class="adm-field">
+                <label>Fecha prevista *</label>
+                <input type="date" id="prev-fecha"/>
+              </div>
+              <div class="adm-field" style="grid-column:1/-1">
+                <label>Notas</label>
+                <textarea id="prev-notas" rows="2" placeholder="Detalle de la operación…"></textarea>
+              </div>
+            </div>
+            <div id="prev-form-err" class="alert-box alert-error" style="display:none"></div>
+            <div style="display:flex;gap:.5rem;margin-top:1rem">
+              <button type="button" class="adm-btn adm-btn-gold" onclick="saveFinProyeccion()">Guardar proyección</button>
+              <button type="button" class="adm-btn adm-btn-ghost" onclick="resetPrevForm()">Limpiar</button>
+            </div>
+          </div>
+
+          <div class="adm-card" style="margin-top:1rem">
+            <div class="adm-card-head"><h3>Proyecciones manuales del mes</h3></div>
+            <div id="prev-proy-list"><p class="text-muted">Cargando…</p></div>
+          </div>
+
+          </div><!-- fin-col-main -->
+
+          <div class="fin-col-cal">
+            <div class="adm-card fin-cal-card">
+              <div class="adm-card-head"><h3>Calendario previsión</h3></div>
+              <div class="fin-cal">
+                <div class="fin-cal-head">
+                  <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+                </div>
+                <div class="fin-cal-grid" id="prev-cal-grid"></div>
+              </div>
+              <div class="fin-cal-legend">
+                <span><i style="background:var(--gold)"></i> Operaciones</span>
+                <span><i style="background:#4ade80"></i> Manual</span>
+                <span><i style="background:var(--gold);opacity:.5"></i> Día seleccionado</span>
+              </div>
+              <p class="text-muted" style="font-size:.68rem;margin-top:.65rem">Clic en un día para filtrar y pre-rellenar la fecha en proyección manual.</p>
+            </div>
+          </div>
+        </div><!-- fin-layout -->
+
+        </div><!-- fin-pane-prevision -->
       </section>
+
+      <!-- Modal: seleccionar clientes en previsión -->
+      <div id="prev-client-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="prev-client-modal-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closePrevClientModal()"></div>
+        <div class="dash-modal-panel vend-modal-panel">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker">Finanzas · Previsión</div>
+              <h3 id="prev-client-modal-title">Vendedores y compradores</h3>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closePrevClientModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="vend-modal-tabs adm-subtabs" style="padding:0 1.25rem;margin:0;border-bottom:1px solid var(--border)">
+            <button type="button" class="adm-subtab active" id="prev-modal-tab-vend" onclick="prevClientModalTab('vendedores')">Vendedores</button>
+            <button type="button" class="adm-subtab" id="prev-modal-tab-comp" onclick="prevClientModalTab('compradores')">Compradores</button>
+          </div>
+          <div class="dash-modal-body">
+            <p class="text-muted" style="font-size:.75rem;margin-bottom:.85rem">Marca quién entra en la <strong>previsión realista</strong> (solo vendedores suman al total). Los compradores sirven para referencia y vinculación.</p>
+            <div id="prev-modal-vendedores"></div>
+            <div id="prev-modal-compradores" style="display:none"></div>
+          </div>
+          <div class="dash-modal-foot">
+            <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="savePrevClientSelection()">Guardar selección</button>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closePrevClientModal()">Cancelar</button>
+          </div>
+        </div>
+      </div>
 
       <!-- ── Newsletter ────────────────────────────────────────── -->
       <section class="adm-section" id="sec-newsletter">
@@ -1949,7 +2278,7 @@ function switchSection(id){
   document.getElementById('sec-'+id).classList.add('active');
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Vendedores',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter'};
+  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
   document.getElementById('adm-section-title').textContent = titles[id]||id;
   if(id==='dashboard')   loadDashboard();
   if(id==='leads')       loadLeads();
@@ -1960,9 +2289,11 @@ function switchSection(id){
   if(id==='visitas')     loadVisitas();
   if(id==='documentos')  loadDocumentosAdmin();
   if(id==='seguimientos') loadParticulares();
-  if(id==='finanzas')     loadFinanzas();
+  if(id==='finanzas')     loadFinSection();
   if(id==='blog')        loadBlog();
   if(id==='newsletter')  loadNewsletter();
+  if(id==='seo')         loadSeoSection();
+  if(id==='configuraciones') loadPanelConfigForm();
 }
 
 /* ── Inmuebles sub-tabs ──────────────────────────────────────── */
@@ -2544,17 +2875,21 @@ function compMatchCriteriaText(c){
   return parts.join(' · ') || 'Sin criterios extra';
 }
 
-function renderCompMatchList(matches){
+function renderCompMatchList(matches, alreadySentInmuebleIds){
   if(!matches.length){
     return `<p class="text-muted" style="padding:.5rem 0">No hay inmuebles compatibles con este comprador ahora mismo.</p>`;
   }
+  const sentSet = alreadySentInmuebleIds instanceof Set ? alreadySentInmuebleIds : new Set(alreadySentInmuebleIds || []);
+  const pending = matches.filter(p => !sentSet.has(String(p.id)));
+  const sentCount = matches.length - pending.length;
   return `
     <div class="comp-match-toolbar">
-      <label><input type="checkbox" id="comp-match-all" checked onchange="toggleCompMatchAll(this.checked)"/> Seleccionar todos (${matches.length})</label>
-      <span class="text-muted" style="font-size:.72rem">Marca los que quieras enviar por WhatsApp</span>
+      <label><input type="checkbox" id="comp-match-all" ${pending.length ? 'checked' : ''} onchange="toggleCompMatchAll(this.checked)"/> Seleccionar pendientes (${pending.length})</label>
+      <span class="text-muted" style="font-size:.72rem">${sentCount ? `${sentCount} ya avisado${sentCount===1?'':'s'} · ` : ''}Marca los que quieras enviar por WhatsApp</span>
     </div>
     <div class="comp-match-list" id="comp-match-list">
       ${matches.map(p => {
+        const sent = sentSet.has(String(p.id));
         const img = p.imagen_principal || 'imagenes/interior1.jpg';
         const loc = [p.barrio, p.municipio].filter(Boolean).join(', ');
         const meta = [
@@ -2562,14 +2897,14 @@ function renderCompMatchList(matches){
           p.habitaciones != null ? p.habitaciones + ' hab.' : '',
           p.m2_utiles != null ? p.m2_utiles + ' m²' : '',
         ].filter(Boolean).join(' · ');
-        return `<label class="comp-match-item">
-          <input type="checkbox" class="comp-match-cb" data-id="${p.id}" checked onchange="syncCompMatchAllCheckbox()"/>
+        return `<label class="comp-match-item${sent ? ' already-wa-sent' : ''}">
+          <input type="checkbox" class="comp-match-cb" data-id="${p.id}" ${sent ? 'disabled' : 'checked'} onchange="syncCompMatchAllCheckbox()"/>
           <img class="comp-match-thumb" src="${dashEsc(img)}" alt="" onerror="this.src='imagenes/interior1.jpg'"/>
           <div class="comp-match-info">
             <strong>${dashEsc(p.titulo || p.ref || 'Inmueble')}</strong>
-            <span>${dashEsc([meta, loc].filter(Boolean).join(' — '))}</span>
+            <span>${dashEsc([meta, loc].filter(Boolean).join(' — '))}${sent ? ' · Ya avisado por WhatsApp' : ''}</span>
           </div>
-          <button type="button" class="comp-match-open" onclick="event.preventDefault();window.open('/inmueble-detalle?id=${p.id}','_blank')">Ver web</button>
+          ${sent ? '<span class="adm-wa-sent-badge">✓ Enviado</span>' : `<button type="button" class="comp-match-open" onclick="event.preventDefault();window.open('/inmueble-detalle?id=${p.id}','_blank')">Ver web</button>`}
         </label>`;
       }).join('')}
     </div>`;
@@ -2587,12 +2922,16 @@ async function openCompMatchModal(id){
   document.getElementById('comp-match-criteria').textContent = matches.length
     ? `${matches.length} resultado(s) · ${compMatchCriteriaText(c)}`
     : compMatchCriteriaText(c);
-  document.getElementById('comp-match-body').innerHTML = renderCompMatchList(matches);
+  const alreadySentInm = await fetchInmueblesAlreadyWaNotified(c.id, matches.map(p => p.id));
+  _compMatchState.alreadySentInmuebleIds = alreadySentInm;
+  document.getElementById('comp-match-body').innerHTML = renderCompMatchList(matches, alreadySentInm);
 
   const foot = document.getElementById('comp-match-foot');
   const hasPhone = !!normalizePhoneWa(c.telefono);
+  const pendingWa = matches.filter(p => !alreadySentInm.has(String(p.id)));
   foot.innerHTML = `
-    ${hasPhone && matches.length ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="sendCompMatchWhatsApp()">Enviar WhatsApp con seleccionados</button>` : ''}
+    ${hasPhone && pendingWa.length ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="sendCompMatchWhatsApp()">Enviar WhatsApp (${pendingWa.length} pendiente${pendingWa.length===1?'':'s'})</button>` : ''}
+    ${hasPhone && matches.length && !pendingWa.length ? `<span class="text-muted" style="font-size:.78rem">Ya se envió WhatsApp de todos estos inmuebles a este comprador.</span>` : ''}
     ${matches.length ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeCompMatchModal();showCompatiblesInGrid('${c.id}')">Ver en grid de inmuebles</button>` : ''}
     <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeCompMatchModal()">Cerrar</button>`;
 
@@ -2614,12 +2953,12 @@ function closeCompMatchModal(){
 window.closeCompMatchModal = closeCompMatchModal;
 
 function toggleCompMatchAll(checked){
-  document.querySelectorAll('.comp-match-cb').forEach(cb => { cb.checked = checked; });
+  document.querySelectorAll('.comp-match-cb:not(:disabled)').forEach(cb => { cb.checked = checked; });
 }
 window.toggleCompMatchAll = toggleCompMatchAll;
 
 function syncCompMatchAllCheckbox(){
-  const all = document.querySelectorAll('.comp-match-cb');
+  const all = document.querySelectorAll('.comp-match-cb:not(:disabled)');
   const master = document.getElementById('comp-match-all');
   if(!master || !all.length) return;
   const checked = [...all].filter(cb => cb.checked).length;
@@ -2630,20 +2969,26 @@ window.syncCompMatchAllCheckbox = syncCompMatchAllCheckbox;
 
 function getSelectedCompMatches(){
   if(!_compMatchState) return [];
-  const ids = new Set([...document.querySelectorAll('.comp-match-cb:checked')].map(cb => cb.dataset.id));
-  return _compMatchState.matches.filter(p => ids.has(String(p.id)));
+  const sent = _compMatchState.alreadySentInmuebleIds || new Set();
+  const ids = new Set([...document.querySelectorAll('.comp-match-cb:checked:not(:disabled)')].map(cb => cb.dataset.id));
+  return _compMatchState.matches.filter(p => ids.has(String(p.id)) && !sent.has(String(p.id)));
 }
 
-function sendCompMatchWhatsApp(){
+async function sendCompMatchWhatsApp(){
   if(!_compMatchState){ nhToast('Abre el modal de compatibles primero', 'info'); return; }
   const c = _compMatchState.comprador;
   const phone = normalizePhoneWa(c.telefono);
   if(!phone){ nhToast('Este comprador no tiene teléfono.', 'info'); return; }
-  const selected = getSelectedCompMatches();
-  if(!selected.length){ nhToast('Selecciona al menos un inmueble.', 'info'); return; }
+  const sentSet = _compMatchState.alreadySentInmuebleIds || new Set();
+  const selected = getSelectedCompMatches().filter(p => !sentSet.has(String(p.id)));
+  if(!selected.length){ nhToast('Selecciona inmuebles pendientes (sin WhatsApp previo).', 'info'); return; }
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildCompWhatsAppMsg(c, selected))}`;
   window.open(url, '_blank', 'noopener');
+  for(const inm of selected){
+    await recordCompradorWaAviso(c, inm, null);
+  }
   closeCompMatchModal();
+  loadCompradores();
 }
 window.sendCompMatchWhatsApp = sendCompMatchWhatsApp;
 
@@ -2703,12 +3048,17 @@ async function ensurePubData(){
 }
 
 async function ensureCompData(){
-  if(_compData.length) return _compData;
-  const { data } = await window.nhSupabase
+  if(_compData.length && _compData[0]?.telefono !== undefined) return _compData;
+  const cols = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas';
+  const { data, error } = await window.nhSupabase
     .from('compradores')
-    .select('id,nombre,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada')
+    .select(cols)
     .order('created_at', { ascending: false });
-  _compData = data || [];
+  if(error){
+    console.warn('ensureCompData:', error.message);
+    if(_compData.length) return _compData;
+  }
+  _compData = data || _compData;
   return _compData;
 }
 
@@ -2911,7 +3261,7 @@ function renderPublications(){
           <div style="display:flex;align-items:center;gap:.6rem;margin:.3rem 0 .5rem;flex-wrap:wrap">
             <div class="pub-price" style="margin:0">${price}</div>
             <span style="background:${badgeColor};color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px">${badgeLabel[badge]||badge}</span>
-            ${matchCount ? `<span class="adm-match-badge">🎯 ${matchCount} comprador${matchCount===1?'':'es'}</span>` : ''}
+            ${matchCount ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver compradores y enviar WhatsApp" onclick="openInmuebleCompradoresModal('${p.id}')">🎯 ${matchCount} comprador${matchCount===1?'':'es'}</button>` : ''}
           </div>
           <div class="pub-meta">
             ${p.habitaciones?`<span>${p.habitaciones} hab.</span>`:''}
@@ -3330,7 +3680,7 @@ async function dashEditParticular(id){
 async function dashOpenPartDetail(id){
   if(!_partData?.length) await loadParticulares();
   switchSection('seguimientos');
-  setTimeout(() => openPartDetail(id), 120);
+  setTimeout(() => openPartCardModal(id), 120);
 }
 
 async function dashEditComprador(id){
@@ -3392,7 +3742,7 @@ async function loadDashboard(){
       sb.from('inmuebles').select('id,ref,titulo,precio,tipo,estado,barrio,municipio,cp,direccion,habitaciones,banos,m2_construidos,m2_utiles,imagen_principal,imagenes,descripcion,propietario_nombre,propietario_telefono,propietario_email,created_at,updated_at,cartera_privada').eq('cartera_privada',false).order('created_at',{ascending:false}).limit(6),
       sb.from('leads').select(leadCols).order('created_at',{ascending:false}).limit(6),
       sb.from('particulares_seguimientos').select('id,particular_id,comentario,created_at,particulares(id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url)').order('created_at',{ascending:false}).limit(6),
-      sb.from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,created_at').order('created_at',{ascending:false}).limit(6),
+      sb.from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,proxima_alarma_at,ultimo_contacto_at,created_at').order('created_at',{ascending:false}).limit(6),
       sb.from('particulares').select('id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url,proxima_alarma_at,ultimo_contacto_at,activo').eq('activo',true).order('updated_at',{ascending:false}).limit(40),
     ]);
 
@@ -3403,13 +3753,12 @@ async function loadDashboard(){
     _dashCache.particulares = partsRes.data || [];
 
     const now = Date.now();
-    const alarmas = (_dashCache.particulares || []).filter(p => {
-      if(!p.proxima_alarma_at) return !p.ultimo_contacto_at;
-      return new Date(p.proxima_alarma_at).getTime() <= now;
-    }).length;
+    const partAlarms = (_dashCache.particulares || []).filter(p => partNeedsAlarm(p)).length;
+    const compAlarms = (_dashCache.compradores || []).filter(c => compNeedsAlarm(c)).length;
+    const alarmas = partAlarms + compAlarms;
     document.getElementById('st-alarmas').textContent = alarmas;
     const partHint = document.getElementById('st-part-hint');
-    if(partHint) partHint.textContent = alarmas ? `${alarmas} con alarma` : 'En captación';
+    if(partHint) partHint.textContent = alarmas ? `${partAlarms} seg. · ${compAlarms} comp.` : 'En captación';
 
     renderDashInmuebles(_dashCache.inmuebles);
     renderDashLeads(_dashCache.leads);
@@ -3711,6 +4060,149 @@ async function deleteBlog(id){
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   SEO · LANDING PAGES
+   ══════════════════════════════════════════════════════════════ */
+const SEO_CLUSTER_META = {
+  barrio:      { label: 'Barrios y zonas locales', tabTitle: 'Landings por barrio' },
+  situacion:   { label: 'Por situación', tabTitle: 'Landings por situación' },
+  intencion:   { label: 'Intención / keywords', tabTitle: 'Landings de intención' },
+  comparativa: { label: 'Comparativas', tabTitle: 'Landings comparativas' },
+  all:         { label: 'Todas', tabTitle: 'Todas las landing pages' },
+};
+let _seoCluster = 'barrio';
+
+async function ensureLandings(){
+  if(window.NH_LANDINGS) return;
+  await new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = 'js/landings.js';
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('No se pudo cargar js/landings.js'));
+    document.head.appendChild(s);
+  });
+}
+
+function seoSubTab(cluster){
+  _seoCluster = cluster;
+  document.querySelectorAll('#seo-subtabs .adm-subtab').forEach(b=>{
+    b.classList.toggle('active', b.dataset.seoCluster === cluster);
+  });
+  const meta = SEO_CLUSTER_META[cluster] || SEO_CLUSTER_META.all;
+  const titleEl = document.getElementById('seo-table-title');
+  if(titleEl) titleEl.textContent = meta.tabTitle;
+  renderSeoTable();
+}
+
+function seoLandingName(l){
+  if(l.barrio) return l.barrio;
+  if(l.footerLabel) return l.footerLabel;
+  return l.slug.replace(/-/g, ' ');
+}
+
+function seoClusterBadge(cluster){
+  const labels = { barrio:'Barrio', situacion:'Situación', intencion:'Intención', comparativa:'Comparativa' };
+  return `<span class="seo-cluster-badge seo-cluster-badge--${cluster}">${labels[cluster]||cluster}</span>`;
+}
+
+function seoPublicUrl(slug){
+  const base = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? location.origin : 'https://www.nuevahabitat.com';
+  return `${base}/${slug}`;
+}
+
+function getSeoLandingsList(){
+  const all = window.NH_LANDING_ORDER || Object.keys(window.NH_LANDINGS || {});
+  return all.map(slug => window.NH_LANDINGS[slug]).filter(Boolean);
+}
+
+function filterSeoLandings(list){
+  const q = (document.getElementById('seo-search')?.value || '').trim().toLowerCase();
+  let filtered = _seoCluster === 'all' ? list : list.filter(l => l.cluster === _seoCluster);
+  if(q){
+    filtered = filtered.filter(l => {
+      const hay = [
+        l.slug, l.barrio, l.footerLabel, l.keyword_principal, l.cardTeaser,
+        ...(l.zonas || []),
+      ].filter(Boolean).join(' ').toLowerCase();
+      return hay.includes(q);
+    });
+  }
+  const sort = document.getElementById('seo-sort')?.value || 'priority';
+  filtered = [...filtered].sort((a, b) => {
+    if(sort === 'name') return seoLandingName(a).localeCompare(seoLandingName(b), 'es');
+    if(sort === 'slug') return a.slug.localeCompare(b.slug, 'es');
+    return (b.priority || 0) - (a.priority || 0);
+  });
+  return filtered;
+}
+
+function renderSeoTable(){
+  const wrap = document.getElementById('seo-table-wrap');
+  const countEl = document.getElementById('seo-filter-count');
+  if(!wrap || !window.NH_LANDINGS) return;
+  const list = getSeoLandingsList();
+  const filtered = filterSeoLandings(list);
+  if(countEl) countEl.textContent = `${filtered.length} de ${list.length} landings`;
+  if(!filtered.length){
+    wrap.innerHTML = '<p class="text-muted">Ninguna landing coincide con el filtro.</p>';
+    return;
+  }
+  const showCluster = _seoCluster === 'all';
+  const rows = filtered.map(l => {
+    const url = seoPublicUrl(l.slug);
+    const name = seoLandingName(l);
+    const extra = l.barrio
+      ? (l.zonas?.length ? `<div class="seo-zona-tags">${l.zonas.slice(0,4).map(z=>`<span class="seo-zona-tag">${z}</span>`).join('')}${l.zonas.length>4?`<span class="seo-zona-tag">+${l.zonas.length-4}</span>`:''}</div>` : '')
+      : (l.keyword_principal ? `<div class="text-muted" style="font-size:.72rem;margin-top:.15rem">${l.keyword_principal}</div>` : '');
+    return `<tr>
+      <td><strong>${name}</strong>${extra ? `<div style="margin-top:.25rem">${extra}</div>` : ''}</td>
+      <td><code class="seo-slug">${l.slug}</code></td>
+      ${showCluster ? `<td>${seoClusterBadge(l.cluster)}</td>` : ''}
+      <td>${l.priority != null ? l.priority.toFixed(2) : '–'}</td>
+      <td>${l.indexable !== false ? '<span class="adm-pay-badge adm-pay-badge--ok">Indexable</span>' : '<span class="adm-pay-badge adm-pay-badge--pend">No index</span>'}</td>
+      <td style="white-space:nowrap">
+        <a href="${url}" target="_blank" rel="noopener" class="adm-btn adm-btn-ghost adm-btn-sm">Ver</a>
+        <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="navigator.clipboard.writeText('${url}').then(()=>nhToast('URL copiada'))">Copiar</button>
+      </td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<div class="adm-table-wrap"><table class="adm-table"><thead><tr>
+    <th>Nombre</th><th>Slug</th>${showCluster ? '<th>Cluster</th>' : ''}<th>Prioridad</th><th>SEO</th><th></th>
+  </tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+async function loadSeoSection(){
+  const wrap = document.getElementById('seo-table-wrap');
+  if(wrap) wrap.innerHTML = '<p class="text-muted">Cargando landings…</p>';
+  try {
+    await ensureLandings();
+  } catch(e) {
+    if(wrap) wrap.innerHTML = '<p class="text-muted">Error al cargar el índice de landings.</p>';
+    return;
+  }
+  const list = getSeoLandingsList();
+  const counts = { barrio:0, situacion:0, intencion:0, comparativa:0 };
+  list.forEach(l => { if(counts[l.cluster] != null) counts[l.cluster]++; });
+  const setNum = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
+  setNum('seo-st-total', list.length);
+  setNum('seo-st-barrio', counts.barrio);
+  setNum('seo-st-situacion', counts.situacion);
+  setNum('seo-st-intencion', counts.intencion);
+  setNum('seo-st-comparativa', counts.comparativa);
+  try {
+    const res = await fetch('content/landings-index.json');
+    if(res.ok){
+      const idx = await res.json();
+      const hint = document.getElementById('seo-updated-hint');
+      if(hint && idx.updated){
+        hint.textContent = `Índice generado: ${new Date(idx.updated).toLocaleString('es-ES')} · Fuente: content/landings/*.json`;
+      }
+    }
+  } catch(_) {}
+  seoSubTab(_seoCluster);
+}
+
+/* ═══════════════════════════════════════════════════════════════
    COMPRADORES
    ══════════════════════════════════════════════════════════════ */
 let _compData = [];
@@ -3737,6 +4229,7 @@ function filterCompradoresList(list){
   return list.filter(c => {
     if(_compFilter==='activos' && !c.activo) return false;
     if(_compFilter==='inactivos' && c.activo) return false;
+    if(_compFilter==='alarmas' && !compNeedsAlarm(c)) return false;
     if(f.precioMin != null){
       if(c.presupuesto_max == null || Number(c.presupuesto_max) < f.precioMin) return false;
     }
@@ -3825,6 +4318,7 @@ function admWhatsAppComprador(id){
   if(!phone){ nhToast('Este comprador no tiene teléfono.', 'info'); return; }
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildCompWhatsAppMsg(c))}`;
   window.open(url, '_blank', 'noopener');
+  markCompradorContactado(id).then(() => loadCompradores());
 }
 
 function admCallComprador(id){
@@ -3849,12 +4343,16 @@ window.admEmailComprador = admEmailComprador;
 async function loadCompradores(){
   const grid = document.getElementById('comp-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
+  const colsFull = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
+  const colsBase = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
   const [compRes] = await Promise.all([
-    window.nhSupabase
-      .from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at').order('created_at',{ascending:false}),
+    window.nhSupabase.from('compradores').select(colsFull).order('created_at',{ascending:false}),
     ensurePubData()
   ]);
-  const { data, error } = compRes;
+  let { data, error } = compRes;
+  if(error && /ultimo_contacto_at|proxima_alarma_at/.test(error.message)){
+    ({ data, error } = await window.nhSupabase.from('compradores').select(colsBase).order('created_at',{ascending:false}));
+  }
   if(error){
     console.error('loadCompradores:', error);
     nhToast('No se pudieron cargar compradores: '+error.message, 'error');
@@ -3863,13 +4361,14 @@ async function loadCompradores(){
     _compData = data || [];
   }
   updateCompZonaDatalist();
+  updateCompAlarmUI();
   renderCompradores();
 }
 
 function filterCompradores(f){
   _compFilter = f;
-  ['todos','activos','inactivos'].forEach(k=>{
-    document.getElementById('ctab-'+k).classList.toggle('active', k===f);
+  ['todos','activos','inactivos','alarmas'].forEach(k=>{
+    document.getElementById('ctab-'+k)?.classList.toggle('active', k===f);
   });
   renderCompradores();
 }
@@ -3891,12 +4390,14 @@ function renderCompradores(){
 
   grid.innerHTML = list.map(c=>{
     const matchN = countMatchesForComprador(c);
+    const alarm = compNeedsAlarm(c);
     return `
     <div class="pub-card">
       <div class="pub-body" style="padding-top:.9rem">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;flex-wrap:wrap;gap:.35rem">
           <div class="pub-ref">COMPRADOR</div>
           <div style="display:flex;align-items:center;gap:.35rem;flex-wrap:wrap">
+            ${alarm ? '<span class="adm-alarm-badge">⏰ Alarma</span>' : ''}
             ${matchN ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver inmuebles compatibles" onclick="openCompMatchModal('${c.id}')">🎯 ${matchN} compatible${matchN===1?'':'s'}</button>` : ''}
             ${honorariosPagoBadge(c)}
             ${honorariosTransferConfirmBtn('comprador', c)}
@@ -3916,6 +4417,7 @@ function renderCompradores(){
           ${c.email?`<span>✉ ${c.email}</span>`:''}
         </div>
         ${c.notas || c.created_at ? `<div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding:.4rem;background:var(--surface2);border-radius:4px;line-height:1.5">${c.notas ? c.notas : ''}${c.created_at ? `${c.notas ? '<br>' : ''}${admAltaWhenHtml(c.created_at, { notas: c.notas })}` : ''}</div>` : ''}
+        ${c.ultimo_contacto_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">Último contacto: ${new Date(c.ultimo_contacto_at).toLocaleString('es-ES')}</div>` : `<div style="font-size:.68rem;color:var(--orange);margin-top:.35rem">Sin contacto registrado</div>`}
         <div class="pub-quick-actions">
           ${c.telefono ? `<button type="button" class="pub-btn-wa" onclick="admWhatsAppComprador('${c.id}')">WhatsApp</button><button type="button" class="pub-btn-call" onclick="admCallComprador('${c.id}')">Llamar</button>` : ''}
           ${c.telefono && matchN ? `<button type="button" class="pub-btn-wa" style="background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4)" onclick="openCompMatchModal('${c.id}')">WhatsApp + inmuebles</button>` : ''}
@@ -4000,7 +4502,14 @@ async function saveComprador(){
   };
 
   const editId = document.getElementById('comp-edit-id').value;
-  const error = await upsertClienteRow('compradores', payload, editId);
+  if(!editId && payload.activo){
+    payload.proxima_alarma_at = compAlarmDate();
+  }
+  let error = await upsertClienteRow('compradores', payload, editId);
+  if(error && /proxima_alarma_at|ultimo_contacto_at/.test(error.message)){
+    delete payload.proxima_alarma_at;
+    error = await upsertClienteRow('compradores', payload, editId);
+  }
   if(error){ document.getElementById('comp-form-err').textContent='Error: '+error.message; document.getElementById('comp-form-err').style.display='block'; return; }
   if(!editId && payload.activo) await notifyMatchesForNewComprador(payload);
   closeCompForm();
@@ -4035,6 +4544,7 @@ const VEND_EXPEDIENTE_LABELS = {
   visitas:'Visitas', escritura:'Escritura', cerrado:'Cerrado',
 };
 let _vendData = [];
+let _vendSeguimientoData = [];
 let _vendModalId = null;
 let _vendModalTab = 'resumen';
 let _vendCompOptions = [];
@@ -4048,12 +4558,155 @@ function vendHonorariosFromModo(modo, manualVend, manualComp){
   const v = manualVend != null && manualVend !== '' ? Number(manualVend) : null;
   const c = manualComp != null && manualComp !== '' ? Number(manualComp) : null;
   switch(modo){
-    case 'comprador': return { vendedor: 0, comprador: HONORARIOS_COMPRADOR_IVA };
-    case 'ambos': return { vendedor: v ?? HONORARIOS_VENDEDOR_IVA, comprador: HONORARIOS_COMPRADOR_IVA };
+    case 'comprador': return { vendedor: 0, comprador: c ?? HONORARIOS_COMPRADOR_IVA };
+    case 'ambos': return { vendedor: v ?? HONORARIOS_VENDEDOR_IVA, comprador: c ?? HONORARIOS_COMPRADOR_IVA };
     case 'exento': return { vendedor: 0, comprador: 0 };
     case 'personalizado': return { vendedor: v ?? 0, comprador: c ?? 0 };
     default: return { vendedor: v ?? HONORARIOS_VENDEDOR_IVA, comprador: 0 };
   }
+}
+
+/** Honorarios comprador: vinculado o predefinido en la operación. */
+function vendCompradorHonPrevisto(v){
+  if(v.comprador) return Number(v.comprador.honorarios) || HONORARIOS_COMPRADOR_IVA;
+  return Number(v.honorarios_comprador) || HONORARIOS_COMPRADOR_IVA;
+}
+
+function vendSyncCompradorHonInputs(){
+  const prev = document.getElementById('v-honorarios-comprador-prev');
+  const hon = document.getElementById('v-honorarios-comprador');
+  if(!prev || !hon) return;
+  if(document.activeElement === prev) hon.value = prev.value;
+  else if(document.activeElement === hon) prev.value = hon.value;
+  else prev.value = hon.value;
+}
+
+function vendCompradorCell(v){
+  if(v.comprador) return dashEsc(v.comprador.nombre);
+  const modo = v.honorarios_pago_por || 'vendedor';
+  if(modo === 'comprador' || modo === 'ambos' || (modo === 'personalizado' && vendCompradorHonPrevisto(v) > 0 && (Number(v.honorarios) || 0) === 0))
+    return '<span class="badge badge-new">Comprador</span> <span class="text-muted" style="font-size:.68rem">predef.</span>';
+  return '–';
+}
+
+function vendEstadoOperacion(v){
+  if(v.estado_operacion === 'activa' || v.estado_operacion === 'seguimiento' || v.estado_operacion === 'inactiva') return v.estado_operacion;
+  return v.activo === false ? 'inactiva' : 'activa';
+}
+
+function vendOperacionEnCartera(v){ return vendEstadoOperacion(v) === 'activa'; }
+
+function vendOperacionActiva(v){
+  return vendEstadoOperacion(v) === 'activa';
+}
+
+function vendFindById(id){
+  return _vendData.find(x => x.id === id) || _vendSeguimientoData.find(x => x.id === id);
+}
+
+function vendEstadoOperacionBadge(v){
+  const map = {
+    activa: '<span class="badge badge-new">Activa</span>',
+    seguimiento: '<span class="badge badge-warn">Seguimiento</span>',
+    inactiva: '<span class="badge">No activa</span>',
+  };
+  return map[vendEstadoOperacion(v)] || map.activa;
+}
+
+/** Importe y estado de pago visibles en fila vendedor (si paga el comprador, usa sus honorarios). */
+function vendHonorariosEfectivos(v){
+  const modo = v.honorarios_pago_por || 'vendedor';
+  const comp = v.comprador;
+  const vAmt = Number(v.honorarios) || 0;
+  const cAmt = vendCompradorHonPrevisto(v);
+
+  if(modo === 'comprador'){
+    return {
+      honorarios: cAmt,
+      honorarios_pagado: comp ? !!comp.honorarios_pagado : !!v.honorarios_pagado,
+      honorarios_pagado_at: comp?.honorarios_pagado_at || v.honorarios_pagado_at,
+      honorarios_metodo_pago: comp?.honorarios_metodo_pago || v.honorarios_metodo_pago,
+      honorarios_transferencia_pendiente: comp ? !!comp.honorarios_transferencia_pendiente : !!v.honorarios_transferencia_pendiente,
+      _transferTipo: comp ? 'comprador' : 'vendedor',
+      _transferId: comp?.id || v.id,
+      _transferNombre: comp?.nombre || 'Comprador',
+    };
+  }
+  if(modo === 'ambos'){
+    const compPagado = comp ? !!comp.honorarios_pagado : false;
+    const pagado = !!v.honorarios_pagado && compPagado;
+    const transfPend = (!v.honorarios_pagado && v.honorarios_transferencia_pendiente) ||
+      (comp && !comp.honorarios_pagado && comp.honorarios_transferencia_pendiente);
+    return {
+      honorarios: vAmt + cAmt,
+      honorarios_pagado: pagado,
+      honorarios_pagado_at: pagado ? (v.honorarios_pagado_at || comp?.honorarios_pagado_at) : null,
+      honorarios_metodo_pago: pagado ? (v.honorarios_metodo_pago || comp?.honorarios_metodo_pago) : null,
+      honorarios_transferencia_pendiente: !pagado && transfPend,
+      _transferTipo: null,
+    };
+  }
+  if(modo === 'personalizado' && vAmt === 0 && cAmt > 0){
+    return {
+      honorarios: cAmt,
+      honorarios_pagado: comp ? !!comp.honorarios_pagado : !!v.honorarios_pagado,
+      honorarios_pagado_at: comp?.honorarios_pagado_at || v.honorarios_pagado_at,
+      honorarios_metodo_pago: comp?.honorarios_metodo_pago || v.honorarios_metodo_pago,
+      honorarios_transferencia_pendiente: comp ? !!comp.honorarios_transferencia_pendiente : !!v.honorarios_transferencia_pendiente,
+      _transferTipo: comp ? 'comprador' : 'vendedor',
+      _transferId: comp?.id || v.id,
+      _transferNombre: comp?.nombre || 'Comprador',
+    };
+  }
+  if(modo === 'personalizado' && comp && vAmt > 0 && cAmt > 0){
+    const pagado = !!v.honorarios_pagado && !!comp.honorarios_pagado;
+    return {
+      honorarios: vAmt + cAmt,
+      honorarios_pagado: pagado,
+      honorarios_pagado_at: pagado ? (v.honorarios_pagado_at || comp.honorarios_pagado_at) : null,
+      honorarios_metodo_pago: null,
+      honorarios_transferencia_pendiente: (!pagado) && (
+        (!v.honorarios_pagado && v.honorarios_transferencia_pendiente) ||
+        (!comp.honorarios_pagado && comp.honorarios_transferencia_pendiente)
+      ),
+      _transferTipo: null,
+    };
+  }
+  if(modo === 'exento'){
+    return {
+      honorarios: 0,
+      honorarios_pagado: false,
+      honorarios_transferencia_pendiente: false,
+      _transferTipo: 'vendedor',
+      _transferId: v.id,
+      _transferNombre: v.nombre,
+    };
+  }
+  return {
+    honorarios: vAmt,
+    honorarios_pagado: !!v.honorarios_pagado,
+    honorarios_pagado_at: v.honorarios_pagado_at,
+    honorarios_metodo_pago: v.honorarios_metodo_pago,
+    honorarios_transferencia_pendiente: !!v.honorarios_transferencia_pendiente,
+    _transferTipo: 'vendedor',
+    _transferId: v.id,
+    _transferNombre: v.nombre,
+  };
+}
+
+function honorariosPagoBadgeVendedor(v){
+  return honorariosPagoBadge(vendHonorariosEfectivos(v));
+}
+
+function honorariosTransferConfirmBtnVendedor(v){
+  const eff = vendHonorariosEfectivos(v);
+  if(!eff._transferTipo) return '';
+  return honorariosTransferConfirmBtn(eff._transferTipo, {
+    id: eff._transferId,
+    nombre: eff._transferNombre,
+    honorarios_pagado: eff.honorarios_pagado,
+    honorarios_transferencia_pendiente: eff.honorarios_transferencia_pendiente,
+  });
 }
 
 function vendUpdateHonSummary(ctx){
@@ -4061,15 +4714,18 @@ function vendUpdateHonSummary(ctx){
   const modo = document.getElementById(isForm ? 'v-honorarios-pago-por' : 'vend-modal-hon-pago')?.value || 'vendedor';
   const honV = document.getElementById(isForm ? 'v-honorarios' : 'vend-modal-hon-v');
   const honC = document.getElementById(isForm ? 'v-honorarios-comprador' : 'vend-modal-hon-c');
+  if(isForm) vendSyncCompradorHonInputs();
   const amounts = vendHonorariosFromModo(modo, honV?.value, honC?.value);
   if(honV && modo !== 'personalizado') honV.value = amounts.vendedor;
   if(honC && modo !== 'personalizado' && modo !== 'vendedor') honC.value = amounts.comprador;
   if(honV) honV.disabled = modo !== 'personalizado' && modo !== 'vendedor' && modo !== 'ambos';
-  if(honC) honC.disabled = modo !== 'personalizado' && modo !== 'ambos' && modo !== 'comprador';
+  if(honC) honC.disabled = modo === 'vendedor' || modo === 'exento';
+  const predef = document.getElementById('v-comprador-predef');
+  if(predef) predef.style.opacity = (modo === 'vendedor' || modo === 'exento') ? '.55' : '1';
   const el = document.getElementById(isForm ? 'v-hon-summary' : 'vend-modal-hon-summary');
   if(!el) return;
   const compId = document.getElementById(isForm ? 'v-comprador-id' : 'vend-modal-comprador')?.value;
-  const compName = _vendCompOptions.find(c => c.id === compId)?.nombre;
+  const compName = compId ? _vendCompOptions.find(c => c.id === compId)?.nombre : 'Comprador (predefinido)';
   el.innerHTML = `<strong>${HONORARIOS_PAGO_LABELS[modo] || modo}</strong><br>
     Vendedor: <span style="color:#fb923c">${vendFmtEuro(amounts.vendedor)}</span>
     · Comprador${compName ? ' ('+dashEsc(compName)+')' : ''}: <span style="color:#4ade80">${vendFmtEuro(amounts.comprador)}</span>
@@ -4107,7 +4763,7 @@ async function vendPopulateCompradorSelect(selectId, selectedId){
   await ensureVendCompOptions();
   const sel = document.getElementById(selectId);
   if(!sel) return;
-  sel.innerHTML = '<option value="">— Sin vincular —</option>' +
+  sel.innerHTML = '<option value="">— Comprador predefinido —</option>' +
     _vendCompOptions.map(c => `<option value="${c.id}">${dashEsc(c.nombre)}${c.telefono ? ' · '+c.telefono : ''}</option>`).join('');
   if(selectedId) sel.value = selectedId;
   sel.onchange = () => vendUpdateCompradorPreview(selectId);
@@ -4117,15 +4773,25 @@ async function vendPopulateCompradorSelect(selectId, selectedId){
 function vendUpdateCompradorPreview(selectId){
   const sel = document.getElementById(selectId);
   const previewId = selectId === 'v-comprador-id' ? 'v-comprador-preview' : 'vend-modal-comp-preview';
+  const predefId = selectId === 'v-comprador-id' ? 'v-comprador-predef' : 'vend-modal-comprador-predef';
   const box = document.getElementById(previewId);
-  if(!box || !sel) return;
+  const predef = document.getElementById(predefId);
+  if(!sel) return;
   const c = _vendCompOptions.find(x => x.id === sel.value);
-  if(!c){ box.style.display = 'none'; return; }
-  box.style.display = 'block';
-  box.innerHTML = `<strong>${dashEsc(c.nombre)}</strong><br>
-    ${c.telefono ? '📞 '+dashEsc(c.telefono)+'<br>' : ''}
-    Honorarios actuales: ${vendFmtEuro(c.honorarios ?? HONORARIOS_COMPRADOR_IVA)}
-    ${c.honorarios_pagado ? ' · <span style="color:#4ade80">Pagado</span>' : ' · <span style="color:#fb923c">Pendiente</span>'}`;
+  if(!c){
+    if(box) box.style.display = 'none';
+    if(predef) predef.style.display = 'block';
+    vendUpdateHonSummary(selectId === 'v-comprador-id' ? 'form' : 'modal');
+    return;
+  }
+  if(box){
+    box.style.display = 'block';
+    box.innerHTML = `<strong>${dashEsc(c.nombre)}</strong><br>
+      ${c.telefono ? '📞 '+dashEsc(c.telefono)+'<br>' : ''}
+      Honorarios actuales: ${vendFmtEuro(c.honorarios ?? HONORARIOS_COMPRADOR_IVA)}
+      ${c.honorarios_pagado ? ' · <span style="color:#4ade80">Pagado</span>' : ' · <span style="color:#fb923c">Pendiente</span>'}`;
+  }
+  if(predef) predef.style.display = 'none';
   vendUpdateHonSummary(selectId === 'v-comprador-id' ? 'form' : 'modal');
 }
 
@@ -4134,16 +4800,18 @@ async function loadVendedores(){
   if(tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
   const { data, error } = await window.nhSupabase
     .from('vendedores')
-    .select('id,nombre,email,telefono,dni,precio_minimo,inmueble_ref,descripcion,estado_expediente,comprador_id,honorarios_pago_por,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at,comprador:compradores(id,nombre,telefono,honorarios,honorarios_pagado)')
+    .select('id,nombre,email,telefono,dni,precio_minimo,inmueble_ref,descripcion,estado_expediente,comprador_id,honorarios_pago_por,honorarios,honorarios_comprador,activo,estado_operacion,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at,comprador:compradores(id,nombre,telefono,honorarios,honorarios_pagado,honorarios_transferencia_pendiente)')
     .order('created_at',{ascending:false});
   if(error){
     console.error('loadVendedores:', error);
-    nhToast('No se pudieron cargar vendedores: '+error.message, 'error');
+    nhToast('No se pudieron cargar operaciones: '+error.message, 'error');
     _vendData = [];
   } else {
     _vendData = data || [];
   }
+  _vendSeguimientoData = _vendData.filter(v => vendEstadoOperacion(v) === 'seguimiento');
   renderVendedores();
+  renderVendSeguimientoSection();
 }
 
 function vendPagoBadge(v){
@@ -4152,24 +4820,109 @@ function vendPagoBadge(v){
   return `<span class="badge" title="${HONORARIOS_PAGO_LABELS[modo]||''}">${labels[modo]||modo}</span>`;
 }
 
+function renderVendStats(){
+  const cartera = _vendData.filter(vendOperacionEnCartera);
+  let pendTotal = 0, allTotal = 0, pendN = 0;
+  cartera.forEach(v => {
+    const eff = vendHonorariosEfectivos(v);
+    allTotal += Number(eff.honorarios) || 0;
+    if(!eff.honorarios_pagado && (Number(eff.honorarios) || 0) > 0){
+      pendTotal += Number(eff.honorarios) || 0;
+      pendN++;
+    }
+  });
+  const segN = _vendSeguimientoData.length;
+  const inactivas = _vendData.filter(v => vendEstadoOperacion(v) === 'inactiva').length;
+  const elP = document.getElementById('vend-st-pendientes');
+  if(!elP) return;
+  elP.textContent = vendFmtEuro(pendTotal);
+  document.getElementById('vend-st-pendientes-hint').textContent = pendN + ' operación(es) con cobro pendiente';
+  document.getElementById('vend-st-activas').textContent = String(cartera.length);
+  const hints = [];
+  if(segN) hints.push(segN + ' en seguimiento');
+  if(inactivas) hints.push(inactivas + ' inactiva(s)');
+  document.getElementById('vend-st-activas-hint').textContent = hints.length ? hints.join(' · ') : 'En cartera';
+  document.getElementById('vend-st-total').textContent = vendFmtEuro(allTotal);
+  document.getElementById('vend-st-total-hint').textContent = 'Solo operaciones activas (no seguimiento)';
+}
+
+function renderVendSeguimientoSection(){
+  const wrap = document.getElementById('vend-seg-wrap');
+  const tbl = document.getElementById('vend-seg-table');
+  const countEl = document.getElementById('vend-seg-count');
+  const tabN = document.getElementById('part-tab-operaciones-n');
+  if(!wrap || !tbl) return;
+  const n = _vendSeguimientoData.length;
+  if(tabN){
+    if(n){
+      tabN.style.display = 'inline';
+      tabN.textContent = String(n);
+    } else {
+      tabN.style.display = 'none';
+    }
+  }
+  const showOps = _partFilter === 'operaciones';
+  wrap.style.display = showOps ? 'block' : 'none';
+  if(countEl) countEl.textContent = n ? n + ' operación(es)' : '';
+  if(!showOps) return;
+  if(!n){
+    tbl.innerHTML = '<p class="text-muted">No hay operaciones en seguimiento. Pásalas desde <strong>Operaciones → Editar → Estado operación → Seguimiento</strong>.</p>';
+    return;
+  }
+  tbl.innerHTML = `<table class="adm-table">
+    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Honorarios</th><th>Pago</th><th>Comprador</th><th>Inmueble</th><th>Expediente</th><th></th></tr></thead>
+    <tbody>${_vendSeguimientoData.map(v => `<tr class="vend-row-click vend-row-seguimiento" onclick="openVendModal('${v.id}')">
+      <td style="font-weight:600">${dashEsc(v.nombre)}</td>
+      <td>${dashEsc(v.telefono || '–')}</td>
+      <td onclick="event.stopPropagation()">${honorariosPagoBadgeVendedor(v)}</td>
+      <td>${vendPagoBadge(v)}</td>
+      <td>${vendCompradorCell(v)}</td>
+      <td>${v.inmueble_ref ? `<span class="badge badge-new">${dashEsc(v.inmueble_ref)}</span>` : '–'}</td>
+      <td>${VEND_EXPEDIENTE_LABELS[v.estado_expediente] || v.estado_expediente || '–'}</td>
+      <td onclick="event.stopPropagation()">
+        <div class="gap-row">
+          <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="reactivarOperacion('${v.id}')" title="Volver a Operaciones">↩ Activa</button>
+          <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editVendedor('${v.id}')" title="Editar">✏</button>
+        </div>
+      </td>
+    </tr>`).join('')}
+    </tbody></table>
+    <p class="text-muted" style="font-size:.72rem;margin-top:.75rem">Clic en la fila para ver detalle. «Activa» la devuelve a la cartera de Operaciones.</p>`;
+}
+
+async function reactivarOperacion(id){
+  const { error } = await window.nhSupabase.from('vendedores').update({ estado_operacion: 'activa', activo: true }).eq('id', id);
+  if(error){
+    nhToast(error.message.includes('estado_operacion') ? 'Ejecuta migración 035 en Supabase.' : error.message, 'error');
+    return;
+  }
+  nhToast('Operación reactivada en cartera', 'success');
+  await loadVendedores();
+  if(typeof loadParticulares === 'function') await loadParticulares();
+}
+
 function renderVendedores(){
   const tbl = document.getElementById('vend-table');
-  document.getElementById('vend-count').textContent = _vendData.length+' vendedores';
-  if(!_vendData.length){
-    tbl.innerHTML='<p class="text-muted">Sin vendedores. Pulsa <strong>↻ Sincronizar</strong> o completa el propietario al publicar/editar un inmueble.</p>';
+  const cartera = _vendData.filter(v => vendEstadoOperacion(v) !== 'seguimiento');
+  renderVendStats();
+  document.getElementById('vend-count').textContent = cartera.length + ' operaciones';
+  if(!cartera.length){
+    tbl.innerHTML='<p class="text-muted">Sin operaciones en cartera. Las que estén en <strong>seguimiento</strong> aparecen en la sección Seguimientos.</p>';
     return;
   }
   tbl.innerHTML=`<table class="adm-table">
-    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th><th>Honorarios</th><th>Pago</th><th>Comprador</th><th>Precio mín.</th><th>Inmueble</th><th>Fecha</th><th></th></tr></thead>
-    <tbody>${_vendData.map(v=>{
-      const comp = v.comprador;
-      return `<tr class="vend-row-click" onclick="openVendModal('${v.id}')">
+    <thead><tr><th>Nombre</th><th>Estado</th><th>Teléfono</th><th>Email</th><th>Honorarios</th><th>Pago</th><th>Comprador</th><th>Precio mín.</th><th>Inmueble</th><th>Fecha</th><th></th></tr></thead>
+    <tbody>${cartera.map(v=>{
+      const estado = vendEstadoOperacion(v);
+      const rowExtra = estado === 'inactiva' ? ' vend-row-inactiva' : '';
+      return `<tr class="vend-row-click${rowExtra}" onclick="openVendModal('${v.id}')">
         <td style="font-weight:600">${dashEsc(v.nombre)}</td>
+        <td>${vendEstadoOperacionBadge(v)}</td>
         <td>${dashEsc(v.telefono||'–')}</td>
         <td>${dashEsc(v.email||'–')}</td>
-        <td onclick="event.stopPropagation()">${honorariosPagoBadge(v)} ${honorariosTransferConfirmBtn('vendedor', v)}</td>
+        <td onclick="event.stopPropagation()">${honorariosPagoBadgeVendedor(v)} ${honorariosTransferConfirmBtnVendedor(v)}</td>
         <td>${vendPagoBadge(v)}</td>
-        <td>${comp ? dashEsc(comp.nombre) : '–'}</td>
+        <td>${vendCompradorCell(v)}</td>
         <td>${v.precio_minimo?Number(v.precio_minimo).toLocaleString('es-ES')+' €':'–'}</td>
         <td>${v.inmueble_ref?`<span class="badge badge-new">${dashEsc(v.inmueble_ref)}</span>`:'–'}</td>
         <td>${v.created_at?new Date(v.created_at).toLocaleDateString('es-ES'):'–'}</td>
@@ -4182,12 +4935,12 @@ function renderVendedores(){
       </tr>`;
     }).join('')}
     </tbody></table>
-    <p class="text-muted" style="font-size:.72rem;margin-top:.75rem">Clic en una fila para ver el detalle completo.</p>`;
+    <p class="text-muted" style="font-size:.72rem;margin-top:.75rem">Clic en una fila para ver el detalle. Las operaciones en seguimiento están en la sección <strong>Seguimientos</strong>.</p>`;
 }
 
 function openVendForm(prefill={}){
   document.getElementById('vend-form-wrap').style.display='block';
-  document.getElementById('vend-form-title').textContent='Nuevo vendedor';
+  document.getElementById('vend-form-title').textContent='Nueva operación';
   document.getElementById('vend-edit-id').value='';
   document.getElementById('v-nombre').value=prefill.nombre||'';
   document.getElementById('v-tel').value=prefill.telefono||'';
@@ -4197,8 +4950,12 @@ function openVendForm(prefill={}){
   document.getElementById('v-ref').value=prefill.inmueble_ref||'';
   document.getElementById('v-desc').value=prefill.descripcion||'';
   document.getElementById('v-expediente').value=prefill.estado_expediente||'registro';
+  document.getElementById('v-activo').value = prefill.estado_operacion || (prefill.activo === false ? 'inactiva' : 'activa');
   vendSetPagoPor(prefill.honorarios_pago_por || 'vendedor');
   document.getElementById('v-honorarios').value = prefill.honorarios ?? HONORARIOS_VENDEDOR_IVA;
+  const honComp = prefill.honorarios_comprador ?? prefill.comprador?.honorarios ?? HONORARIOS_COMPRADOR_IVA;
+  document.getElementById('v-honorarios-comprador').value = honComp;
+  document.getElementById('v-honorarios-comprador-prev').value = honComp;
   vendPopulateCompradorSelect('v-comprador-id', prefill.comprador_id || '');
   document.getElementById('vend-form-err').style.display='none';
   vendFormTab('datos');
@@ -4211,28 +4968,27 @@ function closeVendForm(){
 }
 
 function editVendedor(id){
-  const v = _vendData.find(x=>x.id===id);
+  const v = vendFindById(id);
   if(!v) return;
   openVendForm(v);
   document.getElementById('vend-edit-id').value=id;
-  document.getElementById('vend-form-title').textContent='Editar vendedor';
+  document.getElementById('vend-form-title').textContent='Editar operación';
   vendSetPagoPor(v.honorarios_pago_por || 'vendedor');
   document.getElementById('v-honorarios').value = v.honorarios ?? HONORARIOS_VENDEDOR_IVA;
-  if(v.comprador) document.getElementById('v-honorarios-comprador').value = v.comprador.honorarios ?? HONORARIOS_COMPRADOR_IVA;
+  const honComp = v.honorarios_comprador ?? v.comprador?.honorarios ?? HONORARIOS_COMPRADOR_IVA;
+  document.getElementById('v-honorarios-comprador').value = honComp;
+  document.getElementById('v-honorarios-comprador-prev').value = honComp;
+  document.getElementById('v-activo').value = v.estado_operacion || (v.activo === false ? 'inactiva' : 'activa');
 }
 
 async function saveVendedor(){
   const nombre = document.getElementById('v-nombre').value.trim();
   if(!nombre){ document.getElementById('vend-form-err').textContent='El nombre es obligatorio.'; document.getElementById('vend-form-err').style.display='block'; return; }
+  vendSyncCompradorHonInputs();
   const modo = document.getElementById('v-honorarios-pago-por').value || 'vendedor';
   const amounts = vendHonorariosFromModo(modo, document.getElementById('v-honorarios').value, document.getElementById('v-honorarios-comprador').value);
   const compradorId = document.getElementById('v-comprador-id').value || null;
-  if((modo === 'comprador' || modo === 'ambos') && !compradorId){
-    document.getElementById('vend-form-err').textContent='Vincula un comprador para el modo de pago seleccionado.';
-    document.getElementById('vend-form-err').style.display='block';
-    vendFormTab('comprador');
-    return;
-  }
+  const estadoOp = document.getElementById('v-activo').value || 'activa';
   const payload = {
     nombre,
     telefono: document.getElementById('v-tel').value.trim()||null,
@@ -4242,28 +4998,39 @@ async function saveVendedor(){
     inmueble_ref: document.getElementById('v-ref').value.trim()||null,
     descripcion: document.getElementById('v-desc').value.trim()||null,
     estado_expediente: document.getElementById('v-expediente').value || 'registro',
+    estado_operacion: estadoOp,
+    activo: estadoOp !== 'inactiva',
     honorarios: amounts.vendedor,
+    honorarios_comprador: amounts.comprador,
     honorarios_pago_por: modo,
     comprador_id: compradorId,
   };
   const editId = document.getElementById('vend-edit-id').value;
   const error = await upsertClienteRow('vendedores', payload, editId);
   if(error){
-    document.getElementById('vend-form-err').textContent = error.message.includes('comprador_id') ? 'Error: ejecuta la migración 031_vendedores_comprador_link.sql en Supabase.' : 'Error: '+error.message;
+    const msg = error.message.includes('comprador_id') ? 'Ejecuta migración 031 en Supabase.'
+      : error.message.includes('honorarios_comprador') || error.message.includes('activo') || error.message.includes('estado_operacion') ? 'Ejecuta migraciones 034/035 en Supabase.'
+      : 'Error: '+error.message;
+    document.getElementById('vend-form-err').textContent = msg;
     document.getElementById('vend-form-err').style.display='block';
     return;
   }
-  if(compradorId && (modo === 'comprador' || modo === 'ambos' || modo === 'personalizado' || modo === 'exento')){
+  if(compradorId){
     await window.nhSupabase.from('compradores').update({ honorarios: amounts.comprador }).eq('id', compradorId);
   }
   _vendCompOptions = [];
   closeVendForm();
-  loadVendedores();
-  nhToast('Vendedor guardado', 'success');
+  await loadVendedores();
+  if(estadoOp === 'seguimiento'){
+    nhToast('Operación movida a Seguimientos', 'success');
+    if(typeof loadParticulares === 'function') await loadParticulares();
+  } else {
+    nhToast('Operación guardada', 'success');
+  }
 }
 
 async function deleteVendedor(id){
-  if(!confirm('¿Eliminar este vendedor?')) return;
+  if(!confirm('¿Eliminar esta operación?')) return;
   await window.nhSupabase.from('vendedores').delete().eq('id',id);
   loadVendedores();
 }
@@ -4271,16 +5038,16 @@ async function deleteVendedor(id){
 function vendModalTab(tab){
   _vendModalTab = tab;
   document.querySelectorAll('#vend-detail-modal .vend-modal-tabs .adm-subtab').forEach(b => b.classList.toggle('active', b.dataset.vendModalTab === tab));
-  if(_vendModalId) renderVendModalBody(_vendData.find(x => x.id === _vendModalId));
+  if(_vendModalId) renderVendModalBody(vendFindById(_vendModalId));
 }
 
 function openVendModal(id){
-  const v = _vendData.find(x => x.id === id);
+  const v = vendFindById(id);
   if(!v) return;
   _vendModalId = id;
   _vendModalTab = 'resumen';
-  document.getElementById('vend-modal-title').textContent = v.nombre || 'Vendedor';
-  document.getElementById('vend-modal-kicker').textContent = v.inmueble_ref ? 'Inmueble '+v.inmueble_ref : 'Vendedor';
+  document.getElementById('vend-modal-title').textContent = v.nombre || 'Operación';
+  document.getElementById('vend-modal-kicker').textContent = v.inmueble_ref ? 'Inmueble '+v.inmueble_ref : 'Operación';
   vendModalTab('resumen');
   const modal = document.getElementById('vend-detail-modal');
   modal.hidden = false;
@@ -4300,24 +5067,25 @@ function renderVendModalBody(v){
   const foot = document.getElementById('vend-modal-foot');
   const comp = v.comprador;
   const modo = v.honorarios_pago_por || 'vendedor';
-  const amounts = vendHonorariosFromModo(modo, v.honorarios, comp?.honorarios);
+  const amounts = vendHonorariosFromModo(modo, v.honorarios, vendCompradorHonPrevisto(v));
 
   if(_vendModalTab === 'resumen'){
     body.innerHTML = `<dl class="dash-dl">
       <dt>Teléfono</dt><dd>${dashEsc(v.telefono || '–')}</dd>
       <dt>Email</dt><dd>${dashEsc(v.email || '–')}</dd>
       <dt>DNI</dt><dd>${dashEsc(v.dni || '–')}</dd>
+      <dt>Estado operación</dt><dd>${vendEstadoOperacionBadge(v)}</dd>
       <dt>Expediente</dt><dd>${VEND_EXPEDIENTE_LABELS[v.estado_expediente] || v.estado_expediente || '–'}</dd>
       <dt>Precio mínimo</dt><dd>${v.precio_minimo ? vendFmtEuro(v.precio_minimo) : '–'}</dd>
       <dt>Inmueble ref.</dt><dd>${dashEsc(v.inmueble_ref || '–')}</dd>
       <dt>Alta</dt><dd>${v.created_at ? admAltaWhenText(v.created_at, { label:'Registro' }) : '–'}</dd>
-      <dt>Honorarios vendedor</dt><dd>${honorariosPagoBadge(v)} · ${vendFmtEuro(v.honorarios)}</dd>
+      <dt>Honorarios</dt><dd>${honorariosPagoBadgeVendedor(v)} · ${vendFmtEuro(vendHonorariosEfectivos(v).honorarios)}${modo === 'comprador' ? ' <span class="text-muted">(comprador)</span>' : ''}</dd>
       <dt>Modo de pago</dt><dd>${HONORARIOS_PAGO_LABELS[modo] || modo}</dd>
-      <dt>Comprador vinculado</dt><dd>${comp ? dashEsc(comp.nombre) + (comp.telefono ? ' · '+comp.telefono : '') : '–'}</dd>
+      <dt>Comprador</dt><dd>${comp ? dashEsc(comp.nombre) + (comp.telefono ? ' · '+comp.telefono : '') : (modo === 'comprador' || modo === 'ambos' ? 'Comprador predefinido · '+vendFmtEuro(vendCompradorHonPrevisto(v)) : '–')}</dd>
     </dl>
     ${v.descripcion ? `<div class="dash-modal-block"><strong>Notas</strong>${dashEsc(v.descripcion)}</div>` : ''}`;
     foot.innerHTML = `
-      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeVendModal();editVendedor('${v.id}')">Editar vendedor</button>
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeVendModal();editVendedor('${v.id}')">Editar operación</button>
       ${v.telefono ? `<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="window.location.href='tel:${telHref(v.telefono)}'">Llamar</button>` : ''}
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal()">Cerrar</button>`;
     return;
@@ -4355,13 +5123,22 @@ function renderVendModalBody(v){
   }
 
   if(_vendModalTab === 'comprador'){
-    body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Selecciona el comprador que participa en esta operación.</p>
+    const honPrev = vendCompradorHonPrevisto(v);
+    body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Vincula un comprador real o deja el comprador predefinido si aún no está asignado.</p>
       <div class="adm-field">
-        <label>Comprador</label>
-        <select id="vend-modal-comprador"><option value="">— Sin vincular —</option></select>
+        <label>Comprador vinculado (opcional)</label>
+        <select id="vend-modal-comprador"><option value="">— Comprador predefinido —</option></select>
       </div>
       <div id="vend-modal-comp-preview" class="vend-hon-summary" style="display:none"></div>
-      ${comp ? `<div class="dash-modal-block"><strong>Honorarios comprador</strong>${vendFmtEuro(comp.honorarios ?? HONORARIOS_COMPRADOR_IVA)} · ${comp.honorarios_pagado ? 'Pagado' : 'Pendiente'}</div>` : ''}`;
+      <div id="vend-modal-comprador-predef" class="vend-hon-summary"${comp ? ' style="display:none"' : ''}>
+        <strong>Comprador predefinido</strong><br>
+        Honorarios previstos: ${vendFmtEuro(honPrev)} · ${v.honorarios_pagado && !comp ? 'Pendiente en operación' : 'Pendiente'}
+        <div class="adm-field" style="margin-top:.75rem;margin-bottom:0">
+          <label>Honorarios previstos comprador (€)</label>
+          <input type="number" id="vend-modal-hon-comprador-prev" min="0" step="1" value="${honPrev}" oninput="document.getElementById('vend-modal-hon-c').value=this.value"/>
+        </div>
+      </div>
+      ${comp ? `<div class="dash-modal-block"><strong>Honorarios comprador vinculado</strong>${vendFmtEuro(comp.honorarios ?? HONORARIOS_COMPRADOR_IVA)} · ${comp.honorarios_pagado ? 'Pagado' : 'Pendiente'}</div>` : ''}`;
     foot.innerHTML = `
       <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveVendModalComprador()">Guardar vínculo</button>
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal();switchSection('compradores')">Ir a compradores</button>
@@ -4377,20 +5154,19 @@ function vendModalSetPago(modo){
 }
 
 async function saveVendModalHonorarios(){
-  const v = _vendData.find(x => x.id === _vendModalId);
+  const v = vendFindById(_vendModalId);
   if(!v) return;
   const modo = document.getElementById('vend-modal-hon-pago').value;
   const amounts = vendHonorariosFromModo(modo, document.getElementById('vend-modal-hon-v').value, document.getElementById('vend-modal-hon-c').value);
-  if((modo === 'comprador' || modo === 'ambos') && !v.comprador_id){
-    nhToast('Vincula un comprador en la pestaña Comprador primero.', 'info');
-    vendModalTab('comprador');
-    return;
-  }
   const { error } = await window.nhSupabase.from('vendedores').update({
     honorarios: amounts.vendedor,
+    honorarios_comprador: amounts.comprador,
     honorarios_pago_por: modo,
   }).eq('id', v.id);
-  if(error){ nhToast('Error: '+error.message, 'error'); return; }
+  if(error){
+    nhToast(error.message.includes('honorarios_comprador') ? 'Ejecuta migración 034 en Supabase.' : 'Error: '+error.message, 'error');
+    return;
+  }
   if(v.comprador_id){
     await window.nhSupabase.from('compradores').update({ honorarios: amounts.comprador }).eq('id', v.comprador_id);
   }
@@ -4401,15 +5177,22 @@ async function saveVendModalHonorarios(){
 }
 
 async function saveVendModalComprador(){
-  const v = _vendData.find(x => x.id === _vendModalId);
+  const v = vendFindById(_vendModalId);
   if(!v) return;
   const compradorId = document.getElementById('vend-modal-comprador').value || null;
-  const { error } = await window.nhSupabase.from('vendedores').update({ comprador_id: compradorId }).eq('id', v.id);
+  const honPrev = parseFloat(document.getElementById('vend-modal-hon-comprador-prev')?.value) || HONORARIOS_COMPRADOR_IVA;
+  const { error } = await window.nhSupabase.from('vendedores').update({
+    comprador_id: compradorId,
+    honorarios_comprador: honPrev,
+  }).eq('id', v.id);
   if(error){
-    nhToast(error.message.includes('comprador_id') ? 'Ejecuta migración 031 en Supabase.' : 'Error: '+error.message, 'error');
+    nhToast(error.message.includes('comprador_id') ? 'Ejecuta migración 031 en Supabase.' : error.message.includes('honorarios_comprador') ? 'Ejecuta migración 034 en Supabase.' : 'Error: '+error.message, 'error');
     return;
   }
-  nhToast('Comprador vinculado', 'success');
+  if(compradorId){
+    await window.nhSupabase.from('compradores').update({ honorarios: honPrev }).eq('id', compradorId);
+  }
+  nhToast(compradorId ? 'Comprador vinculado' : 'Comprador predefinido guardado', 'success');
   _vendCompOptions = [];
   await loadVendedores();
   openVendModal(v.id);
@@ -4419,6 +5202,7 @@ async function saveVendModalComprador(){
 window.vendFormTab = vendFormTab;
 window.vendSetPagoPor = vendSetPagoPor;
 window.openVendModal = openVendModal;
+window.reactivarOperacion = reactivarOperacion;
 window.closeVendModal = closeVendModal;
 window.vendModalTab = vendModalTab;
 window.vendModalSetPago = vendModalSetPago;
@@ -4611,7 +5395,8 @@ window.admEmailColaborador = admEmailColaborador;
    ══════════════════════════════════════════════════════════════ */
 const PART_ESTADOS = { nuevo:'Nuevo', contactado:'Contactado', visita:'Visita', negociacion:'Negociación', captado:'Captado', descartado:'Descartado' };
 const PART_FUENTES = { kelify:'Kelify', idealista:'Idealista', fotocasa:'Fotocasa', habitaclia:'Habitaclia', manual:'Manual', otro:'Otro' };
-const PART_ALARM_DAYS = 7;
+const PANEL_ALARM_CONFIG_KEY = 'nh_panel_alarm_config';
+const PANEL_ALARM_DEFAULTS = { partAlarmDays: 7, compAlarmDays: 14, partAlarmsEnabled: true, compAlarmsEnabled: true };
 const PART_WA_TPL_STORAGE = 'nh_part_wa_templates';
 const PART_WA_TPL_LABELS = { primer_contacto:'1.er contacto', seguimiento:'Seguimiento', visita:'Propuesta visita' };
 const PART_WA_NORMAL_MSG = `Hola, soy de NuevaHabitat, vi tu anuncio de particular, y me gustaria saber si podemso hacer una colaboracion, tenemos una plataforma dedicada a compradores cualificados financieramente, me gustaria saber si podemso hacer una viista puntual con nuestros compradores, ellos mismos pagan nuestros honorarios, seria posible hacer una visita esta semana?`;
@@ -4627,6 +5412,53 @@ let _capturaCompState = null;
 let _partTplModalId = null;
 let _partTplSelectedKey = 'seguimiento';
 let _partTplEditMode = false;
+let _partCardModalId = null;
+
+function getPanelAlarmConfig(){
+  try {
+    const raw = localStorage.getItem(PANEL_ALARM_CONFIG_KEY);
+    if(raw) return { ...PANEL_ALARM_DEFAULTS, ...JSON.parse(raw) };
+  } catch(e){}
+  return { ...PANEL_ALARM_DEFAULTS };
+}
+
+function getPartAlarmDays(){
+  const cfg = getPanelAlarmConfig();
+  return cfg.partAlarmsEnabled ? Math.max(1, Number(cfg.partAlarmDays) || PANEL_ALARM_DEFAULTS.partAlarmDays) : 99999;
+}
+
+function getCompAlarmDays(){
+  const cfg = getPanelAlarmConfig();
+  return cfg.compAlarmsEnabled ? Math.max(1, Number(cfg.compAlarmDays) || PANEL_ALARM_DEFAULTS.compAlarmDays) : 99999;
+}
+
+function loadPanelConfigForm(){
+  const cfg = getPanelAlarmConfig();
+  const set = (id, val) => { const el = document.getElementById(id); if(el) el.value = val; };
+  const setChk = (id, val) => { const el = document.getElementById(id); if(el) el.checked = !!val; };
+  set('cfg-part-alarm-days', cfg.partAlarmDays);
+  set('cfg-comp-alarm-days', cfg.compAlarmDays);
+  setChk('cfg-part-alarms-enabled', cfg.partAlarmsEnabled);
+  setChk('cfg-comp-alarms-enabled', cfg.compAlarmsEnabled);
+}
+
+function savePanelConfig(){
+  const partDays = parseInt(document.getElementById('cfg-part-alarm-days')?.value, 10);
+  const compDays = parseInt(document.getElementById('cfg-comp-alarm-days')?.value, 10);
+  const cfg = {
+    partAlarmDays: Number.isFinite(partDays) && partDays > 0 ? partDays : PANEL_ALARM_DEFAULTS.partAlarmDays,
+    compAlarmDays: Number.isFinite(compDays) && compDays > 0 ? compDays : PANEL_ALARM_DEFAULTS.compAlarmDays,
+    partAlarmsEnabled: !!document.getElementById('cfg-part-alarms-enabled')?.checked,
+    compAlarmsEnabled: !!document.getElementById('cfg-comp-alarms-enabled')?.checked,
+  };
+  localStorage.setItem(PANEL_ALARM_CONFIG_KEY, JSON.stringify(cfg));
+  nhToast('Configuración guardada.', 'success');
+  updatePartAlarmUI();
+  updateCompAlarmUI();
+  if(currentSection === 'seguimientos') renderParticulares();
+  if(currentSection === 'compradores') renderCompradores();
+}
+window.savePanelConfig = savePanelConfig;
 
 function getPartWaTemplates(){
   try {
@@ -4739,13 +5571,23 @@ function applyPartWaTemplate(templateKey, p){
 }
 
 function partWaButtonsHtml(p){
-  const tplBtn = `<button type="button" class="pub-btn-web" onclick="openPartTemplatesModal('${p.id}')">Plantillas</button>`;
-  if(!p.telefono) return tplBtn;
+  const tplTabs = `<span class="part-action-tabs">
+    <button type="button" class="part-tab-btn active" onclick="event.stopPropagation();openPartTemplatesModal('${p.id}')">Plantillas</button>
+    <button type="button" class="part-tab-btn" onclick="event.stopPropagation();openPartKelifyLink('${p.id}')">Link</button>
+  </span>`;
+  if(!p.telefono) return tplTabs;
   return `
-    <button type="button" class="pub-btn-wa" onclick="admWhatsAppParticular('${p.id}')">WhatsApp</button>
-    <button type="button" class="pub-btn-call" onclick="admCallParticular('${p.id}')">Llamar</button>
-    ${tplBtn}`;
+    <button type="button" class="pub-btn-wa" onclick="event.stopPropagation();admWhatsAppParticular('${p.id}')">WhatsApp</button>
+    <button type="button" class="pub-btn-call" onclick="event.stopPropagation();admCallParticular('${p.id}')">Llamar</button>
+    ${tplTabs}`;
 }
+
+function openPartKelifyLink(particularId){
+  const p = _partData.find(x => x.id === particularId);
+  if(!p?.url){ nhToast('Este particular no tiene URL de anuncio (Kelify/portal).', 'info'); return; }
+  window.open(p.url, '_blank', 'noopener');
+}
+window.openPartKelifyLink = openPartKelifyLink;
 
 function particularAsInmueble(p, inmueble){
   if(inmueble && (inmueble.id || inmueble.precio)) return inmueble;
@@ -4772,30 +5614,180 @@ async function logParticularSeguimientoAuto(particularId, comentario){
   await window.nhSupabase.from('particulares_seguimientos').insert({ particular_id: particularId, comentario });
 }
 
-function renderCapturaCompradoresList(matches){
+function capturaInmuebleWaKey(inm, particularId){
+  return {
+    inmueble_id: inm?.id || null,
+    particular_id: particularId || null,
+    inmueble_ref: inm?.ref || null,
+  };
+}
+
+function compradorNotaMentionsInmueble(notas, key, inm){
+  const text = String(notas || '').toLowerCase();
+  if(!text) return false;
+  if(key.inmueble_ref && text.includes(String(key.inmueble_ref).toLowerCase())) return true;
+  if(key.inmueble_id && text.includes(String(key.inmueble_id).toLowerCase())) return true;
+  const loc = [inm?.barrio, inm?.municipio].filter(Boolean).join(' ').toLowerCase();
+  const price = inm?.precio != null ? Number(inm.precio).toLocaleString('es-ES') : '';
+  if(loc && price && text.includes('whatsapp piso') && text.includes(loc) && text.includes(price.toLowerCase())) return true;
+  return false;
+}
+
+async function fetchCompradoresAlreadyWaNotified(compradorIds, key, matchesById){
+  const sent = new Set();
+  if(!compradorIds?.length || !key) return sent;
+  if(window.nhSupabase){
+    try {
+      let q = window.nhSupabase.from('comprador_inmueble_wa_avisos').select('comprador_id').in('comprador_id', compradorIds);
+      if(key.inmueble_id) q = q.eq('inmueble_id', key.inmueble_id);
+      else if(key.particular_id) q = q.eq('particular_id', key.particular_id);
+      else if(key.inmueble_ref) q = q.eq('inmueble_ref', key.inmueble_ref);
+      else return sent;
+      const { data, error } = await q;
+      if(!error && data?.length){
+        data.forEach(r => sent.add(String(r.comprador_id)));
+        return sent;
+      }
+    } catch(e){ /* fallback notas */ }
+  }
+  compradorIds.forEach(id => {
+    const c = matchesById?.get?.(id) || _compData.find(x => String(x.id) === String(id));
+    if(c && compradorNotaMentionsInmueble(c.notas, key, _capturaCompState?.inmueble)) sent.add(String(id));
+  });
+  return sent;
+}
+
+async function fetchInmueblesAlreadyWaNotified(compradorId, inmuebleIds){
+  const sent = new Set();
+  if(!compradorId || !inmuebleIds?.length) return sent;
+  if(window.nhSupabase){
+    try {
+      const { data, error } = await window.nhSupabase
+        .from('comprador_inmueble_wa_avisos')
+        .select('inmueble_id')
+        .eq('comprador_id', compradorId)
+        .in('inmueble_id', inmuebleIds);
+      if(!error && data?.length){
+        data.forEach(r => { if(r.inmueble_id) sent.add(String(r.inmueble_id)); });
+        return sent;
+      }
+    } catch(e){ /* fallback */ }
+  }
+  const c = _compData.find(x => String(x.id) === String(compradorId));
+  inmuebleIds.forEach(inmId => {
+    const inm = _pubData.find(p => String(p.id) === String(inmId));
+    if(inm && compradorNotaMentionsInmueble(c?.notas, capturaInmuebleWaKey(inm, null), inm)) sent.add(String(inmId));
+  });
+  return sent;
+}
+
+async function appendCompradorNotaPanel(compradorId, nota){
+  if(!compradorId || !nota || !window.nhSupabase) return;
+  const c = _compData.find(x => String(x.id) === String(compradorId));
+  const stamp = new Date().toLocaleString('es-ES');
+  const merged = [c?.notas, `[${stamp}] ${nota}`].filter(Boolean).join('\n');
+  await window.nhSupabase.from('compradores').update({ notas: merged }).eq('id', compradorId);
+  if(c) c.notas = merged;
+}
+
+async function recordCompradorWaAviso(comprador, inm, particularId){
+  if(!comprador?.id || !inm) return;
+  const key = capturaInmuebleWaKey(inm, particularId);
+  if(window.nhSupabase){
+    try {
+      await window.nhSupabase.from('comprador_inmueble_wa_avisos').insert({
+        comprador_id: comprador.id,
+        inmueble_id: key.inmueble_id,
+        particular_id: key.particular_id,
+        inmueble_ref: key.inmueble_ref,
+      });
+    } catch(e){
+      const { error } = await window.nhSupabase.from('comprador_inmueble_wa_avisos').insert({
+        comprador_id: comprador.id,
+        inmueble_id: key.inmueble_id,
+        particular_id: key.particular_id,
+        inmueble_ref: key.inmueble_ref,
+      });
+      if(error && !/duplicate|unique|23505/i.test(error.message)) console.warn('recordCompradorWaAviso:', error.message);
+    }
+  }
+  const loc = [inm.barrio, inm.municipio].filter(Boolean).join(', ');
+  const price = inm.precio != null ? Number(inm.precio).toLocaleString('es-ES') + ' €' : '';
+  const ref = key.inmueble_ref || inm.titulo || 'Inmueble';
+  await appendCompradorNotaPanel(comprador.id, `WhatsApp piso ${ref}${loc ? ' · ' + loc : ''}${price ? ' · ' + price : ''}`);
+  await markCompradorContactado(comprador.id);
+}
+
+function renderCapturaCompradoresList(matches, alreadySentIds){
   if(!matches.length){
     return `<p class="text-muted">No hay compradores activos que encajen con este inmueble ahora mismo.</p>`;
   }
+  const sentSet = alreadySentIds instanceof Set ? alreadySentIds : new Set(alreadySentIds || []);
+  const pending = matches.filter(c => !sentSet.has(String(c.id)));
+  const sentCount = matches.length - pending.length;
+  const withPhone = matches.filter(c => normalizePhoneWa(c.telefono));
+  const withPhonePending = pending.filter(c => normalizePhoneWa(c.telefono)).length;
+  const withoutPhone = matches.length - withPhone.length;
   return `
     <div class="comp-match-toolbar">
-      <label><input type="checkbox" id="captura-comp-all" checked onchange="toggleCapturaCompAll(this.checked)"/> Seleccionar todos (${matches.length})</label>
+      <label><input type="checkbox" id="captura-comp-all" ${withPhonePending ? 'checked' : ''} onchange="toggleCapturaCompAll(this.checked)"/> Seleccionar pendientes con teléfono (${withPhonePending})</label>
+      <span class="text-muted" style="font-size:.72rem">${withPhone.length} con teléfono · ${sentCount} ya avisado${sentCount===1?'':'s'}${withoutPhone ? ` · ${withoutPhone} sin teléfono` : ''}</span>
     </div>
     <div class="comp-match-list" id="captura-comp-list">
-      ${matches.map(c => `
-        <label class="comp-match-item">
-          <input type="checkbox" class="captura-comp-cb" data-id="${c.id}" checked onchange="syncCapturaCompAllCheckbox()"/>
+      ${matches.map(c => {
+        const sent = sentSet.has(String(c.id));
+        const hasPhone = !!normalizePhoneWa(c.telefono);
+        return `
+        <label class="comp-match-item${sent ? ' already-wa-sent' : ''}">
+          <input type="checkbox" class="captura-comp-cb" data-id="${c.id}" ${sent || !hasPhone ? 'disabled' : 'checked'} onchange="syncCapturaCompAllCheckbox()"/>
           <div class="comp-match-info" style="padding-left:0">
             <strong>${dashEsc(c.nombre || 'Comprador')}</strong>
             <span>${dashEsc([
               c.presupuesto_max != null ? '≤ '+Number(c.presupuesto_max).toLocaleString('es-ES')+' €' : '',
               c.habitaciones_min ? 'min. '+c.habitaciones_min+' hab.' : '',
               c.zona_buscada || '',
-              c.telefono || 'Sin teléfono',
+              hasPhone ? c.telefono : 'Sin teléfono',
+              sent ? 'Ya avisado por WhatsApp' : '',
             ].filter(Boolean).join(' · '))}</span>
           </div>
-          ${c.telefono ? `<button type="button" class="comp-match-open" onclick="event.preventDefault();sendCapturaWaOne('${c.id}')">Solo este</button>` : ''}
-        </label>`).join('')}
+          ${sent ? '<span class="adm-wa-sent-badge">✓ Enviado</span>' : (hasPhone ? `<button type="button" class="comp-match-open" onclick="event.preventDefault();sendCapturaWaOne('${c.id}')">Solo este</button>` : '')}
+        </label>`;
+      }).join('')}
     </div>`;
+}
+
+async function refreshCapturaCompradoresModalBody(){
+  if(!_capturaCompState) return;
+  const { inmueble, particularId, matches } = _capturaCompState;
+  const key = capturaInmuebleWaKey(inmueble, particularId);
+  const map = new Map(matches.map(c => [String(c.id), c]));
+  const alreadySent = await fetchCompradoresAlreadyWaNotified(matches.map(c => c.id), key, map);
+  _capturaCompState.alreadySentIds = alreadySent;
+  _capturaCompState.waKey = key;
+  document.getElementById('captura-comp-body').innerHTML = renderCapturaCompradoresList(matches, alreadySent);
+  const foot = document.getElementById('captura-comp-foot');
+  const withPhone = matches.filter(c => normalizePhoneWa(c.telefono));
+  const pendingPhone = withPhone.filter(c => !alreadySent.has(String(c.id)));
+  const sentWithPhone = withPhone.filter(c => alreadySent.has(String(c.id)));
+  const withoutPhone = matches.filter(c => !normalizePhoneWa(c.telefono));
+  let statusMsg = '';
+  if(!withPhone.length){
+    statusMsg = `<span class="text-muted" style="font-size:.78rem">Ningún comprador compatible tiene teléfono en ficha. <strong>No se ha enviado WhatsApp</strong> de este piso.</span>`;
+  } else if(!pendingPhone.length){
+    statusMsg = `<span class="text-muted" style="font-size:.78rem">Los ${withPhone.length} comprador${withPhone.length===1?'':'es'} con teléfono ya recibieron WhatsApp de este piso.</span>`;
+  }
+  if(withoutPhone.length){
+    const extra = withoutPhone.length === matches.length
+      ? ''
+      : ` · ${withoutPhone.length} sin teléfono en ficha`;
+    if(withPhone.length){
+      statusMsg += `<span class="text-muted" style="font-size:.78rem;display:block;margin-top:.35rem">${withoutPhone.length} compatible${withoutPhone.length===1?'':'s'} sin teléfono${sentWithPhone.length ? extra : ''}.</span>`;
+    }
+  }
+  foot.innerHTML = `
+    ${pendingPhone.length ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="sendCapturaCompradoresWhatsApp()">Enviar WhatsApp a seleccionados (${pendingPhone.length})</button>` : ''}
+    ${statusMsg}
+    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeCapturaCompradoresModal(${_capturaCompState.particularId ? 'true' : 'false'})">Cerrar${_capturaCompState.particularId ? ' sin avisar' : ''}</button>`;
 }
 
 async function showCapturaCompradoresModal(inmueble, particularId){
@@ -4823,18 +5815,14 @@ async function showCapturaCompradoresModal(inmueble, particularId){
     inm.precio != null ? Number(inm.precio).toLocaleString('es-ES')+' €' : '',
     [inm.barrio, inm.municipio].filter(Boolean).join(', '),
   ].filter(Boolean).join(' · ');
-  document.getElementById('captura-comp-body').innerHTML = renderCapturaCompradoresList(matches);
-
-  const foot = document.getElementById('captura-comp-foot');
-  const withPhone = matches.filter(c => normalizePhoneWa(c.telefono));
-  foot.innerHTML = `
-    ${withPhone.length ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="sendCapturaCompradoresWhatsApp()">Enviar WhatsApp a seleccionados</button>` : ''}
-    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeCapturaCompradoresModal(true)">Cerrar sin avisar</button>`;
+  document.getElementById('captura-comp-body').innerHTML = '<p class="text-muted">Comprobando envíos previos…</p>';
+  document.getElementById('captura-comp-foot').innerHTML = '';
 
   const m = document.getElementById('captura-comp-modal');
   m.classList.add('open');
   m.hidden = false;
   document.body.style.overflow = 'hidden';
+  await refreshCapturaCompradoresModalBody();
 }
 window.showCapturaCompradoresModal = showCapturaCompradoresModal;
 
@@ -4847,12 +5835,12 @@ function closeCapturaCompradoresModal(skipLog){
 window.closeCapturaCompradoresModal = closeCapturaCompradoresModal;
 
 function toggleCapturaCompAll(checked){
-  document.querySelectorAll('.captura-comp-cb').forEach(cb => { cb.checked = checked; });
+  document.querySelectorAll('.captura-comp-cb:not(:disabled)').forEach(cb => { cb.checked = checked; });
 }
 window.toggleCapturaCompAll = toggleCapturaCompAll;
 
 function syncCapturaCompAllCheckbox(){
-  const all = document.querySelectorAll('.captura-comp-cb');
+  const all = document.querySelectorAll('.captura-comp-cb:not(:disabled)');
   const master = document.getElementById('captura-comp-all');
   if(!master || !all.length) return;
   const checked = [...all].filter(cb => cb.checked).length;
@@ -4863,17 +5851,58 @@ window.syncCapturaCompAllCheckbox = syncCapturaCompAllCheckbox;
 
 function getSelectedCapturaCompradores(){
   if(!_capturaCompState) return [];
-  const ids = new Set([...document.querySelectorAll('.captura-comp-cb:checked')].map(cb => cb.dataset.id));
-  return _capturaCompState.matches.filter(c => ids.has(String(c.id)));
+  const sent = _capturaCompState.alreadySentIds || new Set();
+  const ids = new Set([...document.querySelectorAll('.captura-comp-cb:checked:not(:disabled)')].map(cb => cb.dataset.id));
+  return _capturaCompState.matches.filter(c => ids.has(String(c.id)) && !sent.has(String(c.id)));
 }
 
-function openCapturaWaForComprador(comprador){
+async function openCapturaWaForComprador(comprador){
   if(!_capturaCompState) return;
+  const sent = _capturaCompState.alreadySentIds || new Set();
+  if(sent.has(String(comprador.id))){
+    nhToast(`${comprador.nombre || 'Este comprador'} ya recibió WhatsApp de este piso.`, 'info');
+    return;
+  }
   const phone = normalizePhoneWa(comprador.telefono);
   if(!phone){ nhToast('Sin teléfono válido.', 'info'); return; }
   const msg = buildCompWhatsAppMsg(comprador, [_capturaCompState.inmueble]);
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  await recordCompradorWaAviso(comprador, _capturaCompState.inmueble, _capturaCompState.particularId);
+  sent.add(String(comprador.id));
+  await refreshCapturaCompradoresModalBody();
 }
+
+async function openInmuebleCompradoresModal(inmuebleId){
+  if(!window.nhSupabase) return;
+  await ensureCompData();
+  const inm = _pubData.find(x => x.id === inmuebleId);
+  if(!inm){ nhToast('Inmueble no encontrado.', 'error'); return; }
+  const matches = getMatchesForInmueble(inm);
+  if(!matches.length){
+    nhToast('No hay compradores compatibles con este inmueble.', 'info');
+    return;
+  }
+  _capturaCompState = { inmueble: inm, particularId: null, matches, mode: 'inmueble' };
+
+  document.getElementById('captura-comp-kicker').textContent = 'Inmueble publicado';
+  document.getElementById('captura-comp-title').textContent = matches.length === 1
+    ? `1 comprador compatible`
+    : `${matches.length} compradores compatibles`;
+  document.getElementById('captura-comp-sub').textContent = [
+    inm.ref,
+    inm.precio != null ? Number(inm.precio).toLocaleString('es-ES')+' €' : '',
+    [inm.barrio, inm.municipio].filter(Boolean).join(', '),
+  ].filter(Boolean).join(' · ');
+  document.getElementById('captura-comp-body').innerHTML = '<p class="text-muted">Comprobando envíos previos…</p>';
+  document.getElementById('captura-comp-foot').innerHTML = '';
+
+  const m = document.getElementById('captura-comp-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+  await refreshCapturaCompradoresModalBody();
+}
+window.openInmuebleCompradoresModal = openInmuebleCompradoresModal;
 
 async function finalizeCapturaNotify(compradores){
   if(!_capturaCompState?.particularId) return;
@@ -4899,39 +5928,83 @@ function sendCapturaWaOne(compradorId){
 
 async function sendCapturaCompradoresWhatsApp(){
   const selected = getSelectedCapturaCompradores().filter(c => normalizePhoneWa(c.telefono));
-  if(!selected.length){ nhToast('Selecciona compradores con teléfono.', 'info'); return; }
-  if(selected.length > 1 && !confirm(`Se abrirá WhatsApp para ${selected.length} compradores (puede que el navegador bloquee varias ventanas). ¿Continuar?`)) return;
-  selected.forEach((c, i) => {
-    setTimeout(() => openCapturaWaForComprador(c), i * 600);
-  });
-  setTimeout(async () => {
-    await finalizeCapturaNotify(selected);
-    closeCapturaCompradoresModal();
-    nhToast(`WhatsApp preparado para ${selected.length} comprador${selected.length===1?'':'es'}.`, 'success', 7000);
-  }, selected.length * 600 + 200);
+  if(!selected.length){ nhToast('No hay compradores pendientes con teléfono seleccionados.', 'info'); return; }
+  const skipped = (_capturaCompState?.matches || []).filter(c => (_capturaCompState?.alreadySentIds || new Set()).has(String(c.id))).length;
+  let confirmMsg = `Se abrirá WhatsApp para ${selected.length} comprador${selected.length===1?'':'es'}.`;
+  if(skipped) confirmMsg += ` (${skipped} ya avisado${skipped===1?'':'s'} — omitidos)`;
+  if(selected.length > 1 && !confirm(confirmMsg + '\n\n¿Continuar?')) return;
+  for(let i = 0; i < selected.length; i++){
+    await new Promise(r => setTimeout(r, i ? 600 : 0));
+    await openCapturaWaForComprador(selected[i]);
+  }
+  const mode = _capturaCompState?.mode;
+  await finalizeCapturaNotify(selected);
+  closeCapturaCompradoresModal();
+  nhToast(`WhatsApp preparado para ${selected.length} comprador${selected.length===1?'':'es'}.`, 'success', 7000);
+  if(mode === 'inmueble') loadCompradores();
 }
 window.sendCapturaCompradoresWhatsApp = sendCapturaCompradoresWhatsApp;
 window.sendCapturaWaOne = sendCapturaWaOne;
 
 function partAlarmDate(fromDate){
   const d = fromDate ? new Date(fromDate) : new Date();
-  d.setDate(d.getDate() + PART_ALARM_DAYS);
+  d.setDate(d.getDate() + getPartAlarmDays());
+  return d.toISOString();
+}
+
+function compAlarmDate(fromDate){
+  const d = fromDate ? new Date(fromDate) : new Date();
+  d.setDate(d.getDate() + getCompAlarmDays());
   return d.toISOString();
 }
 
 function partNeedsAlarm(p){
+  if(!getPanelAlarmConfig().partAlarmsEnabled) return false;
   if(!p?.activo || ['captado','descartado'].includes(p.estado)) return false;
   if(!p.proxima_alarma_at) return true;
   return new Date(p.proxima_alarma_at) <= new Date();
 }
 
+function compNeedsAlarm(c){
+  if(!getPanelAlarmConfig().compAlarmsEnabled) return false;
+  if(!c?.activo) return false;
+  if(!c.proxima_alarma_at) return true;
+  return new Date(c.proxima_alarma_at) <= new Date();
+}
+
+async function markParticularContactado(id, comentario){
+  if(!id) return;
+  const now = new Date().toISOString();
+  const p = _partData.find(x => x.id === id);
+  const updates = {
+    ultimo_contacto_at: now,
+    proxima_alarma_at: partAlarmDate(now),
+  };
+  if(!p || p.estado === 'nuevo') updates.estado = 'contactado';
+  const { error } = await window.nhSupabase.from('particulares').update(updates).eq('id', id);
+  if(error){ console.warn('markParticularContactado:', error); return; }
+  if(comentario) await logParticularSeguimientoAuto(id, comentario);
+  Object.assign(p || {}, updates);
+  updatePartAlarmUI();
+  if(_partCardModalId === id) await refreshPartCardModal();
+  if(_partDetailId === id) await loadPartSeguimientos(id);
+}
+
+async function markCompradorContactado(id, comentario){
+  if(!id) return;
+  const now = new Date().toISOString();
+  const updates = { ultimo_contacto_at: now, proxima_alarma_at: compAlarmDate(now) };
+  const { error } = await window.nhSupabase.from('compradores').update(updates).eq('id', id);
+  if(error){ console.warn('markCompradorContactado:', error); return; }
+  const c = _compData.find(x => x.id === id);
+  if(c) Object.assign(c, updates);
+  updateCompAlarmUI();
+}
+
 async function refreshPartAlarmBadge(){
   if(!window.nhSupabase) return;
-  const { data } = await window.nhSupabase
-    .from('particulares')
-    .select('id,estado,activo,proxima_alarma_at');
-  if(data) _partData = data;
   updatePartAlarmUI();
+  updateCompAlarmUI();
 }
 
 function updatePartAlarmUI(){
@@ -4939,8 +6012,9 @@ function updatePartAlarmUI(){
   const badge = document.getElementById('nav-alarm-badge');
   const banner = document.getElementById('part-alarm-banner');
   const text = document.getElementById('part-alarm-text');
+  const days = getPartAlarmDays();
   if(badge){
-    if(alarms.length){
+    if(alarms.length && getPanelAlarmConfig().partAlarmsEnabled){
       badge.style.display = 'inline-flex';
       badge.textContent = alarms.length > 99 ? '99+' : String(alarms.length);
     } else {
@@ -4948,9 +6022,33 @@ function updatePartAlarmUI(){
     }
   }
   if(banner && text){
-    if(alarms.length){
+    if(alarms.length && getPanelAlarmConfig().partAlarmsEnabled){
       banner.style.display = 'flex';
-      text.textContent = `${alarms.length} particular(es) sin contacto en los últimos ${PART_ALARM_DAYS} días.`;
+      text.textContent = `${alarms.length} particular(es) sin contacto en los últimos ${days} días.`;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+}
+
+function updateCompAlarmUI(){
+  const alarms = (_compData || []).filter(compNeedsAlarm);
+  const badge = document.getElementById('nav-comp-alarm-badge');
+  const banner = document.getElementById('comp-alarm-banner');
+  const text = document.getElementById('comp-alarm-text');
+  const days = getCompAlarmDays();
+  if(badge){
+    if(alarms.length && getPanelAlarmConfig().compAlarmsEnabled){
+      badge.style.display = 'inline-flex';
+      badge.textContent = alarms.length > 99 ? '99+' : String(alarms.length);
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+  if(banner && text){
+    if(alarms.length && getPanelAlarmConfig().compAlarmsEnabled){
+      banner.style.display = 'flex';
+      text.textContent = `${alarms.length} comprador(es) sin contacto en los últimos ${days} días.`;
     } else {
       banner.style.display = 'none';
     }
@@ -5042,13 +6140,36 @@ function clearPartFilters(){
 }
 window.clearPartFilters = clearPartFilters;
 
+async function loadVendSeguimientoOps(){
+  const { data, error } = await window.nhSupabase
+    .from('vendedores')
+    .select('id,nombre,email,telefono,dni,precio_minimo,inmueble_ref,descripcion,estado_expediente,comprador_id,honorarios_pago_por,honorarios,honorarios_comprador,activo,estado_operacion,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,created_at,comprador:compradores(id,nombre,telefono,honorarios,honorarios_pagado)')
+    .order('created_at', { ascending:false });
+  if(error){
+    console.error('loadVendSeguimientoOps:', error);
+    _vendSeguimientoData = [];
+  } else {
+    _vendSeguimientoData = (data || []).filter(v => vendEstadoOperacion(v) === 'seguimiento');
+    _vendSeguimientoData.forEach(v => {
+      const i = _vendData.findIndex(x => x.id === v.id);
+      if(i >= 0) _vendData[i] = v;
+      else _vendData.push(v);
+    });
+  }
+  renderVendSeguimientoSection();
+}
+
 async function loadParticulares(){
   const grid = document.getElementById('part-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
-  const { data, error } = await window.nhSupabase
-    .from('particulares')
-    .select('id,url,fuente,titulo,direccion,precio,m2,habitaciones,banos,zona,barrio,municipio,contacto_nombre,telefono,email,descripcion,imagen_url,estado,ultimo_contacto_at,proxima_alarma_at,activo,created_at')
-    .order('created_at', { ascending:false });
+  const [partRes] = await Promise.all([
+    window.nhSupabase
+      .from('particulares')
+      .select('id,url,fuente,titulo,direccion,precio,m2,habitaciones,banos,zona,barrio,municipio,contacto_nombre,telefono,email,descripcion,imagen_url,estado,ultimo_contacto_at,proxima_alarma_at,activo,created_at')
+      .order('created_at', { ascending:false }),
+    loadVendSeguimientoOps(),
+  ]);
+  const { data, error } = partRes;
   if(error){
     console.error('loadParticulares:', error);
     nhToast('No se pudieron cargar particulares: '+error.message, 'error');
@@ -5063,10 +6184,13 @@ async function loadParticulares(){
 
 function filterParticulares(f){
   _partFilter = f;
-  ['todos','alarmas','nuevo','contactado','captado'].forEach(k=>{
+  ['operaciones','todos','alarmas','nuevo','contactado','captado'].forEach(k=>{
     document.getElementById('part-tab-'+k)?.classList.toggle('active', k===f);
   });
-  renderParticulares();
+  const partWrap = document.getElementById('part-particulares-wrap');
+  if(partWrap) partWrap.style.display = f === 'operaciones' ? 'none' : 'block';
+  renderVendSeguimientoSection();
+  if(f !== 'operaciones') renderParticulares();
 }
 
 function renderPartEstadoBar(id, estado){
@@ -5129,8 +6253,9 @@ async function admWhatsAppParticularTemplate(id, templateKey){
   const msg = previewPartWaTemplate(templateKey, p);
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
   const label = PART_WA_TPL_LABELS[templateKey] || templateKey;
-  await logParticularSeguimientoAuto(id, `WhatsApp (${label}) enviado.`);
-  if(_partDetailId === id) await loadPartSeguimientos(id);
+  await markParticularContactado(id, `WhatsApp (${label}) enviado.`);
+  await loadParticulares();
+  if(_partCardModalId === id) await refreshPartCardModal();
 }
 
 async function admWhatsAppParticular(id){
@@ -5139,8 +6264,9 @@ async function admWhatsAppParticular(id){
   const phone = normalizePhoneWa(p.telefono);
   if(!phone){ nhToast('Teléfono no válido.', 'error'); return; }
   window.open(`https://wa.me/${phone}?text=${encodeURIComponent(PART_WA_NORMAL_MSG)}`, '_blank', 'noopener');
-  await logParticularSeguimientoAuto(id, 'WhatsApp (contacto normal) enviado.');
-  if(_partDetailId === id) await loadPartSeguimientos(id);
+  await markParticularContactado(id, 'WhatsApp (contacto normal) enviado.');
+  await loadParticulares();
+  if(_partCardModalId === id) await refreshPartCardModal();
 }
 
 function admCallParticular(id){
@@ -5416,6 +6542,117 @@ function closePartDetail(){
   document.getElementById('part-detail-wrap').style.display = 'none';
 }
 
+function buildPartCardDetailHtml(p){
+  const alarm = partNeedsAlarm(p);
+  const fields = [
+    ['Estado', PART_ESTADOS[p.estado] || p.estado],
+    ['Fuente', PART_FUENTES[p.fuente] || p.fuente],
+    ['Precio', p.precio != null ? Number(p.precio).toLocaleString('es-ES') + ' €' : '—'],
+    ['m²', p.m2 || '—'],
+    ['Habitaciones', p.habitaciones || '—'],
+    ['Baños', p.banos || '—'],
+    ['Zona', [p.zona, p.barrio, p.municipio].filter(Boolean).join(', ') || '—'],
+    ['Contacto', p.contacto_nombre || '—'],
+    ['Teléfono', p.telefono || '—'],
+    ['Email', p.email || '—'],
+  ];
+  return `
+    <div style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem">
+      ${PART_FUENTES[p.fuente]||p.fuente} · ${PART_ESTADOS[p.estado]||p.estado}
+      ${alarm ? ' · <span class="adm-alarm-badge">⏰ Alarma contacto</span>' : ''}
+      ${p.ultimo_contacto_at ? '<br>Último contacto: '+new Date(p.ultimo_contacto_at).toLocaleString('es-ES') : '<br>Sin contacto registrado'}
+      ${p.proxima_alarma_at ? ' · Próxima alarma: '+new Date(p.proxima_alarma_at).toLocaleString('es-ES') : ''}
+      ${p.url ? '<br><a href="'+dashEsc(p.url)+'" target="_blank" rel="noopener" style="color:var(--gold)">Ver anuncio original (Kelify/portal)</a>' : ''}
+    </div>
+    <div class="part-card-detail-grid">${fields.map(([k,v]) => `<div><span>${k}</span><strong>${dashEsc(String(v))}</strong></div>`).join('')}</div>
+    ${p.descripcion ? `<div style="font-size:.78rem;color:var(--muted);margin:.5rem 0;padding:.65rem;background:var(--surface2);border-radius:6px;line-height:1.5">${dashEsc(p.descripcion)}</div>` : ''}
+    <div class="pub-quick-actions" style="margin:.75rem 0" onclick="event.stopPropagation()">${partWaButtonsHtml(p)}</div>
+    <div id="part-card-estado-bar" style="margin-bottom:1rem">${renderPartEstadoBar(p.id, p.estado)}</div>
+    <div class="wiz-section-label">Nuevo comentario de seguimiento</div>
+    <div class="adm-field adm-form-col-full">
+      <textarea id="part-card-seg-comentario" rows="3" placeholder="Llamada, WhatsApp, visita, negociación…"></textarea>
+    </div>
+    <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="savePartCardSeguimiento()">Guardar seguimiento</button>
+    <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">Cada seguimiento registra fecha y hora, actualiza el último contacto y reprograma la alarma.</p>
+    <div class="wiz-section-label" style="margin-top:1.25rem">Historial</div>
+    <div id="part-card-seg-timeline" class="seg-timeline"><p class="text-muted">Cargando…</p></div>`;
+}
+
+async function loadPartCardSeguimientos(particularId){
+  const box = document.getElementById('part-card-seg-timeline');
+  if(!box) return;
+  const { data, error } = await window.nhSupabase
+    .from('particulares_seguimientos')
+    .select('id,comentario,created_at')
+    .eq('particular_id', particularId)
+    .order('created_at', { ascending:false });
+  if(error || !data?.length){
+    box.innerHTML = '<p class="text-muted">Sin entradas de seguimiento aún.</p>';
+    return;
+  }
+  box.innerHTML = data.map(s => `
+    <div class="seg-item">
+      <time>${new Date(s.created_at).toLocaleString('es-ES')}</time>
+      <p>${dashEsc(String(s.comentario))}</p>
+    </div>`).join('');
+}
+
+async function refreshPartCardModal(){
+  if(!_partCardModalId) return;
+  const p = _partData.find(x => x.id === _partCardModalId);
+  if(!p) return;
+  document.getElementById('part-card-title').textContent = p.titulo || p.direccion || 'Particular';
+  document.getElementById('part-card-body').innerHTML = buildPartCardDetailHtml(p);
+  await loadPartCardSeguimientos(_partCardModalId);
+}
+
+async function openPartCardModal(id){
+  _partCardModalId = id;
+  const p = _partData.find(x => x.id === id);
+  if(!p) return;
+  document.getElementById('part-card-kicker').textContent = PART_FUENTES[p.fuente] || 'Seguimiento';
+  document.getElementById('part-card-title').textContent = p.titulo || p.direccion || 'Particular';
+  document.getElementById('part-card-body').innerHTML = buildPartCardDetailHtml(p);
+  document.getElementById('part-card-foot').innerHTML = `
+    <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="publishFromParticular('${p.id}');closePartCardModal()">Publicar inmueble</button>
+    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editParticular('${p.id}');closePartCardModal()">Editar ficha</button>
+    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closePartCardModal()">Cerrar</button>`;
+  await loadPartCardSeguimientos(id);
+  const m = document.getElementById('part-card-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function closePartCardModal(){
+  _partCardModalId = null;
+  const m = document.getElementById('part-card-modal');
+  if(m){ m.classList.remove('open'); m.hidden = true; }
+  document.body.style.overflow = '';
+}
+window.closePartCardModal = closePartCardModal;
+
+async function savePartCardSeguimiento(){
+  const id = _partCardModalId;
+  const comentario = document.getElementById('part-card-seg-comentario')?.value.trim();
+  if(!id || !comentario){ nhToast('Escribe un comentario de seguimiento.', 'info'); return; }
+  const now = new Date().toISOString();
+  const { error: err1 } = await window.nhSupabase.from('particulares_seguimientos').insert({ particular_id:id, comentario });
+  if(err1){ nhToast('Error: '+err1.message, 'error'); return; }
+  const p = _partData.find(x => x.id === id);
+  const nuevoEstado = p?.estado === 'nuevo' ? 'contactado' : p?.estado;
+  const { error: err2 } = await window.nhSupabase.from('particulares').update({
+    ultimo_contacto_at: now,
+    proxima_alarma_at: partAlarmDate(now),
+    estado: nuevoEstado,
+  }).eq('id', id);
+  if(err2){ nhToast('Seguimiento guardado pero error al actualizar alarma: '+err2.message, 'info'); }
+  else nhToast(`Seguimiento registrado. Alarma +${getPartAlarmDays()} días.`, 'success');
+  await loadParticulares();
+  await refreshPartCardModal();
+}
+window.savePartCardSeguimiento = savePartCardSeguimiento;
+
 async function loadPartSeguimientos(particularId){
   const box = document.getElementById('part-seg-timeline');
   const { data, error } = await window.nhSupabase
@@ -5449,13 +6686,17 @@ async function savePartSeguimiento(){
     estado: nuevoEstado,
   }).eq('id', id);
   if(err2){ nhToast('Seguimiento guardado pero error al actualizar alarma: '+err2.message, 'info'); }
-  else nhToast('Seguimiento registrado. Alarma +7 días.', 'success');
+  else nhToast(`Seguimiento registrado. Alarma +${getPartAlarmDays()} días.`, 'success');
   document.getElementById('part-seg-comentario').value = '';
   await loadParticulares();
   await openPartDetail(id);
 }
 
 function renderParticulares(){
+  if(_partFilter === 'operaciones'){
+    renderVendSeguimientoSection();
+    return;
+  }
   const grid = document.getElementById('part-grid');
   let tabList = _partData;
   if(_partFilter === 'alarmas') tabList = tabList.filter(partNeedsAlarm);
@@ -5472,8 +6713,8 @@ function renderParticulares(){
   grid.innerHTML = list.map(p => {
     const alarm = partNeedsAlarm(p);
     return `
-    <div class="pub-card">
-      <div class="pub-body" style="padding-top:.9rem">
+    <div class="pub-card pub-card-clickable" onclick="openPartCardModal('${p.id}')">
+      <div class="pub-body pub-body-clickzone" style="padding-top:.9rem">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.35rem;margin-bottom:.4rem">
           <div class="pub-ref">${PART_FUENTES[p.fuente]||p.fuente}</div>
           <div style="display:flex;gap:.35rem;flex-wrap:wrap">
@@ -5495,15 +6736,15 @@ function renderParticulares(){
         </div>
         ${p.created_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">${admAltaWhenHtml(p.created_at, { label: 'Importado' })}</div>` : ''}
         ${p.ultimo_contacto_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">Último contacto: ${new Date(p.ultimo_contacto_at).toLocaleString('es-ES')}</div>` : `<div style="font-size:.68rem;color:var(--orange);margin-top:.35rem">Sin contacto registrado</div>`}
-        <div class="pub-quick-actions">
+        <div class="pub-quick-actions" onclick="event.stopPropagation()">
           ${partWaButtonsHtml(p)}
         </div>
-        <div class="pub-actions" style="margin-top:.6rem">
+        <div class="pub-actions" style="margin-top:.6rem" onclick="event.stopPropagation()">
           <button class="pub-btn-publish" onclick="publishFromParticular('${p.id}')">Publicar</button>
-          <button class="pub-btn-web" onclick="openPartDetail('${p.id}')">Seguimiento</button>
+          <button class="pub-btn-web" onclick="openPartCardModal('${p.id}')">Seguimiento</button>
           <button class="pub-btn-edit" onclick="editParticular('${p.id}')">Editar</button>
         </div>
-        ${renderPartEstadoBar(p.id, p.estado)}
+        <div onclick="event.stopPropagation()">${renderPartEstadoBar(p.id, p.estado)}</div>
       </div>
     </div>`;
   }).join('');
@@ -5521,6 +6762,8 @@ window.filterParticulares = filterParticulares;
 window.importParticularUrl = importParticularUrl;
 window.openPartDetail = openPartDetail;
 window.closePartDetail = closePartDetail;
+window.openPartCardModal = openPartCardModal;
+window.closePartCardModal = closePartCardModal;
 window.savePartSeguimiento = savePartSeguimiento;
 window.admWhatsAppParticular = admWhatsAppParticular;
 window.admWhatsAppParticularTemplate = admWhatsAppParticularTemplate;
@@ -5606,7 +6849,36 @@ const FIN_CATEGORIAS = {
 let _finData = [];
 let _finView = { year: new Date().getFullYear(), month: new Date().getMonth() };
 let _finSelectedDay = null;
+let _prevSelectedDay = null;
 let _finTipo = 'gasto';
+let _finSubTab = 'caja';
+let _prevProyData = [];
+let _prevVendedores = [];
+let _prevCompradores = [];
+let _prevModalTab = 'vendedores';
+let _prevModalDraft = { vendedores: {}, compradores: {} };
+
+function prevVendedorIncluido(v){
+  if(!vendOperacionActiva(v)) return false;
+  if(v.incluir_prevision === false) return false;
+  const eff = vendHonorariosEfectivos(v);
+  if(eff.honorarios_pagado) return false;
+  return (Number(eff.honorarios) || 0) > 0;
+}
+
+function finSubTab(tab){
+  _finSubTab = tab === 'prevision' ? 'prevision' : 'caja';
+  document.getElementById('fin-subtab-caja')?.classList.toggle('active', _finSubTab === 'caja');
+  document.getElementById('fin-subtab-prevision')?.classList.toggle('active', _finSubTab === 'prevision');
+  document.getElementById('fin-pane-caja')?.classList.toggle('active', _finSubTab === 'caja');
+  document.getElementById('fin-pane-prevision')?.classList.toggle('active', _finSubTab === 'prevision');
+  if(_finSubTab === 'caja') loadFinanzas();
+  else loadFinPrevision();
+}
+
+function loadFinSection(){
+  finSubTab(_finSubTab || 'caja');
+}
 
 function finFmtEuro(n){
   if(n == null || n === '' || isNaN(n)) return '0 €';
@@ -5660,19 +6932,41 @@ function finChangeMonth(delta){
   if(_finView.month > 11){ _finView.month = 0; _finView.year++; }
   if(_finView.month < 0){ _finView.month = 11; _finView.year--; }
   _finSelectedDay = null;
-  loadFinanzas();
+  _prevSelectedDay = null;
+  if(_finSubTab === 'prevision') loadFinPrevision();
+  else loadFinanzas();
 }
 
 function finGoToday(){
   const t = new Date();
   _finView = { year: t.getFullYear(), month: t.getMonth() };
   _finSelectedDay = null;
-  loadFinanzas();
+  _prevSelectedDay = null;
+  if(_finSubTab === 'prevision') loadFinPrevision();
+  else loadFinanzas();
 }
 
 function finSelectDay(iso){
+  if(_finSubTab === 'prevision'){ prevSelectDay(iso); return; }
   _finSelectedDay = _finSelectedDay === iso ? null : iso;
   renderFinanzas();
+}
+
+function prevSelectDay(iso){
+  _prevSelectedDay = _prevSelectedDay === iso ? null : iso;
+  if(_prevSelectedDay) document.getElementById('prev-fecha').value = _prevSelectedDay;
+  renderPrevCalendar();
+  renderPrevVendedoresList();
+  renderPrevProyList();
+  renderPrevDayDetail();
+}
+
+function prevClearDayFilter(){
+  _prevSelectedDay = null;
+  renderPrevCalendar();
+  renderPrevVendedoresList();
+  renderPrevProyList();
+  renderPrevDayDetail();
 }
 
 function finClearDayFilter(){
@@ -5909,6 +7203,378 @@ window.saveFinMovimiento = saveFinMovimiento;
 window.resetFinForm = resetFinForm;
 window.editFinMovimiento = editFinMovimiento;
 window.deleteFinMovimiento = deleteFinMovimiento;
+window.finSubTab = finSubTab;
+
+/* ── Finanzas · Previsión ─────────────────────────────────────── */
+function resetPrevForm(){
+  document.getElementById('prev-edit-id').value = '';
+  document.getElementById('prev-form-title').textContent = 'Nueva proyección manual';
+  document.getElementById('prev-concepto').value = '';
+  document.getElementById('prev-importe').value = '';
+  document.getElementById('prev-notas').value = '';
+  const { year, month } = _finView;
+  if(_prevSelectedDay){
+    document.getElementById('prev-fecha').value = _prevSelectedDay;
+  } else {
+    const today = new Date();
+    const d = today.getFullYear() === year && today.getMonth() === month ? today.getDate() : 1;
+    document.getElementById('prev-fecha').value = `${finMonthKey(year, month)}-${String(d).padStart(2,'0')}`;
+  }
+  document.getElementById('prev-form-err').style.display = 'none';
+}
+
+function prevInMonth(iso){
+  if(!iso) return false;
+  const { start, end } = finMonthBounds(_finView.year, _finView.month);
+  return iso >= start && iso <= end;
+}
+
+function prevByDayMap(){
+  const map = {};
+  const add = (iso, amt, item) => {
+    if(!iso || !prevInMonth(iso)) return;
+    if(!map[iso]) map[iso] = { operaciones: 0, manual: 0, total: 0, items: [] };
+    const n = Number(amt) || 0;
+    map[iso].total += n;
+    map[iso].items.push(item);
+    if(item.tipo === 'manual') map[iso].manual += n;
+    else map[iso].operaciones += n;
+  };
+  _prevProyData.forEach(p => add(p.fecha_prevista, p.importe, { tipo: 'manual', id: p.id, label: p.concepto, importe: p.importe }));
+  _prevVendedores.filter(prevVendedorIncluido).forEach(v => {
+    if(!v.fecha_prevista) return;
+    const hon = vendHonorariosEfectivos(v).honorarios;
+    add(v.fecha_prevista, hon, { tipo: 'operacion', id: v.id, label: v.nombre + (v.inmueble_ref ? ' · ' + v.inmueble_ref : ''), importe: hon });
+  });
+  return map;
+}
+
+function renderPrevCalendar(){
+  const grid = document.getElementById('prev-cal-grid');
+  const label = document.getElementById('fin-month-label');
+  if(!grid) return;
+  const { year, month } = _finView;
+  if(label) label.textContent = finMonthLabel(year, month);
+  const { lastDay } = finMonthBounds(year, month);
+  const firstDow = (new Date(year, month, 1).getDay() + 6) % 7;
+  const dayMap = prevByDayMap();
+  const todayIso = (() => {
+    const t = new Date();
+    return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+  })();
+  let html = '';
+  for(let i = 0; i < firstDow; i++) html += '<div class="fin-cal-day other"></div>';
+  for(let d = 1; d <= lastDay; d++){
+    const iso = `${finMonthKey(year, month)}-${String(d).padStart(2,'0')}`;
+    const info = dayMap[iso];
+    const cls = ['fin-cal-day'];
+    if(iso === todayIso) cls.push('today');
+    if(iso === _prevSelectedDay) cls.push('selected');
+    html += `<button type="button" class="${cls.join(' ')}" onclick="prevSelectDay('${iso}')">
+      <span class="fin-cal-day-num">${d}</span>
+      ${info?.operaciones ? `<span class="fin-cal-day-op">+${finFmtEuro(info.operaciones).replace(/\s/g,'')}</span>` : ''}
+      ${info?.manual ? `<span class="fin-cal-day-manual">+${finFmtEuro(info.manual).replace(/\s/g,'')}</span>` : ''}
+      ${info?.total && !info.operaciones && !info.manual ? `<span class="fin-cal-day-ingreso">+${finFmtEuro(info.total).replace(/\s/g,'')}</span>` : ''}
+    </button>`;
+  }
+  grid.innerHTML = html;
+}
+
+function renderPrevDayDetail(){
+  const box = document.getElementById('prev-day-detail');
+  const clearBtn = document.getElementById('prev-clear-day');
+  const title = document.getElementById('prev-list-title');
+  if(!box) return;
+  if(!_prevSelectedDay){
+    box.style.display = 'none';
+    if(clearBtn) clearBtn.style.display = 'none';
+    if(title) title.textContent = 'Ingresos previstos del mes';
+    return;
+  }
+  const map = prevByDayMap();
+  const info = map[_prevSelectedDay];
+  if(clearBtn) clearBtn.style.display = 'inline-flex';
+  if(title) title.textContent = 'Ingresos del ' + new Date(_prevSelectedDay + 'T12:00:00').toLocaleDateString('es-ES', { day:'numeric', month:'long' });
+  if(!info?.items?.length){
+    box.style.display = 'block';
+    box.innerHTML = '<p class="text-muted" style="margin:0">Sin ingresos previstos este día. Añade una proyección manual o asigna fecha a una operación.</p>';
+    return;
+  }
+  box.style.display = 'block';
+  box.innerHTML = `<strong style="color:#4ade80">+${finFmtEuro(info.total)}</strong> previsto(s)<ul style="margin:.5rem 0 0;padding-left:1.1rem">${info.items.map(it =>
+    `<li>${it.tipo === 'operacion' ? '<span style="color:var(--gold-light)">Op.</span>' : '<span style="color:#4ade80">Manual</span>'} ${dashEsc(it.label)} — <strong>${finFmtEuro(it.importe)}</strong></li>`
+  ).join('')}</ul>`;
+}
+
+async function savePrevVendedorFecha(id, fecha){
+  const { error } = await window.nhSupabase.from('vendedores').update({ fecha_prevista: fecha || null }).eq('id', id);
+  if(error){
+    nhToast(error.message.includes('fecha_prevista') ? 'Ejecuta migración 036 en Supabase.' : error.message, 'error');
+    return;
+  }
+  const v = _prevVendedores.find(x => x.id === id);
+  if(v) v.fecha_prevista = fecha || null;
+  renderPrevCalendar();
+  renderPrevStats();
+  renderPrevDayDetail();
+  nhToast('Fecha prevista guardada', 'success');
+}
+
+function renderPrevVendedoresList(){
+  const el = document.getElementById('prev-vendedores-list');
+  if(!el) return;
+  let pending = _prevVendedores.filter(prevVendedorIncluido);
+  if(_prevSelectedDay) pending = pending.filter(v => v.fecha_prevista === _prevSelectedDay);
+  if(!pending.length){
+    el.innerHTML = _prevSelectedDay
+      ? '<p class="text-muted">Ninguna operación con ingreso previsto este día.</p>'
+      : '<p class="text-muted">Ningún vendedor incluido en previsión. Usa «Gestionar» para seleccionarlos.</p>';
+    return;
+  }
+  el.innerHTML = pending.map(v => {
+    const hon = vendHonorariosEfectivos(v).honorarios;
+    const fp = v.fecha_prevista || '';
+    return `<div class="fin-prev-auto-row">
+      <span><strong>${dashEsc(v.nombre)}</strong>${v.inmueble_ref ? ' · '+dashEsc(v.inmueble_ref) : ''}</span>
+      <span style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:flex-end">
+        <input type="date" class="adm-input-sm" value="${fp}" title="Fecha prevista de cobro" onchange="savePrevVendedorFecha('${v.id}', this.value)" style="font-size:.72rem;padding:.25rem .4rem;max-width:9.5rem"/>
+        <span style="color:#4ade80;font-weight:600">${finFmtEuro(hon)}</span>
+        <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="excludePrevVendedor('${v.id}')" title="Quitar de previsión">✕</button>
+      </span>
+    </div>`;
+  }).join('');
+}
+
+function renderPrevCompradoresList(){ /* solo en modal */ }
+
+async function excludePrevVendedor(id){
+  const { error } = await window.nhSupabase.from('vendedores').update({ incluir_prevision: false }).eq('id', id);
+  if(error){
+    nhToast(error.message.includes('incluir_prevision') ? 'Ejecuta migración 033 en Supabase.' : error.message, 'error');
+    return;
+  }
+  nhToast('Vendedor excluido de la previsión', 'success');
+  loadFinPrevision();
+}
+
+function renderPrevProyList(){
+  const el = document.getElementById('prev-proy-list');
+  if(!el) return;
+  let list = _prevProyData;
+  if(_prevSelectedDay) list = list.filter(p => p.fecha_prevista === _prevSelectedDay);
+  if(!list.length){
+    el.innerHTML = '<p class="text-muted">' + (_prevSelectedDay ? 'Sin proyecciones manuales este día.' : 'Sin proyecciones manuales este mes. Añade estimaciones abajo.') + '</p>';
+    return;
+  }
+  el.innerHTML = `<table class="adm-table"><thead><tr><th>Fecha prevista</th><th>Concepto</th><th>Importe</th><th></th></tr></thead><tbody>${
+    list.map(p => `<tr>
+      <td>${new Date(p.fecha_prevista + 'T12:00:00').toLocaleDateString('es-ES')}</td>
+      <td>${dashEsc(p.concepto)}${p.notas ? `<br><small class="text-muted">${dashEsc(p.notas)}</small>` : ''}</td>
+      <td class="fin-mov-importe ingreso">+${finFmtEuro(p.importe)}</td>
+      <td style="white-space:nowrap">
+        <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editFinProyeccion('${p.id}')">Editar</button>
+        <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteFinProyeccion('${p.id}')">Eliminar</button>
+      </td>
+    </tr>`).join('')
+  }</tbody></table>`;
+}
+
+function renderPrevStats(){
+  const vendTotal = _prevVendedores.filter(prevVendedorIncluido).reduce((s, v) => s + (Number(vendHonorariosEfectivos(v).honorarios) || 0), 0);
+  const manualTotal = _prevProyData.reduce((s, p) => s + (Number(p.importe) || 0), 0);
+  const vendN = _prevVendedores.filter(prevVendedorIncluido).length;
+  const dayMap = prevByDayMap();
+  const calTotal = Object.values(dayMap).reduce((s, d) => s + d.total, 0);
+  document.getElementById('prev-st-vendedores').textContent = finFmtEuro(vendTotal);
+  document.getElementById('prev-st-manual').textContent = finFmtEuro(manualTotal);
+  document.getElementById('prev-st-total').textContent = finFmtEuro(calTotal || vendTotal + manualTotal);
+  document.getElementById('prev-st-vendedores-hint').textContent = vendN + ' operación(es) en cartera';
+  document.getElementById('prev-st-manual-hint').textContent = _prevProyData.length + ' manual(es) · ' + finMonthLabel(_finView.year, _finView.month);
+  const calHint = document.getElementById('prev-st-cal-hint');
+  if(calHint) calHint.textContent = calTotal ? finFmtEuro(calTotal) + ' con fecha en calendario' : 'Asigna fechas para ver en calendario';
+}
+
+async function loadFinPrevision(){
+  const label = document.getElementById('fin-month-label');
+  if(label) label.textContent = finMonthLabel(_finView.year, _finView.month);
+  const { start, end } = finMonthBounds(_finView.year, _finView.month);
+
+  const [vendRes, compRes, proyRes] = await Promise.all([
+    window.nhSupabase.from('vendedores').select('id,nombre,inmueble_ref,honorarios,honorarios_comprador,honorarios_pagado,honorarios_pago_por,activo,estado_operacion,incluir_prevision,fecha_prevista,comprador:compradores(id,nombre,honorarios,honorarios_pagado,honorarios_transferencia_pendiente)').order('nombre'),
+    window.nhSupabase.from('compradores').select('id,nombre,zona_buscada,honorarios,honorarios_pagado,activo,incluir_prevision').eq('activo', true).order('nombre'),
+    window.nhSupabase.from('finanzas_proyecciones').select('id,concepto,importe,fecha_prevista,notas,created_at').gte('fecha_prevista', start).lte('fecha_prevista', end).order('fecha_prevista'),
+  ]);
+
+  _prevVendedores = (vendRes.data || []).map(v => ({ ...v, incluir_prevision: v.incluir_prevision !== false }));
+  _prevCompradores = compRes.data || [];
+  if(proyRes.error){
+    _prevProyData = [];
+    document.getElementById('prev-proy-list').innerHTML = `<p class="text-muted">No se pudieron cargar proyecciones.${proyRes.error.message.includes('finanzas_proyecciones') ? '<br><small>Ejecuta <code>032_finanzas_proyecciones.sql</code> en Supabase.</small>' : ''}</p>`;
+  } else {
+    _prevProyData = proyRes.data || [];
+  }
+
+  renderPrevStats();
+  renderPrevCalendar();
+  renderPrevDayDetail();
+  renderPrevVendedoresList();
+  renderPrevProyList();
+  if(!document.getElementById('prev-edit-id').value) resetPrevForm();
+}
+
+function prevClientModalTab(tab){
+  _prevModalTab = tab === 'compradores' ? 'compradores' : 'vendedores';
+  document.getElementById('prev-modal-tab-vend')?.classList.toggle('active', _prevModalTab === 'vendedores');
+  document.getElementById('prev-modal-tab-comp')?.classList.toggle('active', _prevModalTab === 'compradores');
+  document.getElementById('prev-modal-vendedores').style.display = _prevModalTab === 'vendedores' ? 'block' : 'none';
+  document.getElementById('prev-modal-compradores').style.display = _prevModalTab === 'compradores' ? 'block' : 'none';
+}
+
+function renderPrevClientModalLists(){
+  const vendEl = document.getElementById('prev-modal-vendedores');
+  const compEl = document.getElementById('prev-modal-compradores');
+  if(vendEl){
+    const rows = _prevVendedores.filter(v => {
+      const eff = vendHonorariosEfectivos(v);
+      return !eff.honorarios_pagado && (Number(eff.honorarios) || 0) > 0;
+    });
+    vendEl.innerHTML = rows.length ? rows.map(v => {
+      const eff = vendHonorariosEfectivos(v);
+      const checked = _prevModalDraft.vendedores[v.id] !== undefined ? _prevModalDraft.vendedores[v.id] : v.incluir_prevision !== false;
+      return `<label class="fin-prev-client-row">
+        <input type="checkbox" ${checked ? 'checked' : ''} onchange="prevModalToggle('vendedores','${v.id}',this.checked)"/>
+        <div class="fin-prev-client-main">
+          <strong>${dashEsc(v.nombre)}</strong>${v.inmueble_ref ? ' · '+dashEsc(v.inmueble_ref) : ''}
+          ${eff.honorarios_pagado ? ' · <span class="text-muted">Pagado</span>' : ''}
+        </div>
+        <span style="color:#4ade80;font-weight:600">${finFmtEuro(eff.honorarios)}</span>
+        <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="event.preventDefault();closePrevClientModal();openVendModal('${v.id}')">Ver</button>
+      </label>`;
+    }).join('') : '<p class="text-muted">No hay vendedores con honorarios pendientes.</p>';
+  }
+  if(compEl){
+    const rows = _prevCompradores.filter(c => c.activo !== false && !c.honorarios_pagado && (Number(c.honorarios)||0) > 0);
+    compEl.innerHTML = rows.length ? rows.map(c => {
+      const checked = _prevModalDraft.compradores[c.id] !== undefined ? _prevModalDraft.compradores[c.id] : c.incluir_prevision === true;
+      return `<label class="fin-prev-client-row">
+        <input type="checkbox" ${checked ? 'checked' : ''} onchange="prevModalToggle('compradores','${c.id}',this.checked)"/>
+        <div class="fin-prev-client-main">
+          <strong>${dashEsc(c.nombre)}</strong>${c.zona_buscada ? ' · '+dashEsc(c.zona_buscada) : ''}
+        </div>
+        <span style="color:var(--gold-light);font-weight:600">${finFmtEuro(c.honorarios)}</span>
+        <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="event.preventDefault();closePrevClientModal();switchSection('compradores')">Ver</button>
+      </label>`;
+    }).join('') : '<p class="text-muted">No hay compradores con honorarios pendientes.</p>';
+  }
+}
+
+function openPrevClientModal(){
+  _prevModalDraft = { vendedores: {}, compradores: {} };
+  prevClientModalTab('vendedores');
+  renderPrevClientModalLists();
+  const modal = document.getElementById('prev-client-modal');
+  modal.hidden = false;
+  modal.classList.add('open');
+}
+
+function closePrevClientModal(){
+  const modal = document.getElementById('prev-client-modal');
+  modal.classList.remove('open');
+  modal.hidden = true;
+}
+
+function prevModalToggle(tipo, id, checked){
+  if(tipo === 'compradores') _prevModalDraft.compradores[id] = checked;
+  else _prevModalDraft.vendedores[id] = checked;
+}
+
+async function savePrevClientSelection(){
+  const updates = [];
+  for(const [id, val] of Object.entries(_prevModalDraft.vendedores)){
+    updates.push(window.nhSupabase.from('vendedores').update({ incluir_prevision: val }).eq('id', id));
+  }
+  for(const [id, val] of Object.entries(_prevModalDraft.compradores)){
+    updates.push(window.nhSupabase.from('compradores').update({ incluir_prevision: val }).eq('id', id));
+  }
+  if(!updates.length){ closePrevClientModal(); return; }
+  const results = await Promise.all(updates);
+  const err = results.find(r => r.error)?.error;
+  if(err){
+    nhToast(err.message.includes('incluir_prevision') ? 'Ejecuta migración 033 en Supabase.' : err.message, 'error');
+    return;
+  }
+  nhToast('Selección guardada', 'success');
+  closePrevClientModal();
+  loadFinPrevision();
+}
+
+async function saveFinProyeccion(){
+  const errEl = document.getElementById('prev-form-err');
+  errEl.style.display = 'none';
+  const concepto = document.getElementById('prev-concepto').value.trim();
+  const importe = parseFloat(String(document.getElementById('prev-importe').value).replace(',', '.'));
+  const fecha = document.getElementById('prev-fecha').value;
+  if(!concepto){ errEl.textContent = 'El concepto es obligatorio.'; errEl.style.display = 'block'; return; }
+  if(!fecha){ errEl.textContent = 'La fecha prevista es obligatoria.'; errEl.style.display = 'block'; return; }
+  if(!Number.isFinite(importe) || importe <= 0){ errEl.textContent = 'Indica un importe válido.'; errEl.style.display = 'block'; return; }
+  const payload = {
+    concepto,
+    importe: Math.round(importe * 100) / 100,
+    fecha_prevista: fecha,
+    notas: document.getElementById('prev-notas').value.trim() || null,
+  };
+  const editId = document.getElementById('prev-edit-id').value;
+  let error;
+  if(editId){
+    ({ error } = await window.nhSupabase.from('finanzas_proyecciones').update(payload).eq('id', editId));
+  } else {
+    ({ error } = await window.nhSupabase.from('finanzas_proyecciones').insert(payload));
+  }
+  if(error){
+    errEl.textContent = error.message.includes('finanzas_proyecciones') ? 'Ejecuta migración 032 en Supabase.' : error.message;
+    errEl.style.display = 'block';
+    return;
+  }
+  nhToast(editId ? 'Proyección actualizada' : 'Proyección guardada', 'success');
+  const [y, mo] = fecha.split('-').map(Number);
+  if(y && mo) _finView = { year: y, month: mo - 1 };
+  resetPrevForm();
+  loadFinPrevision();
+}
+
+function editFinProyeccion(id){
+  const p = _prevProyData.find(x => x.id === id);
+  if(!p) return;
+  document.getElementById('prev-edit-id').value = id;
+  document.getElementById('prev-form-title').textContent = 'Editar proyección';
+  document.getElementById('prev-concepto').value = p.concepto || '';
+  document.getElementById('prev-importe').value = p.importe ?? '';
+  document.getElementById('prev-fecha').value = p.fecha_prevista || '';
+  document.getElementById('prev-notas').value = p.notas || '';
+  document.getElementById('prev-concepto').scrollIntoView({ behavior:'smooth' });
+}
+
+async function deleteFinProyeccion(id){
+  if(!confirm('¿Eliminar esta proyección?')) return;
+  const { error } = await window.nhSupabase.from('finanzas_proyecciones').delete().eq('id', id);
+  if(error){ nhToast('Error: '+error.message, 'error'); return; }
+  nhToast('Proyección eliminada', 'success');
+  loadFinPrevision();
+}
+
+window.saveFinProyeccion = saveFinProyeccion;
+window.resetPrevForm = resetPrevForm;
+window.editFinProyeccion = editFinProyeccion;
+window.deleteFinProyeccion = deleteFinProyeccion;
+window.openPrevClientModal = openPrevClientModal;
+window.closePrevClientModal = closePrevClientModal;
+window.prevClientModalTab = prevClientModalTab;
+window.prevModalToggle = prevModalToggle;
+window.savePrevClientSelection = savePrevClientSelection;
+window.excludePrevVendedor = excludePrevVendedor;
+window.prevSelectDay = prevSelectDay;
+window.prevClearDayFilter = prevClearDayFilter;
+window.savePrevVendedorFecha = savePrevVendedorFecha;
 
 /* ── Newsletter ─────────────────────────────────────────────────── */
 async function loadNewsletter(){
