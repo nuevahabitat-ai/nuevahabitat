@@ -84,6 +84,34 @@ window.nhMatching = {
     return 4;
   },
 
+  parsePlantaNum(planta) {
+    const s = this.normalize(String(planta || ''));
+    if (!s) return null;
+    if (/^(bajo|bajos|planta baja|pb)\b/.test(s) || s === '0') return 0;
+    if (/entresuelo|entre\s*suelo/.test(s)) return 1;
+    if (/atico|ático|attic/.test(s)) return 10;
+    const ord = s.match(/(\d+)\s*(?:ª|a|er|do|ro|th)?/);
+    if (ord) return parseInt(ord[1], 10);
+    const any = s.match(/(\d+)/);
+    return any ? parseInt(any[1], 10) : null;
+  },
+
+  scoreAscensorPlanta(comprador, inmueble) {
+    if (comprador.ascensor) {
+      if (!inmueble.ascensor) return { reject: true, reason: 'Sin ascensor' };
+      return { score: 8, reason: 'Con ascensor' };
+    }
+    if (inmueble.ascensor) return { score: 5, reason: 'Con ascensor (no exigido)' };
+    const max = comprador.planta_max_sin_ascensor;
+    if (max == null || max === '') return { score: 3, reason: 'Sin ascensor OK' };
+    const maxN = Number(max);
+    if (!Number.isFinite(maxN)) return { score: 3, reason: 'Sin ascensor OK' };
+    const floor = this.parsePlantaNum(inmueble.planta);
+    if (floor == null) return { score: 2, reason: 'Planta no indicada' };
+    if (floor <= maxN) return { score: 5, reason: `Planta ${floor}ª (máx. ${maxN}ª sin ascensor)` };
+    return { reject: true, reason: 'Planta demasiado alta sin ascensor' };
+  },
+
   scoreZona(zonaBuscada, barrio, municipio) {
     if (!zonaBuscada || !String(zonaBuscada).trim()) return 15;
     if (!this.zonaCoincide(zonaBuscada, barrio, municipio)) return -999;
@@ -126,13 +154,10 @@ window.nhMatching = {
       score += 5;
     }
 
-    if (comprador.ascensor && !inmueble.ascensor) {
-      return { match: false, score: 0, reasons: ['Sin ascensor'] };
-    }
-    if (comprador.ascensor && inmueble.ascensor) {
-      score += 8;
-      reasons.push('Con ascensor');
-    }
+    const sa = this.scoreAscensorPlanta(comprador, inmueble);
+    if (sa.reject) return { match: false, score: 0, reasons: [sa.reason] };
+    score += sa.score;
+    if (sa.reason) reasons.push(sa.reason);
 
     if (!this.tipoCoincide(comprador.tipo_inmueble, inmueble.tipo)) {
       return { match: false, score: 0, reasons: ['Tipo de inmueble distinto'] };

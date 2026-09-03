@@ -762,7 +762,20 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <div class="adm-field"><label>Habitaciones mínimas</label><input type="number" id="c-hab" min="0" placeholder="2"/></div>
             <div class="adm-field"><label>Zona buscada</label><input type="text" id="c-zona" placeholder="Eixample, Gràcia…"/></div>
             <div class="adm-field" style="align-items:flex-start;padding-top:.5rem">
-              <label class="adm-field-check"><input type="checkbox" id="c-ascensor"/> Ascensor indispensable</label>
+              <label class="adm-field-check"><input type="checkbox" id="c-ascensor" onchange="syncCompAscensorPlantaUi()"/> Ascensor indispensable</label>
+            </div>
+            <div class="adm-field" id="c-planta-max-wrap">
+              <label for="c-planta-max">Sin ascensor · planta máxima aceptable</label>
+              <select id="c-planta-max">
+                <option value="">Cualquier planta</option>
+                <option value="0">Solo bajo / entresuelo</option>
+                <option value="1">Hasta 1ª planta</option>
+                <option value="2">Hasta 2ª planta</option>
+                <option value="3">Hasta 3ª planta</option>
+                <option value="4">Hasta 4ª planta</option>
+                <option value="5">Hasta 5ª planta</option>
+              </select>
+              <small class="part-wa-tpl-vars">Si no marca ascensor indispensable, indica hasta qué planta aceptaría un piso sin ascensor.</small>
             </div>
           </div>
           <hr class="divider"/>
@@ -1723,10 +1736,33 @@ input,select,textarea{font-family:'Inter',sans-serif}
                 <input type="number" id="cfg-comp-alarm-days" min="1" max="90" value="14"/>
               </div>
             </div>
-            <div class="gap-row" style="margin-top:1rem">
-              <button type="button" class="adm-btn adm-btn-gold" onclick="savePanelConfig()">Guardar configuración</button>
-            </div>
           </div>
+        </div>
+        <div class="adm-card" style="max-width:720px;margin-top:1rem">
+          <div class="adm-card-head"><h3>Plantillas WhatsApp · Seguimientos (particulares)</h3></div>
+          <div style="padding:0 1rem 1rem">
+            <p class="text-muted" style="font-size:.78rem;margin-bottom:.85rem">Usadas en Seguimientos → Plantillas. Variables: <code>{{nombre}}</code> <code>{{titulo}}</code> <code>{{zona}}</code> <code>{{precio}}</code> <code>{{portal}}</code> <code>{{web}}</code></p>
+            <div class="part-tpl-edit-grid">
+              <div class="part-wa-tpl-item"><label>1.er contacto</label><textarea id="cfg-tpl-part-primer" rows="4"></textarea></div>
+              <div class="part-wa-tpl-item"><label>Seguimiento</label><textarea id="cfg-tpl-part-seguimiento" rows="4"></textarea></div>
+              <div class="part-wa-tpl-item"><label>Propuesta visita</label><textarea id="cfg-tpl-part-visita" rows="3"></textarea></div>
+            </div>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" style="margin-top:.65rem" onclick="resetPartTemplatesFromConfig()">Restaurar predeterminadas</button>
+          </div>
+        </div>
+        <div class="adm-card" style="max-width:720px;margin-top:1rem">
+          <div class="adm-card-head"><h3>Plantillas WhatsApp · Compradores</h3></div>
+          <div style="padding:0 1rem 1rem">
+            <p class="text-muted" style="font-size:.78rem;margin-bottom:.85rem">Usadas al avisar compradores de inmuebles compatibles. Variables: <code>{{saludo}}</code> <code>{{nombre}}</code> <code>{{inmuebles_intro}}</code> <code>{{inmuebles_lista}}</code> <code>{{zona}}</code></p>
+            <div class="part-tpl-edit-grid">
+              <div class="part-wa-tpl-item"><label>Aviso inmueble compatible</label><textarea id="cfg-tpl-comp-aviso" rows="5"></textarea></div>
+              <div class="part-wa-tpl-item"><label>Seguimiento búsqueda</label><textarea id="cfg-tpl-comp-seguimiento" rows="4"></textarea></div>
+            </div>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" style="margin-top:.65rem" onclick="resetCompTemplatesFromConfig()">Restaurar predeterminadas</button>
+          </div>
+        </div>
+        <div class="gap-row" style="margin-top:1rem;max-width:720px">
+          <button type="button" class="adm-btn adm-btn-gold" onclick="savePanelConfig()">Guardar configuración</button>
         </div>
       </section>
 
@@ -2870,7 +2906,11 @@ function compMatchCriteriaText(c){
   const parts = [];
   if(c.presupuesto_max) parts.push(`≤ ${Number(c.presupuesto_max).toLocaleString('es-ES')} €`);
   if(c.habitaciones_min) parts.push(`min. ${c.habitaciones_min} hab.`);
-  if(c.ascensor) parts.push('ascensor');
+  if(c.ascensor) parts.push('ascensor indispensable');
+  else if(c.planta_max_sin_ascensor != null && c.planta_max_sin_ascensor !== ''){
+    const pm = Number(c.planta_max_sin_ascensor);
+    parts.push(pm === 0 ? 'sin ascensor · bajo/entresuelo' : `sin ascensor · hasta ${pm}ª`);
+  } else parts.push('sin ascensor OK');
   if(c.zona_buscada) parts.push(c.zona_buscada);
   return parts.join(' · ') || 'Sin criterios extra';
 }
@@ -3049,11 +3089,17 @@ async function ensurePubData(){
 
 async function ensureCompData(){
   if(_compData.length && _compData[0]?.telefono !== undefined) return _compData;
-  const cols = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas';
-  const { data, error } = await window.nhSupabase
+  const cols = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,zona_buscada,notas';
+  let { data, error } = await window.nhSupabase
     .from('compradores')
     .select(cols)
     .order('created_at', { ascending: false });
+  if(error && /planta_max_sin_ascensor/.test(error.message)){
+    ({ data, error } = await window.nhSupabase
+      .from('compradores')
+      .select(cols.replace(',planta_max_sin_ascensor', ''))
+      .order('created_at', { ascending: false }));
+  }
   if(error){
     console.warn('ensureCompData:', error.message);
     if(_compData.length) return _compData;
@@ -3098,7 +3144,7 @@ let _pubData = [];
 async function fetchPubData(){
   const { data, error } = await window.nhSupabase
     .from('inmuebles')
-    .select('id,ref,titulo,precio,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,barrio,municipio,ascensor,cartera_privada,created_at')
+    .select('id,ref,titulo,precio,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,barrio,municipio,planta,ascensor,cartera_privada,created_at')
     .order('created_at', { ascending:false });
   if(error){
     console.error('fetchPubData:', error);
@@ -4294,21 +4340,32 @@ function telHref(telefono){
   return wa ? `+${wa}` : '';
 }
 
-function buildCompWhatsAppMsg(c, inmuebles){
+function buildCompInmueblesLista(inmuebles){
+  return (inmuebles || []).map(p => {
+    const loc = [p.barrio, p.municipio].filter(Boolean).join(', ');
+    const price = p.precio != null ? Number(p.precio).toLocaleString('es-ES') + ' €' : '';
+    const planta = p.planta ? ` · ${p.planta}` : '';
+    const line1 = [p.titulo || p.ref || 'Inmueble', loc, price].filter(Boolean).join(' — ') + planta;
+    return `• ${line1}\n${p.id ? inmueblePublicUrl(p.id) : 'https://www.nuevahabitat.com/inmuebles'}`;
+  }).join('\n\n');
+}
+
+function buildCompWhatsAppMsg(c, inmuebles, templateKey){
   const nombre = (c.nombre || '').trim().split(/\s+/)[0] || '';
   const saludo = nombre ? `Hola buenas, ${nombre},` : 'Hola buenas,';
-  if(inmuebles && inmuebles.length){
-    const n = inmuebles.length;
-    const intro = `${saludo} soy de NuevaHabitat. Queremos saber si sigues buscando piso, ya que nos ha llegado ${n === 1 ? 'un inmueble' : 'algunos inmuebles'} que creemos que te podría cuadrar:\n\n`;
-    const links = inmuebles.map(p => {
-      const loc = [p.barrio, p.municipio].filter(Boolean).join(', ');
-      const price = p.precio != null ? Number(p.precio).toLocaleString('es-ES') + ' €' : '';
-      const line1 = [p.titulo || p.ref || 'Inmueble', loc, price].filter(Boolean).join(' — ');
-      return `• ${line1}\n${p.id ? inmueblePublicUrl(p.id) : 'https://www.nuevahabitat.com/inmuebles'}`;
-    }).join('\n\n');
-    return intro + links + '\n\n¿Te interesa?';
-  }
-  return `${saludo} soy de NuevaHabitat. Queremos saber si sigues buscando piso, ya que nos ha llegado un inmueble que creemos que te podría cuadrar, ¿te interesa?`;
+  const key = templateKey || (inmuebles?.length ? 'aviso_inmueble' : 'seguimiento');
+  const tpl = getCompWaTemplates()[key] || getCompWaTemplates().aviso_inmueble;
+  const n = inmuebles?.length || 0;
+  const vars = {
+    saludo,
+    nombre: nombre ? ` ${nombre}` : '',
+    inmuebles_intro: n === 1 ? 'un inmueble' : (n ? 'algunos inmuebles' : 'novedades en tu búsqueda'),
+    inmuebles_lista: n ? buildCompInmueblesLista(inmuebles) : '',
+    zona: c.zona_buscada ? ` en ${c.zona_buscada}` : '',
+  };
+  let msg = tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? '');
+  if(n && !msg.includes('http') && vars.inmuebles_lista) msg += `\n\n${vars.inmuebles_lista}`;
+  return msg.trim();
 }
 
 function admWhatsAppComprador(id){
@@ -4316,7 +4373,7 @@ function admWhatsAppComprador(id){
   if(!c){ nhToast('Comprador no encontrado', 'error'); return; }
   const phone = normalizePhoneWa(c.telefono);
   if(!phone){ nhToast('Este comprador no tiene teléfono.', 'info'); return; }
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildCompWhatsAppMsg(c))}`;
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildCompWhatsAppMsg(c, null, 'seguimiento'))}`;
   window.open(url, '_blank', 'noopener');
   markCompradorContactado(id).then(() => loadCompradores());
 }
@@ -4343,8 +4400,8 @@ window.admEmailComprador = admEmailComprador;
 async function loadCompradores(){
   const grid = document.getElementById('comp-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
-  const colsFull = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
-  const colsBase = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
+  const colsFull = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
+  const colsBase = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
   const [compRes] = await Promise.all([
     window.nhSupabase.from('compradores').select(colsFull).order('created_at',{ascending:false}),
     ensurePubData()
@@ -4352,6 +4409,10 @@ async function loadCompradores(){
   let { data, error } = compRes;
   if(error && /ultimo_contacto_at|proxima_alarma_at/.test(error.message)){
     ({ data, error } = await window.nhSupabase.from('compradores').select(colsBase).order('created_at',{ascending:false}));
+  }
+  if(error && /planta_max_sin_ascensor/.test(error.message)){
+    const colsLegacy = colsBase.replace(',planta_max_sin_ascensor', '');
+    ({ data, error } = await window.nhSupabase.from('compradores').select(colsLegacy).order('created_at',{ascending:false}));
   }
   if(error){
     console.error('loadCompradores:', error);
@@ -4409,7 +4470,7 @@ function renderCompradores(){
         <div class="pub-meta" style="margin-top:.35rem">
           ${c.tipo_inmueble?`<span>🏠 ${c.tipo_inmueble}</span>`:''}
           ${c.habitaciones_min?`<span>🛏 min. ${c.habitaciones_min}</span>`:''}
-          ${c.ascensor?`<span>🛗 Ascensor</span>`:''}
+          ${c.ascensor?`<span>🛗 Ascensor</span>`:(c.planta_max_sin_ascensor != null && c.planta_max_sin_ascensor !== '' ? `<span>🪜 Sin ascensor · hasta ${Number(c.planta_max_sin_ascensor)===0?'bajo':c.planta_max_sin_ascensor+'ª'}</span>` : '')}
           ${c.zona_buscada?`<span>📍 ${c.zona_buscada}</span>`:''}
         </div>
         <div class="pub-meta" style="margin-top:.2rem">
@@ -4434,6 +4495,14 @@ function renderCompradores(){
   }).join('');
 }
 
+function syncCompAscensorPlantaUi(){
+  const asc = document.getElementById('c-ascensor');
+  const wrap = document.getElementById('c-planta-max-wrap');
+  if(!asc || !wrap) return;
+  wrap.style.display = asc.checked ? 'none' : '';
+}
+window.syncCompAscensorPlantaUi = syncCompAscensorPlantaUi;
+
 function openCompForm(prefill={}){
   document.getElementById('comp-form-wrap').style.display='block';
   document.getElementById('comp-form-title').textContent='Nuevo comprador';
@@ -4447,6 +4516,8 @@ function openCompForm(prefill={}){
   document.getElementById('c-tipo').value=prefill.tipo_inmueble||'';
   document.getElementById('c-hab').value=prefill.habitaciones_min||'';
   document.getElementById('c-ascensor').checked=prefill.ascensor||false;
+  document.getElementById('c-planta-max').value = prefill.planta_max_sin_ascensor != null && prefill.planta_max_sin_ascensor !== '' ? String(prefill.planta_max_sin_ascensor) : '';
+  syncCompAscensorPlantaUi();
   document.getElementById('c-zona').value=prefill.zona_buscada||'';
   document.getElementById('c-honorarios').value=prefill.honorarios||6050;
   document.getElementById('c-notas').value=prefill.notas||'';
@@ -4478,6 +4549,10 @@ async function upsertClienteRow(tabla, payload, editId) {
     const { estado_expediente, ...sinExpediente } = payload;
     ({ error } = await run(sinExpediente));
   }
+  if (error && /planta_max_sin_ascensor/.test(error.message)) {
+    const { planta_max_sin_ascensor, ...sinPlanta } = payload;
+    ({ error } = await run(sinPlanta));
+  }
   return error;
 }
 
@@ -4495,6 +4570,9 @@ async function saveComprador(){
     tipo_inmueble:    document.getElementById('c-tipo').value||null,
     habitaciones_min: parseInt(document.getElementById('c-hab').value)||null,
     ascensor:         document.getElementById('c-ascensor').checked,
+    planta_max_sin_ascensor: document.getElementById('c-ascensor').checked
+      ? null
+      : (document.getElementById('c-planta-max').value === '' ? null : parseInt(document.getElementById('c-planta-max').value, 10)),
     zona_buscada:     document.getElementById('c-zona').value.trim()||null,
     honorarios:       parseFloat(document.getElementById('c-honorarios').value)||6050,
     notas:            document.getElementById('c-notas').value.trim()||null,
@@ -5398,12 +5476,18 @@ const PART_FUENTES = { kelify:'Kelify', idealista:'Idealista', fotocasa:'Fotocas
 const PANEL_ALARM_CONFIG_KEY = 'nh_panel_alarm_config';
 const PANEL_ALARM_DEFAULTS = { partAlarmDays: 7, compAlarmDays: 14, partAlarmsEnabled: true, compAlarmsEnabled: true };
 const PART_WA_TPL_STORAGE = 'nh_part_wa_templates';
+const COMP_WA_TPL_STORAGE = 'nh_comp_wa_templates';
 const PART_WA_TPL_LABELS = { primer_contacto:'1.er contacto', seguimiento:'Seguimiento', visita:'Propuesta visita' };
+const COMP_WA_TPL_LABELS = { aviso_inmueble:'Aviso inmueble compatible', seguimiento:'Seguimiento búsqueda' };
 const PART_WA_NORMAL_MSG = `Hola, soy de NuevaHabitat, vi tu anuncio de particular, y me gustaria saber si podemso hacer una colaboracion, tenemos una plataforma dedicada a compradores cualificados financieramente, me gustaria saber si podemso hacer una viista puntual con nuestros compradores, ellos mismos pagan nuestros honorarios, seria posible hacer una visita esta semana?`;
 const PART_WA_TEMPLATES_DEFAULT = {
   primer_contacto: PART_WA_NORMAL_MSG,
   seguimiento: `Hola buenas{{nombre}}, soy de NuevaHabitat. Te escribo para saber si sigue disponible el inmueble{{titulo}} y si podemos colaborar, ya que tenemos compradores cualificados financieramente para comprar; ellos se hacen cargo de nuestros honorarios. ¿Podríamos hacer una visita esta semana?`,
   visita: `Hola buenas tardes{{nombre}}, somos de NuevaHabitat. Tengo un cliente interesado en ver el inmueble{{titulo}}; el abona nuestros honorarios. ¿Te encaja una visita esta semana?`,
+};
+const COMP_WA_TEMPLATES_DEFAULT = {
+  aviso_inmueble: `{{saludo}} soy de NuevaHabitat. Queremos saber si sigues buscando piso, ya que nos ha llegado {{inmuebles_intro}} que creemos que te podría cuadrar:\n\n{{inmuebles_lista}}\n\n¿Te interesa?`,
+  seguimiento: `{{saludo}} soy de NuevaHabitat. Te escribo para saber cómo va tu búsqueda{{zona}}. ¿Seguimos buscando piso para ti?`,
 };
 let _partData = [];
 let _partFilter = 'todos';
@@ -5440,6 +5524,13 @@ function loadPanelConfigForm(){
   set('cfg-comp-alarm-days', cfg.compAlarmDays);
   setChk('cfg-part-alarms-enabled', cfg.partAlarmsEnabled);
   setChk('cfg-comp-alarms-enabled', cfg.compAlarmsEnabled);
+  const pt = getPartWaTemplates();
+  set('cfg-tpl-part-primer', pt.primer_contacto || '');
+  set('cfg-tpl-part-seguimiento', pt.seguimiento || '');
+  set('cfg-tpl-part-visita', pt.visita || '');
+  const ct = getCompWaTemplates();
+  set('cfg-tpl-comp-aviso', ct.aviso_inmueble || '');
+  set('cfg-tpl-comp-seguimiento', ct.seguimiento || '');
 }
 
 function savePanelConfig(){
@@ -5452,6 +5543,15 @@ function savePanelConfig(){
     compAlarmsEnabled: !!document.getElementById('cfg-comp-alarms-enabled')?.checked,
   };
   localStorage.setItem(PANEL_ALARM_CONFIG_KEY, JSON.stringify(cfg));
+  savePartWaTemplates({
+    primer_contacto: document.getElementById('cfg-tpl-part-primer')?.value.trim() || PART_WA_TEMPLATES_DEFAULT.primer_contacto,
+    seguimiento: document.getElementById('cfg-tpl-part-seguimiento')?.value.trim() || PART_WA_TEMPLATES_DEFAULT.seguimiento,
+    visita: document.getElementById('cfg-tpl-part-visita')?.value.trim() || PART_WA_TEMPLATES_DEFAULT.visita,
+  });
+  saveCompWaTemplates({
+    aviso_inmueble: document.getElementById('cfg-tpl-comp-aviso')?.value.trim() || COMP_WA_TEMPLATES_DEFAULT.aviso_inmueble,
+    seguimiento: document.getElementById('cfg-tpl-comp-seguimiento')?.value.trim() || COMP_WA_TEMPLATES_DEFAULT.seguimiento,
+  });
   nhToast('Configuración guardada.', 'success');
   updatePartAlarmUI();
   updateCompAlarmUI();
@@ -5459,6 +5559,22 @@ function savePanelConfig(){
   if(currentSection === 'compradores') renderCompradores();
 }
 window.savePanelConfig = savePanelConfig;
+
+function resetPartTemplatesFromConfig(){
+  if(!confirm('¿Restaurar plantillas de seguimientos predeterminadas?')) return;
+  localStorage.removeItem(PART_WA_TPL_STORAGE);
+  loadPanelConfigForm();
+  nhToast('Plantillas de seguimientos restauradas.', 'success');
+}
+window.resetPartTemplatesFromConfig = resetPartTemplatesFromConfig;
+
+function resetCompTemplatesFromConfig(){
+  if(!confirm('¿Restaurar plantillas de compradores predeterminadas?')) return;
+  localStorage.removeItem(COMP_WA_TPL_STORAGE);
+  loadPanelConfigForm();
+  nhToast('Plantillas de compradores restauradas.', 'success');
+}
+window.resetCompTemplatesFromConfig = resetCompTemplatesFromConfig;
 
 function getPartWaTemplates(){
   try {
@@ -5473,6 +5589,21 @@ function getPartWaTemplates(){
 
 function savePartWaTemplates(templates){
   localStorage.setItem(PART_WA_TPL_STORAGE, JSON.stringify(templates));
+}
+
+function getCompWaTemplates(){
+  try {
+    const raw = localStorage.getItem(COMP_WA_TPL_STORAGE);
+    if(raw){
+      const parsed = JSON.parse(raw);
+      return { ...COMP_WA_TEMPLATES_DEFAULT, ...parsed };
+    }
+  } catch(e){}
+  return { ...COMP_WA_TEMPLATES_DEFAULT };
+}
+
+function saveCompWaTemplates(templates){
+  localStorage.setItem(COMP_WA_TPL_STORAGE, JSON.stringify(templates));
 }
 
 function previewPartWaTemplate(templateKey, p){
@@ -5538,6 +5669,7 @@ function savePartTemplatesFromModal(){
   });
   nhToast('Plantillas guardadas.', 'success');
   setPartTemplatesEditMode(false);
+  if(currentSection === 'configuraciones') loadPanelConfigForm();
 }
 window.savePartTemplatesFromModal = savePartTemplatesFromModal;
 
