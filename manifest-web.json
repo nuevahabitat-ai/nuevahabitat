@@ -1,0 +1,28 @@
+{
+  "name": "NuevaHabitat",
+  "short_name": "NuevaHabitat",
+  "description": "Tu inmobiliaria en Barcelona: expediente, visitas, documentos y cartera de inmuebles",
+  "start_url": "/login",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f5f0ea",
+  "theme_color": "#0d0d0d",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/imagenes/Logo/logosinfondo2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/imagenes/Logo/logosinfondo2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "lifestyle"],
+  "prefer_related_applications": false
+}

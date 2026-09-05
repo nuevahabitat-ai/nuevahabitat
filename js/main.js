@@ -603,3 +603,78 @@ window.nhCookiePrefs = function (mode) {
     initFooterExtras();
   }
 })();
+
+
+/* ── PWA: instalar app en móvil (páginas públicas / clientes) ─ */
+(function initPublicPwa() {
+  const path = (location.pathname || '/').replace(/\.html$/, '');
+  if (/^\/(panel|admin-panel)(\/|$)/.test(path)) return;
+  if (document.querySelector('link[rel="manifest"][href*="admin"]')) return;
+  if (document.querySelector('link[rel="manifest"][href*="panel"]')) return;
+
+  function injectHeadTags() {
+    if (!document.querySelector('link[rel="manifest"]')) {
+      const link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = '/manifest-web.json';
+      document.head.appendChild(link);
+    }
+    if (!document.querySelector('meta[name="theme-color"]')) {
+      const theme = document.createElement('meta');
+      theme.name = 'theme-color';
+      theme.content = '#0d0d0d';
+      document.head.appendChild(theme);
+    }
+    if (!document.querySelector('meta[name="apple-mobile-web-app-capable"]')) {
+      const cap = document.createElement('meta');
+      cap.name = 'apple-mobile-web-app-capable';
+      cap.content = 'yes';
+      document.head.appendChild(cap);
+    }
+    if (!document.querySelector('meta[name="apple-mobile-web-app-title"]')) {
+      const title = document.createElement('meta');
+      title.name = 'apple-mobile-web-app-title';
+      title.content = 'NuevaHabitat';
+      document.head.appendChild(title);
+    }
+    if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+      const icon = document.createElement('link');
+      icon.rel = 'apple-touch-icon';
+      icon.href = '/imagenes/Logo/logosinfondo2.png';
+      document.head.appendChild(icon);
+    }
+  }
+
+  function bootPwa() {
+    if (!window.nhPwaInstall || window.__nhPublicPwaBooted) return;
+    window.__nhPublicPwaBooted = true;
+    window.nhPwaInstall.init({
+      app: 'web',
+      swUrl: '/sw-site.js',
+      storageKey: 'nh_pwa_dismiss_web',
+      title: 'Instala NuevaHabitat en tu móvil',
+      hint: 'Accede a tu expediente, visitas y documentos como una app',
+      mobileOnly: true,
+      delayMs: 1200,
+    });
+  }
+
+  function loadInstaller() {
+    injectHeadTags();
+    if (window.nhPwaInstall) {
+      bootPwa();
+      return;
+    }
+    const s = document.createElement('script');
+    s.src = '/js/nh-pwa-install.js';
+    s.onload = bootPwa;
+    s.onerror = () => {};
+    document.head.appendChild(s);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadInstaller);
+  } else {
+    loadInstaller();
+  }
+})();
