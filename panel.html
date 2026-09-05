@@ -6,6 +6,9 @@
   <title>Mi Panel · NuevaHabitat</title>
   <meta name="description" content="Panel de cliente NuevaHabitat. Sigue tu expediente, documentos y visitas en tiempo real."/>
   <meta name="theme-color" content="#0d0d0d"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-title" content="NH Panel"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
   <link rel="manifest" href="/manifest-panel.json"/>
   <link rel="apple-touch-icon" href="imagenes/Logo/logosinfondo2.png"/>
   <link rel="stylesheet" href="css/styles.css"/>
@@ -292,7 +295,7 @@
 <!-- Main -->
 <div class="p-main">
   <div class="container">
-    <div class="p-pwa-bar" id="pPwaBar">
+    <div class="p-pwa-bar" id="pPwaBar" hidden aria-hidden="true">
       <span>Instala el panel en tu móvil para acceso rápido</span>
       <button type="button" id="pPwaInstall">Instalar</button>
     </div>
@@ -737,7 +740,8 @@
 <script src="js/comprador-matching.js"></script>
 <script src="js/panel-compatibles.js"></script>
 <script src="js/panel-stripe.js?v=20260816b"></script>
-<script src="js/panel-pwa.js?v=20260823"></script>
+<script src="js/nh-pwa-install.js"></script>
+<script src="js/panel-pwa.js?v=20260905"></script>
 <script src="js/toast.js"></script>
 <script src="js/site-config.js"></script>
 <script src="js/ga-config.js"></script>

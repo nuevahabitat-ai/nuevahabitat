@@ -1,0 +1,28 @@
+{
+  "name": "NuevaHabitat — Panel Admin",
+  "short_name": "NH Admin",
+  "description": "Panel de administración NuevaHabitat: compradores, inmuebles y seguimientos",
+  "start_url": "/admin-panel",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d0d0d",
+  "theme_color": "#b8936a",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/imagenes/Logo/logosinfondo2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/imagenes/Logo/logosinfondo2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "prefer_related_applications": false
+}

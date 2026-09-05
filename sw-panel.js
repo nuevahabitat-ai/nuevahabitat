@@ -6,6 +6,7 @@ const SHELL = [
   '/css/styles.css',
   '/js/supabase.js',
   '/js/panel-pwa.js',
+  '/js/nh-pwa-install.js',
   '/imagenes/Logo/logosinfondo2.png',
 ];
 

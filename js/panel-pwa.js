@@ -46,23 +46,31 @@
   }
 
   function setupInstallPrompt() {
+    if (window.nhPwaInstall) {
+      window.nhPwaInstall.init({
+        app: 'panel',
+        swUrl: '/sw-panel.js',
+        storageKey: 'nh_pwa_dismiss_panel',
+        title: 'Instala Mi Panel NuevaHabitat',
+        hint: 'Acceso rápido a tu expediente, visitas y documentos',
+        mobileOnly: true,
+        delayMs: 1000,
+      });
+      return;
+    }
     let deferred;
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferred = e;
-      const bar = document.getElementById('pPwaBar');
-      if (bar) bar.classList.add('show');
+      document.getElementById('pPwaBar')?.classList.add('show');
     });
-    const btn = document.getElementById('pPwaInstall');
-    if (btn) {
-      btn.addEventListener('click', async () => {
-        if (!deferred) return;
-        deferred.prompt();
-        await deferred.userChoice;
-        deferred = null;
-        document.getElementById('pPwaBar')?.classList.remove('show');
-      });
-    }
+    document.getElementById('pPwaInstall')?.addEventListener('click', async () => {
+      if (!deferred) return;
+      deferred.prompt();
+      await deferred.userChoice;
+      deferred = null;
+      document.getElementById('pPwaBar')?.classList.remove('show');
+    });
   }
 
   async function pollUpdates(user, tipo) {
