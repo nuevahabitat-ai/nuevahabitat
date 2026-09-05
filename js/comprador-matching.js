@@ -112,6 +112,28 @@ window.nhMatching = {
     return { reject: true, reason: 'Planta demasiado alta sin ascensor' };
   },
 
+  inmuebleTieneBalconTerraza(inmueble) {
+    if (!inmueble) return false;
+    if (inmueble.balcon || inmueble.terraza) return true;
+    const m2t = Number(inmueble.m2_terraza);
+    return Number.isFinite(m2t) && m2t > 0;
+  },
+
+  inmuebleEsExterior(inmueble) {
+    const blob = this.normalize([inmueble?.orientacion, inmueble?.titulo, inmueble?.descripcion].filter(Boolean).join(' '));
+    if (!blob) return null;
+    if (/\binterior\b|patio de manzana|entre medianeras|\bmanzana\b/.test(blob)) return false;
+    if (/\bexterior\b|fachada|\bcalle\b|\bsur\b|\bnorte\b|\beste\b|\boeste\b/.test(blob)) return true;
+    return null;
+  },
+
+  inmuebleM2(inmueble) {
+    const u = Number(inmueble?.m2_utiles);
+    if (Number.isFinite(u) && u > 0) return u;
+    const c = Number(inmueble?.m2_construidos);
+    return Number.isFinite(c) && c > 0 ? c : null;
+  },
+
   scoreZona(zonaBuscada, barrio, municipio) {
     if (!zonaBuscada || !String(zonaBuscada).trim()) return 15;
     if (!this.zonaCoincide(zonaBuscada, barrio, municipio)) return -999;
@@ -159,16 +181,58 @@ window.nhMatching = {
     score += sa.score;
     if (sa.reason) reasons.push(sa.reason);
 
+    if (comprador.banos_min != null && comprador.banos_min !== '') {
+      const minB = Number(comprador.banos_min);
+      const banos = Number(inmueble.banos);
+      if (!Number.isFinite(minB) || minB < 1) { /* skip */ }
+      else if (!banos || banos < minB) {
+        return { match: false, score: 0, reasons: [`Menos de ${minB} baño${minB === 1 ? '' : 's'}`] };
+      } else {
+        score += banos >= minB + 1 ? 10 : 7;
+        reasons.push(`${banos} baños`);
+      }
+    }
+
+    if (comprador.m2_min != null && comprador.m2_min !== '') {
+      const minM2 = Number(comprador.m2_min);
+      const m2 = this.inmuebleM2(inmueble);
+      if (Number.isFinite(minM2) && minM2 > 0) {
+        if (!m2 || m2 < minM2) {
+          return { match: false, score: 0, reasons: [`Menos de ${minM2} m²`] };
+        }
+        score += m2 >= minM2 + 15 ? 12 : 8;
+        reasons.push(`${m2} m²`);
+      }
+    } else if (inmueble.m2_utiles != null && Number(inmueble.m2_utiles) >= 70) {
+      score += 5;
+    }
+
+    if (comprador.balcon_terraza_indispensable) {
+      if (!this.inmuebleTieneBalconTerraza(inmueble)) {
+        return { match: false, score: 0, reasons: ['Sin balcón ni terraza'] };
+      }
+      score += 8;
+      reasons.push('Con balcón/terraza');
+    }
+
+    if (comprador.exterior_indispensable) {
+      const ext = this.inmuebleEsExterior(inmueble);
+      if (ext === false) return { match: false, score: 0, reasons: ['Orientación interior'] };
+      if (ext === true) {
+        score += 8;
+        reasons.push('Exterior');
+      } else if (this.inmuebleTieneBalconTerraza(inmueble)) {
+        score += 4;
+        reasons.push('Probable exterior (balcón/terraza)');
+      }
+    }
+
     if (!this.tipoCoincide(comprador.tipo_inmueble, inmueble.tipo)) {
       return { match: false, score: 0, reasons: ['Tipo de inmueble distinto'] };
     }
     if (comprador.tipo_inmueble) {
       score += 7;
       reasons.push('Tipo compatible');
-    }
-
-    if (inmueble.m2_utiles != null && Number(inmueble.m2_utiles) >= 70) {
-      score += 5;
     }
 
     score = Math.min(100, Math.max(0, score));

@@ -14,7 +14,7 @@
     el.innerHTML = '<p style="color:var(--gris-medio);font-size:.875rem">Buscando inmuebles compatibles…</p>';
 
     const { data: comprador } = await window.nhSupabase.from('compradores')
-      .select('id,nombre,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada')
+      .select('id,nombre,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada')
       .eq('email', currentUser.email)
       .maybeSingle();
 
@@ -23,7 +23,7 @@
       return;
     }
 
-    const cols = 'id,ref,titulo,precio,tipo,habitaciones,m2_utiles,barrio,municipio,estado,imagen_principal,ascensor';
+    const cols = 'id,ref,titulo,precio,tipo,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,estado,imagen_principal,ascensor,balcon,terraza,orientacion,descripcion';
     const { data: inmuebles, error } = await window.nhAuth.fetchInmuebles(cols, { column: 'created_at', ascending: false }, { estado: 'disponible' });
 
     if (error) {

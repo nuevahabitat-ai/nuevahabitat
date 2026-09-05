@@ -782,6 +782,22 @@ input,select,textarea{font-family:'Inter',sans-serif}
               </select>
               <small class="part-wa-tpl-vars">Si no marca ascensor indispensable, indica hasta qué planta aceptaría un piso sin ascensor.</small>
             </div>
+            <div class="adm-field"><label>M² mínimos</label><input type="number" id="c-m2-min" min="0" step="1" placeholder="80"/></div>
+            <div class="adm-field">
+              <label>Baños mínimos</label>
+              <select id="c-banos-min">
+                <option value="">— Cualquiera —</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3 o más</option>
+              </select>
+            </div>
+            <div class="adm-field" style="align-items:flex-start;padding-top:.5rem">
+              <label class="adm-field-check"><input type="checkbox" id="c-balcon-terraza"/> Balcón / terraza indispensable</label>
+            </div>
+            <div class="adm-field" style="align-items:flex-start;padding-top:.5rem">
+              <label class="adm-field-check"><input type="checkbox" id="c-exterior"/> Exterior indispensable</label>
+            </div>
           </div>
           <hr class="divider"/>
           <div class="wiz-section-label">Honorarios</div>
@@ -2932,6 +2948,10 @@ function compMatchCriteriaText(c){
     const pm = Number(c.planta_max_sin_ascensor);
     parts.push(pm === 0 ? 'sin ascensor · bajo/entresuelo' : `sin ascensor · hasta ${pm}ª`);
   } else parts.push('sin ascensor OK');
+  if(c.m2_min) parts.push(`min. ${Number(c.m2_min)} m²`);
+  if(c.banos_min) parts.push(`min. ${Number(c.banos_min) >= 3 ? '3+' : c.banos_min} baño${Number(c.banos_min) === 1 ? '' : 's'}`);
+  if(c.balcon_terraza_indispensable) parts.push('balcón/terraza');
+  if(c.exterior_indispensable) parts.push('exterior');
   if(c.zona_buscada) parts.push(c.zona_buscada);
   return parts.join(' · ') || 'Sin criterios extra';
 }
@@ -3110,7 +3130,7 @@ async function ensurePubData(){
 
 async function ensureCompData(){
   if(_compData.length && _compData[0]?.telefono !== undefined) return _compData;
-  const cols = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,zona_buscada,notas';
+  const cols = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas';
   let { data, error } = await window.nhSupabase
     .from('compradores')
     .select(cols)
@@ -3118,7 +3138,13 @@ async function ensureCompData(){
   if(error && /planta_max_sin_ascensor/.test(error.message)){
     ({ data, error } = await window.nhSupabase
       .from('compradores')
-      .select(cols.replace(',planta_max_sin_ascensor', ''))
+      .select(cols.replace(',planta_max_sin_ascensor', '').replace(',balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable', ''))
+      .order('created_at', { ascending: false }));
+  }
+  if(error && /balcon_terraza_indispensable|m2_min|banos_min|exterior_indispensable/.test(error.message)){
+    ({ data, error } = await window.nhSupabase
+      .from('compradores')
+      .select(cols.replace(',balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable', ''))
       .order('created_at', { ascending: false }));
   }
   if(error){
@@ -3165,7 +3191,7 @@ let _pubData = [];
 async function fetchPubData(){
   const { data, error } = await window.nhSupabase
     .from('inmuebles')
-    .select('id,ref,titulo,precio,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,barrio,municipio,planta,ascensor,cartera_privada,created_at')
+    .select('id,ref,titulo,precio,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,descripcion,cartera_privada,created_at')
     .order('created_at', { ascending:false });
   if(error){
     console.error('fetchPubData:', error);
@@ -4423,8 +4449,8 @@ window.admEmailComprador = admEmailComprador;
 async function loadCompradores(){
   const grid = document.getElementById('comp-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
-  const colsFull = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
-  const colsBase = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
+  const colsFull = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
+  const colsBase = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
   const [compRes] = await Promise.all([
     window.nhSupabase.from('compradores').select(colsFull).order('created_at',{ascending:false}),
     ensurePubData()
@@ -4434,8 +4460,12 @@ async function loadCompradores(){
     ({ data, error } = await window.nhSupabase.from('compradores').select(colsBase).order('created_at',{ascending:false}));
   }
   if(error && /planta_max_sin_ascensor/.test(error.message)){
-    const colsLegacy = colsBase.replace(',planta_max_sin_ascensor', '');
+    const colsLegacy = colsBase.replace(',planta_max_sin_ascensor', '').replace(',balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable', '');
     ({ data, error } = await window.nhSupabase.from('compradores').select(colsLegacy).order('created_at',{ascending:false}));
+  }
+  if(error && /balcon_terraza_indispensable|m2_min|banos_min|exterior_indispensable/.test(error.message)){
+    const colsSinExtra = colsBase.replace(',balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable', '');
+    ({ data, error } = await window.nhSupabase.from('compradores').select(colsSinExtra).order('created_at',{ascending:false}));
   }
   if(error){
     console.error('loadCompradores:', error);
@@ -4497,7 +4527,11 @@ function renderCompradores(){
         <div class="pub-meta" style="margin-top:.35rem">
           ${c.tipo_inmueble?`<span>🏠 ${dashEsc(c.tipo_inmueble)}</span>`:''}
           ${c.habitaciones_min?`<span>🛏 min. ${c.habitaciones_min}</span>`:''}
+          ${c.m2_min?`<span>📐 min. ${Number(c.m2_min)} m²</span>`:''}
+          ${c.banos_min?`<span>🚿 min. ${Number(c.banos_min) >= 3 ? '3+' : c.banos_min}</span>`:''}
           ${c.ascensor?`<span>🛗 Ascensor</span>`:(c.planta_max_sin_ascensor != null && c.planta_max_sin_ascensor !== '' ? `<span>🪜 Sin ascensor · hasta ${Number(c.planta_max_sin_ascensor)===0?'bajo':c.planta_max_sin_ascensor+'ª'}</span>` : '')}
+          ${c.balcon_terraza_indispensable?`<span>🌿 Balcón/terraza</span>`:''}
+          ${c.exterior_indispensable?`<span>☀ Exterior</span>`:''}
           ${c.zona_buscada?`<span>📍 ${dashEsc(c.zona_buscada)}</span>`:''}
         </div>
         <div class="pub-meta" style="margin-top:.2rem">
@@ -4546,6 +4580,10 @@ function openCompForm(prefill={}){
   document.getElementById('c-ascensor').checked=prefill.ascensor||false;
   document.getElementById('c-planta-max').value = prefill.planta_max_sin_ascensor != null && prefill.planta_max_sin_ascensor !== '' ? String(prefill.planta_max_sin_ascensor) : '';
   syncCompAscensorPlantaUi();
+  document.getElementById('c-m2-min').value = prefill.m2_min ?? '';
+  document.getElementById('c-banos-min').value = prefill.banos_min != null && prefill.banos_min !== '' ? String(prefill.banos_min) : '';
+  document.getElementById('c-balcon-terraza').checked = !!prefill.balcon_terraza_indispensable;
+  document.getElementById('c-exterior').checked = !!prefill.exterior_indispensable;
   document.getElementById('c-zona').value=prefill.zona_buscada||'';
   document.getElementById('c-honorarios').value=prefill.honorarios||6050;
   document.getElementById('c-notas').value=prefill.notas||'';
@@ -4581,6 +4619,10 @@ async function upsertClienteRow(tabla, payload, editId) {
     const { planta_max_sin_ascensor, ...sinPlanta } = payload;
     ({ error } = await run(sinPlanta));
   }
+  if (error && /balcon_terraza_indispensable|m2_min|banos_min|exterior_indispensable/.test(error.message)) {
+    const { balcon_terraza_indispensable, m2_min, banos_min, exterior_indispensable, ...sinExtra } = payload;
+    ({ error } = await run(sinExtra));
+  }
   return error;
 }
 
@@ -4601,6 +4643,10 @@ async function saveComprador(){
     planta_max_sin_ascensor: document.getElementById('c-ascensor').checked
       ? null
       : (document.getElementById('c-planta-max').value === '' ? null : parseInt(document.getElementById('c-planta-max').value, 10)),
+    m2_min: parseFloat(document.getElementById('c-m2-min').value) || null,
+    banos_min: document.getElementById('c-banos-min').value === '' ? null : parseInt(document.getElementById('c-banos-min').value, 10),
+    balcon_terraza_indispensable: document.getElementById('c-balcon-terraza').checked,
+    exterior_indispensable: document.getElementById('c-exterior').checked,
     zona_buscada:     document.getElementById('c-zona').value.trim()||null,
     honorarios:       parseFloat(document.getElementById('c-honorarios').value)||6050,
     notas:            document.getElementById('c-notas').value.trim()||null,
@@ -6308,7 +6354,11 @@ function buildCompCardDetailHtml(c){
     ['Presupuesto máx.', c.presupuesto_max != null ? Number(c.presupuesto_max).toLocaleString('es-ES') + ' €' : '—'],
     ['Tipo', c.tipo_inmueble || '—'],
     ['Habitaciones mín.', c.habitaciones_min || '—'],
+    ['M² mínimos', c.m2_min != null ? Number(c.m2_min) + ' m²' : '—'],
+    ['Baños mín.', c.banos_min != null ? (Number(c.banos_min) >= 3 ? '3 o más' : String(c.banos_min)) : '—'],
     ['Ascensor', c.ascensor ? 'Sí' : (c.planta_max_sin_ascensor != null && c.planta_max_sin_ascensor !== '' ? `No · hasta ${c.planta_max_sin_ascensor}ª` : '—')],
+    ['Balcón / terraza', c.balcon_terraza_indispensable ? 'Indispensable' : '—'],
+    ['Exterior', c.exterior_indispensable ? 'Indispensable' : '—'],
     ['Zona', c.zona_buscada || '—'],
     ['Teléfono', c.telefono || '—'],
     ['Email', c.email || '—'],
