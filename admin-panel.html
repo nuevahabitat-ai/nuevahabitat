@@ -206,6 +206,9 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .adm-alarm-badge{background:rgba(239,68,68,.2);color:#f87171;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:10px;margin-left:.35rem}
 .nav-alarm-dot{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:10px;background:#ef4444;color:#fff;font-size:.62rem;font-weight:700;margin-left:auto}
 .seg-timeline{border-left:2px solid var(--border);margin:.75rem 0 0 .5rem;padding-left:1rem}
+.seg-item{border-bottom:1px solid var(--border);padding:.65rem 0}
+.seg-item:last-child{border:none}
+.seg-item-contact p{color:var(--text)}
 .seg-item{margin-bottom:.85rem;position:relative}
 .seg-item::before{content:'';position:absolute;left:-1.35rem;top:.35rem;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--surface)}
 .seg-item time{font-size:.68rem;color:var(--muted);display:block;margin-bottom:.2rem}
@@ -247,6 +250,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .pub-card:hover{border-color:var(--gold)}
 .pub-card-clickable{cursor:pointer}
 .pub-card-clickable .pub-body-clickzone:hover .pub-title{color:var(--gold-light)}
+.comp-notas-preview{font-size:.72rem;color:var(--muted);margin-top:.4rem;padding:.4rem;background:var(--surface2);border-radius:4px;line-height:1.5;max-height:4.5em;overflow:hidden;cursor:pointer}
+.comp-notas-preview:hover{background:var(--surface3)}
 .part-action-tabs{display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-right:.25rem}
 .part-action-tabs .part-tab-btn{border:none;background:var(--surface2);color:var(--muted);font-size:.72rem;font-weight:600;padding:.35rem .65rem;cursor:pointer;font-family:inherit;transition:background .15s,color .15s}
 .part-action-tabs .part-tab-btn:hover{color:var(--text);background:var(--surface)}
@@ -867,6 +872,22 @@ input,select,textarea{font-family:'Inter',sans-serif}
           </div>
           <div class="dash-modal-body" id="comp-match-body"></div>
           <div class="dash-modal-foot" id="comp-match-foot"></div>
+        </div>
+      </div>
+
+      <!-- Modal ficha + historial comprador -->
+      <div id="comp-card-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="comp-card-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closeCompCardModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel" style="max-width:720px">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="comp-card-kicker">Comprador</div>
+              <h3 id="comp-card-title">Comprador</h3>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closeCompCardModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body" id="comp-card-body"></div>
+          <div class="dash-modal-foot" id="comp-card-foot"></div>
         </div>
       </div>
 
@@ -4252,6 +4273,7 @@ async function loadSeoSection(){
    COMPRADORES
    ══════════════════════════════════════════════════════════════ */
 let _compData = [];
+let _compCardModalId = null;
 let _compFilter = 'todos';
 
 function getCompFilterValues(){
@@ -4375,7 +4397,7 @@ function admWhatsAppComprador(id){
   if(!phone){ nhToast('Este comprador no tiene teléfono.', 'info'); return; }
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildCompWhatsAppMsg(c, null, 'seguimiento'))}`;
   window.open(url, '_blank', 'noopener');
-  markCompradorContactado(id).then(() => loadCompradores());
+  markCompradorContactado(id, 'WhatsApp (seguimiento) enviado.').then(() => loadCompradores());
 }
 
 function admCallComprador(id){
@@ -4384,6 +4406,7 @@ function admCallComprador(id){
   const href = telHref(c.telefono);
   if(!href){ nhToast('Teléfono no válido.', 'error'); return; }
   window.location.href = `tel:${href}`;
+  markCompradorContactado(id, 'Llamada telefónica').then(() => loadCompradores());
 }
 
 function admEmailComprador(id){
@@ -4420,6 +4443,8 @@ async function loadCompradores(){
     _compData = [];
   } else {
     _compData = data || [];
+    const fixed = await backfillCompradorContactFromNotas(_compData);
+    if(fixed > 0) console.info(`Compradores: ${fixed} contactos sincronizados desde notas`);
   }
   updateCompZonaDatalist();
   updateCompAlarmUI();
@@ -4452,39 +4477,42 @@ function renderCompradores(){
   grid.innerHTML = list.map(c=>{
     const matchN = countMatchesForComprador(c);
     const alarm = compNeedsAlarm(c);
+    const contact = getCompradorContactState(c);
+    const notasPreview = compNotasPreview(c.notas);
     return `
-    <div class="pub-card">
-      <div class="pub-body" style="padding-top:.9rem">
+    <div class="pub-card pub-card-clickable" onclick="openCompCardModal('${c.id}')">
+      <div class="pub-body pub-body-clickzone" style="padding-top:.9rem">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;flex-wrap:wrap;gap:.35rem">
           <div class="pub-ref">COMPRADOR</div>
           <div style="display:flex;align-items:center;gap:.35rem;flex-wrap:wrap">
             ${alarm ? '<span class="adm-alarm-badge">⏰ Alarma</span>' : ''}
-            ${matchN ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver inmuebles compatibles" onclick="openCompMatchModal('${c.id}')">🎯 ${matchN} compatible${matchN===1?'':'s'}</button>` : ''}
+            ${matchN ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver inmuebles compatibles" onclick="event.stopPropagation();openCompMatchModal('${c.id}')">🎯 ${matchN} compatible${matchN===1?'':'s'}</button>` : ''}
             ${honorariosPagoBadge(c)}
             ${honorariosTransferConfirmBtn('comprador', c)}
             <span class="badge ${c.activo?'badge-ok':'badge-warn'}">${c.activo?'Activo':'Inactivo'}</span>
           </div>
         </div>
-        <div class="pub-title">${c.nombre}</div>
+        <div class="pub-title">${dashEsc(c.nombre)}</div>
         ${c.presupuesto_max?`<div class="pub-price">${Number(c.presupuesto_max).toLocaleString('es-ES')} € máx.</div>`:''}
         <div class="pub-meta" style="margin-top:.35rem">
-          ${c.tipo_inmueble?`<span>🏠 ${c.tipo_inmueble}</span>`:''}
+          ${c.tipo_inmueble?`<span>🏠 ${dashEsc(c.tipo_inmueble)}</span>`:''}
           ${c.habitaciones_min?`<span>🛏 min. ${c.habitaciones_min}</span>`:''}
           ${c.ascensor?`<span>🛗 Ascensor</span>`:(c.planta_max_sin_ascensor != null && c.planta_max_sin_ascensor !== '' ? `<span>🪜 Sin ascensor · hasta ${Number(c.planta_max_sin_ascensor)===0?'bajo':c.planta_max_sin_ascensor+'ª'}</span>` : '')}
-          ${c.zona_buscada?`<span>📍 ${c.zona_buscada}</span>`:''}
+          ${c.zona_buscada?`<span>📍 ${dashEsc(c.zona_buscada)}</span>`:''}
         </div>
         <div class="pub-meta" style="margin-top:.2rem">
-          ${c.telefono?`<span>📞 ${c.telefono}</span>`:''}
-          ${c.email?`<span>✉ ${c.email}</span>`:''}
+          ${c.telefono?`<span>📞 ${dashEsc(c.telefono)}</span>`:''}
+          ${c.email?`<span>✉ ${dashEsc(c.email)}</span>`:''}
         </div>
-        ${c.notas || c.created_at ? `<div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;padding:.4rem;background:var(--surface2);border-radius:4px;line-height:1.5">${c.notas ? c.notas : ''}${c.created_at ? `${c.notas ? '<br>' : ''}${admAltaWhenHtml(c.created_at, { notas: c.notas })}` : ''}</div>` : ''}
-        ${c.ultimo_contacto_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">Último contacto: ${new Date(c.ultimo_contacto_at).toLocaleString('es-ES')}</div>` : `<div style="font-size:.68rem;color:var(--orange);margin-top:.35rem">Sin contacto registrado</div>`}
-        <div class="pub-quick-actions">
+        ${notasPreview || c.created_at ? `<div class="comp-notas-preview" title="Ver historial completo">${notasPreview ? dashEsc(notasPreview) : ''}${c.created_at ? `${notasPreview ? '<br>' : ''}${admAltaWhenHtml(c.created_at, { notas: c.notas })}` : ''}</div>` : ''}
+        ${contact.ultimo ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">Último contacto: ${contact.ultimo.toLocaleString('es-ES')}${contact.proxima ? ` · Alarma: ${contact.proxima.toLocaleDateString('es-ES')}` : ''}</div>` : `<div style="font-size:.68rem;color:var(--orange);margin-top:.35rem">Sin contacto registrado</div>`}
+        <div class="pub-quick-actions" onclick="event.stopPropagation()">
           ${c.telefono ? `<button type="button" class="pub-btn-wa" onclick="admWhatsAppComprador('${c.id}')">WhatsApp</button><button type="button" class="pub-btn-call" onclick="admCallComprador('${c.id}')">Llamar</button>` : ''}
           ${c.telefono && matchN ? `<button type="button" class="pub-btn-wa" style="background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4)" onclick="openCompMatchModal('${c.id}')">WhatsApp + inmuebles</button>` : ''}
           ${c.email ? `<button type="button" class="pub-btn-mail" onclick="admEmailComprador('${c.id}')">Email</button>` : ''}
         </div>
-        <div class="pub-actions" style="margin-top:.6rem">
+        <div class="pub-actions" style="margin-top:.6rem" onclick="event.stopPropagation()">
+          <button type="button" class="pub-btn-web" onclick="openCompCardModal('${c.id}')">Historial</button>
           <button class="pub-btn-web" onclick="openCompMatchModal('${c.id}')">Ver compatibles</button>
           <button class="pub-btn-edit" onclick="editComprador('${c.id}')">Editar</button>
           <button class="pub-btn-del"  onclick="deleteComprador('${c.id}')">Eliminar</button>
@@ -5813,13 +5841,27 @@ async function fetchInmueblesAlreadyWaNotified(compradorId, inmuebleIds){
   return sent;
 }
 
-async function appendCompradorNotaPanel(compradorId, nota){
+async function appendCompradorNotaPanel(compradorId, nota, opts = {}){
   if(!compradorId || !nota || !window.nhSupabase) return;
   const c = _compData.find(x => String(x.id) === String(compradorId));
   const stamp = new Date().toLocaleString('es-ES');
   const merged = [c?.notas, `[${stamp}] ${nota}`].filter(Boolean).join('\n');
-  await window.nhSupabase.from('compradores').update({ notas: merged }).eq('id', compradorId);
-  if(c) c.notas = merged;
+  const payload = { notas: merged };
+  if(opts.forceContact || notaRegistraContacto(nota)){
+    const now = new Date().toISOString();
+    payload.ultimo_contacto_at = now;
+    payload.proxima_alarma_at = compAlarmDate(now);
+  }
+  const { error } = await window.nhSupabase.from('compradores').update(payload).eq('id', compradorId);
+  if(error && /ultimo_contacto_at|proxima_alarma_at/.test(error.message)){
+    await window.nhSupabase.from('compradores').update({ notas: merged }).eq('id', compradorId);
+  } else if(error){
+    console.warn('appendCompradorNotaPanel:', error);
+    nhToast('Error al guardar nota: ' + error.message, 'error');
+    return;
+  }
+  if(c) Object.assign(c, payload);
+  if(payload.ultimo_contacto_at) updateCompAlarmUI();
 }
 
 async function recordCompradorWaAviso(comprador, inm, particularId){
@@ -6090,6 +6132,105 @@ function compAlarmDate(fromDate){
   return d.toISOString();
 }
 
+function notaRegistraContacto(nota){
+  if(!nota || typeof nota !== 'string') return false;
+  return /\bwhatsapp\b|wa\.me|\bllamad|\bllam[eé]\b|contactad|\bvisita\b|email enviad|\bcontacto\b|seguimiento|telegram/i.test(nota);
+}
+
+function parseNotaEsDate(d, t){
+  if(!d) return null;
+  const dm = String(d).match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if(!dm) return null;
+  const tm = t ? String(t).match(/(\d{1,2}):(\d{2})(?::(\d{2}))?/) : null;
+  const dt = new Date(Number(dm[3]), Number(dm[2]) - 1, Number(dm[1]), tm ? Number(tm[1]) : 0, tm ? Number(tm[2]) : 0, tm ? Number(tm[3] || 0) : 0);
+  return isNaN(dt.getTime()) ? null : dt;
+}
+
+function parseUltimoContactoFromNotas(notas){
+  if(!notas) return null;
+  let best = null;
+  const re = /\[(\d{1,2}\/\d{1,2}\/\d{4}),?\s*(\d{1,2}:\d{2}(?::\d{2})?)\][^\[]*(?:whatsapp|llamad|llam[eé]|contactad|visita|contacto|telegram)/gi;
+  let m;
+  while((m = re.exec(notas)) !== null){
+    const dt = parseNotaEsDate(m[1], m[2]);
+    if(dt && (!best || dt > best)) best = dt;
+  }
+  if(!best && /whatsapp/i.test(notas)){
+    const chunks = notas.split(/(?=\[\d{1,2}\/\d{1,2}\/\d{4},)/);
+    for(const chunk of chunks){
+      if(!/whatsapp/i.test(chunk)) continue;
+      const dm = chunk.match(/\[(\d{1,2}\/\d{1,2}\/\d{4}),?\s*(\d{1,2}:\d{2}(?::\d{2})?)\]/);
+      if(dm){
+        const dt = parseNotaEsDate(dm[1], dm[2]);
+        if(dt && (!best || dt > best)) best = dt;
+      }
+    }
+  }
+  return best;
+}
+
+function parseCompradorNotasTimeline(notas){
+  if(!notas?.trim()) return [];
+  const chunks = notas.split(/(?=\[\d{1,2}\/\d{1,2}\/\d{4},)/).map(s => s.trim()).filter(Boolean);
+  const entries = chunks.map(chunk => {
+    const m = chunk.match(/^\[(\d{1,2}\/\d{1,2}\/\d{4}),?\s*(\d{1,2}:\d{2}(?::\d{2})?)\]\s*([\s\S]*)/);
+    if(m){
+      const sort = parseNotaEsDate(m[1], m[2]);
+      return { label: `${m[1]}, ${m[2]}`, text: m[3].trim(), sort: sort ? sort.getTime() : 0, isContact: notaRegistraContacto(m[3]) };
+    }
+    return { label: null, text: chunk, sort: 0, isContact: notaRegistraContacto(chunk) };
+  });
+  return entries.sort((a, b) => b.sort - a.sort);
+}
+
+function compNotasPreview(notas, maxLen = 140){
+  if(!notas) return '';
+  const flat = notas.replace(/\s+/g, ' ').trim();
+  return flat.length > maxLen ? flat.slice(0, maxLen) + '…' : flat;
+}
+
+function getCompradorContactState(c){
+  let ultimo = c?.ultimo_contacto_at ? new Date(c.ultimo_contacto_at) : null;
+  let proxima = c?.proxima_alarma_at ? new Date(c.proxima_alarma_at) : null;
+  if(!ultimo && c?.notas){
+    const parsed = parseUltimoContactoFromNotas(c.notas);
+    if(parsed) ultimo = parsed;
+  }
+  if(ultimo && (!proxima || proxima <= ultimo)){
+    proxima = new Date(ultimo);
+    proxima.setDate(proxima.getDate() + getCompAlarmDays());
+  }
+  return { ultimo, proxima };
+}
+
+async function backfillCompradorContactFromNotas(list){
+  if(!window.nhSupabase || !list?.length) return 0;
+  let fixed = 0;
+  for(const c of list){
+    if(!c?.notas || !/whatsapp|llamad|llam[eé]|contactad|visita|telegram/i.test(c.notas)) continue;
+    const parsed = parseUltimoContactoFromNotas(c.notas);
+    const ultimoDate = c.ultimo_contacto_at ? new Date(c.ultimo_contacto_at) : (parsed || null);
+    if(!ultimoDate) continue;
+    const ultimoIso = ultimoDate.toISOString();
+    const proximaIso = compAlarmDate(ultimoDate);
+    const needsFix = !c.ultimo_contacto_at || !c.proxima_alarma_at || compNeedsAlarm({ ...c, ultimo_contacto_at: ultimoIso, proxima_alarma_at: null });
+    if(!needsFix && c.proxima_alarma_at && new Date(c.proxima_alarma_at) > new Date()) continue;
+    const { error } = await window.nhSupabase.from('compradores').update({
+      ultimo_contacto_at: ultimoIso,
+      proxima_alarma_at: proximaIso,
+    }).eq('id', c.id);
+    if(!error){
+      c.ultimo_contacto_at = ultimoIso;
+      c.proxima_alarma_at = proximaIso;
+      fixed++;
+    } else {
+      console.warn('backfillCompradorContactFromNotas', c.id, error.message);
+    }
+  }
+  if(fixed) updateCompAlarmUI();
+  return fixed;
+}
+
 function partNeedsAlarm(p){
   if(!getPanelAlarmConfig().partAlarmsEnabled) return false;
   if(!p?.activo || ['captado','descartado'].includes(p.estado)) return false;
@@ -6100,8 +6241,14 @@ function partNeedsAlarm(p){
 function compNeedsAlarm(c){
   if(!getPanelAlarmConfig().compAlarmsEnabled) return false;
   if(!c?.activo) return false;
-  if(!c.proxima_alarma_at) return true;
-  return new Date(c.proxima_alarma_at) <= new Date();
+  const { ultimo, proxima } = getCompradorContactState(c);
+  if(!ultimo) return true;
+  const alarmAt = proxima || (() => {
+    const d = new Date(ultimo);
+    d.setDate(d.getDate() + getCompAlarmDays());
+    return d;
+  })();
+  return alarmAt <= new Date();
 }
 
 async function markParticularContactado(id, comentario){
@@ -6123,15 +6270,120 @@ async function markParticularContactado(id, comentario){
 }
 
 async function markCompradorContactado(id, comentario){
-  if(!id) return;
+  if(!id) return false;
   const now = new Date().toISOString();
-  const updates = { ultimo_contacto_at: now, proxima_alarma_at: compAlarmDate(now) };
-  const { error } = await window.nhSupabase.from('compradores').update(updates).eq('id', id);
-  if(error){ console.warn('markCompradorContactado:', error); return; }
   const c = _compData.find(x => x.id === id);
+  const updates = { ultimo_contacto_at: now, proxima_alarma_at: compAlarmDate(now) };
+  if(comentario){
+    const stamp = new Date().toLocaleString('es-ES');
+    updates.notas = [c?.notas, `[${stamp}] ${comentario}`].filter(Boolean).join('\n');
+  }
+  const { error } = await window.nhSupabase.from('compradores').update(updates).eq('id', id);
+  if(error){
+    console.warn('markCompradorContactado:', error);
+    nhToast('No se pudo registrar el contacto: ' + error.message, 'error');
+    return false;
+  }
   if(c) Object.assign(c, updates);
   updateCompAlarmUI();
+  if(_compCardModalId === id) await refreshCompCardModal();
+  return true;
 }
+
+function renderCompNotasTimeline(notas){
+  const entries = parseCompradorNotasTimeline(notas);
+  if(!entries.length) return '<p class="text-muted">Sin comentarios ni seguimientos registrados.</p>';
+  return entries.map(e => `
+    <div class="seg-item${e.isContact ? ' seg-item-contact' : ''}">
+      ${e.label ? `<time>${dashEsc(e.label)}${e.isContact ? ' · contacto' : ''}</time>` : ''}
+      <p>${dashEsc(e.text)}</p>
+    </div>`).join('');
+}
+
+function buildCompCardDetailHtml(c){
+  const alarm = compNeedsAlarm(c);
+  const contact = getCompradorContactState(c);
+  const matchN = countMatchesForComprador(c);
+  const fields = [
+    ['Presupuesto máx.', c.presupuesto_max != null ? Number(c.presupuesto_max).toLocaleString('es-ES') + ' €' : '—'],
+    ['Tipo', c.tipo_inmueble || '—'],
+    ['Habitaciones mín.', c.habitaciones_min || '—'],
+    ['Ascensor', c.ascensor ? 'Sí' : (c.planta_max_sin_ascensor != null && c.planta_max_sin_ascensor !== '' ? `No · hasta ${c.planta_max_sin_ascensor}ª` : '—')],
+    ['Zona', c.zona_buscada || '—'],
+    ['Teléfono', c.telefono || '—'],
+    ['Email', c.email || '—'],
+    ['Estado', c.activo ? 'Activo' : 'Inactivo'],
+  ];
+  return `
+    <div style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem">
+      ${alarm ? '<span class="adm-alarm-badge">⏰ Alarma contacto</span> · ' : ''}
+      ${matchN ? `${matchN} inmueble${matchN===1?'':'s'} compatible${matchN===1?'':'s'} · ` : ''}
+      ${contact.ultimo ? 'Último contacto: ' + contact.ultimo.toLocaleString('es-ES') : '<span style="color:var(--orange)">Sin contacto registrado</span>'}
+      ${contact.proxima ? ' · Próxima alarma: ' + contact.proxima.toLocaleString('es-ES') : ''}
+      ${c.created_at ? '<br>' + admAltaWhenText(c.created_at, { label: 'Alta' }) : ''}
+    </div>
+    <div class="part-card-detail-grid">${fields.map(([k,v]) => `<div><span>${k}</span><strong>${dashEsc(String(v))}</strong></div>`).join('')}</div>
+    <div class="pub-quick-actions" style="margin:.75rem 0" onclick="event.stopPropagation()">
+      ${c.telefono ? `<button type="button" class="pub-btn-wa" onclick="admWhatsAppComprador('${c.id}')">WhatsApp</button><button type="button" class="pub-btn-call" onclick="admCallComprador('${c.id}')">Llamar</button>` : ''}
+      ${c.telefono && matchN ? `<button type="button" class="pub-btn-wa" onclick="openCompMatchModal('${c.id}')">WhatsApp + inmuebles</button>` : ''}
+      ${matchN ? `<button type="button" class="pub-btn-web" onclick="openCompMatchModal('${c.id}')">Ver compatibles (${matchN})</button>` : ''}
+    </div>
+    <div class="wiz-section-label">Registrar seguimiento</div>
+    <div class="adm-field adm-form-col-full">
+      <textarea id="comp-card-seg-comentario" rows="3" placeholder="WhatsApp enviado, llamada, visita, comentario manual…"></textarea>
+    </div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem">
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveCompCardSeguimiento()">Guardar seguimiento</button>
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="markCompradorContactado('${c.id}', 'Contacto manual registrado').then(() => refreshCompCardModal())">Solo marcar contacto</button>
+    </div>
+    <p class="text-muted" style="font-size:.72rem;margin-bottom:1rem">Cada WhatsApp, llamada o comentario actualiza el último contacto y reprograma la alarma (+${getCompAlarmDays()} días).</p>
+    <div class="wiz-section-label">Historial de comentarios</div>
+    <div id="comp-card-seg-timeline" class="seg-timeline">${renderCompNotasTimeline(c.notas)}</div>`;
+}
+
+async function refreshCompCardModal(){
+  if(!_compCardModalId) return;
+  const c = _compData.find(x => x.id === _compCardModalId);
+  if(!c) return;
+  document.getElementById('comp-card-body').innerHTML = buildCompCardDetailHtml(c);
+}
+
+async function openCompCardModal(id){
+  _compCardModalId = id;
+  const c = _compData.find(x => x.id === id);
+  if(!c){ nhToast('Comprador no encontrado', 'error'); return; }
+  closeCompForm();
+  document.getElementById('comp-card-kicker').textContent = c.activo ? 'Comprador activo' : 'Comprador inactivo';
+  document.getElementById('comp-card-title').textContent = c.nombre || 'Comprador';
+  document.getElementById('comp-card-body').innerHTML = buildCompCardDetailHtml(c);
+  document.getElementById('comp-card-foot').innerHTML = `
+    <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="editComprador('${c.id}');closeCompCardModal()">Editar ficha</button>
+    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeCompCardModal()">Cerrar</button>`;
+  const m = document.getElementById('comp-card-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCompCardModal(){
+  _compCardModalId = null;
+  const m = document.getElementById('comp-card-modal');
+  if(m){ m.classList.remove('open'); m.hidden = true; }
+  document.body.style.overflow = '';
+}
+
+async function saveCompCardSeguimiento(){
+  const id = _compCardModalId;
+  const comentario = document.getElementById('comp-card-seg-comentario')?.value.trim();
+  if(!id || !comentario){ nhToast('Escribe un comentario de seguimiento.', 'info'); return; }
+  await appendCompradorNotaPanel(id, comentario, { forceContact: true });
+  nhToast(`Seguimiento guardado. Alarma +${getCompAlarmDays()} días.`, 'success');
+  renderCompradores();
+  await refreshCompCardModal();
+}
+window.openCompCardModal = openCompCardModal;
+window.closeCompCardModal = closeCompCardModal;
+window.saveCompCardSeguimiento = saveCompCardSeguimiento;
 
 async function refreshPartAlarmBadge(){
   if(!window.nhSupabase) return;
