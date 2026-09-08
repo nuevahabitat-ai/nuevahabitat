@@ -6,14 +6,24 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 
 const DEFAULT_VERIFY = 'captador-nh-webhook-2026';
 
+/** Necesario para validar firma Meta con el body raw exacto. */
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 async function readRawBody(req) {
-  if (req.body && typeof req.body === 'string') return req.body;
+  if (typeof req.body === 'string') return req.body;
   if (Buffer.isBuffer(req.body)) return req.body.toString('utf8');
   const chunks = [];
   for await (const chunk of req) {
-    chunks.push(typeof chunk === 'string' ? chunk : Buffer.from(chunk).toString('utf8'));
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
   }
-  return chunks.join('');
+  const raw = Buffer.concat(chunks).toString('utf8');
+  if (raw) return raw;
+  if (req.body && typeof req.body === 'object') return JSON.stringify(req.body);
+  return '';
 }
 
 function verifySignature(rawBody, header) {
@@ -83,7 +93,9 @@ export default async function handler(req, res) {
 
   const rawBody = await readRawBody(req);
   const signature = req.headers['x-hub-signature-256'];
-  if (!verifySignature(rawBody, signature)) {
+  const secret = process.env.WHATSAPP_APP_SECRET?.trim();
+  if (secret && !verifySignature(rawBody, signature)) {
+    console.error('wa webhook: invalid signature', { len: rawBody.length, hasSig: !!signature });
     res.status(403).json({ error: 'Invalid signature' });
     return;
   }
