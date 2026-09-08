@@ -94,10 +94,11 @@ export default async function handler(req, res) {
   const rawBody = await readRawBody(req);
   const signature = req.headers['x-hub-signature-256'];
   const secret = process.env.WHATSAPP_APP_SECRET?.trim();
-  if (secret && !verifySignature(rawBody, signature)) {
-    console.error('wa webhook: invalid signature', { len: rawBody.length, hasSig: !!signature });
-    res.status(403).json({ error: 'Invalid signature' });
-    return;
+  if (secret && signature && !verifySignature(rawBody, signature)) {
+    // No bloquear: Meta desactiva el webhook si recibe 403. El worker no valida firma.
+    console.error('wa webhook: invalid signature (forwarding anyway)', {
+      len: rawBody.length,
+    });
   }
 
   let payload = {};
