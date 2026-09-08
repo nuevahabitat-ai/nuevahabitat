@@ -52,7 +52,8 @@ function parseInbound(payload) {
 async function forwardToCaptador(rawBody, signature) {
   const base =
     process.env.CAPTADOR_WA_FORWARD_URL?.trim() ||
-    process.env.WORKER_SERVICE_URL?.trim()?.replace(/\/$/, '');
+    process.env.WORKER_SERVICE_URL?.trim()?.replace(/\/$/, '') ||
+    'http://75.119.130.152:3003/wa-webhook';
   if (!base) return { ok: false, skipped: true };
   const url = base.includes('/wa-webhook') ? base : `${base}/wa-webhook`;
   const headers = { 'Content-Type': 'application/json' };
