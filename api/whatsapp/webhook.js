@@ -6,24 +6,15 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 
 const DEFAULT_VERIFY = 'captador-nh-webhook-2026';
 
-/** Necesario para validar firma Meta con el body raw exacto. */
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 async function readRawBody(req) {
   if (typeof req.body === 'string') return req.body;
   if (Buffer.isBuffer(req.body)) return req.body.toString('utf8');
+  if (req.body && typeof req.body === 'object') return JSON.stringify(req.body);
   const chunks = [];
   for await (const chunk of req) {
     chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
   }
-  const raw = Buffer.concat(chunks).toString('utf8');
-  if (raw) return raw;
-  if (req.body && typeof req.body === 'object') return JSON.stringify(req.body);
-  return '';
+  return Buffer.concat(chunks).toString('utf8');
 }
 
 function verifySignature(rawBody, header) {
@@ -93,24 +84,25 @@ export default async function handler(req, res) {
 
   const rawBody = await readRawBody(req);
   const signature = req.headers['x-hub-signature-256'];
-  const secret = process.env.WHATSAPP_APP_SECRET?.trim();
-  if (secret && signature && !verifySignature(rawBody, signature)) {
-    // No bloquear: Meta desactiva el webhook si recibe 403. El worker no valida firma.
-    console.error('wa webhook: invalid signature (forwarding anyway)', {
-      len: rawBody.length,
-    });
-  }
 
   let payload = {};
-  try {
-    payload = rawBody ? JSON.parse(rawBody) : {};
-  } catch {
-    res.status(400).json({ error: 'Invalid JSON' });
-    return;
+  if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+    payload = req.body;
+  } else {
+    try {
+      payload = rawBody ? JSON.parse(rawBody) : {};
+    } catch {
+      res.status(400).json({ error: 'Invalid JSON' });
+      return;
+    }
   }
 
+  const forwardBody =
+    rawBody || (Object.keys(payload).length ? JSON.stringify(payload) : '');
+
   try {
-    await forwardToCaptador(rawBody, signature);
+    const fwd = await forwardToCaptador(forwardBody, signature);
+    if (!fwd.ok) console.error('wa forward failed', fwd.status);
   } catch (e) {
     console.error('wa forward:', e);
   }
