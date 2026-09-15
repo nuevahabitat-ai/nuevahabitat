@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-15T19:14:42.234Z",
+  "updated": "2026-09-15T19:26:48.083Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -156,6 +156,30 @@
       "cluster": "comprador",
       "indexable": true,
       "priority": 0.87
+    },
+    {
+      "slug": "comprar-piso-gracia-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "comprar-piso-sants-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "comprar-piso-sarria-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "comprar-piso-poblenou-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.85
     },
     {
       "slug": "cuanto-vale-mi-piso-barcelona",

@@ -26,6 +26,10 @@ window.NH_LANDING_ORDER = [
   "vender-sant-just-sant-joan-despi",
   "comprar-piso-les-corts-barcelona",
   "comprar-piso-eixample-barcelona",
+  "comprar-piso-gracia-barcelona",
+  "comprar-piso-sants-barcelona",
+  "comprar-piso-sarria-barcelona",
+  "comprar-piso-poblenou-barcelona",
   "cuanto-vale-mi-piso-barcelona",
   "vender-piso-alquilado-barcelona",
   "vender-piso-antes-comprar-otro-barcelona",
@@ -842,6 +846,24 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "¿Quieres comprar piso en el Eixample? Acompañamiento comprador con 5.000€ + IVA solo en escritura."
   },
+  "comprar-piso-gracia-barcelona": {
+    "slug": "comprar-piso-gracia-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Gràcia",
+    "footerLabel": "Comprar en Gràcia",
+    "zonas": [
+      "Vila de Gràcia",
+      "Camp d'en Grassot",
+      "Vallcarca",
+      "Penitents"
+    ],
+    "priority": 0.87,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/gracia1.jpg",
+    "cardTeaser": "Comprar en Gràcia con guía experto: búsqueda de piso, negociación, revisión de documentación y trámites has…"
+  },
   "comprar-piso-les-corts-barcelona": {
     "slug": "comprar-piso-les-corts-barcelona",
     "cluster": "comprador",
@@ -860,6 +882,62 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "NuevaHabitat acompaña al comprador en Les Corts de principio a fin: búsqueda de vivienda, negociación, revi…"
+  },
+  "comprar-piso-poblenou-barcelona": {
+    "slug": "comprar-piso-poblenou-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Poblenou",
+    "footerLabel": "Comprar en Poblenou",
+    "zonas": [
+      "22@",
+      "Vila Olímpica",
+      "Rambla del Poblenou",
+      "Diagonal Mar",
+      "La Verneda"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/poblenou1.jpeg",
+    "cardTeaser": "Comprar en Poblenou y 22@ con NuevaHabitat: búsqueda de vivienda, negociación, revisión documental y trámit…"
+  },
+  "comprar-piso-sants-barcelona": {
+    "slug": "comprar-piso-sants-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Sants",
+    "footerLabel": "Comprar en Sants",
+    "zonas": [
+      "Hostafrancs",
+      "La Bordeta",
+      "Estació de Sants",
+      "Sants centre"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/sants1.jpg",
+    "cardTeaser": "Comprar en Sants con NuevaHabitat: te ayudamos a encontrar piso cerca de la estación, negociamos precio, re…"
+  },
+  "comprar-piso-sarria-barcelona": {
+    "slug": "comprar-piso-sarria-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Sarrià",
+    "footerLabel": "Comprar en Sarrià",
+    "zonas": [
+      "Galvany",
+      "Bonanova",
+      "Tres Torres",
+      "Sarrià poble",
+      "Vallvidrera"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/eixample5.jpg",
+    "cardTeaser": "Comprar en Sarrià, Bonanova o Tres Torres con guía experto: búsqueda discreta, negociación técnica, revisió…"
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

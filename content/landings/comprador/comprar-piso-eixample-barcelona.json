@@ -27,8 +27,33 @@
     "keywords": "comprar piso Eixample, comprar casa Eixample Barcelona, agente comprador Eixample, piso Eixample Derecho, comprar vivienda Sagrada Família, inmobiliaria comprador Eixample"
   },
   "hero": {
-    "h1": "¿Quieres comprar piso en el Eixample?",
-    "lead": "Te ayudamos a comprar en <strong>Eixample Derecho, Esquerre, Sagrada Família, Passeig de Gràcia, Fort Pienc y Sant Antoni</strong> con búsqueda activa, acceso a cartera privada y honorarios fijos de <strong>5.000 € + IVA</strong> solo en escritura."
+    "h1": "Comprar piso en el Eixample con acompañamiento integral",
+    "lead": "<strong>NuevaHabitat</strong> te acompaña de principio a fin en el Eixample: <strong>encontrar vivienda</strong>, negociar, revisar documentación y trámites hasta la <strong>escritura pública</strong>. Derecho, Esquerre, Sagrada Família, Passeig de Gràcia, Fort Pienc y Sant Antoni. <strong>5.000 € + IVA</strong>, solo al comprar."
+  },
+  "como_ayudamos": {
+    "title": "Acompañamiento integral al comprador en el Eixample",
+    "steps": [
+      {
+        "title": "Micro-zonas y presupuesto real",
+        "body": "Separamos Derecho, Sant Antoni o Sagrada Família según tu ticket y hipoteca. En el Eixample, acertar la micro-zona ahorra meses de visitas."
+      },
+      {
+        "title": "Búsqueda activa y cartera privada",
+        "body": "Alertas off-market y filtro de portales. Los mejores pisos del ensanche salen rápido: te avisamos cuando encaja tu checklist."
+      },
+      {
+        "title": "Visitas con foco en finca modernista",
+        "body": "Ascensor, derramas, protección patrimonial, orientación interior/exterior. Revisamos contigo antes de ofertar."
+      },
+      {
+        "title": "Negociación con comparables de manzana",
+        "body": "Oferta basada en cierres, no en el anuncio premium de Passeig de Gràcia. Negociamos arras y plazos contigo."
+      },
+      {
+        "title": "Trámites hasta escritura pública",
+        "body": "Revisión registral, banco, notaría. Acompañamiento burocrático completo para comprar con garantías jurídicas."
+      }
+    ]
   },
   "datosMercado": {
     "precioM2": "4.800 – 6.800 €/m²",

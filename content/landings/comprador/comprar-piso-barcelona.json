@@ -84,9 +84,10 @@
     }
   ],
   "relacionadas": [
+    { "slug": "comprar-piso-les-corts-barcelona", "label": "Comprar en Les Corts" },
+    { "slug": "comprar-piso-gracia-barcelona", "label": "Comprar en Gràcia" },
     { "slug": "comprar-piso-eixample-barcelona", "label": "Comprar en el Eixample" },
-    { "slug": "vender-eixample", "label": "Vender en el Eixample" },
-    { "slug": "inmobiliaria-precio-fijo-barcelona", "label": "Inmobiliaria precio fijo" }
+    { "slug": "comprar-piso-sants-barcelona", "label": "Comprar en Sants" }
   ],
   "keywords_footer": "comprar piso barcelona · comprar casa barcelona · agente comprador barcelona · inmobiliaria comprador · buscar piso barcelona · honorarios fijos comprador · panel comprador barcelona",
   "whatsappText": "Hola, quiero comprar piso en Barcelona con NuevaHabitat",
