@@ -133,4 +133,4 @@ ${footerAndScripts(L)}
 </body></html>`;
 }
 
-module.exports = { renderBarrio };
+module.exports = { renderBarrio, heroPicture, ogImage };

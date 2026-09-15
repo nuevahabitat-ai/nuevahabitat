@@ -2,6 +2,10 @@
 (function () {
   function footerLabel(cfg) {
     if (cfg.footerLabel) return cfg.footerLabel;
+    if (cfg.cluster === 'comprador' || cfg.audience === 'comprador') {
+      if (cfg.barrio === 'Eixample') return 'Comprar en el Eixample';
+      if (cfg.barrio) return 'Comprar en ' + cfg.barrio;
+    }
     if (cfg.barrio === 'Eixample') return 'Vender en el Eixample';
     if (cfg.barrio) return 'Vender en ' + cfg.barrio;
     return cfg.slug;
@@ -27,6 +31,7 @@
 
   function cardImage(cfg) {
     if (cfg.cardImage) return cfg.cardImage;
+    if (cfg.cluster === 'comprador') return cfg.cardImage || 'imagenes/familia2.jpg';
     if (cfg.cluster === 'barrio') return 'imagenes/barcelona2.jpg';
     if (cfg.cluster === 'comparativa') return 'imagenes/inmobiliario1.jpg';
     if (cfg.cluster === 'situacion') return 'imagenes/interior2.jpg';
@@ -35,7 +40,7 @@
 
   function landingCard(slug, cfg, opts) {
     opts = opts || {};
-    var badge = cfg.badge || (cfg.cluster === 'comparativa' ? 'Comparativa' : cfg.cluster === 'intencion' ? 'Guía' : cfg.cluster === 'barrio' ? cfg.barrio : 'Situación');
+    var badge = cfg.badge || (cfg.cluster === 'comparativa' ? 'Comparativa' : cfg.cluster === 'intencion' ? 'Guía' : cfg.cluster === 'comprador' ? (cfg.barrio || 'Comprador') : cfg.cluster === 'barrio' ? cfg.barrio : 'Situación');
     var title = footerLabel(cfg);
     var teaser = cfg.cardTeaser || (cfg.zonas || []).slice(0, 3).join(', ') || '';
     var img = cardImage(cfg);
@@ -75,6 +80,9 @@
     var barrioSlugs = (clusters.barrio && clusters.barrio.slugs) || landingOrder().filter(function (slug) {
       return window.NH_LANDINGS[slug] && window.NH_LANDINGS[slug].cluster === 'barrio';
     });
+    var compradorSlugs = (clusters.comprador && clusters.comprador.slugs) || landingOrder().filter(function (slug) {
+      return window.NH_LANDINGS[slug] && window.NH_LANDINGS[slug].cluster === 'comprador';
+    });
     var guiaSlugs = []
       .concat((clusters.situacion && clusters.situacion.slugs) || [])
       .concat((clusters.intencion && clusters.intencion.slugs) || [])
@@ -99,6 +107,12 @@
       return linkItem('/' + slug, footerLabel(cfg));
     }).filter(Boolean);
 
+    var compradorLinks = compradorSlugs.map(function (slug) {
+      var cfg = window.NH_LANDINGS[slug];
+      if (!cfg) return '';
+      return linkItem('/' + slug, footerLabel(cfg));
+    }).filter(Boolean);
+
     // Un único flujo continuo (sin partir "a mano" en columnas): el CSS
     // multi-columna reparte automáticamente el alto entre las 3 columnas,
     // así el footer queda siempre equilibrado sin importar cuántas landings
@@ -107,6 +121,7 @@
       { label: hub.length > 1 ? 'General' : '', items: hub },
       { label: 'Por barrio', items: barrioLinks },
       { label: 'Guías vendedor', items: guiaLinks },
+      { label: 'Comprar', items: compradorLinks },
     ].filter(function (g) {
       return g.items.length;
     });
@@ -138,6 +153,25 @@
       var cfg = window.NH_LANDINGS[slug];
       if (!cfg) return '';
       return landingCard(slug, cfg, { cta: 'Vender en ' + cfg.barrio + ' →' });
+    }).join('');
+
+    container.innerHTML = cards;
+    container.classList.add('visible');
+    if (window.nhObserveFadeUps) window.nhObserveFadeUps(container.parentElement || container);
+  }
+
+  function renderCompradorZona(container) {
+    if (!container || !window.NH_LANDINGS) return;
+
+    var slugs = (window.NH_LANDING_CLUSTERS && window.NH_LANDING_CLUSTERS.comprador && window.NH_LANDING_CLUSTERS.comprador.slugs) || landingOrder().filter(function (s) {
+      return window.NH_LANDINGS[s] && window.NH_LANDINGS[s].cluster === 'comprador';
+    });
+
+    var cards = slugs.map(function (slug) {
+      var cfg = window.NH_LANDINGS[slug];
+      if (!cfg) return '';
+      var cta = cfg.barrio ? 'Comprar en ' + cfg.barrio + ' →' : 'Ver guía →';
+      return landingCard(slug, cfg, { cta: cta });
     }).join('');
 
     container.innerHTML = cards;
@@ -185,6 +219,7 @@
     document.querySelectorAll('[data-nh-landing-footer]').forEach(renderFooterLinks);
     document.querySelectorAll('[data-nh-zona-local]').forEach(renderZonaLocal);
     document.querySelectorAll('[data-nh-guias-vendedor]').forEach(renderGuiasVendedor);
+    document.querySelectorAll('[data-nh-comprador-zona]').forEach(renderCompradorZona);
     applyTestimonialsVisibility();
   }
 

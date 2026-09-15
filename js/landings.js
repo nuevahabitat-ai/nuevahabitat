@@ -24,6 +24,8 @@ window.NH_LANDING_ORDER = [
   "vender-esplugues",
   "vender-cornella",
   "vender-sant-just-sant-joan-despi",
+  "comprar-piso-les-corts-barcelona",
+  "comprar-piso-eixample-barcelona",
   "cuanto-vale-mi-piso-barcelona",
   "vender-piso-alquilado-barcelona",
   "vender-piso-antes-comprar-otro-barcelona",
@@ -50,13 +52,15 @@ window.NH_LANDING_ORDER = [
   "nuevahabitat-vs-fotocasa-particular",
   "nuevahabitat-vs-housfy-barcelona",
   "nuevahabitat-vs-idealista-particular",
-  "vender-por-tu-cuenta-vs-nuevahabitat-barcelona"
+  "vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
+  "comprar-piso-barcelona"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
   situacion: { label: 'Por situación', slugs: [] },
   intencion: { label: 'Guías vendedor', slugs: [] },
   comparativa: { label: 'Comparativas', slugs: [] },
+  comprador: { label: 'Comprar', slugs: [] },
 };
 window.NH_LANDINGS = {
   "vender-badalona": {
@@ -805,6 +809,57 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/familia1.jpg",
     "cardTeaser": "¿Vender el piso solo o con NuevaHabitat en Barcelona? Compara tiempo, riesgos legales, filtro de compradore…"
+  },
+  "comprar-piso-barcelona": {
+    "slug": "comprar-piso-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "footerLabel": "Comprar piso Barcelona",
+    "priority": 0.9,
+    "indexable": true,
+    "testimonials": false,
+    "badge": "Comprador · Barcelona",
+    "cardImage": "imagenes/familia2.jpg",
+    "cardTeaser": "¿Buscas comprar piso en Barcelona? NuevaHabitat te acompaña con honorarios fijos de 5.000€ + IVA, solo en escritura."
+  },
+  "comprar-piso-eixample-barcelona": {
+    "slug": "comprar-piso-eixample-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Eixample",
+    "footerLabel": "Comprar en el Eixample",
+    "zonas": [
+      "Eixample Derecho",
+      "Eixample Esquerre",
+      "Sagrada Família",
+      "Passeig de Gràcia",
+      "Fort Pienc",
+      "Sant Antoni"
+    ],
+    "priority": 0.87,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "¿Quieres comprar piso en el Eixample? Acompañamiento comprador con 5.000€ + IVA solo en escritura."
+  },
+  "comprar-piso-les-corts-barcelona": {
+    "slug": "comprar-piso-les-corts-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Les Corts",
+    "footerLabel": "Comprar en Les Corts",
+    "zonas": [
+      "Numància",
+      "Zona Universitaria",
+      "Pedralbes",
+      "Les Corts centre",
+      "Entorno Camp Nou"
+    ],
+    "priority": 0.88,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/lescorts1.jpg",
+    "cardTeaser": "NuevaHabitat acompaña al comprador en Les Corts de principio a fin: búsqueda de vivienda, negociación, revi…"
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

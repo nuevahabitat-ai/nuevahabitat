@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-23T18:36:49.043Z",
+  "updated": "2026-09-15T19:14:42.234Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -144,6 +144,18 @@
       "cluster": "barrio",
       "indexable": true,
       "priority": 0.85
+    },
+    {
+      "slug": "comprar-piso-les-corts-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "comprar-piso-eixample-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.87
     },
     {
       "slug": "cuanto-vale-mi-piso-barcelona",
@@ -306,6 +318,12 @@
       "cluster": "comparativa",
       "indexable": true,
       "priority": 0.88
+    },
+    {
+      "slug": "comprar-piso-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.9
     }
   ]
 }

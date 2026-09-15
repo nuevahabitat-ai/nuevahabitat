@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { renderBarrio } = require('./render-barrio');
+const { renderComprador } = require('./render-comprador');
 const { renderPilar } = require('./render-pilar');
 const { savingsCalcMarkup } = require('./savings-calc-markup');
 const { PHONES, displayBoth, telLinksInline, footerPhonesLi, schemaTelephones } = require('./phone-config');
@@ -22,6 +23,7 @@ const MIN_WORDS_BY_CLUSTER = {
   situacion: 650,
   intencion: 900,
   comparativa: 900,
+  comprador: 650,
 };
 const MIN_WORDS_DEFAULT = 650;
 const SIMILARITY_THRESHOLD = 0.38;
@@ -131,7 +133,10 @@ function faqSchema(faq, slug) {
 
 function buildJsonLd(L) {
   const areaServed = L.zonas || L.areaServed || ['Barcelona', 'Área metropolitana de Barcelona'];
-  const bcName = L.breadcrumbCurrent || L.barrio || 'Vender';
+  const isComprador = L.cluster === 'comprador';
+  const pillarName = isComprador ? 'Comprar' : 'Vender';
+  const pillarUrl = isComprador ? `${SITE}/comprar` : `${SITE}/vender`;
+  const bcName = L.breadcrumbCurrent || L.barrio || pillarName;
   const schemas = [
     {
       '@context': 'https://schema.org',
@@ -156,12 +161,25 @@ function buildJsonLd(L) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE}/` },
-        { '@type': 'ListItem', position: 2, name: 'Vender', item: `${SITE}/vender` },
+        { '@type': 'ListItem', position: 2, name: pillarName, item: pillarUrl },
         { '@type': 'ListItem', position: 3, name: bcName, item: `${SITE}/${L.slug}` },
       ],
     },
     faqSchema(L.faq, L.slug),
   ];
+  if (L.cluster === 'comprador' && L.como_ayudamos) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      name: L.como_ayudamos.title,
+      step: L.como_ayudamos.steps.map((s, i) => ({
+        '@type': 'HowToStep',
+        position: i + 1,
+        name: s.title,
+        text: s.body,
+      })),
+    });
+  }
   if (L.cluster === 'situacion' && L.como_ayudamos) {
     schemas.push({
       '@context': 'https://schema.org',
@@ -213,13 +231,19 @@ function calcInitial(precio) {
 }
 
 function navBar(L) {
-  const ctaLabel = L.cluster === 'comparativa' || L.cluster === 'intencion' ? 'Valorar' : 'Valorar mi piso';
+  const isComprador = L.cluster === 'comprador';
+  const ctaHref = isComprador ? '#registro-comprador' : '#valorar';
+  const ctaLabel = isComprador
+    ? 'Empezar búsqueda'
+    : (L.cluster === 'comparativa' || L.cluster === 'intencion' ? 'Valorar' : 'Valorar mi piso');
+  const venderStyle = isComprador ? '' : ' style="color:var(--oro)"';
+  const comprarStyle = isComprador ? ' style="color:var(--oro)"' : '';
   return `<nav id="navbar"><div class="nav-inner">
   <a href="/" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">${navSub(L)}</span></div></a>
-  <ul class="nav-links"><li><a href="/vender" style="color:var(--oro)">Vender</a></li><li><a href="/comprar">Comprar</a></li><li><a href="/inmuebles">Inmuebles</a></li><li><a href="/contacto">Contacto</a></li></ul>
-  <div class="nav-actions"><span class="nav-tels">${telLinksInline('nav-tel', 'header')}</span><a href="#valorar" class="nav-cta">${ctaLabel}</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
+  <ul class="nav-links"><li><a href="/vender"${venderStyle}>Vender</a></li><li><a href="/comprar"${comprarStyle}>Comprar</a></li><li><a href="/inmuebles">Inmuebles</a></li><li><a href="/contacto">Contacto</a></li></ul>
+  <div class="nav-actions"><span class="nav-tels">${telLinksInline('nav-tel', 'header')}</span><a href="${ctaHref}" class="nav-cta">${ctaLabel}</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
 </div></nav>
-<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="/vender">Vender</a><a href="/comprar">Comprar</a><a href="/inmuebles">Inmuebles</a><span class="mobile-nav-phones">${telLinksInline('', 'mobile-menu')}</span><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>`;
+<nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="/vender">Vender</a><a href="/comprar">Comprar</a><a href="/inmuebles">Inmuebles</a><span class="mobile-nav-phones">${telLinksInline('', 'mobile-menu')}</span><a href="${ctaHref}" style="color:var(--oro)">${isComprador ? 'Búsqueda →' : 'Valorar →'}</a></nav>`;
 }
 
 function callBanner(variant) {
@@ -240,23 +264,24 @@ function callBanner(variant) {
 }
 
 function relatedBlock(L, ctx) {
-  const { barrioSlugs = [], allMap = {} } = ctx || {};
+  const { barrioSlugs = [], compradorBarrioSlugs = [], allMap = {} } = ctx || {};
   const manual = L.relacionadas || [];
   const isBarrioSlug = (slug) => allMap[slug]?.cluster === 'barrio';
-  const nonBarrio = manual.filter((r) => !isBarrioSlug(r.slug));
-  let barrioLinks = manual.filter((r) => isBarrioSlug(r.slug));
+  const isCompradorBarrio = (slug) => allMap[slug]?.cluster === 'comprador' && allMap[slug]?.barrio;
+  const nonBarrio = manual.filter((r) => !isBarrioSlug(r.slug) && !isCompradorBarrio(r.slug));
+  let barrioLinks = manual.filter((r) => isBarrioSlug(r.slug) || isCompradorBarrio(r.slug));
   const targetBarrios = L.relacionadas_barrios ?? 2;
   const used = new Set([L.slug, ...manual.map((r) => r.slug)]);
+  const fillFrom = L.cluster === 'comprador' ? compradorBarrioSlugs : barrioSlugs;
   if (barrioLinks.length < targetBarrios) {
-    barrioSlugs.forEach((slug) => {
+    fillFrom.forEach((slug) => {
       if (barrioLinks.length >= targetBarrios) return;
       if (used.has(slug)) return;
       const cfg = allMap[slug];
       if (!cfg) return;
-      barrioLinks.push({
-        slug,
-        label: cfg.footerLabel || ('Vender en ' + (cfg.barrio || slug)),
-      });
+      const label = cfg.footerLabel
+        || (L.cluster === 'comprador' && cfg.barrio ? 'Comprar en ' + cfg.barrio : 'Vender en ' + (cfg.barrio || slug));
+      barrioLinks.push({ slug, label });
       used.add(slug);
     });
   }
@@ -666,9 +691,10 @@ ${footerAndScripts(L)}
 
 function renderLanding(L, ctx) {
   const rb = () => relatedBlock(L, ctx);
-  const deps = { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock: rb, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock, nhPlatformBundle };
+  const deps = { SITE, CONTACT_EMAIL, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock: rb, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock, nhPlatformBundle, nhBuyerPlatformBundle, footerPhonesLi };
   if (L.pilar) return renderPilar(L, deps);
   if (L.cluster === 'barrio') return renderBarrio(L, deps);
+  if (L.cluster === 'comprador') return renderComprador(L, ctx, deps);
   if (L.cluster === 'situacion') return renderSituacion(L, ctx);
   if (L.cluster === 'intencion' || L.cluster === 'comparativa') return renderIntencion(L, ctx);
   throw new Error(`Cluster no soportado en build: ${L.cluster} (${L.slug})`);
@@ -683,6 +709,7 @@ function writeLandingsJs(allMap, order) {
     "  situacion: { label: 'Por situación', slugs: [] },",
     "  intencion: { label: 'Guías vendedor', slugs: [] },",
     "  comparativa: { label: 'Comparativas', slugs: [] },",
+    "  comprador: { label: 'Comprar', slugs: [] },",
     '};',
     'window.NH_LANDINGS = ' + JSON.stringify(allMap, null, 2) + ';',
     'Object.keys(window.NH_LANDINGS).forEach(function(slug){',
@@ -735,7 +762,8 @@ function main() {
   const generated = loadJsonFiles(path.join(CONTENT_DIR, 'barrio'))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'situacion')))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'intencion')))
-    .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comparativa')));
+    .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comparativa')))
+    .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comprador')));
 
   const errors = validateLandings(generated);
   if (errors.length) {
@@ -745,6 +773,15 @@ function main() {
 
   const barrioSlugs = generated
     .filter((L) => L.cluster === 'barrio')
+    .sort((a, b) => {
+      if (a.pilar && !b.pilar) return -1;
+      if (b.pilar && !a.pilar) return 1;
+      return (b.priority || 0) - (a.priority || 0);
+    })
+    .map((L) => L.slug);
+
+  const compradorBarrioSlugs = generated
+    .filter((L) => L.cluster === 'comprador' && L.compradorTipo === 'barrio')
     .sort((a, b) => {
       if (a.pilar && !b.pilar) return -1;
       if (b.pilar && !a.pilar) return 1;
@@ -769,6 +806,23 @@ function main() {
       };
       return;
     }
+    if (L.cluster === 'comprador') {
+      allMap[L.slug] = {
+        slug: L.slug,
+        cluster: 'comprador',
+        audience: 'comprador',
+        barrio: L.barrio,
+        footerLabel: L.footerLabel,
+        zonas: L.zonas,
+        priority: L.priority,
+        indexable: L.indexable !== false,
+        testimonials: false,
+        badge: L.hero && L.hero.badge,
+        cardImage: L.heroImage || (L.hero && L.hero.image),
+        cardTeaser: cardTeaserFrom(L) || (L.barrio ? 'Comprar piso en ' + L.barrio + ' con acompañamiento 5.000€ + IVA.' : ''),
+      };
+      return;
+    }
     allMap[L.slug] = {
       slug: L.slug,
       cluster: L.cluster,
@@ -783,7 +837,7 @@ function main() {
     };
   });
 
-  const ctx = { barrioSlugs, allMap };
+  const ctx = { barrioSlugs, compradorBarrioSlugs, allMap };
 
   generated.forEach((L) => {
     const html = renderLanding(L, ctx);
@@ -792,8 +846,10 @@ function main() {
     console.log('Built', L.slug + '.html');
   });
 
-  const otherLandings = generated.filter((L) => L.cluster !== 'barrio').map((L) => L.slug);
-  const order = [...barrioSlugs, ...otherLandings];
+  const otherLandings = generated
+    .filter((L) => L.cluster !== 'barrio' && !(L.cluster === 'comprador' && L.compradorTipo === 'barrio'))
+    .map((L) => L.slug);
+  const order = [...barrioSlugs, ...compradorBarrioSlugs, ...otherLandings];
 
   writeLandingsJs(allMap, order);
 
