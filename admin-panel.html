@@ -1431,6 +1431,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
                 <option value="notaria">Notaría</option>
                 <option value="tasador">Tasador</option>
                 <option value="inmobiliario">Inmobiliario</option>
+                <option value="inversor">Inversor</option>
               </select>
             </div>
             <div class="adm-field adm-form-col-full">
@@ -1461,6 +1462,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
           <button class="adm-subtab" id="colab-tab-notaria" onclick="filterColaboradores('notaria')">Notarías</button>
           <button class="adm-subtab" id="colab-tab-tasador" onclick="filterColaboradores('tasador')">Tasadores</button>
           <button class="adm-subtab" id="colab-tab-inmobiliario" onclick="filterColaboradores('inmobiliario')">Inmobiliarios</button>
+          <button class="adm-subtab" id="colab-tab-inversor" onclick="filterColaboradores('inversor')">Inversores</button>
         </div>
 
         <div id="colab-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
@@ -5408,8 +5410,8 @@ window.saveVendModalComprador = saveVendModalComprador;
 /* ═══════════════════════════════════════════════════════════════
    COLABORADORES
    ══════════════════════════════════════════════════════════════ */
-const COLAB_TIPOS = { gestor:'Gestoría', notaria:'Notaría', tasador:'Tasador', inmobiliario:'Inmobiliario' };
-const COLAB_FILTER_LABELS = { gestor:'gestores', notaria:'notarías', tasador:'tasadores', inmobiliario:'inmobiliarios' };
+const COLAB_TIPOS = { gestor:'Gestoría', notaria:'Notaría', tasador:'Tasador', inmobiliario:'Inmobiliario', inversor:'Inversor' };
+const COLAB_FILTER_LABELS = { gestor:'gestores', notaria:'notarías', tasador:'tasadores', inmobiliario:'inmobiliarios', inversor:'inversores' };
 let _colabData = [];
 let _colabFilter = 'todos';
 
@@ -5432,7 +5434,7 @@ async function loadColaboradores(){
 
 function filterColaboradores(f){
   _colabFilter = f;
-  ['todos','gestor','notaria','tasador','inmobiliario'].forEach(k=>{
+  ['todos','gestor','notaria','tasador','inmobiliario','inversor'].forEach(k=>{
     document.getElementById('colab-tab-'+k)?.classList.toggle('active', k===f);
   });
   renderColaboradores();
@@ -5508,7 +5510,8 @@ function openColabForm(prefill={}){
   document.getElementById('colab-form-wrap').style.display='block';
   document.getElementById('colab-form-title').textContent='Nuevo colaborador';
   document.getElementById('colab-edit-id').value='';
-  document.getElementById('col-tipo').value=prefill.tipo||'gestor';
+  const defaultTipo = prefill.tipo || (_colabFilter !== 'todos' ? _colabFilter : 'gestor');
+  document.getElementById('col-tipo').value = defaultTipo;
   document.getElementById('col-nombre').value=prefill.nombre||'';
   document.getElementById('col-tel').value=prefill.telefono||'';
   document.getElementById('col-email').value=prefill.email||'';
@@ -5556,7 +5559,10 @@ async function saveColaborador(){
     ({ error } = await window.nhSupabase.from('colaboradores').insert(payload));
   }
   if(error){
-    document.getElementById('colab-form-err').textContent='Error: '+error.message;
+    const msg = /colaboradores_tipo_check|inversor/.test(error.message)
+      ? 'Error: '+error.message+' — Ejecuta la migración 041 en Supabase (tipo inversor).'
+      : 'Error: '+error.message;
+    document.getElementById('colab-form-err').textContent = msg;
     document.getElementById('colab-form-err').style.display='block';
     return;
   }
