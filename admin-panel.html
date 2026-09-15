@@ -840,6 +840,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
 
         <!-- Filtros criterios -->
         <div class="adm-filter-bar" id="comp-filter-bar">
+          <div class="adm-field" style="min-width:140px">
+            <label for="cf-telefono">Teléfono</label>
+            <input type="tel" id="cf-telefono" inputmode="numeric" autocomplete="off" placeholder="612… o +34…"/>
+          </div>
           <div class="adm-field">
             <label for="cf-precio-min">Presupuesto mín. (€)</label>
             <input type="number" id="cf-precio-min" min="0" step="5000" placeholder="150.000"/>
@@ -1614,6 +1618,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
 
         <div id="part-particulares-wrap">
         <div class="adm-filter-bar" id="part-filter-bar">
+          <div class="adm-field" style="min-width:140px">
+            <label for="pf-telefono">Teléfono</label>
+            <input type="tel" id="pf-telefono" inputmode="numeric" autocomplete="off" placeholder="612… o +34…"/>
+          </div>
           <div class="adm-field">
             <label for="pf-precio-min">Precio mín. (€)</label>
             <input type="number" id="pf-precio-min" min="0" step="5000" placeholder="150.000"/>
@@ -4007,7 +4015,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLeadsView();
   });
 
-  ['cf-precio-min','cf-precio-max','cf-hab','cf-ascensor','cf-zona'].forEach(id => {
+  ['cf-telefono','cf-precio-min','cf-precio-max','cf-hab','cf-ascensor','cf-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
     el.addEventListener('input', renderCompradores);
@@ -4021,7 +4029,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('change', renderPublications);
   });
 
-  ['pf-precio-min','pf-precio-max','pf-hab','pf-ascensor','pf-zona'].forEach(id => {
+  ['pf-telefono','pf-precio-min','pf-precio-max','pf-hab','pf-ascensor','pf-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
     el.addEventListener('input', renderParticulares);
@@ -4320,10 +4328,27 @@ let _compData = [];
 let _compCardModalId = null;
 let _compFilter = 'todos';
 
+function phoneSearchDigits(raw){
+  if(!raw) return '';
+  let d = String(raw).replace(/\D/g, '');
+  if(d.startsWith('0034')) d = d.slice(4);
+  else if(d.startsWith('34') && d.length > 9) d = d.slice(-9);
+  return d;
+}
+
+function phoneMatchesFilter(recordPhone, query){
+  const q = phoneSearchDigits(query);
+  if(!q) return true;
+  const p = phoneSearchDigits(recordPhone);
+  if(!p) return false;
+  return p.includes(q) || p.endsWith(q);
+}
+
 function getCompFilterValues(){
   const precioMin = parseFloat(document.getElementById('cf-precio-min')?.value);
   const precioMax = parseFloat(document.getElementById('cf-precio-max')?.value);
   return {
+    telefono: (document.getElementById('cf-telefono')?.value || '').trim(),
     precioMin: Number.isFinite(precioMin) ? precioMin : null,
     precioMax: Number.isFinite(precioMax) ? precioMax : null,
     habitaciones: document.getElementById('cf-hab')?.value || '',
@@ -4333,7 +4358,7 @@ function getCompFilterValues(){
 }
 
 function compFiltersActive(f){
-  return !!(f.precioMin || f.precioMax || f.habitaciones || f.ascensor || f.zona);
+  return !!(f.telefono || f.precioMin || f.precioMax || f.habitaciones || f.ascensor || f.zona);
 }
 
 function filterCompradoresList(list){
@@ -4358,6 +4383,7 @@ function filterCompradoresList(list){
       const zona = (c.zona_buscada || '').toLowerCase();
       if(!zona.includes(f.zona)) return false;
     }
+    if(f.telefono && !phoneMatchesFilter(c.telefono, f.telefono)) return false;
     return true;
   });
 }
@@ -4381,7 +4407,7 @@ function updateCompFilterCount(shown, total){
 }
 
 function clearCompFilters(){
-  ['cf-precio-min','cf-precio-max','cf-zona'].forEach(id => {
+  ['cf-telefono','cf-precio-min','cf-precio-max','cf-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.value = '';
   });
@@ -6528,6 +6554,7 @@ function filterParticularesList(list){
       const zonaHay = `${p.zona||''} ${p.barrio||''} ${p.municipio||''} ${p.titulo||''} ${p.direccion||''}`.toLowerCase();
       if(!zonaHay.includes(f.zona) && !f.zona.split(/[,·\s]+/).some(t => t.length >= 3 && zonaHay.includes(t))) return false;
     }
+    if(f.telefono && !phoneMatchesFilter(p.telefono, f.telefono)) return false;
     return true;
   });
 }
@@ -6543,6 +6570,7 @@ function getPartFilterValues(){
   const precioMin = parseFloat(document.getElementById('pf-precio-min')?.value);
   const precioMax = parseFloat(document.getElementById('pf-precio-max')?.value);
   return {
+    telefono: (document.getElementById('pf-telefono')?.value || '').trim(),
     precioMin: Number.isFinite(precioMin) ? precioMin : null,
     precioMax: Number.isFinite(precioMax) ? precioMax : null,
     habitaciones: document.getElementById('pf-hab')?.value || '',
@@ -6552,7 +6580,7 @@ function getPartFilterValues(){
 }
 
 function partBarFiltersActive(f){
-  return !!(f.precioMin || f.precioMax || f.habitaciones || f.ascensor || f.zona);
+  return !!(f.telefono || f.precioMin || f.precioMax || f.habitaciones || f.ascensor || f.zona);
 }
 
 function updatePartZonaDatalist(){
@@ -6580,7 +6608,7 @@ function updatePartFilterCount(shown, total, tabTotal){
 }
 
 function clearPartFilters(){
-  ['pf-precio-min','pf-precio-max','pf-zona'].forEach(id => {
+  ['pf-telefono','pf-precio-min','pf-precio-max','pf-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.value = '';
   });
