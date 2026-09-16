@@ -32,6 +32,11 @@
     if(!post){
       document.getElementById('postTitle').textContent = 'Artículo no encontrado';
       document.getElementById('postBody').innerHTML = '<p>Este artículo no existe o ha sido movido. <a href="/blog">Vuelve al blog</a>.</p>';
+      document.title = 'Artículo no encontrado · NuevaHabitat';
+      let robots = document.querySelector('meta[name="robots"]');
+      if(robots) robots.content = 'noindex, follow';
+      const canon = document.querySelector('link[rel="canonical"]');
+      if(canon) canon.href = 'https://www.nuevahabitat.com/blog';
       return;
     }
     document.title = (post.titulo || post.title) + ' · NuevaHabitat';
