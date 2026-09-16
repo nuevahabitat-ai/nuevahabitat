@@ -7,6 +7,12 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/inmuebles.html",
+      "has": [{ "type": "query", "key": "q", "value": "(?<q>[^&]+)" }],
+      "destination": "https://www.nuevahabitat.com/api/inmuebles-canonical?target=:q",
+      "permanent": true
+    },
+    {
       "source": "/blog-articulo",
       "missing": [{ "type": "query", "key": "slug" }],
       "destination": "/blog",
