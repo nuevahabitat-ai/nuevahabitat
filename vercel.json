@@ -8,12 +8,7 @@
   "redirects": [
     {
       "source": "/blog-articulo",
-      "has": [{ "type": "query", "key": "slug", "value": "(?<slug>[^&]+)" }],
-      "destination": "/blog/:slug",
-      "permanent": true
-    },
-    {
-      "source": "/blog-articulo",
+      "missing": [{ "type": "query", "key": "slug" }],
       "destination": "/blog",
       "permanent": true
     },
@@ -234,12 +229,7 @@
     },
     {
       "source": "/blog-articulo.html",
-      "has": [{ "type": "query", "key": "slug", "value": "(?<slug>[^&]+)" }],
-      "destination": "/blog/:slug",
-      "permanent": true
-    },
-    {
-      "source": "/blog-articulo.html",
+      "missing": [{ "type": "query", "key": "slug" }],
       "destination": "/blog",
       "permanent": true
     },
@@ -259,6 +249,18 @@
       "permanent": true
     },
     {
+      "source": "/inmuebles.html",
+      "has": [{ "type": "query", "key": "q", "value": "(?<q>[^&]+)" }],
+      "destination": "/api/inmuebles-canonical?target=:q",
+      "permanent": true
+    },
+    {
+      "source": "/inmuebles",
+      "has": [{ "type": "query", "key": "q", "value": "(?<q>[^&]+)" }],
+      "destination": "/api/inmuebles-canonical?target=:q",
+      "permanent": true
+    },
+    {
       "source": "/:path.html",
       "destination": "/:path",
       "permanent": true
@@ -266,6 +268,16 @@
   ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
+    {
+      "source": "/blog-articulo",
+      "has": [{ "type": "query", "key": "slug", "value": "(?<slug>[^&]+)" }],
+      "destination": "/api/seo-blog-canonical?target=:slug"
+    },
+    {
+      "source": "/blog-articulo.html",
+      "has": [{ "type": "query", "key": "slug", "value": "(?<slug>[^&]+)" }],
+      "destination": "/api/seo-blog-canonical?target=:slug"
+    },
     { "source": "/blog/:slug", "destination": "/blog-articulo?slug=:slug" },
     { "source": "/api/stripe-verify-session", "destination": "/api/stripe-checkout?__action=verify-session" }
   ],
