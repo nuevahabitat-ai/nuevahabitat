@@ -27,9 +27,19 @@ window.NH_LANDING_ORDER = [
   "comprar-piso-les-corts-barcelona",
   "comprar-piso-eixample-barcelona",
   "comprar-piso-gracia-barcelona",
+  "comprar-piso-sant-antoni-barcelona",
+  "comprar-piso-poble-sec-barcelona",
+  "comprar-piso-sant-gervasi-barcelona",
+  "comprar-piso-sant-marti-barcelona",
   "comprar-piso-sants-barcelona",
   "comprar-piso-sarria-barcelona",
+  "comprar-piso-badalona-barcelona",
+  "comprar-piso-esplugues-barcelona",
+  "comprar-piso-horta-barcelona",
+  "comprar-piso-l-hospitalet-barcelona",
+  "comprar-piso-nou-barris-barcelona",
   "comprar-piso-poblenou-barcelona",
+  "comprar-piso-sant-andreu-barcelona",
   "cuanto-vale-mi-piso-barcelona",
   "vender-piso-alquilado-barcelona",
   "vender-piso-antes-comprar-otro-barcelona",
@@ -814,6 +824,26 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/familia1.jpg",
     "cardTeaser": "¿Vender el piso solo o con NuevaHabitat en Barcelona? Compara tiempo, riesgos legales, filtro de compradore…"
   },
+  "comprar-piso-badalona-barcelona": {
+    "slug": "comprar-piso-badalona-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Badalona",
+    "footerLabel": "Comprar en Badalona",
+    "zonas": [
+      "Centre",
+      "Gorg",
+      "Montigalà",
+      "La Salut",
+      "Sant Roc",
+      "Artigues"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Guía comprador Badalona: elige barrio (no solo municipio), negocia con datos, revisa ITE y arras, firma escritura."
+  },
   "comprar-piso-barcelona": {
     "slug": "comprar-piso-barcelona",
     "cluster": "comprador",
@@ -846,6 +876,25 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "¿Quieres comprar piso en el Eixample? Acompañamiento comprador con 5.000€ + IVA solo en escritura."
   },
+  "comprar-piso-esplugues-barcelona": {
+    "slug": "comprar-piso-esplugues-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Esplugues de Llobregat",
+    "footerLabel": "Comprar en Esplugues",
+    "zonas": [
+      "Can Vidalet",
+      "Centre",
+      "Finestrelles",
+      "Les Malloles",
+      "Can Sant Joan"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/esplugues1.jpg",
+    "cardTeaser": "Familias entre Les Corts y Sarrià: guía comprador en Esplugues, bloques vs adosados, negociación, revisión …"
+  },
   "comprar-piso-gracia-barcelona": {
     "slug": "comprar-piso-gracia-barcelona",
     "cluster": "comprador",
@@ -863,6 +912,44 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Comprar en Gràcia con guía experto: búsqueda de piso, negociación, revisión de documentación y trámites has…"
+  },
+  "comprar-piso-horta-barcelona": {
+    "slug": "comprar-piso-horta-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Horta-Guinardó",
+    "footerLabel": "Comprar en Horta-Guinardó",
+    "zonas": [
+      "Horta centre",
+      "Montbau",
+      "Vall d'Hebron",
+      "La Teixonera",
+      "El Carmel"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/horta1.jpg",
+    "cardTeaser": "Familias en Horta: Montbau plano vs Teixonera con pendiente, negociación con comparables, revisión de terra…"
+  },
+  "comprar-piso-l-hospitalet-barcelona": {
+    "slug": "comprar-piso-l-hospitalet-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "L'Hospitalet",
+    "footerLabel": "Comprar en L'Hospitalet",
+    "zonas": [
+      "Centre",
+      "Bellvitge",
+      "Pubilla Cases",
+      "Granvia L'H",
+      "Santa Eulàlia"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/hospitalet1.jpg",
+    "cardTeaser": "Más metros en L'Hospitalet con guía comprador: Centre vs Bellvitge, negociación en mercado de volumen, revi…"
   },
   "comprar-piso-les-corts-barcelona": {
     "slug": "comprar-piso-les-corts-barcelona",
@@ -883,6 +970,43 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "NuevaHabitat acompaña al comprador en Les Corts de principio a fin: búsqueda de vivienda, negociación, revi…"
   },
+  "comprar-piso-nou-barris-barcelona": {
+    "slug": "comprar-piso-nou-barris-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Nou Barris",
+    "footerLabel": "Comprar en Nou Barris",
+    "zonas": [
+      "Verdum",
+      "Roquetes",
+      "Trinitat Vella",
+      "Porta",
+      "Torre Baró"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "Entrada a Barcelona ciudad en Nou Barris: bloques 60-70, metro L3/L4/L5, negociación con comparables, revis…"
+  },
+  "comprar-piso-poble-sec-barcelona": {
+    "slug": "comprar-piso-poble-sec-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Poble Sec",
+    "footerLabel": "Comprar en Poble Sec",
+    "zonas": [
+      "Paral·lel",
+      "Falda de Montjuïc",
+      "Tres Xemeneies",
+      "Plaça del Sortidor"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Fincas sin ascensor, luz en calle estrecha y terraza con vistas: guía comprador Poble Sec, negociación, rev…"
+  },
   "comprar-piso-poblenou-barcelona": {
     "slug": "comprar-piso-poblenou-barcelona",
     "cluster": "comprador",
@@ -901,6 +1025,80 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Comprar en Poblenou y 22@ con NuevaHabitat: búsqueda de vivienda, negociación, revisión documental y trámit…"
+  },
+  "comprar-piso-sant-andreu-barcelona": {
+    "slug": "comprar-piso-sant-andreu-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Sant Andreu",
+    "footerLabel": "Comprar en Sant Andreu",
+    "zonas": [
+      "Sant Andreu de Palomar",
+      "Congrés-Indians",
+      "Bon Pastor",
+      "Baró de Viver",
+      "Fabra i Coats"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona5.jpg",
+    "cardTeaser": "Pueblo dentro de Barcelona: guía comprador en Sant Andreu, regeneración Fabra i Coats, fincas sin ascensor …"
+  },
+  "comprar-piso-sant-antoni-barcelona": {
+    "slug": "comprar-piso-sant-antoni-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Sant Antoni",
+    "footerLabel": "Comprar en Sant Antoni",
+    "zonas": [
+      "Mercat de Sant Antoni",
+      "Superilla peatonal",
+      "Comte Borrell",
+      "Ronda de Sant Antoni"
+    ],
+    "priority": 0.87,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "Mercado competitivo en Sant Antoni: calle peatonal vs ronda, finca modernista, negociación con comparables …"
+  },
+  "comprar-piso-sant-gervasi-barcelona": {
+    "slug": "comprar-piso-sant-gervasi-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Sant Gervasi",
+    "footerLabel": "Comprar en Sant Gervasi",
+    "zonas": [
+      "El Putxet",
+      "El Farró",
+      "Via Augusta",
+      "Muntaner alto"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/eixample4.jpg",
+    "cardTeaser": "Guía comprador en Sant Gervasi: micro-zonas Putxet y Farró, negociación con propietario, revisión de arras …"
+  },
+  "comprar-piso-sant-marti-barcelona": {
+    "slug": "comprar-piso-sant-marti-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Sant Martí",
+    "footerLabel": "Comprar en Sant Martí",
+    "zonas": [
+      "El Clot",
+      "La Sagrera",
+      "22@",
+      "Diagonal Mar",
+      "El Besòs"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": false,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Guía comprador Sant Martí: no confundas El Clot con Poblenou en precio."
   },
   "comprar-piso-sants-barcelona": {
     "slug": "comprar-piso-sants-barcelona",

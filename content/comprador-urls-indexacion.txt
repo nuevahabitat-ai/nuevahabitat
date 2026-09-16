@@ -1,0 +1,21 @@
+# Comprador — URLs para inspección / indexación (producción)
+# Tras deploy: pegar en GSC → Inspección de URLs → Solicitar indexación
+
+https://www.nuevahabitat.com/comprar-piso-barcelona
+https://www.nuevahabitat.com/comprar-piso-eixample-barcelona
+https://www.nuevahabitat.com/comprar-piso-gracia-barcelona
+https://www.nuevahabitat.com/comprar-piso-les-corts-barcelona
+https://www.nuevahabitat.com/comprar-piso-sants-barcelona
+https://www.nuevahabitat.com/comprar-piso-sarria-barcelona
+https://www.nuevahabitat.com/comprar-piso-poblenou-barcelona
+https://www.nuevahabitat.com/comprar-piso-sant-gervasi-barcelona
+https://www.nuevahabitat.com/comprar-piso-badalona-barcelona
+https://www.nuevahabitat.com/comprar-piso-l-hospitalet-barcelona
+https://www.nuevahabitat.com/comprar-piso-horta-barcelona
+https://www.nuevahabitat.com/comprar-piso-sant-andreu-barcelona
+https://www.nuevahabitat.com/comprar-piso-sant-marti-barcelona
+https://www.nuevahabitat.com/comprar-piso-nou-barris-barcelona
+https://www.nuevahabitat.com/comprar-piso-esplugues-barcelona
+https://www.nuevahabitat.com/comprar-piso-sant-antoni-barcelona
+https://www.nuevahabitat.com/comprar-piso-poble-sec-barcelona
+https://www.nuevahabitat.com/comprar
