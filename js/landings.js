@@ -71,6 +71,7 @@ window.NH_LANDING_ORDER = [
   "inmobiliaria-precio-fijo-sarria-barcelona",
   "vender-piso-rapido-barcelona",
   "vender-piso-sin-exclusividad-barcelona",
+  "vender-como-particular-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
   "nuevahabitat-vs-clikalia-barcelona",
   "nuevahabitat-vs-fotocasa-particular",
@@ -83,6 +84,7 @@ window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
   situacion: { label: 'Por situación', slugs: [] },
   intencion: { label: 'Guías vendedor', slugs: [] },
+  particular: { label: 'Vender como particular', slugs: [] },
   comparativa: { label: 'Comparativas', slugs: [] },
   comprador: { label: 'Comprar', slugs: [] },
 };
@@ -881,6 +883,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/agente inmobiliario2.jpg",
     "cardTeaser": "¿Quieres vender tu piso en Barcelona sin exclusiva ni permanencia abusiva? Guía para particulares: compara …"
+  },
+  "vender-como-particular-barcelona": {
+    "slug": "vender-como-particular-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Vender como particular",
+    "priority": 0.93,
+    "indexable": true,
+    "keyword_principal": "vender piso particular barcelona",
+    "badge": "Barcelona · Particular vendedor · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/comercial1.jpg",
+    "cardTeaser": "Guía para propietarios que venden por su cuenta en Barcelona: documentos, errores típicos, visitas con crit…"
   },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
     "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",

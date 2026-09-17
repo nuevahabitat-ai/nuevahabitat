@@ -23,6 +23,7 @@ const MIN_WORDS_BY_CLUSTER = {
   situacion: 650,
   intencion: 900,
   comparativa: 900,
+  particular: 900,
   comprador: 650,
 };
 const MIN_WORDS_DEFAULT = 650;
@@ -193,7 +194,7 @@ function buildJsonLd(L) {
       })),
     });
   }
-  if ((L.cluster === 'intencion' || L.cluster === 'comparativa') && L.como_ayudamos) {
+  if ((L.cluster === 'intencion' || L.cluster === 'comparativa' || L.cluster === 'particular') && L.como_ayudamos) {
     schemas.push({
       '@context': 'https://schema.org',
       '@type': 'HowTo',
@@ -235,7 +236,7 @@ function navBar(L) {
   const ctaHref = isComprador ? '#registro-comprador' : '#valorar';
   const ctaLabel = isComprador
     ? 'Empezar búsqueda'
-    : (L.cluster === 'comparativa' || L.cluster === 'intencion' ? 'Valorar' : 'Valorar mi piso');
+    : (L.cluster === 'comparativa' || L.cluster === 'intencion' || L.cluster === 'particular' ? 'Valorar' : 'Valorar mi piso');
   const venderStyle = isComprador ? '' : ' style="color:var(--oro)"';
   const comprarStyle = isComprador ? ' style="color:var(--oro)"' : '';
   return `<nav id="navbar"><div class="nav-inner">
@@ -696,7 +697,7 @@ function renderLanding(L, ctx) {
   if (L.cluster === 'barrio') return renderBarrio(L, deps);
   if (L.cluster === 'comprador') return renderComprador(L, ctx, deps);
   if (L.cluster === 'situacion') return renderSituacion(L, ctx);
-  if (L.cluster === 'intencion' || L.cluster === 'comparativa') return renderIntencion(L, ctx);
+  if (L.cluster === 'intencion' || L.cluster === 'comparativa' || L.cluster === 'particular') return renderIntencion(L, ctx);
   throw new Error(`Cluster no soportado en build: ${L.cluster} (${L.slug})`);
 }
 
@@ -708,6 +709,7 @@ function writeLandingsJs(allMap, order) {
     "  barrio: { label: 'Por barrio', slugs: [] },",
     "  situacion: { label: 'Por situación', slugs: [] },",
     "  intencion: { label: 'Guías vendedor', slugs: [] },",
+    "  particular: { label: 'Vender como particular', slugs: [] },",
     "  comparativa: { label: 'Comparativas', slugs: [] },",
     "  comprador: { label: 'Comprar', slugs: [] },",
     '};',
@@ -762,6 +764,7 @@ function main() {
   const generated = loadJsonFiles(path.join(CONTENT_DIR, 'barrio'))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'situacion')))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'intencion')))
+    .concat(loadJsonFiles(path.join(CONTENT_DIR, 'particular')))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comparativa')))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comprador')));
 

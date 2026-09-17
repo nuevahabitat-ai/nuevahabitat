@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17T13:17:38.870Z",
+  "updated": "2026-09-17T19:11:05.319Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -426,6 +426,12 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.93
     },
     {
       "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",

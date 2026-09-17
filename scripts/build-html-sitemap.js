@@ -32,6 +32,7 @@ const CLUSTER_LABELS = {
   barrio: 'Vender por barrio',
   situacion: 'Vender por situación',
   intencion: 'Guías para vender',
+  particular: 'Vender como particular',
   comparativa: 'Comparativas',
 };
 
