@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-16T07:36:22.682Z",
+  "updated": "2026-09-17T13:17:38.870Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -314,6 +314,12 @@
       "priority": 0.92
     },
     {
+      "slug": "inmobiliaria-precio-fijo-ciutat-vella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-cornella-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -324,6 +330,18 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-el-clot-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-esplugues-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
     },
     {
       "slug": "inmobiliaria-precio-fijo-gracia-barcelona",
@@ -350,10 +368,52 @@
       "priority": 0.9
     },
     {
+      "slug": "inmobiliaria-precio-fijo-nou-barris-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-poble-sec-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-sant-andreu-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-sant-antoni-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-sant-gervasi-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-sants-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-sarria-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
     },
     {
       "slug": "vender-piso-rapido-barcelona",

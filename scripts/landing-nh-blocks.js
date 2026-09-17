@@ -129,10 +129,11 @@ function nhPanelDemoBlock(L) {
         <h2 class="section-title">Tu expediente de venta, controlado al milímetro</h2>
         <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con un gestor especializado en comunicación en todo momento. Ves el estado del proceso, las visitas, las ofertas y toda la documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
         <ul class="lc-nh-panel-list">
-          <li><strong>Proceso guiado paso a paso</strong> — sabes en qué fase estás en cada momento.</li>
-          <li><strong>Calendario interactivo</strong> — indicas qué días y franjas horarias el agente puede hacer visitas.</li>
-          <li><strong>Resumen en tiempo real</strong> — publicación, visitas recibidas y ofertas en un vistazo.</li>
-          <li><strong>Contratos y arras</strong> — documentación firmada disponible en tu panel.</li>
+          <li><strong>Registro de visitas</strong> — fecha, comprador, agente y resultado; historial completo, no llamadas perdidas.</li>
+          <li><strong>Control de visitas</strong> — tú marcas disponibilidad; solo se agenda en tus franjas, con ficha de control por visita.</li>
+          <li><strong>Tu documentación</strong> — sube nota simple, ITE, actas o escrituras previas al expediente digital.</li>
+          <li><strong>Documentación del comprador</strong> — lo que aporta el comprador cualificado queda centralizado para revisión antes de arras.</li>
+          <li><strong>Contratos y arras</strong> — reserva, arras firmadas (FIRMACERT) y tasación en la misma carpeta.</li>
         </ul>
         <a href="/registro" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
       </div>
