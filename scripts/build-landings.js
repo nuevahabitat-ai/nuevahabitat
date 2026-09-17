@@ -337,7 +337,7 @@ function sharedStyles() {
     .page-breadcrumb a{color:var(--gris-medio);transition:color var(--transition)}.page-breadcrumb a:hover{color:var(--negro)}
     .page-breadcrumb span[aria-hidden="true"]{opacity:.45}.page-breadcrumb .bc-current{color:var(--negro);font-weight:500}
     .lc-hero{min-height:68vh;display:flex;align-items:center;position:relative;overflow:hidden}
-    .lc-hero-media{position:absolute;inset:0;z-index:0}.lc-hero-media img{width:100%;height:100%;object-fit:cover}
+    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center center}
     .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.88) 42%,rgba(13,13,13,.4));z-index:1}
     .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:120px 0 80px}
     .lc-hero-content h1{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);color:#fff;line-height:1.12;margin-bottom:1rem}
@@ -648,8 +648,8 @@ function renderIntencion(L, ctx) {
 <body data-nh-cluster="${L.cluster}" data-nh-landing-slug="${L.slug}" data-nh-precio-default="${calc.precio}">
 ${navBar(L)}
 <div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent || L.footerLabel || L.slug}</span></nav></div>
-<section class="lc-hero" style="min-height:58vh">
-  <div class="lc-hero-media"><img src="${L.hero.image}" alt="${L.hero.imageAlt}"/></div>
+<section class="lc-hero" style="min-height:62vh">
+  <div class="lc-hero-media"><img src="${L.hero.image}" alt="${L.hero.imageAlt}" style="object-position:${L.hero.objectPosition || 'center 32%'}"/></div>
   <div class="lc-hero-overlay"></div>
   <div class="container"><div class="lc-hero-content fade-up">
     <span class="lc-badge">${L.hero.badge}</span>
@@ -660,6 +660,7 @@ ${navBar(L)}
 </section>
 ${callBanner()}
 ${calcBlock(L)}
+${marketStatsBlock(L) ? `<section class="lc-section" style="background:var(--blanco);padding-top:2rem;padding-bottom:0"><div class="container">${marketStatsBlock(L)}${buyerProfileBlock(L)}</div></section>` : ''}
 <section class="lc-section" style="background:var(--crema)">
   <div class="container lc-article-layout">
     <div class="lc-prose lc-prose--cols fade-up">${L.argumento_principal}</div>

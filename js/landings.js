@@ -72,6 +72,8 @@ window.NH_LANDING_ORDER = [
   "vender-piso-rapido-barcelona",
   "vender-piso-sin-exclusividad-barcelona",
   "vender-como-particular-barcelona",
+  "vender-como-particular-ciutat-vella-barcelona",
+  "vender-como-particular-les-corts-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
   "nuevahabitat-vs-clikalia-barcelona",
   "nuevahabitat-vs-fotocasa-particular",
@@ -893,8 +895,32 @@ window.NH_LANDINGS = {
     "keyword_principal": "vender piso particular barcelona",
     "badge": "Barcelona · Particular vendedor · Precio fijo",
     "testimonials": false,
-    "cardImage": "imagenes/comercial1.jpg",
+    "cardImage": "imagenes/comercial2.jpg",
     "cardTeaser": "Guía para propietarios que venden por su cuenta en Barcelona: documentos, errores típicos, visitas con crit…"
+  },
+  "vender-como-particular-ciutat-vella-barcelona": {
+    "slug": "vender-como-particular-ciutat-vella-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Ciutat Vella",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "vender piso particular ciutat vella barcelona",
+    "badge": "Ciutat Vella · Gòtic · Born · Raval · Barceloneta",
+    "testimonials": false,
+    "cardImage": "imagenes/ciutatvella2.jpg",
+    "cardTeaser": "Guía particular en Ciutat Vella: cuatro barrios, precios 3.000–6.900 €/m², licencias, herencias y comprador…"
+  },
+  "vender-como-particular-les-corts-barcelona": {
+    "slug": "vender-como-particular-les-corts-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Les Corts",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "vender piso particular les corts barcelona",
+    "badge": "Les Corts · Particular vendedor · Oficina NH",
+    "testimonials": false,
+    "cardImage": "imagenes/lescorts1.jpg",
+    "cardTeaser": "Guía para propietarios en Les Corts (Numància, Pedralbes, Zona Universitaria): precios 4.700–6.200 €/m², er…"
   },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
     "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
