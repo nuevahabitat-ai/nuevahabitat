@@ -9,7 +9,7 @@
     {
       "source": "/inmuebles.html",
       "has": [{ "type": "query", "key": "q", "value": "(?<q>[^&]+)" }],
-      "destination": "https://www.nuevahabitat.com/api/inmuebles-canonical?target=:q",
+      "destination": "https://www.nuevahabitat.com/api/seo-canonical?role=inmuebles&target=:q",
       "permanent": true
     },
     {
@@ -265,23 +265,25 @@
     {
       "source": "/blog-articulo",
       "has": [{ "type": "query", "key": "slug", "value": "(?<slug>[^&]+)" }],
-      "destination": "/api/seo-blog-canonical?target=:slug"
+      "destination": "/api/seo-canonical?role=blog&target=:slug"
     },
     {
       "source": "/blog-articulo.html",
       "has": [{ "type": "query", "key": "slug", "value": "(?<slug>[^&]+)" }],
-      "destination": "/api/seo-blog-canonical?target=:slug"
+      "destination": "/api/seo-canonical?role=blog&target=:slug"
     },
     {
       "source": "/inmuebles",
       "has": [{ "type": "query", "key": "q", "value": "(?<q>[^&]+)" }],
-      "destination": "/api/inmuebles-canonical?target=:q"
+      "destination": "/api/seo-canonical?role=inmuebles&target=:q"
     },
     {
       "source": "/inmuebles.html",
       "has": [{ "type": "query", "key": "q", "value": "(?<q>[^&]+)" }],
-      "destination": "/api/inmuebles-canonical?target=:q"
+      "destination": "/api/seo-canonical?role=inmuebles&target=:q"
     },
+    { "source": "/api/inmuebles-canonical", "destination": "/api/seo-canonical?role=inmuebles" },
+    { "source": "/api/seo-blog-canonical", "destination": "/api/seo-canonical?role=blog" },
     { "source": "/blog/:slug", "destination": "/blog-articulo?slug=:slug" },
     { "source": "/api/stripe-verify-session", "destination": "/api/stripe-checkout?__action=verify-session" }
   ],
