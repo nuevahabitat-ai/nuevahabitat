@@ -175,11 +175,13 @@
     { "slug": "vender-piso-sin-exclusividad-barcelona", "label": "Vender sin exclusiva" },
     { "slug": "cuanto-vale-mi-piso-barcelona", "label": "Cuánto vale mi piso" },
     { "slug": "vender-piso-rapido-barcelona", "label": "Vender rápido" },
+    { "slug": "vender-como-particular-sants-barcelona", "label": "Particular Sants" },
+    { "slug": "vender-como-particular-eixample-barcelona", "label": "Particular Eixample" },
+    { "slug": "vender-como-particular-gracia-barcelona", "label": "Particular Gràcia" },
+    { "slug": "vender-como-particular-poblenou-barcelona", "label": "Particular Poblenou" },
+    { "slug": "vender-como-particular-sarria-barcelona", "label": "Particular Sarrià" },
     { "slug": "vender-como-particular-les-corts-barcelona", "label": "Particular Les Corts" },
-    { "slug": "vender-como-particular-ciutat-vella-barcelona", "label": "Particular Ciutat Vella" },
-    { "slug": "vender-sants", "label": "Vender en Sants" },
-    { "slug": "vender-eixample", "label": "Vender en Eixample" },
-    { "slug": "vender-gracia", "label": "Vender en Gràcia" }
+    { "slug": "vender-como-particular-ciutat-vella-barcelona", "label": "Particular Ciutat Vella" }
   ],
   "keywords_footer": "vender piso particular barcelona · vender mi piso yo mismo · vender casa particular · documentos vender piso · panel vendedor · precio fijo 3630 · sin agencia 6%",
   "whatsappText": "Hola%2C%20soy%20particular%20y%20quiero%20vender%20mi%20piso%20en%20Barcelona",

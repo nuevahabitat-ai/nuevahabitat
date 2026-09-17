@@ -73,7 +73,12 @@ window.NH_LANDING_ORDER = [
   "vender-piso-sin-exclusividad-barcelona",
   "vender-como-particular-barcelona",
   "vender-como-particular-ciutat-vella-barcelona",
+  "vender-como-particular-eixample-barcelona",
+  "vender-como-particular-gracia-barcelona",
   "vender-como-particular-les-corts-barcelona",
+  "vender-como-particular-poblenou-barcelona",
+  "vender-como-particular-sants-barcelona",
+  "vender-como-particular-sarria-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
   "nuevahabitat-vs-clikalia-barcelona",
   "nuevahabitat-vs-fotocasa-particular",
@@ -910,6 +915,30 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/ciutatvella2.jpg",
     "cardTeaser": "Guía particular en Ciutat Vella: cuatro barrios, precios 3.000–6.900 €/m², licencias, herencias y comprador…"
   },
+  "vender-como-particular-eixample-barcelona": {
+    "slug": "vender-como-particular-eixample-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Eixample",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular eixample barcelona",
+    "badge": "Eixample · Finca · Particular vendedor",
+    "testimonials": false,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "Guía particular Eixample: Dreta, Esquerra, Sant Antoni, Fort Pienc."
+  },
+  "vender-como-particular-gracia-barcelona": {
+    "slug": "vender-como-particular-gracia-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Gràcia",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular gracia barcelona",
+    "badge": "Gràcia · Plazas · Particular vendedor",
+    "testimonials": false,
+    "cardImage": "imagenes/gracia1.jpg",
+    "cardTeaser": "Guía particular Gràcia: Vila, Camp d'en Grassot, Vallcarca."
+  },
   "vender-como-particular-les-corts-barcelona": {
     "slug": "vender-como-particular-les-corts-barcelona",
     "cluster": "particular",
@@ -921,6 +950,42 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Guía para propietarios en Les Corts (Numància, Pedralbes, Zona Universitaria): precios 4.700–6.200 €/m², er…"
+  },
+  "vender-como-particular-poblenou-barcelona": {
+    "slug": "vender-como-particular-poblenou-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Poblenou",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular poblenou barcelona",
+    "badge": "Poblenou · Mar · 22@ · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/poblenou1.jpeg",
+    "cardTeaser": "Guía particular Poblenou: Rambla, 22@, lofts, Diagonal Mar."
+  },
+  "vender-como-particular-sants-barcelona": {
+    "slug": "vender-como-particular-sants-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sants",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sants barcelona",
+    "badge": "Sants · 08014 · Particular vendedor",
+    "testimonials": false,
+    "cardImage": "imagenes/sants1.jpg",
+    "cardTeaser": "Guía particular Sants: Hostafrancs, La Bordeta, Estació."
+  },
+  "vender-como-particular-sarria-barcelona": {
+    "slug": "vender-como-particular-sarria-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sarrià",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sarria barcelona",
+    "badge": "Sarrià · Premium · Particular vendedor",
+    "testimonials": false,
+    "cardImage": "imagenes/eixample5.jpg",
+    "cardTeaser": "Guía particular Sarrià: Bonanova, Galvany, Tres Torres."
   },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
     "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",

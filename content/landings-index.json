@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-17T19:27:01.303Z",
+  "updated": "2026-09-17T19:36:56.638Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -440,10 +440,40 @@
       "priority": 0.91
     },
     {
+      "slug": "vender-como-particular-eixample-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-gracia-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
       "slug": "vender-como-particular-les-corts-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.91
+    },
+    {
+      "slug": "vender-como-particular-poblenou-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-sants-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-sarria-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
     },
     {
       "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
