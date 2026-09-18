@@ -74,12 +74,16 @@ window.NH_LANDING_ORDER = [
   "vender-como-particular-badalona-barcelona",
   "vender-como-particular-barcelona",
   "vender-como-particular-ciutat-vella-barcelona",
+  "vender-como-particular-cornella-barcelona",
   "vender-como-particular-eixample-barcelona",
+  "vender-como-particular-esplugues-barcelona",
   "vender-como-particular-gracia-barcelona",
   "vender-como-particular-horta-barcelona",
   "vender-como-particular-l-hospitalet-barcelona",
   "vender-como-particular-les-corts-barcelona",
   "vender-como-particular-poblenou-barcelona",
+  "vender-como-particular-sant-andreu-barcelona",
+  "vender-como-particular-sant-antoni-barcelona",
   "vender-como-particular-sant-marti-barcelona",
   "vender-como-particular-sants-barcelona",
   "vender-como-particular-sarria-barcelona",
@@ -931,6 +935,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/ciutatvella2.jpg",
     "cardTeaser": "Guía particular en Ciutat Vella: cuatro barrios, precios 3.000–6.900 €/m², licencias, herencias y comprador…"
   },
+  "vender-como-particular-cornella-barcelona": {
+    "slug": "vender-como-particular-cornella-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Cornellà",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular cornella",
+    "badge": "Cornellà · 08940 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona1.jpeg",
+    "cardTeaser": "Guía particular Cornellà de Llobregat: 2.600 – 3.100 €/m² (Centre · Sant Ildefons · Almeda)."
+  },
   "vender-como-particular-eixample-barcelona": {
     "slug": "vender-como-particular-eixample-barcelona",
     "cluster": "particular",
@@ -942,6 +958,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Guía particular Eixample: Dreta, Esquerra, Sant Antoni, Fort Pienc."
+  },
+  "vender-como-particular-esplugues-barcelona": {
+    "slug": "vender-como-particular-esplugues-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Esplugues",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular esplugues",
+    "badge": "Esplugues · 08950 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/esplugues1.jpg",
+    "cardTeaser": "Guía particular Esplugues de Llobregat: 3.200 – 3.800 €/m² (Can Vidalet · Centre · Finestrelles)."
   },
   "vender-como-particular-gracia-barcelona": {
     "slug": "vender-como-particular-gracia-barcelona",
@@ -1002,6 +1030,30 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Guía particular Poblenou: Rambla, 22@, lofts, Diagonal Mar."
+  },
+  "vender-como-particular-sant-andreu-barcelona": {
+    "slug": "vender-como-particular-sant-andreu-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sant Andreu",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sant andreu barcelona",
+    "badge": "Sant Andreu · 08030 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona5.jpg",
+    "cardTeaser": "Guía particular Sant Andreu: 3.100 – 4.000 €/m² (Palomar · Congrés · Fabra i Coats)."
+  },
+  "vender-como-particular-sant-antoni-barcelona": {
+    "slug": "vender-como-particular-sant-antoni-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sant Antoni",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sant antoni barcelona",
+    "badge": "Sant Antoni · 08015 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "Guía particular Sant Antoni: 4.700 – 5.900 €/m² (Superilla · Mercat · Comte Borrell)."
   },
   "vender-como-particular-sant-marti-barcelona": {
     "slug": "vender-como-particular-sant-marti-barcelona",

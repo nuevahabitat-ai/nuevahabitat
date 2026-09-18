@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-18T13:10:45.242Z",
+  "updated": "2026-09-18T13:15:24.229Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -446,7 +446,19 @@
       "priority": 0.91
     },
     {
+      "slug": "vender-como-particular-cornella-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
       "slug": "vender-como-particular-eixample-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-esplugues-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
@@ -477,6 +489,18 @@
     },
     {
       "slug": "vender-como-particular-poblenou-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-sant-andreu-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-sant-antoni-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
