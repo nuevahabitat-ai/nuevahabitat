@@ -71,12 +71,16 @@ window.NH_LANDING_ORDER = [
   "inmobiliaria-precio-fijo-sarria-barcelona",
   "vender-piso-rapido-barcelona",
   "vender-piso-sin-exclusividad-barcelona",
+  "vender-como-particular-badalona-barcelona",
   "vender-como-particular-barcelona",
   "vender-como-particular-ciutat-vella-barcelona",
   "vender-como-particular-eixample-barcelona",
   "vender-como-particular-gracia-barcelona",
+  "vender-como-particular-horta-barcelona",
+  "vender-como-particular-l-hospitalet-barcelona",
   "vender-como-particular-les-corts-barcelona",
   "vender-como-particular-poblenou-barcelona",
+  "vender-como-particular-sant-marti-barcelona",
   "vender-como-particular-sants-barcelona",
   "vender-como-particular-sarria-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
@@ -891,6 +895,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/agente inmobiliario2.jpg",
     "cardTeaser": "¿Quieres vender tu piso en Barcelona sin exclusiva ni permanencia abusiva? Guía para particulares: compara …"
   },
+  "vender-como-particular-badalona-barcelona": {
+    "slug": "vender-como-particular-badalona-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Badalona",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular badalona",
+    "badge": "Badalona · 08911 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Guía particular Badalona: 2.650 – 3.100 €/m² (Centre · Gorg · Montigalà)."
+  },
   "vender-como-particular-barcelona": {
     "slug": "vender-como-particular-barcelona",
     "cluster": "particular",
@@ -939,6 +955,30 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Guía particular Gràcia: Vila, Camp d'en Grassot, Vallcarca."
   },
+  "vender-como-particular-horta-barcelona": {
+    "slug": "vender-como-particular-horta-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Horta-Guinardó",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular horta barcelona",
+    "badge": "Horta-Guinardó · 08031 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/horta1.jpg",
+    "cardTeaser": "Guía particular Horta-Guinardó: 3.900 – 4.300 €/m² (Horta · Montbau · Guinardó)."
+  },
+  "vender-como-particular-l-hospitalet-barcelona": {
+    "slug": "vender-como-particular-l-hospitalet-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular L'Hospitalet",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular l hospitalet",
+    "badge": "L'Hospitalet · 08901 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/hospitalet1.jpg",
+    "cardTeaser": "Guía particular L'Hospitalet de Llobregat: 2.750 – 3.200 €/m² (Centre · Bellvitge · Pubilla)."
+  },
   "vender-como-particular-les-corts-barcelona": {
     "slug": "vender-como-particular-les-corts-barcelona",
     "cluster": "particular",
@@ -962,6 +1002,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Guía particular Poblenou: Rambla, 22@, lofts, Diagonal Mar."
+  },
+  "vender-como-particular-sant-marti-barcelona": {
+    "slug": "vender-como-particular-sant-marti-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sant Martí",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sant marti barcelona",
+    "badge": "Sant Martí · 08005 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Guía particular Sant Martí: 3.900 – 5.200 €/m² (Poblenou · Clot · 22@ · Besòs)."
   },
   "vender-como-particular-sants-barcelona": {
     "slug": "vender-como-particular-sants-barcelona",

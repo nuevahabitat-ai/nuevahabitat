@@ -162,6 +162,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .seo-cluster-badge--situacion{background:rgba(168,85,247,.15);color:#d8b4fe}
 .seo-cluster-badge--intencion{background:rgba(234,179,8,.15);color:#fde047}
 .seo-cluster-badge--comparativa{background:rgba(34,197,94,.15);color:#86efac}
+.seo-cluster-badge--particular{background:rgba(249,115,22,.15);color:#fdba74}
 .seo-slug{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--muted)}
 .seo-link-btn{background:none;border:none;color:var(--gold);cursor:pointer;font-size:.72rem;padding:0;text-decoration:underline}
 .seo-zona-tags{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.2rem}
@@ -1729,6 +1730,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
           <div class="seo-stat"><div class="seo-stat-num" id="seo-st-situacion">–</div><div class="seo-stat-label">Por situación</div></div>
           <div class="seo-stat"><div class="seo-stat-num" id="seo-st-intencion">–</div><div class="seo-stat-label">Intención</div></div>
           <div class="seo-stat"><div class="seo-stat-num" id="seo-st-comparativa">–</div><div class="seo-stat-label">Comparativas</div></div>
+          <div class="seo-stat"><div class="seo-stat-num" id="seo-st-particular">–</div><div class="seo-stat-label">Particulares</div></div>
         </div>
         <p class="text-muted" style="font-size:.72rem;margin:-.5rem 0 1rem" id="seo-updated-hint"></p>
 
@@ -1737,6 +1739,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
           <button type="button" class="adm-subtab" data-seo-cluster="situacion" onclick="seoSubTab('situacion')">🏠 Situación</button>
           <button type="button" class="adm-subtab" data-seo-cluster="intencion" onclick="seoSubTab('intencion')">🎯 Intención</button>
           <button type="button" class="adm-subtab" data-seo-cluster="comparativa" onclick="seoSubTab('comparativa')">⚖️ Comparativas</button>
+          <button type="button" class="adm-subtab" data-seo-cluster="particular" onclick="seoSubTab('particular')">👤 Particulares</button>
           <button type="button" class="adm-subtab" data-seo-cluster="all" onclick="seoSubTab('all')">Todas</button>
         </div>
 
@@ -4188,6 +4191,7 @@ const SEO_CLUSTER_META = {
   situacion:   { label: 'Por situación', tabTitle: 'Landings por situación' },
   intencion:   { label: 'Intención / keywords', tabTitle: 'Landings de intención' },
   comparativa: { label: 'Comparativas', tabTitle: 'Landings comparativas' },
+  particular:  { label: 'Particulares', tabTitle: 'Vender como particular (por barrio)' },
   all:         { label: 'Todas', tabTitle: 'Todas las landing pages' },
 };
 let _seoCluster = 'barrio';
@@ -4221,7 +4225,7 @@ function seoLandingName(l){
 }
 
 function seoClusterBadge(cluster){
-  const labels = { barrio:'Barrio', situacion:'Situación', intencion:'Intención', comparativa:'Comparativa' };
+  const labels = { barrio:'Barrio', situacion:'Situación', intencion:'Intención', comparativa:'Comparativa', particular:'Particular' };
   return `<span class="seo-cluster-badge seo-cluster-badge--${cluster}">${labels[cluster]||cluster}</span>`;
 }
 
@@ -4302,7 +4306,7 @@ async function loadSeoSection(){
     return;
   }
   const list = getSeoLandingsList();
-  const counts = { barrio:0, situacion:0, intencion:0, comparativa:0 };
+  const counts = { barrio:0, situacion:0, intencion:0, comparativa:0, particular:0 };
   list.forEach(l => { if(counts[l.cluster] != null) counts[l.cluster]++; });
   const setNum = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
   setNum('seo-st-total', list.length);
@@ -4310,6 +4314,7 @@ async function loadSeoSection(){
   setNum('seo-st-situacion', counts.situacion);
   setNum('seo-st-intencion', counts.intencion);
   setNum('seo-st-comparativa', counts.comparativa);
+  setNum('seo-st-particular', counts.particular);
   try {
     const res = await fetch('content/landings-index.json');
     if(res.ok){
