@@ -1,0 +1,29 @@
+---
+description: Push GitHub y deploy Vercel con cuenta nuevahabitat-ai
+alwaysApply: true
+---
+
+# GitHub y Vercel — cuenta nuevahabitat-ai
+
+Repositorio: `nuevahabitat-ai/nuevahabitat`  
+Producción: `https://www.nuevahabitat.com`
+
+## Push a GitHub
+
+- **Siempre** hacer push con la cuenta/org **`nuevahabitat-ai`**, no con `danielhdz2-ai` u otras.
+- Remote: `origin` → `https://github.com/nuevahabitat-ai/nuevahabitat.git`
+- Tras commits relevantes, ejecutar: `git push -u origin HEAD` (o `git push origin main`).
+- Si falla con 403, avisar que hay que cambiar credenciales Git a `nuevahabitat-ai` antes de reintentar.
+
+## Deploy Vercel
+
+- **Siempre** desplegar con scope **`nuevahabitat`**:  
+  `npx vercel --prod --yes --scope nuevahabitat`
+- Proyecto: `nuevahabitat/nuevahabitat`
+- Tras push o cambios listos para producción, hacer deploy salvo que el usuario diga lo contrario.
+
+## Orden habitual
+
+1. Commit (si procede)
+2. Push → `nuevahabitat-ai`
+3. Deploy → `--scope nuevahabitat`
