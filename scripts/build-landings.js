@@ -6,6 +6,7 @@ const { renderPilar } = require('./render-pilar');
 const { savingsCalcMarkup } = require('./savings-calc-markup');
 const { PHONES, displayBoth, telLinksInline, footerPhonesLi, schemaTelephones } = require('./phone-config');
 const { nhPlatformBundle, nhPlatformStyles, zoneLabel } = require('./landing-nh-blocks');
+const { renderEconomicaHub } = require('./render-economica-hub');
 const { nhBuyerPlatformBundle, nhBuyerPlatformStyles } = require('./landing-nh-buyer-blocks');
 const { nhHomeEcosystemBundle, nhHomeEcosystemStyles } = require('./landing-nh-hub-blocks');
 
@@ -698,6 +699,7 @@ function renderLanding(L, ctx) {
   if (L.cluster === 'barrio') return renderBarrio(L, deps);
   if (L.cluster === 'comprador') return renderComprador(L, ctx, deps);
   if (L.cluster === 'situacion') return renderSituacion(L, ctx);
+  if (L.layout === 'economica-hub') return renderEconomicaHub(L, ctx, deps);
   if (L.cluster === 'intencion' || L.cluster === 'comparativa' || L.cluster === 'particular') return renderIntencion(L, ctx);
   throw new Error(`Cluster no soportado en build: ${L.cluster} (${L.slug})`);
 }

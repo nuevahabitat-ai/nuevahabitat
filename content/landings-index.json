@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-18T13:15:24.229Z",
+  "updated": "2026-09-20T17:11:33.948Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -426,6 +426,12 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
+    },
+    {
+      "slug": "venta-piso-economica-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.93
     },
     {
       "slug": "vender-como-particular-badalona-barcelona",

@@ -71,6 +71,7 @@ window.NH_LANDING_ORDER = [
   "inmobiliaria-precio-fijo-sarria-barcelona",
   "vender-piso-rapido-barcelona",
   "vender-piso-sin-exclusividad-barcelona",
+  "venta-piso-economica-barcelona",
   "vender-como-particular-badalona-barcelona",
   "vender-como-particular-barcelona",
   "vender-como-particular-ciutat-vella-barcelona",
@@ -898,6 +899,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/agente inmobiliario2.jpg",
     "cardTeaser": "¿Quieres vender tu piso en Barcelona sin exclusiva ni permanencia abusiva? Guía para particulares: compara …"
+  },
+  "venta-piso-economica-barcelona": {
+    "slug": "venta-piso-economica-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Barcelona",
+    "priority": 0.93,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica barcelona",
+    "badge": "Barcelona · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/familia10.jpg",
+    "cardTeaser": "Vende tu piso en Barcelona con honorarios fijos 3.630 € (solo en escritura)."
   },
   "vender-como-particular-badalona-barcelona": {
     "slug": "vender-como-particular-badalona-barcelona",

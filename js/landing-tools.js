@@ -75,6 +75,7 @@
   }
 
   function initStickyBars() {
+    if (document.body.dataset.nhNoSticky === '1') return;
     const cta = ensureStickyCta();
     const call = ensureStickyCall();
     if (!cta && !call) return;
@@ -123,6 +124,7 @@
       'vender-gracia': 'Hola, quiero valorar y vender mi piso en Gràcia.',
       'vender-sarria': 'Hola, quiero valorar y vender mi piso en Sarrià.',
       'vender-poblenou': 'Hola, quiero valorar y vender mi piso en Poblenou.',
+      'venta-piso-economica-barcelona': 'Hola, busco vender mi piso en Barcelona con honorarios económicos (precio fijo).',
     };
     let msg = MESSAGES[slug];
     if (!msg && slug.startsWith('vender-')) {
