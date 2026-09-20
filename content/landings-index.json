@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20T17:23:46.716Z",
+  "updated": "2026-09-20T17:49:33.929Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -432,6 +432,66 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.93
+    },
+    {
+      "slug": "venta-piso-economica-eixample-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-gracia-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-horta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-l-hospitalet-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-les-corts-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-sant-antoni-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-sant-marti-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-sants-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-sarria-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
     },
     {
       "slug": "vender-como-particular-badalona-barcelona",

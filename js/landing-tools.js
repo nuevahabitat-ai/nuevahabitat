@@ -127,6 +127,10 @@
       'venta-piso-economica-barcelona': 'Hola, busco vender mi piso en Barcelona con honorarios económicos (precio fijo).',
     };
     let msg = MESSAGES[slug];
+    if (!msg && slug.startsWith('venta-piso-economica-') && slug !== 'venta-piso-economica-barcelona') {
+      const place = slug.replace(/^venta-piso-economica-/, '').replace(/-barcelona$/, '').replace(/-/g, ' ');
+      msg = `Hola, busco venta económica de mi piso en ${place} (honorarios fijos).`;
+    }
     if (!msg && slug.startsWith('vender-')) {
       const place = slug.replace(/^vender-/, '').replace(/-barcelona$/, '').replace(/-/g, ' ');
       msg = `Hola, quiero información para vender mi piso en ${place}.`;
