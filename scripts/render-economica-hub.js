@@ -6,9 +6,14 @@ function economicaHubStyles() {
     body.lc-econ-hub .fade-up{opacity:1!important;transform:none!important;transition:none!important}
     body.lc-econ-hub .lc-prose--cols{columns:1!important;max-width:820px;margin:0 auto}
     body.lc-econ-hub .lc-article-aside{display:none!important}
-    .lc-hero--hub{min-height:72vh}
-    .lc-hero--hub .lc-hero-media img{object-position:center 42%}
-    .lc-econ-stats{padding:0 0 3rem;background:var(--blanco);margin-top:-3rem;position:relative;z-index:2}
+    .lc-econ-hero{margin:0}
+    .lc-econ-hero__figure{margin:0;line-height:0;background:var(--crema)}
+    .lc-econ-hero__figure img{width:100%;height:auto;display:block;object-fit:contain;object-position:center center;max-height:none}
+    .lc-econ-hero__panel{background:var(--negro);padding:clamp(2rem,5vw,3.25rem) 0}
+    .lc-econ-hero__content{max-width:780px}
+    .lc-econ-hero__content h1{font-family:var(--font-serif);font-size:clamp(1.75rem,4.5vw,3rem);color:#fff;line-height:1.14;margin-bottom:1rem}
+    .lc-econ-hero__content p{font-size:1.0625rem;color:rgba(255,255,255,.88);line-height:1.75;margin-bottom:1.25rem}
+    .lc-econ-stats{padding:0 0 3rem;background:var(--blanco);margin-top:-2rem;position:relative;z-index:2}
     .lc-econ-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:960px;margin:0 auto}
     .lc-econ-stat{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:1.5rem 1.25rem;text-align:center;box-shadow:var(--shadow-md)}
     .lc-econ-stat-label{font-size:.6875rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gris-medio);margin-bottom:.5rem}
@@ -21,9 +26,9 @@ function economicaHubStyles() {
     .lc-econ-form-section{background:linear-gradient(180deg,var(--crema) 0%,#fff 100%)}
     .lc-econ-form-section .lc-form{position:static!important;box-shadow:var(--shadow-lg)}
     @media(max-width:768px){
-      .lc-econ-stats{margin-top:-2rem;padding-bottom:2rem}
+      .lc-econ-stats{margin-top:-1.25rem;padding-bottom:2rem}
       .lc-econ-stats-grid{grid-template-columns:1fr;gap:.75rem;padding:0 1rem}
-      .lc-hero--hub{min-height:68vh}
+      .lc-econ-hero__panel{padding:1.75rem 0 2rem}
     }
   `;
 }
@@ -58,7 +63,8 @@ function renderEconomicaHub(L, ctx, deps) {
   ).join('');
 
   const calc = L.calculadora?.precioDefault || 350000;
-  const pos = L.hero.objectPosition || 'center 42%';
+  const heroImg = L.hero.image;
+  const heroAlt = L.hero.imageAlt;
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -86,19 +92,24 @@ function renderEconomicaHub(L, ctx, deps) {
 <body class="lc-econ-hub" data-nh-cluster="${L.cluster}" data-nh-landing-slug="${L.slug}" data-nh-precio-default="${calc}" data-nh-no-sticky="1">
 ${navBar(L)}
 <div class="container"><nav class="page-breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent || L.footerLabel}</span></nav></div>
-<section class="lc-hero lc-hero--hub">
-  <div class="lc-hero-media"><img src="${L.hero.image}" alt="${L.hero.imageAlt}" style="object-position:${pos}" fetchpriority="high" decoding="async"/></div>
-  <div class="lc-hero-overlay"></div>
-  <div class="container"><div class="lc-hero-content">
-    <span class="lc-badge">${L.hero.badge}</span>
-    <h1>${L.hero.h1}</h1>
-    <p>${L.hero.lead}</p>
-    <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem">
-      <a href="#calc" class="btn btn-gold btn-lg">Comparativa real de honorarios</a>
-      <a href="#valorar" class="btn btn-outline-light btn-lg">Valoración gratuita</a>
+<header class="lc-econ-hero">
+  <figure class="lc-econ-hero__figure">
+    <img src="${heroImg}" alt="${heroAlt}" width="5791" height="3866" fetchpriority="high" decoding="sync"/>
+  </figure>
+  <div class="lc-econ-hero__panel">
+    <div class="container">
+      <div class="lc-econ-hero__content">
+        <span class="lc-badge">${L.hero.badge}</span>
+        <h1>${L.hero.h1}</h1>
+        <p>${L.hero.lead}</p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.5rem">
+          <a href="#calc" class="btn btn-gold btn-lg">Comparativa real de honorarios</a>
+          <a href="#valorar" class="btn btn-outline-light btn-lg">Valoración gratuita</a>
+        </div>
+      </div>
     </div>
-  </div></div>
-</section>
+  </div>
+</header>
 ${heroStatsBlock(L)}
 ${callBanner()}
 <div class="container" style="padding-top:2rem">
