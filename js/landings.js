@@ -71,14 +71,22 @@ window.NH_LANDING_ORDER = [
   "inmobiliaria-precio-fijo-sarria-barcelona",
   "vender-piso-rapido-barcelona",
   "vender-piso-sin-exclusividad-barcelona",
+  "venta-piso-economica-badalona-barcelona",
   "venta-piso-economica-barcelona",
+  "venta-piso-economica-ciutat-vella-barcelona",
+  "venta-piso-economica-cornella-barcelona",
   "venta-piso-economica-eixample-barcelona",
+  "venta-piso-economica-esplugues-barcelona",
   "venta-piso-economica-gracia-barcelona",
   "venta-piso-economica-horta-barcelona",
   "venta-piso-economica-l-hospitalet-barcelona",
   "venta-piso-economica-les-corts-barcelona",
+  "venta-piso-economica-nou-barris-barcelona",
+  "venta-piso-economica-poble-sec-barcelona",
   "venta-piso-economica-poblenou-barcelona",
+  "venta-piso-economica-sant-andreu-barcelona",
   "venta-piso-economica-sant-antoni-barcelona",
+  "venta-piso-economica-sant-gervasi-barcelona",
   "venta-piso-economica-sant-marti-barcelona",
   "venta-piso-economica-sants-barcelona",
   "venta-piso-economica-sarria-barcelona",
@@ -92,9 +100,12 @@ window.NH_LANDING_ORDER = [
   "vender-como-particular-horta-barcelona",
   "vender-como-particular-l-hospitalet-barcelona",
   "vender-como-particular-les-corts-barcelona",
+  "vender-como-particular-nou-barris-barcelona",
+  "vender-como-particular-poble-sec-barcelona",
   "vender-como-particular-poblenou-barcelona",
   "vender-como-particular-sant-andreu-barcelona",
   "vender-como-particular-sant-antoni-barcelona",
+  "vender-como-particular-sant-gervasi-barcelona",
   "vender-como-particular-sant-marti-barcelona",
   "vender-como-particular-sants-barcelona",
   "vender-como-particular-sarria-barcelona",
@@ -910,6 +921,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/agente inmobiliario2.jpg",
     "cardTeaser": "¿Quieres vender tu piso en Barcelona sin exclusiva ni permanencia abusiva? Guía para particulares: compara …"
   },
+  "venta-piso-economica-badalona-barcelona": {
+    "slug": "venta-piso-economica-badalona-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Badalona",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica badalona barcelona",
+    "badge": "Badalona · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Vende tu piso en Badalona con honorarios fijos 3.630 € (solo en escritura)."
+  },
   "venta-piso-economica-barcelona": {
     "slug": "venta-piso-economica-barcelona",
     "cluster": "intencion",
@@ -922,6 +945,30 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/familia10.jpg",
     "cardTeaser": "Vende tu piso en Barcelona con honorarios fijos 3.630 € (solo en escritura)."
   },
+  "venta-piso-economica-ciutat-vella-barcelona": {
+    "slug": "venta-piso-economica-ciutat-vella-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Ciutat Vella",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica ciutat vella barcelona",
+    "badge": "Ciutat Vella · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/ciutatvella2.jpg",
+    "cardTeaser": "Vende tu piso en Ciutat Vella con honorarios fijos 3.630 € (solo en escritura)."
+  },
+  "venta-piso-economica-cornella-barcelona": {
+    "slug": "venta-piso-economica-cornella-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Cornellà de Llobregat",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica cornellà de llobregat barcelona",
+    "badge": "Cornellà de Llobregat · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona1.jpeg",
+    "cardTeaser": "Vende tu piso en Cornellà de Llobregat con honorarios fijos 3.630 € (solo en escritura)."
+  },
   "venta-piso-economica-eixample-barcelona": {
     "slug": "venta-piso-economica-eixample-barcelona",
     "cluster": "intencion",
@@ -933,6 +980,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Vende tu piso en Eixample con honorarios fijos 3.630 € (solo en escritura)."
+  },
+  "venta-piso-economica-esplugues-barcelona": {
+    "slug": "venta-piso-economica-esplugues-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Esplugues de Llobregat",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica esplugues de llobregat barcelona",
+    "badge": "Esplugues de Llobregat · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/esplugues1.jpg",
+    "cardTeaser": "Vende tu piso en Esplugues de Llobregat con honorarios fijos 3.630 € (solo en escritura)."
   },
   "venta-piso-economica-gracia-barcelona": {
     "slug": "venta-piso-economica-gracia-barcelona",
@@ -982,6 +1041,30 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Vende tu piso en Les Corts con honorarios fijos 3.630 € (solo en escritura)."
   },
+  "venta-piso-economica-nou-barris-barcelona": {
+    "slug": "venta-piso-economica-nou-barris-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Nou Barris",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica nou barris barcelona",
+    "badge": "Nou Barris · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "Vende tu piso en Nou Barris con honorarios fijos 3.630 € (solo en escritura)."
+  },
+  "venta-piso-economica-poble-sec-barcelona": {
+    "slug": "venta-piso-economica-poble-sec-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Poble Sec",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica poble sec barcelona",
+    "badge": "Poble Sec · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Vende tu piso en Poble Sec con honorarios fijos 3.630 € (solo en escritura)."
+  },
   "venta-piso-economica-poblenou-barcelona": {
     "slug": "venta-piso-economica-poblenou-barcelona",
     "cluster": "intencion",
@@ -994,6 +1077,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Vende tu piso en Poblenou con honorarios fijos 3.630 € (solo en escritura)."
   },
+  "venta-piso-economica-sant-andreu-barcelona": {
+    "slug": "venta-piso-economica-sant-andreu-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Sant Andreu",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica sant andreu barcelona",
+    "badge": "Sant Andreu · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/barcelona5.jpg",
+    "cardTeaser": "Vende tu piso en Sant Andreu con honorarios fijos 3.630 € (solo en escritura)."
+  },
   "venta-piso-economica-sant-antoni-barcelona": {
     "slug": "venta-piso-economica-sant-antoni-barcelona",
     "cluster": "intencion",
@@ -1005,6 +1100,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Vende tu piso en Sant Antoni con honorarios fijos 3.630 € (solo en escritura)."
+  },
+  "venta-piso-economica-sant-gervasi-barcelona": {
+    "slug": "venta-piso-economica-sant-gervasi-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica Sant Gervasi",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica sant gervasi barcelona",
+    "badge": "Sant Gervasi · Venta económica · Precio fijo",
+    "testimonials": false,
+    "cardImage": "imagenes/eixample4.jpg",
+    "cardTeaser": "Vende tu piso en Sant Gervasi con honorarios fijos 3.630 € (solo en escritura)."
   },
   "venta-piso-economica-sant-marti-barcelona": {
     "slug": "venta-piso-economica-sant-marti-barcelona",
@@ -1162,6 +1269,30 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Guía para propietarios en Les Corts (Numància, Pedralbes, Zona Universitaria): precios 4.700–6.200 €/m², er…"
   },
+  "vender-como-particular-nou-barris-barcelona": {
+    "slug": "vender-como-particular-nou-barris-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Nou Barris",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular nou barris barcelona",
+    "badge": "Nou Barris · 08016 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "Guía particular Nou Barris: 2.900 – 3.400 €/m² (Verdum · Roquetes · Trinitat Vella)."
+  },
+  "vender-como-particular-poble-sec-barcelona": {
+    "slug": "vender-como-particular-poble-sec-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Poble Sec",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular poble sec barcelona",
+    "badge": "Poble Sec · 08004 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Guía particular Poble Sec: 3.900 – 4.900 €/m² (Paral·lel · Montjuïc · Sortidor)."
+  },
   "vender-como-particular-poblenou-barcelona": {
     "slug": "vender-como-particular-poblenou-barcelona",
     "cluster": "particular",
@@ -1197,6 +1328,18 @@ window.NH_LANDINGS = {
     "testimonials": false,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Guía particular Sant Antoni: 4.700 – 5.900 €/m² (Superilla · Mercat · Comte Borrell)."
+  },
+  "vender-como-particular-sant-gervasi-barcelona": {
+    "slug": "vender-como-particular-sant-gervasi-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sant Gervasi",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sant gervasi barcelona",
+    "badge": "Sant Gervasi · 08021 · Particular",
+    "testimonials": false,
+    "cardImage": "imagenes/eixample4.jpg",
+    "cardTeaser": "Guía particular Sant Gervasi: 5.000 – 6.500 €/m² (Putxet · Farró · Via Augusta)."
   },
   "vender-como-particular-sant-marti-barcelona": {
     "slug": "vender-como-particular-sant-marti-barcelona",

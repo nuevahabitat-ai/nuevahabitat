@@ -24,7 +24,8 @@ const DEFAULT_BARRIOS = [
 ];
 
 function barrioToEconSlug(barrioSlug) {
-  const zone = barrioSlug.replace(/^vender-piso-/, '').replace(/^vender-/, '');
+  let zone = barrioSlug.replace(/^vender-piso-/, '').replace(/^vender-/, '');
+  if (zone.endsWith('-barcelona')) zone = zone.slice(0, -'-barcelona'.length);
   return `venta-piso-economica-${zone}-barcelona`;
 }
 

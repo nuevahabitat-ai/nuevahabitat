@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-20T17:49:33.929Z",
+  "updated": "2026-09-21T19:09:20.303Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -428,13 +428,37 @@
       "priority": 0.89
     },
     {
+      "slug": "venta-piso-economica-badalona-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.93
     },
     {
+      "slug": "venta-piso-economica-ciutat-vella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-cornella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-eixample-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-esplugues-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
@@ -464,13 +488,37 @@
       "priority": 0.91
     },
     {
+      "slug": "venta-piso-economica-nou-barris-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-poble-sec-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-poblenou-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
     },
     {
+      "slug": "venta-piso-economica-sant-andreu-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-sant-antoni-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-sant-gervasi-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
@@ -554,6 +602,18 @@
       "priority": 0.91
     },
     {
+      "slug": "vender-como-particular-nou-barris-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-poble-sec-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
       "slug": "vender-como-particular-poblenou-barcelona",
       "cluster": "particular",
       "indexable": true,
@@ -567,6 +627,12 @@
     },
     {
       "slug": "vender-como-particular-sant-antoni-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-sant-gervasi-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
