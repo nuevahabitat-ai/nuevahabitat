@@ -477,6 +477,11 @@ input,select,textarea{font-family:'Inter',sans-serif}
   .lead-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.5rem}
   .lead-card-actions{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.75rem}
 }
+.lead-row-click{cursor:pointer}
+.lead-row-click:hover td{background:rgba(184,147,106,.06)}
+.lead-cat-badge{display:inline-block;font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:.2rem .5rem;border-radius:999px;background:rgba(184,147,106,.15);color:var(--gold);margin-top:.2rem}
+.lead-cat-badge.buy{background:rgba(56,189,148,.12);color:#6ee7b7}
+.lead-cat-badge.sell{background:rgba(251,191,36,.12);color:#fcd34d}
 @media(min-width:769px){
   .adm-leads-cards{display:none}
 }
@@ -645,7 +650,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
           </div>
           <div class="dash-panel">
             <div class="dash-panel-head">
-              <h3>Últimos leads de registro</h3>
+              <h3>Últimos leads</h3>
               <button type="button" class="dash-panel-link" onclick="switchSection('leads')">Ver todos</button>
             </div>
             <div class="dash-panel-body" id="dash-leads-list"><div class="dash-empty">Cargando…</div></div>
@@ -694,7 +699,24 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <!-- ── Leads ─────────────────────────────────────────────── -->
       <section class="adm-section" id="sec-leads">
         <div class="adm-card">
-          <div class="adm-card-head"><h3>Leads recibidos</h3></div>
+          <div class="adm-card-head">
+            <div>
+              <h3>Leads recibidos</h3>
+              <p class="text-muted" style="font-size:.82rem;margin:.35rem 0 0">Formularios web y altas en panel · clic en una fila para ver el detalle completo</p>
+            </div>
+            <div id="leads-counts" class="text-muted" style="font-size:.78rem;text-align:right"></div>
+          </div>
+          <div class="adm-subtabs" style="margin-bottom:.65rem;flex-wrap:wrap">
+            <button class="adm-subtab active" data-lf="segment" data-val="">Todos</button>
+            <button class="adm-subtab" data-lf="segment" data-val="vendedor">Vendedores</button>
+            <button class="adm-subtab" data-lf="segment" data-val="comprador">Compradores</button>
+            <button class="adm-subtab" data-lf="segment" data-val="otros">Otros</button>
+          </div>
+          <div class="adm-subtabs" style="margin-bottom:.65rem;flex-wrap:wrap">
+            <button class="adm-subtab active" data-lf="canal" data-val="">Formulario y panel</button>
+            <button class="adm-subtab" data-lf="canal" data-val="formulario">Solo formulario web</button>
+            <button class="adm-subtab" data-lf="canal" data-val="registro_panel">Solo registro panel</button>
+          </div>
           <div class="adm-subtabs" style="margin-bottom:1rem;flex-wrap:wrap">
             <button class="adm-subtab active" data-lf="estado" data-val="">Todos</button>
             <button class="adm-subtab" data-lf="estado" data-val="nuevo">Nuevos</button>
@@ -704,7 +726,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
           </div>
           <div class="gap-row" style="margin-bottom:1rem;flex-wrap:wrap">
             <select id="lead-filter-tipo" class="adm-field" style="padding:.5rem .75rem;max-width:180px">
-              <option value="">Todos los tipos</option>
+              <option value="">Todos los tipos técnicos</option>
               <option value="compra">Compra</option>
               <option value="venta">Venta</option>
               <option value="valoracion">Valoración</option>
@@ -2239,6 +2261,88 @@ async function waitAdminSession(maxMs = 2500) {
   return null;
 }
 
+const LEAD_SELECT_COLS = 'id,nombre,email,telefono,tipo,mensaje,estado,notas,origen,utm_source,utm_medium,utm_campaign,created_at,updated_at';
+
+function normLeadEmail(e) {
+  return String(e || '').trim().toLowerCase();
+}
+function normLeadTel(t) {
+  const d = String(t || '').replace(/\D/g, '');
+  return d.length >= 9 ? d : '';
+}
+
+/** Crea filas en leads para compradores/vendedores del CRM que aún no tienen lead (p. ej. registro anterior al fix). */
+async function syncLeadsFromClientes(sb) {
+  if (!sb) return;
+  try {
+    const [{ data: comps }, { data: vends }, { data: existing }] = await Promise.all([
+      sb.from('compradores').select('id,nombre,email,telefono,created_at').order('created_at', { ascending: false }).limit(100),
+      sb.from('vendedores').select('id,nombre,email,telefono,created_at').order('created_at', { ascending: false }).limit(100),
+      sb.from('leads').select('email,telefono').order('created_at', { ascending: false }).limit(800),
+    ]);
+    const seen = new Set();
+    (existing || []).forEach(l => {
+      const e = normLeadEmail(l.email);
+      const t = normLeadTel(l.telefono);
+      if (e) seen.add('e:' + e);
+      if (t) seen.add('t:' + t);
+    });
+
+    const pending = [];
+    const mark = (email, telefono) => {
+      const e = normLeadEmail(email);
+      const t = normLeadTel(telefono);
+      if (e) seen.add('e:' + e);
+      if (t) seen.add('t:' + t);
+    };
+    const already = (email, telefono) => {
+      const e = normLeadEmail(email);
+      const t = normLeadTel(telefono);
+      if (e && seen.has('e:' + e)) return true;
+      if (t && seen.has('t:' + t)) return true;
+      return false;
+    };
+
+    for (const c of comps || []) {
+      if (!c?.nombre || already(c.email, c.telefono)) continue;
+      const tel = normLeadTel(c.telefono) || String(c.telefono || '').trim();
+      if (!tel) continue;
+      pending.push({
+        nombre: c.nombre,
+        email: c.email || null,
+        telefono: tel,
+        tipo: 'compra',
+        origen: 'registro_cuenta',
+        mensaje: 'Nuevo comprador registrado en su panel',
+        estado: 'nuevo',
+      });
+      mark(c.email, c.telefono);
+    }
+    for (const v of vends || []) {
+      if (!v?.nombre || already(v.email, v.telefono)) continue;
+      const tel = normLeadTel(v.telefono) || String(v.telefono || '').trim();
+      if (!tel) continue;
+      pending.push({
+        nombre: v.nombre,
+        email: v.email || null,
+        telefono: tel,
+        tipo: 'venta',
+        origen: 'registro_cuenta',
+        mensaje: 'Nuevo vendedor registrado en su panel',
+        estado: 'nuevo',
+      });
+      mark(v.email, v.telefono);
+    }
+
+    for (const row of pending) {
+      const { error } = await sb.from('leads').insert(row);
+      if (error) console.warn('syncLeadsFromClientes insert', error.message);
+    }
+  } catch (err) {
+    console.warn('syncLeadsFromClientes', err);
+  }
+}
+
 async function initAdmin() {
   if (_adminReady) return;
   showAdminView('loading');
@@ -3592,13 +3696,13 @@ function renderDashInmuebles(list){
 function renderDashLeads(list){
   const el = document.getElementById('dash-leads-list');
   if(!el) return;
-  if(!list.length){ el.innerHTML = dashEmpty('Sin leads de registro aún.'); return; }
+  if(!list.length){ el.innerHTML = dashEmpty('Sin leads aún. Formularios web y registros en panel aparecerán aquí.'); return; }
   el.innerHTML = list.map(l => `
     <button type="button" class="dash-item" onclick="openDashModal('lead','${l.id}')">
       ${dashIcon('lead')}
       <div class="dash-item-main">
         <div class="dash-item-title">${dashEsc(l.nombre || 'Sin nombre')}</div>
-        <div class="dash-item-meta">${dashEsc([l.tipo, l.email || l.telefono].filter(Boolean).join(' · '))}</div>
+        <div class="dash-item-meta">${dashEsc(leadCategoriaLabel(l))}</div>
       </div>
       <div class="dash-item-side">
         <span class="badge ${l.estado==='nuevo'?'badge-new':''}">${dashEsc(l.estado || 'nuevo')}</span>
@@ -3683,28 +3787,11 @@ function openDashModal(tipo, id){
   }
 
   if(tipo === 'lead'){
-    const l = _dashCache.leads.find(x => x.id === id);
+    const l = findLeadById(id);
     if(!l){ nhToast('Lead no encontrado.', 'info'); return; }
-    kicker = 'Lead de registro';
+    kicker = leadCategoriaLabel(l);
     title = l.nombre || 'Lead';
-    body = `
-      <dl class="dash-dl">
-        <dt>Tipo</dt><dd>${dashEsc(l.tipo || '–')}</dd>
-        <dt>Estado</dt><dd>${dashEsc(l.estado || 'nuevo')}</dd>
-        <dt>Teléfono</dt><dd>${l.telefono ? `<a href="tel:${dashEsc(l.telefono)}" style="color:var(--gold)">${dashEsc(l.telefono)}</a>` : '–'}</dd>
-        <dt>Email</dt><dd>${l.email ? `<a href="mailto:${dashEsc(l.email)}" style="color:var(--gold)">${dashEsc(l.email)}</a>` : '–'}</dd>
-        <dt>Fecha</dt><dd>${dashEsc(dashFmtDate(l.created_at, true))}</dd>
-      </dl>
-      ${l.mensaje ? `<div class="dash-modal-block"><strong>Mensaje</strong>${dashEsc(l.mensaje)}</div>` : ''}
-      ${l.notas ? `<div class="dash-modal-block"><strong>Notas internas</strong>${dashEsc(l.notas)}</div>` : ''}
-      <div class="dash-modal-block" style="margin-top:1rem">
-        <strong>Cambiar estado</strong>
-        <div class="gap-row" style="margin-top:.35rem">
-          ${['nuevo','contactado','cualificado','cerrado','descartado'].map(e =>
-            `<button type="button" class="adm-btn ${l.estado===e?'adm-btn-gold':'adm-btn-ghost'} adm-btn-sm" onclick="dashSetLeadEstado('${l.id}','${e}')">${e}</button>`
-          ).join('')}
-        </div>
-      </div>`;
+    body = buildLeadModalContent(l);
     actions = `
       ${l.telefono ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="window.location.href='tel:${dashEsc(String(l.telefono).replace(/[^\d+]/g,''))}'">Llamar</button>
       <button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="dashWhatsAppLead('${l.id}')">WhatsApp</button>` : ''}
@@ -3774,14 +3861,14 @@ function openDashModal(tipo, id){
 
 async function dashSetLeadEstado(id, estado){
   await setLeadEstado(id, estado);
-  const l = _dashCache.leads.find(x => x.id === id);
+  const l = findLeadById(id);
   if(l) l.estado = estado;
   renderDashLeads(_dashCache.leads);
-  openDashModal('lead', id);
+  openLeadModal(id);
 }
 
 function dashWhatsAppLead(id){
-  const l = _dashCache.leads.find(x => x.id === id);
+  const l = findLeadById(id);
   if(!l?.telefono){ nhToast('Sin teléfono.', 'info'); return; }
   const phone = (typeof normalizePhoneWa === 'function') ? normalizePhoneWa(l.telefono) : String(l.telefono).replace(/\D/g,'');
   if(!phone){ nhToast('Teléfono no válido.', 'error'); return; }
@@ -3839,7 +3926,7 @@ async function dashDeleteComprador(id){
 
 async function loadDashboard(){
   const sb = window.nhSupabase;
-  const leadCols = 'id,nombre,email,telefono,tipo,mensaje,estado,notas,created_at';
+  const leadCols = LEAD_SELECT_COLS;
   const setEmpty = () => {
     ['dash-inm-list','dash-leads-list','dash-seg-list','dash-comp-list'].forEach(id => {
       const el = document.getElementById(id);
@@ -3847,6 +3934,8 @@ async function loadDashboard(){
     });
   };
   try {
+    await syncLeadsFromClientes(sb);
+
     const [leadsCount, compradoresCount, vendedoresCount, inmCount, visCount, partCount] = await Promise.all([
       sb.from('leads').select('*',{count:'exact',head:true}).eq('estado','nuevo'),
       sb.from('compradores').select('*',{count:'exact',head:true}),
@@ -3896,6 +3985,7 @@ async function loadDashboard(){
 }
 
 window.openDashModal = openDashModal;
+window.openLeadModal = openLeadModal;
 window.closeDashModal = closeDashModal;
 window.dashSetLeadEstado = dashSetLeadEstado;
 window.dashWhatsAppLead = dashWhatsAppLead;
@@ -3910,6 +4000,54 @@ const LEAD_ESTADOS = ['nuevo','contactado','cualificado','descartado','cerrado']
 let _leadsData = [];
 let _leadFilterEstado = '';
 let _leadFilterTipo = '';
+let _leadFilterSegment = '';
+let _leadFilterCanal = '';
+
+function findLeadById(id) {
+  return _leadsData.find(x => x.id === id) || _dashCache.leads.find(x => x.id === id);
+}
+
+function leadEsRegistroPanel(l) {
+  return (l.origen || '') === 'registro_cuenta';
+}
+
+function leadSegment(l) {
+  const t = l.tipo || '';
+  if (t === 'compra') return 'comprador';
+  if (t === 'venta' || t === 'valoracion') return 'vendedor';
+  if (t === 'hipoteca') return 'comprador';
+  return 'otros';
+}
+
+function leadCategoriaLabel(l) {
+  const seg = leadSegment(l);
+  const panel = leadEsRegistroPanel(l);
+  if (seg === 'comprador') {
+    return panel ? 'Lead comprador · registrado panel' : 'Lead comprador · formulario';
+  }
+  if (seg === 'vendedor') {
+    return panel ? 'Lead vendedor · registrado panel' : 'Lead vendedor · formulario';
+  }
+  return 'Lead · contacto web';
+}
+
+function leadCategoriaBadgeHtml(l) {
+  const seg = leadSegment(l);
+  const cls = seg === 'comprador' ? 'buy' : seg === 'vendedor' ? 'sell' : '';
+  return `<span class="lead-cat-badge ${cls}">${dashEsc(leadCategoriaLabel(l))}</span>`;
+}
+
+function leadOrigenLabel(origen) {
+  if (!origen) return 'Web';
+  if (origen === 'registro_cuenta') return 'Alta en panel (registro.html)';
+  if (origen === 'newsletter_blog') return 'Newsletter blog';
+  return origen.replace(/_/g, ' ');
+}
+
+function leadFmtDateTime(iso) {
+  if (!iso) return '–';
+  return new Date(iso).toLocaleString('es-ES', { timeZone: 'Europe/Madrid', dateStyle: 'full', timeStyle: 'short' });
+}
 
 function leadEstadoBadge(est) {
   const colors = { nuevo:'badge-new', contactado:'', cualificado:'badge-new', descartado:'', cerrado:'' };
@@ -3918,26 +4056,66 @@ function leadEstadoBadge(est) {
 
 function leadActionBtns(l, compact) {
   const sm = compact ? ' adm-btn-sm' : ' adm-btn-sm';
+  const stop = 'event.stopPropagation();';
   return `<div class="gap-row lead-card-actions">
-    <button class="adm-btn adm-btn-ghost${sm}" onclick="setLeadEstado('${l.id}','contactado')" title="Contactado">📞</button>
-    <button class="adm-btn adm-btn-ghost${sm}" onclick="setLeadEstado('${l.id}','cualificado')" title="Cualificado">✓</button>
-    <button class="adm-btn adm-btn-red${sm}" onclick="setLeadEstado('${l.id}','descartado')" title="Descartar">✕</button>
-    <button class="adm-btn adm-btn-gold${sm}" onclick="setLeadEstado('${l.id}','cerrado')" title="Cerrado">🏁</button>
+    <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadModal('${l.id}')" title="Ver ficha">👁</button>
+    <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','contactado')" title="Contactado">📞</button>
+    <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','cualificado')" title="Cualificado">✓</button>
+    <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}setLeadEstado('${l.id}','descartado')" title="Descartar">✕</button>
+    <button type="button" class="adm-btn adm-btn-gold${sm}" onclick="${stop}setLeadEstado('${l.id}','cerrado')" title="Cerrado">🏁</button>
   </div>`;
+}
+
+function buildLeadModalContent(l) {
+  const utm = [l.utm_source, l.utm_medium, l.utm_campaign].filter(Boolean).join(' · ');
+  return `
+    <dl class="dash-dl">
+      <dt>Categoría</dt><dd>${leadCategoriaBadgeHtml(l)}</dd>
+      <dt>Tipo técnico</dt><dd>${dashEsc(l.tipo || '–')}</dd>
+      <dt>Estado</dt><dd>${dashEsc(l.estado || 'nuevo')}</dd>
+      <dt>Nombre</dt><dd>${dashEsc(l.nombre || '–')}</dd>
+      <dt>Teléfono</dt><dd>${l.telefono ? `<a href="tel:${dashEsc(l.telefono)}" style="color:var(--gold)">${dashEsc(l.telefono)}</a>` : '–'}</dd>
+      <dt>Email</dt><dd>${l.email ? `<a href="mailto:${dashEsc(l.email)}" style="color:var(--gold)">${dashEsc(l.email)}</a>` : '–'}</dd>
+      <dt>Origen / página</dt><dd>${dashEsc(leadOrigenLabel(l.origen))}</dd>
+      <dt>Fecha y hora</dt><dd>${dashEsc(leadFmtDateTime(l.created_at))}</dd>
+      ${l.updated_at && l.updated_at !== l.created_at ? `<dt>Última actualización</dt><dd>${dashEsc(leadFmtDateTime(l.updated_at))}</dd>` : ''}
+      ${utm ? `<dt>UTM</dt><dd>${dashEsc(utm)}</dd>` : ''}
+    </dl>
+    ${l.mensaje ? `<div class="dash-modal-block"><strong>Mensaje / datos enviados</strong><div style="white-space:pre-wrap;margin-top:.35rem">${dashEsc(l.mensaje)}</div></div>` : ''}
+    ${l.notas ? `<div class="dash-modal-block"><strong>Notas internas</strong>${dashEsc(l.notas)}</div>` : ''}
+    <div class="dash-modal-block" style="margin-top:1rem">
+      <strong>Cambiar estado</strong>
+      <div class="gap-row" style="margin-top:.35rem;flex-wrap:wrap">
+        ${['nuevo','contactado','cualificado','cerrado','descartado'].map(e =>
+          `<button type="button" class="adm-btn ${l.estado===e?'adm-btn-gold':'adm-btn-ghost'} adm-btn-sm" onclick="dashSetLeadEstado('${l.id}','${e}')">${e}</button>`
+        ).join('')}
+      </div>
+    </div>
+    <div class="dash-modal-block">
+      <strong>Notas</strong>
+      <input type="text" class="adm-field" style="width:100%;margin-top:.35rem" placeholder="Notas internas…" value="${dashEsc(l.notas || '')}"
+        onchange="saveLeadNotas('${l.id}', this.value); openLeadModal('${l.id}')"/>
+    </div>`;
+}
+
+function openLeadModal(id) {
+  const l = findLeadById(id);
+  if (!l) { nhToast('Lead no encontrado.', 'info'); return; }
+  openDashModal('lead', id);
 }
 
 function renderLeadsTable(list, full) {
   if (!list.length) return '<p class="text-muted">Sin leads.</p>';
   const rows = list.map(l => {
-    const fecha = l.created_at ? new Date(l.created_at).toLocaleDateString('es-ES') : '–';
+    const fecha = leadFmtDateTime(l.created_at);
     const notasVal = (l.notas || '').replace(/"/g, '&quot;');
-    return `<tr>
-      <td><strong>${l.nombre||'–'}</strong><br/><span class="text-muted" style="font-size:.75rem">${l.tipo||''}</span></td>
-      <td>${l.email||'–'}<br/><a href="tel:${l.telefono||''}" style="font-size:.8rem">${l.telefono||'–'}</a></td>
-      <td style="max-width:200px">${(l.mensaje||'').slice(0, full ? 120 : 50)}</td>
+    return `<tr class="lead-row-click" onclick="openLeadModal('${l.id}')" title="Ver ficha completa">
+      <td><strong>${dashEsc(l.nombre||'–')}</strong><br/>${leadCategoriaBadgeHtml(l)}</td>
+      <td>${dashEsc(l.email||'–')}<br/><a href="tel:${l.telefono||''}" style="font-size:.8rem" onclick="event.stopPropagation()">${dashEsc(l.telefono||'–')}</a></td>
+      <td style="max-width:220px">${dashEsc((l.mensaje||'').slice(0, full ? 120 : 50))}</td>
       <td>${leadEstadoBadge(l.estado)}</td>
-      <td>${fecha}</td>
-      ${full ? `<td>
+      <td style="font-size:.78rem;white-space:nowrap">${dashEsc(fecha)}</td>
+      ${full ? `<td onclick="event.stopPropagation()">
         <input type="text" class="adm-field" style="padding:.35rem .5rem;font-size:.78rem;width:100%;min-width:100px" placeholder="Notas…" value="${notasVal}"
           onchange="saveLeadNotas('${l.id}', this.value)"/>
         ${leadActionBtns(l, true)}
@@ -3946,24 +4124,26 @@ function renderLeadsTable(list, full) {
   }).join('');
   const headFull = full ? '<th>Notas / Acciones</th>' : '';
   return `<div class="adm-table-wrap"><table class="adm-table"><thead><tr>
-    <th>Contacto</th><th>Email / Tel</th><th>Mensaje</th><th>Estado</th><th>Fecha</th>${headFull}
+    <th>Contacto</th><th>Email / Tel</th><th>Mensaje</th><th>Estado</th><th>Fecha y hora</th>${headFull}
   </thead><tbody>${rows}</tbody></table></div>`;
 }
 
 function renderLeadsCards(list) {
   if (!list.length) return '';
   return `<div class="adm-leads-cards">${list.map(l => {
-    const fecha = l.created_at ? new Date(l.created_at).toLocaleDateString('es-ES') : '';
-    return `<div class="lead-card">
+    const fecha = leadFmtDateTime(l.created_at);
+    return `<div class="lead-card" role="button" tabindex="0" onclick="openLeadModal('${l.id}')">
       <div class="lead-card-head">
-        <div><strong>${l.nombre||'–'}</strong><div class="text-muted" style="font-size:.78rem">${l.tipo||''} · ${fecha}</div></div>
+        <div><strong>${dashEsc(l.nombre||'–')}</strong><div style="margin-top:.25rem">${leadCategoriaBadgeHtml(l)}</div><div class="text-muted" style="font-size:.75rem;margin-top:.25rem">${dashEsc(fecha)}</div></div>
         ${leadEstadoBadge(l.estado)}
       </div>
-      <div style="font-size:.82rem"><a href="tel:${l.telefono}">${l.telefono||''}</a> · ${l.email||''}</div>
-      <p style="font-size:.8rem;margin:.5rem 0;color:var(--text-muted)">${(l.mensaje||'').slice(0,100)}</p>
-      <input type="text" class="adm-field" style="padding:.4rem .6rem;font-size:.78rem;width:100%" placeholder="Notas internas…" value="${(l.notas||'').replace(/"/g,'&quot;')}"
-        onchange="saveLeadNotas('${l.id}', this.value)"/>
-      ${leadActionBtns(l, false)}
+      <div style="font-size:.82rem"><a href="tel:${l.telefono}" onclick="event.stopPropagation()">${dashEsc(l.telefono||'')}</a> · ${dashEsc(l.email||'')}</div>
+      <p style="font-size:.8rem;margin:.5rem 0;color:var(--text-muted)">${dashEsc((l.mensaje||'').slice(0,100))}</p>
+      <div onclick="event.stopPropagation()">
+        <input type="text" class="adm-field" style="padding:.4rem .6rem;font-size:.78rem;width:100%" placeholder="Notas internas…" value="${dashEsc(l.notas||'')}"
+          onchange="saveLeadNotas('${l.id}', this.value)"/>
+        ${leadActionBtns(l, false)}
+      </div>
     </div>`;
   }).join('')}</div>`;
 }
@@ -3972,22 +4152,41 @@ function filterLeadsList() {
   return _leadsData.filter(l => {
     if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
     if (_leadFilterTipo && l.tipo !== _leadFilterTipo) return false;
+    if (_leadFilterSegment && leadSegment(l) !== _leadFilterSegment) return false;
+    if (_leadFilterCanal === 'registro_panel' && !leadEsRegistroPanel(l)) return false;
+    if (_leadFilterCanal === 'formulario' && leadEsRegistroPanel(l)) return false;
     return true;
   });
+}
+
+function renderLeadsCounts() {
+  const el = document.getElementById('leads-counts');
+  if (!el || !_leadsData.length) { if (el) el.textContent = _leadsData.length ? '' : 'Sin leads aún'; return; }
+  const v = _leadsData.filter(l => leadSegment(l) === 'vendedor').length;
+  const c = _leadsData.filter(l => leadSegment(l) === 'comprador').length;
+  const fp = _leadsData.filter(l => !leadEsRegistroPanel(l)).length;
+  const rp = _leadsData.filter(l => leadEsRegistroPanel(l)).length;
+  el.innerHTML = `${_leadsData.length} total · ${v} vendedor · ${c} comprador<br/>${fp} formulario · ${rp} panel`;
 }
 
 function renderLeadsView() {
   const list = filterLeadsList();
   const tbl = document.getElementById('leads-table');
   if (!tbl) return;
+  renderLeadsCounts();
   if (!list.length) { tbl.innerHTML = '<p class="text-muted">Sin leads con estos filtros.</p>'; return; }
   tbl.innerHTML = renderLeadsTable(list, true) + renderLeadsCards(list);
 }
 
 async function loadLeads(){
-  const { data } = await window.nhSupabase.from('leads').select('id,nombre,email,telefono,tipo,mensaje,estado,notas,created_at').order('created_at',{ascending:false});
+  const sb = window.nhSupabase;
+  await syncLeadsFromClientes(sb);
+  const { data, error } = await sb.from('leads').select(LEAD_SELECT_COLS).order('created_at',{ascending:false});
+  if (error) console.error('loadLeads', error);
   _leadsData = data || [];
+  _dashCache.leads = _leadsData.slice(0, 6);
   renderLeadsView();
+  renderDashLeads(_dashCache.leads);
 }
 
 async function setLeadEstado(id, estado) {
@@ -4012,6 +4211,22 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('[data-lf="estado"]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       _leadFilterEstado = btn.dataset.val || '';
+      renderLeadsView();
+    });
+  });
+  document.querySelectorAll('[data-lf="segment"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-lf="segment"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      _leadFilterSegment = btn.dataset.val || '';
+      renderLeadsView();
+    });
+  });
+  document.querySelectorAll('[data-lf="canal"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-lf="canal"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      _leadFilterCanal = btn.dataset.val || '';
       renderLeadsView();
     });
   });
