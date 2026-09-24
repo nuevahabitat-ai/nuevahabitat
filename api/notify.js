@@ -11,13 +11,21 @@ import {
   listLeadsServer,
   purgeNonFormularioLeadsServer,
   getLeadByIdServer,
+  isFormularioWebLead,
 } from '../lib/server/leads-api.js';
 import { getUserFromJwt } from '../lib/server/supabase-server.js';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || 'info@nuevahabitat.com';
-/** Destinatarios internos: todas las alertas de leads/registros van a ambos por igual */
-const NOTIFY_RECIPIENTS = [...new Set([ADMIN_EMAIL, CONTACT_EMAIL].map((e) => String(e || '').trim()).filter(Boolean))];
+/** Siempre admin + info corporativo (más variables de entorno opcionales). */
+function getNotifyRecipients() {
+  const canonical = ['admin.nuevahabitat@gmail.com', 'info@nuevahabitat.com'];
+  const extra = [ADMIN_EMAIL, CONTACT_EMAIL, process.env.INFO_EMAIL, process.env.NOTIFY_EXTRA_EMAIL]
+    .map((e) => String(e || '').trim().toLowerCase())
+    .filter(Boolean);
+  return [...new Set([...canonical, ...extra])];
+}
+const NOTIFY_RECIPIENTS = getNotifyRecipients();
 const FROM_ADMIN  = 'NuevaHabitat <noreply@nuevahabitat.com>';
 const FROM_NOREPLY= 'NuevaHabitat <noreply@nuevahabitat.com>';
 
@@ -591,17 +599,33 @@ async function handleAdminLeads(req, res, body) {
 async function deliverLeadAdminEmail(apiKey, fields) {
   if (!apiKey) return { ok: false, skipped: true, reason: 'no_api_key' };
   const tpl = tplLeadAdmin(fields);
-  const r = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: FROM_NOREPLY, to: NOTIFY_RECIPIENTS, subject: tpl.subject, html: tpl.html }),
-  });
-  const data = await r.json().catch(() => ({}));
-  if (!r.ok) {
-    console.error('deliverLeadAdminEmail', r.status, data);
-    return { ok: false, error: data?.message || data?.error || `HTTP ${r.status}` };
+  const recipients = getNotifyRecipients();
+  const resendIds = [];
+  const errors = [];
+  for (const to of recipients) {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from: FROM_NOREPLY, to: [to], subject: tpl.subject, html: tpl.html }),
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) {
+      console.error('deliverLeadAdminEmail', to, r.status, data);
+      errors.push({ to, error: data?.message || data?.error || `HTTP ${r.status}` });
+    } else if (data?.id) {
+      resendIds.push({ to, id: data.id });
+    }
   }
-  return { ok: true, resendId: data?.id };
+  if (!resendIds.length) {
+    return { ok: false, error: errors[0]?.error || 'No se pudo enviar a ningún destinatario', errors };
+  }
+  return {
+    ok: errors.length === 0,
+    partial: errors.length > 0,
+    resendIds,
+    recipients,
+    errors: errors.length ? errors : undefined,
+  };
 }
 
 async function handleInsertLead(req, res, body) {
@@ -681,7 +705,56 @@ async function handleResendLeadAdmin(req, res, body) {
       error: mail.error || mail.reason || 'No se pudo enviar el email',
     });
   }
-  return res.status(200).json({ ok: true, emailSent: true, resendId: mail.resendId });
+  return res.status(200).json({
+    ok: true,
+    emailSent: true,
+    resendIds: mail.resendIds,
+    recipients: mail.recipients,
+  });
+}
+
+async function handleResendAllFormLeadsAdmin(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return res.status(503).json({ ok: false, error: 'RESEND_API_KEY no configurada' });
+  }
+  try {
+    const all = await listLeadsServer({ limit: 1000, formularioOnly: true });
+    const leads = (all || []).filter(isFormularioWebLead);
+    let sent = 0;
+    let failed = 0;
+    const details = [];
+    for (const lead of leads) {
+      const mail = await deliverLeadAdminEmail(apiKey, {
+        nombre: lead.nombre,
+        telefono: lead.telefono,
+        email: lead.email,
+        mensaje: lead.mensaje,
+        tipo: lead.tipo,
+        origen: lead.origen,
+      });
+      if (mail.ok || mail.partial) {
+        sent += 1;
+        details.push({ id: lead.id, nombre: lead.nombre, ok: true, recipients: mail.recipients });
+      } else {
+        failed += 1;
+        details.push({ id: lead.id, nombre: lead.nombre, ok: false, error: mail.error });
+      }
+    }
+    return res.status(200).json({
+      ok: true,
+      total: leads.length,
+      sent,
+      failed,
+      recipients: getNotifyRecipients(),
+      details,
+    });
+  } catch (err) {
+    console.error('resend-all-form-leads', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -699,17 +772,23 @@ export default async function handler(req, res) {
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
+  if (action === 'resend-all-form-leads') return handleResendAllFormLeadsAdmin(req, res, body);
 
   const apiKey = process.env.RESEND_API_KEY;
   let { nombre, telefono, email, mensaje, tipo, inmueble, template, extra, calendar, leadId, origen, skipAdminNotification } = body;
 
   async function send(to, tpl) {
-    const r = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from: FROM_NOREPLY, to: Array.isArray(to) ? to : [to], ...tpl }),
-    });
-    return r.json();
+    const list = Array.isArray(to) ? to : [to];
+    const outs = [];
+    for (const addr of list) {
+      const r = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from: FROM_NOREPLY, to: [addr], ...tpl }),
+      });
+      outs.push(await r.json());
+    }
+    return outs.length === 1 ? outs[0] : outs;
   }
 
   try {
@@ -724,13 +803,13 @@ export default async function handler(req, res) {
       if (template === 'disponibilidad') {
         const adminTpl = tplDisponibilidadCalendario({ nombre, telefono, email, mensaje, extra: extra || {} });
         if (ics) adminTpl.attachments = [ics];
-        jobs.push(send(NOTIFY_RECIPIENTS, adminTpl));
+        jobs.push(send(getNotifyRecipients(), adminTpl));
       } else if (template === 'honorarios_pago') {
-        jobs.push(send(NOTIFY_RECIPIENTS, tplHonorariosPagadoAdmin({ nombre, email, extra: extra || {} })));
+        jobs.push(send(getNotifyRecipients(), tplHonorariosPagadoAdmin({ nombre, email, extra: extra || {} })));
       } else if (template === 'honorarios_transferencia_pendiente') {
-        jobs.push(send(NOTIFY_RECIPIENTS, tplTransferenciaPendienteAdmin({ nombre, email, extra: extra || {} })));
+        jobs.push(send(getNotifyRecipients(), tplTransferenciaPendienteAdmin({ nombre, email, extra: extra || {} })));
       } else if (template === 'visita_confirmada' || template === 'visita_cancelada') {
-        jobs.push(send(NOTIFY_RECIPIENTS, tplVisitaEstadoAdmin({ nombre, email, telefono, inmueble, mensaje, extra: extra || {} })));
+        jobs.push(send(getNotifyRecipients(), tplVisitaEstadoAdmin({ nombre, email, telefono, inmueble, mensaje, extra: extra || {} })));
       } else if (template !== 'bienvenida' && template !== 'newsletter') {
         if (!leadId && nombre && telefono) {
           try {
@@ -748,7 +827,7 @@ export default async function handler(req, res) {
           }
         }
         if (!skipAdminNotification) {
-          jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble, origen })));
+          jobs.push(send(getNotifyRecipients(), tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble, origen })));
         }
       }
 
