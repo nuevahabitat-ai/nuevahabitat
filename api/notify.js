@@ -5,6 +5,7 @@
  */
 
 import { createAvailabilityEvents } from '../lib/server/google-calendar.js';
+import { insertLeadServer, normalizeLeadTipo } from '../lib/server/leads-api.js';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || 'info@nuevahabitat.com';
@@ -96,19 +97,34 @@ function emailSteps(items) {
   }</table>`;
 }
 
-function tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble }) {
+function tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble, origen }) {
   const labels = {
     visita: 'Nueva visita solicitada', contacto: 'Nuevo contacto', hipoteca: 'Consulta hipoteca',
-    vender: 'Quiero vender', valoracion: 'Solicitud valoración', comprar: 'Quiero comprar',
-    newsletter: 'Nueva suscripción',
+    vender: 'Quiero vender', venta: 'Quiero vender', valoracion: 'Solicitud valoración',
+    comprar: 'Quiero comprar', compra: 'Quiero comprar',
+    newsletter: 'Nueva suscripción', info: 'Consulta web',
   };
-  const label = labels[tipo] || 'Nuevo lead';
+  const esRegistroPanel = origen === 'registro_cuenta';
+  const esCompradorPanel = esRegistroPanel && (tipo === 'compra' || tipo === 'comprar');
+  const esVendedorPanel = esRegistroPanel && (tipo === 'venta' || tipo === 'vender' || tipo === 'valoracion');
+  let label = labels[tipo] || 'Nuevo lead';
+  let titulo = 'Nuevo lead recibido';
+  let intro = 'Se ha recibido una nueva solicitud desde la web. Contacta en menos de 2 horas para maximizar la conversión.';
+  if (esCompradorPanel) {
+    label = 'Nuevo comprador registrado en su panel';
+    titulo = label;
+    intro = 'Un cliente se ha dado de alta como comprador en el panel. Revisa su ficha en Compradores y contacta en menos de 2 horas.';
+  } else if (esVendedorPanel) {
+    label = 'Nuevo vendedor registrado en su panel';
+    titulo = label;
+    intro = 'Un cliente se ha dado de alta como vendedor en el panel. Revisa su ficha en Vendedores y contacta en menos de 2 horas.';
+  }
   return {
     subject: `[NH] ${label} — ${nombre || 'Desconocido'}`,
     html: HEAD + `<div class="body">
       <div class="tag">${label}</div>
-      <h1>Nuevo lead recibido</h1>
-      <p class="intro">Se ha recibido una nueva solicitud desde la web. Contacta en menos de 2 horas para maximizar la conversión.</p>
+      <h1>${titulo}</h1>
+      <p class="intro">${intro}</p>
       <div class="card">
         <div class="card-title">Datos del contacto</div>
         <table>
@@ -536,6 +552,34 @@ function tplHipoteca({ nombre, cuota, prestamo, anos, tasa }) {
   };
 }
 
+async function handleInsertLead(req, res, body) {
+  const nombre = String(body.nombre || '').trim();
+  const telefono = String(body.telefono || '').trim();
+  if (!nombre || !telefono) {
+    return res.status(400).json({ error: 'nombre y telefono son obligatorios' });
+  }
+  try {
+    const inserted = await insertLeadServer({
+      nombre,
+      telefono,
+      email: body.email,
+      mensaje: body.mensaje,
+      tipo: normalizeLeadTipo(body.tipo),
+      origen: body.origen || 'web_api',
+      inmueble_id: body.inmueble_id,
+      perfil_id: body.perfil_id,
+      utm_source: body.utm_source,
+      utm_medium: body.utm_medium,
+      utm_campaign: body.utm_campaign,
+    });
+    if (!inserted?.id) return res.status(503).json({ error: 'No se pudo guardar el lead' });
+    return res.status(200).json({ ok: true, id: inserted.id });
+  } catch (err) {
+    console.error('api/leads', err);
+    return res.status(500).json({ error: err.message });
+  }
+}
+
 /* ══════════════════════════════════════════════════════════════════════
    HANDLER PRINCIPAL
 ══════════════════════════════════════════════════════════════════════ */
@@ -546,10 +590,12 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST')   return res.status(405).json({ error: 'Method not allowed' });
 
-  const apiKey = process.env.RESEND_API_KEY;
-
   const body = req.body || {};
-  const { nombre, telefono, email, mensaje, tipo, inmueble, template, extra, calendar } = body;
+  const action = req.query?.__action || req.query?.action;
+  if (action === 'insert-lead') return handleInsertLead(req, res, body);
+
+  const apiKey = process.env.RESEND_API_KEY;
+  let { nombre, telefono, email, mensaje, tipo, inmueble, template, extra, calendar, leadId, origen } = body;
 
   async function send(to, tpl) {
     const r = await fetch('https://api.resend.com/emails', {
@@ -579,8 +625,23 @@ export default async function handler(req, res) {
         jobs.push(send(NOTIFY_RECIPIENTS, tplTransferenciaPendienteAdmin({ nombre, email, extra: extra || {} })));
       } else if (template === 'visita_confirmada' || template === 'visita_cancelada') {
         jobs.push(send(NOTIFY_RECIPIENTS, tplVisitaEstadoAdmin({ nombre, email, telefono, inmueble, mensaje, extra: extra || {} })));
-      } else {
-        jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble })));
+      } else if (template !== 'bienvenida' && template !== 'newsletter') {
+        if (!leadId && nombre && telefono) {
+          try {
+            const ins = await insertLeadServer({
+              nombre,
+              telefono,
+              email,
+              mensaje,
+              tipo: normalizeLeadTipo(tipo || template),
+              origen: origen || extra?.landing || 'web_notify',
+            });
+            if (ins?.id) leadId = ins.id;
+          } catch (persistErr) {
+            console.error('notify lead persist', persistErr);
+          }
+        }
+        jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble, origen })));
       }
 
       /* 2. Email al cliente según plantilla */

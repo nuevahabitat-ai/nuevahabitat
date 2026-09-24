@@ -248,6 +248,7 @@
 <script src="js/blog-posts-rich.js"></script>
 <script src="js/blog-api.js"></script>
 <script src="js/blog-seo.js"></script>
+<script src="js/leads.js"></script>
 <script src="js/notify.js"></script>
 <script>
 async function nlSubmit(e){
@@ -262,6 +263,18 @@ async function nlSubmit(e){
       await window.nhSupabase.from('newsletter').insert({ email });
     }
     if(window.nhNotify) nhNotify({ email, nombre: email.split('@')[0], tipo: 'newsletter', template: 'newsletter' });
+    if(window.nhSubmitLead){
+      await nhSubmitLead({
+        nombre: email.split('@')[0] || 'Newsletter',
+        telefono: 'newsletter',
+        email,
+        mensaje: 'Suscripción newsletter blog',
+        tipo: 'info',
+        origen: 'newsletter_blog',
+        notify: false,
+        errorMsg: false,
+      });
+    }
     btn.textContent = '✓ Suscrito';
   } catch(_){
     btn.disabled = false;

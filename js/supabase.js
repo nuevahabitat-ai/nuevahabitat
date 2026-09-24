@@ -101,7 +101,31 @@ window.nhAuth = {
       }
       if (window.nhNotify) {
         nhNotify({ nombre, email, tipo: 'bienvenida', template: 'bienvenida', extra: { tipo } });
-        nhNotify({ nombre, email, telefono: telefono || '', mensaje: `Nuevo registro · tipo: ${tipo || '–'}`, tipo: tipo === 'vender' ? 'vender' : 'comprar' });
+      }
+      const telReg = (telefono || '').trim();
+      const esVendedorReg = tipo === 'vender' || tipo === 'vendedor';
+      const mensajeRegistroAdmin = esVendedorReg
+        ? 'Nuevo vendedor registrado en su panel'
+        : 'Nuevo comprador registrado en su panel';
+      if (window.nhSubmitLead && telReg) {
+        nhSubmitLead({
+          nombre: nombre || email.split('@')[0],
+          telefono: telReg,
+          email,
+          mensaje: mensajeRegistroAdmin,
+          tipo: esVendedorReg ? 'venta' : 'compra',
+          origen: 'registro_cuenta',
+          notify: true,
+        }).catch((e) => console.warn('lead registro', e));
+      } else if (window.nhNotify && telReg) {
+        nhNotify({
+          nombre,
+          email,
+          telefono: telReg,
+          mensaje: mensajeRegistroAdmin,
+          tipo: esVendedorReg ? 'venta' : 'compra',
+          origen: 'registro_cuenta',
+        });
       }
     }
     return { data, error };

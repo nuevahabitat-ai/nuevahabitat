@@ -285,7 +285,8 @@
     { "source": "/api/inmuebles-canonical", "destination": "/api/seo-canonical?role=inmuebles" },
     { "source": "/api/seo-blog-canonical", "destination": "/api/seo-canonical?role=blog" },
     { "source": "/blog/:slug", "destination": "/blog-articulo?slug=:slug" },
-    { "source": "/api/stripe-verify-session", "destination": "/api/stripe-checkout?__action=verify-session" }
+    { "source": "/api/stripe-verify-session", "destination": "/api/stripe-checkout?__action=verify-session" },
+    { "source": "/api/leads", "destination": "/api/notify?__action=insert-lead" }
   ],
   "headers": [
     {
