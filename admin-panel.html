@@ -2263,84 +2263,24 @@ async function waitAdminSession(maxMs = 2500) {
 
 const LEAD_SELECT_COLS = 'id,nombre,email,telefono,tipo,mensaje,estado,notas,origen,utm_source,utm_medium,utm_campaign,created_at,updated_at';
 
-function normLeadEmail(e) {
-  return String(e || '').trim().toLowerCase();
-}
-function normLeadTel(t) {
-  const d = String(t || '').replace(/\D/g, '');
-  return d.length >= 9 ? d : '';
-}
-
-/** Crea filas en leads para compradores/vendedores del CRM que aún no tienen lead (p. ej. registro anterior al fix). */
-async function syncLeadsFromClientes(sb) {
-  if (!sb) return;
-  try {
-    const [{ data: comps }, { data: vends }, { data: existing }] = await Promise.all([
-      sb.from('compradores').select('id,nombre,email,telefono,created_at').order('created_at', { ascending: false }).limit(100),
-      sb.from('vendedores').select('id,nombre,email,telefono,created_at').order('created_at', { ascending: false }).limit(100),
-      sb.from('leads').select('email,telefono').order('created_at', { ascending: false }).limit(800),
-    ]);
-    const seen = new Set();
-    (existing || []).forEach(l => {
-      const e = normLeadEmail(l.email);
-      const t = normLeadTel(l.telefono);
-      if (e) seen.add('e:' + e);
-      if (t) seen.add('t:' + t);
-    });
-
-    const pending = [];
-    const mark = (email, telefono) => {
-      const e = normLeadEmail(email);
-      const t = normLeadTel(telefono);
-      if (e) seen.add('e:' + e);
-      if (t) seen.add('t:' + t);
-    };
-    const already = (email, telefono) => {
-      const e = normLeadEmail(email);
-      const t = normLeadTel(telefono);
-      if (e && seen.has('e:' + e)) return true;
-      if (t && seen.has('t:' + t)) return true;
-      return false;
-    };
-
-    for (const c of comps || []) {
-      if (!c?.nombre || already(c.email, c.telefono)) continue;
-      const tel = normLeadTel(c.telefono) || String(c.telefono || '').trim();
-      if (!tel) continue;
-      pending.push({
-        nombre: c.nombre,
-        email: c.email || null,
-        telefono: tel,
-        tipo: 'compra',
-        origen: 'registro_cuenta',
-        mensaje: 'Nuevo comprador registrado en su panel',
-        estado: 'nuevo',
-      });
-      mark(c.email, c.telefono);
-    }
-    for (const v of vends || []) {
-      if (!v?.nombre || already(v.email, v.telefono)) continue;
-      const tel = normLeadTel(v.telefono) || String(v.telefono || '').trim();
-      if (!tel) continue;
-      pending.push({
-        nombre: v.nombre,
-        email: v.email || null,
-        telefono: tel,
-        tipo: 'venta',
-        origen: 'registro_cuenta',
-        mensaje: 'Nuevo vendedor registrado en su panel',
-        estado: 'nuevo',
-      });
-      mark(v.email, v.telefono);
-    }
-
-    for (const row of pending) {
-      const { error } = await sb.from('leads').insert(row);
-      if (error) console.warn('syncLeadsFromClientes insert', error.message);
-    }
-  } catch (err) {
-    console.warn('syncLeadsFromClientes', err);
-  }
+/** Lista + sync leads vía API (service role); evita bloqueos RLS en el panel. */
+async function fetchAdminLeads(opts = {}) {
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (!session?.access_token) throw new Error('Sesión no disponible');
+  const res = await fetch('/api/notify?__action=admin-leads', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({
+      sync: opts.sync !== false,
+      limit: opts.limit || 500,
+    }),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) throw new Error(json.error || `Error al cargar leads (${res.status})`);
+  return json;
 }
 
 async function initAdmin() {
@@ -2391,7 +2331,7 @@ async function initAdmin() {
     setupWizardSteps();
 
     // Mostrar panel ya; cargar datos en paralelo sin bloquear
-    ensureAdminProfile(user).catch(e => console.warn('ensureAdminProfile:', e));
+    await ensureAdminProfile(user);
     loadDashboard().catch(e => console.error('loadDashboard:', e));
     refreshPartAlarmBadge().catch(()=>{});
   } catch (err) {
@@ -3926,7 +3866,6 @@ async function dashDeleteComprador(id){
 
 async function loadDashboard(){
   const sb = window.nhSupabase;
-  const leadCols = LEAD_SELECT_COLS;
   const setEmpty = () => {
     ['dash-inm-list','dash-leads-list','dash-seg-list','dash-comp-list'].forEach(id => {
       const el = document.getElementById(id);
@@ -3934,10 +3873,16 @@ async function loadDashboard(){
     });
   };
   try {
-    await syncLeadsFromClientes(sb);
+    let leadsList = [];
+    try {
+      const leadsPayload = await fetchAdminLeads({ sync: true });
+      leadsList = leadsPayload.data || [];
+    } catch (leadsErr) {
+      console.error('fetchAdminLeads dashboard', leadsErr);
+      window.nhToast?.('Leads: ' + leadsErr.message, 'error', 5000);
+    }
 
-    const [leadsCount, compradoresCount, vendedoresCount, inmCount, visCount, partCount] = await Promise.all([
-      sb.from('leads').select('*',{count:'exact',head:true}).eq('estado','nuevo'),
+    const [compradoresCount, vendedoresCount, inmCount, visCount, partCount] = await Promise.all([
       sb.from('compradores').select('*',{count:'exact',head:true}),
       sb.from('vendedores').select('*',{count:'exact',head:true}),
       sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('cartera_privada',false),
@@ -3945,22 +3890,22 @@ async function loadDashboard(){
       sb.from('particulares').select('*',{count:'exact',head:true}).eq('activo',true),
     ]);
 
-    document.getElementById('st-leads').textContent = leadsCount.count ?? 0;
+    document.getElementById('st-leads').textContent = leadsList.filter(l => l.estado === 'nuevo').length;
     document.getElementById('st-clientes').textContent = (compradoresCount.count ?? 0) + ' / ' + (vendedoresCount.count ?? 0);
     document.getElementById('st-inmuebles').textContent = inmCount.count ?? 0;
     document.getElementById('st-visitas').textContent = visCount.count ?? 0;
     document.getElementById('st-particulares').textContent = partCount.count ?? 0;
 
-    const [inmRes, leadsRes, segRes, compRes, partsRes] = await Promise.all([
+    const [inmRes, segRes, compRes, partsRes] = await Promise.all([
       sb.from('inmuebles').select('id,ref,titulo,precio,tipo,estado,barrio,municipio,cp,direccion,habitaciones,banos,m2_construidos,m2_utiles,imagen_principal,imagenes,descripcion,propietario_nombre,propietario_telefono,propietario_email,created_at,updated_at,cartera_privada').eq('cartera_privada',false).order('created_at',{ascending:false}).limit(6),
-      sb.from('leads').select(leadCols).order('created_at',{ascending:false}).limit(6),
       sb.from('particulares_seguimientos').select('id,particular_id,comentario,created_at,particulares(id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url)').order('created_at',{ascending:false}).limit(6),
       sb.from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,proxima_alarma_at,ultimo_contacto_at,created_at').order('created_at',{ascending:false}).limit(6),
       sb.from('particulares').select('id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url,proxima_alarma_at,ultimo_contacto_at,activo').eq('activo',true).order('updated_at',{ascending:false}).limit(40),
     ]);
 
     _dashCache.inmuebles = inmRes.data || [];
-    _dashCache.leads = leadsRes.data || [];
+    _leadsData = leadsList;
+    _dashCache.leads = leadsList.slice(0, 6);
     _dashCache.seguimientos = segRes.data || [];
     _dashCache.compradores = compRes.data || [];
     _dashCache.particulares = partsRes.data || [];
@@ -4179,11 +4124,14 @@ function renderLeadsView() {
 }
 
 async function loadLeads(){
-  const sb = window.nhSupabase;
-  await syncLeadsFromClientes(sb);
-  const { data, error } = await sb.from('leads').select(LEAD_SELECT_COLS).order('created_at',{ascending:false});
-  if (error) console.error('loadLeads', error);
-  _leadsData = data || [];
+  try {
+    const payload = await fetchAdminLeads({ sync: true });
+    _leadsData = payload.data || [];
+  } catch (err) {
+    console.error('loadLeads', err);
+    window.nhToast?.('No se pudieron cargar leads: ' + err.message, 'error', 6000);
+    _leadsData = [];
+  }
   _dashCache.leads = _leadsData.slice(0, 6);
   renderLeadsView();
   renderDashLeads(_dashCache.leads);

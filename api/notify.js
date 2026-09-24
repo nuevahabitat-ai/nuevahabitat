@@ -5,7 +5,8 @@
  */
 
 import { createAvailabilityEvents } from '../lib/server/google-calendar.js';
-import { insertLeadServer, normalizeLeadTipo } from '../lib/server/leads-api.js';
+import { insertLeadServer, normalizeLeadTipo, listLeadsServer, syncLeadsFromCrmServer } from '../lib/server/leads-api.js';
+import { getUserFromJwt } from '../lib/server/supabase-server.js';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || 'info@nuevahabitat.com';
@@ -552,6 +553,35 @@ function tplHipoteca({ nombre, cuota, prestamo, anos, tasa }) {
   };
 }
 
+const PANEL_ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com').trim().toLowerCase();
+
+async function verifyPanelAdmin(req) {
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7).trim() : '';
+  const user = await getUserFromJwt(jwt);
+  const email = String(user?.email || '').trim().toLowerCase();
+  if (!email || email !== PANEL_ADMIN_EMAIL) return null;
+  return user;
+}
+
+async function handleAdminLeads(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+
+  try {
+    let sync = null;
+    if (body?.sync !== false) {
+      sync = await syncLeadsFromCrmServer();
+    }
+    const limit = Math.min(Number(body?.limit) || 500, 1000);
+    const data = await listLeadsServer({ limit });
+    return res.status(200).json({ ok: true, data, sync });
+  } catch (err) {
+    console.error('admin-leads', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleInsertLead(req, res, body) {
   const nombre = String(body.nombre || '').trim();
   const telefono = String(body.telefono || '').trim();
@@ -586,13 +616,14 @@ async function handleInsertLead(req, res, body) {
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST')   return res.status(405).json({ error: 'Method not allowed' });
 
   const body = req.body || {};
   const action = req.query?.__action || req.query?.action;
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
+  if (action === 'admin-leads') return handleAdminLeads(req, res, body);
 
   const apiKey = process.env.RESEND_API_KEY;
   let { nombre, telefono, email, mensaje, tipo, inmueble, template, extra, calendar, leadId, origen } = body;
