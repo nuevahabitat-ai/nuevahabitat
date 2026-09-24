@@ -2274,7 +2274,7 @@ async function fetchAdminLeads(opts = {}) {
       Authorization: `Bearer ${session.access_token}`,
     },
     body: JSON.stringify({
-      sync: opts.sync !== false,
+      purge: opts.purge !== false,
       limit: opts.limit || 500,
     }),
   });
@@ -3735,6 +3735,7 @@ function openDashModal(tipo, id){
     actions = `
       ${l.telefono ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="window.location.href='tel:${dashEsc(String(l.telefono).replace(/[^\d+]/g,''))}'">Llamar</button>
       <button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="dashWhatsAppLead('${l.id}')">WhatsApp</button>` : ''}
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}')">Reenviar email aviso</button>
       <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeDashModal(); switchSection('leads')">Editar en leads</button>
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeDashModal()">Cerrar</button>`;
   }
@@ -3956,6 +3957,37 @@ function leadEsRegistroPanel(l) {
   return (l.origen || '') === 'registro_cuenta';
 }
 
+function isFormularioWebLead(l) {
+  if (leadEsRegistroPanel(l)) return false;
+  const o = (l.origen || '').trim();
+  if (o === 'newsletter_blog') return false;
+  if ((l.telefono || '').trim() === 'newsletter') return false;
+  return true;
+}
+
+async function resendLeadAdminEmail(leadId) {
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (!session?.access_token) {
+    nhToast('Sesión no disponible', 'error');
+    return;
+  }
+  const res = await fetch('/api/notify?__action=resend-lead-admin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({ leadId }),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) {
+    nhToast(json.error || 'No se pudo reenviar el email', 'error', 6000);
+    return;
+  }
+  nhToast('Email de aviso reenviado a admin e info', 'success', 4000);
+}
+window.resendLeadAdminEmail = resendLeadAdminEmail;
+
 function leadSegment(l) {
   const t = l.tipo || '';
   if (t === 'compra') return 'comprador';
@@ -4004,6 +4036,7 @@ function leadActionBtns(l, compact) {
   const stop = 'event.stopPropagation();';
   return `<div class="gap-row lead-card-actions">
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadModal('${l.id}')" title="Ver ficha">👁</button>
+    <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}resendLeadAdminEmail('${l.id}')" title="Reenviar email aviso">✉</button>
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','contactado')" title="Contactado">📞</button>
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','cualificado')" title="Cualificado">✓</button>
     <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}setLeadEstado('${l.id}','descartado')" title="Descartar">✕</button>
@@ -4095,6 +4128,7 @@ function renderLeadsCards(list) {
 
 function filterLeadsList() {
   return _leadsData.filter(l => {
+    if (!isFormularioWebLead(l)) return false;
     if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
     if (_leadFilterTipo && l.tipo !== _leadFilterTipo) return false;
     if (_leadFilterSegment && leadSegment(l) !== _leadFilterSegment) return false;

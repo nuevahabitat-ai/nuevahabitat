@@ -5,7 +5,13 @@
  */
 
 import { createAvailabilityEvents } from '../lib/server/google-calendar.js';
-import { insertLeadServer, normalizeLeadTipo, listLeadsServer, syncLeadsFromCrmServer } from '../lib/server/leads-api.js';
+import {
+  insertLeadServer,
+  normalizeLeadTipo,
+  listLeadsServer,
+  purgeNonFormularioLeadsServer,
+  getLeadByIdServer,
+} from '../lib/server/leads-api.js';
 import { getUserFromJwt } from '../lib/server/supabase-server.js';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
@@ -569,17 +575,33 @@ async function handleAdminLeads(req, res, body) {
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
 
   try {
-    let sync = null;
-    if (body?.sync !== false) {
-      sync = await syncLeadsFromCrmServer();
+    let purge = null;
+    if (body?.purge) {
+      purge = await purgeNonFormularioLeadsServer();
     }
     const limit = Math.min(Number(body?.limit) || 500, 1000);
-    const data = await listLeadsServer({ limit });
-    return res.status(200).json({ ok: true, data, sync });
+    const data = await listLeadsServer({ limit, formularioOnly: true });
+    return res.status(200).json({ ok: true, data, purge });
   } catch (err) {
     console.error('admin-leads', err);
     return res.status(500).json({ ok: false, error: err.message });
   }
+}
+
+async function deliverLeadAdminEmail(apiKey, fields) {
+  if (!apiKey) return { ok: false, skipped: true, reason: 'no_api_key' };
+  const tpl = tplLeadAdmin(fields);
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ from: FROM_NOREPLY, to: NOTIFY_RECIPIENTS, subject: tpl.subject, html: tpl.html }),
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    console.error('deliverLeadAdminEmail', r.status, data);
+    return { ok: false, error: data?.message || data?.error || `HTTP ${r.status}` };
+  }
+  return { ok: true, resendId: data?.id };
 }
 
 async function handleInsertLead(req, res, body) {
@@ -589,13 +611,15 @@ async function handleInsertLead(req, res, body) {
     return res.status(400).json({ error: 'nombre y telefono son obligatorios' });
   }
   try {
+    const tipoN = normalizeLeadTipo(body.tipo);
+    const origen = body.origen || 'web_api';
     const inserted = await insertLeadServer({
       nombre,
       telefono,
       email: body.email,
       mensaje: body.mensaje,
-      tipo: normalizeLeadTipo(body.tipo),
-      origen: body.origen || 'web_api',
+      tipo: tipoN,
+      origen,
       inmueble_id: body.inmueble_id,
       perfil_id: body.perfil_id,
       utm_source: body.utm_source,
@@ -603,11 +627,61 @@ async function handleInsertLead(req, res, body) {
       utm_campaign: body.utm_campaign,
     });
     if (!inserted?.id) return res.status(503).json({ error: 'No se pudo guardar el lead' });
-    return res.status(200).json({ ok: true, id: inserted.id });
+
+    const apiKey = process.env.RESEND_API_KEY;
+    let emailSent = false;
+    let emailError = null;
+    if (body.sendAdminEmail !== false) {
+      const mail = await deliverLeadAdminEmail(apiKey, {
+        nombre,
+        telefono,
+        email: body.email,
+        mensaje: body.mensaje,
+        tipo: tipoN,
+        inmueble: body.inmueble,
+        origen,
+      });
+      emailSent = !!mail.ok;
+      if (!mail.ok && !mail.skipped) emailError = mail.error || 'Error Resend';
+      if (mail.skipped) emailError = 'RESEND_API_KEY no configurada en Vercel';
+    }
+
+    return res.status(200).json({
+      ok: true,
+      id: inserted.id,
+      emailSent,
+      emailSkipped: !apiKey,
+      emailError,
+    });
   } catch (err) {
     console.error('api/leads', err);
     return res.status(500).json({ error: err.message });
   }
+}
+
+async function handleResendLeadAdmin(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const leadId = body?.leadId || body?.id;
+  if (!leadId) return res.status(400).json({ ok: false, error: 'leadId requerido' });
+  const lead = await getLeadByIdServer(leadId);
+  if (!lead) return res.status(404).json({ ok: false, error: 'Lead no encontrado' });
+  const apiKey = process.env.RESEND_API_KEY;
+  const mail = await deliverLeadAdminEmail(apiKey, {
+    nombre: lead.nombre,
+    telefono: lead.telefono,
+    email: lead.email,
+    mensaje: lead.mensaje,
+    tipo: lead.tipo,
+    origen: lead.origen,
+  });
+  if (!mail.ok) {
+    return res.status(mail.skipped ? 503 : 502).json({
+      ok: false,
+      error: mail.error || mail.reason || 'No se pudo enviar el email',
+    });
+  }
+  return res.status(200).json({ ok: true, emailSent: true, resendId: mail.resendId });
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -624,9 +698,10 @@ export default async function handler(req, res) {
   const action = req.query?.__action || req.query?.action;
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
+  if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
 
   const apiKey = process.env.RESEND_API_KEY;
-  let { nombre, telefono, email, mensaje, tipo, inmueble, template, extra, calendar, leadId, origen } = body;
+  let { nombre, telefono, email, mensaje, tipo, inmueble, template, extra, calendar, leadId, origen, skipAdminNotification } = body;
 
   async function send(to, tpl) {
     const r = await fetch('https://api.resend.com/emails', {
@@ -672,7 +747,9 @@ export default async function handler(req, res) {
             console.error('notify lead persist', persistErr);
           }
         }
-        jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble, origen })));
+        if (!skipAdminNotification) {
+          jobs.push(send(NOTIFY_RECIPIENTS, tplLeadAdmin({ nombre, telefono, email, mensaje, tipo, inmueble, origen })));
+        }
       }
 
       /* 2. Email al cliente según plantilla */

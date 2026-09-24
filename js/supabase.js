@@ -107,17 +107,7 @@ window.nhAuth = {
       const mensajeRegistroAdmin = esVendedorReg
         ? 'Nuevo vendedor registrado en su panel'
         : 'Nuevo comprador registrado en su panel';
-      if (window.nhSubmitLead && telReg) {
-        nhSubmitLead({
-          nombre: nombre || email.split('@')[0],
-          telefono: telReg,
-          email,
-          mensaje: mensajeRegistroAdmin,
-          tipo: esVendedorReg ? 'venta' : 'compra',
-          origen: 'registro_cuenta',
-          notify: true,
-        }).catch((e) => console.warn('lead registro', e));
-      } else if (window.nhNotify && telReg) {
+      if (window.nhNotify && telReg) {
         nhNotify({
           nombre,
           email,
@@ -125,7 +115,7 @@ window.nhAuth = {
           mensaje: mensajeRegistroAdmin,
           tipo: esVendedorReg ? 'venta' : 'compra',
           origen: 'registro_cuenta',
-        });
+        }).catch((e) => console.warn('notify registro admin', e));
       }
     }
     return { data, error };

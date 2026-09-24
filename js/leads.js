@@ -29,7 +29,30 @@
     return ['compra', 'venta', 'hipoteca', 'valoracion', 'info'].includes(n) ? n : 'info';
   }
 
-  async function persistLeadRow(row) {
+  async function persistLeadRow(row, opts = {}) {
+    try {
+      const res = await fetch('/api/notify?__action=insert-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...row,
+          sendAdminEmail: true,
+          inmueble: opts.inmueble,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && json.id) {
+        return {
+          leadId: json.id,
+          emailSent: !!json.emailSent,
+          emailSkipped: !!json.emailSkipped,
+          emailError: json.emailError || null,
+        };
+      }
+    } catch (e) {
+      console.warn('persistLeadRow API', e);
+    }
+
     let leadId = null;
     if (window.nhSupabase) {
       const { data, error } = await window.nhSupabase.from('leads').insert(row).select('id').maybeSingle();
@@ -37,20 +60,26 @@
       else if (error) console.warn('nhSubmitLead insert anon', error.message);
     }
     if (!leadId) {
-      const res = await fetch('/api/leads', {
+      const res = await fetch('/api/notify?__action=insert-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(row),
+        body: JSON.stringify({ ...row, sendAdminEmail: true, inmueble: opts.inmueble }),
       });
       if (res.ok) {
         const json = await res.json();
-        if (json.id) leadId = json.id;
-      } else {
-        const errText = await res.text();
-        throw new Error(errText || 'api/leads failed');
+        if (json.id) {
+          return {
+            leadId: json.id,
+            emailSent: !!json.emailSent,
+            emailSkipped: !!json.emailSkipped,
+            emailError: json.emailError || null,
+          };
+        }
       }
+      const errText = await res.text();
+      throw new Error(errText || 'api/leads failed');
     }
-    return leadId;
+    return { leadId, emailSent: false, emailSkipped: false, emailError: null };
   }
 
   window.nhSubmitLead = async function (opts) {
@@ -75,11 +104,16 @@
     };
 
     try {
-      const leadId = await persistLeadRow(row);
+      const persisted = await persistLeadRow(row, opts);
+      const leadId = persisted.leadId;
       if (!leadId) throw new Error('No se pudo registrar el lead');
 
+      if (!persisted.emailSent && !persisted.emailSkipped && window.nhNotify) {
+        console.warn('Email admin no confirmado en insert-lead, reintentando notify…', persisted.emailError);
+      }
+
       if (window.nhNotify && opts.notify !== false) {
-        window.nhNotify({
+        await window.nhNotify({
           nombre,
           telefono,
           email: row.email,
@@ -91,8 +125,14 @@
           calendar: opts.calendar,
           leadId,
           origen: row.origen,
+          skipAdminNotification: persisted.emailSent,
         });
       }
+
+      if (persisted.emailSkipped) {
+        console.error('RESEND no configurado: lead guardado sin email admin');
+      }
+
       opts.onLeadCreated?.(leadId);
       opts.onSuccess?.();
       const landingSlug = opts.extra?.landing || row.origen;
