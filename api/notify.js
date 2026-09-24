@@ -665,8 +665,8 @@ async function handleInsertLead(req, res, body) {
         inmueble: body.inmueble,
         origen,
       });
-      emailSent = !!mail.ok;
-      if (!mail.ok && !mail.skipped) emailError = mail.error || 'Error Resend';
+      emailSent = !!(mail.ok || mail.partial);
+      if (!emailSent && !mail.skipped) emailError = mail.error || 'Error Resend';
       if (mail.skipped) emailError = 'RESEND_API_KEY no configurada en Vercel';
     }
 

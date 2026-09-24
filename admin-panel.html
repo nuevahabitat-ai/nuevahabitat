@@ -704,7 +704,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
               <h3>Leads recibidos</h3>
               <p class="text-muted" style="font-size:.82rem;margin:.35rem 0 0">Formularios web y altas en panel · clic en una fila para ver el detalle completo</p>
             </div>
-            <div id="leads-counts" class="text-muted" style="font-size:.78rem;text-align:right"></div>
+            <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem">
+              <div id="leads-counts" class="text-muted" style="font-size:.78rem"></div>
+              <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="resendAllFormLeadEmails()">Reenviar todos los avisos → admin e info</button>
+            </div>
           </div>
           <div class="adm-subtabs" style="margin-bottom:.65rem;flex-wrap:wrap">
             <button class="adm-subtab active" data-lf="segment" data-val="">Todos</button>
@@ -3984,9 +3987,34 @@ async function resendLeadAdminEmail(leadId) {
     nhToast(json.error || 'No se pudo reenviar el email', 'error', 6000);
     return;
   }
-  nhToast('Email de aviso reenviado a admin e info', 'success', 4000);
+  nhToast('Aviso reenviado a admin.nuevahabitat@gmail.com e info@nuevahabitat.com', 'success', 5000);
 }
 window.resendLeadAdminEmail = resendLeadAdminEmail;
+
+async function resendAllFormLeadEmails() {
+  if (!confirm('¿Reenviar un email de aviso por cada lead de formulario a admin.nuevahabitat@gmail.com e info@nuevahabitat.com?')) return;
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (!session?.access_token) {
+    nhToast('Sesión no disponible', 'error');
+    return;
+  }
+  nhToast('Enviando avisos…', 'info', 2500);
+  const res = await fetch('/api/notify?__action=resend-all-form-leads', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({}),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) {
+    nhToast(json.error || 'Error al reenviar', 'error', 7000);
+    return;
+  }
+  nhToast(`Reenviados ${json.sent}/${json.total} leads a admin e info${json.failed ? ` (${json.failed} fallos)` : ''}`, json.failed ? 'info' : 'success', 8000);
+}
+window.resendAllFormLeadEmails = resendAllFormLeadEmails;
 
 function leadSegment(l) {
   const t = l.tipo || '';
