@@ -25,7 +25,7 @@ function pilarGrid(L) {
 }
 
 function renderPilar(L, deps) {
-  const { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock, nhPlatformBundle } = deps;
+  const { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, nhPlatformBundle, argumentoProseMarkup, gestoresContactBanner, testimonialsSection, formBandAside } = deps;
   const cp = (L.postalCodes && L.postalCodes[0]) || '08002';
   const precio = L.ejemploPrecio;
   const comision6 = formatEuro(Math.round(precio * 0.06));
@@ -57,11 +57,12 @@ function renderPilar(L, deps) {
 </head>
 <body data-nh-cluster="barrio" data-nh-landing-slug="${L.slug}" data-nh-precio-default="${precio}">
 ${navBar(L)}
-<div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent || L.barrio}</span></nav></div>
 <section class="lc-hero">
   ${heroPicture(L)}
   <div class="lc-hero-overlay"></div>
-  <div class="container"><div class="lc-hero-content fade-up">
+  <div class="container">
+    <nav class="page-breadcrumb page-breadcrumb--hero fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent || L.barrio}</span></nav>
+    <div class="lc-hero-content fade-up">
     <span class="lc-badge">${badge}</span>
     <h1>${L.hero.h1}</h1>
     <p>${L.hero.lead}</p>
@@ -69,7 +70,8 @@ ${navBar(L)}
       <a href="#barrios" class="btn btn-gold btn-lg">Elegir barrio del centro</a>
       <a href="#valorar" class="btn btn-outline-light btn-lg">Valoración gratuita</a>
     </div>
-  </div></div>
+    </div>
+  </div>
 </section>
 ${callBanner()}
 <section class="lc-section" style="background:var(--blanco)" id="barrios">
@@ -82,19 +84,15 @@ ${callBanner()}
     <div class="lc-pilar-grid">${pilarGrid(L)}</div>
   </div>
 </section>
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container lc-grid-2">
-    <div class="lc-prose lc-prose--cols fade-up">
-      <span class="overline">Vender en ${L.barrio}</span>
-      <h2>Vender piso en Ciutat Vella con precio fijo y compradores filtrados</h2>
-      ${L.argumento_principal}
-      <p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Barrios:</strong> ${L.zonas.join(', ')}.</p>
-      ${marketStatsBlock(L)}
-    </div>
+${argumentoProseMarkup(L, `<span class="overline">Vender en ${L.barrio}</span><h2>Vender piso en Ciutat Vella con precio fijo y compradores filtrados</h2>${L.argumento_principal}`, { suffix: `<p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Barrios:</strong> ${L.zonas.join(', ')}.</p>${marketStatsBlock(L)}` })}
+${gestoresContactBanner(L, 'postArticle')}
+<section class="lc-section lc-form-band">
+  <div class="container lc-form-band__grid">
+    ${formBandAside(L, { title: 'Valoración gratuita en el centro', lead: 'Contacta con Daniel o Sebastián — respuesta en 24 h.' })}
     ${formBlock(L)}
   </div>
-  ${buyerProfileBlock(L) ? `<div class="container">${buyerProfileBlock(L)}</div>` : ''}
 </section>
+${testimonialsSection(L)}
 ${calcBlock(L)}
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container">

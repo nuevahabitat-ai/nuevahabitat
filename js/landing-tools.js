@@ -61,7 +61,7 @@
     el = document.createElement('a');
     el.id = 'nh-sticky-call';
     el.className = 'nh-sticky-call';
-    el.href = 'tel:+34603656587';
+    el.href = `tel:${window.NH_PHONES?.[0]?.e164 || '+34603656587'}`;
     el.setAttribute('aria-label', 'Llamar a NuevaHabitat');
     el.dataset.nhCall = 'sticky-mobile';
     el.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span>Llamar</span>';
@@ -113,7 +113,7 @@
 
   function initWhatsappFloat() {
     const { slug } = landingMeta();
-    const WA_NUM = '34603656587';
+    const WA_NUM = window.NH_WA_FLOAT || '34603656587';
     const MESSAGES = {
       'cuanto-vale-mi-piso-barcelona': 'Hola, me gustaría una valoración gratuita de mi piso en Barcelona.',
       'vender-horta': 'Hola, quiero información para vender mi piso en Horta-Guinardó.',

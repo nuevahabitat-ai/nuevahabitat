@@ -26,14 +26,13 @@ function ogImage(L) {
 }
 
 function renderBarrio(L, deps) {
-  const { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock, nhPlatformBundle } = deps;
+  const { SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, nhPlatformBundle, argumentoProseMarkup, gestoresContactBanner, testimonialsSection, formBandAside } = deps;
   const cp = (L.postalCodes && L.postalCodes[0]) || '08000';
   const precio = L.ejemploPrecio;
   const comision6 = formatEuro(Math.round(precio * 0.06));
   const precioFmt = formatEuro(precio);
   const areaLabel = L.municipio ? 'Área metropolitana' : 'Barcelona';
   const badge = `${L.barrio} · ${cp} · ${areaLabel}`;
-  const testimoniosSection = L.testimonials === false ? '' : '';
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -60,11 +59,12 @@ function renderBarrio(L, deps) {
 </head>
 <body data-nh-cluster="barrio" data-nh-landing-slug="${L.slug}" data-nh-precio-default="${precio}">
 ${navBar(L)}
-<div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent || L.barrio}</span></nav></div>
 <section class="lc-hero">
   ${heroPicture(L)}
   <div class="lc-hero-overlay"></div>
-  <div class="container"><div class="lc-hero-content fade-up">
+  <div class="container">
+    <nav class="page-breadcrumb page-breadcrumb--hero fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent || L.barrio}</span></nav>
+    <div class="lc-hero-content fade-up">
     <span class="lc-badge">${badge}</span>
     <h1>${L.hero.h1}</h1>
     <p>${L.hero.lead}</p>
@@ -72,22 +72,19 @@ ${navBar(L)}
       <a href="#valorar" class="btn btn-gold btn-lg">Valoración gratuita en ${L.barrio}</a>
       <a href="tel:+34603656587" class="btn btn-outline-light btn-lg">${require('./phone-config').displayBoth()}</a>
     </div>
-  </div></div>
+    </div>
+  </div>
 </section>
 ${callBanner()}
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container lc-grid-2">
-    <div class="lc-prose lc-prose--cols fade-up">
-      <span class="overline">Vender en ${L.barrio}</span>
-      <h2>Vender piso en ${L.barrio} con precio fijo y compradores filtrados</h2>
-      ${L.argumento_principal}
-      <p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Micro-zonas:</strong> ${L.zonas.join(', ')}.</p>
-      ${marketStatsBlock(L)}
-    </div>
+${argumentoProseMarkup(L, `<span class="overline">Vender en ${L.barrio}</span><h2>Vender piso en ${L.barrio} con precio fijo y compradores filtrados</h2>${L.argumento_principal}`, { suffix: `<p style="font-size:.9375rem;color:var(--gris-medio)"><strong>Micro-zonas:</strong> ${L.zonas.join(', ')}.</p>${marketStatsBlock(L)}` })}
+${gestoresContactBanner(L, 'postArticle')}
+<section class="lc-section lc-form-band">
+  <div class="container lc-form-band__grid">
+    ${formBandAside(L)}
     ${formBlock(L)}
   </div>
-  ${buyerProfileBlock(L) ? `<div class="container">${buyerProfileBlock(L)}</div>` : ''}
 </section>
+${testimonialsSection(L)}
 ${calcBlock(L)}
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container">
@@ -110,7 +107,6 @@ ${calcBlock(L)}
   </div>
 </section>
 ${nhPlatformBundle(L)}
-${L.testimonials === false ? '' : '<section class="testimonios" data-nh-testimonials></section>'}
 <section class="lc-section" style="background:var(--crema);padding-top:3rem;padding-bottom:3rem">
   <div class="container text-center fade-up">
     <span class="overline">Cartera activa</span>

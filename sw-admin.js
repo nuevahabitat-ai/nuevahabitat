@@ -1,5 +1,5 @@
 /* Service Worker — Panel Admin NuevaHabitat */
-const CACHE = 'nh-admin-v1';
+const CACHE = 'nh-admin-v2';
 const SHELL = [
   '/admin-panel',
   '/admin-panel.html',
@@ -38,6 +38,34 @@ self.addEventListener('fetch', (event) => {
         })
         .catch(() => cached);
       return cached || network;
+    })
+  );
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const url = event.notification.data?.url || '/admin-panel.html';
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      for (const client of list) {
+        if (client.url.includes('/admin-panel') && 'focus' in client) return client.focus();
+      }
+      if (clients.openWindow) return clients.openWindow(url);
+    })
+  );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data?.type !== 'SHOW_NOTIFICATION') return;
+  const { title, body, url, tag } = event.data.payload || {};
+  event.waitUntil(
+    self.registration.showNotification(title || 'NuevaHabitat Admin', {
+      body: body || '',
+      icon: '/imagenes/Logo/logosinfondo2.png',
+      badge: '/imagenes/Logo/logosinfondo2.png',
+      data: { url: url || '/admin-panel.html' },
+      tag: tag || 'nh-admin-lead',
+      renotify: true,
     })
   );
 });

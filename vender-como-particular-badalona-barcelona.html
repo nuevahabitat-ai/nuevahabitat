@@ -117,6 +117,38 @@
           "@type": "Answer",
           "text": "No exclusivas largas ni 6% obligatorio."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta vender en Barcelona con NuevaHabitat?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "3.000 € + IVA de honorarios fijos al vendedor, pagados solo en escritura. Sin venta, no facturamos comisión de agencia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo vender sin exclusiva de doce meses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Trabajamos con mandatos flexibles: puedes seguir en portal y activamos compradores de cartera cuando el precio encaja."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Atendéis todo Barcelona desde Les Corts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Oficina en Carrer de Mejía Lequerica, 42 (Les Corts). Visitas concertadas en tu barrio y franjas horarias."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Los compradores tienen financiación contrastada?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Priorizamos visitas con hipoteca preaprobada o liquidez acreditada para no malgastar tu tiempo."
+        }
       }
     ]
   },
@@ -169,10 +201,14 @@
     .page-breadcrumb{font-size:.8125rem;color:var(--gris-medio);display:flex;align-items:center;flex-wrap:wrap;gap:.35rem;padding:1rem 0 .25rem}
     .page-breadcrumb a{color:var(--gris-medio);transition:color var(--transition)}.page-breadcrumb a:hover{color:var(--negro)}
     .page-breadcrumb span[aria-hidden="true"]{opacity:.45}.page-breadcrumb .bc-current{color:var(--negro);font-weight:500}
-    .lc-hero{min-height:68vh;display:flex;align-items:center;position:relative;overflow:hidden}
-    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center center}
-    .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.88) 42%,rgba(13,13,13,.4));z-index:1}
-    .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:120px 0 80px}
+    .page-breadcrumb--hero{padding:5.75rem 0 .85rem;position:relative;z-index:2;color:rgba(255,255,255,.78)}
+    .page-breadcrumb--hero a{color:rgba(255,255,255,.78)}.page-breadcrumb--hero a:hover{color:#fff}
+    .page-breadcrumb--hero .bc-current{color:#fff;font-weight:500}
+    .lc-hero{min-height:76vh;display:flex;align-items:center;position:relative;overflow:hidden}
+    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.03);filter:brightness(1.07) saturate(1.05)}
+    .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.78) 38%,rgba(13,13,13,.28) 58%,rgba(13,13,13,.12));z-index:1}
+    .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:0 0 6rem}
+    .lc-hero-content h1,.lc-hero-content p{text-shadow:0 2px 28px rgba(0,0,0,.55)}
     .lc-hero-content h1{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);color:#fff;line-height:1.12;margin-bottom:1rem}
     .lc-hero-content p{font-size:1.0625rem;color:rgba(255,255,255,.82);line-height:1.75;margin-bottom:1.5rem}
     .lc-badge{display:inline-flex;background:rgba(184,147,106,.18);border:1px solid rgba(184,147,106,.35);color:var(--oro-claro);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .85rem;border-radius:999px;margin-bottom:1rem}
@@ -227,14 +263,72 @@
       .lc-grid-2{grid-template-columns:1.35fr .85fr;gap:3rem;align-items:start}
       .lc-grid-2 .lc-form{position:sticky;top:96px;align-self:start}
       .lc-prose{max-width:none}
-      .lc-article-layout{display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start}
-      .lc-article-aside{position:sticky;top:96px;background:#fff;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-md);border:1px solid var(--crema-dark)}
-      .lc-prose--cols{column-count:2;column-gap:2.5rem}
-      .lc-prose--cols>h2,.lc-prose--cols>h3{column-span:all;break-after:avoid}
-      .lc-prose--cols>p,.lc-prose--cols>ul,.lc-prose--cols>ol{break-inside:avoid}
       .lc-section{padding:4rem 0}
     }
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}.lc-article-aside{display:none}}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero{min-height:72vh}.lc-hero-overlay{background:linear-gradient(to bottom,rgba(13,13,13,.72),rgba(13,13,13,.45))}.lc-hero-media img{transform:none;object-position:center 35%}}
+    
+    .lc-article{padding:3.5rem 0 4rem;background:var(--crema)}
+    .lc-article__inner{max-width:720px;margin:0 auto}
+    .lc-article__inner h2{font-family:var(--font-serif);font-size:1.45rem;margin:2.25rem 0 .85rem;padding-left:1rem;border-left:4px solid var(--oro);line-height:1.3}
+    .lc-article__inner h2:first-child{margin-top:0}
+    .lc-article__inner p,.lc-article__inner li{font-size:1.0625rem;line-height:1.8;color:var(--gris-texto)}
+    .lc-article__inner > p:first-of-type{font-size:1.125rem;color:var(--negro)}
+    .lc-story{background:var(--crema)}
+    .lc-story-intro{padding:4rem 0 3rem;background:linear-gradient(180deg,var(--blanco) 0%,var(--crema) 100%)}
+    .lc-story-intro__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+    .lc-story-intro__copy{max-width:none}
+    .lc-story-intro__copy p:first-child{font-size:1.125rem;line-height:1.85}
+    .lc-story-intro__media{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);min-height:320px}
+    .lc-story-intro__media img{width:100%;height:100%;object-fit:cover;min-height:320px}
+    .lc-story-split{display:grid;grid-template-columns:1fr 1fr;min-height:min(520px,auto);background:var(--crema)}
+    .lc-story-split:nth-child(even){background:var(--blanco)}
+    .lc-story-split__media{min-height:280px;overflow:hidden}
+    .lc-story-split__media img{width:100%;height:100%;object-fit:cover;min-height:280px}
+    .lc-story-split__content{display:flex;align-items:center;padding:3rem 0}
+    .lc-story-split__inner{max-width:540px;margin:0 auto;padding:0 2rem}
+    .lc-story-split--reverse .lc-story-split__media{order:2}
+    .lc-story-split--reverse .lc-story-split__content{order:1}
+    .lc-story-band{min-height:38vh;background-size:cover;background-position:center;position:relative}
+    .lc-story-band__overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.82),rgba(13,13,13,.45));display:flex;align-items:center}
+    .lc-story-band__text{font-family:var(--font-serif);font-size:clamp(1.35rem,3vw,2rem);color:#fff;max-width:640px;line-height:1.35;margin:0}
+    .lc-story-suffix{padding:3rem 0 4rem;background:var(--crema)}
+    .lc-story-suffix .lc-prose{max-width:var(--max-w);margin:0 auto}
+    .lc-form-band{padding:4rem 0;background:var(--blanco)}
+    .lc-form-band__grid{display:grid;grid-template-columns:1fr minmax(300px,420px);gap:3rem;align-items:start}
+    .lc-form-band__copy .section-title{margin-bottom:1rem}
+    .lc-form-band__aside{display:flex;flex-direction:column;gap:1.25rem}
+    .lc-form-band__figure{margin:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);background:var(--crema)}
+    .lc-form-band__figure img{width:100%;height:auto;max-height:300px;object-fit:cover;display:block}
+    .lc-form-band__copy-inner .section-title{margin-bottom:.75rem}
+    .lc-form-band__aside .lc-buyer-grid{margin-top:1.25rem;gap:1.5rem}
+    .lc-form-band__aside .lc-buyer-grid h3{font-size:1.05rem;margin-bottom:.35rem}
+    .lc-form-band__aside .lc-buyer-grid p{font-size:.9375rem;margin:0}
+    @media(min-width:901px){.lc-form-band .lc-form{position:sticky;top:96px}.lc-form-band__grid{grid-template-columns:1.15fr minmax(300px,420px)}}
+    @media(max-width:900px){
+      .lc-story-intro__grid,.lc-story-split{grid-template-columns:1fr}
+      .lc-story-split--reverse .lc-story-split__media{order:0}
+      .lc-story-split__content{padding:2rem 0}
+      .lc-story-split__inner{padding:0 1.25rem}
+      .lc-form-band__grid{grid-template-columns:1fr}
+    }
+  
+    
+    .lc-gestor-wa-strip{padding:1.35rem 0;background:var(--blanco);border-top:1px solid var(--crema-dark);border-bottom:1px solid var(--crema-dark)}
+    .lc-gestor-wa-strip--postCalc,.lc-gestor-wa-strip--postPanel{background:var(--crema)}
+    .lc-gestor-wa-strip--postArticle{background:var(--negro);border-color:rgba(255,255,255,.08)}
+    .lc-gestor-wa-strip--postArticle .lc-gestor-wa-strip__text{color:rgba(255,255,255,.88)}
+    .lc-gestor-wa-strip--postArticle .btn-outline{border-color:rgba(255,255,255,.4);color:#fff}
+    .lc-gestor-wa-strip--postArticle .btn-outline:hover{background:rgba(255,255,255,.08)}
+    .lc-gestor-wa-strip__inner{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap}
+    .lc-gestor-wa-strip__text{margin:0;font-size:1rem;line-height:1.5;color:var(--gris-texto);flex:1;min-width:200px}
+    .lc-gestor-wa-strip__btns{display:flex;flex-wrap:wrap;gap:.5rem}
+    .lc-wa-banner-btn{white-space:nowrap}
+    .lc-call-gestores{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;width:100%}
+    .lc-call-gestores__text{flex:1;min-width:200px}
+    .lc-call-gestores__btns{display:flex;flex-wrap:wrap;gap:.5rem}
+    .lc-call-banner--prefaq .lc-call-gestores .btn-outline{border-color:var(--negro);color:var(--negro)}
+    @media(max-width:640px){.lc-gestor-wa-strip__inner{flex-direction:column;align-items:stretch;text-align:center}.lc-gestor-wa-strip__btns,.lc-call-gestores__btns{flex-direction:column}.lc-call-gestores{flex-direction:column;text-align:center}}
+  
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -334,6 +428,15 @@
     }
     @media(max-width:600px){.lc-steps-6{grid-template-columns:1fr!important}.lc-pm-stats{grid-template-columns:repeat(3,1fr)}.lc-pm-screens{grid-template-columns:1fr}}
   
+    .lc-testimonios{padding:4.5rem 0;background:var(--crema)}
+    .lc-testimonios-lead{max-width:520px;margin:.75rem auto 0;font-size:.9375rem;color:var(--gris-texto);line-height:1.65}
+    .testimonio-card--rich{padding:0;overflow:hidden;display:flex;flex-direction:column;height:100%}
+    .testimonio-card__cover{margin:0;line-height:0;background:var(--crema-dark)}
+    .testimonio-card__cover img{width:100%;height:168px;object-fit:cover;display:block}
+    .testimonio-card__body{padding:1.75rem 2rem 2rem;flex:1;display:flex;flex-direction:column}
+    .testimonio-card--rich .testimonio-text{flex:1}
+    .testimonio-card--rich .testimonio-autor img{width:72px;height:72px;border:2px solid var(--crema-dark)}
+    .testimonios .testimonio-card.fade-up,.testimonio-card--rich{opacity:1!important;transform:none!important;visibility:visible!important}
   </style>
 </head>
 <body data-nh-cluster="particular" data-nh-landing-slug="vender-como-particular-badalona-barcelona" data-nh-precio-default="245000">
@@ -343,27 +446,30 @@
   <div class="nav-actions"><span class="nav-tels"><a href="tel:+34603656587" class="nh-call-link nav-tel" data-nh-call="header">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link nav-tel" data-nh-call="header">643 877 644</a></span><a href="#valorar" class="nav-cta">Valorar</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
 </div></nav>
 <nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="/vender">Vender</a><a href="/comprar">Comprar</a><a href="/inmuebles">Inmuebles</a><span class="mobile-nav-phones"><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link" data-nh-call="mobile-menu">643 877 644</a></span><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
-<div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Particular Badalona</span></nav></div>
 <section class="lc-hero" style="min-height:62vh">
   <div class="lc-hero-media"><img src="imagenes/interior11.jpg" alt="Particular vendiendo piso en Badalona" style="object-position:center 42%"/></div>
   <div class="lc-hero-overlay"></div>
-  <div class="container"><div class="lc-hero-content fade-up">
+  <div class="container">
+    <nav class="page-breadcrumb page-breadcrumb--hero fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Particular Badalona</span></nav>
+    <div class="lc-hero-content fade-up">
     <span class="lc-badge">Badalona · 08911 · Particular</span>
     <h1>Vender tu piso en Badalona siendo particular: 3.630 € en escritura, panel del vendedor y visitas con criterio</h1>
     <p>Publicaste en <strong>Centre</strong>, <strong>Gorg</strong> o <strong>Montigalà</strong> y el teléfono suena pero no cierras. <strong>NuevaHabitat</strong> desde Les Corts acompaña al particular con <strong>3.630 €</strong> en escritura y compradores filtrados.</p>
     <a href="#calc" class="btn btn-gold btn-lg">Ver calculadora de ahorro</a>
-  </div></div>
+    </div>
+  </div>
 </section>
 <section class="lc-call-banner">
   <div class="container">
-    <div class="lc-call-banner__inner fade-up">
-      <div class="lc-call-banner__text">
-        <span class="overline">Atención directa</span>
-        <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
-        <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
-      </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="hero">Llama · 603 656 587 · 643 877 644</a>
+    <div class="lc-call-gestores fade-up lc-call-gestores--wa">
+    <div class="lc-call-gestores__text">
+      <span class="overline">Contacto directo</span>
+      <p class="lc-call-banner__title">WhatsApp con Daniel o Sebastián</p>
+      <p class="lc-call-banner__sub">Horario comercial lun–sáb 9–20h · Oficina Les Corts</p>
     </div>
+    <div class="lc-call-gestores__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="banner-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="banner-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
   </div>
 </section>
 <section class="nh-savings-calc-section nh-savings-calc-section--dark" id="calc">
@@ -424,22 +530,17 @@
     </div>
   </div>
 </section>
+<section class="lc-gestor-wa-strip lc-gestor-wa-strip--postCalc">
+  <div class="container lc-gestor-wa-strip__inner fade-up">
+    <p class="lc-gestor-wa-strip__text">¿Te cuadra el ahorro? Pregunta a Daniel o Sebastián.</p>
+    <div class="lc-gestor-wa-strip__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postCalc-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postCalc-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
+</section>
 <section class="lc-section" style="background:var(--blanco);padding-top:2rem;padding-bottom:0"><div class="container"><div class="lc-stats-wrap fade-up"><div class="lc-stats-grid"><div class="lc-stat-box"><div class="lc-stat-label">Precio orientativo</div><div class="lc-stat-value">2.650 – 3.100 €/m² (Centre · Gorg · Montigalà)</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tiempo medio de venta</div><div class="lc-stat-value">55 – 85 días</div></div><div class="lc-stat-box"><div class="lc-stat-label">Tendencia 2026</div><div class="lc-stat-value">Alto volumen; comprador desplazado desde Barcelona ciudad</div></div></div><p class="lc-stats-note">Rangos orientativos de mercado 2026 basados en datos públicos del sector. No sustituyen una valoración personalizada de tu vivienda.</p></div><div class="lc-grid-2 lc-buyer-grid fade-up">
     <div><h3>Perfil de comprador habitual</h3><p>En Badalona el particular mezcla perfiles distintos (Centre, Gorg, Montigalà) si no filtra hipoteca y micro-zona. Comprador familiar, inversor y desplazado desde Barcelona ciudad no comparten el mismo discurso ni el mismo precio máximo.</p></div>
     <div><h3>Tipología de vivienda</h3><p>Parque heterogéneo en Badalona: estado de finca, ascensor y planta condicionan el ticket tanto como la reforma. El anuncio genérico penaliza visitas.</p></div>
   </div></div></section>
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container lc-article-layout">
-    <div class="lc-prose lc-prose--cols fade-up"><p>Vender como <strong>particular en Badalona</strong> significa competir en uno de los municipios con más stock del Maresme metropolitano: muchas consultas, muchos comparadores y compradores que miran <strong>L'Hospitalet</strong> o Barcelona el mismo sábado. El particular gana cuando explica por qué su piso en <strong>Gorg</strong>, <strong>Centre</strong> o <strong>Montigalà</strong> encaja en su presupuesto — no cuando copia €/m² de Eixample. Orientativamente 2026: <strong>2.650–3.100 €/m²</strong>; piso 80 m² en Centre puede estar <strong>230.000–260.000 €</strong>, en Artigues o Sant Roc otro rango.</p><p>Guía: <a href="/vender-como-particular-barcelona">particular Barcelona</a>. Barrio: <a href="/vender-badalona">vender Badalona</a>. Precio fijo: <a href="/inmobiliaria-precio-fijo-badalona-barcelona">inmobiliaria precio fijo Badalona</a>.</p><h2>Situaciones en 08911</h2><p><strong>Familia joven desplazada</strong> vende para comprar en Maresme — comprador compara Badalona con Premià el mismo fin de semana.</p><p><strong>Herencia en Centre</strong> — documentación desordenada entre hermanos frena arras aunque haya demanda.</p><p><strong>Piso alquilado cerca playa</strong> — inversor pregunta rentabilidad turística; familia pregunta ruido verano.</p><p><strong>Tres meses en Idealista sin hipoteca</strong> — suele ser pricing de Barcelona aplicado a Badalona, no falta de compradores.</p><h2>Errores del particular badalona</h2><ol><li>€/m² de Barcelona ciudad en Sant Roc o Artigues.</li><li>No cuantificar minutos a metro L2 Gorg o Pep Ventura.</li><li>Visitas sin filtrar solvencia en municipio de alto volumen.</li><li>Ocultar derrama en finca años 60 del Centre.</li><li>Exclusiva larga al 6% tras frustración en portal.</li></ol><h2>Calculadora: 245.000 € Badalona</h2><p>6% + IVA ≈ <strong>17.500 €</strong>. Precio fijo <strong>3.630 €</strong>. <a href="#calc">Calculadora</a> — ahorro orientativo superior a <strong>14.000 €</strong>.</p><h2>Centre y casco: metro L2 y servicios</h2><p>Centre concentra comprador que trabaja en Barcelona y prioriza L2 en pocos minutos. Anuncio debe decir estación concreta y tiempo a pie. Planta baja en calle con comercio necesita mencionar aislamiento — comprador pregunta antes de visitar.</p><h2>Gorg: río, tranvía y renovación</h2><p>Gorg atrae parejas jóvenes por ambiente fluvial y conexión Barcelona. Particular que no diferencia Gorg de Montigalà recibe regateos. Fotos del entorno (parque, paseo) ayudan tanto como del salón.</p><h2>Montigalà: familias y aparcamiento</h2><p>Montigalà compite con Santa Coloma y L'Hospitalet en ticket similar. Ascensor, parking y orientación son variables decisivas. Comparables deben ser Montigalà, no media Badalona.</p><h2>Playa y temporada</h2><p>Proximidad playa puede ser argumento o aviso de ruido estival según calle. Mejor anticipar que ocultar — comprador local conoce zonas. Inversor alquiler estacional valora distancia bicing y equipamiento.</p><h2>Panel del vendedor en municipio de volumen</h2><p>Badalona genera muchas llamadas «¿sigue disponible?» sin intención. Panel filtra franjas, registra visitas y evita duplicar esfuerzo en curiosos. Compradores con hipoteca preaprobada primero.</p><h2>Documentación</h2><ul><li>Certificado energético.</li><li>Comunidad e IBI al día — comprador Badalona es muy sensible a derramas.</li><li>Nota simple.</li><li>Contrato alquiler si aplica.</li></ul><h2>Comparar con L'Hospitalet el mismo día</h2><p>Comprador metropolitano visita Badalona y <a href="/vender-como-particular-l-hospitalet-barcelona">L'Hospitalet</a> seguidos. Tu ficha debe justificar €/m² vs alternativa — metro, playa, estado reforma. Particular que no articula ventaja pierde por 5.000 € de regateo.</p><h2>Arras y señal</h2><p>Señal sin revisar hipoteca en municipio de ticket medio es apuesta frecuente — comprador «cree» que el banco aprueba 100%. Ordenamos financiación antes de comprometer calendario.</p><h2>Servicio NuevaHabitat Badalona</h2><p>Valoración con comparables 08911, difusión compradores solvencia, negociación arras, escritura. Cobro 3.630 € al cierre. Sin venta, sin factura. 24 h condiciones por escrito. Valoración detecta si copiaste precio Barcelona. Ajuste 5.000 € mal temporizado cuesta más que intermediación. Filtramos curiosos multiportal. Compara <a href="/nuevahabitat-vs-idealista-particular">Idealista solo</a>. WhatsApp y formulario.</p><h2>Artigues y Sant Roc: ticket contenido</h2><p>Artigues y Sant Roc compiten con Santa Coloma en precio por m². Particular que sube anuncio con foto de salón reformado pero finca sin ascensor en planta 4 debe alinear expectativa — comprador local conoce el barrio. Indicar estado real de comunidad evita visitas de quien busca otra tipología.</p><h2>La Salut y Anici de Montfort</h2><p>La Salut mezcla casas y bloques bajos — comprador familiar valora colegios y parques. Anici de Montfort tiene perfil residencial más tranquilo que Centre. Titular «Badalona» sin micro-zona pierde long-tail SEO y atrae comparadores de playa cuando tu piso está alejado del mar.</p><h2>Idealista vs cartera compradores</h2><p>Portal trae volumen; cartera cualificada trae arras. Particular agotado suele tener precio correcto pero filtro incorrecto — abre puerta a todos. NuevaHabitat activa compradores con estudio hipotecario previo; tú conservas 3.630 € solo en escritura frente a >17.500 € de comisión clásica sobre 245.000 €.</p><h2>Plusvalía en herencia Centre</h2><p>Venta por herencia en casco antiguo — plusvalía municipal y reparto entre herederos retrasa firma si no hay calendario. Coordinamos hitos con gestor; no sustituimos asesor legal.</p><h2>Preguntas antes de exclusiva</h2><p>¿Cuánto pagarías de comisión sobre tu objetivo real? ¿Panel incluido? Compara <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a>.</p><h2>Temporada playa y ruido estival</h2><p>Pisos a 400 m de platja de Badalona pueden ser plus en primavera y conversación sobre terraza en verano. Particular que vende en octubre sin mencionar perfil de calle recibe regateo en junio cuando comprador descubre ambiente. Anticipar en anuncio filtra perfiles incompatible y acerca familia que busca precisamente vida de playa.</p><h2>Reportaje y primer sábado</h2><p>En municipio de alto volumen, primera impresión digital decide si te llaman o pasan al siguiente anuncio. Luz natural, orden y foto de baño reformado elevan consultas cualificadas. Si llevas dos meses con fotos móvil y cero hipotecas, el cuello de botella puede ser imagen — no precio. En Badalona, donde el comprador abre quince fichas antes de llamar, la portada del anuncio funciona como filtro previo a la visita.</p><h2>Próximo paso</h2><p>Calculadora y formulario. Indica Centre, Gorg o Montigalà y m². Respuesta en 24 h laborables con rango orientativo y plan particular sin exclusiva.</p></div>
-    <aside class="lc-article-aside fade-up">
-    <span class="overline">Precio fijo · Barcelona</span>
-    <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin:.35rem 0 .65rem;line-height:1.3">3.000 € + IVA solo en escritura</h3>
-    <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin-bottom:1rem">Compradores cualificados, panel vendedor y gestor dedicado. Si no vendes, no pagas.</p>
-    <a href="#valorar" class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:.65rem">Valoración gratuita</a>
-    <a href="tel:+34603656587" class="btn btn-outline" style="width:100%;justify-content:center">603 656 587 · 643 877 644</a>
-  </aside>
-  </div>
-</section>
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container">
     <div class="text-center" style="margin-bottom:2rem"><h2 class="section-title">Particular Badalona: portal vs 6% vs NuevaHabitat</h2></div>
@@ -453,6 +554,109 @@
     <p class="lc-checklist-intro">Antes de publicar o firmar mandato.</p>
     <ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Precio coherente con calle y planta?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Energético y comunidad listos?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Filtras hipoteca?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿6% calculado?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Cobro solo en escritura?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Micro-zona clara en título?</span></li></ul>
   </div>
+  </div>
+</section>
+<section class="lc-section lc-nh-panel" style="background:var(--blanco)">
+  <div class="container">
+    <div class="lc-nh-panel-grid fade-up">
+      <div class="lc-nh-panel-copy">
+        <span class="overline">Panel del vendedor</span>
+        <h2 class="section-title">Tu expediente de venta, controlado al milímetro</h2>
+        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con <strong>Daniel</strong> o <strong>Sebastián</strong> como gestor dedicado. Ves visitas, ofertas y documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
+        <ul class="lc-nh-panel-list">
+          <li><strong>Registro de visitas</strong> — fecha, comprador, agente y resultado; historial completo, no llamadas perdidas.</li>
+          <li><strong>Control de visitas</strong> — tú marcas disponibilidad; solo se agenda en tus franjas, con ficha de control por visita.</li>
+          <li><strong>Tu documentación</strong> — sube nota simple, ITE, actas o escrituras previas al expediente digital.</li>
+          <li><strong>Documentación del comprador</strong> — lo que aporta el comprador cualificado queda centralizado para revisión antes de arras.</li>
+          <li><strong>Contratos y arras</strong> — reserva, arras firmadas (FIRMACERT) y tasación en la misma carpeta.</li>
+        </ul>
+        <a href="/registro" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
+      </div>
+      <div class="lc-pm-wrap" aria-hidden="true">
+        <div class="lc-pm-header">
+          <div class="lc-pm-brand"><span class="lc-pm-logo">NH</span><span>Nueva Habitat <small>Panel Vendedor</small></span></div>
+          <div class="lc-pm-user"><span class="lc-pm-avatar">MR</span><span>María R. · Vendedor</span></div>
+        </div>
+        <div class="lc-pm-body">
+          <div class="lc-pm-sidebar">
+            <div class="lc-pm-nav active">Resumen</div>
+            <div class="lc-pm-nav">Mi proceso</div>
+            <div class="lc-pm-nav">Visitas</div>
+            <div class="lc-pm-nav">Mi publicación</div>
+            <div class="lc-pm-nav">Contratos y arras</div>
+          </div>
+          <div class="lc-pm-main">
+            <div class="lc-pm-card">
+              <div class="lc-pm-card-title">Resumen de tu expediente</div>
+              <div class="lc-pm-stats">
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val lc-pm-stat-pub">Publicado</div><div class="lc-pm-stat-lbl">Estado publicación</div></div>
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val">12</div><div class="lc-pm-stat-lbl">Visitas recibidas</div></div>
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val">2</div><div class="lc-pm-stat-lbl">Ofertas recibidas</div></div>
+              </div>
+            </div>
+            <div class="lc-pm-card lc-pm-card-sm">
+              <div class="lc-pm-card-title">Visitas programadas</div>
+              <div class="lc-pm-visit"><span>Vie 18 · 11:00</span><strong>Comprador con hipoteca aprobada</strong></div>
+              <div class="lc-pm-visit"><span>Sáb 19 · 12:30</span><strong>Pareja — 2ª visita</strong></div>
+              <div class="lc-pm-visit"><span>Lun 21 · 18:00</span><strong>Inversor — documentación OK</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lc-pm-screens fade-up">
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Mi proceso de venta</div>
+        <div class="lc-pm-timeline">
+          <div class="lc-pm-tl done"><span>✓</span><div><strong>Registro y valoración</strong><small>Completado</small></div></div>
+          <div class="lc-pm-tl done"><span>✓</span><div><strong>Reportaje y publicación</strong><small>1 inmueble activo</small></div></div>
+          <div class="lc-pm-tl active"><span>5</span><div><strong>Visitas y ofertas</strong><small>12 visitas · 2 ofertas</small></div></div>
+          <div class="lc-pm-tl"><span>6</span><div><strong>Escritura y cobro</strong><small>3.000 € + IVA al cerrar</small></div></div>
+        </div>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Mi publicación</div>
+        <div class="lc-pm-pub">
+          <img src="imagenes/interior11.jpg" alt="Inmueble publicado en NuevaHabitat" loading="lazy"/>
+          <div><strong>Piso 3 hab. · Barcelona</strong><p>1 inmueble publicado en cartera</p><span class="lc-pm-tag">Activo</span></div>
+        </div>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Calendario de visitas</div>
+        <div class="lc-pm-cal">
+          <p>Tú eliges disponibilidad:</p>
+          <div class="lc-pm-cal-slots"><span class="on">Lun 18–20h</span><span class="on">Mar 11–14h</span><span>Sáb 10–13h</span><span class="on">Dom 11–13h</span></div>
+          <p class="lc-pm-cal-note">El agente solo agenda visitas en tus franjas.</p>
+        </div>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Contratos y arras</div>
+        <div class="lc-pm-docs">
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de reserva</strong><small>Firmado · FIRMACERT</small></div><span class="lc-pm-doc-ok">✓</span></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de arras</strong><small>Firmado · pendiente escritura</small></div><span class="lc-pm-doc-ok">✓</span></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Informe de valoración</strong><small>Subido por Daniel Hernández</small></div><span class="lc-pm-doc-ok">✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="lc-gestor-wa-strip lc-gestor-wa-strip--postPanel">
+  <div class="container lc-gestor-wa-strip__inner fade-up">
+    <p class="lc-gestor-wa-strip__text">¿Quieres activar tu expediente? WhatsApp con tu gestor.</p>
+    <div class="lc-gestor-wa-strip__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postPanel-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postPanel-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
+</section>
+<section class="lc-article">
+  <div class="container">
+    <div class="lc-article__inner lc-prose fade-up"><p>Vender como <strong>particular en Badalona</strong> significa competir en uno de los municipios con más stock del Maresme metropolitano: muchas consultas, muchos comparadores y compradores que miran <strong>L'Hospitalet</strong> o Barcelona el mismo sábado. El particular gana cuando explica por qué su piso en <strong>Gorg</strong>, <strong>Centre</strong> o <strong>Montigalà</strong> encaja en su presupuesto — no cuando copia €/m² de Eixample. Orientativamente 2026: <strong>2.650–3.100 €/m²</strong>; piso 80 m² en Centre puede estar <strong>230.000–260.000 €</strong>, en Artigues o Sant Roc otro rango.</p><p>Guía: <a href="/vender-como-particular-barcelona">particular Barcelona</a>. Barrio: <a href="/vender-badalona">vender Badalona</a>. Precio fijo: <a href="/inmobiliaria-precio-fijo-badalona-barcelona">inmobiliaria precio fijo Badalona</a>.</p><h2>Situaciones en 08911</h2><p><strong>Familia joven desplazada</strong> vende para comprar en Maresme — comprador compara Badalona con Premià el mismo fin de semana.</p><p><strong>Herencia en Centre</strong> — documentación desordenada entre hermanos frena arras aunque haya demanda.</p><p><strong>Piso alquilado cerca playa</strong> — inversor pregunta rentabilidad turística; familia pregunta ruido verano.</p><p><strong>Tres meses en Idealista sin hipoteca</strong> — suele ser pricing de Barcelona aplicado a Badalona, no falta de compradores.</p><h2>Errores del particular badalona</h2><ol><li>€/m² de Barcelona ciudad en Sant Roc o Artigues.</li><li>No cuantificar minutos a metro L2 Gorg o Pep Ventura.</li><li>Visitas sin filtrar solvencia en municipio de alto volumen.</li><li>Ocultar derrama en finca años 60 del Centre.</li><li>Exclusiva larga al 6% tras frustración en portal.</li></ol><h2>Calculadora: 245.000 € Badalona</h2><p>6% + IVA ≈ <strong>17.500 €</strong>. Precio fijo <strong>3.630 €</strong>. <a href="#calc">Calculadora</a> — ahorro orientativo superior a <strong>14.000 €</strong>.</p><h2>Centre y casco: metro L2 y servicios</h2><p>Centre concentra comprador que trabaja en Barcelona y prioriza L2 en pocos minutos. Anuncio debe decir estación concreta y tiempo a pie. Planta baja en calle con comercio necesita mencionar aislamiento — comprador pregunta antes de visitar.</p><h2>Gorg: río, tranvía y renovación</h2><p>Gorg atrae parejas jóvenes por ambiente fluvial y conexión Barcelona. Particular que no diferencia Gorg de Montigalà recibe regateos. Fotos del entorno (parque, paseo) ayudan tanto como del salón.</p><h2>Montigalà: familias y aparcamiento</h2><p>Montigalà compite con Santa Coloma y L'Hospitalet en ticket similar. Ascensor, parking y orientación son variables decisivas. Comparables deben ser Montigalà, no media Badalona.</p><h2>Playa y temporada</h2><p>Proximidad playa puede ser argumento o aviso de ruido estival según calle. Mejor anticipar que ocultar — comprador local conoce zonas. Inversor alquiler estacional valora distancia bicing y equipamiento.</p><h2>Panel del vendedor en municipio de volumen</h2><p>Badalona genera muchas llamadas «¿sigue disponible?» sin intención. Panel filtra franjas, registra visitas y evita duplicar esfuerzo en curiosos. Compradores con hipoteca preaprobada primero.</p><h2>Documentación</h2><ul><li>Certificado energético.</li><li>Comunidad e IBI al día — comprador Badalona es muy sensible a derramas.</li><li>Nota simple.</li><li>Contrato alquiler si aplica.</li></ul><h2>Comparar con L'Hospitalet el mismo día</h2><p>Comprador metropolitano visita Badalona y <a href="/vender-como-particular-l-hospitalet-barcelona">L'Hospitalet</a> seguidos. Tu ficha debe justificar €/m² vs alternativa — metro, playa, estado reforma. Particular que no articula ventaja pierde por 5.000 € de regateo.</p><h2>Arras y señal</h2><p>Señal sin revisar hipoteca en municipio de ticket medio es apuesta frecuente — comprador «cree» que el banco aprueba 100%. Ordenamos financiación antes de comprometer calendario.</p><h2>Servicio NuevaHabitat Badalona</h2><p>Valoración con comparables 08911, difusión compradores solvencia, negociación arras, escritura. Cobro 3.630 € al cierre. Sin venta, sin factura. 24 h condiciones por escrito. Valoración detecta si copiaste precio Barcelona. Ajuste 5.000 € mal temporizado cuesta más que intermediación. Filtramos curiosos multiportal. Compara <a href="/nuevahabitat-vs-idealista-particular">Idealista solo</a>. WhatsApp y formulario.</p><h2>Artigues y Sant Roc: ticket contenido</h2><p>Artigues y Sant Roc compiten con Santa Coloma en precio por m². Particular que sube anuncio con foto de salón reformado pero finca sin ascensor en planta 4 debe alinear expectativa — comprador local conoce el barrio. Indicar estado real de comunidad evita visitas de quien busca otra tipología.</p><h2>La Salut y Anici de Montfort</h2><p>La Salut mezcla casas y bloques bajos — comprador familiar valora colegios y parques. Anici de Montfort tiene perfil residencial más tranquilo que Centre. Titular «Badalona» sin micro-zona pierde long-tail SEO y atrae comparadores de playa cuando tu piso está alejado del mar.</p><h2>Idealista vs cartera compradores</h2><p>Portal trae volumen; cartera cualificada trae arras. Particular agotado suele tener precio correcto pero filtro incorrecto — abre puerta a todos. NuevaHabitat activa compradores con estudio hipotecario previo; tú conservas 3.630 € solo en escritura frente a >17.500 € de comisión clásica sobre 245.000 €.</p><h2>Plusvalía en herencia Centre</h2><p>Venta por herencia en casco antiguo — plusvalía municipal y reparto entre herederos retrasa firma si no hay calendario. Coordinamos hitos con gestor; no sustituimos asesor legal.</p><h2>Preguntas antes de exclusiva</h2><p>¿Cuánto pagarías de comisión sobre tu objetivo real? ¿Panel incluido? Compara <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a>.</p><h2>Temporada playa y ruido estival</h2><p>Pisos a 400 m de platja de Badalona pueden ser plus en primavera y conversación sobre terraza en verano. Particular que vende en octubre sin mencionar perfil de calle recibe regateo en junio cuando comprador descubre ambiente. Anticipar en anuncio filtra perfiles incompatible y acerca familia que busca precisamente vida de playa.</p><h2>Reportaje y primer sábado</h2><p>En municipio de alto volumen, primera impresión digital decide si te llaman o pasan al siguiente anuncio. Luz natural, orden y foto de baño reformado elevan consultas cualificadas. Si llevas dos meses con fotos móvil y cero hipotecas, el cuello de botella puede ser imagen — no precio. En Badalona, donde el comprador abre quince fichas antes de llamar, la portada del anuncio funciona como filtro previo a la visita.</p><h2>Próximo paso</h2><p>Calculadora y formulario. Indica Centre, Gorg o Montigalà y m². Respuesta en 24 h laborables con rango orientativo y plan particular sin exclusiva.</p></div>
+  </div>
+</section>
+<section class="lc-gestor-wa-strip lc-gestor-wa-strip--postArticle">
+  <div class="container lc-gestor-wa-strip__inner fade-up">
+    <p class="lc-gestor-wa-strip__text">¿Seguimos por WhatsApp? Te orientamos en tu caso.</p>
+    <div class="lc-gestor-wa-strip__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postArticle-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postArticle-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
   </div>
 </section>
 <section class="lc-section" style="background:var(--blanco)">
@@ -469,6 +673,59 @@
       </form>
     </div><div class="lc-prose fade-up"><h2 class="section-title">Valoración gratuita en 24h</h2><p>Indica micro-zona en Badalona. Rango €/m² y plan particular — 3.630 € solo en escritura.</p></div></div>
 </section>
+<section class="testimonios lc-testimonios" id="testimonios" data-nh-testimonials="1">
+  <div class="container">
+    <div class="text-center section-header">
+      <span class="overline">Lo que dicen nuestros clientes</span>
+      <h2 class="section-title">Experiencias reales en Particular Badalona</h2>
+      <p class="lc-testimonios-lead">Vendedores y compradores con foto y nombre — mismo servicio de precio fijo desde Les Corts.</p>
+    </div>
+    <div class="testimonios-grid">
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/pexels-cottonbro-6814526.jpg" alt="Familia cliente NuevaHabitat — Particular Badalona" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Comparé el ahorro frente al 6% con la calculadora y encajó. Honorarios solo al firmar, como prometían.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio12.jpg" alt="Carlos y Núria Prat" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Carlos y Núria Prat</div>
+              <div class="testimonio-rol">Vendedores · Particular Badalona</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/familia6.jpg" alt="Familia cliente NuevaHabitat — Particular Badalona" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Publicamos con fotos reales del piso y compradores llegaron con financiación cerrada. Sin exclusiva de doce meses.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio4.jpg" alt="Montse Riba" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Montse Riba</div>
+              <div class="testimonio-rol">Vendedores · Particular Badalona</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/familia10.jpg" alt="Familia cliente NuevaHabitat — Particular Badalona" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Vendimos en pocas semanas con el panel digital: visitas, ofertas y documentos en un solo sitio. El precio fijo nos quitó la incertidumbre del 6%.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio1.jpg" alt="Laura y Marc Ferrer" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Laura y Marc Ferrer</div>
+              <div class="testimonio-rol">Vendedores · Particular Badalona</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="lc-section lc-nh-servicio" style="background:var(--negro);color:#fff">
   <div class="container">
     <div class="lc-nh-servicio-grid fade-up">
@@ -479,7 +736,7 @@
         <ul class="lc-nh-features">
           <li><strong>Cartera activa de compradores</strong> — difundimos tu inmueble entre clientes que ya están buscando en Barcelona y alrededores.</li>
           <li><strong>Solo visitas con solvencia</strong> — filtramos antes de agendar; no pierdes fines de semana con curiosos sin financiación.</li>
-          <li><strong>Gestor dedicado</strong> — El equipo de NuevaHabitat te acompaña en comunicación, visitas, ofertas y documentación.</li>
+          <li><strong>Daniel y Sebastián, tus gestores</strong> — respuesta humana en Les Corts: visitas, ofertas y documentación en el panel.</li>
           <li><strong>3.000 € + IVA solo en escritura</strong> — si no vendes, no pagas. Sin comisión del 6%.</li>
         </ul>
       </div>
@@ -571,89 +828,6 @@
       <div class="lc-step"><div class="lc-step-num">6</div><h4>Escritura pública</h4><p>Preparamos reserva, arras, documentación y firma ante notario. Cobro solo al cerrar.</p></div>
     </div>
   </div>
-</section><section class="lc-section lc-nh-panel" style="background:var(--blanco)">
-  <div class="container">
-    <div class="lc-nh-panel-grid fade-up">
-      <div class="lc-nh-panel-copy">
-        <span class="overline">Panel del vendedor</span>
-        <h2 class="section-title">Tu expediente de venta, controlado al milímetro</h2>
-        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con un gestor especializado en comunicación en todo momento. Ves el estado del proceso, las visitas, las ofertas y toda la documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
-        <ul class="lc-nh-panel-list">
-          <li><strong>Registro de visitas</strong> — fecha, comprador, agente y resultado; historial completo, no llamadas perdidas.</li>
-          <li><strong>Control de visitas</strong> — tú marcas disponibilidad; solo se agenda en tus franjas, con ficha de control por visita.</li>
-          <li><strong>Tu documentación</strong> — sube nota simple, ITE, actas o escrituras previas al expediente digital.</li>
-          <li><strong>Documentación del comprador</strong> — lo que aporta el comprador cualificado queda centralizado para revisión antes de arras.</li>
-          <li><strong>Contratos y arras</strong> — reserva, arras firmadas (FIRMACERT) y tasación en la misma carpeta.</li>
-        </ul>
-        <a href="/registro" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
-      </div>
-      <div class="lc-pm-wrap" aria-hidden="true">
-        <div class="lc-pm-header">
-          <div class="lc-pm-brand"><span class="lc-pm-logo">NH</span><span>Nueva Habitat <small>Panel Vendedor</small></span></div>
-          <div class="lc-pm-user"><span class="lc-pm-avatar">MR</span><span>María R. · Vendedor</span></div>
-        </div>
-        <div class="lc-pm-body">
-          <div class="lc-pm-sidebar">
-            <div class="lc-pm-nav active">Resumen</div>
-            <div class="lc-pm-nav">Mi proceso</div>
-            <div class="lc-pm-nav">Visitas</div>
-            <div class="lc-pm-nav">Mi publicación</div>
-            <div class="lc-pm-nav">Contratos y arras</div>
-          </div>
-          <div class="lc-pm-main">
-            <div class="lc-pm-card">
-              <div class="lc-pm-card-title">Resumen de tu expediente</div>
-              <div class="lc-pm-stats">
-                <div class="lc-pm-stat"><div class="lc-pm-stat-val lc-pm-stat-pub">Publicado</div><div class="lc-pm-stat-lbl">Estado publicación</div></div>
-                <div class="lc-pm-stat"><div class="lc-pm-stat-val">12</div><div class="lc-pm-stat-lbl">Visitas recibidas</div></div>
-                <div class="lc-pm-stat"><div class="lc-pm-stat-val">2</div><div class="lc-pm-stat-lbl">Ofertas recibidas</div></div>
-              </div>
-            </div>
-            <div class="lc-pm-card lc-pm-card-sm">
-              <div class="lc-pm-card-title">Visitas programadas</div>
-              <div class="lc-pm-visit"><span>Vie 18 · 11:00</span><strong>Comprador con hipoteca aprobada</strong></div>
-              <div class="lc-pm-visit"><span>Sáb 19 · 12:30</span><strong>Pareja — 2ª visita</strong></div>
-              <div class="lc-pm-visit"><span>Lun 21 · 18:00</span><strong>Inversor — documentación OK</strong></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="lc-pm-screens fade-up">
-      <div class="lc-pm-screen">
-        <div class="lc-pm-screen-label">Mi proceso de venta</div>
-        <div class="lc-pm-timeline">
-          <div class="lc-pm-tl done"><span>✓</span><div><strong>Registro y valoración</strong><small>Completado</small></div></div>
-          <div class="lc-pm-tl done"><span>✓</span><div><strong>Reportaje y publicación</strong><small>1 inmueble activo</small></div></div>
-          <div class="lc-pm-tl active"><span>5</span><div><strong>Visitas y ofertas</strong><small>12 visitas · 2 ofertas</small></div></div>
-          <div class="lc-pm-tl"><span>6</span><div><strong>Escritura y cobro</strong><small>3.000 € + IVA al cerrar</small></div></div>
-        </div>
-      </div>
-      <div class="lc-pm-screen">
-        <div class="lc-pm-screen-label">Mi publicación</div>
-        <div class="lc-pm-pub">
-          <img src="imagenes/interior11.jpg" alt="Inmueble publicado en NuevaHabitat" loading="lazy"/>
-          <div><strong>Piso 3 hab. · Barcelona</strong><p>1 inmueble publicado en cartera</p><span class="lc-pm-tag">Activo</span></div>
-        </div>
-      </div>
-      <div class="lc-pm-screen">
-        <div class="lc-pm-screen-label">Calendario de visitas</div>
-        <div class="lc-pm-cal">
-          <p>Tú eliges disponibilidad:</p>
-          <div class="lc-pm-cal-slots"><span class="on">Lun 18–20h</span><span class="on">Mar 11–14h</span><span>Sáb 10–13h</span><span class="on">Dom 11–13h</span></div>
-          <p class="lc-pm-cal-note">El agente solo agenda visitas en tus franjas.</p>
-        </div>
-      </div>
-      <div class="lc-pm-screen">
-        <div class="lc-pm-screen-label">Contratos y arras</div>
-        <div class="lc-pm-docs">
-          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de reserva</strong><small>Firmado · FIRMACERT</small></div><span class="lc-pm-doc-ok">✓</span></div>
-          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de arras</strong><small>Firmado · pendiente escritura</small></div><span class="lc-pm-doc-ok">✓</span></div>
-          <div class="lc-pm-doc"><span>📄</span><div><strong>Informe de valoración</strong><small>Subido por Juan Cárdenas</small></div><span class="lc-pm-doc-ok">✓</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 <section class="lc-section" style="background:var(--crema);padding:3rem 0">
   <div class="container text-center fade-up">
@@ -664,18 +838,21 @@
 </section>
 <section class="lc-call-banner lc-call-banner--prefaq">
   <div class="container">
-    <div class="lc-call-banner__inner fade-up">
-      <div class="lc-call-banner__text">
-        <span class="overline">Antes de irte</span>
-        <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
-        <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
-      </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="prefaq">Llama · 603 656 587 · 643 877 644</a>
+    <div class="lc-call-gestores fade-up lc-call-gestores--wa">
+    <div class="lc-call-gestores__text">
+      <span class="overline">Antes de irte</span>
+      <p class="lc-call-banner__title">WhatsApp con Daniel o Sebastián</p>
+      <p class="lc-call-banner__sub">Horario comercial lun–sáb 9–20h · Oficina Les Corts</p>
     </div>
+    <div class="lc-call-gestores__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="prefaq-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="prefaq-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
   </div>
 </section>
 <section class="lc-section" style="background:var(--crema)">
-  <div class="container" style="max-width:800px"><div class="faq-list fade-up"><div class="faq-item">
+  <div class="container" style="max-width:800px">
+    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Preguntas frecuentes</h2></div>
+    <div class="faq-list fade-up"><div class="faq-item">
         <button type="button" class="faq-q">¿Cuánto pago como particular con NuevaHabitat en Badalona?</button>
         <div class="faq-a"><div class="faq-a-inner">3.630 € total solo en escritura. Sin venta, no hay honorarios.</div></div>
       </div><div class="faq-item">
@@ -693,7 +870,20 @@
       </div><div class="faq-item">
         <button type="button" class="faq-q">¿Exclusiva?</button>
         <div class="faq-a"><div class="faq-a-inner">No exclusivas largas ni 6% obligatorio.</div></div>
-      </div></div><div class="lc-kw">vender piso particular badalona · 08911 · sin agencia 6%</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Cuánto cuesta vender en Barcelona con NuevaHabitat?</button>
+        <div class="faq-a"><div class="faq-a-inner">3.000 € + IVA de honorarios fijos al vendedor, pagados solo en escritura. Sin venta, no facturamos comisión de agencia.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Puedo vender sin exclusiva de doce meses?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Trabajamos con mandatos flexibles: puedes seguir en portal y activamos compradores de cartera cuando el precio encaja.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Atendéis todo Barcelona desde Les Corts?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Oficina en Carrer de Mejía Lequerica, 42 (Les Corts). Visitas concertadas en tu barrio y franjas horarias.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Los compradores tienen financiación contrastada?</button>
+        <div class="faq-a"><div class="faq-a-inner">Priorizamos visitas con hipoteca preaprobada o liquidez acreditada para no malgastar tu tiempo.</div></div>
+      </div></div>
+    <div class="lc-kw">vender piso particular badalona · 08911 · sin agencia 6%</div></div>
 </section>
 <footer>
   <div class="container">
@@ -705,7 +895,7 @@
     <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="/privacidad">Privacidad</a><a href="/aviso-legal">Aviso legal</a></div></div>
   </div>
 </footer>
-<div class="whatsapp-float"><a href="https://wa.me/34603656587?text=Hola%2C%20soy%20particular%20y%20quiero%20vender%20en%20Badalona" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
+<div class="whatsapp-float"><a href="https://wa.me/34603656587?text=Hola%2C%20soy%20particular%20y%20quiero%20vender%20en%20Badalona" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp Sebastián"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
 <nav class="mbn" id="mbn">
   <a href="/" class="mbn-tab" data-tab="inicio" aria-label="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>Inicio</span></a>
   <a href="/inmuebles" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg><span>Inmuebles</span></a>

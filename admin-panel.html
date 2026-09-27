@@ -524,6 +524,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <div class="adm-nav-item" data-sec="leads">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 11-6 0"/></svg>
         Nuevos leads
+        <span class="nav-alarm-dot" id="nav-leads-badge" style="display:none">0</span>
       </div>
       <div class="adm-nav-item" data-sec="compradores">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6M17 13l1.5 6M9 19a1 1 0 100 2 1 1 0 000-2zm8 0a1 1 0 100 2 1 1 0 000-2z"/></svg>
@@ -2205,6 +2206,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
 <script src="js/comprador-matching.js"></script>
 <script src="js/toast.js"></script>
 <script src="js/nh-pwa-install.js"></script>
+<script src="js/admin-leads-notify.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
    ADMIN PANEL – NuevaHabitat
@@ -2285,6 +2287,33 @@ async function fetchAdminLeads(opts = {}) {
   if (!res.ok || !json.ok) throw new Error(json.error || `Error al cargar leads (${res.status})`);
   return json;
 }
+window.fetchAdminLeads = fetchAdminLeads;
+
+function updateNavLeadsBadge(leads) {
+  const el = document.getElementById('nav-leads-badge');
+  if (!el) return;
+  const n = (leads || _leadsData || []).filter(l => l.estado === 'nuevo').length;
+  if (n > 0) {
+    el.style.display = 'inline-flex';
+    el.textContent = n > 9 ? '9+' : String(n);
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+window._adminRefreshLeadsFromPoll = function (data) {
+  _leadsData = data || [];
+  _dashCache.leads = _leadsData.slice(0, 6);
+  updateNavLeadsBadge(_leadsData);
+  const st = document.getElementById('st-leads');
+  if (st) st.textContent = _leadsData.filter(l => l.estado === 'nuevo').length;
+  if (document.querySelector('.adm-nav-item.active[data-sec="dashboard"]')) {
+    renderDashLeads(_dashCache.leads);
+  }
+  if (document.querySelector('.adm-nav-item.active[data-sec="leads"]')) {
+    renderLeadsView();
+  }
+};
 
 async function initAdmin() {
   if (_adminReady) return;
@@ -2337,6 +2366,7 @@ async function initAdmin() {
     await ensureAdminProfile(user);
     loadDashboard().catch(e => console.error('loadDashboard:', e));
     refreshPartAlarmBadge().catch(()=>{});
+    window.nhAdminLeadsNotifyInit?.();
   } catch (err) {
     console.error('initAdmin:', err);
     _adminReady = true;
@@ -3639,7 +3669,7 @@ function renderDashInmuebles(list){
 function renderDashLeads(list){
   const el = document.getElementById('dash-leads-list');
   if(!el) return;
-  if(!list.length){ el.innerHTML = dashEmpty('Sin leads aún. Formularios web y registros en panel aparecerán aquí.'); return; }
+  if(!list.length){ el.innerHTML = dashEmpty('Sin leads de formulario aún.'); return; }
   el.innerHTML = list.map(l => `
     <button type="button" class="dash-item" onclick="openDashModal('lead','${l.id}')">
       ${dashIcon('lead')}
@@ -3879,7 +3909,7 @@ async function loadDashboard(){
   try {
     let leadsList = [];
     try {
-      const leadsPayload = await fetchAdminLeads({ sync: true });
+      const leadsPayload = await fetchAdminLeads();
       leadsList = leadsPayload.data || [];
     } catch (leadsErr) {
       console.error('fetchAdminLeads dashboard', leadsErr);
@@ -3910,6 +3940,10 @@ async function loadDashboard(){
     _dashCache.inmuebles = inmRes.data || [];
     _leadsData = leadsList;
     _dashCache.leads = leadsList.slice(0, 6);
+    if (leadsList[0]?.id) {
+      try { localStorage.setItem('nh_admin_last_lead_id', leadsList[0].id); } catch (_) {}
+    }
+    updateNavLeadsBadge(leadsList);
     _dashCache.seguimientos = segRes.data || [];
     _dashCache.compradores = compRes.data || [];
     _dashCache.particulares = partsRes.data || [];
@@ -3965,7 +3999,8 @@ function isFormularioWebLead(l) {
   const o = (l.origen || '').trim();
   if (o === 'newsletter_blog') return false;
   if ((l.telefono || '').trim() === 'newsletter') return false;
-  return true;
+  const t = (l.tipo || '').trim().toLowerCase();
+  return ['compra', 'venta', 'valoracion', 'hipoteca'].includes(t);
 }
 
 async function resendLeadAdminEmail(leadId) {
@@ -4187,7 +4222,7 @@ function renderLeadsView() {
 
 async function loadLeads(){
   try {
-    const payload = await fetchAdminLeads({ sync: true });
+    const payload = await fetchAdminLeads();
     _leadsData = payload.data || [];
   } catch (err) {
     console.error('loadLeads', err);
@@ -4195,6 +4230,7 @@ async function loadLeads(){
     _leadsData = [];
   }
   _dashCache.leads = _leadsData.slice(0, 6);
+  updateNavLeadsBadge(_leadsData);
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
 }
@@ -4271,23 +4307,65 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadClientes(){ /* no-op */ }
 
 /* ── Visitas ────────────────────────────────────────────────────── */
+async function fetchAdminVisitas(opts = {}) {
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (!session?.access_token) throw new Error('Sesión no disponible');
+  const res = await fetch('/api/notify?__action=admin-visitas', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({ syncCalendar: opts.syncCalendar !== false }),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) throw new Error(json.error || `Error al cargar visitas (${res.status})`);
+  return json;
+}
+
+function visitaClienteLabel(v) {
+  if (v.leads?.nombre) return v.leads.nombre;
+  if (v.perfiles?.nombre) return v.perfiles.nombre;
+  if (v.leads?.email) return v.leads.email;
+  if (v.leads?.telefono) return v.leads.telefono;
+  const m = (v.notas || '').match(/Email:\s*(\S+)/i);
+  if (m) return m[1];
+  return '–';
+}
+
+function visitaCalendarioLink(v) {
+  const m = (v.notas || '').match(/https:\/\/www\.google\.com\/calendar[^\s]+/i);
+  return m ? m[0] : null;
+}
+
 async function loadVisitas(){
-  const { data, error } = await window.nhSupabase
-    .from('visitas')
-    .select('id, estado, fecha_hora, notas, tipo_solicitud, inmueble_id, perfil_id, inmuebles(titulo, ref), leads(nombre, email, telefono), perfiles(nombre, telefono)')
-    .order('fecha_hora', { ascending: false });
   const tbl=document.getElementById('visitas-table');
-  if(error || !data||!data.length){ tbl.innerHTML='<p class="text-muted">Sin visitas.</p>'; return; }
+  if (!tbl) return;
+  tbl.innerHTML = '<p class="text-muted">Cargando visitas (panel + calendarios equipo)…</p>';
+  let data = [];
+  try {
+    const payload = await fetchAdminVisitas();
+    data = payload.data || [];
+  } catch (err) {
+    console.error('loadVisitas', err);
+    tbl.innerHTML = '<p class="text-muted">No se pudieron cargar visitas: ' + dashEsc(err.message) + '</p>';
+    return;
+  }
+  const st = document.getElementById('st-visitas');
+  if (st) st.textContent = data.length;
+  if(!data.length){ tbl.innerHTML='<p class="text-muted">Sin visitas programadas. Las citas en los calendarios admin, info, Daniel y Juan aparecerán aquí al sincronizar.</p>'; return; }
   const tipoLabel = { visita:'Visita', disponibilidad_vendedor:'Disp. vendedor', disponibilidad_comprador:'Disp. comprador' };
   tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Tipo</th><th>Inmueble</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th></th></tr></thead><tbody>${
     data.map(v=>{
       const inm = v.inmuebles?.titulo || v.inmuebles?.ref || '–';
-      const cli = v.leads?.nombre || v.perfiles?.nombre || v.leads?.email || v.leads?.telefono || '–';
+      const cli = dashEsc(visitaClienteLabel(v));
       const fecha = v.fecha_hora ? new Date(v.fecha_hora).toLocaleString('es-ES') : '–';
       const est = v.estado || 'pendiente';
       const tipo = tipoLabel[v.tipo_solicitud] || v.tipo_solicitud || 'Visita';
-      return `<tr><td><span class="badge badge-new">${tipo}</span></td><td>${inm}</td><td>${cli}</td><td>${fecha}</td><td><span class="badge badge-new">${est}</span></td>
-        <td><div class="gap-row">
+      const gcal = visitaCalendarioLink(v);
+      const calBtn = gcal ? `<a class="adm-btn adm-btn-ghost adm-btn-sm" href="${gcal}" target="_blank" rel="noopener">📅</a>` : '';
+      return `<tr><td><span class="badge badge-new">${tipo}</span></td><td>${dashEsc(inm)}</td><td>${cli}</td><td>${fecha}</td><td><span class="badge badge-new">${est}</span></td>
+        <td><div class="gap-row">${calBtn}
           <button class="adm-btn adm-btn-ghost adm-btn-sm" onclick="setVisitaEstado('${v.id}','confirmada')">✓</button>
           <button class="adm-btn adm-btn-red adm-btn-sm" onclick="setVisitaEstado('${v.id}','cancelada')">✕</button>
         </div></td></tr>`;

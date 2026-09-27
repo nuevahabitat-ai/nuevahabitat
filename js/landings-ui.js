@@ -207,12 +207,7 @@
   }
 
   function applyTestimonialsVisibility() {
-    var page = (location.pathname.replace(/^\//, '').replace(/\.html$/, '') || '').toLowerCase();
-    var cfg = window.NH_LANDINGS && window.NH_LANDINGS[page];
-    if (!cfg || cfg.testimonials !== false) return;
-    document.querySelectorAll('[data-nh-testimonials]').forEach(function (el) {
-      el.remove();
-    });
+    /* Las landings generadas incluyen testimonios en HTML; no eliminar en cliente. */
   }
 
   function init() {

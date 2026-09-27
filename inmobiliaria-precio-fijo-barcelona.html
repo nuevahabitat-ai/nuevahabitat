@@ -209,10 +209,14 @@
     .page-breadcrumb{font-size:.8125rem;color:var(--gris-medio);display:flex;align-items:center;flex-wrap:wrap;gap:.35rem;padding:1rem 0 .25rem}
     .page-breadcrumb a{color:var(--gris-medio);transition:color var(--transition)}.page-breadcrumb a:hover{color:var(--negro)}
     .page-breadcrumb span[aria-hidden="true"]{opacity:.45}.page-breadcrumb .bc-current{color:var(--negro);font-weight:500}
-    .lc-hero{min-height:68vh;display:flex;align-items:center;position:relative;overflow:hidden}
-    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center center}
-    .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.88) 42%,rgba(13,13,13,.4));z-index:1}
-    .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:120px 0 80px}
+    .page-breadcrumb--hero{padding:5.75rem 0 .85rem;position:relative;z-index:2;color:rgba(255,255,255,.78)}
+    .page-breadcrumb--hero a{color:rgba(255,255,255,.78)}.page-breadcrumb--hero a:hover{color:#fff}
+    .page-breadcrumb--hero .bc-current{color:#fff;font-weight:500}
+    .lc-hero{min-height:76vh;display:flex;align-items:center;position:relative;overflow:hidden}
+    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.03);filter:brightness(1.07) saturate(1.05)}
+    .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.78) 38%,rgba(13,13,13,.28) 58%,rgba(13,13,13,.12));z-index:1}
+    .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:0 0 6rem}
+    .lc-hero-content h1,.lc-hero-content p{text-shadow:0 2px 28px rgba(0,0,0,.55)}
     .lc-hero-content h1{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);color:#fff;line-height:1.12;margin-bottom:1rem}
     .lc-hero-content p{font-size:1.0625rem;color:rgba(255,255,255,.82);line-height:1.75;margin-bottom:1.5rem}
     .lc-badge{display:inline-flex;background:rgba(184,147,106,.18);border:1px solid rgba(184,147,106,.35);color:var(--oro-claro);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .85rem;border-radius:999px;margin-bottom:1rem}
@@ -267,14 +271,72 @@
       .lc-grid-2{grid-template-columns:1.35fr .85fr;gap:3rem;align-items:start}
       .lc-grid-2 .lc-form{position:sticky;top:96px;align-self:start}
       .lc-prose{max-width:none}
-      .lc-article-layout{display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start}
-      .lc-article-aside{position:sticky;top:96px;background:#fff;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-md);border:1px solid var(--crema-dark)}
-      .lc-prose--cols{column-count:2;column-gap:2.5rem}
-      .lc-prose--cols>h2,.lc-prose--cols>h3{column-span:all;break-after:avoid}
-      .lc-prose--cols>p,.lc-prose--cols>ul,.lc-prose--cols>ol{break-inside:avoid}
       .lc-section{padding:4rem 0}
     }
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}.lc-article-aside{display:none}}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero{min-height:72vh}.lc-hero-overlay{background:linear-gradient(to bottom,rgba(13,13,13,.72),rgba(13,13,13,.45))}.lc-hero-media img{transform:none;object-position:center 35%}}
+    
+    .lc-article{padding:3.5rem 0 4rem;background:var(--crema)}
+    .lc-article__inner{max-width:720px;margin:0 auto}
+    .lc-article__inner h2{font-family:var(--font-serif);font-size:1.45rem;margin:2.25rem 0 .85rem;padding-left:1rem;border-left:4px solid var(--oro);line-height:1.3}
+    .lc-article__inner h2:first-child{margin-top:0}
+    .lc-article__inner p,.lc-article__inner li{font-size:1.0625rem;line-height:1.8;color:var(--gris-texto)}
+    .lc-article__inner > p:first-of-type{font-size:1.125rem;color:var(--negro)}
+    .lc-story{background:var(--crema)}
+    .lc-story-intro{padding:4rem 0 3rem;background:linear-gradient(180deg,var(--blanco) 0%,var(--crema) 100%)}
+    .lc-story-intro__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+    .lc-story-intro__copy{max-width:none}
+    .lc-story-intro__copy p:first-child{font-size:1.125rem;line-height:1.85}
+    .lc-story-intro__media{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);min-height:320px}
+    .lc-story-intro__media img{width:100%;height:100%;object-fit:cover;min-height:320px}
+    .lc-story-split{display:grid;grid-template-columns:1fr 1fr;min-height:min(520px,auto);background:var(--crema)}
+    .lc-story-split:nth-child(even){background:var(--blanco)}
+    .lc-story-split__media{min-height:280px;overflow:hidden}
+    .lc-story-split__media img{width:100%;height:100%;object-fit:cover;min-height:280px}
+    .lc-story-split__content{display:flex;align-items:center;padding:3rem 0}
+    .lc-story-split__inner{max-width:540px;margin:0 auto;padding:0 2rem}
+    .lc-story-split--reverse .lc-story-split__media{order:2}
+    .lc-story-split--reverse .lc-story-split__content{order:1}
+    .lc-story-band{min-height:38vh;background-size:cover;background-position:center;position:relative}
+    .lc-story-band__overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.82),rgba(13,13,13,.45));display:flex;align-items:center}
+    .lc-story-band__text{font-family:var(--font-serif);font-size:clamp(1.35rem,3vw,2rem);color:#fff;max-width:640px;line-height:1.35;margin:0}
+    .lc-story-suffix{padding:3rem 0 4rem;background:var(--crema)}
+    .lc-story-suffix .lc-prose{max-width:var(--max-w);margin:0 auto}
+    .lc-form-band{padding:4rem 0;background:var(--blanco)}
+    .lc-form-band__grid{display:grid;grid-template-columns:1fr minmax(300px,420px);gap:3rem;align-items:start}
+    .lc-form-band__copy .section-title{margin-bottom:1rem}
+    .lc-form-band__aside{display:flex;flex-direction:column;gap:1.25rem}
+    .lc-form-band__figure{margin:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);background:var(--crema)}
+    .lc-form-band__figure img{width:100%;height:auto;max-height:300px;object-fit:cover;display:block}
+    .lc-form-band__copy-inner .section-title{margin-bottom:.75rem}
+    .lc-form-band__aside .lc-buyer-grid{margin-top:1.25rem;gap:1.5rem}
+    .lc-form-band__aside .lc-buyer-grid h3{font-size:1.05rem;margin-bottom:.35rem}
+    .lc-form-band__aside .lc-buyer-grid p{font-size:.9375rem;margin:0}
+    @media(min-width:901px){.lc-form-band .lc-form{position:sticky;top:96px}.lc-form-band__grid{grid-template-columns:1.15fr minmax(300px,420px)}}
+    @media(max-width:900px){
+      .lc-story-intro__grid,.lc-story-split{grid-template-columns:1fr}
+      .lc-story-split--reverse .lc-story-split__media{order:0}
+      .lc-story-split__content{padding:2rem 0}
+      .lc-story-split__inner{padding:0 1.25rem}
+      .lc-form-band__grid{grid-template-columns:1fr}
+    }
+  
+    
+    .lc-gestor-wa-strip{padding:1.35rem 0;background:var(--blanco);border-top:1px solid var(--crema-dark);border-bottom:1px solid var(--crema-dark)}
+    .lc-gestor-wa-strip--postCalc,.lc-gestor-wa-strip--postPanel{background:var(--crema)}
+    .lc-gestor-wa-strip--postArticle{background:var(--negro);border-color:rgba(255,255,255,.08)}
+    .lc-gestor-wa-strip--postArticle .lc-gestor-wa-strip__text{color:rgba(255,255,255,.88)}
+    .lc-gestor-wa-strip--postArticle .btn-outline{border-color:rgba(255,255,255,.4);color:#fff}
+    .lc-gestor-wa-strip--postArticle .btn-outline:hover{background:rgba(255,255,255,.08)}
+    .lc-gestor-wa-strip__inner{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap}
+    .lc-gestor-wa-strip__text{margin:0;font-size:1rem;line-height:1.5;color:var(--gris-texto);flex:1;min-width:200px}
+    .lc-gestor-wa-strip__btns{display:flex;flex-wrap:wrap;gap:.5rem}
+    .lc-wa-banner-btn{white-space:nowrap}
+    .lc-call-gestores{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;width:100%}
+    .lc-call-gestores__text{flex:1;min-width:200px}
+    .lc-call-gestores__btns{display:flex;flex-wrap:wrap;gap:.5rem}
+    .lc-call-banner--prefaq .lc-call-gestores .btn-outline{border-color:var(--negro);color:var(--negro)}
+    @media(max-width:640px){.lc-gestor-wa-strip__inner{flex-direction:column;align-items:stretch;text-align:center}.lc-gestor-wa-strip__btns,.lc-call-gestores__btns{flex-direction:column}.lc-call-gestores{flex-direction:column;text-align:center}}
+  
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -374,6 +436,15 @@
     }
     @media(max-width:600px){.lc-steps-6{grid-template-columns:1fr!important}.lc-pm-stats{grid-template-columns:repeat(3,1fr)}.lc-pm-screens{grid-template-columns:1fr}}
   
+    .lc-testimonios{padding:4.5rem 0;background:var(--crema)}
+    .lc-testimonios-lead{max-width:520px;margin:.75rem auto 0;font-size:.9375rem;color:var(--gris-texto);line-height:1.65}
+    .testimonio-card--rich{padding:0;overflow:hidden;display:flex;flex-direction:column;height:100%}
+    .testimonio-card__cover{margin:0;line-height:0;background:var(--crema-dark)}
+    .testimonio-card__cover img{width:100%;height:168px;object-fit:cover;display:block}
+    .testimonio-card__body{padding:1.75rem 2rem 2rem;flex:1;display:flex;flex-direction:column}
+    .testimonio-card--rich .testimonio-text{flex:1}
+    .testimonio-card--rich .testimonio-autor img{width:72px;height:72px;border:2px solid var(--crema-dark)}
+    .testimonios .testimonio-card.fade-up,.testimonio-card--rich{opacity:1!important;transform:none!important;visibility:visible!important}
   </style>
 </head>
 <body data-nh-cluster="intencion" data-nh-landing-slug="inmobiliaria-precio-fijo-barcelona" data-nh-precio-default="420000">
@@ -383,27 +454,30 @@
   <div class="nav-actions"><span class="nav-tels"><a href="tel:+34603656587" class="nh-call-link nav-tel" data-nh-call="header">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link nav-tel" data-nh-call="header">643 877 644</a></span><a href="#valorar" class="nav-cta">Valorar</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
 </div></nav>
 <nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="/vender">Vender</a><a href="/comprar">Comprar</a><a href="/inmuebles">Inmuebles</a><span class="mobile-nav-phones"><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link" data-nh-call="mobile-menu">643 877 644</a></span><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
-<div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Precio fijo</span></nav></div>
 <section class="lc-hero" style="min-height:62vh">
   <div class="lc-hero-media"><img src="imagenes/comercial2.jpg" alt="Inmobiliaria precio fijo Barcelona — particular vendiendo piso" style="object-position:center 32%"/></div>
   <div class="lc-hero-overlay"></div>
-  <div class="container"><div class="lc-hero-content fade-up">
+  <div class="container">
+    <nav class="page-breadcrumb page-breadcrumb--hero fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Precio fijo</span></nav>
+    <div class="lc-hero-content fade-up">
     <span class="lc-badge">Barcelona · Precio fijo · Panel vendedor</span>
     <h1>Inmobiliaria en Barcelona con precio fijo: 3.630 € en escritura, no un 6% sobre tu piso</h1>
     <p><strong>NuevaHabitat</strong> es una agencia orientada al <strong>servicio al vendedor particular</strong>: honorarios cerrados (<strong>3.000 € + IVA</strong>), cobro <strong>solo en escritura</strong>, sin especular con tu precio de venta. Cada propietario tiene <strong>panel vendedor</strong> con registro de visitas, control de disponibilidad, documentación propia y del comprador. Usa la <strong>calculadora</strong> y compara con una agencia tradicional.</p>
     <a href="#calc" class="btn btn-gold btn-lg">Ver calculadora de ahorro</a>
-  </div></div>
+    </div>
+  </div>
 </section>
 <section class="lc-call-banner">
   <div class="container">
-    <div class="lc-call-banner__inner fade-up">
-      <div class="lc-call-banner__text">
-        <span class="overline">Atención directa</span>
-        <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
-        <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
-      </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="hero">Llama · 603 656 587 · 643 877 644</a>
+    <div class="lc-call-gestores fade-up lc-call-gestores--wa">
+    <div class="lc-call-gestores__text">
+      <span class="overline">Contacto directo</span>
+      <p class="lc-call-banner__title">WhatsApp con Daniel o Sebastián</p>
+      <p class="lc-call-banner__sub">Horario comercial lun–sáb 9–20h · Oficina Les Corts</p>
     </div>
+    <div class="lc-call-gestores__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="banner-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="banner-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
   </div>
 </section>
 <section class="nh-savings-calc-section nh-savings-calc-section--dark" id="calc">
@@ -464,19 +538,14 @@
     </div>
   </div>
 </section>
-
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container lc-article-layout">
-    <div class="lc-prose lc-prose--cols fade-up"><p><strong>NuevaHabitat</strong> es una <strong>inmobiliaria en Barcelona</strong> pensada para el <strong>particular que vende</strong> y quiere intermediación profesional sin el modelo del porcentaje: <strong>3.000 € + IVA (3.630 €)</strong>, cobro <strong>solo en escritura</strong>, sin honorarios si no hay venta. No especulamos con tu precio: no ganamos más si subes el anuncio; ganamos lo mismo si vendes bien negociado. Eso cambia cómo te acompañamos — y cómo usas el <strong>panel vendedor</strong> para ver visitas, documentación y compradores cualificados.</p><p>Si comparas <a href="/nuevahabitat-vs-idealista-particular">Idealista</a>, <a href="/nuevahabitat-vs-fotocasa-particular">Fotocasa</a>, una <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia al 6%</a> o un low-cost online, la pregunta no es solo cuánto pagas: es <strong>transparencia</strong>, <strong>control</strong> y <strong>buena intermediación</strong> hasta notaría.</p><h2>Precio fijo en Barcelona: sin sorpresas ni comisión oculta</h2><p>Una inmobiliaria de precio fijo cobra un importe cerrado por vender tu piso, independiente del precio final. En NuevaHabitat son <strong>3.630 € en total</strong>, pagados <strong>únicamente el día de la escritura</strong>. No hay porcentaje sobre el ticket, no hay «extras» sorpresa en factura y no hay cobro si la operación no se cierra.</p><p>En un piso de 420.000 €, una agencia tradicional al 6% + IVA supera fácilmente los <strong>30.000 €</strong> de honorarios. Con precio fijo, el ahorro suele rondar <strong>26.000 €</strong> o más. Desplázate a la <a href="#calc">calculadora de esta página</a> e introduce tu precio de venta estimado: verás comisión tradicional (3%–6% + IVA) frente a 3.630 € fijos.</p><h2>Qué significa «inmobiliaria con precio fijo»</h2><p>Una inmobiliaria de precio fijo cobra un importe cerrado por el servicio de venta, independientemente del precio final de tu piso. En NuevaHabitat son <strong>3.000 € + IVA (3.630 €)</strong>, pagados <strong>únicamente en escritura</strong>. No hay porcentaje sobre el precio de venta, no hay sorpresas en la factura y no hay honorarios si la operación no se cierra.</p><p>En un piso de 420.000 €, una agencia tradicional al 6% + IVA puede cobrarte más de <strong>30.000 €</strong>. Con precio fijo, el ahorro suele superar los <strong>26.000 €</strong>. Usa la calculadora de esta página para ver tu caso concreto según el precio de venta estimado.</p><p>El modelo de precio fijo no es exclusivo de NuevaHabitat en el mercado internacional, pero en Barcelona sigue siendo minoritario frente al porcentaje tradicional. Muchos propietarios ni siquiera saben que pueden preguntar por honorarios fijos antes de firmar una exclusiva de seis meses.</p><h2>Para particulares que quieren vender su piso</h2><p>Muchos propietarios empiezan como <strong>particulares</strong>: publican en portales, reciben llamadas, organizan visitas los fines de semana y negocian solos. Ahorran comisión, pero asumen tiempo, errores de precio, curiosos sin hipoteca y la parte legal (arras, nota simple, certificado energético, ITE, plusvalía, comunidad). Cuando llevan tres meses sin oferta seria, buscan una inmobiliaria — y se encuentran con exclusivas de 6–12 meses y comisiones opacas.</p><p>Publicar en portales genera volumen, no calidad. Un particular en el Eixample o en Gràcia puede recibir veinte llamadas en la primera semana y ninguna oferta con hipoteca preaprobada. Sin filtro, el tiempo invertido en visitas inútiles supera con creces el ahorro de no pagar comisión.</p><p>NuevaHabitat encaja en el punto intermedio: acompañamiento profesional de una inmobiliaria, con la transparencia de un precio fijo y la libertad de no quedar atado meses si el servicio no funciona. Filtramos compradores con <strong>hipoteca preaprobada</strong> o liquidez contrastada antes de agendar visitas. Tú eliges horarios; nosotros gestionamos ofertas, documentación y negociación hasta la firma.</p><h2>La calculadora: cuánto ahorras frente a una agencia tradicional</h2><p>La calculadora de esta landing compara tu precio de venta estimado con la comisión habitual de agencias tradicionales (rango 3%–6% + IVA) frente al precio fijo de NuevaHabitat. No es una simulación legal vinculante: cada agencia tiene condiciones distintas. Pero te da una orden de magnitud clara antes de pedir valoración.</p><p>Ejemplo orientativo: piso de 350.000 € al 6% + IVA ≈ 25.410 € de comisión; precio fijo NuevaHabitat = 3.630 €. Diferencia ≈ 21.780 €. En pisos de mayor ticket en Sarrià, Les Corts o Diagonal Mar, la brecha supera fácilmente los 30.000 €. Ese dinero es tuyo en la escritura, no del intermediario.</p><h2>Plataforma del vendedor: visitas, control y documentación</h2><p>No somos una agencia que te llama el viernes sin datos. Cada propietario accede a un <strong>panel vendedor</strong> (web y móvil) donde el expediente de venta queda centralizado:</p><ul><li><strong>Registro de visitas</strong> — quién visitó, cuándo, con qué agente y qué feedback hubo; historial completo para decidir ofertas.</li><li><strong>Control de visitas</strong> — tú indicas días y franjas; solo se agenda dentro de tu disponibilidad, con ficha de control por visita (no desconocidos sin cita).</li><li><strong>Tu documentación</strong> — puedes subir nota simple, certificado energético, actas de comunidad, ITE o escrituras previas; todo en la misma carpeta digital.</li><li><strong>Documentación del comprador</strong> — lo que aporta el comprador cualificado (financiación, identidad, condiciones) queda en el expediente para revisión antes de arras.</li><li><strong>Ofertas, reserva y arras</strong> — contratos firmados (incl. FIRMACERT) visibles en panel; un gestor te acompaña, pero tú ves el estado en tiempo real.</li></ul><p>En la práctica, vendes con la tranquilidad de quien <strong>sabe qué pasa en su piso</strong> sin depender de emails sueltos o de un comercial que cambia cada mes.</p><h2>Buena intermediación: servicio al vendedor, no presión al precio</h2><p>NuevaHabitat está <strong>enfocada al servicio</strong> y a la <strong>buena intermediación</strong> con el vendedor particular: valoración honesta con comparables de cierre, filtro de solvencia antes de visitas, negociación con datos y acompañamiento legal hasta escritura. Como no cobramos un % sobre tu venta, no tenemos incentivo a inflar el precio de salida para «captarte» ni a presionarte a bajar en la primera oferta débil.</p><p>Conectamos tu inmueble con la <strong>plataforma de compradores</strong> de Barcelona: personas con hipoteca preaprobada o liquidez verificada que buscan activamente en el área metropolitana. Eso genera <strong>demanda real</strong>, no solo clics en portal.</p><h2>Cómo funciona NuevaHabitat paso a paso</h2><ol><li><strong>Valoración gratuita</strong> — visita al piso o análisis con comparables de mercado y precio de salida realista.</li><li><strong>Reportaje y difusión</strong> — fotografía profesional y publicación en nuestra plataforma y cartera de compradores cualificados.</li><li><strong>Visitas filtradas</strong> — solo compradores solventes, en tus franjas horarias, desde el panel vendedor.</li><li><strong>Negociación y arras</strong> — acompañamiento legal, revisión de documentación y coordinación con bancos del comprador.</li><li><strong>Escritura</strong> — cobro de 3.000 € + IVA solo si cierras la venta.</li></ol><p>Más abajo encontrarás el proceso detallado con capturas del panel, la comparativa frente a agencia tradicional y venta como particular, y preguntas frecuentes sobre exclusivas y honorarios.</p><h2>Particular vs agencia tradicional vs precio fijo</h2><p><strong>Vender como particular</strong> tiene sentido si tienes tiempo, conoces el mercado de tu barrio y sabes filtrar solvencia. Pierde sentido cuando el piso lleva semanas sin ofertas serias, el precio está mal anclado o la documentación (herencia, usufructo, derrama pendiente) complica la operación.</p><p>La <strong>agencia tradicional</strong> aporta red y experiencia, pero el modelo del 6% premia cerrar rápido a cualquier precio y penaliza al vendedor que encuentra comprador por su cuenta. Las exclusivas largas son la norma, no la excepción.</p><p>La <strong>inmobiliaria con precio fijo</strong> alinea incentivos: cobramos cuando tú vendes, no cuando firmas un contrato. Sin venta, sin factura. Incluye valoración, marketing, filtrado, visitas, negociación y seguimiento hasta notaría — no es un anuncio premium en portal, es acompañamiento completo.</p><h2>Qué preguntar antes de elegir inmobiliaria</h2><p>Antes de firmar con cualquier agencia — precio fijo o comisión — conviene preguntar: ¿cuánto pagaré en total si vendo a X euros? ¿Cuándo se cobra: al firmar contrato o solo en escritura? ¿Qué pasa si yo mismo encuentro comprador? ¿Filtráis hipoteca antes de visitas? ¿Hay permanencia o exclusiva obligatoria? ¿Incluye fotografía, arras y coordinación con el banco?</p><p>Si las respuestas no están por escrito antes de empezar, desconfía. Una inmobiliaria seria no esconde condiciones en letra pequeña ni cobra honorarios si la operación no se cierra.</p><h2>Por qué precio fijo no es lo mismo que «barato»</h2><p>Precio fijo no significa servicio mínimo. Incluye valoración, reportaje fotográfico, difusión a compradores cualificados, gestión de visitas, negociación y acompañamiento hasta escritura. La diferencia está en la estructura del coste: un importe cerrado que no crece si tu piso se vende por encima del precio inicial.</p><p>En agencias por porcentaje, cuanto más sube el precio de venta, más cobra la agencia — aunque el trabajo adicional no sea proporcional. En precio fijo, el propietario retiene el upside de una buena negociación.</p><h2>Barcelona: mercado local, condiciones claras</h2><p>Atendemos <strong>Barcelona ciudad y área metropolitana</strong> desde Les Corts (Carrer de Mejía Lequerica, 42). Guías por zona con precio fijo: <a href="/inmobiliaria-precio-fijo-sants-barcelona">Sants</a>, <a href="/inmobiliaria-precio-fijo-eixample-barcelona">Eixample</a>, <a href="/inmobiliaria-precio-fijo-gracia-barcelona">Gràcia</a>, <a href="/inmobiliaria-precio-fijo-les-corts-barcelona">Les Corts</a>, <a href="/inmobiliaria-precio-fijo-horta-barcelona">Horta</a>, <a href="/inmobiliaria-precio-fijo-l-hospitalet-barcelona">L'Hospitalet</a> y <a href="/inmobiliaria-precio-fijo-cornella-barcelona">Cornellà</a>.</p><p>Si ya anuncias como particular, podemos integrar tu situación en la valoración gratuita: te decimos si conviene seguir solo, ajustar precio o activar compradores cualificados de nuestra cartera. También puedes consultar <a href="/cuanto-vale-mi-piso-barcelona">cuánto vale tu piso</a> antes de decidir.</p><h2>Cuándo tiene sentido el precio fijo para ti</h2><p>El modelo encaja especialmente si: llevas semanas como particular sin ofertas con financiación; quieres evitar una exclusiva de 6–12 meses; prefieres saber el coste total antes de empezar; valoras visitas solo con compradores solventes; o necesitas acompañamiento en arras y documentación sin pagar un 6% del precio de venta.</p><p>No encaja si buscas únicamente colgar un anuncio en portal sin ningún filtro ni negociación — en ese caso, vender solo puede ser suficiente durante una fase inicial de prueba.</p><h2>Próximo paso: valoración sin compromiso</h2><p>Usa la calculadora, revisa la comparativa de modelos y, si encaja, pide valoración gratuita. Te respondemos en menos de 24 horas con rango de precio orientativo y condiciones claras: 3.000 € + IVA solo en escritura, sin exclusivas abusivas. Si prefieres hablar antes, WhatsApp o teléfono desde esta misma página.</p></div>
-    <aside class="lc-article-aside fade-up">
-    <span class="overline">Precio fijo · Barcelona</span>
-    <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin:.35rem 0 .65rem;line-height:1.3">3.000 € + IVA solo en escritura</h3>
-    <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin-bottom:1rem">Compradores cualificados, panel vendedor y gestor dedicado. Si no vendes, no pagas.</p>
-    <a href="#valorar" class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:.65rem">Valoración gratuita</a>
-    <a href="tel:+34603656587" class="btn btn-outline" style="width:100%;justify-content:center">603 656 587 · 643 877 644</a>
-  </aside>
+<section class="lc-gestor-wa-strip lc-gestor-wa-strip--postCalc">
+  <div class="container lc-gestor-wa-strip__inner fade-up">
+    <p class="lc-gestor-wa-strip__text">¿Te cuadra el ahorro? Pregunta a Daniel o Sebastián.</p>
+    <div class="lc-gestor-wa-strip__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postCalc-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postCalc-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
   </div>
 </section>
+
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container">
     <div class="text-center" style="margin-bottom:2rem"><h2 class="section-title">Particular vs agencia tradicional vs NuevaHabitat precio fijo</h2></div>
@@ -490,6 +559,109 @@
     <p class="lc-checklist-intro">Preguntas que todo particular debería hacer antes de firmar.</p>
     <ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Cuánto pagaré en total si vendo a 400.000 €? (%, IVA, extras)</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Cuándo se cobra: al firmar contrato o solo en escritura?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Qué pasa si yo mismo encuentro comprador?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Filtráis hipoteca o solvencia antes de visitas?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Incluye fotografía, valoración y gestión de arras?</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span>¿Hay permanencia o exclusiva obligatoria?</span></li></ul>
   </div>
+  </div>
+</section>
+<section class="lc-section lc-nh-panel" style="background:var(--blanco)">
+  <div class="container">
+    <div class="lc-nh-panel-grid fade-up">
+      <div class="lc-nh-panel-copy">
+        <span class="overline">Panel del vendedor</span>
+        <h2 class="section-title">Tu expediente de venta, controlado al milímetro</h2>
+        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con <strong>Daniel</strong> o <strong>Sebastián</strong> como gestor dedicado. Ves visitas, ofertas y documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
+        <ul class="lc-nh-panel-list">
+          <li><strong>Registro de visitas</strong> — fecha, comprador, agente y resultado; historial completo, no llamadas perdidas.</li>
+          <li><strong>Control de visitas</strong> — tú marcas disponibilidad; solo se agenda en tus franjas, con ficha de control por visita.</li>
+          <li><strong>Tu documentación</strong> — sube nota simple, ITE, actas o escrituras previas al expediente digital.</li>
+          <li><strong>Documentación del comprador</strong> — lo que aporta el comprador cualificado queda centralizado para revisión antes de arras.</li>
+          <li><strong>Contratos y arras</strong> — reserva, arras firmadas (FIRMACERT) y tasación en la misma carpeta.</li>
+        </ul>
+        <a href="/registro" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
+      </div>
+      <div class="lc-pm-wrap" aria-hidden="true">
+        <div class="lc-pm-header">
+          <div class="lc-pm-brand"><span class="lc-pm-logo">NH</span><span>Nueva Habitat <small>Panel Vendedor</small></span></div>
+          <div class="lc-pm-user"><span class="lc-pm-avatar">MR</span><span>María R. · Vendedor</span></div>
+        </div>
+        <div class="lc-pm-body">
+          <div class="lc-pm-sidebar">
+            <div class="lc-pm-nav active">Resumen</div>
+            <div class="lc-pm-nav">Mi proceso</div>
+            <div class="lc-pm-nav">Visitas</div>
+            <div class="lc-pm-nav">Mi publicación</div>
+            <div class="lc-pm-nav">Contratos y arras</div>
+          </div>
+          <div class="lc-pm-main">
+            <div class="lc-pm-card">
+              <div class="lc-pm-card-title">Resumen de tu expediente</div>
+              <div class="lc-pm-stats">
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val lc-pm-stat-pub">Publicado</div><div class="lc-pm-stat-lbl">Estado publicación</div></div>
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val">12</div><div class="lc-pm-stat-lbl">Visitas recibidas</div></div>
+                <div class="lc-pm-stat"><div class="lc-pm-stat-val">2</div><div class="lc-pm-stat-lbl">Ofertas recibidas</div></div>
+              </div>
+            </div>
+            <div class="lc-pm-card lc-pm-card-sm">
+              <div class="lc-pm-card-title">Visitas programadas</div>
+              <div class="lc-pm-visit"><span>Vie 18 · 11:00</span><strong>Comprador con hipoteca aprobada</strong></div>
+              <div class="lc-pm-visit"><span>Sáb 19 · 12:30</span><strong>Pareja — 2ª visita</strong></div>
+              <div class="lc-pm-visit"><span>Lun 21 · 18:00</span><strong>Inversor — documentación OK</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lc-pm-screens fade-up">
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Mi proceso de venta</div>
+        <div class="lc-pm-timeline">
+          <div class="lc-pm-tl done"><span>✓</span><div><strong>Registro y valoración</strong><small>Completado</small></div></div>
+          <div class="lc-pm-tl done"><span>✓</span><div><strong>Reportaje y publicación</strong><small>1 inmueble activo</small></div></div>
+          <div class="lc-pm-tl active"><span>5</span><div><strong>Visitas y ofertas</strong><small>12 visitas · 2 ofertas</small></div></div>
+          <div class="lc-pm-tl"><span>6</span><div><strong>Escritura y cobro</strong><small>3.000 € + IVA al cerrar</small></div></div>
+        </div>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Mi publicación</div>
+        <div class="lc-pm-pub">
+          <img src="imagenes/interior11.jpg" alt="Inmueble publicado en NuevaHabitat" loading="lazy"/>
+          <div><strong>Piso 3 hab. · Barcelona</strong><p>1 inmueble publicado en cartera</p><span class="lc-pm-tag">Activo</span></div>
+        </div>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Calendario de visitas</div>
+        <div class="lc-pm-cal">
+          <p>Tú eliges disponibilidad:</p>
+          <div class="lc-pm-cal-slots"><span class="on">Lun 18–20h</span><span class="on">Mar 11–14h</span><span>Sáb 10–13h</span><span class="on">Dom 11–13h</span></div>
+          <p class="lc-pm-cal-note">El agente solo agenda visitas en tus franjas.</p>
+        </div>
+      </div>
+      <div class="lc-pm-screen">
+        <div class="lc-pm-screen-label">Contratos y arras</div>
+        <div class="lc-pm-docs">
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de reserva</strong><small>Firmado · FIRMACERT</small></div><span class="lc-pm-doc-ok">✓</span></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de arras</strong><small>Firmado · pendiente escritura</small></div><span class="lc-pm-doc-ok">✓</span></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Informe de valoración</strong><small>Subido por Daniel Hernández</small></div><span class="lc-pm-doc-ok">✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="lc-gestor-wa-strip lc-gestor-wa-strip--postPanel">
+  <div class="container lc-gestor-wa-strip__inner fade-up">
+    <p class="lc-gestor-wa-strip__text">¿Quieres activar tu expediente? WhatsApp con tu gestor.</p>
+    <div class="lc-gestor-wa-strip__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postPanel-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postPanel-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
+</section>
+<section class="lc-article">
+  <div class="container">
+    <div class="lc-article__inner lc-prose fade-up"><p><strong>NuevaHabitat</strong> es una <strong>inmobiliaria en Barcelona</strong> pensada para el <strong>particular que vende</strong> y quiere intermediación profesional sin el modelo del porcentaje: <strong>3.000 € + IVA (3.630 €)</strong>, cobro <strong>solo en escritura</strong>, sin honorarios si no hay venta. No especulamos con tu precio: no ganamos más si subes el anuncio; ganamos lo mismo si vendes bien negociado. Eso cambia cómo te acompañamos — y cómo usas el <strong>panel vendedor</strong> para ver visitas, documentación y compradores cualificados.</p><p>Si comparas <a href="/nuevahabitat-vs-idealista-particular">Idealista</a>, <a href="/nuevahabitat-vs-fotocasa-particular">Fotocasa</a>, una <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia al 6%</a> o un low-cost online, la pregunta no es solo cuánto pagas: es <strong>transparencia</strong>, <strong>control</strong> y <strong>buena intermediación</strong> hasta notaría.</p><h2>Precio fijo en Barcelona: sin sorpresas ni comisión oculta</h2><p>Una inmobiliaria de precio fijo cobra un importe cerrado por vender tu piso, independiente del precio final. En NuevaHabitat son <strong>3.630 € en total</strong>, pagados <strong>únicamente el día de la escritura</strong>. No hay porcentaje sobre el ticket, no hay «extras» sorpresa en factura y no hay cobro si la operación no se cierra.</p><p>En un piso de 420.000 €, una agencia tradicional al 6% + IVA supera fácilmente los <strong>30.000 €</strong> de honorarios. Con precio fijo, el ahorro suele rondar <strong>26.000 €</strong> o más. Desplázate a la <a href="#calc">calculadora de esta página</a> e introduce tu precio de venta estimado: verás comisión tradicional (3%–6% + IVA) frente a 3.630 € fijos.</p><h2>Qué significa «inmobiliaria con precio fijo»</h2><p>Una inmobiliaria de precio fijo cobra un importe cerrado por el servicio de venta, independientemente del precio final de tu piso. En NuevaHabitat son <strong>3.000 € + IVA (3.630 €)</strong>, pagados <strong>únicamente en escritura</strong>. No hay porcentaje sobre el precio de venta, no hay sorpresas en la factura y no hay honorarios si la operación no se cierra.</p><p>En un piso de 420.000 €, una agencia tradicional al 6% + IVA puede cobrarte más de <strong>30.000 €</strong>. Con precio fijo, el ahorro suele superar los <strong>26.000 €</strong>. Usa la calculadora de esta página para ver tu caso concreto según el precio de venta estimado.</p><p>El modelo de precio fijo no es exclusivo de NuevaHabitat en el mercado internacional, pero en Barcelona sigue siendo minoritario frente al porcentaje tradicional. Muchos propietarios ni siquiera saben que pueden preguntar por honorarios fijos antes de firmar una exclusiva de seis meses.</p><h2>Para particulares que quieren vender su piso</h2><p>Muchos propietarios empiezan como <strong>particulares</strong>: publican en portales, reciben llamadas, organizan visitas los fines de semana y negocian solos. Ahorran comisión, pero asumen tiempo, errores de precio, curiosos sin hipoteca y la parte legal (arras, nota simple, certificado energético, ITE, plusvalía, comunidad). Cuando llevan tres meses sin oferta seria, buscan una inmobiliaria — y se encuentran con exclusivas de 6–12 meses y comisiones opacas.</p><p>Publicar en portales genera volumen, no calidad. Un particular en el Eixample o en Gràcia puede recibir veinte llamadas en la primera semana y ninguna oferta con hipoteca preaprobada. Sin filtro, el tiempo invertido en visitas inútiles supera con creces el ahorro de no pagar comisión.</p><p>NuevaHabitat encaja en el punto intermedio: acompañamiento profesional de una inmobiliaria, con la transparencia de un precio fijo y la libertad de no quedar atado meses si el servicio no funciona. Filtramos compradores con <strong>hipoteca preaprobada</strong> o liquidez contrastada antes de agendar visitas. Tú eliges horarios; nosotros gestionamos ofertas, documentación y negociación hasta la firma.</p><h2>La calculadora: cuánto ahorras frente a una agencia tradicional</h2><p>La calculadora de esta landing compara tu precio de venta estimado con la comisión habitual de agencias tradicionales (rango 3%–6% + IVA) frente al precio fijo de NuevaHabitat. No es una simulación legal vinculante: cada agencia tiene condiciones distintas. Pero te da una orden de magnitud clara antes de pedir valoración.</p><p>Ejemplo orientativo: piso de 350.000 € al 6% + IVA ≈ 25.410 € de comisión; precio fijo NuevaHabitat = 3.630 €. Diferencia ≈ 21.780 €. En pisos de mayor ticket en Sarrià, Les Corts o Diagonal Mar, la brecha supera fácilmente los 30.000 €. Ese dinero es tuyo en la escritura, no del intermediario.</p><h2>Plataforma del vendedor: visitas, control y documentación</h2><p>No somos una agencia que te llama el viernes sin datos. Cada propietario accede a un <strong>panel vendedor</strong> (web y móvil) donde el expediente de venta queda centralizado:</p><ul><li><strong>Registro de visitas</strong> — quién visitó, cuándo, con qué agente y qué feedback hubo; historial completo para decidir ofertas.</li><li><strong>Control de visitas</strong> — tú indicas días y franjas; solo se agenda dentro de tu disponibilidad, con ficha de control por visita (no desconocidos sin cita).</li><li><strong>Tu documentación</strong> — puedes subir nota simple, certificado energético, actas de comunidad, ITE o escrituras previas; todo en la misma carpeta digital.</li><li><strong>Documentación del comprador</strong> — lo que aporta el comprador cualificado (financiación, identidad, condiciones) queda en el expediente para revisión antes de arras.</li><li><strong>Ofertas, reserva y arras</strong> — contratos firmados (incl. FIRMACERT) visibles en panel; un gestor te acompaña, pero tú ves el estado en tiempo real.</li></ul><p>En la práctica, vendes con la tranquilidad de quien <strong>sabe qué pasa en su piso</strong> sin depender de emails sueltos o de un comercial que cambia cada mes.</p><h2>Buena intermediación: servicio al vendedor, no presión al precio</h2><p>NuevaHabitat está <strong>enfocada al servicio</strong> y a la <strong>buena intermediación</strong> con el vendedor particular: valoración honesta con comparables de cierre, filtro de solvencia antes de visitas, negociación con datos y acompañamiento legal hasta escritura. Como no cobramos un % sobre tu venta, no tenemos incentivo a inflar el precio de salida para «captarte» ni a presionarte a bajar en la primera oferta débil.</p><p>Conectamos tu inmueble con la <strong>plataforma de compradores</strong> de Barcelona: personas con hipoteca preaprobada o liquidez verificada que buscan activamente en el área metropolitana. Eso genera <strong>demanda real</strong>, no solo clics en portal.</p><h2>Cómo funciona NuevaHabitat paso a paso</h2><ol><li><strong>Valoración gratuita</strong> — visita al piso o análisis con comparables de mercado y precio de salida realista.</li><li><strong>Reportaje y difusión</strong> — fotografía profesional y publicación en nuestra plataforma y cartera de compradores cualificados.</li><li><strong>Visitas filtradas</strong> — solo compradores solventes, en tus franjas horarias, desde el panel vendedor.</li><li><strong>Negociación y arras</strong> — acompañamiento legal, revisión de documentación y coordinación con bancos del comprador.</li><li><strong>Escritura</strong> — cobro de 3.000 € + IVA solo si cierras la venta.</li></ol><p>Más abajo encontrarás el proceso detallado con capturas del panel, la comparativa frente a agencia tradicional y venta como particular, y preguntas frecuentes sobre exclusivas y honorarios.</p><h2>Particular vs agencia tradicional vs precio fijo</h2><p><strong>Vender como particular</strong> tiene sentido si tienes tiempo, conoces el mercado de tu barrio y sabes filtrar solvencia. Pierde sentido cuando el piso lleva semanas sin ofertas serias, el precio está mal anclado o la documentación (herencia, usufructo, derrama pendiente) complica la operación.</p><p>La <strong>agencia tradicional</strong> aporta red y experiencia, pero el modelo del 6% premia cerrar rápido a cualquier precio y penaliza al vendedor que encuentra comprador por su cuenta. Las exclusivas largas son la norma, no la excepción.</p><p>La <strong>inmobiliaria con precio fijo</strong> alinea incentivos: cobramos cuando tú vendes, no cuando firmas un contrato. Sin venta, sin factura. Incluye valoración, marketing, filtrado, visitas, negociación y seguimiento hasta notaría — no es un anuncio premium en portal, es acompañamiento completo.</p><h2>Qué preguntar antes de elegir inmobiliaria</h2><p>Antes de firmar con cualquier agencia — precio fijo o comisión — conviene preguntar: ¿cuánto pagaré en total si vendo a X euros? ¿Cuándo se cobra: al firmar contrato o solo en escritura? ¿Qué pasa si yo mismo encuentro comprador? ¿Filtráis hipoteca antes de visitas? ¿Hay permanencia o exclusiva obligatoria? ¿Incluye fotografía, arras y coordinación con el banco?</p><p>Si las respuestas no están por escrito antes de empezar, desconfía. Una inmobiliaria seria no esconde condiciones en letra pequeña ni cobra honorarios si la operación no se cierra.</p><h2>Por qué precio fijo no es lo mismo que «barato»</h2><p>Precio fijo no significa servicio mínimo. Incluye valoración, reportaje fotográfico, difusión a compradores cualificados, gestión de visitas, negociación y acompañamiento hasta escritura. La diferencia está en la estructura del coste: un importe cerrado que no crece si tu piso se vende por encima del precio inicial.</p><p>En agencias por porcentaje, cuanto más sube el precio de venta, más cobra la agencia — aunque el trabajo adicional no sea proporcional. En precio fijo, el propietario retiene el upside de una buena negociación.</p><h2>Barcelona: mercado local, condiciones claras</h2><p>Atendemos <strong>Barcelona ciudad y área metropolitana</strong> desde Les Corts (Carrer de Mejía Lequerica, 42). Guías por zona con precio fijo: <a href="/inmobiliaria-precio-fijo-sants-barcelona">Sants</a>, <a href="/inmobiliaria-precio-fijo-eixample-barcelona">Eixample</a>, <a href="/inmobiliaria-precio-fijo-gracia-barcelona">Gràcia</a>, <a href="/inmobiliaria-precio-fijo-les-corts-barcelona">Les Corts</a>, <a href="/inmobiliaria-precio-fijo-horta-barcelona">Horta</a>, <a href="/inmobiliaria-precio-fijo-l-hospitalet-barcelona">L'Hospitalet</a> y <a href="/inmobiliaria-precio-fijo-cornella-barcelona">Cornellà</a>.</p><p>Si ya anuncias como particular, podemos integrar tu situación en la valoración gratuita: te decimos si conviene seguir solo, ajustar precio o activar compradores cualificados de nuestra cartera. También puedes consultar <a href="/cuanto-vale-mi-piso-barcelona">cuánto vale tu piso</a> antes de decidir.</p><h2>Cuándo tiene sentido el precio fijo para ti</h2><p>El modelo encaja especialmente si: llevas semanas como particular sin ofertas con financiación; quieres evitar una exclusiva de 6–12 meses; prefieres saber el coste total antes de empezar; valoras visitas solo con compradores solventes; o necesitas acompañamiento en arras y documentación sin pagar un 6% del precio de venta.</p><p>No encaja si buscas únicamente colgar un anuncio en portal sin ningún filtro ni negociación — en ese caso, vender solo puede ser suficiente durante una fase inicial de prueba.</p><h2>Próximo paso: valoración sin compromiso</h2><p>Usa la calculadora, revisa la comparativa de modelos y, si encaja, pide valoración gratuita. Te respondemos en menos de 24 horas con rango de precio orientativo y condiciones claras: 3.000 € + IVA solo en escritura, sin exclusivas abusivas. Si prefieres hablar antes, WhatsApp o teléfono desde esta misma página.</p></div>
+  </div>
+</section>
+<section class="lc-gestor-wa-strip lc-gestor-wa-strip--postArticle">
+  <div class="container lc-gestor-wa-strip__inner fade-up">
+    <p class="lc-gestor-wa-strip__text">¿Seguimos por WhatsApp? Te orientamos en tu caso.</p>
+    <div class="lc-gestor-wa-strip__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postArticle-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="postArticle-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
   </div>
 </section>
 <section class="lc-section" style="background:var(--blanco)">
@@ -506,6 +678,59 @@
       </form>
     </div><div class="lc-prose fade-up"><h2 class="section-title">Valoración gratuita en 24h</h2><p>Cuéntanos si vendes como particular, si ya usas portales o si vienes de una agencia con exclusiva. Te explicamos panel vendedor, precio fijo 3.630 € solo en escritura y ahorro vs 6% — respuesta en menos de 24 h, sin compromiso.</p></div></div>
 </section>
+<section class="testimonios lc-testimonios" id="testimonios" data-nh-testimonials="1">
+  <div class="container">
+    <div class="text-center section-header">
+      <span class="overline">Lo que dicen nuestros clientes</span>
+      <h2 class="section-title">Experiencias reales en Inmobiliaria precio fijo</h2>
+      <p class="lc-testimonios-lead">Vendedores y compradores con foto y nombre — mismo servicio de precio fijo desde Les Corts.</p>
+    </div>
+    <div class="testimonios-grid">
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/familia10.jpg" alt="Familia cliente NuevaHabitat — Inmobiliaria precio fijo" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Vendimos en pocas semanas con el panel digital: visitas, ofertas y documentos en un solo sitio. El precio fijo nos quitó la incertidumbre del 6%.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio1.jpg" alt="Laura y Marc Ferrer" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Laura y Marc Ferrer</div>
+              <div class="testimonio-rol">Vendedores · Inmobiliaria precio fijo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/familia13.jpg" alt="Familia cliente NuevaHabitat — Inmobiliaria precio fijo" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Sabíamos desde el primer día cuánto íbamos a pagar. Sin comisión sorpresa en escritura. Daniel nos orientó con comparables de la misma calle.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio8.jpg" alt="Jordi y Ana Torres" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Jordi y Ana Torres</div>
+              <div class="testimonio-rol">Vendedores · Inmobiliaria precio fijo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/familia14.jpg" alt="Familia cliente NuevaHabitat — Inmobiliaria precio fijo" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Filtraron compradores con hipoteca preaprobada; no perdimos fines de semana con curiosos. Las visitas fueron en nuestro horario.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio5.jpg" alt="Marta Iglesias" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Marta Iglesias</div>
+              <div class="testimonio-rol">Vendedores · Inmobiliaria precio fijo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="lc-section lc-nh-servicio" style="background:var(--negro);color:#fff">
   <div class="container">
     <div class="lc-nh-servicio-grid fade-up">
@@ -516,7 +741,7 @@
         <ul class="lc-nh-features">
           <li><strong>Cartera activa de compradores</strong> — difundimos tu inmueble entre clientes que ya están buscando en Barcelona y alrededores.</li>
           <li><strong>Solo visitas con solvencia</strong> — filtramos antes de agendar; no pierdes fines de semana con curiosos sin financiación.</li>
-          <li><strong>Gestor dedicado</strong> — El equipo de NuevaHabitat te acompaña en comunicación, visitas, ofertas y documentación.</li>
+          <li><strong>Daniel y Sebastián, tus gestores</strong> — respuesta humana en Les Corts: visitas, ofertas y documentación en el panel.</li>
           <li><strong>3.000 € + IVA solo en escritura</strong> — si no vendes, no pagas. Sin comisión del 6%.</li>
         </ul>
       </div>
@@ -608,89 +833,6 @@
       <div class="lc-step"><div class="lc-step-num">6</div><h4>Escritura pública</h4><p>Preparamos reserva, arras, documentación y firma ante notario. Cobro solo al cerrar.</p></div>
     </div>
   </div>
-</section><section class="lc-section lc-nh-panel" style="background:var(--blanco)">
-  <div class="container">
-    <div class="lc-nh-panel-grid fade-up">
-      <div class="lc-nh-panel-copy">
-        <span class="overline">Panel del vendedor</span>
-        <h2 class="section-title">Tu expediente de venta, controlado al milímetro</h2>
-        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con un gestor especializado en comunicación en todo momento. Ves el estado del proceso, las visitas, las ofertas y toda la documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
-        <ul class="lc-nh-panel-list">
-          <li><strong>Registro de visitas</strong> — fecha, comprador, agente y resultado; historial completo, no llamadas perdidas.</li>
-          <li><strong>Control de visitas</strong> — tú marcas disponibilidad; solo se agenda en tus franjas, con ficha de control por visita.</li>
-          <li><strong>Tu documentación</strong> — sube nota simple, ITE, actas o escrituras previas al expediente digital.</li>
-          <li><strong>Documentación del comprador</strong> — lo que aporta el comprador cualificado queda centralizado para revisión antes de arras.</li>
-          <li><strong>Contratos y arras</strong> — reserva, arras firmadas (FIRMACERT) y tasación en la misma carpeta.</li>
-        </ul>
-        <a href="/registro" class="btn btn-gold" style="margin-top:.5rem">Acceder al panel vendedor →</a>
-      </div>
-      <div class="lc-pm-wrap" aria-hidden="true">
-        <div class="lc-pm-header">
-          <div class="lc-pm-brand"><span class="lc-pm-logo">NH</span><span>Nueva Habitat <small>Panel Vendedor</small></span></div>
-          <div class="lc-pm-user"><span class="lc-pm-avatar">MR</span><span>María R. · Vendedor</span></div>
-        </div>
-        <div class="lc-pm-body">
-          <div class="lc-pm-sidebar">
-            <div class="lc-pm-nav active">Resumen</div>
-            <div class="lc-pm-nav">Mi proceso</div>
-            <div class="lc-pm-nav">Visitas</div>
-            <div class="lc-pm-nav">Mi publicación</div>
-            <div class="lc-pm-nav">Contratos y arras</div>
-          </div>
-          <div class="lc-pm-main">
-            <div class="lc-pm-card">
-              <div class="lc-pm-card-title">Resumen de tu expediente</div>
-              <div class="lc-pm-stats">
-                <div class="lc-pm-stat"><div class="lc-pm-stat-val lc-pm-stat-pub">Publicado</div><div class="lc-pm-stat-lbl">Estado publicación</div></div>
-                <div class="lc-pm-stat"><div class="lc-pm-stat-val">12</div><div class="lc-pm-stat-lbl">Visitas recibidas</div></div>
-                <div class="lc-pm-stat"><div class="lc-pm-stat-val">2</div><div class="lc-pm-stat-lbl">Ofertas recibidas</div></div>
-              </div>
-            </div>
-            <div class="lc-pm-card lc-pm-card-sm">
-              <div class="lc-pm-card-title">Visitas programadas</div>
-              <div class="lc-pm-visit"><span>Vie 18 · 11:00</span><strong>Comprador con hipoteca aprobada</strong></div>
-              <div class="lc-pm-visit"><span>Sáb 19 · 12:30</span><strong>Pareja — 2ª visita</strong></div>
-              <div class="lc-pm-visit"><span>Lun 21 · 18:00</span><strong>Inversor — documentación OK</strong></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="lc-pm-screens fade-up">
-      <div class="lc-pm-screen">
-        <div class="lc-pm-screen-label">Mi proceso de venta</div>
-        <div class="lc-pm-timeline">
-          <div class="lc-pm-tl done"><span>✓</span><div><strong>Registro y valoración</strong><small>Completado</small></div></div>
-          <div class="lc-pm-tl done"><span>✓</span><div><strong>Reportaje y publicación</strong><small>1 inmueble activo</small></div></div>
-          <div class="lc-pm-tl active"><span>5</span><div><strong>Visitas y ofertas</strong><small>12 visitas · 2 ofertas</small></div></div>
-          <div class="lc-pm-tl"><span>6</span><div><strong>Escritura y cobro</strong><small>3.000 € + IVA al cerrar</small></div></div>
-        </div>
-      </div>
-      <div class="lc-pm-screen">
-        <div class="lc-pm-screen-label">Mi publicación</div>
-        <div class="lc-pm-pub">
-          <img src="imagenes/interior11.jpg" alt="Inmueble publicado en NuevaHabitat" loading="lazy"/>
-          <div><strong>Piso 3 hab. · Barcelona</strong><p>1 inmueble publicado en cartera</p><span class="lc-pm-tag">Activo</span></div>
-        </div>
-      </div>
-      <div class="lc-pm-screen">
-        <div class="lc-pm-screen-label">Calendario de visitas</div>
-        <div class="lc-pm-cal">
-          <p>Tú eliges disponibilidad:</p>
-          <div class="lc-pm-cal-slots"><span class="on">Lun 18–20h</span><span class="on">Mar 11–14h</span><span>Sáb 10–13h</span><span class="on">Dom 11–13h</span></div>
-          <p class="lc-pm-cal-note">El agente solo agenda visitas en tus franjas.</p>
-        </div>
-      </div>
-      <div class="lc-pm-screen">
-        <div class="lc-pm-screen-label">Contratos y arras</div>
-        <div class="lc-pm-docs">
-          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de reserva</strong><small>Firmado · FIRMACERT</small></div><span class="lc-pm-doc-ok">✓</span></div>
-          <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de arras</strong><small>Firmado · pendiente escritura</small></div><span class="lc-pm-doc-ok">✓</span></div>
-          <div class="lc-pm-doc"><span>📄</span><div><strong>Informe de valoración</strong><small>Subido por Juan Cárdenas</small></div><span class="lc-pm-doc-ok">✓</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 <section class="lc-section" style="background:var(--crema);padding:3rem 0">
   <div class="container text-center fade-up">
@@ -701,18 +843,21 @@
 </section>
 <section class="lc-call-banner lc-call-banner--prefaq">
   <div class="container">
-    <div class="lc-call-banner__inner fade-up">
-      <div class="lc-call-banner__text">
-        <span class="overline">Antes de irte</span>
-        <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
-        <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
-      </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="prefaq">Llama · 603 656 587 · 643 877 644</a>
+    <div class="lc-call-gestores fade-up lc-call-gestores--wa">
+    <div class="lc-call-gestores__text">
+      <span class="overline">Antes de irte</span>
+      <p class="lc-call-banner__title">WhatsApp con Daniel o Sebastián</p>
+      <p class="lc-call-banner__sub">Horario comercial lun–sáb 9–20h · Oficina Les Corts</p>
     </div>
+    <div class="lc-call-gestores__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="prefaq-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="prefaq-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
   </div>
 </section>
 <section class="lc-section" style="background:var(--crema)">
-  <div class="container" style="max-width:800px"><div class="faq-list fade-up"><div class="faq-item">
+  <div class="container" style="max-width:800px">
+    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Preguntas frecuentes</h2></div>
+    <div class="faq-list fade-up"><div class="faq-item">
         <button type="button" class="faq-q">¿Qué es una inmobiliaria con precio fijo?</button>
         <div class="faq-a"><div class="faq-a-inner">Es una agencia que cobra un importe cerrado por vender tu piso (en NuevaHabitat: 3.000 € + IVA), en lugar de un porcentaje sobre el precio de venta. Solo se paga en escritura si la operación se cierra.</div></div>
       </div><div class="faq-item">
@@ -745,7 +890,8 @@
       </div><div class="faq-item">
         <button type="button" class="faq-q">¿Cómo evitáis que suban el precio para ganar más comisión?</button>
         <div class="faq-a"><div class="faq-a-inner">Cobramos precio fijo, no porcentaje. Nuestro incentivo es cerrar bien tu venta, no inflar el ticket ni especular con el anuncio.</div></div>
-      </div></div><div class="lc-kw">inmobiliaria precio fijo barcelona · vender piso particular · honorarios fijos inmobiliaria · agencia sin comision 6% · vender casa barcelona particular · como funciona nueva habitat · calculadora ahorro comision</div></div>
+      </div></div>
+    <div class="lc-kw">inmobiliaria precio fijo barcelona · vender piso particular · honorarios fijos inmobiliaria · agencia sin comision 6% · vender casa barcelona particular · como funciona nueva habitat · calculadora ahorro comision</div></div>
 </section>
 <footer>
   <div class="container">
@@ -757,7 +903,7 @@
     <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="/privacidad">Privacidad</a><a href="/aviso-legal">Aviso legal</a></div></div>
   </div>
 </footer>
-<div class="whatsapp-float"><a href="https://wa.me/34603656587?text=Hola%2C%20soy%20particular%20y%20quiero%20vender%20mi%20piso%20con%20precio%20fijo" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
+<div class="whatsapp-float"><a href="https://wa.me/34603656587?text=Hola%2C%20soy%20particular%20y%20quiero%20vender%20mi%20piso%20con%20precio%20fijo" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp Sebastián"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
 <nav class="mbn" id="mbn">
   <a href="/" class="mbn-tab" data-tab="inicio" aria-label="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>Inicio</span></a>
   <a href="/inmuebles" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg><span>Inmuebles</span></a>

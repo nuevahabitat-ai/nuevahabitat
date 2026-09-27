@@ -15,7 +15,7 @@ function nhServicioBlock(L) {
         <ul class="lc-nh-features">
           <li><strong>Cartera activa de compradores</strong> — difundimos tu inmueble entre clientes que ya están buscando en ${zona} y alrededores.</li>
           <li><strong>Solo visitas con solvencia</strong> — filtramos antes de agendar; no pierdes fines de semana con curiosos sin financiación.</li>
-          <li><strong>Gestor dedicado</strong> — El equipo de NuevaHabitat te acompaña en comunicación, visitas, ofertas y documentación.</li>
+          <li><strong>Daniel y Sebastián, tus gestores</strong> — respuesta humana en Les Corts: visitas, ofertas y documentación en el panel.</li>
           <li><strong>3.000 € + IVA solo en escritura</strong> — si no vendes, no pagas. Sin comisión del 6%.</li>
         </ul>
       </div>
@@ -127,7 +127,7 @@ function nhPanelDemoBlock(L) {
       <div class="lc-nh-panel-copy">
         <span class="overline">Panel del vendedor</span>
         <h2 class="section-title">Tu expediente de venta, controlado al milímetro</h2>
-        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con un gestor especializado en comunicación en todo momento. Ves el estado del proceso, las visitas, las ofertas y toda la documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
+        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con <strong>Daniel</strong> o <strong>Sebastián</strong> como gestor dedicado. Ves visitas, ofertas y documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
         <ul class="lc-nh-panel-list">
           <li><strong>Registro de visitas</strong> — fecha, comprador, agente y resultado; historial completo, no llamadas perdidas.</li>
           <li><strong>Control de visitas</strong> — tú marcas disponibilidad; solo se agenda en tus franjas, con ficha de control por visita.</li>
@@ -199,7 +199,7 @@ function nhPanelDemoBlock(L) {
         <div class="lc-pm-docs">
           <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de reserva</strong><small>Firmado · FIRMACERT</small></div><span class="lc-pm-doc-ok">✓</span></div>
           <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de arras</strong><small>Firmado · pendiente escritura</small></div><span class="lc-pm-doc-ok">✓</span></div>
-          <div class="lc-pm-doc"><span>📄</span><div><strong>Informe de valoración</strong><small>Subido por Juan Cárdenas</small></div><span class="lc-pm-doc-ok">✓</span></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Informe de valoración</strong><small>Subido por Daniel Hernández</small></div><span class="lc-pm-doc-ok">✓</span></div>
         </div>
       </div>
     </div>
@@ -207,8 +207,10 @@ function nhPanelDemoBlock(L) {
 </section>`;
 }
 
-function nhPlatformBundle(L) {
-  return nhServicioBlock(L) + nhCompradoresEcosystemBlock(L) + nhProcesoBlock(L) + nhPanelDemoBlock(L);
+function nhPlatformBundle(L, opts = {}) {
+  const parts = [nhServicioBlock(L), nhCompradoresEcosystemBlock(L), nhProcesoBlock(L)];
+  if (!opts.skipPanel) parts.push(nhPanelDemoBlock(L));
+  return parts.join('');
 }
 
 function nhPlatformStyles() {

@@ -5,6 +5,7 @@
  */
 
 import { createAvailabilityEvents } from '../lib/server/google-calendar.js';
+import { insertVisitaFromDisponibilidad, listVisitasAdminServer } from '../lib/server/visitas-api.js';
 import {
   insertLeadServer,
   normalizeLeadTipo,
@@ -578,6 +579,24 @@ async function verifyPanelAdmin(req) {
   return user;
 }
 
+async function handleAdminVisitas(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+
+  try {
+    const syncCalendar = body?.syncCalendar !== false;
+    const result = await listVisitasAdminServer({ syncCalendar });
+    return res.status(200).json({
+      ok: true,
+      data: result.data || [],
+      schemaFallback: !!result.schemaFallback,
+    });
+  } catch (err) {
+    console.error('admin-visitas', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminLeads(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -771,6 +790,7 @@ export default async function handler(req, res) {
   const action = req.query?.__action || req.query?.action;
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
+  if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
   if (action === 'resend-all-form-leads') return handleResendAllFormLeadsAdmin(req, res, body);
 
@@ -863,10 +883,30 @@ export default async function handler(req, res) {
         calendarResult = await createAvailabilityEvents({
           nombre, email, telefono, mensaje, extra: extra || {}, calendar,
         });
+        if (calendarResult?.ok && calendar?.start) {
+          const esVendedor = extra?.rol === 'vendedor';
+          const tipoSol = esVendedor ? 'disponibilidad_vendedor' : 'disponibilidad_comprador';
+          const firstEv = calendarResult.events?.[0];
+          await insertVisitaFromDisponibilidad({
+            fecha_hora: new Date(calendar.start).toISOString(),
+            notas: mensaje || `[NH] Disponibilidad — ${nombre || 'Cliente'}`,
+            tipo_solicitud: tipoSol,
+            google_event_id: firstEv?.id,
+            html_link: firstEv?.htmlLink,
+          }).catch((e) => console.warn('insertVisitaFromDisponibilidad', e.message));
+        }
       } catch (calErr) {
         console.error('google calendar:', calErr);
         calendarResult = { ok: false, error: calErr.message };
       }
+    } else if (template === 'disponibilidad' && calendar?.start) {
+      const esVendedor = extra?.rol === 'vendedor';
+      const tipoSol = esVendedor ? 'disponibilidad_vendedor' : 'disponibilidad_comprador';
+      await insertVisitaFromDisponibilidad({
+        fecha_hora: new Date(calendar.start).toISOString(),
+        notas: mensaje || `[NH] Disponibilidad — ${nombre || 'Cliente'}`,
+        tipo_solicitud: tipoSol,
+      }).catch((e) => console.warn('insertVisitaFromDisponibilidad', e.message));
     }
 
     return res.status(200).json({

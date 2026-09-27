@@ -134,6 +134,22 @@
           "@type": "Answer",
           "text": "Recomendamos asesoramiento legal específico para el procedimiento de desalojo si optas por esa vía; nosotros nos encargamos de la valoración y venta del inmueble."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta vender en Piso ocupado con NuevaHabitat?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "3.000 € + IVA de honorarios fijos al vendedor, pagados solo en escritura. Sin venta, no facturamos comisión de agencia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo vender sin exclusiva de doce meses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí. Trabajamos con mandatos flexibles: puedes seguir en portal y activamos compradores de cartera cuando el precio encaja."
+        }
       }
     ]
   },
@@ -173,10 +189,14 @@
     .page-breadcrumb{font-size:.8125rem;color:var(--gris-medio);display:flex;align-items:center;flex-wrap:wrap;gap:.35rem;padding:1rem 0 .25rem}
     .page-breadcrumb a{color:var(--gris-medio);transition:color var(--transition)}.page-breadcrumb a:hover{color:var(--negro)}
     .page-breadcrumb span[aria-hidden="true"]{opacity:.45}.page-breadcrumb .bc-current{color:var(--negro);font-weight:500}
-    .lc-hero{min-height:68vh;display:flex;align-items:center;position:relative;overflow:hidden}
-    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center center}
-    .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.88) 42%,rgba(13,13,13,.4));z-index:1}
-    .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:120px 0 80px}
+    .page-breadcrumb--hero{padding:5.75rem 0 .85rem;position:relative;z-index:2;color:rgba(255,255,255,.78)}
+    .page-breadcrumb--hero a{color:rgba(255,255,255,.78)}.page-breadcrumb--hero a:hover{color:#fff}
+    .page-breadcrumb--hero .bc-current{color:#fff;font-weight:500}
+    .lc-hero{min-height:76vh;display:flex;align-items:center;position:relative;overflow:hidden}
+    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.03);filter:brightness(1.07) saturate(1.05)}
+    .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.78) 38%,rgba(13,13,13,.28) 58%,rgba(13,13,13,.12));z-index:1}
+    .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:0 0 6rem}
+    .lc-hero-content h1,.lc-hero-content p{text-shadow:0 2px 28px rgba(0,0,0,.55)}
     .lc-hero-content h1{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);color:#fff;line-height:1.12;margin-bottom:1rem}
     .lc-hero-content p{font-size:1.0625rem;color:rgba(255,255,255,.82);line-height:1.75;margin-bottom:1.5rem}
     .lc-badge{display:inline-flex;background:rgba(184,147,106,.18);border:1px solid rgba(184,147,106,.35);color:var(--oro-claro);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .85rem;border-radius:999px;margin-bottom:1rem}
@@ -231,14 +251,72 @@
       .lc-grid-2{grid-template-columns:1.35fr .85fr;gap:3rem;align-items:start}
       .lc-grid-2 .lc-form{position:sticky;top:96px;align-self:start}
       .lc-prose{max-width:none}
-      .lc-article-layout{display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start}
-      .lc-article-aside{position:sticky;top:96px;background:#fff;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-md);border:1px solid var(--crema-dark)}
-      .lc-prose--cols{column-count:2;column-gap:2.5rem}
-      .lc-prose--cols>h2,.lc-prose--cols>h3{column-span:all;break-after:avoid}
-      .lc-prose--cols>p,.lc-prose--cols>ul,.lc-prose--cols>ol{break-inside:avoid}
       .lc-section{padding:4rem 0}
     }
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}.lc-article-aside{display:none}}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero{min-height:72vh}.lc-hero-overlay{background:linear-gradient(to bottom,rgba(13,13,13,.72),rgba(13,13,13,.45))}.lc-hero-media img{transform:none;object-position:center 35%}}
+    
+    .lc-article{padding:3.5rem 0 4rem;background:var(--crema)}
+    .lc-article__inner{max-width:720px;margin:0 auto}
+    .lc-article__inner h2{font-family:var(--font-serif);font-size:1.45rem;margin:2.25rem 0 .85rem;padding-left:1rem;border-left:4px solid var(--oro);line-height:1.3}
+    .lc-article__inner h2:first-child{margin-top:0}
+    .lc-article__inner p,.lc-article__inner li{font-size:1.0625rem;line-height:1.8;color:var(--gris-texto)}
+    .lc-article__inner > p:first-of-type{font-size:1.125rem;color:var(--negro)}
+    .lc-story{background:var(--crema)}
+    .lc-story-intro{padding:4rem 0 3rem;background:linear-gradient(180deg,var(--blanco) 0%,var(--crema) 100%)}
+    .lc-story-intro__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+    .lc-story-intro__copy{max-width:none}
+    .lc-story-intro__copy p:first-child{font-size:1.125rem;line-height:1.85}
+    .lc-story-intro__media{border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);min-height:320px}
+    .lc-story-intro__media img{width:100%;height:100%;object-fit:cover;min-height:320px}
+    .lc-story-split{display:grid;grid-template-columns:1fr 1fr;min-height:min(520px,auto);background:var(--crema)}
+    .lc-story-split:nth-child(even){background:var(--blanco)}
+    .lc-story-split__media{min-height:280px;overflow:hidden}
+    .lc-story-split__media img{width:100%;height:100%;object-fit:cover;min-height:280px}
+    .lc-story-split__content{display:flex;align-items:center;padding:3rem 0}
+    .lc-story-split__inner{max-width:540px;margin:0 auto;padding:0 2rem}
+    .lc-story-split--reverse .lc-story-split__media{order:2}
+    .lc-story-split--reverse .lc-story-split__content{order:1}
+    .lc-story-band{min-height:38vh;background-size:cover;background-position:center;position:relative}
+    .lc-story-band__overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.82),rgba(13,13,13,.45));display:flex;align-items:center}
+    .lc-story-band__text{font-family:var(--font-serif);font-size:clamp(1.35rem,3vw,2rem);color:#fff;max-width:640px;line-height:1.35;margin:0}
+    .lc-story-suffix{padding:3rem 0 4rem;background:var(--crema)}
+    .lc-story-suffix .lc-prose{max-width:var(--max-w);margin:0 auto}
+    .lc-form-band{padding:4rem 0;background:var(--blanco)}
+    .lc-form-band__grid{display:grid;grid-template-columns:1fr minmax(300px,420px);gap:3rem;align-items:start}
+    .lc-form-band__copy .section-title{margin-bottom:1rem}
+    .lc-form-band__aside{display:flex;flex-direction:column;gap:1.25rem}
+    .lc-form-band__figure{margin:0;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);background:var(--crema)}
+    .lc-form-band__figure img{width:100%;height:auto;max-height:300px;object-fit:cover;display:block}
+    .lc-form-band__copy-inner .section-title{margin-bottom:.75rem}
+    .lc-form-band__aside .lc-buyer-grid{margin-top:1.25rem;gap:1.5rem}
+    .lc-form-band__aside .lc-buyer-grid h3{font-size:1.05rem;margin-bottom:.35rem}
+    .lc-form-band__aside .lc-buyer-grid p{font-size:.9375rem;margin:0}
+    @media(min-width:901px){.lc-form-band .lc-form{position:sticky;top:96px}.lc-form-band__grid{grid-template-columns:1.15fr minmax(300px,420px)}}
+    @media(max-width:900px){
+      .lc-story-intro__grid,.lc-story-split{grid-template-columns:1fr}
+      .lc-story-split--reverse .lc-story-split__media{order:0}
+      .lc-story-split__content{padding:2rem 0}
+      .lc-story-split__inner{padding:0 1.25rem}
+      .lc-form-band__grid{grid-template-columns:1fr}
+    }
+  
+    
+    .lc-gestor-wa-strip{padding:1.35rem 0;background:var(--blanco);border-top:1px solid var(--crema-dark);border-bottom:1px solid var(--crema-dark)}
+    .lc-gestor-wa-strip--postCalc,.lc-gestor-wa-strip--postPanel{background:var(--crema)}
+    .lc-gestor-wa-strip--postArticle{background:var(--negro);border-color:rgba(255,255,255,.08)}
+    .lc-gestor-wa-strip--postArticle .lc-gestor-wa-strip__text{color:rgba(255,255,255,.88)}
+    .lc-gestor-wa-strip--postArticle .btn-outline{border-color:rgba(255,255,255,.4);color:#fff}
+    .lc-gestor-wa-strip--postArticle .btn-outline:hover{background:rgba(255,255,255,.08)}
+    .lc-gestor-wa-strip__inner{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;flex-wrap:wrap}
+    .lc-gestor-wa-strip__text{margin:0;font-size:1rem;line-height:1.5;color:var(--gris-texto);flex:1;min-width:200px}
+    .lc-gestor-wa-strip__btns{display:flex;flex-wrap:wrap;gap:.5rem}
+    .lc-wa-banner-btn{white-space:nowrap}
+    .lc-call-gestores{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;width:100%}
+    .lc-call-gestores__text{flex:1;min-width:200px}
+    .lc-call-gestores__btns{display:flex;flex-wrap:wrap;gap:.5rem}
+    .lc-call-banner--prefaq .lc-call-gestores .btn-outline{border-color:var(--negro);color:var(--negro)}
+    @media(max-width:640px){.lc-gestor-wa-strip__inner{flex-direction:column;align-items:stretch;text-align:center}.lc-gestor-wa-strip__btns,.lc-call-gestores__btns{flex-direction:column}.lc-call-gestores{flex-direction:column;text-align:center}}
+  
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
@@ -338,6 +416,15 @@
     }
     @media(max-width:600px){.lc-steps-6{grid-template-columns:1fr!important}.lc-pm-stats{grid-template-columns:repeat(3,1fr)}.lc-pm-screens{grid-template-columns:1fr}}
   
+    .lc-testimonios{padding:4.5rem 0;background:var(--crema)}
+    .lc-testimonios-lead{max-width:520px;margin:.75rem auto 0;font-size:.9375rem;color:var(--gris-texto);line-height:1.65}
+    .testimonio-card--rich{padding:0;overflow:hidden;display:flex;flex-direction:column;height:100%}
+    .testimonio-card__cover{margin:0;line-height:0;background:var(--crema-dark)}
+    .testimonio-card__cover img{width:100%;height:168px;object-fit:cover;display:block}
+    .testimonio-card__body{padding:1.75rem 2rem 2rem;flex:1;display:flex;flex-direction:column}
+    .testimonio-card--rich .testimonio-text{flex:1}
+    .testimonio-card--rich .testimonio-autor img{width:72px;height:72px;border:2px solid var(--crema-dark)}
+    .testimonios .testimonio-card.fade-up,.testimonio-card--rich{opacity:1!important;transform:none!important;visibility:visible!important}
   </style>
 </head>
 <body data-nh-cluster="situacion" data-nh-landing-slug="vender-piso-okupado-barcelona">
@@ -347,32 +434,54 @@
   <div class="nav-actions"><span class="nav-tels"><a href="tel:+34603656587" class="nh-call-link nav-tel" data-nh-call="header">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link nav-tel" data-nh-call="header">643 877 644</a></span><a href="#valorar" class="nav-cta">Valorar mi piso</a><button class="nav-hamburger" id="menuBtn"><span></span><span></span><span></span></button></div>
 </div></nav>
 <nav class="mobile-nav" id="mobileNav"><button class="mobile-nav-close" id="menuClose">✕</button><a href="/vender">Vender</a><a href="/comprar">Comprar</a><a href="/inmuebles">Inmuebles</a><span class="mobile-nav-phones"><a href="tel:+34603656587" class="nh-call-link" data-nh-call="mobile-menu">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link" data-nh-call="mobile-menu">643 877 644</a></span><a href="#valorar" style="color:var(--oro)">Valorar →</a></nav>
-<div class="container"><nav class="page-breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Piso ocupado</span></nav></div>
 <section class="lc-hero">
   <div class="lc-hero-media"><img src="imagenes/interior8.jpg" alt="Vivienda en Barcelona en situación de okupación" fetchpriority="high"/></div>
   <div class="lc-hero-overlay"></div>
-  <div class="container"><div class="lc-hero-content fade-up">
+  <div class="container">
+    <nav class="page-breadcrumb page-breadcrumb--hero fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">Piso ocupado</span></nav>
+    <div class="lc-hero-content fade-up">
     <span class="lc-badge">Situación · Piso ocupado</span>
     <h1>¿Tienes un piso ocupado en Barcelona y quieres venderlo?</h1>
     <p>Un piso ocupado se puede vender, con o sin desalojo previo, aunque el proceso y el precio cambian según la situación legal concreta. Te orientamos sobre las opciones reales de mercado y te acompañamos con honorarios fijos de 3.000 € + IVA.</p>
     <a href="#valorar" class="btn btn-gold btn-lg">Valoración gratuita</a>
-  </div></div>
-</section>
-<section class="lc-call-banner">
-  <div class="container">
-    <div class="lc-call-banner__inner fade-up">
-      <div class="lc-call-banner__text">
-        <span class="overline">Atención directa</span>
-        <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
-        <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
-      </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="hero">Llama · 603 656 587 · 643 877 644</a>
     </div>
   </div>
 </section>
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container lc-grid-2">
-    <div class="lc-prose lc-prose--cols fade-up"><p>Tener un <strong>piso ocupado en Barcelona</strong> es una de las situaciones más estresantes para cualquier propietario, y una de las que genera más dudas sobre si realmente se puede vender. La respuesta es sí, aunque el camino depende de si el objetivo es vender antes o después de recuperar la posesión, y de cuánto tiempo y recursos estés dispuesto a dedicar al proceso legal de desalojo.</p><h2>Vender con okupas dentro: el mercado de compradores inversores</h2><p>Existe un mercado real, aunque especializado, de compradores —principalmente inversores y fondos con experiencia en gestión de este tipo de activos— dispuestos a comprar un piso ocupado a un precio con descuento sobre el valor de mercado, asumiendo ellos mismos el proceso de recuperación de la posesión. El descuento suele ser significativo, habitualmente entre el 30% y el 50% del valor libre de ocupantes, dependiendo del tipo de ocupación (okupación ilegal sin título, inquiokupación con impago de renta, etc.) y de la fase legal en la que se encuentre el proceso.</p><h2>Vender después de recuperar la posesión</h2><p>La alternativa es iniciar (o continuar) el proceso legal de desalojo antes de publicar el piso, lo que permite venderlo posteriormente a precio de mercado completo, sin el descuento asociado a la ocupación. Esta vía requiere más tiempo —los plazos judiciales varían mucho según el juzgado y el tipo de procedimiento— pero maximiza el precio final obtenido. La decisión entre una vía u otra depende de tu situación personal: si necesitas liquidez urgente, vender ocupado con descuento puede ser preferible a esperar meses o años a un desalojo.</p><h2>Diferencias entre okupación ilegal e inquiokupación</h2><p>No es lo mismo un okupa que ha entrado sin ningún título en una vivienda vacía, que un inquilino que dejó de pagar la renta tras un contrato de alquiler legítimo (lo que se conoce popularmente como inquiokupación). Los procedimientos legales aplicables —y sus plazos— son distintos en cada caso, y esto también condiciona cómo se presenta la situación a un comprador inversor: cuanto más clara y documentada esté la situación legal, más fácil es encontrar comprador y mejor precio se puede negociar.</p><h2>Qué documentación necesitas para vender en esta situación</h2><p>Independientemente de la vía elegida, es fundamental tener bien documentada la situación: denuncia policial si corresponde, fecha estimada de entrada de los ocupantes, si existe procedimiento judicial abierto y en qué fase está, y cualquier comunicación previa con los ocupantes. Esta documentación es lo primero que pedirá cualquier comprador inversor serio antes de hacer una oferta.</p><h2>Qué papel juega el seguro de hogar o de impago en esta situación</h2><p>Si contratabas un seguro de hogar con cobertura de defensa jurídica, o un seguro específico de protección frente a la ocupación ilegal, es el primer punto que conviene revisar antes de iniciar cualquier proceso: algunas pólizas cubren total o parcialmente los costes legales del desalojo, e incluso ofrecen asistencia especializada que puede acelerar considerablemente los plazos habituales. Comprobar esta cobertura desde el primer momento, antes de contratar servicios legales <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona">por tu cuenta</a>, puede suponer un ahorro significativo en el coste total del proceso.</p><h2>Cómo se presenta esta situación a un comprador potencial</h2><p>Presentar con total transparencia la situación de ocupación desde el primer contacto con un posible comprador, incluyendo toda la documentación disponible sobre el proceso legal, es la única forma de generar confianza suficiente para cerrar una operación de este tipo. Cualquier intento de minimizar u ocultar la complejidad de la situación suele descubrirse durante la due diligence del comprador inversor, lo que además de hacer caer la operación, puede dañar la credibilidad para negociar con otros interesados posteriormente.</p><h2>Cómo te ayudamos en NuevaHabitat</h2><p>Te damos una valoración realista tanto del escenario «vender ahora, ocupado» como de «esperar al desalojo y vender a precio completo», para que decidas con toda la información. Si eliges vender ocupado, contactamos con compradores inversores de nuestra cartera especializados en este tipo de operaciones. Cobramos <strong>3.000 € + IVA solo en escritura</strong>, el mismo modelo de precio fijo en cualquier caso.</p></div>
+<section class="lc-call-banner">
+  <div class="container">
+    <div class="lc-call-gestores fade-up lc-call-gestores--wa">
+    <div class="lc-call-gestores__text">
+      <span class="overline">Contacto directo</span>
+      <p class="lc-call-banner__title">WhatsApp con Daniel o Sebastián</p>
+      <p class="lc-call-banner__sub">Horario comercial lun–sáb 9–20h · Oficina Les Corts</p>
+    </div>
+    <div class="lc-call-gestores__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="banner-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="banner-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
+  </div>
+</section>
+<section class="lc-article">
+  <div class="container">
+    <div class="lc-article__inner lc-prose fade-up"><p>Tener un <strong>piso ocupado en Barcelona</strong> es una de las situaciones más estresantes para cualquier propietario, y una de las que genera más dudas sobre si realmente se puede vender. La respuesta es sí, aunque el camino depende de si el objetivo es vender antes o después de recuperar la posesión, y de cuánto tiempo y recursos estés dispuesto a dedicar al proceso legal de desalojo.</p><h2>Vender con okupas dentro: el mercado de compradores inversores</h2><p>Existe un mercado real, aunque especializado, de compradores —principalmente inversores y fondos con experiencia en gestión de este tipo de activos— dispuestos a comprar un piso ocupado a un precio con descuento sobre el valor de mercado, asumiendo ellos mismos el proceso de recuperación de la posesión. El descuento suele ser significativo, habitualmente entre el 30% y el 50% del valor libre de ocupantes, dependiendo del tipo de ocupación (okupación ilegal sin título, inquiokupación con impago de renta, etc.) y de la fase legal en la que se encuentre el proceso.</p><h2>Vender después de recuperar la posesión</h2><p>La alternativa es iniciar (o continuar) el proceso legal de desalojo antes de publicar el piso, lo que permite venderlo posteriormente a precio de mercado completo, sin el descuento asociado a la ocupación. Esta vía requiere más tiempo —los plazos judiciales varían mucho según el juzgado y el tipo de procedimiento— pero maximiza el precio final obtenido. La decisión entre una vía u otra depende de tu situación personal: si necesitas liquidez urgente, vender ocupado con descuento puede ser preferible a esperar meses o años a un desalojo.</p><h2>Diferencias entre okupación ilegal e inquiokupación</h2><p>No es lo mismo un okupa que ha entrado sin ningún título en una vivienda vacía, que un inquilino que dejó de pagar la renta tras un contrato de alquiler legítimo (lo que se conoce popularmente como inquiokupación). Los procedimientos legales aplicables —y sus plazos— son distintos en cada caso, y esto también condiciona cómo se presenta la situación a un comprador inversor: cuanto más clara y documentada esté la situación legal, más fácil es encontrar comprador y mejor precio se puede negociar.</p><h2>Qué documentación necesitas para vender en esta situación</h2><p>Independientemente de la vía elegida, es fundamental tener bien documentada la situación: denuncia policial si corresponde, fecha estimada de entrada de los ocupantes, si existe procedimiento judicial abierto y en qué fase está, y cualquier comunicación previa con los ocupantes. Esta documentación es lo primero que pedirá cualquier comprador inversor serio antes de hacer una oferta.</p><h2>Qué papel juega el seguro de hogar o de impago en esta situación</h2><p>Si contratabas un seguro de hogar con cobertura de defensa jurídica, o un seguro específico de protección frente a la ocupación ilegal, es el primer punto que conviene revisar antes de iniciar cualquier proceso: algunas pólizas cubren total o parcialmente los costes legales del desalojo, e incluso ofrecen asistencia especializada que puede acelerar considerablemente los plazos habituales. Comprobar esta cobertura desde el primer momento, antes de contratar servicios legales <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona">por tu cuenta</a>, puede suponer un ahorro significativo en el coste total del proceso.</p><h2>Cómo se presenta esta situación a un comprador potencial</h2><p>Presentar con total transparencia la situación de ocupación desde el primer contacto con un posible comprador, incluyendo toda la documentación disponible sobre el proceso legal, es la única forma de generar confianza suficiente para cerrar una operación de este tipo. Cualquier intento de minimizar u ocultar la complejidad de la situación suele descubrirse durante la due diligence del comprador inversor, lo que además de hacer caer la operación, puede dañar la credibilidad para negociar con otros interesados posteriormente.</p><h2>Cómo te ayudamos en NuevaHabitat</h2><p>Te damos una valoración realista tanto del escenario «vender ahora, ocupado» como de «esperar al desalojo y vender a precio completo», para que decidas con toda la información. Si eliges vender ocupado, contactamos con compradores inversores de nuestra cartera especializados en este tipo de operaciones. Cobramos <strong>3.000 € + IVA solo en escritura</strong>, el mismo modelo de precio fijo en cualquier caso.</p></div>
+  </div>
+</section>
+<section class="lc-gestor-wa-strip lc-gestor-wa-strip--preForm">
+  <div class="container lc-gestor-wa-strip__inner fade-up">
+    <p class="lc-gestor-wa-strip__text">Prefieres WhatsApp antes del formulario:</p>
+    <div class="lc-gestor-wa-strip__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="preForm-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="preForm-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
+</section>
+<section class="lc-section lc-form-band">
+  <div class="container lc-form-band__grid">
+    <div class="lc-form-band__aside fade-up">
+    <figure class="lc-form-band__figure"><img src="imagenes/interior8.jpg" alt="Vivienda en Barcelona en situación de okupación" loading="lazy" width="960" height="640"/></figure>
+    <div class="lc-form-band__copy-inner">
+      <h2 class="section-title">Valoración gratuita en 24 h</h2>
+      <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:0">Cuéntanos tu situación. Daniel o Sebastián te responden con plan realista — sin comisión del 6%.</p>
+      
+    </div>
+  </div>
     <div class="lc-form fade-up" id="valorar">
       <span class="overline">Sin compromiso</span>
       <h2 style="font-size:1.5rem;margin:.35rem 0 1rem">Solicitar valoración gratuita</h2>
@@ -404,6 +513,59 @@
     <div class="lc-steps"><div class="lc-step fade-up"><div class="lc-step-num">1</div><h4 style="margin:.4rem 0">Valoración de ambos escenarios</h4><p style="font-size:.875rem;color:var(--gris-texto)">Vender ahora con descuento o esperar al desalojo y vender a precio completo.</p></div><div class="lc-step fade-up fade-up-delay-1"><div class="lc-step-num">2</div><h4 style="margin:.4rem 0">Documentación de la situación</h4><p style="font-size:.875rem;color:var(--gris-texto)">Te orientamos sobre qué información necesitará un comprador inversor.</p></div><div class="lc-step fade-up fade-up-delay-2"><div class="lc-step-num">3</div><h4 style="margin:.4rem 0">Compradores especializados</h4><p style="font-size:.875rem;color:var(--gris-texto)">Contactamos con inversores de nuestra cartera con experiencia en este tipo de activos.</p></div><div class="lc-step fade-up fade-up-delay-3"><div class="lc-step-num">4</div><h4 style="margin:.4rem 0">Escritura con precio fijo</h4><p style="font-size:.875rem;color:var(--gris-texto)">3.000 € + IVA solo al cerrar, sea cual sea la vía elegida.</p></div></div>
   </div>
 </section>
+<section class="testimonios lc-testimonios" id="testimonios" data-nh-testimonials="1">
+  <div class="container">
+    <div class="text-center section-header">
+      <span class="overline">Lo que dicen nuestros clientes</span>
+      <h2 class="section-title">Experiencias reales en Piso ocupado</h2>
+      <p class="lc-testimonios-lead">Vendedores y compradores con foto y nombre — mismo servicio de precio fijo desde Les Corts.</p>
+    </div>
+    <div class="testimonios-grid">
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/familia6.jpg" alt="Familia cliente NuevaHabitat — Piso ocupado" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Publicamos con fotos reales del piso y compradores llegaron con financiación cerrada. Sin exclusiva de doce meses.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio4.jpg" alt="Montse Riba" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Montse Riba</div>
+              <div class="testimonio-rol">Vendedores · Piso ocupado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/familia10.jpg" alt="Familia cliente NuevaHabitat — Piso ocupado" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Vendimos en pocas semanas con el panel digital: visitas, ofertas y documentos en un solo sitio. El precio fijo nos quitó la incertidumbre del 6%.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio1.jpg" alt="Laura y Marc Ferrer" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Laura y Marc Ferrer</div>
+              <div class="testimonio-rol">Vendedores · Piso ocupado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card testimonio-card--rich visible">
+        <div class="testimonio-card__cover"><img src="imagenes/familia13.jpg" alt="Familia cliente NuevaHabitat — Piso ocupado" loading="lazy" width="640" height="360" decoding="async"/></div>
+        <div class="testimonio-card__body">
+          <div class="testimonio-stars" aria-hidden="true">★★★★★</div>
+          <p class="testimonio-text">Sabíamos desde el primer día cuánto íbamos a pagar. Sin comisión sorpresa en escritura. Daniel nos orientó con comparables de la misma calle.</p>
+          <div class="testimonio-autor">
+            <img src="imagenes/testimonio8.jpg" alt="Jordi y Ana Torres" loading="lazy" width="72" height="72" decoding="async"/>
+            <div>
+              <div class="testimonio-nombre">Jordi y Ana Torres</div>
+              <div class="testimonio-rol">Vendedores · Piso ocupado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="lc-section lc-nh-servicio" style="background:var(--negro);color:#fff">
   <div class="container">
     <div class="lc-nh-servicio-grid fade-up">
@@ -414,7 +576,7 @@
         <ul class="lc-nh-features">
           <li><strong>Cartera activa de compradores</strong> — difundimos tu inmueble entre clientes que ya están buscando en Barcelona y alrededores.</li>
           <li><strong>Solo visitas con solvencia</strong> — filtramos antes de agendar; no pierdes fines de semana con curiosos sin financiación.</li>
-          <li><strong>Gestor dedicado</strong> — El equipo de NuevaHabitat te acompaña en comunicación, visitas, ofertas y documentación.</li>
+          <li><strong>Daniel y Sebastián, tus gestores</strong> — respuesta humana en Les Corts: visitas, ofertas y documentación en el panel.</li>
           <li><strong>3.000 € + IVA solo en escritura</strong> — si no vendes, no pagas. Sin comisión del 6%.</li>
         </ul>
       </div>
@@ -512,7 +674,7 @@
       <div class="lc-nh-panel-copy">
         <span class="overline">Panel del vendedor</span>
         <h2 class="section-title">Tu expediente de venta, controlado al milímetro</h2>
-        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con un gestor especializado en comunicación en todo momento. Ves el estado del proceso, las visitas, las ofertas y toda la documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
+        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">Cada vendedor tiene su <strong>panel personal</strong> con <strong>Daniel</strong> o <strong>Sebastián</strong> como gestor dedicado. Ves visitas, ofertas y documentación — reserva, arras, tasación — sin depender de emails sueltos.</p>
         <ul class="lc-nh-panel-list">
           <li><strong>Registro de visitas</strong> — fecha, comprador, agente y resultado; historial completo, no llamadas perdidas.</li>
           <li><strong>Control de visitas</strong> — tú marcas disponibilidad; solo se agenda en tus franjas, con ficha de control por visita.</li>
@@ -584,7 +746,7 @@
         <div class="lc-pm-docs">
           <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de reserva</strong><small>Firmado · FIRMACERT</small></div><span class="lc-pm-doc-ok">✓</span></div>
           <div class="lc-pm-doc"><span>📄</span><div><strong>Contrato de arras</strong><small>Firmado · pendiente escritura</small></div><span class="lc-pm-doc-ok">✓</span></div>
-          <div class="lc-pm-doc"><span>📄</span><div><strong>Informe de valoración</strong><small>Subido por Juan Cárdenas</small></div><span class="lc-pm-doc-ok">✓</span></div>
+          <div class="lc-pm-doc"><span>📄</span><div><strong>Informe de valoración</strong><small>Subido por Daniel Hernández</small></div><span class="lc-pm-doc-ok">✓</span></div>
         </div>
       </div>
     </div>
@@ -599,14 +761,15 @@
 </section>
 <section class="lc-call-banner lc-call-banner--prefaq">
   <div class="container">
-    <div class="lc-call-banner__inner fade-up">
-      <div class="lc-call-banner__text">
-        <span class="overline">Antes de irte</span>
-        <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
-        <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
-      </div>
-      <a href="tel:+34603656587" class="btn btn-gold btn-lg nh-call-link" data-nh-call="prefaq">Llama · 603 656 587 · 643 877 644</a>
+    <div class="lc-call-gestores fade-up lc-call-gestores--wa">
+    <div class="lc-call-gestores__text">
+      <span class="overline">Antes de irte</span>
+      <p class="lc-call-banner__title">WhatsApp con Daniel o Sebastián</p>
+      <p class="lc-call-banner__sub">Horario comercial lun–sáb 9–20h · Oficina Les Corts</p>
     </div>
+    <div class="lc-call-gestores__btns"><a href="https://wa.me/34643877644?text=Hola%20Daniel%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20sobre%20mi%20piso" class="btn btn-gold lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="prefaq-wa-daniel" target="_blank" rel="noopener">WhatsApp Daniel</a>
+      <a href="https://wa.me/34603656587?text=Hola%20Sebasti%C3%A1n%2C%20vengo%20desde%20la%20web%20de%20NuevaHabitat%20y%20quiero%20hablar%20con%20un%20gestor" class="btn btn-outline lc-wa-banner-btn" data-nh-wa-custom="1" data-nh-call="prefaq-wa-sebastian" target="_blank" rel="noopener">WhatsApp Sebastián</a></div>
+  </div>
   </div>
 </section>
 <section class="lc-section" style="background:var(--blanco)">
@@ -636,6 +799,12 @@
       </div><div class="faq-item">
         <button type="button" class="faq-q">¿Necesito abogado además de una inmobiliaria?</button>
         <div class="faq-a"><div class="faq-a-inner">Recomendamos asesoramiento legal específico para el procedimiento de desalojo si optas por esa vía; nosotros nos encargamos de la valoración y venta del inmueble.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Cuánto cuesta vender en Piso ocupado con NuevaHabitat?</button>
+        <div class="faq-a"><div class="faq-a-inner">3.000 € + IVA de honorarios fijos al vendedor, pagados solo en escritura. Sin venta, no facturamos comisión de agencia.</div></div>
+      </div><div class="faq-item">
+        <button type="button" class="faq-q">¿Puedo vender sin exclusiva de doce meses?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí. Trabajamos con mandatos flexibles: puedes seguir en portal y activamos compradores de cartera cuando el precio encaja.</div></div>
       </div></div>
     <div class="lc-kw"><strong>Búsquedas relacionadas:</strong> vender piso okupado barcelona · vender piso con okupas · comprar piso ocupado barcelona · desalojo okupas barcelona · vender vivienda ocupada</div>
   </div>
@@ -651,7 +820,7 @@
     <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="/privacidad">Privacidad</a><a href="/aviso-legal">Aviso legal</a></div></div>
   </div>
 </footer>
-<div class="whatsapp-float"><a href="https://wa.me/34603656587?text=Hola%2C%20tengo%20un%20piso%20ocupado%20en%20Barcelona%20y%20quiero%20venderlo" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
+<div class="whatsapp-float"><a href="https://wa.me/34603656587?text=Hola%2C%20tengo%20un%20piso%20ocupado%20en%20Barcelona%20y%20quiero%20venderlo" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp Sebastián"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
 <nav class="mbn" id="mbn">
   <a href="/" class="mbn-tab" data-tab="inicio" aria-label="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>Inicio</span></a>
   <a href="/inmuebles" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg><span>Inmuebles</span></a>

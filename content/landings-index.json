@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21T19:09:20.303Z",
+  "updated": "2026-09-27T12:05:33.709Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -98,13 +98,37 @@
       "priority": 0.87
     },
     {
+      "slug": "vender-pedralbes-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.868
+    },
+    {
+      "slug": "vender-sant-pere-santa-caterina-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.862
+    },
+    {
       "slug": "vender-badalona",
       "cluster": "barrio",
       "indexable": true,
       "priority": 0.86
     },
     {
+      "slug": "vender-diagonal-mar-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "vender-el-clot-la-sagrera-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-fort-pienc-barcelona",
       "cluster": "barrio",
       "indexable": true,
       "priority": 0.86
@@ -122,10 +146,40 @@
       "priority": 0.86
     },
     {
+      "slug": "vender-sagrada-familia-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "vender-sant-andreu",
       "cluster": "barrio",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "vender-vila-olimpica-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-tetuan-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.856
+    },
+    {
+      "slug": "vender-camp-de-larpa-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "vender-camp-den-grassot-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
     },
     {
       "slug": "vender-esplugues",
@@ -134,7 +188,73 @@
       "priority": 0.855
     },
     {
+      "slug": "vender-guinardo-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "vender-hostafrancs-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "vender-la-bordeta-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "vender-la-marina-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "vender-provencals-del-poblenou-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "vender-verneda-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "vender-la-sagrera-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.854
+    },
+    {
+      "slug": "vender-vall-d-hebron-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.854
+    },
+    {
+      "slug": "vender-montjuic-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.852
+    },
+    {
       "slug": "vender-cornella",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.85
+    },
+    {
+      "slug": "vender-el-besos-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.85
+    },
+    {
+      "slug": "vender-roquetes-barcelona",
       "cluster": "barrio",
       "indexable": true,
       "priority": 0.85
@@ -146,10 +266,34 @@
       "priority": 0.85
     },
     {
+      "slug": "vender-bon-pastor-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.848
+    },
+    {
+      "slug": "vender-navas-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.848
+    },
+    {
+      "slug": "vender-trinitat-vella-barcelona",
+      "cluster": "barrio",
+      "indexable": true,
+      "priority": 0.845
+    },
+    {
       "slug": "comprar-piso-les-corts-barcelona",
       "cluster": "comprador",
       "indexable": true,
       "priority": 0.88
+    },
+    {
+      "slug": "comprar-piso-ciutat-vella-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.87
     },
     {
       "slug": "comprar-piso-eixample-barcelona",
@@ -170,7 +314,31 @@
       "priority": 0.87
     },
     {
+      "slug": "comprar-piso-diagonal-mar-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "comprar-piso-el-clot-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "comprar-piso-fort-pienc-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "comprar-piso-poble-sec-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "comprar-piso-raval-barcelona",
       "cluster": "comprador",
       "indexable": true,
       "priority": 0.86
@@ -198,6 +366,24 @@
       "cluster": "comprador",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "comprar-piso-cornella-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "comprar-piso-guinardo-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.855
+    },
+    {
+      "slug": "comprar-piso-vila-olimpica-barcelona",
+      "cluster": "comprador",
+      "indexable": true,
+      "priority": 0.855
     },
     {
       "slug": "comprar-piso-badalona-barcelona",
@@ -416,6 +602,24 @@
       "priority": 0.9
     },
     {
+      "slug": "particular-vendo-piso-urgente-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-mi-piso-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "vender-piso-cornella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
       "slug": "vender-piso-rapido-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -426,6 +630,30 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
+    },
+    {
+      "slug": "vender-piso-sin-portales-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "vender-piso-sin-portales-eixample-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-piso-sin-portales-les-corts-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-vivienda-honorarios-fijos-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.9
     },
     {
       "slug": "venta-piso-economica-badalona-barcelona",

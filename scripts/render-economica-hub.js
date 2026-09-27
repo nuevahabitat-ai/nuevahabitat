@@ -51,7 +51,7 @@ function heroStatsBlock(L) {
 function renderEconomicaHub(L, ctx, deps) {
   const {
     SITE, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock,
-    buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, nhPlatformBundle,
+    buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, nhPlatformBundle, argumentoProseMarkup, gestoresContactBanner, testimonialsSection,
   } = deps;
 
   const rows = L.comparativa_modelos.rows.map((r) =>
@@ -121,15 +121,8 @@ ${callBanner()}
 </div>
 ${calcBlock(L)}
 ${nhPlatformBundle(L)}
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container">
-    <div class="lc-econ-intro">
-      <span class="overline">Venta económica en Barcelona</span>
-      <h2 class="section-title">Cómo funciona NuevaHabitat si quieres vender sin pagar un 6%</h2>
-    </div>
-    <div class="lc-prose">${L.argumento_principal}</div>
-  </div>
-</section>
+${argumentoProseMarkup(L, `<span class="overline">Venta económica en Barcelona</span><h2>Cómo funciona NuevaHabitat si quieres vender sin pagar un 6%</h2>${L.argumento_principal}`)}
+${gestoresContactBanner(L, 'postArticle')}
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container">
     <div class="text-center" style="margin-bottom:2rem">
@@ -151,15 +144,17 @@ ${nhPlatformBundle(L)}
     <div class="lc-econ-intro">
       <span class="overline">Sin compromiso</span>
       <h2 class="section-title">Pide valoración y plan de venta económica</h2>
-      <p style="color:var(--gris-texto);line-height:1.7">${L.form_side_text}</p>
+      <p style="color:var(--gris-texto);line-height:1.7">${L.form_side_text || 'Daniel o Sebastián te responden en 24 h.'}</p>
     </div>
     <div class="lc-econ-form-wrap">${formBlock(L).replace(' fade-up', '')}</div>
   </div>
 </section>
+${testimonialsSection(L)}
 ${relatedBlock(L, ctx)}
 ${callBanner('prefaq')}
 <section class="lc-section" style="background:var(--crema)">
   <div class="container" style="max-width:800px">
+    <div class="text-center" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Preguntas frecuentes</h2></div>
     <div class="faq-list">${faqHtml(L.faq)}</div>
     <div class="lc-kw">${L.keywords_footer}</div>
   </div>

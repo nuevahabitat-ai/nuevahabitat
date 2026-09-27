@@ -16,23 +16,54 @@ window.NH_LANDING_ORDER = [
   "vender-sant-antoni",
   "vender-sant-gervasi",
   "vender-sant-marti",
+  "vender-pedralbes-barcelona",
+  "vender-sant-pere-santa-caterina-barcelona",
   "vender-badalona",
+  "vender-diagonal-mar-barcelona",
   "vender-el-clot-la-sagrera-barcelona",
+  "vender-fort-pienc-barcelona",
   "vender-l-hospitalet",
   "vender-poble-sec",
+  "vender-sagrada-familia-barcelona",
   "vender-sant-andreu",
+  "vender-vila-olimpica-barcelona",
+  "vender-tetuan-barcelona",
+  "vender-camp-de-larpa-barcelona",
+  "vender-camp-den-grassot-barcelona",
   "vender-esplugues",
+  "vender-guinardo-barcelona",
+  "vender-hostafrancs-barcelona",
+  "vender-la-bordeta-barcelona",
+  "vender-la-marina-barcelona",
+  "vender-provencals-del-poblenou-barcelona",
+  "vender-verneda-barcelona",
+  "vender-la-sagrera-barcelona",
+  "vender-vall-d-hebron-barcelona",
+  "vender-montjuic-barcelona",
   "vender-cornella",
+  "vender-el-besos-barcelona",
+  "vender-roquetes-barcelona",
   "vender-sant-just-sant-joan-despi",
+  "vender-bon-pastor-barcelona",
+  "vender-navas-barcelona",
+  "vender-trinitat-vella-barcelona",
   "comprar-piso-les-corts-barcelona",
+  "comprar-piso-ciutat-vella-barcelona",
   "comprar-piso-eixample-barcelona",
   "comprar-piso-gracia-barcelona",
   "comprar-piso-sant-antoni-barcelona",
+  "comprar-piso-diagonal-mar-barcelona",
+  "comprar-piso-el-clot-barcelona",
+  "comprar-piso-fort-pienc-barcelona",
   "comprar-piso-poble-sec-barcelona",
+  "comprar-piso-raval-barcelona",
   "comprar-piso-sant-gervasi-barcelona",
   "comprar-piso-sant-marti-barcelona",
   "comprar-piso-sants-barcelona",
   "comprar-piso-sarria-barcelona",
+  "comprar-piso-cornella-barcelona",
+  "comprar-piso-guinardo-barcelona",
+  "comprar-piso-vila-olimpica-barcelona",
   "comprar-piso-badalona-barcelona",
   "comprar-piso-esplugues-barcelona",
   "comprar-piso-horta-barcelona",
@@ -69,8 +100,15 @@ window.NH_LANDING_ORDER = [
   "inmobiliaria-precio-fijo-sant-gervasi-barcelona",
   "inmobiliaria-precio-fijo-sants-barcelona",
   "inmobiliaria-precio-fijo-sarria-barcelona",
+  "particular-vendo-piso-urgente-barcelona",
+  "vender-mi-piso-barcelona",
+  "vender-piso-cornella-barcelona",
   "vender-piso-rapido-barcelona",
   "vender-piso-sin-exclusividad-barcelona",
+  "vender-piso-sin-portales-barcelona",
+  "vender-piso-sin-portales-eixample-barcelona",
+  "vender-piso-sin-portales-les-corts-barcelona",
+  "vender-vivienda-honorarios-fijos-barcelona",
   "venta-piso-economica-badalona-barcelona",
   "venta-piso-economica-barcelona",
   "venta-piso-economica-ciutat-vella-barcelona",
@@ -141,9 +179,60 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "¿Vendes en Badalona? Mercado ~2.650–3.100 €/m²."
+  },
+  "vender-bon-pastor-barcelona": {
+    "slug": "vender-bon-pastor-barcelona",
+    "cluster": "barrio",
+    "barrio": "Bon Pastor",
+    "footerLabel": "Vender en Bon Pastor",
+    "zonas": [
+      "Bon Pastor",
+      "La Maquinista",
+      "Límite Sant Andreu",
+      "Ronda de Sant Andreu"
+    ],
+    "priority": 0.848,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/sants2.jpg",
+    "cardTeaser": "¿Vendes en Bon Pastor? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-camp-de-larpa-barcelona": {
+    "slug": "vender-camp-de-larpa-barcelona",
+    "cluster": "barrio",
+    "barrio": "Camp de l'Arpa",
+    "footerLabel": "Vender en Camp de l'Arpa",
+    "zonas": [
+      "Camp de l'Arpa",
+      "Sant Martí de Provençals",
+      "El Clot sud",
+      "Gran Via"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "¿Vendes en Camp de l'Arpa? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-camp-den-grassot-barcelona": {
+    "slug": "vender-camp-den-grassot-barcelona",
+    "cluster": "barrio",
+    "barrio": "Camp d'en Grassot",
+    "footerLabel": "Vender en Camp d'en Grassot",
+    "zonas": [
+      "Camp d'en Grassot",
+      "Gràcia nord",
+      "Sant Salvador",
+      "El Coll"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/gracia4.jpg",
+    "cardTeaser": "¿Vendes en Camp d'en Grassot? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-cornella": {
     "slug": "vender-cornella",
@@ -159,9 +248,26 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona1.jpeg",
     "cardTeaser": "¿Vendes en Cornellà de Llobregat? Mercado ~2.600–3.100 €/m²."
+  },
+  "vender-diagonal-mar-barcelona": {
+    "slug": "vender-diagonal-mar-barcelona",
+    "cluster": "barrio",
+    "barrio": "Diagonal Mar",
+    "footerLabel": "Vender en Diagonal Mar",
+    "zonas": [
+      "Diagonal Mar",
+      "Parc de Diagonal Mar",
+      "Front marítim",
+      "Poblenou nord"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona7.webp",
+    "cardTeaser": "¿Vendes en Diagonal Mar? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-eixample": {
     "slug": "vender-eixample",
@@ -182,6 +288,23 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "¿Vendes tu piso en el Eixample? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
+  "vender-el-besos-barcelona": {
+    "slug": "vender-el-besos-barcelona",
+    "cluster": "barrio",
+    "barrio": "El Besòs",
+    "footerLabel": "Vender en El Besòs",
+    "zonas": [
+      "El Besòs i el Maresme",
+      "Besòs Mar",
+      "Provençals de Sant Martí",
+      "Límite Badalona"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris2.jpg",
+    "cardTeaser": "¿Vendes en El Besòs? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
   "vender-el-clot-la-sagrera-barcelona": {
     "slug": "vender-el-clot-la-sagrera-barcelona",
     "cluster": "barrio",
@@ -195,7 +318,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
     "cardTeaser": "¿Vendes tu piso en El Clot, La Sagrera o Sant Martí de Provençals? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -213,9 +336,26 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.855,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/esplugues1.jpg",
     "cardTeaser": "¿Vendes en Esplugues? Mercado ~3.200–3.800 €/m²."
+  },
+  "vender-fort-pienc-barcelona": {
+    "slug": "vender-fort-pienc-barcelona",
+    "cluster": "barrio",
+    "barrio": "Fort Pienc",
+    "footerLabel": "Vender en Fort Pienc",
+    "zonas": [
+      "Fort Pienc",
+      "Estació del Nord",
+      "Arc de Triomf",
+      "Límite Eixample"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "¿Vendes en Fort Pienc? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-gracia": {
     "slug": "vender-gracia",
@@ -230,9 +370,26 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "¿Vendes tu piso en Gràcia? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+  },
+  "vender-guinardo-barcelona": {
+    "slug": "vender-guinardo-barcelona",
+    "cluster": "barrio",
+    "barrio": "El Guinardó",
+    "footerLabel": "Vender en El Guinardó",
+    "zonas": [
+      "El Guinardó",
+      "Can Baró",
+      "El Carmel sud",
+      "Hospital de Sant Pau"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "¿Vendes en El Guinardó? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-horta": {
     "slug": "vender-horta",
@@ -248,9 +405,26 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/horta1.jpg",
     "cardTeaser": "¿Vendes en Horta-Guinardó, Montbau o Vall d'Hebron? Mercado ~3.900–4.300 €/m²."
+  },
+  "vender-hostafrancs-barcelona": {
+    "slug": "vender-hostafrancs-barcelona",
+    "cluster": "barrio",
+    "barrio": "Hostafrancs",
+    "footerLabel": "Vender en Hostafrancs",
+    "zonas": [
+      "Hostafrancs",
+      "La Bordeta sud",
+      "Gran Via",
+      "Plaça Espanya"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/sants2.jpg",
+    "cardTeaser": "¿Vendes en Hostafrancs? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-l-hospitalet": {
     "slug": "vender-l-hospitalet",
@@ -266,9 +440,60 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
     "cardTeaser": "¿Vendes en L'Hospitalet? Mercado ~2.750–3.200 €/m²."
+  },
+  "vender-la-bordeta-barcelona": {
+    "slug": "vender-la-bordeta-barcelona",
+    "cluster": "barrio",
+    "barrio": "La Bordeta",
+    "footerLabel": "Vender en La Bordeta",
+    "zonas": [
+      "La Bordeta",
+      "Magòria",
+      "Gran Via",
+      "Límite Hostafrancs"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/sants1.jpg",
+    "cardTeaser": "¿Vendes en La Bordeta? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-la-marina-barcelona": {
+    "slug": "vender-la-marina-barcelona",
+    "cluster": "barrio",
+    "barrio": "La Marina",
+    "footerLabel": "Vender en La Marina",
+    "zonas": [
+      "La Marina del Port",
+      "La Marina de Port",
+      "Zona Franca",
+      "Montjuïc sud"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "¿Vendes en La Marina? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-la-sagrera-barcelona": {
+    "slug": "vender-la-sagrera-barcelona",
+    "cluster": "barrio",
+    "barrio": "La Sagrera",
+    "footerLabel": "Vender en La Sagrera",
+    "zonas": [
+      "La Sagrera",
+      "Sagrera alta",
+      "Parc de la Sagrera",
+      "Límite Navas"
+    ],
+    "priority": 0.854,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet5.jpg",
+    "cardTeaser": "¿Vendes en La Sagrera? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-les-corts": {
     "slug": "vender-les-corts",
@@ -287,6 +512,40 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "¿Vendes tu piso en Les Corts? NuevaHabitat: plataforma para vendedores con honorarios fijos de 3.000€ + IVA."
   },
+  "vender-montjuic-barcelona": {
+    "slug": "vender-montjuic-barcelona",
+    "cluster": "barrio",
+    "barrio": "Montjuïc",
+    "footerLabel": "Vender en Montjuïc",
+    "zonas": [
+      "Montjuïc",
+      "Poble-sec nord",
+      "Font de la Guatlla",
+      "Límite Sants"
+    ],
+    "priority": 0.852,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "¿Vendes en Montjuïc? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-navas-barcelona": {
+    "slug": "vender-navas-barcelona",
+    "cluster": "barrio",
+    "barrio": "Navas",
+    "footerLabel": "Vender en Navas",
+    "zonas": [
+      "Navas",
+      "Sant Andreu de Palomar",
+      "Límite Congrés",
+      "Meridiana"
+    ],
+    "priority": 0.848,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet4.jpg",
+    "cardTeaser": "¿Vendes en Navas? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
   "vender-nou-barris": {
     "slug": "vender-nou-barris",
     "cluster": "barrio",
@@ -301,9 +560,26 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "¿Vendes tu piso en Nou Barris, Roquetes o Verdum? Honorarios fijos 3.000€ + IVA."
+  },
+  "vender-pedralbes-barcelona": {
+    "slug": "vender-pedralbes-barcelona",
+    "cluster": "barrio",
+    "barrio": "Pedralbes",
+    "footerLabel": "Vender en Pedralbes",
+    "zonas": [
+      "Pedralbes",
+      "Monestir de Pedralbes",
+      "Zona alta Les Corts",
+      "Av. Diagonal alta"
+    ],
+    "priority": 0.868,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/lescorts4.jpg",
+    "cardTeaser": "¿Vendes en Pedralbes? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-piso-barceloneta": {
     "slug": "vender-piso-barceloneta",
@@ -318,7 +594,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona2.jpg",
     "cardTeaser": "¿Vendes tu piso en la Barceloneta? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -335,7 +611,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/born1.jpg",
     "cardTeaser": "¿Vendes tu piso en el Born o Sant Pere? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -352,7 +628,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.9,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/ciutatvella2.jpg",
     "cardTeaser": "¿Vendes tu piso en Ciutat Vella? Guía por barrios (Gòtic, Born, Raval, Barceloneta)."
   },
@@ -369,7 +645,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/gotic1.jpg",
     "cardTeaser": "¿Vendes tu piso en el Barri Gòtic? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -386,7 +662,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/raval1.jpg",
     "cardTeaser": "¿Vendes tu piso en el Raval? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -403,7 +679,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
     "cardTeaser": "¿Vendes tu piso en Poble Sec? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -421,9 +697,60 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "¿Vendes tu piso en Poblenou o Vila Olímpica? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+  },
+  "vender-provencals-del-poblenou-barcelona": {
+    "slug": "vender-provencals-del-poblenou-barcelona",
+    "cluster": "barrio",
+    "barrio": "Provençals del Poblenou",
+    "footerLabel": "Vender en Provençals del Poblenou",
+    "zonas": [
+      "Provençals del Poblenou",
+      "Límite Poblenou",
+      "Límite Verneda",
+      "Rambla de Prim"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/poblenou1.jpeg",
+    "cardTeaser": "¿Vendes en Provençals del Poblenou? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24…"
+  },
+  "vender-roquetes-barcelona": {
+    "slug": "vender-roquetes-barcelona",
+    "cluster": "barrio",
+    "barrio": "Roquetes",
+    "footerLabel": "Vender en Roquetes",
+    "zonas": [
+      "Roquetes",
+      "Trinitat Vella sud",
+      "Via Favència",
+      "Límite Nou Barris"
+    ],
+    "priority": 0.85,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "¿Vendes en Roquetes? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-sagrada-familia-barcelona": {
+    "slug": "vender-sagrada-familia-barcelona",
+    "cluster": "barrio",
+    "barrio": "Sagrada Família",
+    "footerLabel": "Vender junto a la Sagrada Família",
+    "zonas": [
+      "Sagrada Família",
+      "Eixample esquerra",
+      "Límite Fort Pienc",
+      "Provença"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "¿Vendes en Sagrada Família? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-sant-andreu": {
     "slug": "vender-sant-andreu",
@@ -439,7 +766,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona5.jpg",
     "cardTeaser": "¿Vendes tu piso en Sant Andreu de Palomar? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -456,7 +783,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "¿Vendes tu piso en Sant Antoni? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -473,7 +800,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample4.jpg",
     "cardTeaser": "¿Vendes tu piso en Sant Gervasi (El Putxet, El Farró, Via Augusta)? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
   },
@@ -491,7 +818,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/santjust1.webp",
     "cardTeaser": "¿Vendes en Sant Just Desvern o Sant Joan Despí? Honorarios fijos 3.000€ + IVA desde nuestra oficina en Les Corts."
   },
@@ -510,9 +837,26 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "¿Vendes en Sant Martí? Poblenou, El Clot, 22@ ~3.900–5.200 €/m²."
+  },
+  "vender-sant-pere-santa-caterina-barcelona": {
+    "slug": "vender-sant-pere-santa-caterina-barcelona",
+    "cluster": "barrio",
+    "barrio": "Sant Pere / Santa Caterina",
+    "footerLabel": "Vender en Sant Pere / Santa Caterina",
+    "zonas": [
+      "Sant Pere",
+      "Santa Caterina",
+      "Mercat de Santa Caterina",
+      "Límite Born"
+    ],
+    "priority": 0.862,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/born1.jpg",
+    "cardTeaser": "¿Vendes en Sant Pere / Santa Caterina? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en…"
   },
   "vender-sants": {
     "slug": "vender-sants",
@@ -545,9 +889,93 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "¿Vendes tu piso en Sarrià? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+  },
+  "vender-tetuan-barcelona": {
+    "slug": "vender-tetuan-barcelona",
+    "cluster": "barrio",
+    "barrio": "Tetuan",
+    "footerLabel": "Vender en Tetuan",
+    "zonas": [
+      "Tetuan",
+      "Fort Pienc sud",
+      "Límite Sant Martí",
+      "Gran Via"
+    ],
+    "priority": 0.856,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/eixample5.jpg",
+    "cardTeaser": "¿Vendes en Tetuan? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-trinitat-vella-barcelona": {
+    "slug": "vender-trinitat-vella-barcelona",
+    "cluster": "barrio",
+    "barrio": "Trinitat Vella",
+    "footerLabel": "Vender en Trinitat Vella",
+    "zonas": [
+      "Trinitat Vella",
+      "Límite Baró de Viver",
+      "Via Barcino",
+      "Nou Barris nord"
+    ],
+    "priority": 0.845,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris2.jpg",
+    "cardTeaser": "¿Vendes en Trinitat Vella? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-vall-d-hebron-barcelona": {
+    "slug": "vender-vall-d-hebron-barcelona",
+    "cluster": "barrio",
+    "barrio": "Vall d'Hebron",
+    "footerLabel": "Vender en Vall d'Hebron",
+    "zonas": [
+      "Vall d'Hebron",
+      "Montbau",
+      "Límite Horta",
+      "Hospital universitari"
+    ],
+    "priority": 0.854,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "¿Vendes en Vall d'Hebron? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-verneda-barcelona": {
+    "slug": "vender-verneda-barcelona",
+    "cluster": "barrio",
+    "barrio": "La Verneda",
+    "footerLabel": "Vender en La Verneda",
+    "zonas": [
+      "La Verneda i la Pau",
+      "Provençals del Poblenou",
+      "El Clot nord"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "¿Vendes en La Verneda? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+  },
+  "vender-vila-olimpica-barcelona": {
+    "slug": "vender-vila-olimpica-barcelona",
+    "cluster": "barrio",
+    "barrio": "Vila Olímpica",
+    "footerLabel": "Vender en Vila Olímpica",
+    "zonas": [
+      "Vila Olímpica",
+      "Port Olímpic",
+      "Nova Icària",
+      "Límite Poblenou"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona2.jpg",
+    "cardTeaser": "¿Vendes en Vila Olímpica? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "cuanto-vale-mi-piso-barcelona": {
     "slug": "cuanto-vale-mi-piso-barcelona",
@@ -557,7 +985,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "cuanto vale mi piso barcelona",
     "badge": "Valoración gratuita · Sin compromiso",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior13.jpg",
     "cardTeaser": "Descubre cuánto vale tu piso en Barcelona con una valoración gratuita basada en comparables reales, no en e…"
   },
@@ -569,7 +997,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso alquilado barcelona",
     "badge": "Situación · Piso con inquilino",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior4.jpg",
     "cardTeaser": "¿Vendes un piso con inquilino en Barcelona? Te explicamos contrato en vigor, derecho de tanteo, visitas y p…"
   },
@@ -581,7 +1009,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso antes de comprar otro barcelona",
     "badge": "Situación · Venta + compra",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/familia3.jpg",
     "cardTeaser": "¿Vendes en Barcelona para comprar otra vivienda? Sincroniza plazos, arras, hipoteca y entrega de llaves."
   },
@@ -593,7 +1021,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso herencia barcelona",
     "badge": "Situación · Piso heredado",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/familia2.jpg",
     "cardTeaser": "¿Has heredado un piso en Barcelona y quieres venderlo? Te explicamos aceptación de herencia, plusvalía, IRP…"
   },
@@ -605,7 +1033,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso con hipoteca pendiente barcelona",
     "badge": "Situación · Hipoteca pendiente",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/firma1.jpg",
     "cardTeaser": "¿Puedes vender un piso con hipoteca pendiente en Barcelona? Te explicamos cancelación registral, subrogació…"
   },
@@ -617,7 +1045,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso inquilino contrato vencer barcelona",
     "badge": "Situación · Contrato por vencer",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior9.jpg",
     "cardTeaser": "¿Vendes en Barcelona y el contrato de alquiler vence pronto? Planifica entrega de llaves, visitas, precio y compradores."
   },
@@ -629,7 +1057,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso okupado barcelona",
     "badge": "Situación · Piso ocupado",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior8.jpg",
     "cardTeaser": "¿Tienes un piso ocupado en Barcelona y quieres venderlo? Te explicamos las opciones legales y de mercado, c…"
   },
@@ -641,7 +1069,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso separacion divorcio barcelona",
     "badge": "Situación · Separación o divorcio",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/familia5.jpg",
     "cardTeaser": "¿Vendes un piso tras una separación o divorcio en Barcelona? Te explicamos reparto del precio, hipoteca com…"
   },
@@ -653,7 +1081,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso traslado trabajo barcelona",
     "badge": "Situación · Traslado / mudanza",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona7.webp",
     "cardTeaser": "¿Te mudas y vendes tu piso en Barcelona? Traslado laboral, expatriación o cambio de ciudad."
   },
@@ -665,7 +1093,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender segunda residencia barcelona",
     "badge": "Situación · Piso vacío / 2ª residencia",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior12.webp",
     "cardTeaser": "¿Vendes un piso vacío o segunda residencia en Barcelona? Fiscalidad distinta, visitas flexibles y comprador…"
   },
@@ -677,7 +1105,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo badalona barcelona",
     "badge": "Badalona · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "Inmobiliaria con precio fijo en Badalona: 3.000€ + IVA solo en escritura."
   },
@@ -689,7 +1117,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo barcelona",
     "badge": "Barcelona · Precio fijo · Panel vendedor",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/comercial2.jpg",
     "cardTeaser": "Agencia en Barcelona con honorarios fijos 3.000€ + IVA solo al vender."
   },
@@ -701,7 +1129,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo ciutat vella barcelona",
     "badge": "Ciutat Vella · Centro histórico",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/ciutatvella2.jpg",
     "cardTeaser": "Agencia honorarios fijos Ciutat Vella: Gòtic, Born, Raval, Barceloneta."
   },
@@ -713,7 +1141,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo cornella barcelona",
     "badge": "Cornellà · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona1.jpeg",
     "cardTeaser": "Inmobiliaria con precio fijo en Cornellà: 3.000€ + IVA solo en escritura."
   },
@@ -725,7 +1153,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo eixample barcelona",
     "badge": "Eixample · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Inmobiliaria con precio fijo en Eixample: 3.000€ + IVA solo en escritura."
   },
@@ -737,7 +1165,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo el clot barcelona",
     "badge": "El Clot · La Sagrera · 08018",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
     "cardTeaser": "Agencia precio fijo El Clot, La Sagrera, Sant Martí de Provençals."
   },
@@ -749,7 +1177,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo esplugues barcelona",
     "badge": "Esplugues · Área metropolitana · 08950",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/esplugues1.jpg",
     "cardTeaser": "Agencia precio fijo Esplugues de Llobregat (08950)."
   },
@@ -761,7 +1189,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo gracia barcelona",
     "badge": "Gràcia · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Inmobiliaria con precio fijo en Gràcia: 3.000€ + IVA solo en escritura."
   },
@@ -773,7 +1201,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo horta barcelona",
     "badge": "Horta-Guinardó · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/horta1.jpg",
     "cardTeaser": "Inmobiliaria con precio fijo en Horta-Guinardó: 3.000€ + IVA solo en escritura."
   },
@@ -785,7 +1213,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo l hospitalet barcelona",
     "badge": "L'Hospitalet · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
     "cardTeaser": "Inmobiliaria con precio fijo en L'Hospitalet: 3.000€ + IVA solo en escritura."
   },
@@ -797,7 +1225,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo les corts barcelona",
     "badge": "Les Corts · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Inmobiliaria con precio fijo en Les Corts: 3.000€ + IVA solo en escritura."
   },
@@ -809,7 +1237,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo nou barris barcelona",
     "badge": "Nou Barris · Primera vivienda · Metro",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Agencia honorarios fijos Nou Barris (2.900–3.400 €/m²)."
   },
@@ -821,7 +1249,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo poble sec barcelona",
     "badge": "Poble Sec · Precio fijo · 08004",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
     "cardTeaser": "Landing intención: agencia honorarios fijos en Poble Sec (08004)."
   },
@@ -833,7 +1261,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo poblenou barcelona",
     "badge": "Poblenou · 22@ · Mar",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Agencia precio fijo Poblenou, Vila Olímpica, Rambla, 22@."
   },
@@ -845,7 +1273,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo sant andreu barcelona",
     "badge": "Sant Andreu · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona5.jpg",
     "cardTeaser": "Inmobiliaria con precio fijo en Sant Andreu: 3.000€ + IVA solo en escritura."
   },
@@ -857,7 +1285,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo sant antoni barcelona",
     "badge": "Sant Antoni · Precio fijo · Panel",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Honorarios fijos en Sant Antoni: 3.000€ + IVA solo al vender, no 6%."
   },
@@ -869,7 +1297,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo sant gervasi barcelona",
     "badge": "Sant Gervasi · Putxet · Via Augusta",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample4.jpg",
     "cardTeaser": "Agencia honorarios fijos Sant Gervasi (Putxet, Farró, Via Augusta)."
   },
@@ -881,7 +1309,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo sants barcelona",
     "badge": "Sants · Precio fijo · Panel vendedor",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
     "cardTeaser": "Agencia con honorarios fijos en Sants: 3.000€ + IVA solo al vender, no un 6%."
   },
@@ -893,9 +1321,45 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo sarria barcelona",
     "badge": "Sarrià · Precio fijo · Panel",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Vender en Sarrià, Bonanova o Tres Torres con honorarios fijos 3.000€ + IVA solo en escritura."
+  },
+  "particular-vendo-piso-urgente-barcelona": {
+    "slug": "particular-vendo-piso-urgente-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particular urgente",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "particular vendo piso urgente barcelona",
+    "badge": "Particular · Urgencia",
+    "testimonials": true,
+    "cardImage": "imagenes/comercial2.jpg",
+    "cardTeaser": "Particular con prisa: compradores con hipoteca, plan 30-60 días y 3.630 € solo en escritura."
+  },
+  "vender-mi-piso-barcelona": {
+    "slug": "vender-mi-piso-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Vender mi piso",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "vender mi piso en barcelona",
+    "badge": "Mi piso · Barcelona",
+    "testimonials": true,
+    "cardImage": "imagenes/agente inmobiliario2.jpg",
+    "cardTeaser": "Quiero vender mi piso en Barcelona: por dónde empezar, sin portal obligatorio ni comisión del 6%."
+  },
+  "vender-piso-cornella-barcelona": {
+    "slug": "vender-piso-cornella-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Vender Cornellà",
+    "priority": 0.87,
+    "indexable": true,
+    "keyword_principal": "venta piso cornella",
+    "badge": "Cornellà · Vendedor",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona1.jpeg",
+    "cardTeaser": "Vender piso en Cornellà: L5, Sant Ildefons o Centre — compradores filtrados y 3.630 € en escritura."
   },
   "vender-piso-rapido-barcelona": {
     "slug": "vender-piso-rapido-barcelona",
@@ -905,7 +1369,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso rapido barcelona",
     "badge": "Urgencia · Venta ágil",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/comercial2.jpg",
     "cardTeaser": "¿Necesitas vender tu piso rápido en Barcelona? Calcula tu ahorro, compara modelos (agencia, particular, por…"
   },
@@ -917,9 +1381,57 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso sin exclusividad barcelona",
     "badge": "Particular · Sin exclusiva",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/agente inmobiliario2.jpg",
     "cardTeaser": "¿Quieres vender tu piso en Barcelona sin exclusiva ni permanencia abusiva? Guía para particulares: compara …"
+  },
+  "vender-piso-sin-portales-barcelona": {
+    "slug": "vender-piso-sin-portales-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Vender sin portales",
+    "priority": 0.91,
+    "indexable": true,
+    "keyword_principal": "vender piso sin portales barcelona",
+    "badge": "Sin portales · Cartera compradores",
+    "testimonials": true,
+    "cardImage": "imagenes/comercial2.jpg",
+    "cardTeaser": "¿Vender sin Idealista ni Fotocasa? Cartera de compradores cualificados, visitas filtradas y honorarios fijos 3.630 € solo en escritura."
+  },
+  "vender-piso-sin-portales-eixample-barcelona": {
+    "slug": "vender-piso-sin-portales-eixample-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Sin portales Eixample",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso eixample sin portales",
+    "badge": "Eixample · Sin portales",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "Eixample sin Idealista: finca modernista o Sant Antoni con compradores filtrados por perfil."
+  },
+  "vender-piso-sin-portales-les-corts-barcelona": {
+    "slug": "vender-piso-sin-portales-les-corts-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Sin portales Les Corts",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso les corts sin portales",
+    "badge": "Les Corts · Sin portales",
+    "testimonials": true,
+    "cardImage": "imagenes/lescorts1.jpg",
+    "cardTeaser": "Les Corts sin portales: matching por Numància, Pedralbes o universidad — precio fijo en escritura."
+  },
+  "vender-vivienda-honorarios-fijos-barcelona": {
+    "slug": "vender-vivienda-honorarios-fijos-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Honorarios fijos",
+    "priority": 0.9,
+    "indexable": true,
+    "keyword_principal": "vender vivienda honorarios fijos barcelona",
+    "badge": "Barcelona · Honorarios fijos",
+    "testimonials": true,
+    "cardImage": "imagenes/agente inmobiliario2.jpg",
+    "cardTeaser": "¿Vender en Barcelona sin comisiones desorbitadas? 3.630 € fijos solo en escritura, compradores cualificados y panel vendedor."
   },
   "venta-piso-economica-badalona-barcelona": {
     "slug": "venta-piso-economica-badalona-barcelona",
@@ -929,7 +1441,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica badalona barcelona",
     "badge": "Badalona · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "Vende tu piso en Badalona con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -941,7 +1453,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica barcelona",
     "badge": "Barcelona · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/familia10.jpg",
     "cardTeaser": "Vende tu piso en Barcelona con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -953,7 +1465,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica ciutat vella barcelona",
     "badge": "Ciutat Vella · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/ciutatvella2.jpg",
     "cardTeaser": "Vende tu piso en Ciutat Vella con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -965,7 +1477,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica cornellà de llobregat barcelona",
     "badge": "Cornellà de Llobregat · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona1.jpeg",
     "cardTeaser": "Vende tu piso en Cornellà de Llobregat con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -977,7 +1489,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica eixample barcelona",
     "badge": "Eixample · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Vende tu piso en Eixample con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -989,7 +1501,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica esplugues de llobregat barcelona",
     "badge": "Esplugues de Llobregat · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/esplugues1.jpg",
     "cardTeaser": "Vende tu piso en Esplugues de Llobregat con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1001,7 +1513,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica gràcia barcelona",
     "badge": "Gràcia · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Vende tu piso en Gràcia con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1013,7 +1525,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica horta-guinardó barcelona",
     "badge": "Horta-Guinardó · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/horta1.jpg",
     "cardTeaser": "Vende tu piso en Horta-Guinardó con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1025,7 +1537,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica l'hospitalet barcelona",
     "badge": "L'Hospitalet · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
     "cardTeaser": "Vende tu piso en L'Hospitalet con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1037,7 +1549,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica les corts barcelona",
     "badge": "Les Corts · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Vende tu piso en Les Corts con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1049,7 +1561,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica nou barris barcelona",
     "badge": "Nou Barris · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Vende tu piso en Nou Barris con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1061,7 +1573,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica poble sec barcelona",
     "badge": "Poble Sec · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
     "cardTeaser": "Vende tu piso en Poble Sec con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1073,7 +1585,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica poblenou barcelona",
     "badge": "Poblenou · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Vende tu piso en Poblenou con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1085,7 +1597,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica sant andreu barcelona",
     "badge": "Sant Andreu · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona5.jpg",
     "cardTeaser": "Vende tu piso en Sant Andreu con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1097,7 +1609,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica sant antoni barcelona",
     "badge": "Sant Antoni · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Vende tu piso en Sant Antoni con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1109,7 +1621,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica sant gervasi barcelona",
     "badge": "Sant Gervasi · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample4.jpg",
     "cardTeaser": "Vende tu piso en Sant Gervasi con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1121,7 +1633,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica sant martí barcelona",
     "badge": "Sant Martí · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "Vende tu piso en Sant Martí con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1133,7 +1645,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica sants barcelona",
     "badge": "Sants · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
     "cardTeaser": "Vende tu piso en Sants con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1145,7 +1657,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "venta de piso economica sarrià barcelona",
     "badge": "Sarrià · Venta económica · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Vende tu piso en Sarrià con honorarios fijos 3.630 € (solo en escritura)."
   },
@@ -1157,7 +1669,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular badalona",
     "badge": "Badalona · 08911 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "Guía particular Badalona: 2.650 – 3.100 €/m² (Centre · Gorg · Montigalà)."
   },
@@ -1169,7 +1681,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular barcelona",
     "badge": "Barcelona · Particular vendedor · Precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/comercial2.jpg",
     "cardTeaser": "Guía para propietarios que venden por su cuenta en Barcelona: documentos, errores típicos, visitas con crit…"
   },
@@ -1181,7 +1693,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular ciutat vella barcelona",
     "badge": "Ciutat Vella · Gòtic · Born · Raval · Barceloneta",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/ciutatvella2.jpg",
     "cardTeaser": "Guía particular en Ciutat Vella: cuatro barrios, precios 3.000–6.900 €/m², licencias, herencias y comprador…"
   },
@@ -1193,7 +1705,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular cornella",
     "badge": "Cornellà · 08940 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona1.jpeg",
     "cardTeaser": "Guía particular Cornellà de Llobregat: 2.600 – 3.100 €/m² (Centre · Sant Ildefons · Almeda)."
   },
@@ -1205,7 +1717,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular eixample barcelona",
     "badge": "Eixample · Finca · Particular vendedor",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Guía particular Eixample: Dreta, Esquerra, Sant Antoni, Fort Pienc."
   },
@@ -1217,7 +1729,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular esplugues",
     "badge": "Esplugues · 08950 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/esplugues1.jpg",
     "cardTeaser": "Guía particular Esplugues de Llobregat: 3.200 – 3.800 €/m² (Can Vidalet · Centre · Finestrelles)."
   },
@@ -1229,7 +1741,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular gracia barcelona",
     "badge": "Gràcia · Plazas · Particular vendedor",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Guía particular Gràcia: Vila, Camp d'en Grassot, Vallcarca."
   },
@@ -1241,7 +1753,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular horta barcelona",
     "badge": "Horta-Guinardó · 08031 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/horta1.jpg",
     "cardTeaser": "Guía particular Horta-Guinardó: 3.900 – 4.300 €/m² (Horta · Montbau · Guinardó)."
   },
@@ -1253,7 +1765,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular l hospitalet",
     "badge": "L'Hospitalet · 08901 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
     "cardTeaser": "Guía particular L'Hospitalet de Llobregat: 2.750 – 3.200 €/m² (Centre · Bellvitge · Pubilla)."
   },
@@ -1265,7 +1777,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular les corts barcelona",
     "badge": "Les Corts · Particular vendedor · Oficina NH",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Guía para propietarios en Les Corts (Numància, Pedralbes, Zona Universitaria): precios 4.700–6.200 €/m², er…"
   },
@@ -1277,7 +1789,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular nou barris barcelona",
     "badge": "Nou Barris · 08016 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Guía particular Nou Barris: 2.900 – 3.400 €/m² (Verdum · Roquetes · Trinitat Vella)."
   },
@@ -1289,7 +1801,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular poble sec barcelona",
     "badge": "Poble Sec · 08004 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
     "cardTeaser": "Guía particular Poble Sec: 3.900 – 4.900 €/m² (Paral·lel · Montjuïc · Sortidor)."
   },
@@ -1301,7 +1813,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular poblenou barcelona",
     "badge": "Poblenou · Mar · 22@ · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Guía particular Poblenou: Rambla, 22@, lofts, Diagonal Mar."
   },
@@ -1313,7 +1825,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular sant andreu barcelona",
     "badge": "Sant Andreu · 08030 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona5.jpg",
     "cardTeaser": "Guía particular Sant Andreu: 3.100 – 4.000 €/m² (Palomar · Congrés · Fabra i Coats)."
   },
@@ -1325,7 +1837,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular sant antoni barcelona",
     "badge": "Sant Antoni · 08015 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Guía particular Sant Antoni: 4.700 – 5.900 €/m² (Superilla · Mercat · Comte Borrell)."
   },
@@ -1337,7 +1849,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular sant gervasi barcelona",
     "badge": "Sant Gervasi · 08021 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample4.jpg",
     "cardTeaser": "Guía particular Sant Gervasi: 5.000 – 6.500 €/m² (Putxet · Farró · Via Augusta)."
   },
@@ -1349,7 +1861,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular sant marti barcelona",
     "badge": "Sant Martí · 08005 · Particular",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "Guía particular Sant Martí: 3.900 – 5.200 €/m² (Poblenou · Clot · 22@ · Besòs)."
   },
@@ -1361,7 +1873,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular sants barcelona",
     "badge": "Sants · 08014 · Particular vendedor",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
     "cardTeaser": "Guía particular Sants: Hostafrancs, La Bordeta, Estació."
   },
@@ -1373,7 +1885,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso particular sarria barcelona",
     "badge": "Sarrià · Premium · Particular vendedor",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Guía particular Sarrià: Bonanova, Galvany, Tres Torres."
   },
@@ -1385,7 +1897,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "comision inmobiliaria barcelona vs precio fijo",
     "badge": "Comparativa · 6% vs 3.000€ fijos",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/equipo1.jpg",
     "cardTeaser": "¿Cuánto cobra una inmobiliaria en Barcelona? Compara comisión del 6% + IVA vs precio fijo 3.000€ + IVA de NuevaHabitat."
   },
@@ -1397,7 +1909,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "nuevahabitat vs clikalia barcelona",
     "badge": "Comparativa · Venta instantánea vs precio de mercado",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/inmobiliario4.jpg",
     "cardTeaser": "¿Vender a un comprador instantáneo como Clikalia o con NuevaHabitat? Compara el descuento del iBuyer frente…"
   },
@@ -1409,7 +1921,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "nuevahabitat vs fotocasa particular",
     "badge": "Comparativa · Fotocasa vs precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior5.jpg",
     "cardTeaser": "¿Vender en Fotocasa como particular o con NuevaHabitat en Barcelona? Coste del anuncio, filtro de comprador…"
   },
@@ -1421,7 +1933,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "nuevahabitat vs housfy barcelona",
     "badge": "Comparativa · Dos modelos de precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/inmobiliario2.jpg",
     "cardTeaser": "¿Housfy o NuevaHabitat para vender tu piso en Barcelona? Compara acompañamiento local, visitas presenciales…"
   },
@@ -1433,7 +1945,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "nuevahabitat vs idealista particular",
     "badge": "Comparativa · Particular vs precio fijo",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/comercial1.jpg",
     "cardTeaser": "¿Vender en Idealista como particular o con NuevaHabitat? Compara coste real, filtro de compradores, negocia…"
   },
@@ -1445,7 +1957,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "keyword_principal": "vender piso por tu cuenta vs inmobiliaria barcelona",
     "badge": "Comparativa · Solo vs acompañado",
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/familia1.jpg",
     "cardTeaser": "¿Vender el piso solo o con NuevaHabitat en Barcelona? Compara tiempo, riesgos legales, filtro de compradore…"
   },
@@ -1465,7 +1977,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "Guía comprador Badalona: elige barrio (no solo municipio), negocia con datos, revisa ITE y arras, firma escritura."
   },
@@ -1476,10 +1988,65 @@ window.NH_LANDINGS = {
     "footerLabel": "Comprar piso Barcelona",
     "priority": 0.9,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "badge": "Comprador · Barcelona",
     "cardImage": "imagenes/familia2.jpg",
     "cardTeaser": "¿Buscas comprar piso en Barcelona? NuevaHabitat te acompaña con honorarios fijos de 5.000€ + IVA, solo en escritura."
+  },
+  "comprar-piso-ciutat-vella-barcelona": {
+    "slug": "comprar-piso-ciutat-vella-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Ciutat Vella",
+    "footerLabel": "Comprar en Ciutat Vella",
+    "zonas": [
+      "Gòtic",
+      "Born",
+      "Barceloneta",
+      "Raval",
+      "Sant Pere"
+    ],
+    "priority": 0.87,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/ciutatvella2.jpg",
+    "cardTeaser": "Comprar en Ciutat Vella con guía experto: búsqueda, negociación, trámites hasta escritura."
+  },
+  "comprar-piso-cornella-barcelona": {
+    "slug": "comprar-piso-cornella-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Cornellà",
+    "footerLabel": "Comprar en Cornellà",
+    "zonas": [
+      "Centre",
+      "Sant Ildefons",
+      "Almeda",
+      "Can Mercader"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet3.jpg",
+    "cardTeaser": "Comprar en Cornellà con guía experto: búsqueda, negociación, trámites hasta escritura."
+  },
+  "comprar-piso-diagonal-mar-barcelona": {
+    "slug": "comprar-piso-diagonal-mar-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Diagonal Mar",
+    "footerLabel": "Comprar en Diagonal Mar",
+    "zonas": [
+      "Diagonal Mar",
+      "Parc de Diagonal Mar",
+      "Front marítim",
+      "Poblenou nord"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona7.webp",
+    "cardTeaser": "Comprar en Diagonal Mar con guía experto: búsqueda, negociación, trámites hasta escritura."
   },
   "comprar-piso-eixample-barcelona": {
     "slug": "comprar-piso-eixample-barcelona",
@@ -1497,9 +2064,27 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "¿Quieres comprar piso en el Eixample? Acompañamiento comprador con 5.000€ + IVA solo en escritura."
+  },
+  "comprar-piso-el-clot-barcelona": {
+    "slug": "comprar-piso-el-clot-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "El Clot",
+    "footerLabel": "Comprar en El Clot",
+    "zonas": [
+      "El Clot",
+      "La Sagrera",
+      "Navas",
+      "Plaça de les Glòries"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/poblenou2.jfif",
+    "cardTeaser": "Comprar en El Clot con guía experto: búsqueda, negociación, trámites hasta escritura."
   },
   "comprar-piso-esplugues-barcelona": {
     "slug": "comprar-piso-esplugues-barcelona",
@@ -1516,9 +2101,27 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/esplugues1.jpg",
     "cardTeaser": "Familias entre Les Corts y Sarrià: guía comprador en Esplugues, bloques vs adosados, negociación, revisión …"
+  },
+  "comprar-piso-fort-pienc-barcelona": {
+    "slug": "comprar-piso-fort-pienc-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Fort Pienc",
+    "footerLabel": "Comprar en Fort Pienc",
+    "zonas": [
+      "Fort Pienc",
+      "Estació del Nord",
+      "Arc de Triomf",
+      "Límite Eixample"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "Comprar en Fort Pienc con guía experto: búsqueda, negociación, trámites hasta escritura."
   },
   "comprar-piso-gracia-barcelona": {
     "slug": "comprar-piso-gracia-barcelona",
@@ -1534,9 +2137,27 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Comprar en Gràcia con guía experto: búsqueda de piso, negociación, revisión de documentación y trámites has…"
+  },
+  "comprar-piso-guinardo-barcelona": {
+    "slug": "comprar-piso-guinardo-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "El Guinardó",
+    "footerLabel": "Comprar en El Guinardó",
+    "zonas": [
+      "El Guinardó",
+      "Can Baró",
+      "Hospital de Sant Pau",
+      "El Carmel sud"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "Comprar en El Guinardó con guía experto: búsqueda, negociación, trámites hasta escritura."
   },
   "comprar-piso-horta-barcelona": {
     "slug": "comprar-piso-horta-barcelona",
@@ -1553,7 +2174,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/horta1.jpg",
     "cardTeaser": "Familias en Horta: Montbau plano vs Teixonera con pendiente, negociación con comparables, revisión de terra…"
   },
@@ -1572,7 +2193,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
     "cardTeaser": "Más metros en L'Hospitalet con guía comprador: Centre vs Bellvitge, negociación en mercado de volumen, revi…"
   },
@@ -1591,7 +2212,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.88,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "NuevaHabitat acompaña al comprador en Les Corts de principio a fin: búsqueda de vivienda, negociación, revi…"
   },
@@ -1610,7 +2231,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Entrada a Barcelona ciudad en Nou Barris: bloques 60-70, metro L3/L4/L5, negociación con comparables, revis…"
   },
@@ -1628,7 +2249,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
     "cardTeaser": "Fincas sin ascensor, luz en calle estrecha y terraza con vistas: guía comprador Poble Sec, negociación, rev…"
   },
@@ -1647,9 +2268,27 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Comprar en Poblenou y 22@ con NuevaHabitat: búsqueda de vivienda, negociación, revisión documental y trámit…"
+  },
+  "comprar-piso-raval-barcelona": {
+    "slug": "comprar-piso-raval-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "El Raval",
+    "footerLabel": "Comprar en El Raval",
+    "zonas": [
+      "Raval sud",
+      "Raval nord",
+      "MACBA",
+      "Rambla del Raval"
+    ],
+    "priority": 0.86,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/raval1.jpg",
+    "cardTeaser": "Comprar en El Raval con guía experto: búsqueda, negociación, trámites hasta escritura."
   },
   "comprar-piso-sant-andreu-barcelona": {
     "slug": "comprar-piso-sant-andreu-barcelona",
@@ -1666,7 +2305,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.85,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/barcelona5.jpg",
     "cardTeaser": "Pueblo dentro de Barcelona: guía comprador en Sant Andreu, regeneración Fabra i Coats, fincas sin ascensor …"
   },
@@ -1684,7 +2323,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.87,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Mercado competitivo en Sant Antoni: calle peatonal vs ronda, finca modernista, negociación con comparables …"
   },
@@ -1702,7 +2341,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample4.jpg",
     "cardTeaser": "Guía comprador en Sant Gervasi: micro-zonas Putxet y Farró, negociación con propietario, revisión de arras …"
   },
@@ -1721,7 +2360,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "Guía comprador Sant Martí: no confundas El Clot con Poblenou en precio."
   },
@@ -1739,7 +2378,7 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
     "cardTeaser": "Comprar en Sants con NuevaHabitat: te ayudamos a encontrar piso cerca de la estación, negociamos precio, re…"
   },
@@ -1758,9 +2397,27 @@ window.NH_LANDINGS = {
     ],
     "priority": 0.86,
     "indexable": true,
-    "testimonials": false,
+    "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Comprar en Sarrià, Bonanova o Tres Torres con guía experto: búsqueda discreta, negociación técnica, revisió…"
+  },
+  "comprar-piso-vila-olimpica-barcelona": {
+    "slug": "comprar-piso-vila-olimpica-barcelona",
+    "cluster": "comprador",
+    "audience": "comprador",
+    "barrio": "Vila Olímpica",
+    "footerLabel": "Comprar en Vila Olímpica",
+    "zonas": [
+      "Vila Olímpica",
+      "Port Olímpic",
+      "Nova Icària",
+      "Platja"
+    ],
+    "priority": 0.855,
+    "indexable": true,
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona2.jpg",
+    "cardTeaser": "Comprar en Vila Olímpica con guía experto: búsqueda, negociación, trámites hasta escritura."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

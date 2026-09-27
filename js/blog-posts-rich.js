@@ -1739,6 +1739,94 @@
       </aside>
       `,
     },
+
+    'guia-vender-micro-barrios-barcelona-2026': {
+      readMin: 11,
+      faq: [
+        { q: '¿Por qué importa el micro-barrio al vender en Barcelona?', a: 'Idealista y los buscadores mezclan distritos enteros. Un comprador compara Bon Pastor con Verneda, no con “Sant Andreu” genérico. El precio de salida debe usar comparables de la misma manzana; si no, la operación se alarga semanas o meses.' },
+        { q: '¿Cuánto cuesta vender con inmobiliaria en estos barrios?', a: 'La comisión tradicional del 3–6% puede superar 15.000–40.000 € según ticket. NuevaHabitat cobra 3.000 € + IVA fijos al vendedor, solo en escritura.' },
+        { q: '¿Qué barrios trata esta guía?', a: 'Bon Pastor, Navas, Montjuïc, Pedralbes, Trinitat Vella, Vall d\'Hebron, Tetuan, Sant Pere/Santa Caterina y La Sagrera — cada uno con landing específica y rangos de precio orientativos 2026.' },
+        { q: '¿Puedo vender sin exclusiva larga?', a: 'Sí. Mandatos flexibles: puedes mantener anuncio en portal y activamos compradores de cartera cuando el precio encaja con su preaprobación.' },
+        { q: '¿Cómo pido valoración gratuita?', a: 'Desde /vender o la landing de tu barrio (por ejemplo /vender-navas-barcelona). Visita presencial en 24 h laborables desde Les Corts.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Barcelona no es un solo mercado: la diferencia entre Pedralbes y Trinitat Vella supera 4.000 €/m².</li>
+          <li>Publicar “distrito” sin micro-zona es el error más caro en Bon Pastor, Navas, La Sagrera y Tetuan.</li>
+          <li>Cada barrio de esta guía tiene página de venta con pricing local y honorarios fijos 3.000 € + IVA.</li>
+          <li>Documentación (ITE, comunidad, certificado energético) pesa igual en ticket bajo y en prime.</li>
+          <li>Enlaces directos a landings indexables para vendedores y para Google Search Console.</li>
+        </ul>
+      </aside>
+      <nav class="blog-toc">
+        <p>Contenido del artículo</p>
+        <ol>
+          <li><a href="#por-que-micro">Por qué el micro-barrio decide la venta</a></li>
+          <li><a href="#sant-andreu">Sant Andreu: Bon Pastor, Navas y La Sagrera</a></li>
+          <li><a href="#sants-montjuic">Sants-Montjuïc y Ciutat Vella</a></li>
+          <li><a href="#prime-zona-alta">Pedralbes y zona alta</a></li>
+          <li><a href="#nou-barris-entrada">Nou Barris y ticket de entrada</a></li>
+          <li><a href="#horta-tetuan">Vall d'Hebron, Horta y Tetuan</a></li>
+          <li><a href="#tabla-resumen">Tabla resumen €/m²</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ol>
+      </nav>
+      <p>Si buscas <strong>vender piso en un barrio concreto de Barcelona</strong>, Google ya no premia páginas genéricas de “inmobiliaria en Barcelona”. Premia respuestas locales: precio por calle, perfil de comprador, tiempos de venta y enlaces útiles. Esta guía recorre <strong>nueve micro-barrios</strong> donde vemos operaciones reales en 2026 — desde ticket de entrada en Trinitat Vella hasta prime en Pedralbes — con enlace a la landing de venta de NuevaHabitat en cada uno.</p>
+      <h2 id="por-que-micro">Por qué el micro-barrio decide la venta</h2>
+      <p>Los portales agrupan anuncios bajo etiquetas amplias (“Sant Andreu”, “Sant Martí”, “Ciutat Vella”). El comprador, en cambio, filtra por estación de metro, ruido de avenida y comparables que conoce del fin de semana anterior. Si fijas el precio de salida con la media del distrito, dos escenarios repetimos cada semana: sobreprecio y cero ofertas, o precio bajo y pérdida de neto en escritura.</p>
+      <p>La salida es <strong>pricing por finca</strong>: comparables cerrados o visitas cualificadas en la misma manzana, documentación lista antes del primer banco del comprador, y honorarios predecibles. Por eso hemos publicado landings específicas — indexables en <a href="/mapa-del-sitio">mapa del sitio</a> — en lugar de un único texto para todo Barcelona.</p>
+      <h2 id="sant-andreu">Sant Andreu: Bon Pastor, Navas y La Sagrera</h2>
+      <p><strong>Bon Pastor</strong> (3.100–3.800 €/m² orientativo) mezcla casas bajas junto al Besòs y bloques cerca de la Maquinista. Comprador de primera vivienda compara con <a href="/vender-verneda-barcelona">La Verneda</a>, no con Eixample. Guía: <a href="/vender-bon-pastor-barcelona">vender piso en Bon Pastor</a>.</p>
+      <p><strong>Navas</strong> conecta Meridiana y metro L1 (Fabra i Puig, Navas). Ticket algo superior a Bon Pastor; riesgo habitual: publicar como “Sant Andreu” y mezclar comparables del <a href="/vender-el-clot-la-sagrera-barcelona">Clot</a>. Guía: <a href="/vender-navas-barcelona">vender piso en Navas</a>.</p>
+      <p><strong>La Sagrera</strong> gana interés por parque, estación y familias que no alcanzan el Clot céntrico. Distinto a la landing combo Clot-Sagrera: aquí el buscador escribe “Sagrera” explícito. Guía: <a href="/vender-la-sagrera-barcelona">vender piso en La Sagrera</a>. Distrito completo: <a href="/vender-sant-andreu">vender en Sant Andreu</a>.</p>
+      <h2 id="sants-montjuic">Sants-Montjuïc y Ciutat Vella</h2>
+      <p><strong>Montjuïc</strong> vende verde, pendiente y calidad de vida distinta a <a href="/vender-poble-sec">Poble-sec</a> céntrico. Ascensor, aparcamiento y verano sin lift en calles empinadas definen visitas filtradas. Guía: <a href="/vender-montjuic-barcelona">vender piso en Montjuïc</a>.</p>
+      <p><strong>Sant Pere y Santa Caterina</strong> son Ciutat Vella residencial: mercado, fincas estrechas, ITE y humedades pesan más que en Eixample. No competir en precio con <a href="/vender-piso-born-barcelona">El Born</a> turístico si tu piso es interior. Guía: <a href="/vender-sant-pere-santa-caterina-barcelona">vender en Sant Pere / Santa Caterina</a>.</p>
+      <h2 id="prime-zona-alta">Pedralbes y zona alta</h2>
+      <p><strong>Pedralbes</strong> (6.200–8.500 €/m² en rangos prime) exige reportaje discreto, parking trazado en nota simple y comparativa con <a href="/vender-sarria">Sarrià</a> el mismo día de visitas. Sobre 720.000 €, el ahorro entre comisión variable 6% y <strong>3.000 € + IVA</strong> fijos supera 40.000 €. Guía: <a href="/vender-pedralbes-barcelona">vender piso en Pedralbes</a>.</p>
+      <h2 id="nou-barris-entrada">Nou Barris y ticket de entrada</h2>
+      <p><strong>Trinitat Vella</strong> concentra pisos amplios y comprador muy sensible a cuota hipotecaria (2.900–3.600 €/m²). Separar comparables de <a href="/vender-roquetes-barcelona">Roquetes</a> y portal “Nou Barris” genérico. Guía: <a href="/vender-trinitat-vella-barcelona">vender piso en Trinitat Vella</a>. Más contexto: <a href="/vender-nou-barris">vender en Nou Barris</a>.</p>
+      <h2 id="horta-tetuan">Vall d'Hebron, Horta y Tetuan</h2>
+      <p><strong>Vall d'Hebron</strong> mezcla campus sanitario, familias y vistas a Collserola. No es “Horta genérico”: Montbau y calles en pendiente tienen reglas propias. Guía: <a href="/vender-vall-d-hebron-barcelona">vender en Vall d'Hebron</a> · <a href="/vender-horta">Horta</a>.</p>
+      <p><strong>Tetuan</strong> (Sant Martí) es puente Gran Via–Glòries: profesionales que comparan con <a href="/vender-fort-pienc-barcelona">Fort Pienc</a> y Eixample con ticket contenido (4.200–5.400 €/m²). Guía: <a href="/vender-tetuan-barcelona">vender piso en Tetuan</a>.</p>
+      <h2 id="tabla-resumen">Tabla resumen orientativa (2026)</h2>
+      <table class="blog-table">
+        <thead><tr><th>Micro-barrio</th><th>€/m² orientativo</th><th>Landing vendedor</th></tr></thead>
+        <tbody>
+          <tr><td>Bon Pastor</td><td>3.100 – 3.800</td><td><a href="/vender-bon-pastor-barcelona">/vender-bon-pastor-barcelona</a></td></tr>
+          <tr><td>Navas</td><td>3.300 – 4.100</td><td><a href="/vender-navas-barcelona">/vender-navas-barcelona</a></td></tr>
+          <tr><td>La Sagrera</td><td>3.500 – 4.400</td><td><a href="/vender-la-sagrera-barcelona">/vender-la-sagrera-barcelona</a></td></tr>
+          <tr><td>Trinitat Vella</td><td>2.900 – 3.600</td><td><a href="/vender-trinitat-vella-barcelona">/vender-trinitat-vella-barcelona</a></td></tr>
+          <tr><td>Montjuïc</td><td>3.600 – 4.600</td><td><a href="/vender-montjuic-barcelona">/vender-montjuic-barcelona</a></td></tr>
+          <tr><td>Tetuan</td><td>4.200 – 5.400</td><td><a href="/vender-tetuan-barcelona">/vender-tetuan-barcelona</a></td></tr>
+          <tr><td>Vall d'Hebron</td><td>3.900 – 5.100</td><td><a href="/vender-vall-d-hebron-barcelona">/vender-vall-d-hebron-barcelona</a></td></tr>
+          <tr><td>Sant Pere / Santa Caterina</td><td>4.800 – 6.200</td><td><a href="/vender-sant-pere-santa-caterina-barcelona">/vender-sant-pere-santa-caterina-barcelona</a></td></tr>
+          <tr><td>Pedralbes</td><td>6.200 – 8.500</td><td><a href="/vender-pedralbes-barcelona">/vender-pedralbes-barcelona</a></td></tr>
+        </tbody>
+      </table>
+      <p>Los rangos son orientativos para planificar la venta; la valoración presencial cruza operaciones recientes, estado de finca y demanda actual. Más contexto de mercado: <a href="/blog/precio-pisos-barcelona">precios Barcelona 2026</a> y <a href="/blog/como-vender-rapido">vender en menos de 60 días</a>.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Por qué importa el micro-barrio al vender en Barcelona?</summary><p>Porque comprador y banco comparan manzana, no distrito. Pricing distinto evita meses de anuncio estancado.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto cuesta vender con inmobiliaria en estos barrios?</summary><p>Comisión variable 3–6% vs 3.000 € + IVA fijos NuevaHabitat solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué barrios incluye la guía?</summary><p>Bon Pastor, Navas, Montjuïc, Pedralbes, Trinitat Vella, Vall d'Hebron, Tetuan, Sant Pere/Santa Caterina y La Sagrera.</p></details>
+        <details class="blog-faq-item"><summary>¿Puedo vender sin exclusiva larga?</summary><p>Sí, mandatos flexibles con compradores de cartera cuando el precio encaja.</p></details>
+        <details class="blog-faq-item"><summary>¿Cómo pido valoración gratuita?</summary><p>En <a href="/vender">/vender</a> o en la landing de tu barrio desde la tabla superior.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Vendes en uno de estos barrios?</p>
+        <a href="/vender" class="btn">Valoración gratuita</a>
+      </aside>
+      <aside class="blog-author">
+        <div>
+          <strong>Equipo NuevaHabitat</strong>
+          <p>Valoraciones y ventas por micro-zona desde Les Corts. Publicamos landings locales para que vendedores y buscadores encuentren pricing honesto barrio a barrio.</p>
+        </div>
+      </aside>
+      `,
+    },
   };
   for (const [slug, patch] of Object.entries(PATCHES)) {
     if (window.NH_BLOG_POSTS && NH_BLOG_POSTS[slug]) Object.assign(NH_BLOG_POSTS[slug], patch);

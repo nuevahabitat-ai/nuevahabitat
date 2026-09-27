@@ -1,0 +1,90 @@
+# Pegar en Planificador de palabras clave (Google Ads)
+# Ubicación: Barcelona (ciudad) + opcional "Provincia de Barcelona" en segunda búsqueda
+# Idioma: Español
+# Herramienta: Planificación → Descubre nuevas palabras clave → Empezar con palabras clave
+
+# --- Lote 1: Propietario / vender (head + mid) ---
+vender piso barcelona
+vender casa barcelona
+vender piso particular barcelona
+vender vivienda barcelona
+vender piso rapido barcelona
+vender piso urgente barcelona
+valorar piso barcelona
+tasacion piso barcelona gratis
+cuanto vale mi piso barcelona
+agencia inmobiliaria barcelona
+inmobiliaria barcelona
+comision inmobiliaria barcelona
+honorarios inmobiliaria barcelona
+inmobiliaria precio fijo barcelona
+inmobiliaria honorarios fijos barcelona
+inmobiliaria sin comision barcelona
+vender piso sin comision barcelona
+vender piso honorarios fijos barcelona
+venta piso economica barcelona
+vender piso barato agencia barcelona
+
+# --- Lote 2: Anti-portal / discreción / off-market ---
+vender piso sin idealista
+vender piso sin fotocasa
+vender piso sin portales barcelona
+vender piso sin publicar anuncio
+vender piso discreto barcelona
+vender piso off market barcelona
+vender piso privado barcelona
+alternativa idealista vender piso
+vender piso sin anuncio publico
+cartera compradores barcelona
+compradores cualificados vender piso
+vender piso solo compradores con hipoteca
+
+# --- Lote 3: Particular vs agencia ---
+vender piso yo mismo barcelona
+vender piso por mi cuenta barcelona
+vender piso sin agencia barcelona
+vender piso sin exclusiva barcelona
+vender piso sin exclusividad barcelona
+contrato exclusiva inmobiliaria barcelona
+vender en idealista o agencia barcelona
+vender piso idealista particular barcelona
+vender piso fotocasa particular barcelona
+agencia tradicional vs precio fijo barcelona
+housfy barcelona opiniones vender
+clikalia vender piso barcelona
+
+# --- Lote 4: Situación (alto intent, menos competencia genérica) ---
+vender piso herencia barcelona
+vender piso divorcio barcelona
+vender piso alquilado barcelona
+vender piso con inquilino barcelona
+vender piso okupado barcelona
+vender piso hipoteca pendiente barcelona
+vender piso antes de comprar otro barcelona
+vender segunda residencia barcelona
+vender piso traslado barcelona
+vender piso herencia varios herederos barcelona
+
+# --- Lote 5: Por barrio (long-tail local) ---
+vender piso eixample barcelona
+vender piso gracia barcelona
+vender piso sants barcelona
+vender piso les corts barcelona
+vender piso sarria barcelona
+vender piso poblenou barcelona
+vender piso sant marti barcelona
+vender piso horta barcelona
+vender piso nou barris barcelona
+vender piso l hospitalet
+vender piso badalona
+vender piso cornella
+vender piso esplugues
+vender piso sin portales eixample
+inmobiliaria precio fijo eixample
+vender como particular gracia barcelona
+
+# --- Lote 6: Filtro por URL (pestaña "Introduce un sitio") ---
+# https://www.nuevahabitat.com/vender.html
+# https://www.properfy.es/
+# https://nitia.es/
+# https://www.housfy.com/es/

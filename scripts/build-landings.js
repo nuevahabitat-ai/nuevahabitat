@@ -4,8 +4,14 @@ const { renderBarrio } = require('./render-barrio');
 const { renderComprador } = require('./render-comprador');
 const { renderPilar } = require('./render-pilar');
 const { savingsCalcMarkup } = require('./savings-calc-markup');
-const { PHONES, displayBoth, telLinksInline, footerPhonesLi, schemaTelephones } = require('./phone-config');
+const { PHONES, displayBoth, telLinksInline, footerPhonesLi, schemaTelephones, WA_FLOAT, waMeUrl } = require('./phone-config');
 const { nhPlatformBundle, nhPlatformStyles, zoneLabel } = require('./landing-nh-blocks');
+const { argumentoStoryMarkup, argumentoProseMarkup, storyLayoutStyles } = require('./landing-story-layout');
+const { gestoresContactBanner, gestoresCallBannerContent, gestoresStyles } = require('./landing-gestores');
+const { testimonialsSection } = require('./landing-testimonials');
+const { ensureMinFaq } = require('./landing-faq-expand');
+const { plainLanguageLanding } = require('./landing-plain-language');
+const { nhPanelDemoBlock } = require('./landing-nh-blocks');
 const { renderEconomicaHub } = require('./render-economica-hub');
 const { nhBuyerPlatformBundle, nhBuyerPlatformStyles } = require('./landing-nh-buyer-blocks');
 const { nhHomeEcosystemBundle, nhHomeEcosystemStyles } = require('./landing-nh-hub-blocks');
@@ -17,7 +23,7 @@ const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || 'in
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
 const SAME_AS = [
   'https://www.google.com/maps/search/?api=1&query=Carrer+de+Mej%C3%ADa+Lequerica,+42,+08028+Barcelona',
-  'https://wa.me/34603656587',
+  waMeUrl(''),
 ];
 const MIN_WORDS_BY_CLUSTER = {
   barrio: 650,
@@ -253,14 +259,7 @@ function callBanner(variant) {
   const cls = preFaq ? 'lc-call-banner lc-call-banner--prefaq' : 'lc-call-banner';
   return `<section class="${cls}">
   <div class="container">
-    <div class="lc-call-banner__inner fade-up">
-      <div class="lc-call-banner__text">
-        <span class="overline">${preFaq ? 'Antes de irte' : 'Atención directa'}</span>
-        <p class="lc-call-banner__title">¿Prefieres hablar con nosotros?</p>
-        <p class="lc-call-banner__sub">Te respondemos en horario comercial. Sin compromiso.</p>
-      </div>
-      <a href="tel:${PHONES[0].e164}" class="btn btn-gold btn-lg nh-call-link" data-nh-call="${preFaq ? 'prefaq' : 'hero'}">Llama · ${displayBoth()}</a>
-    </div>
+    ${gestoresCallBannerContent(preFaq)}
   </div>
 </section>`;
 }
@@ -332,15 +331,44 @@ function buyerProfileBlock(L) {
   </div>`;
 }
 
+function formBandAside(L, opts = {}) {
+  const comprador = L.cluster === 'comprador';
+  const img = L.heroImage || (L.hero && L.hero.image) || 'imagenes/comercial2.jpg';
+  const alt = L.heroImageAlt || (L.hero && L.hero.imageAlt) || (comprador ? `Comprar en ${L.barrio || 'Barcelona'}` : `Vender en ${L.barrio || 'Barcelona'}`);
+  const title =
+    opts.title ||
+    (comprador
+      ? `Registra tu búsqueda en ${L.barrio || 'Barcelona'}`
+      : `Valoración gratuita en ${L.barrio || 'Barcelona'}`);
+  const lead =
+    opts.lead ||
+    (comprador
+      ? 'Sebastián o Daniel te orientan en presupuesto, visitas y negociación hasta escritura.'
+      : 'Daniel o Sebastián te llaman en 24 h con comparables de zona y condiciones de precio fijo.');
+  const buyer = !comprador ? buyerProfileBlock(L) : '';
+  return `<div class="lc-form-band__aside fade-up">
+    <figure class="lc-form-band__figure"><img src="${img}" alt="${alt}" loading="lazy" width="960" height="640"/></figure>
+    <div class="lc-form-band__copy-inner">
+      <h2 class="section-title">${title}</h2>
+      <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:0">${lead}</p>
+      ${buyer}
+    </div>
+  </div>`;
+}
+
 function sharedStyles() {
   return `<style>
     .page-breadcrumb{font-size:.8125rem;color:var(--gris-medio);display:flex;align-items:center;flex-wrap:wrap;gap:.35rem;padding:1rem 0 .25rem}
     .page-breadcrumb a{color:var(--gris-medio);transition:color var(--transition)}.page-breadcrumb a:hover{color:var(--negro)}
     .page-breadcrumb span[aria-hidden="true"]{opacity:.45}.page-breadcrumb .bc-current{color:var(--negro);font-weight:500}
-    .lc-hero{min-height:68vh;display:flex;align-items:center;position:relative;overflow:hidden}
-    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center center}
-    .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.88) 42%,rgba(13,13,13,.4));z-index:1}
-    .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:120px 0 80px}
+    .page-breadcrumb--hero{padding:5.75rem 0 .85rem;position:relative;z-index:2;color:rgba(255,255,255,.78)}
+    .page-breadcrumb--hero a{color:rgba(255,255,255,.78)}.page-breadcrumb--hero a:hover{color:#fff}
+    .page-breadcrumb--hero .bc-current{color:#fff;font-weight:500}
+    .lc-hero{min-height:76vh;display:flex;align-items:center;position:relative;overflow:hidden}
+    .lc-hero-media{position:absolute;inset:0;z-index:0;background:var(--negro)}.lc-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.03);filter:brightness(1.07) saturate(1.05)}
+    .lc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.78) 38%,rgba(13,13,13,.28) 58%,rgba(13,13,13,.12));z-index:1}
+    .lc-hero-content{position:relative;z-index:2;max-width:720px;padding:0 0 6rem}
+    .lc-hero-content h1,.lc-hero-content p{text-shadow:0 2px 28px rgba(0,0,0,.55)}
     .lc-hero-content h1{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.25rem);color:#fff;line-height:1.12;margin-bottom:1rem}
     .lc-hero-content p{font-size:1.0625rem;color:rgba(255,255,255,.82);line-height:1.75;margin-bottom:1.5rem}
     .lc-badge{display:inline-flex;background:rgba(184,147,106,.18);border:1px solid rgba(184,147,106,.35);color:var(--oro-claro);font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .85rem;border-radius:999px;margin-bottom:1rem}
@@ -395,20 +423,26 @@ function sharedStyles() {
       .lc-grid-2{grid-template-columns:1.35fr .85fr;gap:3rem;align-items:start}
       .lc-grid-2 .lc-form{position:sticky;top:96px;align-self:start}
       .lc-prose{max-width:none}
-      .lc-article-layout{display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start}
-      .lc-article-aside{position:sticky;top:96px;background:#fff;border-radius:var(--radius-lg);padding:1.5rem;box-shadow:var(--shadow-md);border:1px solid var(--crema-dark)}
-      .lc-prose--cols{column-count:2;column-gap:2.5rem}
-      .lc-prose--cols>h2,.lc-prose--cols>h3{column-span:all;break-after:avoid}
-      .lc-prose--cols>p,.lc-prose--cols>ul,.lc-prose--cols>ol{break-inside:avoid}
       .lc-section{padding:4rem 0}
     }
-    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero-overlay{background:rgba(13,13,13,.85)}.lc-article-aside{display:none}}
+    @media(max-width:900px){.lc-grid-2,.lc-legal-grid,.lc-steps,.lc-cards,.lc-pilar-grid,.lc-stats-grid,.lc-checklist ul{grid-template-columns:1fr}.lc-hero{min-height:72vh}.lc-hero-overlay{background:linear-gradient(to bottom,rgba(13,13,13,.72),rgba(13,13,13,.45))}.lc-hero-media img{transform:none;object-position:center 35%}}
+    ${storyLayoutStyles()}
+    ${gestoresStyles()}
     .nh-sticky-cta{position:fixed;bottom:calc(56px + env(safe-area-inset-bottom,0px));left:0;right:0;z-index:998;padding:.65rem 1rem;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--crema-dark);box-shadow:0 -4px 20px rgba(0,0,0,.08);transform:translateY(110%);transition:transform .3s ease;pointer-events:none}
     .nh-sticky-cta.is-visible{transform:translateY(0);pointer-events:auto}
     .nh-sticky-cta__btn{width:100%;justify-content:center}
     @media(min-width:769px){.nh-sticky-cta{display:none!important}}
     @media(max-width:768px){.lc-hero-content{padding:96px 0 48px}.lc-section{padding:3rem 0}.lc-form input,.lc-form textarea{font-size:16px}}
     ${nhPlatformStyles()}
+    .lc-testimonios{padding:4.5rem 0;background:var(--crema)}
+    .lc-testimonios-lead{max-width:520px;margin:.75rem auto 0;font-size:.9375rem;color:var(--gris-texto);line-height:1.65}
+    .testimonio-card--rich{padding:0;overflow:hidden;display:flex;flex-direction:column;height:100%}
+    .testimonio-card__cover{margin:0;line-height:0;background:var(--crema-dark)}
+    .testimonio-card__cover img{width:100%;height:168px;object-fit:cover;display:block}
+    .testimonio-card__body{padding:1.75rem 2rem 2rem;flex:1;display:flex;flex-direction:column}
+    .testimonio-card--rich .testimonio-text{flex:1}
+    .testimonio-card--rich .testimonio-autor img{width:72px;height:72px;border:2px solid var(--crema-dark)}
+    .testimonios .testimonio-card.fade-up,.testimonio-card--rich{opacity:1!important;transform:none!important;visibility:visible!important}
   </style>`;
 }
 
@@ -428,15 +462,8 @@ function navSub(L) {
   return (L.breadcrumbCurrent || L.barrio || 'Barcelona') + ' · Barcelona';
 }
 
-function asideCtaBlock(L) {
-  const zona = zoneLabel(L);
-  return `<aside class="lc-article-aside fade-up">
-    <span class="overline">Precio fijo · ${zona}</span>
-    <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin:.35rem 0 .65rem;line-height:1.3">3.000 € + IVA solo en escritura</h3>
-    <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin-bottom:1rem">Compradores cualificados, panel vendedor y gestor dedicado. Si no vendes, no pagas.</p>
-    <a href="#valorar" class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:.65rem">Valoración gratuita</a>
-    <a href="tel:${PHONES[0].e164}" class="btn btn-outline" style="width:100%;justify-content:center">${displayBoth()}</a>
-  </aside>`;
+function asideCtaBlock() {
+  return '';
 }
 
 function formBlock(L) {
@@ -474,6 +501,8 @@ function writeGaConfig() {
       + 'window.NH_CONTACT_EMAIL = ' + JSON.stringify(contact) + ';\n'
       + 'window.NH_PHONES = ' + JSON.stringify(PHONES) + ';\n'
       + 'window.NH_PHONE_DISPLAY = ' + JSON.stringify(displayBoth()) + ';\n'
+      + 'window.NH_WA_FLOAT = ' + JSON.stringify(WA_FLOAT.wa) + ';\n'
+      + 'window.NH_WA_FLOAT_LABEL = ' + JSON.stringify('Sebastián · ' + WA_FLOAT.display) + ';\n'
   );
 }
 
@@ -488,7 +517,7 @@ function footerAndScripts(L) {
     <div class="footer-bottom"><p>© 2026 NuevaHabitat.</p><div class="footer-bottom-links"><a href="/privacidad">Privacidad</a><a href="/aviso-legal">Aviso legal</a></div></div>
   </div>
 </footer>
-<div class="whatsapp-float"><a href="https://wa.me/34603656587?text=${L.whatsappText}" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
+<div class="whatsapp-float"><a href="${waMeUrl(L.whatsappText)}" class="whatsapp-btn" target="_blank" rel="noopener" aria-label="WhatsApp Sebastián"><svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div>
 <nav class="mbn" id="mbn">
   <a href="/" class="mbn-tab" data-tab="inicio" aria-label="Inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>Inicio</span></a>
   <a href="/inmuebles" class="mbn-tab" data-tab="inmuebles" aria-label="Inmuebles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.35-4.35"/></svg><span>Inmuebles</span></a>
@@ -572,21 +601,25 @@ function renderSituacion(L, ctx) {
 </head>
 <body data-nh-cluster="situacion" data-nh-landing-slug="${L.slug}">
 ${navBar(L)}
-<div class="container"><nav class="page-breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent}</span></nav></div>
 <section class="lc-hero">
   <div class="lc-hero-media"><img src="${L.hero.image}" alt="${L.hero.imageAlt}" fetchpriority="high"/></div>
   <div class="lc-hero-overlay"></div>
-  <div class="container"><div class="lc-hero-content fade-up">
+  <div class="container">
+    <nav class="page-breadcrumb page-breadcrumb--hero fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent}</span></nav>
+    <div class="lc-hero-content fade-up">
     <span class="lc-badge">${L.hero.badge}</span>
     <h1>${L.hero.h1}</h1>
     <p>${L.hero.lead}</p>
     <a href="#valorar" class="btn btn-gold btn-lg">Valoración gratuita</a>
-  </div></div>
+    </div>
+  </div>
 </section>
 ${callBanner()}
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container lc-grid-2">
-    <div class="lc-prose lc-prose--cols fade-up">${L.argumento_principal}</div>
+${argumentoProseMarkup(L, L.argumento_principal)}
+${gestoresContactBanner(L, 'preForm')}
+<section class="lc-section lc-form-band">
+  <div class="container lc-form-band__grid">
+    ${formBandAside(L, { title: 'Valoración gratuita en 24 h', lead: L.form_side_text || 'Cuéntanos tu situación. Daniel o Sebastián te responden con plan realista — sin comisión del 6%.' })}
     ${formBlock(L)}
   </div>
 </section>
@@ -603,6 +636,7 @@ ${callBanner()}
     <div class="lc-steps">${steps}</div>
   </div>
 </section>
+${testimonialsSection(L)}
 ${nhPlatformBundle(L)}
 ${relatedBlock(L, ctx)}
 ${callBanner('prefaq')}
@@ -648,26 +682,23 @@ function renderIntencion(L, ctx) {
 </head>
 <body data-nh-cluster="${L.cluster}" data-nh-landing-slug="${L.slug}" data-nh-precio-default="${calc.precio}">
 ${navBar(L)}
-<div class="container"><nav class="page-breadcrumb fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent || L.footerLabel || L.slug}</span></nav></div>
 <section class="lc-hero" style="min-height:62vh">
   <div class="lc-hero-media"><img src="${L.hero.image}" alt="${L.hero.imageAlt}" style="object-position:${L.hero.objectPosition || 'center 32%'}"/></div>
   <div class="lc-hero-overlay"></div>
-  <div class="container"><div class="lc-hero-content fade-up">
+  <div class="container">
+    <nav class="page-breadcrumb page-breadcrumb--hero fade-up" aria-label="Breadcrumb"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/vender">Vender</a><span aria-hidden="true">/</span><span class="bc-current">${L.breadcrumbCurrent || L.footerLabel || L.slug}</span></nav>
+    <div class="lc-hero-content fade-up">
     <span class="lc-badge">${L.hero.badge}</span>
     <h1>${L.hero.h1}</h1>
     <p>${L.hero.lead}</p>
     <a href="#calc" class="btn btn-gold btn-lg">Ver calculadora de ahorro</a>
-  </div></div>
+    </div>
+  </div>
 </section>
 ${callBanner()}
 ${calcBlock(L)}
+${gestoresContactBanner(L, 'postCalc')}
 ${marketStatsBlock(L) ? `<section class="lc-section" style="background:var(--blanco);padding-top:2rem;padding-bottom:0"><div class="container">${marketStatsBlock(L)}${buyerProfileBlock(L)}</div></section>` : ''}
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container lc-article-layout">
-    <div class="lc-prose lc-prose--cols fade-up">${L.argumento_principal}</div>
-    ${asideCtaBlock(L)}
-  </div>
-</section>
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container">
     <div class="text-center" style="margin-bottom:2rem"><h2 class="section-title">${L.comparativa_modelos.title}</h2></div>
@@ -679,22 +710,60 @@ ${marketStatsBlock(L) ? `<section class="lc-section" style="background:var(--bla
   ${checklistBlock(L.checklist?.title, L.checklist?.items, L.checklist?.intro)}
   </div>
 </section>
+${nhPanelDemoBlock(L)}
+${gestoresContactBanner(L, 'postPanel')}
+${argumentoProseMarkup(L, L.argumento_principal)}
+${gestoresContactBanner(L, 'postArticle')}
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container lc-grid-2">${formBlock(L)}<div class="lc-prose fade-up"><h2 class="section-title">Valoración gratuita en 24h</h2><p>${L.form_side_text || 'Cuéntanos si vendes como particular o si quieres salir de una exclusiva. Te proponemos un plan realista — sin comisión del 6% ni permanencias abusivas.'}</p></div></div>
 </section>
-${nhPlatformBundle(L)}
+${testimonialsSection(L)}
+${nhPlatformBundle(L, { skipPanel: true })}
 ${relatedBlock(L, ctx)}
 ${callBanner('prefaq')}
 <section class="lc-section" style="background:var(--crema)">
-  <div class="container" style="max-width:800px"><div class="faq-list fade-up">${faqHtml(L.faq)}</div><div class="lc-kw">${L.keywords_footer}</div></div>
+  <div class="container" style="max-width:800px">
+    <div class="text-center fade-up" style="margin-bottom:2rem"><span class="overline">FAQ</span><h2 class="section-title">Preguntas frecuentes</h2></div>
+    <div class="faq-list fade-up">${faqHtml(L.faq)}</div>
+    <div class="lc-kw">${L.keywords_footer}</div></div>
 </section>
 ${footerAndScripts(L)}
 </body></html>`;
 }
 
+function prepareLanding(L) {
+  L = plainLanguageLanding(L);
+  const faq = ensureMinFaq(L, 10);
+  return { ...L, faq, testimonials: true };
+}
+
 function renderLanding(L, ctx) {
+  L = prepareLanding(L);
   const rb = () => relatedBlock(L, ctx);
-  const deps = { SITE, CONTACT_EMAIL, sharedStyles, faqHtml, formBlock, footerAndScripts, relatedBlock: rb, buildJsonLd, calcBlock, navBar, callBanner, checklistBlock, marketStatsBlock, buyerProfileBlock, nhPlatformBundle, nhBuyerPlatformBundle, footerPhonesLi };
+  const deps = {
+    SITE,
+    CONTACT_EMAIL,
+    sharedStyles,
+    faqHtml,
+    formBlock,
+    footerAndScripts,
+    relatedBlock: rb,
+    buildJsonLd,
+    calcBlock,
+    navBar,
+    callBanner,
+    checklistBlock,
+    marketStatsBlock,
+    buyerProfileBlock,
+    nhPlatformBundle,
+    nhBuyerPlatformBundle,
+    footerPhonesLi,
+    argumentoStoryMarkup,
+    argumentoProseMarkup,
+    testimonialsSection,
+    formBandAside,
+    gestoresContactBanner,
+  };
   if (L.pilar) return renderPilar(L, deps);
   if (L.cluster === 'barrio') return renderBarrio(L, deps);
   if (L.cluster === 'comprador') return renderComprador(L, ctx, deps);
@@ -806,7 +875,7 @@ function main() {
         zonas: L.zonas,
         priority: L.priority,
         indexable: L.indexable !== false,
-        testimonials: L.testimonials === false ? false : true,
+        testimonials: true,
         cardImage: L.heroImage,
         cardTeaser: cardTeaserFrom(L) || ('Vender en ' + L.barrio + ' con precio fijo 3.000€ + IVA.'),
       };
@@ -822,7 +891,7 @@ function main() {
         zonas: L.zonas,
         priority: L.priority,
         indexable: L.indexable !== false,
-        testimonials: false,
+        testimonials: true,
         badge: L.hero && L.hero.badge,
         cardImage: L.heroImage || (L.hero && L.hero.image),
         cardTeaser: cardTeaserFrom(L) || (L.barrio ? 'Comprar piso en ' + L.barrio + ' con acompañamiento 5.000€ + IVA.' : ''),
@@ -837,7 +906,7 @@ function main() {
       indexable: L.indexable !== false,
       keyword_principal: L.keyword_principal,
       badge: L.hero && L.hero.badge,
-      testimonials: false,
+      testimonials: true,
       cardImage: (L.hero && L.hero.image) || L.heroImage || null,
       cardTeaser: cardTeaserFrom(L),
     };

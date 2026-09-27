@@ -379,5 +379,16 @@ window.NH_BLOG_POSTS = {
     excerpt: '22@, Rambla del Poblenou y Diagonal Mar: cómo posicionar tu vivienda en un mercado con demanda tech y familiar.',
     keywords: ['vender piso Poblenou Barcelona', 'precio piso Poblenou 2026', 'inmobiliaria Poblenou', 'vender 22@ Barcelona'],
     metaDescription: 'Guía para vender piso en Poblenou Barcelona 2026: precios por zona, compradores y venta con precio fijo NuevaHabitat.'
+  },
+
+  'guia-vender-micro-barrios-barcelona-2026': {
+    title: 'Vender piso en barrios de Barcelona que Google sí distingue: guía 2026',
+    cat: 'Vender',
+    date: '24 sep 2026',
+    readMin: 11,
+    image: 'imagenes/barcelona5.jpg',
+    excerpt: 'Bon Pastor, Navas, Montjuïc, Pedralbes, Trinitat Vella, Vall d\'Hebron, Tetuan, Sant Pere y La Sagrera: precios, errores de pricing y enlaces por micro-zona.',
+    keywords: ['vender piso barrio Barcelona', 'micro barrios Barcelona vender', 'precio piso Bon Pastor', 'vender piso Navas', 'inmobiliaria precio fijo barrio Barcelona'],
+    metaDescription: 'Guía para vender piso en micro-barrios de Barcelona 2026: pricing local, compradores y páginas por zona (Bon Pastor, Pedralbes, La Sagrera…) con honorarios fijos NuevaHabitat.'
   }
 };
