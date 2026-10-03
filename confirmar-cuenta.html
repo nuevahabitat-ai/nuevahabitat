@@ -115,7 +115,15 @@ async function onConfirmed(initialUser) {
 
   try {
     const storedTipo = localStorage.getItem('nh_reg_tipo');
-    if (storedTipo && !user.user_metadata?.tipo) {
+    if (storedTipo === 'alquiler_integral') {
+      user = await nhAuth.applyAlquilerAccessProfile(user, 'integral');
+    } else if (storedTipo === 'alquiler') {
+      user = await nhAuth.applyAlquilerAccessProfile(user, 'administracion');
+    } else if (storedTipo && nhAuth.isPropietarioAlquilerTipo(storedTipo)) {
+      user = await nhAuth.applyAlquilerAccessProfile(user, storedTipo === 'integral' ? 'integral' : 'administracion');
+    } else if (user.user_metadata?.tipo === 'alquiler_integral' || user.user_metadata?.servicio === 'integral') {
+      user = await nhAuth.applyAlquilerAccessProfile(user, 'integral');
+    } else if (storedTipo && !user.user_metadata?.tipo) {
       const { error: metaErr } = await window.nhSupabase.auth.updateUser({
         data: { tipo: storedTipo, nombre: user.user_metadata?.nombre || user.user_metadata?.full_name || user.email?.split('@')[0] }
       });
@@ -127,7 +135,9 @@ async function onConfirmed(initialUser) {
 
     confirmedUser = user;
     const tipo = nhAuth.getUserTipo(user);
-    await nhAuth.ensureClientRecord(user, { tipo });
+    if (tipo !== 'propietario') {
+      await nhAuth.ensureClientRecord(user, { tipo });
+    }
     const isAdmin = nhAuth.isAdmin(user);
     const isVendedor = !isAdmin && tipo === 'vendedor';
     const isPropietario = !isAdmin && tipo === 'propietario';

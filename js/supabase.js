@@ -64,7 +64,9 @@ window.nhAuth = {
   /* Devuelve 'vendedor', 'comprador' o 'propietario' según metadata del usuario */
   getUserTipo(user) {
     const meta = user?.user_metadata?.tipo;
+    const serv = user?.user_metadata?.servicio;
     if (nhAuth.isPropietarioAlquilerTipo(meta)) return 'propietario';
+    if (serv === 'integral' || serv === 'administracion') return 'propietario';
     if (meta === 'vender' || meta === 'vendedor') return 'vendedor';
     if (meta === 'comprar' || meta === 'comprador') return 'comprador';
     const stored = localStorage.getItem('nh_reg_tipo');
@@ -92,6 +94,36 @@ window.nhAuth = {
     return '/panel?tipo=' + tipo;
   },
 
+  /**
+   * Fija metadata + expediente propietarios_alquiler (integral o administración).
+   * Necesario si el usuario venía de comprador/vendedor o confirmó email sin nh_reg_tipo.
+   */
+  async applyAlquilerAccessProfile(user, variant) {
+    if (!window.nhSupabase || !user?.id || nhAuth.isAdmin(user)) return user;
+    const integral = variant === 'integral' || variant === 'alquiler_integral';
+    const metaTipo = integral ? 'alquiler_integral' : 'alquiler';
+    const metaServicio = integral ? 'integral' : 'administracion';
+    const patch = {
+      tipo: metaTipo,
+      servicio: metaServicio,
+      nombre: user.user_metadata?.nombre || user.user_metadata?.full_name || user.email?.split('@')[0] || 'Propietario',
+      telefono: user.user_metadata?.telefono || null,
+    };
+    const { error: metaErr } = await window.nhSupabase.auth.updateUser({ data: patch });
+    if (metaErr) throw metaErr;
+    localStorage.setItem('nh_reg_tipo', metaTipo);
+    const { data: { user: refreshed } } = await window.nhSupabase.auth.getUser();
+    const u = refreshed || user;
+    await nhAuth.ensureClientRecord(u, { tipo: 'propietario' });
+    const rowPatch = integral
+      ? { servicio: 'integral', cuota_mensual: 0, integral_tarifa: 499 }
+      : { servicio: 'administracion', cuota_mensual: 60 };
+    await window.nhSupabase.from('propietarios_alquiler')
+      .update(rowPatch)
+      .ilike('email', u.email);
+    return u;
+  },
+
   async register({ email, password, nombre, tipo, telefono, servicio }) {
     const metaServicio = servicio || (tipo === 'alquiler_integral' ? 'integral' : null);
     const { data, error } = await window.nhSupabase.auth.signUp({
@@ -104,10 +136,14 @@ window.nhAuth = {
     if (!error && data?.user) {
       localStorage.setItem('nh_reg_tipo', tipo || 'comprar');
       if (data.session?.user) {
-        const panelTipo = nhAuth.isPropietarioAlquilerTipo(tipo)
-          ? 'propietario'
-          : (tipo === 'vender' ? 'vendedor' : 'comprador');
-        await nhAuth.ensureClientRecord(data.session.user, { tipo: panelTipo });
+        if (tipo === 'alquiler_integral') {
+          await nhAuth.applyAlquilerAccessProfile(data.session.user, 'integral');
+        } else if (tipo === 'alquiler') {
+          await nhAuth.applyAlquilerAccessProfile(data.session.user, 'administracion');
+        } else {
+          const panelTipo = tipo === 'vender' ? 'vendedor' : 'comprador';
+          await nhAuth.ensureClientRecord(data.session.user, { tipo: panelTipo });
+        }
       }
       if (window.nhNotify) {
         nhNotify({ nombre, email, tipo: 'bienvenida', template: 'bienvenida', extra: { tipo } });

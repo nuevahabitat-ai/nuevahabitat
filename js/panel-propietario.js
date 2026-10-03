@@ -695,11 +695,15 @@
 
     const { data: { user }, error } = await window.nhSupabase.auth.getUser();
     if (error || !user) {
-      window.location.replace('/acceso-alquileres?modo=registro');
+      window.location.replace('/acceso-alquiler-integral?modo=registro');
       return;
     }
     if (nhAuth.isAdmin(user)) {
       window.location.replace('/admin-panel');
+      return;
+    }
+    if (nhAuth.getUserTipo(user) !== 'propietario') {
+      nhAuth.redirectAfterLogin(user);
       return;
     }
 
