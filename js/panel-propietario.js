@@ -118,7 +118,15 @@
     document.querySelectorAll('.p-nav-btn[data-sec]').forEach((btn) => {
       btn.addEventListener('click', () => showSection(btn.dataset.sec));
     });
-    document.getElementById('pLogout')?.addEventListener('click', () => nhAuth.logout());
+    document.getElementById('pLogout')?.addEventListener('click', async () => {
+      try {
+        await window.nhSupabase.auth.signOut({ scope: 'global' });
+      } catch (_) {
+        try { await window.nhSupabase.auth.signOut({ scope: 'local' }); } catch (_) {}
+      }
+      sessionStorage.setItem('nh_logout_at', String(Date.now()));
+      window.location.replace('/acceso-alquileres?logout=1');
+    });
     const q = new URLSearchParams(location.search);
     const sec = q.get('sec');
     if (sec) showSection(sec);
