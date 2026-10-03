@@ -314,6 +314,17 @@
   async function fetchExpediente() {
     const email = currentUser?.email;
     if (!email) return null;
+
+    try {
+      const { data: rpcRow, error: rpcErr } = await window.nhSupabase.rpc('get_my_propietario_alquiler');
+      if (!rpcErr && rpcRow) {
+        return typeof rpcRow === 'string' ? JSON.parse(rpcRow) : rpcRow;
+      }
+      if (rpcErr) console.warn('get_my_propietario_alquiler', rpcErr);
+    } catch (e) {
+      console.warn('get_my_propietario_alquiler', e);
+    }
+
     const { data, error } = await window.nhSupabase
       .from('propietarios_alquiler')
       .select('*')
