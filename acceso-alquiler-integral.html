@@ -83,6 +83,7 @@
 <script>
 document.addEventListener('supabase:ready', async () => {
   localStorage.setItem('nh_reg_tipo', 'alquiler_integral');
+  localStorage.setItem('nh_alquiler_servicio', 'integral');
 
   const errBox = document.getElementById('auth-error');
   const okBox = document.getElementById('auth-ok');
@@ -111,21 +112,6 @@ document.addEventListener('supabase:ready', async () => {
     return data?.servicio || null;
   }
 
-  async function isIntegralUser(user) {
-    if (user.user_metadata?.tipo === 'alquiler_integral') return true;
-    if (user.user_metadata?.servicio === 'integral') return true;
-    const s = await expedienteServicio(user);
-    return s === 'integral';
-  }
-
-  if (new URLSearchParams(location.search).get('logout') !== '1') {
-    const user = await nhAuth.getUser();
-    if (user && !nhAuth.isAdmin(user) && await isIntegralUser(user)) {
-      window.location.replace('/panel-propietario');
-      return;
-    }
-  }
-
   async function goPanel(user) {
     if (nhAuth.isAdmin(user)) {
       window.location.replace('/admin-panel');
@@ -136,8 +122,21 @@ document.addEventListener('supabase:ready', async () => {
     window.location.replace('/panel-propietario?servicio=integral');
   }
 
+  if (new URLSearchParams(location.search).get('logout') !== '1') {
+    const user = await nhAuth.getUser();
+    if (user && !nhAuth.isAdmin(user)) {
+      try {
+        await goPanel(user);
+      } catch (e) {
+        console.warn('auto goPanel integral', e);
+      }
+      return;
+    }
+  }
+
   document.getElementById('btnGoogle').addEventListener('click', async () => {
     localStorage.setItem('nh_reg_tipo', 'alquiler_integral');
+    localStorage.setItem('nh_alquiler_servicio', 'integral');
     await nhAuth.loginGoogle('/confirmar-cuenta');
   });
 

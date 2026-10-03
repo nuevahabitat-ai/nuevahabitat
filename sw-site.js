@@ -1,5 +1,5 @@
 /* Service Worker — Web pública NuevaHabitat (clientes) */
-const CACHE = 'nh-web-v3';
+const CACHE = 'nh-web-v4';
 const SHELL = [
   '/',
   '/index.html',

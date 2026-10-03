@@ -122,15 +122,27 @@ window.nhAuth = {
       .update(rowPatch)
       .ilike('email', u.email);
     if (rowErr) console.warn('applyAlquilerAccessProfile update row', rowErr);
+    localStorage.setItem('nh_alquiler_servicio', integral ? 'integral' : 'administracion');
     return u;
   },
 
-  shouldUseIntegralPanel(user) {
+  getAlquilerPanelMode(user) {
+    const persisted = localStorage.getItem('nh_alquiler_servicio');
+    if (persisted === 'integral' || persisted === 'administracion') return persisted;
     const meta = user?.user_metadata || {};
-    if (meta.tipo === 'alquiler_integral' || meta.servicio === 'integral') return true;
-    if (localStorage.getItem('nh_reg_tipo') === 'alquiler_integral') return true;
-    if (sessionStorage.getItem('nh_alquiler_variant') === 'integral') return true;
-    return new URLSearchParams(window.location.search).get('servicio') === 'integral';
+    if (meta.tipo === 'alquiler_integral' || meta.servicio === 'integral') return 'integral';
+    if (meta.tipo === 'alquiler' || meta.servicio === 'administracion') return 'administracion';
+    if (localStorage.getItem('nh_reg_tipo') === 'alquiler_integral') return 'integral';
+    if (localStorage.getItem('nh_reg_tipo') === 'alquiler') return 'administracion';
+    if (sessionStorage.getItem('nh_alquiler_variant') === 'integral') return 'integral';
+    if (sessionStorage.getItem('nh_alquiler_variant') === 'administracion') return 'administracion';
+    const q = new URLSearchParams(window.location.search).get('servicio');
+    if (q === 'integral' || q === 'administracion') return q;
+    return 'administracion';
+  },
+
+  shouldUseIntegralPanel(user) {
+    return nhAuth.getAlquilerPanelMode(user) === 'integral';
   },
 
   async register({ email, password, nombre, tipo, telefono, servicio }) {
