@@ -1703,6 +1703,36 @@ input,select,textarea{font-family:'Inter',sans-serif}
           <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadAlquilerAdmin()">↻ Actualizar</button>
         </div>
         <p class="text-muted" style="font-size:.8rem;margin:-.5rem 0 1rem;line-height:1.5">Propietarios registrados en el panel de administración de alquiler. Abre cada expediente para ver datos, inquilino, inmueble y documentación subida.</p>
+
+        <details class="adm-card" id="alq-admin-supabase-guide" open style="margin-bottom:1rem;border-color:rgba(184,147,106,.35)">
+          <summary style="cursor:pointer;font-weight:600;font-size:.88rem;color:var(--gold-light);list-style:none;display:flex;align-items:center;gap:.5rem">
+            <span aria-hidden="true">ℹ️</span> Requisitos Supabase y Vercel (módulo alquiler)
+          </summary>
+          <div style="margin-top:.85rem;font-size:.78rem;line-height:1.65;color:var(--text)">
+            <p style="margin-bottom:.65rem"><strong>Para que esta sección y el panel del propietario funcionen</strong>, en Supabase → SQL Editor deben estar aplicadas estas migraciones del repo (<code>supabase/migrations/</code>):</p>
+            <ol style="margin:0 0 .75rem 1.1rem;color:var(--muted)">
+              <li><strong>042</strong> — Tablas <code>propietarios_alquiler</code>, incidencias y RLS admin (lectura/edición aquí en el panel).</li>
+              <li><strong>048</strong> — Tabla <code>cliente_documentos</code> si no existía (documentación del propietario).</li>
+              <li><strong>047</strong> — RLS sin consultar <code>auth.users</code> (evita «permission denied for table users»).</li>
+              <li><strong>049</strong> — RPC <code>update_propietario_alquiler_expediente</code> (guardar datos en panel propietario).</li>
+              <li><strong>045</strong> — Bucket Storage <code>documentos-clientes</code> (50 MB).</li>
+              <li><strong>046</strong> — La RPC de guardado crea expediente si falta fila.</li>
+            </ol>
+            <p style="margin-bottom:.5rem"><strong>Vercel</strong> (proyecto nuevahabitat): variables obligatorias para subida/guardado vía API del panel propietario:</p>
+            <ul style="margin:0 0 .75rem 1.1rem;color:var(--muted)">
+              <li><code>SUPABASE_SERVICE_ROLE_KEY</code></li>
+              <li><code>SUPABASE_URL</code> y <code>SUPABASE_ANON_KEY</code> (o las que ya usa el sitio)</li>
+              <li><code>STRIPE_*</code> — cuota 60 €/mes en panel propietario</li>
+            </ul>
+            <p style="margin-bottom:.35rem"><strong>Comprobar en Supabase</strong> (pega en SQL Editor; debe devolver filas sin error):</p>
+            <pre style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.65rem .75rem;font-size:.68rem;overflow:auto;margin:.35rem 0 .75rem;white-space:pre-wrap">SELECT COUNT(*) AS propietarios FROM public.propietarios_alquiler;
+SELECT proname FROM pg_proc p JOIN pg_namespace n ON n.oid = p.pronamespace
+  WHERE n.nspname = 'public' AND proname IN ('update_propietario_alquiler_expediente','get_my_propietario_alquiler','sync_propietario_alquiler');
+SELECT id FROM storage.buckets WHERE id = 'documentos-clientes';</pre>
+            <p style="font-size:.72rem;color:var(--muted);margin:0"><strong>Errores frecuentes:</strong> «cliente_documentos does not exist» → 048. «Could not find the function update_propietario…» → 049 + <code>NOTIFY pgrst, 'reload schema';</code>. «permission denied for table users» → 047. Lista vacía aquí pero hay registros en Auth → ejecuta 042 y revisa email en <code>propietarios_alquiler</code>.</p>
+          </div>
+        </details>
+
         <div class="adm-filter-bar">
           <div class="adm-field">
             <label for="alq-filter-q">Buscar</label>
