@@ -242,12 +242,37 @@
     }
   }
 
+  function applySavedRow(row, msgId) {
+    expediente = row;
+    window.alqExpediente = row;
+    applyExpedienteSummary(row);
+    showSaveMsg(msgId, true, 'Guardado correctamente');
+    toast('Datos guardados', 'success');
+    return true;
+  }
+
   async function saveExpedientePartial(payload, msgId) {
     await ensureExpediente();
+    if (!expediente?.id) {
+      try {
+        const ensured = await apiPost('ensure');
+        if (ensured.row?.id) expediente = ensured.row;
+      } catch (e) {
+        console.warn('ensure before save', e);
+      }
+    }
     if (!expediente?.id) {
       toast('No hay expediente activo. Recarga la página o contacta con Juan.');
       return false;
     }
+
+    try {
+      const saved = await apiPost('save-expediente', { data: payload });
+      if (saved.row) return applySavedRow(saved.row, msgId);
+    } catch (apiErr) {
+      console.warn('save-expediente api', apiErr);
+    }
+
     const { data, error } = await window.nhSupabase.rpc('update_propietario_alquiler_expediente', {
       p_data: payload,
     });
@@ -257,12 +282,8 @@
       toast('No se pudo guardar: ' + (error.message || 'error'), 'error');
       return false;
     }
-    expediente = typeof data === 'string' ? JSON.parse(data) : data;
-    window.alqExpediente = expediente;
-    applyExpedienteSummary(expediente);
-    showSaveMsg(msgId, true, 'Guardado correctamente');
-    toast('Datos guardados', 'success');
-    return true;
+    const row = typeof data === 'string' ? JSON.parse(data) : data;
+    return applySavedRow(row, msgId);
   }
 
   function bindForms() {
