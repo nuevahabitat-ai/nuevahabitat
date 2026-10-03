@@ -132,7 +132,8 @@ document.addEventListener('supabase:ready', async () => {
       return;
     }
     await nhAuth.applyAlquilerAccessProfile(user, 'integral');
-    window.location.replace('/panel-propietario');
+    sessionStorage.setItem('nh_alquiler_variant', 'integral');
+    window.location.replace('/panel-propietario?servicio=integral');
   }
 
   document.getElementById('btnGoogle').addEventListener('click', async () => {

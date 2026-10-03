@@ -707,6 +707,28 @@
       return;
     }
 
+    const urlParams = new URLSearchParams(location.search);
+    const wantIntegral = urlParams.get('servicio') === 'integral' || nhAuth.shouldUseIntegralPanel(user);
+    const wantAdmin = urlParams.get('servicio') === 'administracion';
+    if (wantIntegral) {
+      try {
+        user = await nhAuth.applyAlquilerAccessProfile(user, 'integral');
+        sessionStorage.removeItem('nh_alquiler_variant');
+        if (urlParams.get('servicio') !== 'integral') {
+          urlParams.set('servicio', 'integral');
+          history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+        }
+      } catch (e) {
+        console.warn('apply integral profile', e);
+      }
+    } else if (wantAdmin) {
+      try {
+        user = await nhAuth.applyAlquilerAccessProfile(user, 'administracion');
+      } catch (e) {
+        console.warn('apply admin profile', e);
+      }
+    }
+
     currentUser = user;
     window.currentUser = user;
     setHeaderUser(user);
@@ -716,12 +738,21 @@
     await nhAuth.ensureClientRecord(user, { tipo: 'propietario' });
 
     let row = await fetchExpediente();
-    if (!row) {
+    if (!row || (wantIntegral && row.servicio !== 'integral')) {
       try {
         const ensured = await apiPost('ensure');
-        row = ensured.row || null;
+        row = ensured.row || row || null;
       } catch (e) {
         console.warn('init ensure', e);
+      }
+    }
+    if (wantIntegral && row && row.servicio !== 'integral') {
+      try {
+        user = await nhAuth.applyAlquilerAccessProfile(user, 'integral');
+        const ensured = await apiPost('ensure');
+        row = ensured.row || row;
+      } catch (e) {
+        console.warn('reconcile integral servicio', e);
       }
     }
     if (!row) {
