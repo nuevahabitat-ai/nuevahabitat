@@ -75,11 +75,14 @@
             <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
               <input type="radio" name="tipo" id="tipoComprar" value="comprar" style="accent-color:var(--oro)"/> Comprar
             </label>
+            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem;grid-column:1/-1">
+              <input type="radio" name="tipo" id="tipoAlquiler" value="alquiler" style="accent-color:var(--oro)"/> Administrar mi alquiler (panel propietario)
+            </label>
           </div>
-          <a href="/administracion-alquileres#solicitar" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.75rem;padding:1rem 1.1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);text-decoration:none;background:var(--blanco);transition:border-color .2s,box-shadow .2s" onmouseover="this.style.borderColor='var(--oro)';this.style.boxShadow='0 6px 20px rgba(0,0,0,.06)'" onmouseout="this.style.borderColor='var(--crema-dark)';this.style.boxShadow='none'">
+          <a href="/registro?tipo=alquiler" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.75rem;padding:1rem 1.1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);text-decoration:none;background:var(--blanco);transition:border-color .2s,box-shadow .2s" onmouseover="this.style.borderColor='var(--oro)';this.style.boxShadow='0 6px 20px rgba(0,0,0,.06)'" onmouseout="this.style.borderColor='var(--crema-dark)';this.style.boxShadow='none'">
             <span>
               <strong style="display:block;font-size:.9rem;color:var(--negro);margin-bottom:.2rem">Administración de alquileres</strong>
-              <span style="font-size:.8125rem;color:var(--gris-texto);line-height:1.45">60 €/mes (IVA incl.) · larga duración · cero contacto con el inquilino</span>
+              <span style="font-size:.8125rem;color:var(--gris-texto);line-height:1.45">60 €/mes (IVA incl.) · panel propietario · cero contacto con el inquilino</span>
             </span>
             <span style="color:var(--oro);font-size:1.1rem;font-weight:600;flex-shrink:0">→</span>
           </a>
@@ -118,6 +121,7 @@ document.addEventListener('supabase:ready', async () => {
   const urlTipo = new URLSearchParams(location.search).get('tipo');
   if (urlTipo === 'vender') document.getElementById('tipoVender').checked = true;
   else if (urlTipo === 'comprar') document.getElementById('tipoComprar').checked = true;
+  else if (urlTipo === 'alquiler') document.getElementById('tipoAlquiler').checked = true;
 
   const form   = document.getElementById('regForm');
   const errBox = document.getElementById('reg-error');
@@ -137,7 +141,7 @@ document.addEventListener('supabase:ready', async () => {
     e.preventDefault();
     errBox.style.display = 'none';
     const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
-    if (!tipo) { showError('Selecciona si quieres vender o comprar.'); return; }
+    if (!tipo) { showError('Selecciona si quieres vender, comprar o administrar un alquiler.'); return; }
     const nombre = document.getElementById('regNombre').value.trim() + ' ' + document.getElementById('regApellidos').value.trim();
     const email  = document.getElementById('regEmail').value.trim();
 

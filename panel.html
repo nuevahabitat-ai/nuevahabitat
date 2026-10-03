@@ -959,6 +959,12 @@ async function initPanel() {
 
   if (nhAuth.isAdmin(user)) { window.location.replace('/admin-panel'); return; }
 
+  const urlTipoEarly = new URLSearchParams(location.search).get('tipo');
+  if (nhAuth.getUserTipo(user) === 'propietario' && urlTipoEarly !== 'comprador' && urlTipoEarly !== 'vendedor') {
+    window.location.replace('/panel-propietario');
+    return;
+  }
+
   window.nhSupabase.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_OUT' || !session?.user) {
       window.location.replace('/login?logout=1');
