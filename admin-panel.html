@@ -558,6 +558,11 @@ input,select,textarea{font-family:'Inter',sans-serif}
         Seguimientos
         <span class="nav-alarm-dot" id="nav-alarm-badge" style="display:none">0</span>
       </div>
+      <div class="adm-nav-group" style="margin-top:.5rem">Alquileres</div>
+      <div class="adm-nav-item" data-sec="alquiler-admin">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+        Administración
+      </div>
       <div class="adm-nav-group" style="margin-top:.5rem">Finanzas</div>
       <div class="adm-nav-item" data-sec="finanzas">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1691,6 +1696,69 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div><!-- part-particulares-wrap -->
       </section>
 
+      <!-- ══ ALQUILERES · ADMINISTRACIÓN (propietarios panel) ═════ -->
+      <section class="adm-section" id="sec-alquiler-admin">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Administración de alquileres</div>
+          <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadAlquilerAdmin()">↻ Actualizar</button>
+        </div>
+        <p class="text-muted" style="font-size:.8rem;margin:-.5rem 0 1rem;line-height:1.5">Propietarios registrados en el panel de administración de alquiler. Abre cada expediente para ver datos, inquilino, inmueble y documentación subida.</p>
+        <div class="adm-filter-bar">
+          <div class="adm-field">
+            <label for="alq-filter-q">Buscar</label>
+            <input type="search" id="alq-filter-q" placeholder="Nombre, email, dirección…" oninput="renderAlquilerAdminTable()"/>
+          </div>
+          <div class="adm-field">
+            <label for="alq-filter-estado">Estado gestión</label>
+            <select id="alq-filter-estado" onchange="renderAlquilerAdminTable()">
+              <option value="">Todos</option>
+              <option value="alta">Alta</option>
+              <option value="documentacion">Documentación</option>
+              <option value="contrato">Contrato</option>
+              <option value="activo">Activo</option>
+              <option value="renovacion">Renovación</option>
+              <option value="baja">Baja</option>
+            </select>
+          </div>
+          <div class="adm-field">
+            <label for="alq-filter-cuota">Cuota 60 €</label>
+            <select id="alq-filter-cuota" onchange="renderAlquilerAdminTable()">
+              <option value="">Todas</option>
+              <option value="activa">Domiciliada</option>
+              <option value="pendiente">Pendiente</option>
+            </select>
+          </div>
+          <span class="adm-filter-count" id="alq-filter-count"></span>
+        </div>
+        <div class="adm-card">
+          <div class="adm-card-head"><h3>Expedientes propietario</h3></div>
+          <div id="alq-admin-table"><p class="text-muted">Cargando…</p></div>
+        </div>
+      </section>
+
+      <!-- Modal detalle propietario alquiler -->
+      <div id="alq-admin-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="alq-modal-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closeAlqAdminModal()"></div>
+        <div class="dash-modal-panel vend-modal-panel" style="width:min(820px,100%)!important;max-height:min(90vh,900px)">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="alq-modal-kicker">Propietario alquiler</div>
+              <h3 id="alq-modal-title">–</h3>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closeAlqAdminModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="vend-modal-tabs adm-subtabs" style="padding:0 1.25rem;margin:0;border-bottom:1px solid var(--border)">
+            <button type="button" class="adm-subtab active" data-alq-modal-tab="resumen" onclick="alqAdminModalTab('resumen')">Resumen</button>
+            <button type="button" class="adm-subtab" data-alq-modal-tab="propietario" onclick="alqAdminModalTab('propietario')">Propietario</button>
+            <button type="button" class="adm-subtab" data-alq-modal-tab="inmueble" onclick="alqAdminModalTab('inmueble')">Inmueble</button>
+            <button type="button" class="adm-subtab" data-alq-modal-tab="inquilino" onclick="alqAdminModalTab('inquilino')">Inquilino</button>
+            <button type="button" class="adm-subtab" data-alq-modal-tab="documentacion" onclick="alqAdminModalTab('documentacion')">Documentación</button>
+          </div>
+          <div class="dash-modal-body" id="alq-modal-body"></div>
+          <div class="dash-modal-foot" id="alq-modal-foot"></div>
+        </div>
+      </div>
+
       <!-- Modal: avisar compradores compatibles al captar/publicar -->
       <div id="captura-comp-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="captura-comp-title" hidden>
         <div class="dash-modal-backdrop" onclick="closeCapturaCompradoresModal()"></div>
@@ -2459,7 +2527,7 @@ function switchSection(id){
   document.getElementById('sec-'+id).classList.add('active');
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
+  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos','alquiler-admin':'Administración de alquileres',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
   document.getElementById('adm-section-title').textContent = titles[id]||id;
   if(id==='dashboard')   loadDashboard();
   if(id==='leads')       loadLeads();
@@ -2470,6 +2538,7 @@ function switchSection(id){
   if(id==='visitas')     loadVisitas();
   if(id==='documentos')  loadDocumentosAdmin();
   if(id==='seguimientos') loadParticulares();
+  if(id==='alquiler-admin') loadAlquilerAdmin();
   if(id==='finanzas')     loadFinSection();
   if(id==='blog')        loadBlog();
   if(id==='newsletter')  loadNewsletter();
@@ -8369,6 +8438,275 @@ window.excludePrevVendedor = excludePrevVendedor;
 window.prevSelectDay = prevSelectDay;
 window.prevClearDayFilter = prevClearDayFilter;
 window.savePrevVendedorFecha = savePrevVendedorFecha;
+
+/* ── Alquileres · Administración propietarios ───────────────────── */
+const ALQ_ESTADO_LABEL = {
+  alta: 'Alta',
+  documentacion: 'Documentación',
+  contrato: 'Contrato',
+  activo: 'Activo',
+  renovacion: 'Renovación',
+  baja: 'Baja',
+};
+let _alqPropData = [];
+let _alqModalId = null;
+let _alqModalTab = 'resumen';
+let _alqModalDocs = [];
+
+function escAlq(s) {
+  return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+}
+
+function fmtAlqDate(d) {
+  if (!d) return '—';
+  return new Date(d).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function fmtAlqEur(n) {
+  if (n == null || n === '') return '—';
+  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(n));
+}
+
+function getAlqFilterValues() {
+  return {
+    q: (document.getElementById('alq-filter-q')?.value || '').trim().toLowerCase(),
+    estado: document.getElementById('alq-filter-estado')?.value || '',
+    cuota: document.getElementById('alq-filter-cuota')?.value || '',
+  };
+}
+
+function filterAlqPropRows(list) {
+  const f = getAlqFilterValues();
+  return (list || []).filter((r) => {
+    if (f.estado && r.estado_gestion !== f.estado) return false;
+    if (f.cuota === 'activa' && !r.suscripcion_activa) return false;
+    if (f.cuota === 'pendiente' && r.suscripcion_activa) return false;
+    if (f.q) {
+      const hay = [r.nombre, r.email, r.telefono, r.inmueble_direccion, r.inquilino_nombre, r.dni]
+        .filter(Boolean).join(' ').toLowerCase();
+      if (!hay.includes(f.q)) return false;
+    }
+    return true;
+  });
+}
+
+async function loadAlquilerAdmin() {
+  const tbl = document.getElementById('alq-admin-table');
+  if (tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
+  const { data, error } = await window.nhSupabase
+    .from('propietarios_alquiler')
+    .select('*')
+    .order('updated_at', { ascending: false });
+  if (error) {
+    if (tbl) tbl.innerHTML = `<p class="alert-box alert-error">No se pudieron cargar expedientes: ${escAlq(error.message)}</p>`;
+    nhToast('Error al cargar alquileres: ' + error.message, 'error');
+    return;
+  }
+  _alqPropData = data || [];
+  renderAlquilerAdminTable();
+}
+
+function renderAlquilerAdminTable() {
+  const tbl = document.getElementById('alq-admin-table');
+  const countEl = document.getElementById('alq-filter-count');
+  if (!tbl) return;
+  const filtered = filterAlqPropRows(_alqPropData);
+  if (countEl) {
+    countEl.textContent = filtered.length === _alqPropData.length
+      ? `${filtered.length} expediente${filtered.length === 1 ? '' : 's'}`
+      : `${filtered.length} de ${_alqPropData.length}`;
+  }
+  if (!filtered.length) {
+    tbl.innerHTML = '<p class="text-muted">No hay propietarios de administración de alquiler que coincidan.</p>';
+    return;
+  }
+  tbl.innerHTML = `<table class="adm-table"><thead><tr>
+    <th>Propietario</th><th>Inmueble</th><th>Estado</th><th>Cuota</th><th>Alta</th>
+  </tr></thead><tbody>${filtered.map((r) => {
+    const cuota = r.suscripcion_activa
+      ? '<span class="adm-pay-badge adm-pay-badge--ok">Domiciliada</span>'
+      : '<span class="adm-pay-badge adm-pay-badge--pend">Pendiente</span>';
+    const est = ALQ_ESTADO_LABEL[r.estado_gestion] || r.estado_gestion || '—';
+    return `<tr class="vend-row-click" onclick="openAlqAdminModal('${r.id}')">
+      <td><strong>${escAlq(r.nombre || '—')}</strong><br><span style="font-size:.72rem;color:var(--muted)">${escAlq(r.email)}</span></td>
+      <td style="font-size:.78rem">${escAlq(r.inmueble_direccion || '—')}</td>
+      <td><span class="badge badge-ok">${escAlq(est)}</span></td>
+      <td>${cuota}</td>
+      <td style="font-size:.72rem;color:var(--muted);white-space:nowrap">${fmtAlqDate(r.created_at)}</td>
+    </tr>`;
+  }).join('')}</tbody></table>`;
+}
+
+function alqDlRow(label, val) {
+  return `<dt>${escAlq(label)}</dt><dd>${val != null && val !== '' ? escAlq(val) : '—'}</dd>`;
+}
+
+async function alqSignedDocUrl(path) {
+  if (!path) return null;
+  if (/^https?:\/\//i.test(path)) return path;
+  const { data, error } = await window.nhSupabase.storage.from('documentos-clientes').createSignedUrl(path, 3600);
+  if (error) return null;
+  return data?.signedUrl || null;
+}
+
+async function loadAlqModalDocs(email) {
+  if (!email) { _alqModalDocs = []; return; }
+  const { data } = await window.nhSupabase
+    .from('cliente_documentos')
+    .select('*')
+    .ilike('cliente_email', email)
+    .order('created_at', { ascending: false });
+  _alqModalDocs = data || [];
+}
+
+function renderAlqAdminModalBody() {
+  const body = document.getElementById('alq-modal-body');
+  const foot = document.getElementById('alq-modal-foot');
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!body || !row) return;
+
+  if (_alqModalTab === 'resumen') {
+    body.innerHTML = `<dl class="dash-dl">
+      ${alqDlRow('Estado gestión', ALQ_ESTADO_LABEL[row.estado_gestion] || row.estado_gestion)}
+      ${alqDlRow('Servicio', row.servicio || 'administracion')}
+      ${alqDlRow('Renta mensual', fmtAlqEur(row.renta_mensual))}
+      ${alqDlRow('Cuota NH', fmtAlqEur(row.cuota_mensual))}
+      ${alqDlRow('Suscripción Stripe', row.suscripcion_activa ? 'Activa' : 'Pendiente')}
+      ${alqDlRow('Registro', fmtAlqDate(row.created_at))}
+      ${alqDlRow('Última actualización', fmtAlqDate(row.updated_at))}
+    </dl>
+    <div class="adm-field" style="margin-top:1rem">
+      <label for="alq-admin-estado">Cambiar estado gestión</label>
+      <select id="alq-admin-estado">
+        ${Object.keys(ALQ_ESTADO_LABEL).map((k) => `<option value="${k}"${row.estado_gestion === k ? ' selected' : ''}>${ALQ_ESTADO_LABEL[k]}</option>`).join('')}
+      </select>
+    </div>`;
+  } else if (_alqModalTab === 'propietario') {
+    body.innerHTML = `<dl class="dash-dl">
+      ${alqDlRow('Nombre / razón social', row.nombre)}
+      ${alqDlRow('DNI / NIE / CIF', row.dni)}
+      ${alqDlRow('Teléfono', row.telefono)}
+      ${alqDlRow('Email', row.email)}
+      ${alqDlRow('Dirección postal', row.direccion_propietario)}
+      ${alqDlRow('IBAN cobro renta', row.iban_cobro)}
+    </dl>
+    ${row.notas_propietario ? `<div class="dash-modal-block"><strong>Notas del propietario</strong>${escAlq(row.notas_propietario)}</div>` : ''}`;
+  } else if (_alqModalTab === 'inmueble') {
+    body.innerHTML = `<dl class="dash-dl">
+      ${alqDlRow('Dirección', row.inmueble_direccion)}
+      ${alqDlRow('Referencia interna', row.inmueble_ref)}
+      ${alqDlRow('Ref. catastral', row.inmueble_ref_catastral)}
+      ${alqDlRow('Renta mensual', fmtAlqEur(row.renta_mensual))}
+    </dl>
+    ${row.inmueble_notas ? `<div class="dash-modal-block"><strong>Notas inmueble</strong>${escAlq(row.inmueble_notas)}</div>` : ''}`;
+  } else if (_alqModalTab === 'inquilino') {
+    body.innerHTML = `<dl class="dash-dl">
+      ${alqDlRow('Nombre', row.inquilino_nombre)}
+      ${alqDlRow('Teléfono', row.inquilino_telefono)}
+      ${alqDlRow('Email', row.inquilino_email)}
+      ${alqDlRow('Contrato inicio', fmtAlqDate(row.contrato_inicio))}
+      ${alqDlRow('Contrato fin', fmtAlqDate(row.contrato_fin))}
+    </dl>`;
+  } else if (_alqModalTab === 'documentacion') {
+    if (!_alqModalDocs.length) {
+      body.innerHTML = '<p class="text-muted">Este propietario aún no ha subido documentos desde su panel.</p>';
+    } else {
+      body.innerHTML = `<table class="adm-table"><thead><tr><th>Documento</th><th>Tipo</th><th>Estado</th><th>Fecha</th><th></th></tr></thead><tbody id="alq-docs-tbody">
+        ${_alqModalDocs.map((d) => `<tr>
+          <td>${escAlq(d.nombre)}</td>
+          <td style="font-size:.72rem">${escAlq(d.tipo)}</td>
+          <td>${escAlq(d.estado)}</td>
+          <td style="font-size:.72rem;color:var(--muted)">${fmtAlqDate(d.created_at)}</td>
+          <td><span data-alq-doc-id="${d.id}" class="text-muted" style="font-size:.72rem">…</span></td>
+        </tr>`).join('')}
+      </tbody></table>`;
+      void hydrateAlqDocLinks();
+    }
+  }
+
+  if (foot) {
+    const wa = normalizePhoneWa(row.telefono);
+    foot.innerHTML = `
+      ${wa ? `<a class="adm-btn adm-btn-green adm-btn-sm" href="https://wa.me/${wa}" target="_blank" rel="noopener">WhatsApp</a>` : ''}
+      ${row.email ? `<a class="adm-btn adm-btn-ghost adm-btn-sm" href="mailto:${escAlq(row.email)}">Email</a>` : ''}
+      <a class="adm-btn adm-btn-ghost adm-btn-sm" href="/panel-propietario" target="_blank" rel="noopener">Ver panel propietario</a>
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqAdminEstado()">Guardar estado</button>`;
+  }
+}
+
+async function hydrateAlqDocLinks() {
+  for (const d of _alqModalDocs) {
+    const cell = document.querySelector(`[data-alq-doc-id="${d.id}"]`);
+    if (!cell) continue;
+    const href = await alqSignedDocUrl(d.url);
+    cell.innerHTML = href
+      ? `<a href="${href}" target="_blank" rel="noopener" class="adm-btn adm-btn-ghost adm-btn-sm">Ver archivo</a>`
+      : '<span class="text-muted">Sin URL</span>';
+  }
+}
+
+function alqAdminModalTab(tab) {
+  _alqModalTab = tab;
+  document.querySelectorAll('#alq-admin-modal .vend-modal-tabs .adm-subtab').forEach((b) => {
+    b.classList.toggle('active', b.dataset.alqModalTab === tab);
+  });
+  renderAlqAdminModalBody();
+}
+
+async function openAlqAdminModal(id) {
+  _alqModalId = id;
+  _alqModalTab = 'resumen';
+  const row = _alqPropData.find((x) => x.id === id);
+  if (!row) { nhToast('Expediente no encontrado', 'error'); return; }
+  document.getElementById('alq-modal-title').textContent = row.nombre || row.email || 'Propietario';
+  document.getElementById('alq-modal-kicker').textContent = row.inmueble_direccion || row.email || 'Administración alquiler';
+  document.querySelectorAll('#alq-admin-modal .vend-modal-tabs .adm-subtab').forEach((b) => {
+    b.classList.toggle('active', b.dataset.alqModalTab === 'resumen');
+  });
+  await loadAlqModalDocs(row.email);
+  renderAlqAdminModalBody();
+  const modal = document.getElementById('alq-admin-modal');
+  modal.hidden = false;
+  modal.classList.add('open');
+}
+
+function closeAlqAdminModal() {
+  const modal = document.getElementById('alq-admin-modal');
+  modal.classList.remove('open');
+  modal.hidden = true;
+  _alqModalId = null;
+}
+
+async function saveAlqAdminEstado() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  const estado = document.getElementById('alq-admin-estado')?.value;
+  if (!estado) return;
+  const { data, error } = await window.nhSupabase
+    .from('propietarios_alquiler')
+    .update({ estado_gestion: estado })
+    .eq('id', row.id)
+    .select('*')
+    .maybeSingle();
+  if (error) {
+    nhToast('Error al guardar: ' + error.message, 'error');
+    return;
+  }
+  if (data) {
+    const idx = _alqPropData.findIndex((x) => x.id === row.id);
+    if (idx >= 0) _alqPropData[idx] = data;
+  }
+  nhToast('Estado actualizado', 'success');
+  renderAlquilerAdminTable();
+  renderAlqAdminModalBody();
+}
+
+window.loadAlquilerAdmin = loadAlquilerAdmin;
+window.renderAlquilerAdminTable = renderAlquilerAdminTable;
+window.openAlqAdminModal = openAlqAdminModal;
+window.closeAlqAdminModal = closeAlqAdminModal;
+window.alqAdminModalTab = alqAdminModalTab;
+window.saveAlqAdminEstado = saveAlqAdminEstado;
 
 /* ── Newsletter ─────────────────────────────────────────────────── */
 async function loadNewsletter(){
