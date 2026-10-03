@@ -408,6 +408,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
 .fin-balance-neg{color:#f87171}
 .fin-sub-pane{display:none}
 .fin-sub-pane.active{display:block}
+#sec-alquiler-admin .alq-supabase-guide summary::-webkit-details-marker{display:none}
+#sec-alquiler-admin .alq-supabase-guide[open] > div{max-height:220px;overflow-y:auto;padding-right:.25rem}
 .fin-prev-auto-row{display:flex;justify-content:space-between;align-items:center;gap:.75rem;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.78rem}
 .fin-prev-auto-row:last-child{border-bottom:none}
 .fin-prev-client-row{display:flex;align-items:center;gap:.65rem;padding:.55rem 0;border-bottom:1px solid var(--border);font-size:.78rem}
@@ -1512,20 +1514,25 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <section class="adm-section" id="sec-documentos">
         <div class="adm-card">
           <div class="adm-card-head"><h3>Documentos de clientes</h3></div>
+          <p class="text-muted" style="font-size:.78rem;margin:-.35rem 0 1rem;line-height:1.55">Sube aquí contratos, tasaciones o cualquier PDF para compradores, vendedores o propietarios. El cliente lo verá en su panel → <strong>Documentación</strong>. Requiere Supabase: tabla <code>cliente_documentos</code> + bucket <code>documentos-clientes</code> (migraciones <strong>048</strong> y <strong>045</strong>).</p>
           <div class="adm-form-grid" style="margin-bottom:1rem">
             <div class="adm-field"><label>Email cliente *</label><input type="email" id="doc-email" placeholder="cliente@email.com"/></div>
             <div class="adm-field"><label>Tipo</label>
               <select id="doc-tipo">
+                <option value="dni_titular">DNI / NIE titular(es)</option>
+                <option value="cedula_habitabilidad">Cédula habitabilidad</option>
+                <option value="certificado_energetico">Certificado energético</option>
+                <option value="nota_simple">Nota simple</option>
+                <option value="escritura">Escrituras</option>
                 <option value="contrato_encargo">Contrato encargo</option>
                 <option value="contrato_arras">Contrato arras</option>
-                <option value="escritura">Escritura</option>
-                <option value="tasacion">Tasación</option>
+                <option value="tasacion">Tasación / valoración</option>
                 <option value="nota_mercado">Nota mercado</option>
-                <option value="otro">Otro</option>
+                <option value="otro">Otros documentos</option>
               </select>
             </div>
             <div class="adm-field adm-form-col-full"><label>Nombre documento *</label><input type="text" id="doc-nombre" placeholder="Contrato de encargo firmado"/></div>
-            <div class="adm-field adm-form-col-full"><label>Archivo PDF (opcional)</label><input type="file" id="doc-file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"/></div>
+            <div class="adm-field adm-form-col-full"><label>Archivo (PDF, imagen, Word — máx. 50 MB)</label><input type="file" id="doc-file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp,.heic,application/pdf,image/*"/></div>
             <div class="adm-field adm-form-col-full"><label>URL externa (si no subes archivo)</label><input type="url" id="doc-url" placeholder="https://..."/></div>
             <div class="adm-field"><label>Estado</label>
               <select id="doc-estado">
@@ -1704,7 +1711,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
         <p class="text-muted" style="font-size:.8rem;margin:-.5rem 0 1rem;line-height:1.5">Propietarios registrados en el panel de administración de alquiler. Abre cada expediente para ver datos, inquilino, inmueble y documentación subida.</p>
 
-        <details class="adm-card" id="alq-admin-supabase-guide" open style="margin-bottom:1rem;border-color:rgba(184,147,106,.35)">
+        <details class="adm-card alq-supabase-guide" id="alq-admin-supabase-guide" style="margin-bottom:1rem;border-color:rgba(184,147,106,.35)">
           <summary style="cursor:pointer;font-weight:600;font-size:.88rem;color:var(--gold-light);list-style:none;display:flex;align-items:center;gap:.5rem">
             <span aria-hidden="true">ℹ️</span> Requisitos Supabase y Vercel (módulo alquiler)
           </summary>
@@ -4500,15 +4507,25 @@ async function setVisitaEstado(id, estado) {
   loadVisitas();
 }
 
+async function adminDocSignedUrl(path) {
+  if (!path) return null;
+  if (/^https?:\/\//i.test(path)) return path;
+  const { data, error } = await window.nhSupabase.storage.from('documentos-clientes').createSignedUrl(path, 3600);
+  return error ? null : data?.signedUrl || null;
+}
+
 async function loadDocumentosAdmin() {
   const { data } = await window.nhSupabase.from('cliente_documentos')
     .select('*').order('created_at', { ascending: false });
   const tbl = document.getElementById('documentos-table');
   if (!data?.length) { tbl.innerHTML = '<p class="text-muted">Sin documentos.</p>'; return; }
-  tbl.innerHTML = `<table class="adm-table"><thead><tr><th>Cliente</th><th>Documento</th><th>Tipo</th><th>Estado</th><th></th></tr></thead><tbody>${
-    data.map(d => `<tr><td>${d.cliente_email}</td><td>${d.nombre}</td><td>${d.tipo}</td><td>${d.estado}</td>
-      <td>${d.url ? `<a href="${d.url}" target="_blank">Ver</a>` : '–'} · <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteDocumento('${d.id}')">🗑</button></td></tr>`).join('')
-  }</tbody></table>`;
+  const rows = await Promise.all(data.map(async (d) => {
+    const href = await adminDocSignedUrl(d.url);
+    const ver = href ? `<a href="${href}" target="_blank" rel="noopener">Ver</a>` : '–';
+    return `<tr><td>${d.cliente_email}</td><td>${d.nombre}</td><td>${d.tipo}</td><td>${d.estado}</td>
+      <td>${ver} · <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteDocumento('${d.id}')">🗑</button></td></tr>`;
+  }));
+  tbl.innerHTML = `<table class="adm-table"><thead><tr><th>Cliente</th><th>Documento</th><th>Tipo</th><th>Estado</th><th></th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
 }
 
 async function saveDocumento() {
@@ -8528,7 +8545,11 @@ async function loadAlquilerAdmin() {
     .select('*')
     .order('updated_at', { ascending: false });
   if (error) {
-    if (tbl) tbl.innerHTML = `<p class="alert-box alert-error">No se pudieron cargar expedientes: ${escAlq(error.message)}</p>`;
+    if (tbl) {
+      tbl.innerHTML = `<p class="alert-box alert-error">No se pudieron cargar expedientes: ${escAlq(error.message)}</p>
+        <p class="text-muted" style="font-size:.75rem;margin-top:.5rem">Revisa el bloque <strong>Requisitos Supabase y Vercel</strong> arriba (migraciones 042, 048, 047, 049).</p>`;
+    }
+    document.getElementById('alq-admin-supabase-guide')?.setAttribute('open', 'open');
     nhToast('Error al cargar alquileres: ' + error.message, 'error');
     return;
   }
