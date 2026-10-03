@@ -3,7 +3,7 @@
  * Configurar en Stripe Dashboard → Webhooks → https://www.nuevahabitat.com/api/stripe-webhook
  */
 import Stripe from 'stripe';
-import { markHonorariosPaid } from '../lib/server/supabase-server.js';
+import { markHonorariosPaid, markAlquilerSubscription } from '../lib/server/supabase-server.js';
 import { notifyHonorariosPaid } from '../lib/server/payment-notify.js';
 
 async function readRawBody(req) {
@@ -39,8 +39,28 @@ export default async function handler(req, res) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    if (session.payment_status === 'paid') {
-      const meta = session.metadata || {};
+    const meta = session.metadata || {};
+
+    if (meta.nh_tipo === 'propietario_alquiler' && session.mode === 'subscription') {
+      const recordId = meta.nh_record_id;
+      if (recordId) {
+        try {
+          const subId = typeof session.subscription === 'string' ? session.subscription : session.subscription?.id;
+          const customerId = typeof session.customer === 'string' ? session.customer : session.customer?.id;
+          await markAlquilerSubscription({
+            recordId,
+            customerId,
+            subscriptionId: subId,
+            status: 'active',
+            periodEnd: null,
+            active: true,
+          });
+        } catch (err) {
+          console.error('stripe-webhook alquiler sub:', err);
+          return res.status(500).json({ error: 'DB update failed' });
+        }
+      }
+    } else if (session.payment_status === 'paid') {
       const tipo = meta.nh_tipo === 'vendedor' ? 'vendedor' : 'comprador';
       const recordId = meta.nh_record_id;
       if (recordId) {
@@ -64,6 +84,29 @@ export default async function handler(req, res) {
           console.error('stripe-webhook mark paid:', err);
           return res.status(500).json({ error: 'DB update failed' });
         }
+      }
+    }
+  }
+
+  if (event.type === 'customer.subscription.updated' || event.type === 'customer.subscription.deleted') {
+    const sub = event.data.object;
+    const meta = sub.metadata || {};
+    if (meta.nh_tipo === 'propietario_alquiler' && meta.nh_record_id) {
+      const active = sub.status === 'active' || sub.status === 'trialing';
+      try {
+        await markAlquilerSubscription({
+          recordId: meta.nh_record_id,
+          customerId: typeof sub.customer === 'string' ? sub.customer : sub.customer?.id,
+          subscriptionId: sub.id,
+          status: sub.status,
+          periodEnd: sub.current_period_end
+            ? new Date(sub.current_period_end * 1000).toISOString()
+            : null,
+          active,
+        });
+      } catch (err) {
+        console.error('stripe-webhook subscription update:', err);
+        return res.status(500).json({ error: 'DB update failed' });
       }
     }
   }

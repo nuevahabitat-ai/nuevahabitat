@@ -57,12 +57,18 @@ document.head.appendChild(_supabaseScript);
 /* ── AUTH HELPERS ─────────────────────────────────────────── */
 window.nhAuth = {
 
-  /* Devuelve 'vendedor' o 'comprador' según metadata del usuario */
+  isPropietarioAlquilerTipo(raw) {
+    return ['alquiler', 'propietario', 'admin_alquiler'].includes(raw);
+  },
+
+  /* Devuelve 'vendedor', 'comprador' o 'propietario' según metadata del usuario */
   getUserTipo(user) {
     const meta = user?.user_metadata?.tipo;
+    if (nhAuth.isPropietarioAlquilerTipo(meta)) return 'propietario';
     if (meta === 'vender' || meta === 'vendedor') return 'vendedor';
     if (meta === 'comprar' || meta === 'comprador') return 'comprador';
     const stored = localStorage.getItem('nh_reg_tipo');
+    if (nhAuth.isPropietarioAlquilerTipo(stored)) return 'propietario';
     if (stored === 'vender') return 'vendedor';
     if (stored === 'comprar') return 'comprador';
     return 'comprador';
@@ -70,17 +76,19 @@ window.nhAuth = {
 
   /** Panel: URL ?tipo= > metadata > localStorage */
   resolvePanelTipo(user, urlTipo) {
-    if (urlTipo === 'vendedor' || urlTipo === 'comprador') return urlTipo;
+    if (urlTipo === 'vendedor' || urlTipo === 'comprador' || urlTipo === 'propietario') return urlTipo;
     return nhAuth.getUserTipo(user);
   },
 
   metaTipoFromPanel(tipo) {
+    if (tipo === 'propietario') return 'alquiler';
     return tipo === 'vendedor' ? 'vender' : 'comprar';
   },
 
   getPanelUrl(user) {
     if (nhAuth.isAdmin(user)) return '/admin-panel';
     const tipo = nhAuth.getUserTipo(user);
+    if (tipo === 'propietario') return '/panel-propietario';
     return '/panel?tipo=' + tipo;
   },
 
@@ -95,25 +103,29 @@ window.nhAuth = {
     if (!error && data?.user) {
       localStorage.setItem('nh_reg_tipo', tipo || 'comprar');
       if (data.session?.user) {
-        await nhAuth.ensureClientRecord(data.session.user, {
-          tipo: tipo === 'vender' ? 'vendedor' : 'comprador',
-        });
+        const panelTipo = nhAuth.isPropietarioAlquilerTipo(tipo)
+          ? 'propietario'
+          : (tipo === 'vender' ? 'vendedor' : 'comprador');
+        await nhAuth.ensureClientRecord(data.session.user, { tipo: panelTipo });
       }
       if (window.nhNotify) {
         nhNotify({ nombre, email, tipo: 'bienvenida', template: 'bienvenida', extra: { tipo } });
       }
       const telReg = (telefono || '').trim();
       const esVendedorReg = tipo === 'vender' || tipo === 'vendedor';
-      const mensajeRegistroAdmin = esVendedorReg
-        ? 'Nuevo vendedor registrado en su panel'
-        : 'Nuevo comprador registrado en su panel';
+      const esPropietarioReg = nhAuth.isPropietarioAlquilerTipo(tipo);
+      const mensajeRegistroAdmin = esPropietarioReg
+        ? 'Nuevo propietario (admin alquiler) registrado en su panel'
+        : esVendedorReg
+          ? 'Nuevo vendedor registrado en su panel'
+          : 'Nuevo comprador registrado en su panel';
       if (window.nhNotify && telReg) {
         nhNotify({
           nombre,
           email,
           telefono: telReg,
           mensaje: mensajeRegistroAdmin,
-          tipo: esVendedorReg ? 'venta' : 'compra',
+          tipo: esPropietarioReg ? 'alquiler' : (esVendedorReg ? 'venta' : 'compra'),
           origen: 'registro_cuenta',
         }).catch((e) => console.warn('notify registro admin', e));
       }
@@ -203,15 +215,21 @@ window.nhAuth = {
     return normalizeEmail(user?.email) === normalizeEmail(ADMIN_EMAIL);
   },
 
-  /** Crea perfil + fila en compradores o vendedores (exclusivo: solo una tabla) */
+  /** Crea perfil + fila en compradores, vendedores o propietarios_alquiler */
   async ensureClientRecord(user, opts = {}) {
     if (!window.nhSupabase || !user?.email || nhAuth.isAdmin(user)) return true;
     const tipo = opts.tipo || nhAuth.getUserTipo(user);
-    const pTipo = tipo === 'vendedor' ? 'vendedor' : 'comprador';
     const nombre = (user.user_metadata?.nombre || user.email.split('@')[0] || 'Cliente').trim();
     const telefono = user.user_metadata?.telefono || null;
     const email = user.email;
 
+    if (tipo === 'propietario') {
+      const { error: propErr } = await window.nhSupabase.rpc('sync_propietario_alquiler');
+      if (propErr) console.error('ensureClientRecord sync_propietario_alquiler', propErr);
+      return !propErr;
+    }
+
+    const pTipo = tipo === 'vendedor' ? 'vendedor' : 'comprador';
     const { error: syncErr } = await window.nhSupabase.rpc('sync_cliente_tipo', { p_tipo: pTipo });
     if (!syncErr) return true;
 

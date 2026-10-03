@@ -84,7 +84,8 @@
       menu.innerHTML = `
         <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
         <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
-        <a href="/administracion-alquileres" role="menuitem"><strong>Administración de alquileres</strong><span>60 €/mes · IVA incl. · larga duración</span></a>
+        <a href="/registro?tipo=alquiler" role="menuitem"><strong>Administrar mi alquiler</strong><span>Panel propietario · 60 €/mes IVA incl.</span></a>
+        <a href="/administracion-alquileres" role="menuitem"><strong>Información del servicio</strong><span>Qué incluye la administración</span></a>
         <a href="/alquiler-integral" role="menuitem"><strong>Alquiler integral</strong><span>499 € · publicar, filtrar y cerrar contrato</span></a>
       `;
       wrap.appendChild(menu);
@@ -128,6 +129,7 @@
       wrapLi.innerHTML = `
         <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Alquileres</button>
         <div class="nav-dropdown-menu" role="menu">
+          <a href="/registro?tipo=alquiler" role="menuitem">Crear cuenta (panel propietario)</a>
           <a href="/administracion-alquileres" role="menuitem">Administración de alquileres</a>
           <a href="/alquiler-integral" role="menuitem">Alquiler integral</a>
         </div>
