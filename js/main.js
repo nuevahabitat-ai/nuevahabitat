@@ -42,6 +42,73 @@
 })();
 
 
+/* ── Nav: teléfonos junto a Empezar ahora + menú de inicio ─── */
+(function () {
+  document.querySelectorAll('.nav-actions').forEach((actions) => {
+    const tels = actions.querySelector('.nav-tels');
+    const cta = actions.querySelector('.nav-cta');
+    if (!cta) return;
+
+    if (tels && !actions.querySelector('.nav-cta-cluster')) {
+      const cluster = document.createElement('div');
+      cluster.className = 'nav-cta-cluster';
+      tels.before(cluster);
+      cluster.append(tels, cta);
+    }
+
+    if (cta.closest('.nav-start-wrap')) return;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'nav-start-wrap';
+    cta.parentNode.insertBefore(wrap, cta);
+    wrap.appendChild(cta);
+
+    if (!cta.getAttribute('href')) cta.setAttribute('href', '/registro');
+    cta.setAttribute('aria-haspopup', 'true');
+    cta.setAttribute('aria-expanded', 'false');
+
+    const menu = document.createElement('div');
+    menu.className = 'nav-start-menu';
+    menu.setAttribute('role', 'menu');
+    menu.innerHTML = `
+      <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
+      <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
+      <a href="/administracion-alquileres" role="menuitem"><strong>Administración de alquileres</strong><span>60 €/mes · IVA incl. · larga duración</span></a>
+    `;
+    wrap.appendChild(menu);
+
+    const close = () => {
+      wrap.classList.remove('open');
+      cta.setAttribute('aria-expanded', 'false');
+    };
+
+    cta.addEventListener('click', (e) => {
+      if (wrap.classList.contains('open')) return;
+      e.preventDefault();
+      wrap.classList.add('open');
+      cta.setAttribute('aria-expanded', 'true');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!wrap.contains(e.target)) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  });
+
+  const mobileNav = document.getElementById('mobileNav');
+  if (mobileNav && !mobileNav.querySelector('a[href="/administracion-alquileres"]')) {
+    const regLink = mobileNav.querySelector('a[href="/registro"], a[href^="/registro"]');
+    const link = document.createElement('a');
+    link.href = '/administracion-alquileres';
+    link.textContent = 'Administración de alquileres';
+    if (regLink) regLink.before(link);
+    else mobileNav.appendChild(link);
+  }
+})();
+
+
 /* ── Menú móvil ────────────────────────────────────────────── */
 (function () {
   const menuBtn   = document.getElementById('menuBtn');

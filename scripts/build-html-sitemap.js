@@ -10,6 +10,7 @@ const STATIC_PAGES = [
   { href: '/comprar', label: 'Comprar' },
   { href: '/inmuebles', label: 'Inmuebles' },
   { href: '/hipotecas', label: 'Hipotecas' },
+  { href: '/administracion-alquileres', label: 'Administración de alquileres' },
   { href: '/nosotros', label: 'Nosotros' },
   { href: '/blog', label: 'Blog' },
   { href: '/contacto', label: 'Contacto' },

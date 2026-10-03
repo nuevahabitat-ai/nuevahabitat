@@ -165,7 +165,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   padding: 0 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1.25rem;
 }
 
 .nav-logo { display: flex; align-items: center; gap: 1rem; }
@@ -213,6 +213,8 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex: 1;
   gap: 2.25rem;
 }
 
@@ -237,7 +239,107 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 .nav-links a:hover { color: var(--blanco); }
 .nav-links a:hover::after { width: 100%; }
 
-.nav-actions { display: flex; align-items: center; gap: 1rem; }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.nav-cta-cluster {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  flex-shrink: 0;
+}
+
+.nav-cta-cluster .nav-tels {
+  white-space: nowrap;
+}
+
+.nav-start-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.nav-start-wrap .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  cursor: pointer;
+}
+
+.nav-start-wrap .nav-cta::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  opacity: .85;
+  margin-top: 2px;
+}
+
+.nav-start-menu {
+  position: absolute;
+  top: calc(100% + .5rem);
+  right: 0;
+  min-width: 15.5rem;
+  background: rgba(18, 18, 18, .98);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
+  padding: .45rem;
+  z-index: 1100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+
+.nav-start-wrap.open .nav-start-menu,
+.nav-start-wrap:focus-within .nav-start-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (hover: hover) {
+  .nav-start-wrap:hover .nav-start-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.nav-start-menu a {
+  display: block;
+  padding: .65rem .85rem;
+  border-radius: 6px;
+  font-size: .875rem;
+  color: rgba(255, 255, 255, .88);
+  transition: background var(--transition), color var(--transition);
+}
+
+.nav-start-menu a:hover {
+  background: rgba(255, 255, 255, .08);
+  color: var(--oro-claro);
+}
+
+.nav-start-menu a strong {
+  display: block;
+  font-weight: 600;
+  color: var(--blanco);
+  margin-bottom: .15rem;
+}
+
+.nav-start-menu a span {
+  display: block;
+  font-size: .75rem;
+  color: rgba(255, 255, 255, .55);
+  line-height: 1.35;
+}
 
 .nav-tel {
   font-size: .8125rem;
@@ -3036,4 +3138,175 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
   .lc-call-banner__inner { flex-direction: column; align-items: stretch; text-align: center; }
   .lc-call-banner .btn { width: 100%; justify-content: center; }
   body.cookie-banner-open .nh-sticky-call.is-visible { bottom: calc(56px + env(safe-area-inset-bottom, 0px) + 8.5rem); }
+}
+
+/* ── Administración de alquileres ─────────────────────────── */
+.alq-hero-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .35rem;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  padding: .45rem 1rem .5rem;
+  margin-top: 1.25rem;
+  font-size: .875rem;
+  color: rgba(255, 255, 255, .9);
+}
+
+.alq-hero-badge strong {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--oro-claro);
+}
+
+.alq-bridge {
+  padding: 4.5rem 0;
+  background: var(--crema);
+}
+
+.alq-bridge-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.alq-bridge-card {
+  background: var(--blanco);
+  border: 1px solid var(--crema-dark);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.alq-bridge-card h3 {
+  font-size: 1rem;
+  margin-bottom: .35rem;
+}
+
+.alq-bridge-card p {
+  font-size: .8125rem;
+  color: var(--gris-texto);
+  line-height: 1.55;
+}
+
+.alq-bridge-card.is-hub {
+  background: var(--negro);
+  border-color: var(--negro);
+  color: var(--blanco);
+}
+
+.alq-bridge-card.is-hub h3 { color: var(--oro-claro); }
+.alq-bridge-card.is-hub p { color: rgba(255, 255, 255, .72); }
+
+.alq-bridge-arrow {
+  color: var(--oro);
+  font-size: 1.35rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.alq-services {
+  padding: 5rem 0;
+  background: var(--blanco);
+}
+
+.alq-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+}
+
+.alq-service-card {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+  background: var(--crema);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--crema-dark);
+}
+
+.alq-service-card img {
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  object-fit: cover;
+}
+
+.alq-service-card div {
+  padding: 1.25rem 1.25rem 1.25rem 0;
+}
+
+.alq-service-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: .45rem;
+}
+
+.alq-service-card p {
+  font-size: .875rem;
+  color: var(--gris-texto);
+  line-height: 1.65;
+}
+
+.alq-price-band {
+  padding: 4rem 0;
+  background: var(--negro);
+}
+
+.alq-price-inner {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.alq-price-card {
+  background: linear-gradient(145deg, rgba(184, 147, 106, .18), rgba(255, 255, 255, .04));
+  border: 1px solid rgba(184, 147, 106, .45);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  text-align: center;
+}
+
+.alq-price-card .price {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.25rem);
+  color: var(--oro-claro);
+  line-height: 1;
+  margin: .5rem 0;
+}
+
+.alq-price-card .price span {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, .75);
+}
+
+.alq-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 960px) {
+  .alq-steps { grid-template-columns: 1fr 1fr; }
+  .alq-bridge-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+  .alq-bridge-arrow { transform: rotate(90deg); }
+  .alq-services-grid { grid-template-columns: 1fr; }
+  .alq-service-card { grid-template-columns: 1fr; }
+  .alq-service-card img { min-height: 180px; }
+  .alq-service-card div { padding: 1.25rem; }
+  .alq-price-inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .alq-steps { grid-template-columns: 1fr; }
 }
