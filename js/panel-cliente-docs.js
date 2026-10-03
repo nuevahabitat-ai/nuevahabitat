@@ -59,16 +59,51 @@
     return data?.session?.access_token || null;
   }
 
+  function clientPanelRol(user) {
+    const q = new URLSearchParams(window.location.search).get('tipo');
+    if (q === 'vendedor' || q === 'comprador') return q;
+    if (window.nhAuth && typeof window.nhAuth.getUserTipo === 'function') {
+      const t = window.nhAuth.getUserTipo(user);
+      if (t === 'vendedor' || t === 'comprador') return t;
+    }
+    return null;
+  }
+
+  async function notifyAdminDocUpload(user, tipo, label) {
+    const rol = clientPanelRol(user);
+    if (rol !== 'vendedor' && rol !== 'comprador') return;
+    const nombre = user.user_metadata?.nombre || user.email?.split('@')[0] || 'Cliente';
+    try {
+      await fetch('/api/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          template: 'documento_subido_cliente',
+          email: user.email,
+          nombre,
+          extra: {
+            rol: rol === 'vendedor' ? 'Vendedor' : 'Comprador',
+            documentoNombre: label,
+            documentoTipo: tipo,
+          },
+        }),
+      });
+    } catch (e) {
+      console.warn('notify admin doc upload', e);
+    }
+  }
+
   async function apiUpload(body) {
     const token = await getAccessToken();
     if (!token) throw new Error('Sesión expirada');
+    const rol = clientPanelRol(window.currentUser);
     const res = await fetch('/api/panel-propietario?action=upload', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ ...body, rol: rol || undefined }),
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok || !data.ok) throw new Error(data.error || 'Error al subir');
@@ -147,11 +182,13 @@
             mimeType: file.type || 'application/octet-stream',
             base64: await fileToBase64(file),
           });
+          insertedByApi = true;
         } else {
           throw insErr;
         }
       }
     }
+    if (!insertedByApi) await notifyAdminDocUpload(user, tipo, label);
   }
 
   function docsForTipo(tipo) {

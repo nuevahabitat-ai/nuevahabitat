@@ -1097,6 +1097,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button type="button" class="adm-subtab active" data-vend-modal-tab="resumen" onclick="vendModalTab('resumen')">Resumen</button>
             <button type="button" class="adm-subtab" data-vend-modal-tab="honorarios" onclick="vendModalTab('honorarios')">Honorarios</button>
             <button type="button" class="adm-subtab" data-vend-modal-tab="comprador" onclick="vendModalTab('comprador')">Comprador</button>
+            <button type="button" class="adm-subtab" data-vend-modal-tab="documentos" onclick="vendModalTab('documentos')">Documentación</button>
           </div>
           <div class="dash-modal-body" id="vend-modal-body"></div>
           <div class="dash-modal-foot" id="vend-modal-foot"></div>
@@ -4514,6 +4515,38 @@ async function adminDocSignedUrl(path) {
   return error ? null : data?.signedUrl || null;
 }
 
+const ADMIN_AGENT_DOC_TIPOS = new Set(['contrato_encargo', 'contrato_arras', 'contrato', 'tasacion', 'nota_mercado', 'firmado']);
+
+async function loadAdminClienteDocumentos(email, containerEl) {
+  if (!containerEl) return;
+  const em = (email || '').trim();
+  if (!em) {
+    containerEl.innerHTML = '<p class="text-muted" style="font-size:.85rem">Sin email en la ficha — no se pueden listar documentos.</p>';
+    return;
+  }
+  containerEl.innerHTML = '<p class="text-muted" style="font-size:.85rem">Cargando documentación…</p>';
+  const { data, error } = await window.nhSupabase.from('cliente_documentos')
+    .select('id,cliente_email,tipo,nombre,url,estado,created_at')
+    .ilike('cliente_email', em)
+    .order('created_at', { ascending: false });
+  if (error) {
+    containerEl.innerHTML = `<p class="text-muted">Error: ${dashEsc(error.message)}</p>`;
+    return;
+  }
+  if (!data?.length) {
+    containerEl.innerHTML = '<p class="text-muted" style="font-size:.85rem">Este cliente aún no tiene documentos en el panel (ni subidos por él ni enviados por Nueva Habitat).</p>';
+    return;
+  }
+  const rows = await Promise.all(data.map(async (d) => {
+    const href = await adminDocSignedUrl(d.url);
+    const ver = href ? `<a href="${href}" target="_blank" rel="noopener" class="adm-btn adm-btn-ghost adm-btn-sm">Ver / Descargar</a>` : '–';
+    const origen = (ADMIN_AGENT_DOC_TIPOS.has(d.tipo) || d.estado === 'disponible' || d.estado === 'firmado') ? 'NH' : 'Cliente';
+    const when = d.created_at ? new Date(d.created_at).toLocaleString('es-ES') : '';
+    return `<tr><td>${dashEsc(d.nombre)}</td><td>${dashEsc(d.tipo)}</td><td>${dashEsc(d.estado || '–')}</td><td>${origen}</td><td style="font-size:.75rem">${when}</td><td>${ver}</td></tr>`;
+  }));
+  containerEl.innerHTML = `<table class="adm-table"><thead><tr><th>Documento</th><th>Tipo</th><th>Estado</th><th>Origen</th><th>Fecha</th><th></th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
+}
+
 async function loadDocumentosAdmin() {
   const { data } = await window.nhSupabase.from('cliente_documentos')
     .select('*').order('created_at', { ascending: false });
@@ -5766,6 +5799,16 @@ function renderVendModalBody(v){
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal();switchSection('compradores')">Ir a compradores</button>
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal()">Cerrar</button>`;
     vendPopulateCompradorSelect('vend-modal-comprador', v.comprador_id || '');
+    return;
+  }
+
+  if (_vendModalTab === 'documentos') {
+    body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Documentos del panel del vendedor (<strong>${dashEsc(v.email || '–')}</strong>): subidos por el cliente y preparados por el equipo.</p><div id="vend-modal-docs"></div>`;
+    foot.innerHTML = `
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="switchSection('documentos');closeVendModal()">Subir desde Inmuebles → Documentos</button>
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeVendModal()">Cerrar</button>`;
+    loadAdminClienteDocumentos(v.email, document.getElementById('vend-modal-docs'));
+    return;
   }
 }
 
@@ -6861,6 +6904,8 @@ function buildCompCardDetailHtml(c){
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="markCompradorContactado('${c.id}', 'Contacto manual registrado').then(() => refreshCompCardModal())">Solo marcar contacto</button>
     </div>
     <p class="text-muted" style="font-size:.72rem;margin-bottom:1rem">Cada WhatsApp, llamada o comentario actualiza el último contacto y reprograma la alarma (+${getCompAlarmDays()} días).</p>
+    <div class="wiz-section-label">Documentación del panel</div>
+    <div id="comp-card-docs" class="adm-cliente-docs-block"></div>
     <div class="wiz-section-label">Historial de comentarios</div>
     <div id="comp-card-seg-timeline" class="seg-timeline">${renderCompNotasTimeline(c.notas)}</div>`;
 }
@@ -6870,6 +6915,7 @@ async function refreshCompCardModal(){
   const c = _compData.find(x => x.id === _compCardModalId);
   if(!c) return;
   document.getElementById('comp-card-body').innerHTML = buildCompCardDetailHtml(c);
+  await loadAdminClienteDocumentos(c.email, document.getElementById('comp-card-docs'));
 }
 
 async function openCompCardModal(id){
@@ -6880,6 +6926,7 @@ async function openCompCardModal(id){
   document.getElementById('comp-card-kicker').textContent = c.activo ? 'Comprador activo' : 'Comprador inactivo';
   document.getElementById('comp-card-title').textContent = c.nombre || 'Comprador';
   document.getElementById('comp-card-body').innerHTML = buildCompCardDetailHtml(c);
+  await loadAdminClienteDocumentos(c.email, document.getElementById('comp-card-docs'));
   document.getElementById('comp-card-foot').innerHTML = `
     <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="editComprador('${c.id}');closeCompCardModal()">Editar ficha</button>
     <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeCompCardModal()">Cerrar</button>`;

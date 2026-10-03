@@ -521,6 +521,32 @@ function tplNewsletter({ email }) {
   };
 }
 
+function tplDocumentoSubidoClienteAdmin({ nombre, email, extra }) {
+  const rol = extra?.rol || 'Cliente';
+  const docNombre = extra?.documentoNombre || 'Documento';
+  const docTipo = extra?.documentoTipo || '–';
+  return {
+    subject: `[NH] Documento subido — ${rol}: ${nombre || email || 'Cliente'}`,
+    html: HEAD + `<div class="body">
+      <div class="tag">Panel · Documentación</div>
+      <h1>Nuevo documento subido por cliente</h1>
+      <p class="intro">Un ${rol.toLowerCase()} ha subido documentación desde su panel. Revísala en el admin o en la ficha del cliente.</p>
+      <div class="card">
+        <table>
+          <tr><td>Perfil</td><td>${rol}</td></tr>
+          <tr><td>Cliente</td><td>${nombre || '–'}</td></tr>
+          <tr><td>Email</td><td>${email || '–'}</td></tr>
+          <tr><td>Documento</td><td>${docNombre}</td></tr>
+          <tr><td>Tipo</td><td>${docTipo}</td></tr>
+        </table>
+      </div>
+      <div class="btns">
+        <a href="https://www.nuevahabitat.com/admin-panel" class="btn btn-gold">Abrir panel admin</a>
+      </div>
+    </div>` + FOOTER,
+  };
+}
+
 function tplDocumentosListos({ nombre, documentos }) {
   const docList = (documentos || ['Contrato de encargo']).map(d =>
     `<tr><td>📄</td><td>${d}</td><td style="color:#22c55e;font-size:.8rem">Disponible</td></tr>`
@@ -830,6 +856,8 @@ export default async function handler(req, res) {
         jobs.push(send(getNotifyRecipients(), tplTransferenciaPendienteAdmin({ nombre, email, extra: extra || {} })));
       } else if (template === 'visita_confirmada' || template === 'visita_cancelada') {
         jobs.push(send(getNotifyRecipients(), tplVisitaEstadoAdmin({ nombre, email, telefono, inmueble, mensaje, extra: extra || {} })));
+      } else if (template === 'documento_subido_cliente') {
+        jobs.push(send(getNotifyRecipients(), tplDocumentoSubidoClienteAdmin({ nombre, email, extra: extra || {} })));
       } else if (template !== 'bienvenida' && template !== 'newsletter') {
         if (!leadId && nombre && telefono) {
           try {
