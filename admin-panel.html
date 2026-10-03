@@ -1723,6 +1723,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
               <li><strong>048</strong> — Tabla <code>cliente_documentos</code> si no existía (documentación del propietario).</li>
               <li><strong>047</strong> — RLS sin consultar <code>auth.users</code> (evita «permission denied for table users»).</li>
               <li><strong>049</strong> — RPC <code>update_propietario_alquiler_expediente</code> (guardar datos en panel propietario).</li>
+              <li><strong>050</strong> — Alquiler integral: columnas pago 499 € (<code>integral_pagado</code>, transferencia, Stripe) y <code>sync_propietario_alquiler</code> con <code>servicio=integral</code>.</li>
               <li><strong>045</strong> — Bucket Storage <code>documentos-clientes</code> (50 MB).</li>
               <li><strong>046</strong> — La RPC de guardado crea expediente si falta fila.</li>
             </ol>
@@ -1730,7 +1731,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <ul style="margin:0 0 .75rem 1.1rem;color:var(--muted)">
               <li><code>SUPABASE_SERVICE_ROLE_KEY</code></li>
               <li><code>SUPABASE_URL</code> y <code>SUPABASE_ANON_KEY</code> (o las que ya usa el sitio)</li>
-              <li><code>STRIPE_*</code> — cuota 60 €/mes en panel propietario</li>
+              <li><code>STRIPE_*</code> — cuota 60 €/mes (administración) y pago único 499 € (alquiler integral)</li>
             </ul>
             <p style="margin-bottom:.35rem"><strong>Comprobar en Supabase</strong> (pega en SQL Editor; debe devolver filas sin error):</p>
             <pre style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.65rem .75rem;font-size:.68rem;overflow:auto;margin:.35rem 0 .75rem;white-space:pre-wrap">SELECT COUNT(*) AS propietarios FROM public.propietarios_alquiler;
@@ -1756,6 +1757,14 @@ SELECT id FROM storage.buckets WHERE id = 'documentos-clientes';</pre>
               <option value="activo">Activo</option>
               <option value="renovacion">Renovación</option>
               <option value="baja">Baja</option>
+            </select>
+          </div>
+          <div class="adm-field">
+            <label for="alq-filter-servicio">Servicio</label>
+            <select id="alq-filter-servicio" onchange="renderAlquilerAdminTable()">
+              <option value="">Todos</option>
+              <option value="administracion">Administración 60 €/mes</option>
+              <option value="integral">Alquiler integral 499 €</option>
             </select>
           </div>
           <div class="adm-field">
@@ -8565,6 +8574,7 @@ function getAlqFilterValues() {
   return {
     q: (document.getElementById('alq-filter-q')?.value || '').trim().toLowerCase(),
     estado: document.getElementById('alq-filter-estado')?.value || '',
+    servicio: document.getElementById('alq-filter-servicio')?.value || '',
     cuota: document.getElementById('alq-filter-cuota')?.value || '',
   };
 }
@@ -8573,6 +8583,8 @@ function filterAlqPropRows(list) {
   const f = getAlqFilterValues();
   return (list || []).filter((r) => {
     if (f.estado && r.estado_gestion !== f.estado) return false;
+    const svc = r.servicio || 'administracion';
+    if (f.servicio && svc !== f.servicio) return false;
     if (f.cuota === 'activa' && !r.suscripcion_activa) return false;
     if (f.cuota === 'pendiente' && r.suscripcion_activa) return false;
     if (f.q) {
@@ -8619,17 +8631,31 @@ function renderAlquilerAdminTable() {
     return;
   }
   tbl.innerHTML = `<table class="adm-table"><thead><tr>
-    <th>Propietario</th><th>Inmueble</th><th>Estado</th><th>Cuota</th><th>Alta</th>
+    <th>Propietario</th><th>Servicio</th><th>Inmueble</th><th>Estado</th><th>Pago</th><th>Alta</th>
   </tr></thead><tbody>${filtered.map((r) => {
-    const cuota = r.suscripcion_activa
-      ? '<span class="adm-pay-badge adm-pay-badge--ok">Domiciliada</span>'
-      : '<span class="adm-pay-badge adm-pay-badge--pend">Pendiente</span>';
+    const integral = (r.servicio || 'administracion') === 'integral';
+    const svcLabel = integral
+      ? '<span class="adm-pay-badge" style="background:rgba(184,147,106,.2);color:var(--gold-light)">Integral</span>'
+      : '<span class="adm-pay-badge adm-pay-badge--pend">Admin</span>';
+    let pago;
+    if (integral) {
+      pago = r.integral_pagado
+        ? '<span class="adm-pay-badge adm-pay-badge--ok">499 € pagado</span>'
+        : r.integral_transferencia_pendiente
+          ? '<span class="adm-pay-badge" style="background:rgba(184,147,106,.15)">Transfer. 499 €</span>'
+          : '<span class="adm-pay-badge adm-pay-badge--pend">499 € pend.</span>';
+    } else {
+      pago = r.suscripcion_activa
+        ? '<span class="adm-pay-badge adm-pay-badge--ok">Domiciliada</span>'
+        : '<span class="adm-pay-badge adm-pay-badge--pend">Pendiente</span>';
+    }
     const est = ALQ_ESTADO_LABEL[r.estado_gestion] || r.estado_gestion || '—';
     return `<tr class="vend-row-click" onclick="openAlqAdminModal('${r.id}')">
       <td><strong>${escAlq(r.nombre || '—')}</strong><br><span style="font-size:.72rem;color:var(--muted)">${escAlq(r.email)}</span></td>
+      <td>${svcLabel}</td>
       <td style="font-size:.78rem">${escAlq(r.inmueble_direccion || '—')}</td>
       <td><span class="badge badge-ok">${escAlq(est)}</span></td>
-      <td>${cuota}</td>
+      <td>${pago}</td>
       <td style="font-size:.72rem;color:var(--muted);white-space:nowrap">${fmtAlqDate(r.created_at)}</td>
     </tr>`;
   }).join('')}</tbody></table>`;
@@ -8666,10 +8692,11 @@ function renderAlqAdminModalBody() {
   if (_alqModalTab === 'resumen') {
     body.innerHTML = `<dl class="dash-dl">
       ${alqDlRow('Estado gestión', ALQ_ESTADO_LABEL[row.estado_gestion] || row.estado_gestion)}
-      ${alqDlRow('Servicio', row.servicio || 'administracion')}
+      ${alqDlRow('Servicio', row.servicio === 'integral' ? 'Alquiler integral (499 €)' : 'Administración (60 €/mes)')}
+      ${row.servicio === 'integral' ? alqDlRow('Pago integral 499 €', row.integral_pagado ? ('Pagado' + (row.integral_pagado_at ? ' · ' + fmtAlqDate(row.integral_pagado_at) : '')) : (row.integral_transferencia_pendiente ? 'Transferencia en revisión' : 'Pendiente')) : ''}
       ${alqDlRow('Renta mensual', fmtAlqEur(row.renta_mensual))}
-      ${alqDlRow('Cuota NH', fmtAlqEur(row.cuota_mensual))}
-      ${alqDlRow('Suscripción Stripe', row.suscripcion_activa ? 'Activa' : 'Pendiente')}
+      ${row.servicio === 'integral' ? '' : alqDlRow('Cuota NH', fmtAlqEur(row.cuota_mensual))}
+      ${row.servicio === 'integral' ? '' : alqDlRow('Suscripción Stripe', row.suscripcion_activa ? 'Activa' : 'Pendiente')}
       ${alqDlRow('Registro', fmtAlqDate(row.created_at))}
       ${alqDlRow('Última actualización', fmtAlqDate(row.updated_at))}
     </dl>

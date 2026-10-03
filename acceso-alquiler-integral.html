@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Acceso propietario · Administración de alquileres · NuevaHabitat</title>
-  <meta name="description" content="Inicia sesión o crea tu cuenta solo para el panel de administración de alquileres de NuevaHabitat. 60 €/mes IVA incl."/>
-  <meta property="og:url" content="https://www.nuevahabitat.com/acceso-alquileres"/>
-  <link rel="canonical" href="https://www.nuevahabitat.com/acceso-alquileres"/>
+  <title>Acceso alquiler integral · 499 € · NuevaHabitat</title>
+  <meta name="description" content="Registro o login solo para alquiler integral: panel propietario, documentación, candidato inquilino y pago 499 €."/>
+  <link rel="canonical" href="https://www.nuevahabitat.com/acceso-alquiler-integral"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
   <style>
@@ -20,23 +19,23 @@
 <body>
 <div class="auth-page">
   <div class="auth-visual">
-    <img src="imagenes/interior3.jpg" alt="Administración de alquileres NuevaHabitat"/>
+    <img src="imagenes/interior3.jpg" alt="Alquiler integral Barcelona"/>
     <div class="auth-visual-overlay"></div>
     <div class="auth-visual-brand"><a href="/"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/></a></div>
     <div class="auth-visual-copy">
-      <h2>Tu alquiler,<br/>bien gestionado.</h2>
-      <p>Panel exclusivo para propietarios con administración de alquileres: incidencias, inquilino, documentación y cuota mensual.</p>
+      <h2>De anuncio<br/>a llaves.</h2>
+      <p>Panel de alquiler integral: datos del inmueble, documentación, candidato inquilino y pago del servicio (499 €).</p>
     </div>
   </div>
   <div class="auth-form-side">
     <div class="auth-form-box">
-      <span class="overline">Solo administración de alquileres</span>
-      <h1>Acceso propietario</h1>
-      <p>Inicia sesión o regístrate para entrar en <strong>/panel-propietario</strong> (60 €/mes IVA incl.).</p>
+      <span class="overline">Solo alquiler integral</span>
+      <h1>Acceso alquiler integral</h1>
+      <p>Crea cuenta o entra en <strong>/panel-propietario</strong> · servicio <strong>499 €</strong> precio fijo.</p>
 
       <div class="alq-auth-tabs" role="tablist">
-        <button type="button" class="active" id="tabLogin" role="tab" aria-selected="true">Iniciar sesión</button>
-        <button type="button" id="tabRegistro" role="tab" aria-selected="false">Crear cuenta</button>
+        <button type="button" class="active" id="tabLogin" role="tab">Iniciar sesión</button>
+        <button type="button" id="tabRegistro" role="tab">Crear cuenta</button>
       </div>
 
       <button class="auth-social-btn" id="btnGoogle" type="button">
@@ -48,57 +47,34 @@
       <div id="auth-error" style="display:none;background:#fef2f2;border:1px solid #fca5a5;color:#b91c1c;border-radius:6px;padding:.75rem 1rem;font-size:.875rem;margin-bottom:1rem"></div>
       <div id="auth-ok" style="display:none;background:#f0fdf4;border:1px solid #86efac;color:#166534;border-radius:6px;padding:.75rem 1rem;font-size:.875rem;margin-bottom:1rem"></div>
 
-      <div class="alq-auth-panel" id="panelLogin" role="tabpanel">
+      <div class="alq-auth-panel" id="panelLogin">
         <form id="loginForm">
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="loginEmail" placeholder="tu@email.com" required autocomplete="email"/>
-          </div>
-          <div class="form-group">
-            <label>Contraseña</label>
-            <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password"/>
-          </div>
+          <div class="form-group"><label>Email</label><input type="email" id="loginEmail" required autocomplete="email"/></div>
+          <div class="form-group"><label>Contraseña</label><input type="password" id="loginPassword" required autocomplete="current-password"/></div>
           <a href="#" class="auth-forgot" id="forgotLink">¿Olvidaste tu contraseña?</a>
-          <button type="submit" class="btn btn-primary btn-lg" id="loginBtn" style="width:100%;justify-content:center;margin-top:.5rem">Entrar al panel propietario</button>
+          <button type="submit" class="btn btn-primary btn-lg" id="loginBtn" style="width:100%;justify-content:center;margin-top:.5rem">Entrar al panel integral</button>
         </form>
       </div>
 
-      <div class="alq-auth-panel" id="panelRegistro" role="tabpanel" hidden>
+      <div class="alq-auth-panel" id="panelRegistro" hidden>
         <form id="regForm">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
-            <div class="form-group" style="margin:0">
-              <label>Nombre</label>
-              <input type="text" id="regNombre" placeholder="Nombre" required/>
-            </div>
-            <div class="form-group" style="margin:0">
-              <label>Apellidos</label>
-              <input type="text" id="regApellidos" placeholder="Apellidos" required/>
-            </div>
+            <div class="form-group" style="margin:0"><label>Nombre</label><input type="text" id="regNombre" required/></div>
+            <div class="form-group" style="margin:0"><label>Apellidos</label><input type="text" id="regApellidos" required/></div>
           </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="regEmail" placeholder="tu@email.com" required autocomplete="email"/>
-          </div>
-          <div class="form-group">
-            <label>Teléfono</label>
-            <input type="tel" id="regTel" placeholder="600 000 000" required/>
-          </div>
-          <div class="form-group">
-            <label>Contraseña</label>
-            <input type="password" id="regPassword" placeholder="Mínimo 8 caracteres" required minlength="8" autocomplete="new-password"/>
-          </div>
+          <div class="form-group"><label>Email</label><input type="email" id="regEmail" required/></div>
+          <div class="form-group"><label>Teléfono</label><input type="tel" id="regTel" required placeholder="600 000 000"/></div>
+          <div class="form-group"><label>Contraseña</label><input type="password" id="regPassword" required minlength="8"/></div>
           <div style="display:flex;align-items:flex-start;gap:.65rem;margin-bottom:1.25rem;font-size:.8125rem;color:var(--gris-texto)">
             <input type="checkbox" id="regPrivacy" required style="margin-top:2px;accent-color:var(--oro)"/>
             <span>Acepto la <a href="/privacidad" style="color:var(--oro)">política de privacidad</a>.</span>
           </div>
-          <button type="submit" class="btn btn-gold btn-lg" id="regBtn" style="width:100%;justify-content:center">Crear cuenta propietario →</button>
+          <button type="submit" class="btn btn-gold btn-lg" id="regBtn" style="width:100%;justify-content:center">Crear cuenta · alquiler integral</button>
         </form>
       </div>
 
-      <p class="alq-auth-note">¿Buscas <strong>alquiler integral</strong> (499 €, publicación y cierre)? <a href="/acceso-alquiler-integral" style="color:var(--oro);font-weight:600">Acceso alquiler integral →</a></p>
-      <p class="alq-auth-note" style="margin-top:.65rem">¿Quieres <strong>vender</strong> o <strong>comprar</strong> una vivienda? Usa el <a href="/registro" style="color:var(--oro)">registro general</a> o <a href="/login" style="color:var(--oro)">login de comprador/vendedor</a>.</p>
-      <p style="text-align:center;margin-top:1.25rem"><a href="/administracion-alquileres" style="font-size:.8125rem;color:var(--gris-medio)">Ver qué incluye la administración (información)</a></p>
-      <p style="text-align:center;margin-top:.75rem"><a href="/" style="font-size:.8125rem;color:var(--gris-medio)">← Volver al inicio</a></p>
+      <p class="alq-auth-note">¿Ya tienes contrato en curso y solo quieres gestión mensual? <a href="/acceso-alquileres" style="color:var(--oro);font-weight:600">Administración 60 €/mes →</a></p>
+      <p style="text-align:center;margin-top:.75rem"><a href="/alquiler-integral" style="font-size:.8125rem;color:var(--gris-medio)">Información del servicio integral</a></p>
     </div>
   </div>
 </div>
@@ -106,7 +82,7 @@
 <script src="js/supabase.js"></script>
 <script>
 document.addEventListener('supabase:ready', async () => {
-  localStorage.setItem('nh_reg_tipo', 'alquiler');
+  localStorage.setItem('nh_reg_tipo', 'alquiler_integral');
 
   const errBox = document.getElementById('auth-error');
   const okBox = document.getElementById('auth-ok');
@@ -122,12 +98,9 @@ document.addEventListener('supabase:ready', async () => {
     const reg = mode === 'registro';
     tabLogin.classList.toggle('active', !reg);
     tabRegistro.classList.toggle('active', reg);
-    tabLogin.setAttribute('aria-selected', !reg);
-    tabRegistro.setAttribute('aria-selected', reg);
     panelLogin.hidden = reg;
     panelRegistro.hidden = !reg;
   }
-
   tabLogin.addEventListener('click', () => setTab('login'));
   tabRegistro.addEventListener('click', () => setTab('registro'));
   if (new URLSearchParams(location.search).get('modo') === 'registro') setTab('registro');
@@ -138,109 +111,84 @@ document.addEventListener('supabase:ready', async () => {
     return data?.servicio || null;
   }
 
-  async function isIntegralAccount(user) {
+  async function isIntegralUser(user) {
     if (user.user_metadata?.tipo === 'alquiler_integral') return true;
     if (user.user_metadata?.servicio === 'integral') return true;
-    return (await expedienteServicio(user)) === 'integral';
+    const s = await expedienteServicio(user);
+    return s === 'integral';
   }
 
   if (new URLSearchParams(location.search).get('logout') !== '1') {
     const user = await nhAuth.getUser();
-    if (user) {
-      if (nhAuth.getUserTipo(user) === 'propietario' && !(await isIntegralAccount(user))) {
-        window.location.replace('/panel-propietario');
-        return;
-      }
-      if (user && nhAuth.getUserTipo(user) === 'propietario' && await isIntegralAccount(user)) {
-        showError('Tu cuenta es de alquiler integral. Entra en /acceso-alquiler-integral.');
-        return;
-      }
-      showError('Has iniciado sesión como comprador o vendedor. Cierra sesión en /login si quieres usar otra cuenta de propietario.');
+    if (user && nhAuth.getUserTipo(user) === 'propietario' && await isIntegralUser(user)) {
+      window.location.replace('/panel-propietario');
+      return;
     }
   }
 
-  async function ensurePropietarioAndGo(user) {
-    await nhAuth.ensureClientRecord(user, { tipo: 'propietario' });
+  async function goPanel(user) {
+    await nhAuth.ensureClientRecord(user, { tipo: 'propietario', servicio: 'integral' });
     window.location.replace('/panel-propietario');
   }
 
   document.getElementById('btnGoogle').addEventListener('click', async () => {
-    localStorage.setItem('nh_reg_tipo', 'alquiler');
+    localStorage.setItem('nh_reg_tipo', 'alquiler_integral');
     await nhAuth.loginGoogle('/confirmar-cuenta');
   });
 
   document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    errBox.style.display = 'none';
     const btn = document.getElementById('loginBtn');
     btn.disabled = true;
-    btn.textContent = 'Entrando…';
     const { data, error } = await nhAuth.login({
       email: document.getElementById('loginEmail').value.trim(),
       password: document.getElementById('loginPassword').value,
     });
     if (error) {
-      showError(error.message.includes('Invalid login') ? 'Email o contraseña incorrectos.' : error.message);
+      showError('Email o contraseña incorrectos.');
       btn.disabled = false;
-      btn.textContent = 'Entrar al panel propietario';
       return;
     }
     const user = data?.session?.user || data?.user;
-    const tipo = nhAuth.getUserTipo(user);
-    if (tipo !== 'propietario') {
+    if (nhAuth.getUserTipo(user) !== 'propietario' || !(await isIntegralUser(user))) {
       await window.nhSupabase.auth.signOut();
-      showError('Esta entrada es solo para propietarios con administración de alquileres. Si compras o vendes, usa /login.');
+      showError('Esta entrada es solo para alquiler integral. Si buscas administración 60 €/mes, usa /acceso-alquileres.');
       btn.disabled = false;
-      btn.textContent = 'Entrar al panel propietario';
       return;
     }
-    if (await isIntegralAccount(user)) {
-      await window.nhSupabase.auth.signOut();
-      showError('Esta cuenta es de alquiler integral (499 €). Usa /acceso-alquiler-integral.');
-      btn.disabled = false;
-      btn.textContent = 'Entrar al panel propietario';
-      return;
-    }
-    await ensurePropietarioAndGo(user);
+    await goPanel(user);
   });
 
   document.getElementById('regForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    errBox.style.display = 'none';
     const btn = document.getElementById('regBtn');
     btn.disabled = true;
-    btn.textContent = 'Creando cuenta…';
     const nombre = document.getElementById('regNombre').value.trim() + ' ' + document.getElementById('regApellidos').value.trim();
     const email = document.getElementById('regEmail').value.trim();
     const { data, error } = await nhAuth.register({
       email,
       password: document.getElementById('regPassword').value,
       nombre,
-      tipo: 'alquiler',
+      tipo: 'alquiler_integral',
       telefono: document.getElementById('regTel').value.trim(),
+      servicio: 'integral',
     });
     if (error) {
-      const msg = error.message.includes('already registered') ? 'Este email ya tiene cuenta. Prueba «Iniciar sesión».' : error.message;
-      showError(msg);
+      showError(error.message.includes('already registered') ? 'Este email ya tiene cuenta. Prueba iniciar sesión.' : error.message);
       btn.disabled = false;
-      btn.textContent = 'Crear cuenta propietario →';
       return;
     }
-    if (data?.session?.user) {
-      await ensurePropietarioAndGo(data.session.user);
-    } else {
-      localStorage.setItem('nh_reg_email', email);
-      window.location.href = '/confirmar-cuenta?pending=1&email=' + encodeURIComponent(email);
-    }
+    if (data?.session?.user) await goPanel(data.session.user);
+    else window.location.href = '/confirmar-cuenta?pending=1&email=' + encodeURIComponent(email);
   });
 
   document.getElementById('forgotLink').addEventListener('click', async (e) => {
     e.preventDefault();
     const email = document.getElementById('loginEmail').value.trim();
-    if (!email) { showError('Escribe tu email arriba y vuelve a pulsar recuperar contraseña.'); return; }
+    if (!email) { showError('Escribe tu email arriba.'); return; }
     const { error } = await nhAuth.resetPassword(email);
     if (error) showError(error.message);
-    else showOk('Te hemos enviado un enlace para restablecer la contraseña.');
+    else showOk('Enlace de recuperación enviado.');
   });
 });
 </script>
