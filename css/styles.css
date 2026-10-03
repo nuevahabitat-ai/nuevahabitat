@@ -3431,3 +3431,151 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
 @media (max-width: 560px) {
   .alq-steps { grid-template-columns: 1fr; }
 }
+
+.alq-journey {
+  padding: 5rem 0;
+  background: var(--crema);
+}
+
+.alq-journey-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3.5rem;
+}
+
+.alq-journey-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+.alq-journey-step:last-child { margin-bottom: 0; }
+
+.alq-journey-step.is-reverse .alq-journey-media { order: 2; }
+.alq-journey-step.is-reverse .alq-journey-body { order: 1; }
+
+.alq-journey-media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .12);
+  border: 1px solid var(--crema-dark);
+}
+
+.alq-journey-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  display: block;
+}
+
+.alq-journey-num {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: .65rem;
+}
+
+.alq-journey-body h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.alq-journey-body p,
+.alq-journey-body li {
+  font-size: .9375rem;
+  color: var(--gris-texto);
+  line-height: 1.7;
+}
+
+.alq-journey-body ul {
+  margin: .75rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.alq-journey-body li { margin-bottom: .45rem; }
+
+.alq-renta-clarity {
+  padding: 4.5rem 0;
+  background: var(--negro);
+}
+
+.alq-renta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+.alq-renta-card {
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+
+.alq-renta-card.is-highlight {
+  border-color: rgba(184, 147, 106, .45);
+  background: linear-gradient(145deg, rgba(184, 147, 106, .12), rgba(255, 255, 255, .03));
+}
+
+.alq-renta-card h3 {
+  color: var(--blanco);
+  font-size: 1.15rem;
+  margin-bottom: .75rem;
+}
+
+.alq-renta-card p,
+.alq-renta-card li {
+  color: rgba(255, 255, 255, .72);
+  font-size: .9rem;
+  line-height: 1.7;
+}
+
+.alq-renta-card ul {
+  margin: .5rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.alq-mgmt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.alq-mgmt-item {
+  background: var(--blanco);
+  border: 1px solid var(--crema-dark);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+}
+
+.alq-mgmt-item h4 {
+  font-size: .95rem;
+  margin-bottom: .4rem;
+}
+
+.alq-mgmt-item p {
+  font-size: .8125rem;
+  color: var(--gris-texto);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 960px) {
+  .alq-journey-step,
+  .alq-journey-step.is-reverse {
+    grid-template-columns: 1fr;
+  }
+  .alq-journey-step.is-reverse .alq-journey-media,
+  .alq-journey-step.is-reverse .alq-journey-body { order: unset; }
+  .alq-renta-grid { grid-template-columns: 1fr; }
+  .alq-mgmt-grid { grid-template-columns: 1fr; }
+}
