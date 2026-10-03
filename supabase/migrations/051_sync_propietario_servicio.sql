@@ -1,16 +1,4 @@
--- Alquiler integral: pago único 499 € + servicio integral en expediente
-ALTER TABLE propietarios_alquiler
-  ADD COLUMN IF NOT EXISTS integral_tarifa numeric(12,2) NOT NULL DEFAULT 499,
-  ADD COLUMN IF NOT EXISTS integral_pagado boolean NOT NULL DEFAULT false,
-  ADD COLUMN IF NOT EXISTS integral_pagado_at timestamptz,
-  ADD COLUMN IF NOT EXISTS integral_stripe_session_id text,
-  ADD COLUMN IF NOT EXISTS integral_transferencia_pendiente boolean NOT NULL DEFAULT false,
-  ADD COLUMN IF NOT EXISTS integral_transferencia_at timestamptz;
-
-COMMENT ON COLUMN propietarios_alquiler.integral_tarifa IS 'Importe fijo alquiler integral (IVA incl.)';
-COMMENT ON COLUMN propietarios_alquiler.integral_pagado IS 'Pago único 499 € confirmado (Stripe o manual)';
-
--- Alta con servicio según metadata (administracion vs integral)
+-- sync_propietario_alquiler: alinear servicio (integral vs administración) en filas existentes
 CREATE OR REPLACE FUNCTION public.sync_propietario_alquiler()
 RETURNS void
 LANGUAGE plpgsql
@@ -77,3 +65,5 @@ BEGIN
   END IF;
 END;
 $$;
+
+NOTIFY pgrst, 'reload schema';

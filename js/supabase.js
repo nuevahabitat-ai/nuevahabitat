@@ -118,10 +118,19 @@ window.nhAuth = {
     const rowPatch = integral
       ? { servicio: 'integral', cuota_mensual: 0, integral_tarifa: 499 }
       : { servicio: 'administracion', cuota_mensual: 60 };
-    await window.nhSupabase.from('propietarios_alquiler')
+    const { error: rowErr } = await window.nhSupabase.from('propietarios_alquiler')
       .update(rowPatch)
       .ilike('email', u.email);
+    if (rowErr) console.warn('applyAlquilerAccessProfile update row', rowErr);
     return u;
+  },
+
+  shouldUseIntegralPanel(user) {
+    const meta = user?.user_metadata || {};
+    if (meta.tipo === 'alquiler_integral' || meta.servicio === 'integral') return true;
+    if (localStorage.getItem('nh_reg_tipo') === 'alquiler_integral') return true;
+    if (sessionStorage.getItem('nh_alquiler_variant') === 'integral') return true;
+    return new URLSearchParams(window.location.search).get('servicio') === 'integral';
   },
 
   async register({ email, password, nombre, tipo, telefono, servicio }) {
