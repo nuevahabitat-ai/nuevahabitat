@@ -17,7 +17,7 @@
   <link rel="canonical" href="https://www.nuevahabitat.com/administracion-alquileres"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
-  <script type="application/ld+json">
+  <script type="application/ld+json" id="nh-seo-static">[
   {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -35,8 +35,25 @@
       "priceCurrency": "EUR",
       "description": "Cuota mensual IVA incluido para alquileres de larga duración"
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.nuevahabitat.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Administración de alquileres", "item": "https://www.nuevahabitat.com/administracion-alquileres" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿El propietario puede hablar con el inquilino?", "acceptedAnswer": { "@type": "Answer", "text": "No es el modelo del servicio: el inquilino contacta con Nueva Habitat y nosotros te informamos." }},
+      { "@type": "Question", "name": "¿Incluye cobro garantizado?", "acceptedAnswer": { "@type": "Answer", "text": "No. Nueva Habitat no ofrece cobro garantizado en la cuota de 60 €/mes. La póliza se contrata aparte con aseguradora de confianza." }},
+      { "@type": "Question", "name": "¿Diferencia con alquiler integral?", "acceptedAnswer": { "@type": "Answer", "text": "Alquiler integral (499 €) pone el piso en alquiler hasta firmar. Administración (60 €/mes) gestiona el contrato ya activo." }}
+    ]
   }
-  </script>
+  ]</script>
 </head>
 <body>
 <nav id="navbar">
@@ -80,7 +97,18 @@
   <a href="/nosotros">Nosotros</a>
   <a href="/blog">Blog</a>
   <a href="/administracion-alquileres">Alquileres · Administración de alquileres</a>
+  <a href="/alquiler-integral">Alquileres · Alquiler integral</a>
   <a href="/registro" style="color:var(--oro)">Empezar ahora →</a>
+</nav>
+
+<nav class="alq-breadcrumb" aria-label="Miga de pan">
+  <div class="container">
+    <ol>
+      <li><a href="/">Inicio</a></li>
+      <li aria-hidden="true">/</li>
+      <li><span aria-current="page">Administración de alquileres</span></li>
+    </ol>
+  </div>
 </nav>
 
 <section class="page-hero">
@@ -343,6 +371,71 @@
   </div>
 </section>
 
+<section class="alq-guide" id="normativa">
+  <div class="container">
+    <div class="alq-guide-inner fade-up" style="max-width:920px">
+      <span class="overline">Marco legal</span>
+      <h2 class="section-title">LAU, fianza INCASÒL y renta en Cataluña</h2>
+      <p>Administrar un alquiler no es solo “cobrar la renta”: implica respetar plazos de la <strong>Ley de Arrendamientos Urbanos (LAU)</strong>, comunicaciones formales al inquilino y, en Cataluña, conocer las reglas autonómicas sobre <strong>fianza depositada en INCASÒL</strong> y, cuando aplica, límites en zonas de mercado tensionado.</p>
+
+      <h3>Qué vigilamos en el contrato en curso</h3>
+      <ul>
+        <li><strong>Vencimientos y prórrogas</strong> — calendario para no perder plazos de renovación o preaviso.</li>
+        <li><strong>Actualización de renta</strong> — según lo pactado y la normativa aplicable en cada momento (índice o cláusula contractual).</li>
+        <li><strong>Depósito de fianza</strong> — constancia de que la fianza legal está depositada; al finalizar el arrendamiento, coordinamos la devolución conforme a la ley y al inventario.</li>
+        <li><strong>Pequeñas reparaciones vs. conservación</strong> — criterio LAU sobre qué corresponde al arrendador y qué al inquilino en el uso ordinario.</li>
+      </ul>
+      <p>En <strong>zonas declaradas de mercado tensionado</strong> pueden existir requisitos adicionales (referencia de renta, límites de actualización, etc.). Si tu vivienda está en ese ámbito, lo revisamos en el informe del paso 1 y en cada renovación; no sustituimos asesoramiento jurídico individual, pero sí llevamos el seguimiento operativo para que no se pase un hito importante.</p>
+
+      <h3>Administración vs. alquiler integral: cuándo encaja cada uno</h3>
+      <div class="alq-compare-wrap">
+        <div style="overflow-x:auto">
+          <table class="alq-compare-table">
+            <thead>
+              <tr><th scope="col">Necesidad</th><th scope="col"><a href="/alquiler-integral">Alquiler integral 499 €</a></th><th scope="col">Administración 60 €/mes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Piso vacío, buscar inquilino</strong></td><td class="win">Sí — anuncio, visitas, top 3, contrato</td><td>No — asume inquilino ya elegido o entrante</td></tr>
+              <tr><td><strong>Ya hay inquilino firmado</strong></td><td>No necesario</td><td class="win">Sí — incidencias, mediación, calendario LAU</td></tr>
+              <tr><td><strong>Contacto propietario–inquilino</strong></td><td>Tú eliges candidato; visitas coordinadas</td><td class="win">Cero contacto directo; solo vía Nueva Habitat</td></tr>
+              <tr><td><strong>Cobro garantizado / impago</strong></td><td>Documentación para aseguradora al cerrar</td><td>Seguimiento de pagos; póliza aparte (no incluida en NH)</td></tr>
+              <tr><td><strong>Reparaciones</strong></td><td>Solo hasta entrega de llaves</td><td class="win">Coordinación continua con proveedores</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:5rem 0;background:var(--blanco)">
+  <div class="container" style="max-width:920px">
+    <div class="text-center fade-up" style="margin-bottom:2rem">
+      <span class="overline">Incidencias</span>
+      <h2 class="section-title">Quién suele asumir qué (orientativo LAU)</h2>
+      <p class="section-subtitle" style="max-width:720px;margin:0 auto">Nueva Habitat coordina la incidencia y te informa antes de aprobar gastos relevantes. Esta tabla resume criterios habituales; el contrato y el informe pericial prevalecen en casos concretos.</p>
+    </div>
+    <div class="fade-up" style="overflow-x:auto">
+      <table class="alq-compare-table">
+        <thead>
+          <tr><th scope="col">Tipo de incidencia</th><th scope="col">Suele corresponder a</th><th scope="col">Qué hace Nueva Habitat</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Fontanería por desgaste (grifo, tubería antigua)</strong></td><td>Propietario — conservación</td><td>Presupuesto, empresa, seguimiento hasta cierre</td></tr>
+          <tr><td><strong>Rotura por mal uso del inquilino</strong></td><td>Inquilino — reparación / cargo</td><td>Mediación, documentación, acuerdo de pago si aplica</td></tr>
+          <tr><td><strong>Caldera / calefacción colectiva</strong></td><td>Según comunidad y contrato</td><td>Coordinamos con administrador de finca si hace falta</td></tr>
+          <tr><td><strong>Electrodoméstico incluido en inventario</strong></td><td>Propietario si no hay mal uso</td><td>Gestión de avería y sustitución acordada contigo</td></tr>
+          <tr><td><strong>Filtración desde vivienda superior</strong></td><td>Responsable de origen + seguro comunitario</td><td>Apertura de parte, seguimiento con vecinos/seguro</td></tr>
+          <tr><td><strong>Retraso en pago de renta</strong></td><td>Inquilino — obligación contractual</td><td>Recordatorios, registro, aviso al propietario; no avanzamos renta</td></tr>
+          <tr><td><strong>Ruidos / convivencia</strong></td><td>Partes — uso conforme a normas</td><td>Mediación profesional y actas de lo acordado</td></tr>
+          <tr><td><strong>Fin de contrato / devolución fianza</strong></td><td>Propietario devuelve fianza legal; cargos si daños</td><td>Inventario final, propuesta de cargos documentada, trámite INCASÒL</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:1.25rem;font-size:.875rem;color:var(--gris-texto);text-align:center">¿Aún no tienes inquilino? El camino empieza en <a href="/alquiler-integral">alquiler integral (499 €)</a>.</p>
+  </div>
+</section>
+
 <section style="padding:5rem 0;background:var(--crema)">
   <div class="container" style="max-width:820px">
     <div class="text-center" style="margin-bottom:2.5rem">
@@ -373,6 +466,34 @@
       <div class="faq-item">
         <button type="button" class="faq-q">¿Qué pasa en la primera visita del paso 1?</button>
         <div class="faq-a"><div class="faq-a-inner">Revisamos el estado de la vivienda, instalaciones y riesgos habituales en alquiler, cruzamos datos con la situación contractual que nos cuentas y preparamos un informe con acciones recomendadas antes de firmar nada.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">¿Gestionáis el depósito de fianza en INCASÒL?</button>
+        <div class="faq-a"><div class="faq-a-inner">En altas nuevas desde alquiler integral guiamos el depósito inicial. En administración, vigilamos que conste depositada y, al finalizar el contrato, coordinamos la devolución conforme a inventario y normativa catalana.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">¿Qué ocurre si el inquilino no paga?</button>
+        <div class="faq-a"><div class="faq-a-inner">Activamos seguimiento, recordatorios y te informamos. No avanzamos la renta ni sustituimos una póliza de impago. Si tienes seguro de cobro garantizado con nuestra aseguradora de confianza, te orientamos en la comunicación con la compañía según su procedimiento.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">¿Puedo contratar solo si el inquilino ya vive en el piso?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí, ese es el caso típico: contrato en curso y propietario que quiere delegar incidencias, renovaciones y relación diaria sin hablar con el inquilino.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">¿Hay permanencia mínima en la administración?</button>
+        <div class="faq-a"><div class="faq-a-inner">Las condiciones de baja y preaviso se detallan en el contrato de administración que firmas en el paso 2. Buscamos relaciones estables, pero sin ataduras opacas.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">¿Trabajáis alquileres de temporada o turísticos?</button>
+        <div class="faq-a"><div class="faq-a-inner">La tarifa de 60 €/mes está pensada para alquiler de vivienda habitual de larga duración. Si tu caso es otro régimen, consúltanos y te decimos si encaja o qué alternativa proponemos.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">¿Los gastos de reparación se descuentan de la renta?</button>
+        <div class="faq-a"><div class="faq-a-inner">No retenemos la renta del inquilino en nombre del propietario salvo pacto legal expreso. Tú cobras en tu cuenta; las reparaciones del propietario se pagan según acuerde contigo tras presupuesto.</div></div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">¿Zona tensionada de Barcelona: podéis ayudar?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sí en la parte operativa: calendario, comunicaciones y revisión de actualizaciones según normativa vigente. Para estrategia fiscal o contencioso, recomendamos asesor profesional complementario.</div></div>
       </div>
     </div>
   </div>
