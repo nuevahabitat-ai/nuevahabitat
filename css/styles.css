@@ -193,20 +193,17 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 
 .nav-logo .logo-text {
   display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  flex-wrap: nowrap;
-  gap: .6rem;
-  white-space: nowrap;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .nav-logo .logo-name {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  letter-spacing: .12em;
+  letter-spacing: .14em;
   color: #d4aa6e;
-  line-height: 1;
+  line-height: 1.1;
   text-transform: uppercase;
   text-shadow: 0 1px 12px rgba(212,170,110,.35);
 }
@@ -214,16 +211,9 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 .nav-logo .logo-sub {
   font-size: .625rem;
   font-weight: 500;
-  letter-spacing: .22em;
+  letter-spacing: .26em;
   color: rgba(212,170,110,.75);
   text-transform: uppercase;
-  line-height: 1;
-}
-
-.nav-logo .logo-sub::before {
-  content: '·';
-  margin-right: .55rem;
-  opacity: .55;
 }
 
 .nav-links {
@@ -232,11 +222,6 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   justify-content: center;
   flex: 1;
   gap: 1.35rem;
-}
-
-.nav-links a[href="/administracion-alquileres"] {
-  font-size: .8125rem;
-  letter-spacing: .02em;
 }
 
 .nav-links a {
@@ -259,6 +244,111 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 
 .nav-links a:hover { color: var(--blanco); }
 .nav-links a:hover::after { width: 100%; }
+
+.nav-link-dropdown {
+  position: relative;
+}
+
+.nav-link-dropdown .nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .875rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, .85);
+  letter-spacing: .03em;
+  transition: color var(--transition);
+  position: relative;
+}
+
+.nav-link-dropdown .nav-dropdown-trigger::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--oro);
+  transition: width var(--transition);
+}
+
+.nav-link-dropdown .nav-dropdown-trigger::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid currentColor;
+  opacity: .75;
+  margin-top: 1px;
+}
+
+.nav-link-dropdown .nav-dropdown-trigger:hover,
+.nav-link-dropdown.is-active .nav-dropdown-trigger {
+  color: var(--blanco);
+}
+
+.nav-link-dropdown .nav-dropdown-trigger:hover::before,
+.nav-link-dropdown.is-active .nav-dropdown-trigger::before {
+  width: 100%;
+}
+
+.nav-link-dropdown.is-active .nav-dropdown-trigger {
+  color: var(--oro);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + .65rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 14.5rem;
+  background: rgba(18, 18, 18, .98);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
+  padding: .45rem;
+  z-index: 1100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+
+.nav-link-dropdown.open .nav-dropdown-menu,
+.nav-link-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (hover: hover) {
+  .nav-link-dropdown:hover .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.nav-dropdown-menu a {
+  display: block;
+  padding: .6rem .85rem;
+  border-radius: 6px;
+  font-size: .875rem;
+  color: rgba(255, 255, 255, .88);
+  white-space: nowrap;
+}
+
+.nav-dropdown-menu a::after { display: none; }
+
+.nav-dropdown-menu a:hover {
+  background: rgba(255, 255, 255, .08);
+  color: var(--oro-claro);
+}
 
 .nav-actions {
   display: flex;
