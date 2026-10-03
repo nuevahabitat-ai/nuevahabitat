@@ -33,6 +33,5 @@ export default function middleware(request) {
 }
 
 export const config = {
-  runtime: 'nodejs',
   matcher: ['/inmuebles', '/inmuebles.html', '/blog-articulo', '/blog-articulo.html', '/blog/:slug*'],
 };

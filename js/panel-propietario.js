@@ -140,7 +140,7 @@
       ['Notas', row.inmueble_notas],
     ]);
 
-    if (window.nhAlquilerStripe?.render) window.nhAlquilerStripe.render(row);
+    if (window.nhAlquilerStripe?.render) void window.nhAlquilerStripe.render(row);
   }
 
   async function fetchExpediente() {
@@ -268,6 +268,14 @@
     if (!row) {
       document.getElementById('alqResumenCopy').textContent =
         'Estamos preparando tu expediente. Si acabas de registrarte, Juan Cárdenas te contactará en menos de 24 h.';
+      const honorBody = document.getElementById('honorariosAlquilerBody');
+      const honorResumen = document.getElementById('honorariosResumenCard');
+      const pendingMsg = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Tu ficha de propietario se activará en cuanto confirmemos el alta (o tras ejecutar la migración en Supabase). Mientras tanto puedes escribir a Juan por WhatsApp.</p>';
+      if (honorBody) honorBody.innerHTML = pendingMsg;
+      if (honorResumen) {
+        honorResumen.innerHTML = '<div style="font-size:.85rem;opacity:.9">Expediente en preparación</div>';
+      }
+      document.getElementById('statEstado').textContent = 'Alta';
     } else {
       applyExpediente(row);
       await loadIncidencias();
