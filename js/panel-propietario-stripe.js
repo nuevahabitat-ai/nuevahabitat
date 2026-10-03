@@ -7,8 +7,16 @@
   let bankInfo = null;
   let paymentState = null;
 
+  function isIntegral(row) {
+    return row?.servicio === 'integral';
+  }
+
   function formatEur(n) {
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(n) || 60);
+  }
+
+  function integralTotal(row) {
+    return Number(row?.integral_tarifa) || 499;
   }
 
   function splitIva(total) {
@@ -75,7 +83,75 @@
     `;
   }
 
+  function renderIntegralSectionHtml(row) {
+    const total = integralTotal(row);
+    const { base, iva } = splitIva(total);
+    if (row?.integral_pagado) {
+      return `
+        <div class="nh-pay-summary">
+          <div class="nh-pay-row nh-pay-row--total"><span>Alquiler integral pagado</span><strong>${formatEur(total)}</strong></div>
+        </div>
+        <div class="nh-pay-status nh-pay-status--ok">
+          <strong>Servicio contratado</strong>
+          <span>${row.integral_pagado_at ? `Confirmado el ${new Date(row.integral_pagado_at).toLocaleDateString('es-ES')}` : 'Pago recibido'}</span>
+        </div>
+        <p style="font-size:.85rem;color:var(--gris-texto);margin-top:1rem;line-height:1.55">Completa documentación, inmueble y candidato inquilino. Juan Cárdenas te guiará en captación y cierre.</p>
+      `;
+    }
+    if (row?.integral_transferencia_pendiente) {
+      return `
+        <div class="nh-pay-summary">
+          <div class="nh-pay-row nh-pay-row--total"><span>Total servicio integral</span><strong>${formatEur(total)}</strong></div>
+        </div>
+        <div class="nh-pay-status" style="background:rgba(184,147,106,.12);border-color:rgba(184,147,106,.35)">
+          <strong style="color:var(--oro-oscuro,#92672a)">Transferencia en revisión</strong>
+          <span>Confirmaremos al recibir los 499 € (1–2 días laborables)</span>
+        </div>
+        ${bankInfo ? renderIntegralTransferBlock(row, bankInfo) : ''}
+      `;
+    }
+    return `
+      <div class="nh-pay-summary">
+        <div class="nh-pay-row"><span>Base imponible</span><strong>${formatEur(base)}</strong></div>
+        <div class="nh-pay-row"><span>IVA (21%)</span><strong>${formatEur(iva)}</strong></div>
+        <div class="nh-pay-row nh-pay-row--total"><span>Total servicio integral</span><strong>${formatEur(total)}</strong></div>
+      </div>
+      <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin:1rem 0 .75rem">
+        Pago único por publicación, filtro de inquilinos, visitas, informe top 3 y cierre con contrato LAU.
+      </p>
+      <button type="button" class="btn btn-gold btn-lg nh-pay-btn" id="integralPayBtn" style="width:100%;justify-content:center;margin-bottom:1rem">
+        Pagar ${formatEur(total)} con tarjeta
+      </button>
+      ${bankInfo ? renderIntegralTransferBlock(row, bankInfo) : '<p style="font-size:.82rem;color:var(--gris-texto)">Cargando datos bancarios…</p>'}
+    `;
+  }
+
+  function renderIntegralTransferBlock(row, info) {
+    if (!info?.bank) return '';
+    const total = integralTotal(row);
+    const concept = info.payment?.concept || info.payment?.reference || '';
+    return `
+      <div class="nh-bank-block">
+        <div class="nh-bank-title">Pagar por transferencia (499 €)</div>
+        <p class="nh-bank-note">Importe exacto · concepto obligatorio</p>
+        <dl class="nh-bank-dl">
+          <div class="nh-bank-row"><dt>Titular</dt><dd>${info.bank.holders}</dd></div>
+          <div class="nh-bank-row"><dt>IBAN</dt><dd><code class="nh-bank-iban">${info.bank.iban}</code>
+            <button type="button" class="nh-bank-copy" data-copy="${info.bank.ibanRaw || info.bank.iban.replace(/\s/g, '')}">Copiar</button></dd></div>
+          <div class="nh-bank-row"><dt>Importe</dt><dd><strong>${formatEur(total)}</strong></dd></div>
+          <div class="nh-bank-row"><dt>Concepto</dt><dd><code>${concept}</code>
+            <button type="button" class="nh-bank-copy" data-copy="${concept}">Copiar</button></dd></div>
+        </dl>
+        <button type="button" class="btn btn-outline nh-transfer-btn nh-transfer-integral" style="width:100%;justify-content:center;margin-top:.75rem">
+          Ya he transferido los 499 €
+        </button>
+      </div>
+    `;
+  }
+
   function renderSectionHtml(row) {
+    if (isIntegral(row)) return renderIntegralSectionHtml(row);
+
     const total = Number(row?.cuota_mensual) || 60;
     const { base, iva } = splitIva(total);
     const active = !!row?.suscripcion_activa;
@@ -117,6 +193,22 @@
   }
 
   function renderResumenCardHtml(row) {
+    if (isIntegral(row)) {
+      const total = integralTotal(row);
+      if (row?.integral_pagado) {
+        return `
+          <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Alquiler integral</div>
+          <div style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:.35rem">${formatEur(total)} · pagado</div>
+          <div class="nh-pay-badge nh-pay-badge--done" style="display:inline-flex;margin-top:.5rem">Servicio activo</div>
+        `;
+      }
+      return `
+        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Alquiler integral</div>
+        <div style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:.5rem">${formatEur(total)} precio fijo</div>
+        <button type="button" class="btn btn-gold nh-pay-btn-resumen" style="font-size:.84rem;width:100%;justify-content:center">Pagar servicio</button>
+      `;
+    }
+
     const total = Number(row?.cuota_mensual) || 60;
     const active = !!row?.suscripcion_activa;
     if (active) {
@@ -150,16 +242,20 @@
     document.querySelectorAll('.nh-bank-copy').forEach((btn) => {
       btn.addEventListener('click', () => copyText(btn.dataset.copy, btn.dataset.copy?.includes('NH') ? 'Concepto' : 'IBAN'));
     });
-    document.querySelectorAll('.nh-transfer-btn').forEach((btn) => {
-      btn.addEventListener('click', notifyTransferDone);
+    document.querySelectorAll('.nh-transfer-btn.nh-transfer-integral').forEach((btn) => {
+      btn.addEventListener('click', () => notifyTransferDone(true));
+    });
+    document.querySelectorAll('.nh-transfer-btn:not(.nh-transfer-integral)').forEach((btn) => {
+      btn.addEventListener('click', () => notifyTransferDone(false));
     });
   }
 
-  async function fetchBankInfo() {
+  async function fetchBankInfo(row) {
     const token = await getToken();
     if (!token) return null;
+    const q = isIntegral(row) ? 'transfer=1&alquiler=1&integral=1' : 'transfer=1&alquiler=1';
     try {
-      const res = await fetch('/api/stripe-checkout?transfer=1&alquiler=1', {
+      const res = await fetch(`/api/stripe-checkout?${q}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -173,8 +269,13 @@
 
   async function loadHonorarios(row) {
     paymentState = row;
-    if (!bankInfo && row && !row.suscripcion_activa) {
-      bankInfo = await fetchBankInfo();
+    bankInfo = null;
+    const needsBank = row && (
+      (isIntegral(row) && !row.integral_pagado && !row.integral_transferencia_pendiente)
+      || (!isIntegral(row) && !row.suscripcion_activa)
+    );
+    if (needsBank) {
+      bankInfo = await fetchBankInfo(row);
     }
     const body = document.getElementById('honorariosAlquilerBody');
     if (body) {
@@ -188,16 +289,21 @@
   }
 
   async function startCheckout() {
-    if (paying || paymentState?.suscripcion_activa) return;
+    if (paying) return;
+    if (isIntegral(paymentState)) {
+      if (paymentState?.integral_pagado) return;
+    } else if (paymentState?.suscripcion_activa) return;
     paying = true;
-    document.querySelectorAll('.nh-pay-btn, #alqSubscribeBtn').forEach((btn) => {
+    document.querySelectorAll('.nh-pay-btn, #alqSubscribeBtn, #integralPayBtn').forEach((btn) => {
       btn.disabled = true;
       if (btn.id === 'alqSubscribeBtn') btn.textContent = 'Redirigiendo a Stripe…';
+      if (btn.id === 'integralPayBtn') btn.textContent = 'Redirigiendo a Stripe…';
     });
     try {
       const token = await getToken();
       if (!token) throw new Error('Sesión expirada');
-      const res = await fetch('/api/stripe-checkout?__action=alquiler-subscribe', {
+      const action = isIntegral(paymentState) ? 'integral-checkout' : 'alquiler-subscribe';
+      const res = await fetch(`/api/stripe-checkout?__action=${action}`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: '{}',
@@ -214,23 +320,31 @@
     }
   }
 
-  async function notifyTransferDone() {
-    if (transferNotify || paymentState?.suscripcion_activa) return;
-    if (!confirm('¿Confirmas que has realizado la transferencia con el importe y concepto indicados?')) return;
+  async function notifyTransferDone(integral) {
+    if (transferNotify) return;
+    if (integral) {
+      if (paymentState?.integral_pagado) return;
+    } else if (paymentState?.suscripcion_activa) return;
+    const msg = integral
+      ? '¿Confirmas la transferencia de 499 € con el concepto indicado?'
+      : '¿Confirmas que has realizado la transferencia con el importe y concepto indicados?';
+    if (!confirm(msg)) return;
     transferNotify = true;
     try {
       const token = await getToken();
       if (!token) throw new Error('Sesión expirada');
-      const res = await fetch('/api/stripe-checkout?transfer=1&alquiler=1', {
+      const q = integral ? 'transfer=1&alquiler=1&integral=1' : 'transfer=1&alquiler=1';
+      const res = await fetch(`/api/stripe-checkout?${q}`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ transfer: true }),
+        body: JSON.stringify({ transfer: true, integral: !!integral }),
       });
       const data = await res.json();
       if (!res.ok || !data.ok) throw new Error(data.error || 'No se pudo registrar');
       window.nhToast?.(data.alreadyPending ? 'Ya teníamos registrado tu aviso.' : 'Aviso enviado. Confirmaremos al recibir el ingreso.', 'success');
       if (window.alqExpediente) {
-        window.alqExpediente.cuota_transferencia_pendiente = true;
+        if (integral) window.alqExpediente.integral_transferencia_pendiente = true;
+        else window.alqExpediente.cuota_transferencia_pendiente = true;
         await loadHonorarios(window.alqExpediente);
       }
     } catch (err) {
@@ -256,20 +370,23 @@
     }
   }
 
-  async function verifySession(sessionId) {
+  async function verifySession(sessionId, opts = {}) {
     const token = await getToken();
     if (!token) return;
+    const integral = opts.integral || isIntegral(paymentState) || new URLSearchParams(location.search).get('pago') === 'integral';
+    const action = integral ? 'integral-verify-session' : 'alquiler-verify-session';
     try {
-      const res = await fetch('/api/stripe-checkout?__action=alquiler-verify-session', {
+      const res = await fetch(`/api/stripe-checkout?__action=${action}`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionId }),
       });
       const data = await res.json();
       if (data.ok) {
-        window.nhToast?.('Domiciliación activada correctamente', 'success');
+        window.nhToast?.(integral ? 'Pago del alquiler integral confirmado' : 'Domiciliación activada correctamente', 'success');
         const url = new URL(window.location.href);
         url.searchParams.delete('session_id');
+        url.searchParams.delete('pago');
         window.history.replaceState({}, '', url.pathname + url.search);
       }
     } catch (e) {

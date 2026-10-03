@@ -58,7 +58,7 @@ document.head.appendChild(_supabaseScript);
 window.nhAuth = {
 
   isPropietarioAlquilerTipo(raw) {
-    return ['alquiler', 'propietario', 'admin_alquiler'].includes(raw);
+    return ['alquiler', 'alquiler_integral', 'integral', 'propietario', 'admin_alquiler'].includes(raw);
   },
 
   /* Devuelve 'vendedor', 'comprador' o 'propietario' según metadata del usuario */
@@ -92,11 +92,12 @@ window.nhAuth = {
     return '/panel?tipo=' + tipo;
   },
 
-  async register({ email, password, nombre, tipo, telefono }) {
+  async register({ email, password, nombre, tipo, telefono, servicio }) {
+    const metaServicio = servicio || (tipo === 'alquiler_integral' ? 'integral' : null);
     const { data, error } = await window.nhSupabase.auth.signUp({
       email, password,
       options: {
-        data: { nombre, tipo, telefono: telefono || null },
+        data: { nombre, tipo, telefono: telefono || null, servicio: metaServicio },
         emailRedirectTo: CONFIRM_URL()
       }
     });
@@ -115,7 +116,9 @@ window.nhAuth = {
       const esVendedorReg = tipo === 'vender' || tipo === 'vendedor';
       const esPropietarioReg = nhAuth.isPropietarioAlquilerTipo(tipo);
       const mensajeRegistroAdmin = esPropietarioReg
-        ? 'Nuevo propietario (admin alquiler) registrado en su panel'
+        ? (tipo === 'alquiler_integral'
+          ? 'Nuevo propietario (alquiler integral) registrado en su panel'
+          : 'Nuevo propietario (admin alquiler) registrado en su panel')
         : esVendedorReg
           ? 'Nuevo vendedor registrado en su panel'
           : 'Nuevo comprador registrado en su panel';

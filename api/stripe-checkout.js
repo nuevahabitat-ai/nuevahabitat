@@ -19,15 +19,22 @@ import {
   fetchPropietarioAlquilerRow,
   markAlquilerSubscription,
   markCuotaAlquilerTransferenciaPendiente,
+  markIntegralAlquilerPaid,
+  markIntegralTransferenciaPendiente,
 } from '../lib/server/supabase-server.js';
 import { notifyTransferenciaPendiente } from '../lib/server/payment-notify.js';
 import { handlePanelPropietarioApi } from '../lib/server/panel-propietario-api.js';
 
 const DEFAULT_HONORARIOS = { comprador: 6050, vendedor: 3630 };
 const DEFAULT_CUOTA_ALQUILER_EUR = 60;
+const DEFAULT_INTEGRAL_ALQUILER_EUR = 499;
 
 function isAlquilerRequest(req) {
   return req.query?.alquiler === '1' || req.body?.alquiler === true;
+}
+
+function isIntegralAlquilerRequest(req) {
+  return req.query?.integral === '1' || req.body?.integral === true;
 }
 
 function siteOrigin(req) {
@@ -196,6 +203,170 @@ async function handleAlquilerPortal(req, res) {
   } catch (err) {
     console.error('stripe alquiler portal:', err);
     return res.status(500).json({ ok: false, error: err.message || 'Error portal' });
+  }
+}
+
+async function handleIntegralAlquilerCheckout(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey || !SB_SERVICE) {
+    return res.status(503).json({ ok: false, error: 'Stripe no configurado', code: 'NO_STRIPE' });
+  }
+
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  const user = await getUserFromJwt(jwt);
+  if (!user?.email || !jwt) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+
+  try {
+    const row = await fetchPropietarioAlquilerAsUser(user.email, jwt);
+    if (!row) return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
+    if (row.servicio !== 'integral') {
+      return res.status(400).json({ ok: false, error: 'Este pago es solo para alquiler integral', code: 'NOT_INTEGRAL' });
+    }
+    if (row.integral_pagado) {
+      return res.status(400).json({ ok: false, error: 'El servicio integral ya está pagado', code: 'ALREADY_PAID' });
+    }
+
+    const totalEur = Number(row.integral_tarifa) || DEFAULT_INTEGRAL_ALQUILER_EUR;
+    const amountCents = eurosToCents(totalEur);
+    const stripe = new Stripe(secretKey, { apiVersion: '2024-11-20.acacia' });
+    const origin = siteOrigin(req);
+
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      customer_email: user.email.trim(),
+      line_items: [{
+        quantity: 1,
+        price_data: {
+          currency: 'eur',
+          unit_amount: amountCents,
+          product_data: {
+            name: 'Alquiler integral NuevaHabitat',
+            description: `${totalEur.toLocaleString('es-ES')} € IVA incl. · de anuncio a llaves`,
+          },
+        },
+      }],
+      metadata: {
+        nh_tipo: 'propietario_alquiler_integral',
+        nh_mode: 'integral',
+        nh_record_id: row.id,
+        nh_user_id: user.id,
+        nh_email: user.email,
+      },
+      success_url: `${origin}/panel-propietario?session_id={CHECKOUT_SESSION_ID}&sec=honorarios&pago=integral`,
+      cancel_url: `${origin}/panel-propietario?pago=cancel&sec=honorarios`,
+    });
+
+    return res.status(200).json({ ok: true, url: session.url, sessionId: session.id });
+  } catch (err) {
+    console.error('stripe integral checkout:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Error al crear pago' });
+  }
+}
+
+async function handleIntegralAlquilerVerifySession(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey || !SB_SERVICE) {
+    return res.status(503).json({ ok: false, error: 'Servicio no configurado' });
+  }
+
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  const user = await getUserFromJwt(jwt);
+  if (!user?.email) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+
+  const sessionId = (req.body?.sessionId || '').trim();
+  if (!sessionId) return res.status(400).json({ ok: false, error: 'sessionId required' });
+
+  try {
+    const stripe = new Stripe(secretKey, { apiVersion: '2024-11-20.acacia' });
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    if (session.payment_status !== 'paid') {
+      return res.status(400).json({ ok: false, error: 'Pago no completado', status: session.payment_status });
+    }
+
+    const meta = session.metadata || {};
+    const metaEmail = (meta.nh_email || '').toLowerCase();
+    if (metaEmail && metaEmail !== user.email.toLowerCase()) {
+      return res.status(403).json({ ok: false, error: 'Sesión no pertenece a este usuario' });
+    }
+
+    const row = await fetchPropietarioAlquilerRow(user.email);
+    if (!row?.id) return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
+    if (row.integral_pagado) {
+      return res.status(200).json({ ok: true, alreadyPaid: true });
+    }
+
+    await markIntegralAlquilerPaid({
+      recordId: row.id,
+      sessionId: session.id,
+      paymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
+    });
+
+    return res.status(200).json({ ok: true, paid: true });
+  } catch (err) {
+    console.error('stripe integral verify:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Error al verificar' });
+  }
+}
+
+async function handleIntegralAlquilerTransfer(req, res) {
+  if (!SB_SERVICE) {
+    return res.status(503).json({ ok: false, error: 'Servicio no configurado', code: 'NO_SERVICE_KEY' });
+  }
+
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  const user = await getUserFromJwt(jwt);
+  if (!user?.email || !jwt) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+
+  try {
+    const row = await fetchPropietarioAlquilerAsUser(user.email, jwt);
+    if (!row) return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
+    if (row.servicio !== 'integral') {
+      return res.status(400).json({ ok: false, error: 'Transferencia integral solo para servicio alquiler integral' });
+    }
+
+    const bank = getBankConfig();
+    const totalEur = Number(row.integral_tarifa) || DEFAULT_INTEGRAL_ALQUILER_EUR;
+    const reference = paymentReference('alquiler_integral', row.id);
+    const concept = `${bank.conceptPrefix} ${reference} INTEGRAL`;
+
+    if (req.method === 'GET') {
+      return res.status(200).json({
+        ok: true,
+        bank: {
+          holders: bank.holders,
+          iban: bank.ibanFormatted,
+          ibanRaw: bank.iban,
+          bic: bank.bic || null,
+          entity: bank.entity,
+        },
+        payment: { totalEur, reference, concept, recordId: row.id },
+        status: {
+          paid: !!row.integral_pagado,
+          transferPending: !!row.integral_transferencia_pendiente,
+          transferAt: row.integral_transferencia_at || null,
+        },
+      });
+    }
+
+    if (row.integral_pagado) {
+      return res.status(400).json({ ok: false, error: 'El servicio ya está pagado', code: 'ALREADY_PAID' });
+    }
+    if (row.integral_transferencia_pendiente) {
+      return res.status(200).json({ ok: true, alreadyPending: true, reference, concept });
+    }
+
+    await markIntegralTransferenciaPendiente({ recordId: row.id });
+    return res.status(200).json({ ok: true, pending: true, reference, concept });
+  } catch (err) {
+    console.error('stripe integral transfer:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Error' });
   }
 }
 
@@ -400,10 +571,19 @@ export default async function handler(req, res) {
     return handleAlquilerSubscribe(req, res);
   }
 
+  if (req.query?.__action === 'integral-checkout') {
+    return handleIntegralAlquilerCheckout(req, res);
+  }
+
+  if (req.query?.__action === 'integral-verify-session') {
+    return handleIntegralAlquilerVerifySession(req, res);
+  }
+
   if (isTransferRequest(req)) {
     if (req.method !== 'GET' && req.method !== 'POST') {
       return res.status(405).json({ error: 'Method not allowed' });
     }
+    if (isAlquilerRequest(req) && isIntegralAlquilerRequest(req)) return handleIntegralAlquilerTransfer(req, res);
     if (isAlquilerRequest(req)) return handleAlquilerTransfer(req, res);
     return handleTransfer(req, res);
   }

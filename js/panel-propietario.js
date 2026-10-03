@@ -2,13 +2,22 @@
  * Panel propietario — administración de alquileres
  */
 (function () {
-  const ESTADOS = [
+  const ESTADOS_ADMIN = [
     { key: 'alta', title: 'Alta en el servicio', desc: 'Cuenta creada y expediente abierto con Nueva Habitat.' },
     { key: 'documentacion', title: 'Documentación del inmueble', desc: 'Revisión de contrato, seguros, certificados y datos de cobro.' },
     { key: 'contrato', title: 'Contrato de administración', desc: 'Firma del encargo de gestión y condiciones del servicio.' },
     { key: 'activo', title: 'Gestión activa', desc: 'Incidencias, mediación y seguimiento de renta en curso.' },
     { key: 'renovacion', title: 'Renovación / LAU', desc: 'Prórrogas, actualización de renta o fin de contrato.' },
     { key: 'baja', title: 'Baja del servicio', desc: 'Cierre de la administración (con preaviso acordado).' },
+  ];
+
+  const ESTADOS_INTEGRAL = [
+    { key: 'alta', title: 'Alta alquiler integral', desc: 'Cuenta creada. Paga los 499 € y completa datos del inmueble.' },
+    { key: 'documentacion', title: 'Documentación del propietario', desc: 'Nota simple, escrituras, CEE, cédula de habitabilidad y DNI.' },
+    { key: 'contrato', title: 'Publicación y visitas', desc: 'Anuncio optimizado, filtro de candidatos y visitas discretas.' },
+    { key: 'activo', title: 'Informe top 3 inquilinos', desc: 'Perfiles recomendados para que elijas arrendatario.' },
+    { key: 'renovacion', title: 'Contrato LAU y fianza', desc: 'Firma, depósito INCASÒL y entrega de llaves.' },
+    { key: 'baja', title: 'Opcional: administración 60 €/mes', desc: 'Tras firmar, puedes delegar la gestión mensual sin hablar con el inquilino.' },
   ];
 
   const ESTADO_LABEL = {
@@ -28,10 +37,11 @@
   ];
 
   const PROP_DOC_SLOTS = [
-    { tipo: 'prop_escritura', label: 'Escritura de propiedad' },
-    { tipo: 'prop_nota_simple', label: 'Nota simple registral' },
     { tipo: 'prop_dni', label: 'DNI / NIE del propietario' },
+    { tipo: 'prop_nota_simple', label: 'Nota simple registral' },
+    { tipo: 'prop_escritura', label: 'Escrituras de propiedad' },
     { tipo: 'prop_certificado_energetico', label: 'Certificado energético (CEE)' },
+    { tipo: 'prop_cedula_habitabilidad', label: 'Cédula de habitabilidad' },
     { tipo: 'prop_ibi', label: 'Recibo IBI (opcional)' },
     { tipo: 'prop_seguro_hogar', label: 'Seguro del hogar (opcional)' },
     { tipo: 'prop_otro', label: 'Otros documentos (PDF)' },
@@ -125,19 +135,66 @@
         try { await window.nhSupabase.auth.signOut({ scope: 'local' }); } catch (_) {}
       }
       sessionStorage.setItem('nh_logout_at', String(Date.now()));
-      window.location.replace('/acceso-alquileres?logout=1');
+      const dest = expediente?.servicio === 'integral' ? '/acceso-alquiler-integral?logout=1' : '/acceso-alquileres?logout=1';
+      window.location.replace(dest);
     });
     const q = new URLSearchParams(location.search);
     const sec = q.get('sec');
     if (sec) showSection(sec);
   }
 
-  function renderTimeline(estado) {
-    const idx = ESTADOS.findIndex((e) => e.key === estado);
+  function currentEstados(row) {
+    return row?.servicio === 'integral' ? ESTADOS_INTEGRAL : ESTADOS_ADMIN;
+  }
+
+  function applyServicioUI(row) {
+    const integral = row?.servicio === 'integral';
+    document.getElementById('panelServicioBadge')?.replaceChildren(document.createTextNode(integral ? 'Alquiler integral' : 'Administración'));
+    document.getElementById('logoSubPanel')?.replaceChildren(document.createTextNode(integral ? 'Panel alquiler integral' : 'Panel propietario'));
+    document.getElementById('alqResumenTitle')?.replaceChildren(
+      document.createTextNode(integral ? 'Resumen de tu alquiler integral' : 'Resumen de tu administración')
+    );
+    const copy = document.getElementById('alqResumenCopy');
+    if (copy) {
+      copy.textContent = integral
+        ? 'Publicamos tu piso, filtramos candidatos y cerramos el alquiler hasta la firma. Completa datos, documentación y pago del servicio (499 €).'
+        : 'Nueva Habitat gestiona la relación con el inquilino: incidencias, mediación y seguimiento contractual. Tú no hablas con el inquilino; te informamos por este panel.';
+    }
+    const gestTitle = document.getElementById('gestionProcesoTitle');
+    if (gestTitle) gestTitle.textContent = integral ? 'Proceso alquiler integral' : 'Proceso de administración';
+    const gestList = document.getElementById('gestionIncludesList');
+    if (gestList && integral) {
+      gestList.innerHTML = `
+        <li>Anuncio optimizado y difusión del inmueble en alquiler.</li>
+        <li>Filtro de curiosos y visitas en tus horarios.</li>
+        <li>Informe con hasta 3 perfiles de inquilino recomendados.</li>
+        <li>Contrato LAU, fianza INCASÒL y coordinación de suministros.</li>`;
+    }
+    const inqTitle = document.getElementById('inqSectionTitle');
+    if (inqTitle) inqTitle.textContent = integral ? 'Candidato a inquilino (futuro arrendatario)' : 'Datos del inquilino';
+    const inqIntro = document.getElementById('inqSectionIntro');
+    if (inqIntro) {
+      inqIntro.textContent = integral
+        ? 'Indica datos del inquilino elegido o de referencia. Durante la captación Juan irá actualizando candidatos.'
+        : 'Completa los datos del arrendatario. Juan revisará la información antes de activar la gestión.';
+    }
+    const honTitle = document.getElementById('honorariosSectionTitle');
+    if (honTitle) honTitle.textContent = integral ? 'Pago del servicio (499 €)' : 'Pago de honorarios';
+    document.querySelectorAll('[data-only-admin]').forEach((el) => {
+      el.style.display = integral ? 'none' : '';
+    });
+    document.querySelectorAll('[data-only-integral]').forEach((el) => {
+      el.style.display = integral ? '' : 'none';
+    });
+  }
+
+  function renderTimeline(estado, row) {
+    const steps = currentEstados(row || expediente);
+    const idx = steps.findIndex((e) => e.key === estado);
     const cur = idx >= 0 ? idx : 0;
     const el = document.getElementById('timelineAlquiler');
     if (!el) return;
-    el.innerHTML = ESTADOS.map((step, i) => {
+    el.innerHTML = steps.map((step, i) => {
       let dotClass = 'dot-pend';
       let inner = String(i + 1);
       if (i < cur) { dotClass = 'dot-done'; inner = '✓'; }
@@ -327,14 +384,19 @@
 
     const badge = document.getElementById('alqResumenBadge');
     if (badge) {
-      if (row.suscripcion_activa) {
+      if (row.servicio === 'integral') {
+        badge.innerHTML = row.integral_pagado
+          ? '<span class="nh-pay-badge nh-pay-badge--done">499 € pagados</span>'
+          : '<span class="nh-pay-badge nh-pay-badge--pending">Pago 499 € pendiente</span>';
+      } else if (row.suscripcion_activa) {
         badge.innerHTML = '<span class="nh-pay-badge nh-pay-badge--done">Cuota domiciliada</span>';
       } else {
         badge.innerHTML = '<span class="nh-pay-badge nh-pay-badge--pending">Cuota pendiente</span>';
       }
     }
 
-    renderTimeline(estado);
+    applyServicioUI(row);
+    renderTimeline(estado, row);
     fillForms(row);
 
     if (window.nhAlquilerStripe?.render) void window.nhAlquilerStripe.render(row);
@@ -633,7 +695,7 @@
 
     const { data: { user }, error } = await window.nhSupabase.auth.getUser();
     if (error || !user) {
-      window.location.replace('/login?redirect=' + encodeURIComponent('/panel-propietario'));
+      window.location.replace('/acceso-alquileres?modo=registro');
       return;
     }
     if (nhAuth.isAdmin(user)) {
@@ -666,9 +728,9 @@
       const honorBody = document.getElementById('honorariosAlquilerBody');
       const honorResumen = document.getElementById('honorariosResumenCard');
       if (honorBody) {
-        honorBody.innerHTML = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Guarda primero tus datos de propietario. Luego podrás domiciliar la cuota de 60 €/mes aquí.</p>';
+        honorBody.innerHTML = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Guarda tus datos de propietario e inmueble. Luego podrás pagar aquí (499 € integral o 60 €/mes administración).</p>';
       }
-      if (honorResumen) honorResumen.innerHTML = '<div style="font-size:.85rem;opacity:.9">Cuota 60 €/mes · pendiente de alta</div>';
+      if (honorResumen) honorResumen.innerHTML = '<div style="font-size:.85rem;opacity:.9">Completa el expediente para activar pagos</div>';
     } else {
       applyExpedienteSummary(row);
       await loadIncidencias();

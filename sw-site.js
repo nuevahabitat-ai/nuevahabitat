@@ -16,6 +16,7 @@ const NETWORK_FIRST = [
   /^\/registro(\.html)?$/,
   /^\/login(\.html)?$/,
   /^\/acceso-alquileres(\.html)?$/,
+  /^\/acceso-alquiler-integral(\.html)?$/,
   /^\/confirmar-cuenta(\.html)?$/,
   /^\/panel(\.html)?$/,
   /^\/panel-propietario(\.html)?$/,

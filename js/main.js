@@ -49,7 +49,7 @@
         <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
         <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
         <a href="/acceso-alquileres" role="menuitem"><strong>Administración de alquileres</strong><span>Entrar o registrarse · panel propietario</span></a>
-        <a href="/alquiler-integral" role="menuitem"><strong>Alquiler integral</strong><span>499 € · publicar, filtrar y cerrar contrato</span></a>
+        <a href="/acceso-alquiler-integral" role="menuitem"><strong>Alquiler integral</strong><span>499 € · panel propietario · acceso</span></a>
       `;
 
   function syncStartMenu(wrap) {
