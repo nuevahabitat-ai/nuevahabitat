@@ -11,6 +11,7 @@ const STATIC_PAGES = [
   { href: '/inmuebles', label: 'Inmuebles' },
   { href: '/hipotecas', label: 'Hipotecas' },
   { href: '/administracion-alquileres', label: 'Administración de alquileres' },
+  { href: '/alquiler-integral', label: 'Alquiler integral' },
   { href: '/nosotros', label: 'Nosotros' },
   { href: '/blog', label: 'Blog' },
   { href: '/contacto', label: 'Contacto' },
