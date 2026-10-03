@@ -4,12 +4,14 @@
  * POST ?__action=portal — Customer portal (gestionar tarjeta)
  */
 import Stripe from 'stripe';
+import { getBankConfig, paymentReference } from '../lib/server/bank-config.js';
 import {
   SB_SERVICE,
   getUserFromJwt,
   fetchPropietarioAlquilerAsUser,
   fetchPropietarioAlquilerRow,
   markAlquilerSubscription,
+  markCuotaAlquilerTransferenciaPendiente,
 } from '../lib/server/supabase-server.js';
 
 const DEFAULT_CUOTA_EUR = 60;
@@ -115,11 +117,75 @@ async function handlePortal(req, res) {
   }
 }
 
+function isTransferRequest(req) {
+  return req.query?.transfer === '1' || req.body?.transfer === true;
+}
+
+async function handleTransfer(req, res) {
+  if (!SB_SERVICE) {
+    return res.status(503).json({ ok: false, error: 'Servicio no configurado', code: 'NO_SERVICE_KEY' });
+  }
+
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  const user = await getUserFromJwt(jwt);
+  if (!user?.email || !jwt) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+
+  try {
+    const row = await fetchPropietarioAlquilerAsUser(user.email, jwt);
+    if (!row) return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
+
+    const bank = getBankConfig();
+    const totalEur = Number(row.cuota_mensual) || DEFAULT_CUOTA_EUR;
+    const reference = paymentReference('propietario_alquiler', row.id);
+    const concept = `${bank.conceptPrefix} ${reference} CUOTA`;
+
+    if (req.method === 'GET') {
+      return res.status(200).json({
+        ok: true,
+        bank: {
+          holders: bank.holders,
+          iban: bank.ibanFormatted,
+          ibanRaw: bank.iban,
+          bic: bank.bic || null,
+          entity: bank.entity,
+        },
+        payment: { totalEur, reference, concept, recordId: row.id },
+        status: {
+          subscribed: !!row.suscripcion_activa,
+          transferPending: !!row.cuota_transferencia_pendiente,
+          transferAt: row.cuota_transferencia_at || null,
+        },
+      });
+    }
+
+    if (row.suscripcion_activa) {
+      return res.status(400).json({ ok: false, error: 'Ya tienes domiciliación activa', code: 'ALREADY_ACTIVE' });
+    }
+    if (row.cuota_transferencia_pendiente) {
+      return res.status(200).json({ ok: true, alreadyPending: true, reference, concept });
+    }
+
+    await markCuotaAlquilerTransferenciaPendiente({ recordId: row.id });
+    return res.status(200).json({ ok: true, pending: true, reference, concept });
+  } catch (err) {
+    console.error('stripe-alquiler transfer:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Error' });
+  }
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   if (req.method === 'OPTIONS') return res.status(200).end();
+
+  if (isTransferRequest(req)) {
+    if (req.method !== 'GET' && req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+    return handleTransfer(req, res);
+  }
 
   if (req.query?.__action === 'verify-session') {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });

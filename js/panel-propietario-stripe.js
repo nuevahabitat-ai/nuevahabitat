@@ -1,11 +1,20 @@
 /**
- * Domiciliación Stripe — administración alquiler 60 €/mes
+ * Honorarios administración alquiler — misma UX que panel comprador/vendedor
  */
 (function () {
   let paying = false;
+  let transferNotify = false;
+  let bankInfo = null;
+  let paymentState = null;
 
   function formatEur(n) {
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(n) || 60);
+  }
+
+  function splitIva(total) {
+    const base = Math.round((total / 1.21) * 100) / 100;
+    const iva = Math.round((total - base) * 100) / 100;
+    return { base, iva, total };
   }
 
   async function getToken() {
@@ -13,63 +22,221 @@
     return data?.session?.access_token || null;
   }
 
-  function renderHtml(row) {
+  function copyText(text, label) {
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        window.nhToast?.(`${label || 'Copiado'} al portapapeles`, 'success');
+      }).catch(() => prompt('Copia manualmente:', text));
+    } else {
+      prompt('Copia manualmente:', text);
+    }
+  }
+
+  function renderTransferBlock(row, info) {
+    if (!info?.bank) return '';
     const total = Number(row?.cuota_mensual) || 60;
+    const pending = !!row?.cuota_transferencia_pendiente;
+    const concept = info.payment?.concept || info.payment?.reference || '';
+    return `
+      <div class="nh-bank-block">
+        <div class="nh-bank-title">Pagar por transferencia bancaria</div>
+        <p class="nh-bank-note">Cuota mensual de administración. El <strong>beneficiario debe coincidir exactamente</strong> con el titular indicado.</p>
+        <dl class="nh-bank-dl">
+          <div class="nh-bank-row">
+            <dt>Titular(es)</dt>
+            <dd>${info.bank.holders}</dd>
+          </div>
+          <div class="nh-bank-row">
+            <dt>IBAN</dt>
+            <dd><code class="nh-bank-iban">${info.bank.iban}</code>
+              <button type="button" class="nh-bank-copy" data-copy="${info.bank.ibanRaw || info.bank.iban.replace(/\s/g, '')}">Copiar</button></dd>
+          </div>
+          <div class="nh-bank-row">
+            <dt>Importe exacto</dt>
+            <dd><strong>${formatEur(total)}</strong> / mes</dd>
+          </div>
+          <div class="nh-bank-row">
+            <dt>Concepto</dt>
+            <dd><code>${concept}</code>
+              <button type="button" class="nh-bank-copy" data-copy="${concept}">Copiar</button></dd>
+          </div>
+        </dl>
+        ${pending ? `
+          <div class="nh-pay-status nh-pay-status--ok" style="margin-top:.75rem;background:rgba(184,147,106,.12);border-color:rgba(184,147,106,.35)">
+            <strong style="color:var(--oro-oscuro,#92672a)">Transferencia en revisión</strong>
+            <span style="color:var(--gris-texto)">Confirmaremos al recibir el ingreso (1–2 días laborables)</span>
+          </div>
+        ` : `
+          <button type="button" class="btn btn-outline nh-transfer-btn" style="width:100%;justify-content:center;margin-top:.75rem">
+            Ya he realizado la transferencia
+          </button>
+        `}
+      </div>
+    `;
+  }
+
+  function renderSectionHtml(row) {
+    const total = Number(row?.cuota_mensual) || 60;
+    const { base, iva } = splitIva(total);
     const active = !!row?.suscripcion_activa;
-    const status = row?.suscripcion_estado || '';
     const periodEnd = row?.suscripcion_periodo_fin
-      ? new Date(row.suscripcion_periodo_fin).toLocaleDateString('es-ES')
+      ? new Date(row.suscripcion_periodo_fin).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
       : null;
 
     if (active) {
       return `
-        <div class="nh-pay-badge nh-pay-badge--ok" style="margin-bottom:1rem">Suscripción activa${status ? ' · ' + status : ''}</div>
-        <p style="font-size:.875rem;opacity:.9;margin-bottom:1rem">Cuota: <strong>${formatEur(total)}</strong>/mes (IVA incluido)${periodEnd ? ` · Próximo ciclo: ${periodEnd}` : ''}</p>
-        <button type="button" class="btn btn-gold" id="alqPortalBtn" style="width:100%;justify-content:center">Gestionar tarjeta y facturas</button>
+        <div class="nh-pay-summary">
+          <div class="nh-pay-row"><span>Cuota mensual (IVA incl.)</span><strong>${formatEur(total)}</strong></div>
+          <div class="nh-pay-row"><span>Base imponible</span><strong>${formatEur(base)}</strong></div>
+          <div class="nh-pay-row"><span>IVA (21%)</span><strong>${formatEur(iva)}</strong></div>
+        </div>
+        <div class="nh-pay-status nh-pay-status--ok">
+          <strong>Domiciliación activa</strong>
+          <span>${row.suscripcion_estado || 'active'}${periodEnd ? ` · Próximo ciclo: ${periodEnd}` : ''}</span>
+        </div>
+        <button type="button" class="btn btn-gold btn-lg" id="alqPortalBtn" style="width:100%;justify-content:center;margin-top:1rem">
+          Gestionar tarjeta y facturas
+        </button>
       `;
     }
 
     return `
-      <div class="nh-pay-badge nh-pay-badge--pending" style="margin-bottom:1rem">Pendiente de domiciliar</div>
-      <p style="font-size:.875rem;opacity:.9;margin-bottom:1rem">Importe mensual: <strong>${formatEur(total)}</strong> (IVA incluido)</p>
-      <button type="button" class="btn btn-gold" id="alqSubscribeBtn" style="width:100%;justify-content:center">Domiciliar con tarjeta (Stripe)</button>
-      <p style="font-size:.75rem;opacity:.75;margin-top:.75rem">Pago seguro procesado por Stripe. No almacenamos los datos de tu tarjeta.</p>
+      <div class="nh-pay-summary">
+        <div class="nh-pay-row"><span>Base imponible</span><strong>${formatEur(base)}</strong></div>
+        <div class="nh-pay-row"><span>IVA (21%)</span><strong>${formatEur(iva)}</strong></div>
+        <div class="nh-pay-row nh-pay-row--total"><span>Total / mes</span><strong>${formatEur(total)}</strong></div>
+      </div>
+      <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin:1rem 0 .75rem">
+        Domicilia la cuota con tarjeta (Stripe, cargo mensual automático) o paga cada mes por transferencia con el concepto indicado.
+      </p>
+      <button type="button" class="btn btn-gold btn-lg nh-pay-btn" id="alqSubscribeBtn" style="width:100%;justify-content:center;margin-bottom:1rem">
+        Domiciliar ${formatEur(total)}/mes con tarjeta
+      </button>
+      ${bankInfo ? renderTransferBlock(row, bankInfo) : '<p style="font-size:.82rem;color:var(--gris-texto)">Cargando datos bancarios…</p>'}
     `;
   }
 
-  function bindActions(row) {
-    document.getElementById('alqSubscribeBtn')?.addEventListener('click', () => startCheckout());
-    document.getElementById('alqPortalBtn')?.addEventListener('click', () => openPortal());
+  function renderResumenCardHtml(row) {
+    const total = Number(row?.cuota_mensual) || 60;
+    const active = !!row?.suscripcion_activa;
+    if (active) {
+      return `
+        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Cuota administración</div>
+        <div style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:.35rem">${formatEur(total)}/mes</div>
+        <div class="nh-pay-badge nh-pay-badge--done" style="display:inline-flex;margin-top:.5rem">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          Domiciliado
+        </div>
+      `;
+    }
+    return `
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Cuota administración</div>
+      <div style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:.5rem">${formatEur(total)}/mes IVA incl.</div>
+      <button type="button" class="btn btn-gold nh-pay-btn-resumen" style="font-size:.84rem;width:100%;justify-content:center">Ir a pagos</button>
+    `;
+  }
+
+  function bindActions() {
+    document.getElementById('alqSubscribeBtn')?.addEventListener('click', startCheckout);
+    document.getElementById('alqPortalBtn')?.addEventListener('click', openPortal);
+    document.querySelectorAll('.nh-pay-btn').forEach((btn) => {
+      btn.addEventListener('click', startCheckout);
+    });
+    document.querySelectorAll('.nh-pay-btn-resumen').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelector('.p-nav-btn[data-sec="honorarios"]')?.click();
+      });
+    });
+    document.querySelectorAll('.nh-bank-copy').forEach((btn) => {
+      btn.addEventListener('click', () => copyText(btn.dataset.copy, btn.dataset.copy?.includes('NH') ? 'Concepto' : 'IBAN'));
+    });
+    document.querySelectorAll('.nh-transfer-btn').forEach((btn) => {
+      btn.addEventListener('click', notifyTransferDone);
+    });
+  }
+
+  async function fetchBankInfo() {
+    const token = await getToken();
+    if (!token) return null;
+    try {
+      const res = await fetch('/api/stripe-alquiler-subscription?transfer=1', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) return null;
+      return data;
+    } catch (e) {
+      console.warn('fetchBankInfo alquiler', e);
+      return null;
+    }
+  }
+
+  async function loadHonorarios(row) {
+    paymentState = row;
+    if (!bankInfo && row && !row.suscripcion_activa) {
+      bankInfo = await fetchBankInfo();
+    }
+    const body = document.getElementById('honorariosAlquilerBody');
+    if (body) {
+      body.innerHTML = renderSectionHtml(row);
+    }
+    const resumenCard = document.getElementById('honorariosResumenCard');
+    if (resumenCard) {
+      resumenCard.innerHTML = renderResumenCardHtml(row);
+    }
+    bindActions();
   }
 
   async function startCheckout() {
-    if (paying) return;
-    const token = await getToken();
-    if (!token) {
-      window.nhToast?.('Inicia sesión de nuevo', 'error');
-      return;
-    }
+    if (paying || paymentState?.suscripcion_activa) return;
     paying = true;
-    const btn = document.getElementById('alqSubscribeBtn');
-    if (btn) { btn.disabled = true; btn.textContent = 'Redirigiendo a Stripe…'; }
+    document.querySelectorAll('.nh-pay-btn, #alqSubscribeBtn').forEach((btn) => {
+      btn.disabled = true;
+      if (btn.id === 'alqSubscribeBtn') btn.textContent = 'Redirigiendo a Stripe…';
+    });
     try {
+      const token = await getToken();
+      if (!token) throw new Error('Sesión expirada');
       const res = await fetch('/api/stripe-alquiler-subscription', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: '{}',
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) {
-        window.nhToast?.(data.error || 'No se pudo iniciar el pago', 'error');
-        return;
-      }
+      if (!res.ok || !data.ok) throw new Error(data.error || 'No se pudo iniciar el pago');
       window.location.href = data.url;
-    } catch (e) {
-      console.warn(e);
-      window.nhToast?.('Error de conexión', 'error');
-    } finally {
+    } catch (err) {
+      window.nhToast?.(err.message || 'Error al iniciar el pago', 'error');
       paying = false;
-      if (btn) { btn.disabled = false; btn.textContent = 'Domiciliar con tarjeta (Stripe)'; }
+      document.querySelectorAll('.nh-pay-btn, #alqSubscribeBtn').forEach((btn) => { btn.disabled = false; });
+      const sub = document.getElementById('alqSubscribeBtn');
+      if (sub) sub.textContent = `Domiciliar ${formatEur(paymentState?.cuota_mensual || 60)}/mes con tarjeta`;
+    }
+  }
+
+  async function notifyTransferDone() {
+    if (transferNotify || paymentState?.suscripcion_activa) return;
+    if (!confirm('¿Confirmas que has realizado la transferencia con el importe y concepto indicados?')) return;
+    transferNotify = true;
+    try {
+      const token = await getToken();
+      if (!token) throw new Error('Sesión expirada');
+      const res = await fetch('/api/stripe-alquiler-subscription?transfer=1', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ transfer: true }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'No se pudo registrar');
+      window.nhToast?.(data.alreadyPending ? 'Ya teníamos registrado tu aviso.' : 'Aviso enviado. Confirmaremos al recibir el ingreso.', 'success');
+      if (window.alqExpediente) {
+        window.alqExpediente.cuota_transferencia_pendiente = true;
+        await loadHonorarios(window.alqExpediente);
+      }
+    } catch (err) {
+      window.nhToast?.(err.message || 'Error', 'error');
+    } finally {
+      transferNotify = false;
     }
   }
 
@@ -111,12 +278,10 @@
   }
 
   window.nhAlquilerStripe = {
-    render(row) {
-      const root = document.getElementById('honorariosAlquilerBody');
-      if (!root) return;
-      root.innerHTML = renderHtml(row);
-      bindActions(row);
+    async render(row) {
+      await loadHonorarios(row);
     },
     verifySession,
+    reload: loadHonorarios,
   };
 })();
