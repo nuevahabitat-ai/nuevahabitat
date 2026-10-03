@@ -1,5 +1,5 @@
 /* Service Worker — Web pública NuevaHabitat (clientes) */
-const CACHE = 'nh-web-v2';
+const CACHE = 'nh-web-v3';
 const SHELL = [
   '/',
   '/index.html',
@@ -18,8 +18,10 @@ const NETWORK_FIRST = [
   /^\/login(\.html)?$/,
   /^\/confirmar-cuenta(\.html)?$/,
   /^\/panel-propietario(\.html)?$/,
+  /^\/panel(\.html)?$/,
   /^\/js\/supabase\.js$/,
   /^\/js\/panel-propietario/,
+  /^\/js\/panel-cliente-docs\.js$/,
 ];
 
 function isNetworkFirst(pathname) {
