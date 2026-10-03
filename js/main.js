@@ -112,30 +112,72 @@
     else cluster.append(wrap);
   });
 
-  document.querySelectorAll('.nav-links').forEach((ul) => {
-    if (ul.querySelector('a[href="/administracion-alquileres"]')) return;
-    const blogLi = [...ul.querySelectorAll('li')].find((li) => li.querySelector('a[href="/blog"]'));
-    const li = document.createElement('li');
-    li.innerHTML = '<a href="/administracion-alquileres">Administración de alquileres</a>';
-    if (blogLi) blogLi.after(li);
-    else ul.appendChild(li);
-  });
+  function mountAlquileresNav(ul) {
+    ul.querySelectorAll('li').forEach((li) => {
+      if (li.classList.contains('nav-alquileres-wrap')) return;
+      const a = li.querySelector('a[href="/administracion-alquileres"]');
+      if (a) li.remove();
+    });
+
+    let wrapLi = ul.querySelector('.nav-alquileres-wrap');
+    if (!wrapLi) {
+      const blogLi = [...ul.querySelectorAll('li')].find((li) => li.querySelector('a[href="/blog"]'));
+      wrapLi = document.createElement('li');
+      wrapLi.className = 'nav-link-dropdown nav-alquileres-wrap';
+      wrapLi.innerHTML = `
+        <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Alquileres</button>
+        <div class="nav-dropdown-menu" role="menu">
+          <a href="/administracion-alquileres" role="menuitem">Administración de alquileres</a>
+        </div>
+      `;
+      if (blogLi) blogLi.after(wrapLi);
+      else ul.appendChild(wrapLi);
+    }
+
+    if (!wrapLi.dataset.nhAlqBound) {
+      const trigger = wrapLi.querySelector('.nav-dropdown-trigger');
+      const close = () => {
+        wrapLi.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      };
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const open = wrapLi.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', (e) => {
+        if (!wrapLi.contains(e.target)) close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+      wrapLi.dataset.nhAlqBound = '1';
+    }
+    return wrapLi;
+  }
+
+  document.querySelectorAll('.nav-links').forEach(mountAlquileresNav);
 
   const path = window.location.pathname.replace(/\/$/, '') || '/';
   if (path === '/administracion-alquileres') {
-    document.querySelectorAll('.nav-links a[href="/administracion-alquileres"]').forEach((a) => {
-      a.style.color = 'var(--oro)';
-    });
+    document.querySelectorAll('.nav-alquileres-wrap').forEach((li) => li.classList.add('is-active'));
   }
 
   const mobileNav = document.getElementById('mobileNav');
-  if (mobileNav && !mobileNav.querySelector('a[href="/administracion-alquileres"]')) {
-    const blogLink = mobileNav.querySelector('a[href="/blog"]');
-    const link = document.createElement('a');
-    link.href = '/administracion-alquileres';
-    link.textContent = 'Administración de alquileres';
-    if (blogLink) blogLink.after(link);
-    else mobileNav.appendChild(link);
+  if (mobileNav) {
+    mobileNav.querySelectorAll('a[href="/administracion-alquileres"]').forEach((a) => {
+      if (a.dataset.nhAlqMobile) return;
+      if (a.textContent.trim() === 'Administración de alquileres') a.remove();
+    });
+    if (!mobileNav.querySelector('a[data-nh-alq-mobile="admin"]')) {
+      const blogLink = mobileNav.querySelector('a[href="/blog"]');
+      const link = document.createElement('a');
+      link.href = '/administracion-alquileres';
+      link.dataset.nhAlqMobile = 'admin';
+      link.textContent = 'Alquileres · Administración de alquileres';
+      if (blogLink) blogLink.after(link);
+      else mobileNav.appendChild(link);
+    }
   }
 })();
 
