@@ -123,7 +123,7 @@
       <div class="page-hero-btns" style="margin-top:1.5rem">
         <a href="/registro?tipo=alquiler" class="btn btn-gold btn-lg">Crear cuenta · panel propietario</a>
         <a href="#como-funciona" class="btn btn-outline-light btn-lg">Ver cómo funciona</a>
-        <a href="#solicitar" class="btn btn-outline-light btn-lg">Solicitar administración</a>
+        <a href="#consultar-alquiler" class="btn btn-outline-light btn-lg">Tengo dudas · escríbenos</a>
         <a href="tel:+34603656587" class="btn btn-outline-light btn-lg nh-call-link" data-nh-call="hero">603 656 587 · 643 877 644</a>
       </div>
     </div>
@@ -331,7 +331,7 @@
       <div style="font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65)">Administración mensual</div>
       <div class="price">60 €<span>/mes</span></div>
       <p style="color:rgba(255,255,255,.75);font-size:.875rem;line-height:1.6;margin-bottom:1.5rem">IVA incluido · alquileres de larga duración</p>
-      <a href="#solicitar" class="btn btn-gold" style="width:100%;justify-content:center">Empezar ahora</a>
+      <a href="/registro?tipo=alquiler" class="btn btn-gold" style="width:100%;justify-content:center">Crear cuenta · panel</a>
     </div>
   </div>
 </section>
@@ -500,17 +500,47 @@
   </div>
 </section>
 
-<section id="solicitar" style="padding:5rem 0;background:var(--crema)">
+<section id="registro-alquiler" style="padding:5rem 0;background:var(--crema)">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;max-width:640px;margin:0 auto 2.5rem">
+      <span class="overline">Alta inmediata</span>
+      <h2 class="section-title" style="font-size:2rem">Regístrate y usa el panel propietario</h2>
+      <p style="color:var(--gris-texto);line-height:1.75">Cuenta gratuita en un par de minutos. Sin esperar a que te llamemos: entras al panel, ves tu expediente y la cuota de 60 €/mes cuando toque domiciliarla.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch;max-width:960px;margin:0 auto">
+      <div class="fade-up" style="background:var(--negro);color:#fff;border-radius:var(--radius-lg);padding:2.25rem;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--oro);margin-bottom:.75rem">Recomendado · autoservicio</div>
+        <h3 style="font-family:var(--font-serif);font-size:1.65rem;margin-bottom:1rem;line-height:1.25">Crear cuenta de administración</h3>
+        <ol style="margin:0 0 1.5rem 1.1rem;padding:0;font-size:.875rem;line-height:1.7;color:rgba(255,255,255,.85)">
+          <li>Registro con email (tipo <strong>propietario alquiler</strong>)</li>
+          <li>Acceso a <strong>/panel-propietario</strong></li>
+          <li>Juan Cárdenas completa datos del piso e inquilino contigo</li>
+        </ol>
+        <a href="/registro?tipo=alquiler" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;margin-bottom:.75rem">Crear mi cuenta gratis →</a>
+        <p style="font-size:.8125rem;text-align:center;margin:0;color:rgba(255,255,255,.65)">¿Ya tienes cuenta? <a href="/login?redirect=%2Fpanel-propietario" style="color:var(--oro)">Iniciar sesión</a></p>
+      </div>
+      <div class="fade-up" style="background:var(--blanco);border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:2rem;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris-medio);margin-bottom:.75rem">Solo información</div>
+        <h3 style="font-size:1.15rem;margin-bottom:.65rem">¿Aún no quieres registrarte?</h3>
+        <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.65;margin-bottom:1.25rem">Lee cómo funciona arriba o llámanos. Cuando quieras empezar, el registro sigue siendo el mismo enlace.</p>
+        <a href="#como-funciona" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:.5rem">Ver cómo funciona</a>
+        <a href="tel:+34603656587" class="btn btn-outline nh-call-link" style="width:100%;justify-content:center" data-nh-call="registro-block">603 656 587</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="consultar-alquiler" style="padding:4rem 0 5rem;background:var(--blanco);border-top:1px solid var(--crema-dark)">
   <div class="container">
     <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:start">
       <div class="fade-up">
-        <span class="overline">Alta del servicio</span>
-        <h2 class="section-title" style="font-size:2rem">Solicita administración<br/>de tu alquiler</h2>
-        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.5rem">Cuéntanos la vivienda y el estado del contrato. Te respondemos en menos de 24 horas laborables.</p>
+        <span class="overline">Consultas</span>
+        <h2 class="section-title" style="font-size:1.75rem">Escríbenos si tienes dudas</h2>
+        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1rem">Este formulario es <strong>solo para preguntas</strong> o pedir que te llamemos. <strong>No sustituye</strong> al registro del panel: para darte de alta como cliente con administración activa, usa <a href="/registro?tipo=alquiler" style="color:var(--oro);font-weight:600">crear cuenta</a>.</p>
         <p style="font-size:.9375rem"><strong>Teléfono:</strong> <a href="tel:+34603656587" class="nh-call-link" data-nh-call="form">603 656 587</a> · <a href="tel:+34643877644" class="nh-call-link" data-nh-call="form">643 877 644</a></p>
       </div>
-      <div class="fade-up" style="background:var(--blanco);border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:2rem">
-        <div id="alq-ok" style="display:none;background:#f0fdf4;border:1px solid #86efac;color:#166534;border-radius:6px;padding:.85rem 1rem;font-size:.875rem;margin-bottom:1rem">Gracias. Hemos recibido tu solicitud y te contactaremos pronto.</div>
+      <div class="fade-up" style="background:var(--crema);border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:2rem">
+        <div id="alq-ok" style="display:none;background:#f0fdf4;border:1px solid #86efac;color:#166534;border-radius:6px;padding:.85rem 1rem;font-size:.875rem;margin-bottom:1rem">Gracias. Hemos recibido tu mensaje y te contactaremos pronto.</div>
         <form id="alqForm" onsubmit="return alqSubmit(event)">
           <div class="form-group">
             <label>Nombre</label>
@@ -529,11 +559,10 @@
             <input type="text" id="alq-dir" placeholder="Barrio, municipio…"/>
           </div>
           <div class="form-group">
-            <label>Comentario</label>
-            <textarea id="alq-msg" rows="3" placeholder="Situación del contrato, inquilino actual, incidencias…"></textarea>
+            <label>Tu consulta</label>
+            <textarea id="alq-msg" rows="3" placeholder="Dudas sobre el servicio, plazos, si encaja tu caso…"></textarea>
           </div>
-          <button type="submit" class="btn btn-gold btn-lg" id="alq-btn" style="width:100%;justify-content:center">Enviar solicitud →</button>
-          <p style="font-size:.8125rem;color:var(--gris-texto);margin-top:1rem;text-align:center">¿Ya eres cliente? <a href="/registro?tipo=alquiler" style="color:var(--oro);font-weight:600">Crea tu cuenta</a> y accede al <a href="/panel-propietario" style="color:var(--oro)">panel propietario</a>.</p>
+          <button type="submit" class="btn btn-outline btn-lg" id="alq-btn" style="width:100%;justify-content:center;border-color:var(--negro);color:var(--negro)">Enviar consulta →</button>
         </form>
       </div>
     </div>
@@ -549,7 +578,8 @@
       <h2 class="section-title light">Tu alquiler, gestionado<br/>con criterio profesional</h2>
       <p class="section-subtitle light">60 €/mes IVA incluido · larga duración · cero contacto con el inquilino</p>
       <div class="cta-buttons">
-        <a href="#solicitar" class="btn btn-gold btn-lg">Solicitar ahora</a>
+        <a href="/registro?tipo=alquiler" class="btn btn-gold btn-lg">Crear cuenta panel</a>
+        <a href="#consultar-alquiler" class="btn btn-outline-light btn-lg">Solo tengo dudas</a>
         <a href="tel:+34603656587" class="btn btn-outline-light btn-lg nh-call-link" data-nh-call="footer">Llamar ahora</a>
       </div>
     </div>
