@@ -162,13 +162,19 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 .nav-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.25rem 0 0.75rem;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
-.nav-logo { display: flex; align-items: center; gap: 1rem; }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  flex-shrink: 0;
+  margin-right: .25rem;
+}
 
 .nav-logo img {
   height: 76px;
@@ -187,17 +193,20 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 
 .nav-logo .logo-text {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: .6rem;
+  white-space: nowrap;
 }
 
 .nav-logo .logo-name {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: .14em;
+  letter-spacing: .12em;
   color: #d4aa6e;
-  line-height: 1.1;
+  line-height: 1;
   text-transform: uppercase;
   text-shadow: 0 1px 12px rgba(212,170,110,.35);
 }
@@ -205,9 +214,16 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 .nav-logo .logo-sub {
   font-size: .625rem;
   font-weight: 500;
-  letter-spacing: .26em;
+  letter-spacing: .22em;
   color: rgba(212,170,110,.75);
   text-transform: uppercase;
+  line-height: 1;
+}
+
+.nav-logo .logo-sub::before {
+  content: '·';
+  margin-right: .55rem;
+  opacity: .55;
 }
 
 .nav-links {
@@ -215,7 +231,12 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   align-items: center;
   justify-content: center;
   flex: 1;
-  gap: 2.25rem;
+  gap: 1.35rem;
+}
+
+.nav-links a[href="/administracion-alquileres"] {
+  font-size: .8125rem;
+  letter-spacing: .02em;
 }
 
 .nav-links a {
@@ -250,12 +271,22 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
 .nav-cta-cluster {
   display: flex;
   align-items: center;
-  gap: .65rem;
+  gap: .85rem;
   flex-shrink: 0;
 }
 
 .nav-cta-cluster .nav-tels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .12rem;
   white-space: nowrap;
+  line-height: 1.2;
+  font-size: .78rem;
+}
+
+.nav-cta-cluster .nav-tels a {
+  display: block;
 }
 
 .nav-start-wrap {

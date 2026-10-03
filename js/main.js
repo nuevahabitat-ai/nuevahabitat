@@ -42,68 +42,99 @@
 })();
 
 
-/* ── Nav: teléfonos junto a Empezar ahora + menú de inicio ─── */
+/* ── Nav: Empezar ahora + teléfonos (vertical, a la derecha) ─── */
 (function () {
+  document.querySelectorAll('.nav-actions .nav-tels').forEach((span) => {
+    if (span.dataset.nhTelsClean) return;
+    const links = [...span.querySelectorAll('a')];
+    if (links.length) {
+      span.textContent = '';
+      links.forEach((a) => span.appendChild(a));
+    }
+    span.dataset.nhTelsClean = '1';
+  });
+
   document.querySelectorAll('.nav-actions').forEach((actions) => {
     const tels = actions.querySelector('.nav-tels');
     const cta = actions.querySelector('.nav-cta');
     if (!cta) return;
 
-    if (tels && !actions.querySelector('.nav-cta-cluster')) {
-      const cluster = document.createElement('div');
+    let cluster = actions.querySelector('.nav-cta-cluster');
+    if (!cluster) {
+      cluster = document.createElement('div');
       cluster.className = 'nav-cta-cluster';
-      tels.before(cluster);
-      cluster.append(tels, cta);
+      const burger = actions.querySelector('.nav-hamburger');
+      actions.insertBefore(cluster, burger || null);
     }
 
-    if (cta.closest('.nav-start-wrap')) return;
+    let wrap = cta.closest('.nav-start-wrap');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.className = 'nav-start-wrap';
+      cta.parentNode.insertBefore(wrap, cta);
+      wrap.appendChild(cta);
 
-    const wrap = document.createElement('div');
-    wrap.className = 'nav-start-wrap';
-    cta.parentNode.insertBefore(wrap, cta);
-    wrap.appendChild(cta);
-
-    if (!cta.getAttribute('href')) cta.setAttribute('href', '/registro');
-    cta.setAttribute('aria-haspopup', 'true');
-    cta.setAttribute('aria-expanded', 'false');
-
-    const menu = document.createElement('div');
-    menu.className = 'nav-start-menu';
-    menu.setAttribute('role', 'menu');
-    menu.innerHTML = `
-      <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
-      <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
-      <a href="/administracion-alquileres" role="menuitem"><strong>Administración de alquileres</strong><span>60 €/mes · IVA incl. · larga duración</span></a>
-    `;
-    wrap.appendChild(menu);
-
-    const close = () => {
-      wrap.classList.remove('open');
+      if (!cta.getAttribute('href')) cta.setAttribute('href', '/registro');
+      cta.setAttribute('aria-haspopup', 'true');
       cta.setAttribute('aria-expanded', 'false');
-    };
 
-    cta.addEventListener('click', (e) => {
-      if (wrap.classList.contains('open')) return;
-      e.preventDefault();
-      wrap.classList.add('open');
-      cta.setAttribute('aria-expanded', 'true');
-    });
+      const menu = document.createElement('div');
+      menu.className = 'nav-start-menu';
+      menu.setAttribute('role', 'menu');
+      menu.innerHTML = `
+        <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
+        <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
+        <a href="/administracion-alquileres" role="menuitem"><strong>Administración de alquileres</strong><span>60 €/mes · IVA incl. · larga duración</span></a>
+      `;
+      wrap.appendChild(menu);
 
-    document.addEventListener('click', (e) => {
-      if (!wrap.contains(e.target)) close();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') close();
-    });
+      const close = () => {
+        wrap.classList.remove('open');
+        cta.setAttribute('aria-expanded', 'false');
+      };
+
+      cta.addEventListener('click', (e) => {
+        if (wrap.classList.contains('open')) return;
+        e.preventDefault();
+        wrap.classList.add('open');
+        cta.setAttribute('aria-expanded', 'true');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!wrap.contains(e.target)) close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+    }
+
+    if (tels) cluster.append(wrap, tels);
+    else cluster.append(wrap);
   });
+
+  document.querySelectorAll('.nav-links').forEach((ul) => {
+    if (ul.querySelector('a[href="/administracion-alquileres"]')) return;
+    const blogLi = [...ul.querySelectorAll('li')].find((li) => li.querySelector('a[href="/blog"]'));
+    const li = document.createElement('li');
+    li.innerHTML = '<a href="/administracion-alquileres">Administración de alquileres</a>';
+    if (blogLi) blogLi.after(li);
+    else ul.appendChild(li);
+  });
+
+  const path = window.location.pathname.replace(/\/$/, '') || '/';
+  if (path === '/administracion-alquileres') {
+    document.querySelectorAll('.nav-links a[href="/administracion-alquileres"]').forEach((a) => {
+      a.style.color = 'var(--oro)';
+    });
+  }
 
   const mobileNav = document.getElementById('mobileNav');
   if (mobileNav && !mobileNav.querySelector('a[href="/administracion-alquileres"]')) {
-    const regLink = mobileNav.querySelector('a[href="/registro"], a[href^="/registro"]');
+    const blogLink = mobileNav.querySelector('a[href="/blog"]');
     const link = document.createElement('a');
     link.href = '/administracion-alquileres';
     link.textContent = 'Administración de alquileres';
-    if (regLink) regLink.before(link);
+    if (blogLink) blogLink.after(link);
     else mobileNav.appendChild(link);
   }
 })();
