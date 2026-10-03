@@ -2,6 +2,7 @@
 -- NuevaHabitat · Migración 047 — Panel propietario RLS sin auth.users
 -- Corrige "permission denied for table users" al guardar/subir docs
 -- Ejecutar en Supabase → SQL Editor (producción)
+-- Si falla "cliente_documentos does not exist", ejecutar antes 048_cliente_documentos_bootstrap.sql
 -- ============================================================
 
 -- Asegurar helpers (idempotente; ya existen desde 015/016)
