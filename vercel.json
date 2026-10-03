@@ -306,6 +306,10 @@
       "headers": [{ "key": "Cache-Control", "value": "no-store, max-age=0" }]
     },
     {
+      "source": "/panel",
+      "headers": [{ "key": "Cache-Control", "value": "no-store, max-age=0" }]
+    },
+    {
       "source": "/sw-site.js",
       "headers": [{ "key": "Cache-Control", "value": "no-cache, max-age=0" }]
     }
