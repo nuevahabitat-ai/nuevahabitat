@@ -44,9 +44,34 @@
     'contrato', 'contrato_arras',
   ].concat(PROP_DOC_TIPOS);
 
+  const MAX_FILE_BYTES = 50 * 1024 * 1024;
+  const ALLOWED_EXT = /\.(pdf|jpe?g|png|webp|heic|doc|docx)$/i;
+  const ALLOWED_MIME = new Set([
+    'application/pdf',
+    'image/jpeg',
+    'image/png',
+    'image/webp',
+    'image/heic',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  ]);
+
   let currentUser = null;
   let expediente = null;
   let docsCache = [];
+
+  async function getAccessToken() {
+    const { data } = await window.nhSupabase.auth.getSession();
+    return data?.session?.access_token || null;
+  }
+
+  function isAllowedFile(file) {
+    if (!file) return false;
+    if (file.size > MAX_FILE_BYTES) return false;
+    if (ALLOWED_EXT.test(file.name)) return true;
+    if (file.type && ALLOWED_MIME.has(file.type)) return true;
+    return false;
+  }
 
   function fmtEur(n) {
     if (n == null || n === '') return '—';
@@ -165,11 +190,56 @@
     setTimeout(() => { el.style.display = 'none'; }, 5000);
   }
 
+  async function apiPost(action, body) {
+    const token = await getAccessToken();
+    if (!token) throw new Error('Sesión expirada');
+    const res = await fetch(`/api/panel-propietario?action=${encodeURIComponent(action)}`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: body ? JSON.stringify(body) : '{}',
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.ok) throw new Error(data.error || `Error ${action}`);
+    return data;
+  }
+
   async function ensureExpediente() {
     if (expediente?.id) return expediente;
+
+    try {
+      const { data: rpcRow, error: rpcErr } = await window.nhSupabase.rpc('get_my_propietario_alquiler');
+      if (!rpcErr && rpcRow) {
+        expediente = typeof rpcRow === 'string' ? JSON.parse(rpcRow) : rpcRow;
+        if (expediente?.id) return expediente;
+      }
+    } catch (e) {
+      console.warn('get_my_propietario_alquiler', e);
+    }
+
+    try {
+      const ensured = await apiPost('ensure');
+      if (ensured.row?.id) {
+        expediente = ensured.row;
+        return expediente;
+      }
+    } catch (e) {
+      console.warn('api ensure expediente', e);
+    }
+
     await nhAuth.ensureClientRecord(currentUser, { tipo: 'propietario' });
     expediente = await fetchExpediente();
     return expediente;
+  }
+
+  async function ensureStorageBucket() {
+    try {
+      await apiPost('ensure-storage');
+    } catch (e) {
+      console.warn('ensure-storage', e);
+    }
   }
 
   async function saveExpedientePartial(payload, msgId) {
@@ -333,7 +403,7 @@
             <strong>${esc(slot.label)}</strong>
             ${chip}
           </div>
-          <input type="file" accept="application/pdf,.pdf" data-tipo="${esc(slot.tipo)}" data-label="${esc(slot.label)}"/>
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png,.webp,.heic,.doc,.docx,application/pdf,image/*" data-tipo="${esc(slot.tipo)}" data-label="${esc(slot.label)}"/>
         </div>`;
       }).join('');
       el.querySelectorAll('input[type=file]').forEach((input) => {
@@ -344,32 +414,75 @@
     renderBlock('docsInquilinoUpload', INQ_DOC_SLOTS);
   }
 
-  async function onFilePicked(input) {
-    const file = input.files?.[0];
-    if (!file) return;
-    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
-      toast('Solo se permiten archivos PDF', 'error');
-      input.value = '';
-      return;
-    }
-    if (file.size > 10 * 1024 * 1024) {
-      toast('El PDF no puede superar 10 MB', 'error');
-      input.value = '';
-      return;
-    }
-    const tipo = input.dataset.tipo;
-    const label = input.dataset.label || file.name;
-    input.disabled = true;
-    try {
-      await ensureExpediente();
-      const email = currentUser.email;
-      const folder = storageFolder(email);
-      const path = `${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
-      const { error: upErr } = await window.nhSupabase.storage
-        .from('documentos-clientes')
-        .upload(path, file, { upsert: false, contentType: 'application/pdf' });
-      if (upErr) throw upErr;
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const s = String(reader.result || '');
+        const i = s.indexOf(',');
+        resolve(i >= 0 ? s.slice(i + 1) : s);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
+  async function uploadViaClient(file, path) {
+    const contentType = file.type || 'application/octet-stream';
+    const { error: upErr } = await window.nhSupabase.storage
+      .from('documentos-clientes')
+      .upload(path, file, { upsert: false, contentType });
+    if (upErr) throw upErr;
+  }
+
+  async function uploadDocumentFile(file, tipo, label) {
+    await ensureExpediente();
+    if (!expediente?.id) throw new Error('No hay expediente activo. Pulsa Guardar en Datos propietario o recarga.');
+
+    const email = currentUser.email;
+    const folder = storageFolder(email);
+    const path = `${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+
+    let uploadedPath = path;
+    try {
+      await uploadViaClient(file, path);
+    } catch (clientErr) {
+      const msg = clientErr.message || '';
+      if (/bucket not found/i.test(msg)) {
+        await ensureStorageBucket();
+        try {
+          await uploadViaClient(file, path);
+        } catch (retryErr) {
+          if (file.size <= 4 * 1024 * 1024) {
+            const base64 = await fileToBase64(file);
+            const apiUp = await apiPost('upload', {
+              tipo,
+              label,
+              fileName: file.name,
+              mimeType: file.type || 'application/octet-stream',
+              base64,
+            });
+            uploadedPath = apiUp.path || path;
+          } else {
+            throw new Error('Falta el bucket de Storage en Supabase. Ejecuta la migración 045 y recarga.');
+          }
+        }
+      } else if (file.size <= 4 * 1024 * 1024) {
+        const base64 = await fileToBase64(file);
+        const apiUp = await apiPost('upload', {
+          tipo,
+          label,
+          fileName: file.name,
+          mimeType: file.type || 'application/octet-stream',
+          base64,
+        });
+        uploadedPath = apiUp.path || path;
+      } else {
+        throw clientErr;
+      }
+    }
+
+    if (uploadedPath === path) {
       const { error: insErr } = await window.nhSupabase.from('cliente_documentos').insert({
         perfil_id: currentUser.id,
         cliente_email: email,
@@ -379,13 +492,28 @@
         estado: 'subido',
       });
       if (insErr) throw insErr;
+    }
+  }
 
+  async function onFilePicked(input) {
+    const file = input.files?.[0];
+    if (!file) return;
+    if (!isAllowedFile(file)) {
+      toast('Formato no permitido o archivo > 50 MB. Usa PDF, JPG, PNG, WEBP, HEIC, DOC o DOCX.', 'error');
+      input.value = '';
+      return;
+    }
+    const tipo = input.dataset.tipo;
+    const label = input.dataset.label || file.name;
+    input.disabled = true;
+    try {
+      await uploadDocumentFile(file, tipo, label);
       toast('Documento subido correctamente', 'success');
       await loadDocumentos();
       renderUploadSlots();
     } catch (err) {
       console.error('upload', err);
-      toast(err.message || 'Error al subir el PDF', 'error');
+      toast(err.message || 'Error al subir el archivo', 'error');
     } finally {
       input.value = '';
       input.disabled = false;
@@ -472,9 +600,18 @@
     setHeaderUser(user);
     bindForms();
 
+    await ensureStorageBucket();
     await nhAuth.ensureClientRecord(user, { tipo: 'propietario' });
 
     let row = await fetchExpediente();
+    if (!row) {
+      try {
+        const ensured = await apiPost('ensure');
+        row = ensured.row || null;
+      } catch (e) {
+        console.warn('init ensure', e);
+      }
+    }
     if (!row) {
       document.getElementById('alqResumenCopy').textContent =
         'Completa tus datos, inmueble e inquilino abajo. Si acabas de registrarte, Juan Cárdenas puede ayudarte por WhatsApp.';
