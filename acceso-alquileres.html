@@ -107,6 +107,7 @@
 <script>
 document.addEventListener('supabase:ready', async () => {
   localStorage.setItem('nh_reg_tipo', 'alquiler');
+  localStorage.setItem('nh_alquiler_servicio', 'administracion');
 
   const errBox = document.getElementById('auth-error');
   const okBox = document.getElementById('auth-ok');
@@ -160,8 +161,9 @@ document.addEventListener('supabase:ready', async () => {
   }
 
   async function ensurePropietarioAndGo(user) {
-    await nhAuth.ensureClientRecord(user, { tipo: 'propietario' });
-    window.location.replace('/panel-propietario');
+    await nhAuth.applyAlquilerAccessProfile(user, 'administracion');
+    sessionStorage.setItem('nh_alquiler_variant', 'administracion');
+    window.location.replace('/panel-propietario?servicio=administracion');
   }
 
   document.getElementById('btnGoogle').addEventListener('click', async () => {

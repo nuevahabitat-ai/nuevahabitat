@@ -143,12 +143,30 @@
     if (sec) showSection(sec);
   }
 
+  function panelModeIntegral(row) {
+    if (typeof nhAuth?.getAlquilerPanelMode === 'function') {
+      return nhAuth.getAlquilerPanelMode(currentUser) === 'integral';
+    }
+    return row?.servicio === 'integral';
+  }
+
+  function rowForPanelMode(row) {
+    if (!row) return row;
+    if (panelModeIntegral(row) && row.servicio !== 'integral') {
+      return { ...row, servicio: 'integral', cuota_mensual: 0, integral_tarifa: row.integral_tarifa ?? 499 };
+    }
+    if (!panelModeIntegral(row) && row.servicio === 'integral') {
+      return { ...row, servicio: 'administracion', cuota_mensual: row.cuota_mensual || 60 };
+    }
+    return row;
+  }
+
   function currentEstados(row) {
-    return row?.servicio === 'integral' ? ESTADOS_INTEGRAL : ESTADOS_ADMIN;
+    return panelModeIntegral(row) ? ESTADOS_INTEGRAL : ESTADOS_ADMIN;
   }
 
   function applyServicioUI(row) {
-    const integral = row?.servicio === 'integral';
+    const integral = panelModeIntegral(row);
     document.getElementById('panelServicioBadge')?.replaceChildren(document.createTextNode(integral ? 'Alquiler integral' : 'Administración'));
     document.getElementById('logoSubPanel')?.replaceChildren(document.createTextNode(integral ? 'Panel alquiler integral' : 'Panel propietario'));
     document.getElementById('alqResumenTitle')?.replaceChildren(
@@ -376,6 +394,7 @@
   }
 
   function applyExpedienteSummary(row) {
+    row = rowForPanelMode(row);
     expediente = row;
     window.alqExpediente = row;
     const estado = row.estado_gestion || 'alta';
@@ -708,8 +727,9 @@
     }
 
     const urlParams = new URLSearchParams(location.search);
-    const wantIntegral = urlParams.get('servicio') === 'integral' || nhAuth.shouldUseIntegralPanel(user);
-    const wantAdmin = urlParams.get('servicio') === 'administracion';
+    const panelMode = nhAuth.getAlquilerPanelMode(user);
+    const wantIntegral = panelMode === 'integral';
+    const wantAdmin = panelMode === 'administracion' && urlParams.get('servicio') === 'administracion';
     if (wantIntegral) {
       try {
         user = await nhAuth.applyAlquilerAccessProfile(user, 'integral');
@@ -749,12 +769,13 @@
     if (wantIntegral && row && row.servicio !== 'integral') {
       try {
         user = await nhAuth.applyAlquilerAccessProfile(user, 'integral');
-        const ensured = await apiPost('ensure');
-        row = ensured.row || row;
+        const aligned = await apiPost('align-servicio', { servicio: 'integral' });
+        row = aligned.row || row;
       } catch (e) {
         console.warn('reconcile integral servicio', e);
       }
     }
+    if (row) row = rowForPanelMode(row);
     if (!row) {
       document.getElementById('alqResumenCopy').textContent =
         'Completa tus datos, inmueble e inquilino abajo. Si acabas de registrarte, Juan Cárdenas puede ayudarte por WhatsApp.';
