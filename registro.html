@@ -68,31 +68,25 @@
         </div>
         <div style="margin-bottom:1rem">
           <label style="display:block;font-size:.8125rem;font-weight:500;margin-bottom:.4rem">Quiero... <span style="color:#b91c1c">*</span></label>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
-            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
-              <input type="radio" name="tipo" id="tipoVender" value="vender" style="accent-color:var(--oro)"/> Vender
+          <div class="reg-tipo-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+            <label class="reg-tipo-card" style="display:flex;align-items:flex-start;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
+              <input type="radio" name="tipo" id="tipoVender" value="vender" style="accent-color:var(--oro);margin-top:.2rem"/> <span><strong>Vender</strong><br/><span style="font-size:.75rem;color:var(--gris-texto)">Panel vendedor</span></span>
             </label>
-            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
-              <input type="radio" name="tipo" id="tipoComprar" value="comprar" style="accent-color:var(--oro)"/> Comprar
+            <label class="reg-tipo-card" style="display:flex;align-items:flex-start;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
+              <input type="radio" name="tipo" id="tipoComprar" value="comprar" style="accent-color:var(--oro);margin-top:.2rem"/> <span><strong>Comprar</strong><br/><span style="font-size:.75rem;color:var(--gris-texto)">Panel comprador</span></span>
             </label>
-            <label style="display:flex;align-items:center;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem;grid-column:1/-1">
-              <input type="radio" name="tipo" id="tipoAlquiler" value="alquiler" style="accent-color:var(--oro)"/> Administrar mi alquiler (panel propietario)
+            <label class="reg-tipo-card reg-tipo-card--alquiler" style="display:flex;align-items:flex-start;gap:.75rem;padding:1.1rem;border:2px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem;grid-column:1/-1;background:linear-gradient(135deg,#faf8f5,var(--blanco))">
+              <input type="radio" name="tipo" id="tipoAlquiler" value="alquiler" style="accent-color:var(--oro);margin-top:.35rem"/>
+              <span>
+                <strong style="font-size:.95rem">Administración de alquileres</strong>
+                <span style="display:block;font-size:.8125rem;color:var(--gris-texto);line-height:1.45;margin-top:.25rem">Crea cuenta y entra al <strong>panel propietario</strong> (60 €/mes IVA incl.) · mismo registro con Google o email</span>
+              </span>
             </label>
           </div>
-          <a href="/registro?tipo=alquiler" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.75rem;padding:1rem 1.1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);text-decoration:none;background:var(--blanco);transition:border-color .2s,box-shadow .2s" onmouseover="this.style.borderColor='var(--oro)';this.style.boxShadow='0 6px 20px rgba(0,0,0,.06)'" onmouseout="this.style.borderColor='var(--crema-dark)';this.style.boxShadow='none'">
-            <span>
-              <strong style="display:block;font-size:.9rem;color:var(--negro);margin-bottom:.2rem">Administración de alquileres</strong>
-              <span style="font-size:.8125rem;color:var(--gris-texto);line-height:1.45">60 €/mes (IVA incl.) · panel propietario · cero contacto con el inquilino</span>
-            </span>
-            <span style="color:var(--oro);font-size:1.1rem;font-weight:600;flex-shrink:0">→</span>
-          </a>
-          <a href="/alquiler-integral#solicitar" style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:.75rem;padding:1rem 1.1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);text-decoration:none;background:var(--blanco);transition:border-color .2s,box-shadow .2s" onmouseover="this.style.borderColor='var(--oro)';this.style.boxShadow='0 6px 20px rgba(0,0,0,.06)'" onmouseout="this.style.borderColor='var(--crema-dark)';this.style.boxShadow='none'">
-            <span>
-              <strong style="display:block;font-size:.9rem;color:var(--negro);margin-bottom:.2rem">Alquiler integral</strong>
-              <span style="font-size:.8125rem;color:var(--gris-texto);line-height:1.45">499 € precio fijo · publicar, filtrar, visitas y contrato LAU</span>
-            </span>
-            <span style="color:var(--oro);font-size:1.1rem;font-weight:600;flex-shrink:0">→</span>
-          </a>
+          <p id="regAlquilerHint" style="display:none;font-size:.8125rem;color:var(--gris-texto);margin:.75rem 0 0;padding:.75rem 1rem;background:#f0fdf4;border:1px solid #86efac;border-radius:6px;line-height:1.5">
+            Al continuar (Google o «Crear mi cuenta») te daremos de alta como <strong>propietario</strong> y entrarás en <a href="/panel-propietario" style="color:var(--oro)">/panel-propietario</a>. No es el formulario de «solicitar administración».
+          </p>
+          <p style="font-size:.75rem;color:var(--gris-medio);margin-top:.75rem;line-height:1.5">¿Solo quieres información del servicio? <a href="/administracion-alquileres" style="color:var(--oro)">Ver landing</a> · ¿Poner el piso en alquiler desde cero? <a href="/alquiler-integral" style="color:var(--oro)">Alquiler integral (499 €)</a></p>
         </div>
         <div class="form-group">
           <label>Contraseña</label>
@@ -104,7 +98,7 @@
         </div>
         <button type="submit" class="btn btn-gold btn-lg" id="regBtn" style="width:100%;justify-content:center">Crear mi cuenta →</button>
       </form>
-      <p class="auth-link">¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
+      <p class="auth-link">¿Ya tienes cuenta? <a href="/login" id="regLoginLink">Iniciar sesión</a></p>
     </div>
   </div>
 </div>
@@ -121,7 +115,28 @@ document.addEventListener('supabase:ready', async () => {
   const urlTipo = new URLSearchParams(location.search).get('tipo');
   if (urlTipo === 'vender') document.getElementById('tipoVender').checked = true;
   else if (urlTipo === 'comprar') document.getElementById('tipoComprar').checked = true;
-  else if (urlTipo === 'alquiler') document.getElementById('tipoAlquiler').checked = true;
+  else if (urlTipo === 'alquiler') {
+    document.getElementById('tipoAlquiler').checked = true;
+    const intro = document.querySelector('.auth-form-box > p');
+    if (intro) intro.innerHTML = 'Alta de <strong>propietario</strong> para el panel de administración de alquileres (Google o email).';
+  }
+
+  function syncTipoUi() {
+    const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
+    document.querySelectorAll('.reg-tipo-card').forEach((el) => {
+      const on = el.querySelector('input[type=radio]')?.checked;
+      el.style.borderColor = on ? 'var(--oro)' : (el.classList.contains('reg-tipo-card--alquiler') ? 'var(--crema-dark)' : 'var(--crema-dark)');
+      el.style.boxShadow = on ? '0 6px 20px rgba(0,0,0,.06)' : 'none';
+    });
+    const hint = document.getElementById('regAlquilerHint');
+    if (hint) hint.style.display = tipo === 'alquiler' ? 'block' : 'none';
+    const login = document.getElementById('regLoginLink');
+    if (login) {
+      login.href = tipo === 'alquiler' ? '/login?redirect=%2Fpanel-propietario' : '/login';
+    }
+  }
+  document.querySelectorAll('input[name="tipo"]').forEach((r) => r.addEventListener('change', syncTipoUi));
+  syncTipoUi();
 
   const form   = document.getElementById('regForm');
   const errBox = document.getElementById('reg-error');
@@ -132,7 +147,8 @@ document.addEventListener('supabase:ready', async () => {
   function showOk(msg)    { okBox.textContent  = msg; okBox.style.display  = 'block'; errBox.style.display = 'none'; }
 
   document.getElementById('btnGoogle').addEventListener('click', async () => {
-    const tipo = document.querySelector('input[name="tipo"]:checked')?.value || 'comprar';
+    const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
+    if (!tipo) { showError('Elige primero: vender, comprar o administración de alquileres.'); return; }
     localStorage.setItem('nh_reg_tipo', tipo);
     await nhAuth.loginGoogle();
   });
