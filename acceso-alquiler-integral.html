@@ -120,14 +120,18 @@ document.addEventListener('supabase:ready', async () => {
 
   if (new URLSearchParams(location.search).get('logout') !== '1') {
     const user = await nhAuth.getUser();
-    if (user && nhAuth.getUserTipo(user) === 'propietario' && await isIntegralUser(user)) {
+    if (user && !nhAuth.isAdmin(user) && await isIntegralUser(user)) {
       window.location.replace('/panel-propietario');
       return;
     }
   }
 
   async function goPanel(user) {
-    await nhAuth.ensureClientRecord(user, { tipo: 'propietario', servicio: 'integral' });
+    if (nhAuth.isAdmin(user)) {
+      window.location.replace('/admin-panel');
+      return;
+    }
+    await nhAuth.applyAlquilerAccessProfile(user, 'integral');
     window.location.replace('/panel-propietario');
   }
 
@@ -150,13 +154,18 @@ document.addEventListener('supabase:ready', async () => {
       return;
     }
     const user = data?.session?.user || data?.user;
-    if (nhAuth.getUserTipo(user) !== 'propietario' || !(await isIntegralUser(user))) {
-      await window.nhSupabase.auth.signOut();
-      showError('Esta entrada es solo para alquiler integral. Si buscas administración 60 €/mes, usa /acceso-alquileres.');
+    if (!user) {
+      showError('No se pudo iniciar sesión.');
       btn.disabled = false;
       return;
     }
-    await goPanel(user);
+    try {
+      await goPanel(user);
+    } catch (err) {
+      console.error('goPanel integral', err);
+      showError(err.message || 'No se pudo activar el panel de alquiler integral.');
+      btn.disabled = false;
+    }
   });
 
   document.getElementById('regForm').addEventListener('submit', async (e) => {
