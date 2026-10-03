@@ -443,46 +443,39 @@
     const folder = storageFolder(email);
     const path = `${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
 
-    let uploadedPath = path;
+    let insertedByApi = false;
     try {
       await uploadViaClient(file, path);
     } catch (clientErr) {
       const msg = clientErr.message || '';
-      if (/bucket not found/i.test(msg)) {
-        await ensureStorageBucket();
-        try {
-          await uploadViaClient(file, path);
-        } catch (retryErr) {
-          if (file.size <= 4 * 1024 * 1024) {
-            const base64 = await fileToBase64(file);
-            const apiUp = await apiPost('upload', {
-              tipo,
-              label,
-              fileName: file.name,
-              mimeType: file.type || 'application/octet-stream',
-              base64,
-            });
-            uploadedPath = apiUp.path || path;
-          } else {
-            throw new Error('Falta el bucket de Storage en Supabase. Ejecuta la migración 045 y recarga.');
-          }
+      const tryApi = async () => {
+        if (file.size > 4 * 1024 * 1024) {
+          throw new Error('Archivo grande: crea el bucket en Supabase (migración 045) y recarga la página.');
         }
-      } else if (file.size <= 4 * 1024 * 1024) {
         const base64 = await fileToBase64(file);
-        const apiUp = await apiPost('upload', {
+        await apiPost('upload', {
           tipo,
           label,
           fileName: file.name,
           mimeType: file.type || 'application/octet-stream',
           base64,
         });
-        uploadedPath = apiUp.path || path;
+        insertedByApi = true;
+      };
+
+      if (/bucket not found/i.test(msg)) {
+        await ensureStorageBucket();
+        try {
+          await uploadViaClient(file, path);
+        } catch (retryErr) {
+          await tryApi();
+        }
       } else {
-        throw clientErr;
+        await tryApi();
       }
     }
 
-    if (uploadedPath === path) {
+    if (!insertedByApi) {
       const { error: insErr } = await window.nhSupabase.from('cliente_documentos').insert({
         perfil_id: currentUser.id,
         cliente_email: email,

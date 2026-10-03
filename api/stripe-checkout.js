@@ -21,6 +21,7 @@ import {
   markCuotaAlquilerTransferenciaPendiente,
 } from '../lib/server/supabase-server.js';
 import { notifyTransferenciaPendiente } from '../lib/server/payment-notify.js';
+import { handlePanelPropietarioApi } from '../lib/server/panel-propietario-api.js';
 
 const DEFAULT_HONORARIOS = { comprador: 6050, vendedor: 3630 };
 const DEFAULT_CUOTA_ALQUILER_EUR = 60;
@@ -379,6 +380,10 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
+  if (req.query?.__action === 'panel-propietario') {
+    return handlePanelPropietarioApi(req, res);
+  }
+
   if (req.query?.__action === 'verify-session') {
     return handleVerifySession(req, res);
   }
@@ -469,3 +474,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ ok: false, error: err.message || 'Error al crear pago' });
   }
 }
+
+export const config = {
+  api: { bodyParser: { sizeLimit: '52mb' } },
+};
