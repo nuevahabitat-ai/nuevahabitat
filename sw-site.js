@@ -1,5 +1,5 @@
 /* Service Worker — Web pública NuevaHabitat (clientes) */
-const CACHE = 'nh-web-v1';
+const CACHE = 'nh-web-v2';
 const SHELL = [
   '/',
   '/index.html',
@@ -11,6 +11,20 @@ const SHELL = [
   '/js/nh-pwa-install.js',
   '/imagenes/Logo/logosinfondo2.png',
 ];
+
+/** Auth y registro: siempre red primero (evita formulario antiguo en caché) */
+const NETWORK_FIRST = [
+  /^\/registro(\.html)?$/,
+  /^\/login(\.html)?$/,
+  /^\/confirmar-cuenta(\.html)?$/,
+  /^\/panel-propietario(\.html)?$/,
+  /^\/js\/supabase\.js$/,
+  /^\/js\/panel-propietario/,
+];
+
+function isNetworkFirst(pathname) {
+  return NETWORK_FIRST.some((re) => re.test(pathname));
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -32,11 +46,21 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+
+  if (isNetworkFirst(url.pathname)) {
+    event.respondWith(
+      fetch(event.request)
+        .then((res) => res)
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cached) => {
       const network = fetch(event.request)
         .then((res) => {
-          if (res && res.status === 200) {
+          if (res && res.status === 200 && !isNetworkFirst(url.pathname)) {
             const clone = res.clone();
             caches.open(CACHE).then((c) => c.put(event.request, clone));
           }

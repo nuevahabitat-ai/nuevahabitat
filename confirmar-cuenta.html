@@ -130,12 +130,19 @@ async function onConfirmed(initialUser) {
     await nhAuth.ensureClientRecord(user, { tipo });
     const isAdmin = nhAuth.isAdmin(user);
     const isVendedor = !isAdmin && tipo === 'vendedor';
-    document.getElementById('success-tipo').textContent = isAdmin ? 'Panel Administración' : (isVendedor ? 'Panel Vendedor' : 'Panel Comprador');
+    const isPropietario = !isAdmin && tipo === 'propietario';
+    document.getElementById('success-tipo').textContent = isAdmin
+      ? 'Panel Administración'
+      : isPropietario
+        ? 'Panel Propietario'
+        : (isVendedor ? 'Panel Vendedor' : 'Panel Comprador');
     document.getElementById('success-msg').textContent = isAdmin
       ? 'Tu cuenta de administrador está activa. Accede al panel de gestión.'
-      : isVendedor
-      ? 'Tu cuenta de vendedor está activa. Desde tu panel podrás seguir el proceso de venta de tu inmueble.'
-      : 'Tu cuenta de comprador está activa. Desde tu panel podrás seguir tu búsqueda de vivienda.';
+      : isPropietario
+        ? 'Tu cuenta de propietario está activa. Completa inmueble, documentación y honorarios en el panel.'
+        : isVendedor
+          ? 'Tu cuenta de vendedor está activa. Desde tu panel podrás seguir el proceso de venta de tu inmueble.'
+          : 'Tu cuenta de comprador está activa. Desde tu panel podrás seguir tu búsqueda de vivienda.';
     localStorage.removeItem('nh_reg_tipo');
     localStorage.removeItem('nh_reg_email');
     showState('state-success');

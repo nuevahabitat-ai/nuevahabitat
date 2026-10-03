@@ -85,6 +85,23 @@
     .nh-bank-iban{font-size:.76rem;letter-spacing:.02em}
     .nh-bank-copy{font-size:.68rem;padding:.2rem .45rem;margin-left:.35rem;border:1px solid var(--crema-dark);background:transparent;color:var(--oro);border-radius:4px;cursor:pointer}
     #honorariosAlquilerBody .btn-outline{border-color:var(--negro);color:var(--negro);background:transparent}
+    .p-form{display:flex;flex-direction:column;gap:1rem}
+    .p-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    @media(max-width:560px){.p-form-row{grid-template-columns:1fr}}
+    .p-form .form-group{margin:0}
+    .p-form label{font-size:.8125rem;font-weight:500;display:block;margin-bottom:.35rem}
+    .p-form input,.p-form textarea,.p-form select{width:100%;padding:.65rem .75rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);font-size:.875rem;font-family:var(--font-sans)}
+    .p-form textarea{min-height:88px;resize:vertical}
+    .p-form-hint{font-size:.75rem;color:var(--gris-medio);margin-top:.25rem;line-height:1.45}
+    .p-save-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.5rem}
+    .p-save-msg{font-size:.8125rem;color:#166534;display:none}
+    .p-save-msg.err{color:#b91c1c}
+    .p-doc-upload{border:1px dashed var(--crema-dark);border-radius:var(--radius-md);padding:1rem 1.1rem;margin-bottom:.75rem;background:var(--crema)}
+    .p-doc-upload-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-bottom:.65rem}
+    .p-doc-upload-head strong{font-size:.875rem}
+    .p-doc-upload input[type=file]{font-size:.8125rem;max-width:100%}
+    .p-doc-chip{font-size:.72rem;background:var(--blanco);border:1px solid var(--crema-dark);padding:.2rem .55rem;border-radius:999px;color:var(--gris-texto)}
+    .p-doc-chip.ok{border-color:#86efac;background:#f0fdf4;color:#166534}
   </style>
 </head>
 <body>
@@ -180,10 +197,27 @@
         <div class="p-section" id="sec-inquilino">
           <div class="p-card">
             <div class="p-card-title">Datos del inquilino</div>
-            <dl class="p-dl" id="dlInquilino"></dl>
+            <p style="font-size:.85rem;color:var(--gris-texto);margin:-.5rem 0 1rem;line-height:1.55">Completa los datos del arrendatario. Juan revisará la información antes de activar la gestión.</p>
+            <form id="formInquilino" class="p-form">
+              <div class="p-form-row">
+                <div class="form-group"><label for="fInqNombre">Nombre completo</label><input id="fInqNombre" name="inquilino_nombre" autocomplete="name"/></div>
+                <div class="form-group"><label for="fInqTel">Teléfono</label><input id="fInqTel" name="inquilino_telefono" type="tel" placeholder="+34…"/></div>
+              </div>
+              <div class="form-group"><label for="fInqEmail">Email</label><input id="fInqEmail" name="inquilino_email" type="email"/></div>
+              <div class="p-form-row">
+                <div class="form-group"><label for="fContratoInicio">Inicio contrato</label><input id="fContratoInicio" name="contrato_inicio" type="date"/></div>
+                <div class="form-group"><label for="fContratoFin">Fin / revisión</label><input id="fContratoFin" name="contrato_fin" type="date"/></div>
+              </div>
+              <div class="p-save-row">
+                <button type="submit" class="btn btn-gold" id="btnSaveInquilino">Guardar inquilino</button>
+                <span class="p-save-msg" id="msgInquilino"></span>
+              </div>
+            </form>
           </div>
           <div class="p-card">
-            <div class="p-card-title">Documentación del inquilino</div>
+            <div class="p-card-title">Documentación del inquilino (PDF)</div>
+            <p class="p-form-hint" style="margin-bottom:1rem">DNI, nóminas o contrato del inquilino si los tienes. Máx. 10 MB por archivo.</p>
+            <div id="docsInquilinoUpload"></div>
             <div id="docsInquilino"></div>
           </div>
         </div>
@@ -191,20 +225,53 @@
         <div class="p-section" id="sec-propietario">
           <div class="p-card">
             <div class="p-card-title">Tus datos</div>
-            <dl class="p-dl" id="dlPropietario"></dl>
+            <form id="formPropietario" class="p-form">
+              <div class="p-form-row">
+                <div class="form-group"><label for="fPropNombre">Nombre / razón social</label><input id="fPropNombre" name="nombre" required/></div>
+                <div class="form-group"><label for="fPropDni">DNI / NIE / CIF</label><input id="fPropDni" name="dni"/></div>
+              </div>
+              <div class="p-form-row">
+                <div class="form-group"><label for="fPropTel">Teléfono</label><input id="fPropTel" name="telefono" type="tel"/></div>
+                <div class="form-group"><label for="fPropEmail">Email (cuenta)</label><input id="fPropEmail" name="email" type="email" readonly style="background:var(--crema);opacity:.85"/></div>
+              </div>
+              <div class="form-group"><label for="fPropDir">Dirección postal</label><input id="fPropDir" name="direccion_propietario" placeholder="Calle, CP, municipio"/></div>
+              <div class="form-group"><label for="fPropIban">IBAN donde cobras la renta</label><input id="fPropIban" name="iban_cobro" placeholder="ES…" autocomplete="off"/><p class="p-form-hint">Solo lo usa Nueva Habitat para referencia interna; la renta la ingresa el inquilino en tu cuenta.</p></div>
+              <div class="form-group"><label for="fPropNotas">Notas para el equipo</label><textarea id="fPropNotas" name="notas_propietario" placeholder="Horarios de contacto, segunda titular, etc."></textarea></div>
+              <div class="p-save-row">
+                <button type="submit" class="btn btn-gold" id="btnSavePropietario">Guardar datos</button>
+                <span class="p-save-msg" id="msgPropietario"></span>
+              </div>
+            </form>
           </div>
         </div>
 
         <div class="p-section" id="sec-inmueble">
           <div class="p-card">
             <div class="p-card-title">Inmueble en administración</div>
-            <dl class="p-dl" id="dlInmueble"></dl>
+            <form id="formInmueble" class="p-form">
+              <div class="form-group"><label for="fInmDir">Dirección completa</label><input id="fInmDir" name="inmueble_direccion" required placeholder="Calle, número, piso, CP, Barcelona"/></div>
+              <div class="p-form-row">
+                <div class="form-group"><label for="fInmRef">Referencia NH (si la tienes)</label><input id="fInmRef" name="inmueble_ref"/></div>
+                <div class="form-group"><label for="fInmCatastro">Referencia catastral</label><input id="fInmCatastro" name="inmueble_ref_catastral"/></div>
+              </div>
+              <div class="form-group"><label for="fInmRenta">Renta mensual (€)</label><input id="fInmRenta" name="renta_mensual" type="number" min="0" step="0.01" placeholder="850"/></div>
+              <div class="form-group"><label for="fInmNotas">Notas del inmueble</label><textarea id="fInmNotas" name="inmueble_notas" placeholder="Parking, comunidad, mascotas, mobiliario…"></textarea></div>
+              <div class="p-save-row">
+                <button type="submit" class="btn btn-gold" id="btnSaveInmueble">Guardar inmueble</button>
+                <span class="p-save-msg" id="msgInmueble"></span>
+              </div>
+            </form>
           </div>
         </div>
 
         <div class="p-section" id="sec-documentacion">
           <div class="p-card">
-            <div class="p-card-title">Contratos y documentación del alquiler</div>
+            <div class="p-card-title">Documentación del propietario e inmueble</div>
+            <p style="font-size:.85rem;color:var(--gris-texto);margin:-.5rem 0 1.25rem;line-height:1.55">Sube PDFs de escrituras, nota simple, certificado energético y demás. Los revisamos y quedan en tu expediente.</p>
+            <div id="docsPropietarioUpload"></div>
+          </div>
+          <div class="p-card">
+            <div class="p-card-title">Archivos subidos y contratos NH</div>
             <div id="docsAlquiler"></div>
           </div>
         </div>

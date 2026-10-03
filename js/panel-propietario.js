@@ -20,11 +20,33 @@
     baja: 'Baja',
   };
 
-  const INQ_DOC_TIPOS = ['inquilino_dni', 'inquilino_nominas', 'inquilino_contrato', 'inquilino_seguro', 'inquilino_otro'];
-  const ALQ_DOC_TIPOS = ['alquiler_contrato', 'alquiler_seguro', 'alquiler_incasol', 'alquiler_administracion', 'alquiler_otro', 'contrato', 'contrato_arras'];
+  const INQ_DOC_SLOTS = [
+    { tipo: 'inquilino_dni', label: 'DNI / NIE del inquilino' },
+    { tipo: 'inquilino_nominas', label: 'Nóminas o solvencia' },
+    { tipo: 'inquilino_contrato', label: 'Contrato de arrendamiento firmado' },
+    { tipo: 'inquilino_seguro', label: 'Seguro del inquilino (si aplica)' },
+  ];
+
+  const PROP_DOC_SLOTS = [
+    { tipo: 'prop_escritura', label: 'Escritura de propiedad' },
+    { tipo: 'prop_nota_simple', label: 'Nota simple registral' },
+    { tipo: 'prop_dni', label: 'DNI / NIE del propietario' },
+    { tipo: 'prop_certificado_energetico', label: 'Certificado energético (CEE)' },
+    { tipo: 'prop_ibi', label: 'Recibo IBI (opcional)' },
+    { tipo: 'prop_seguro_hogar', label: 'Seguro del hogar (opcional)' },
+    { tipo: 'prop_otro', label: 'Otros documentos (PDF)' },
+  ];
+
+  const INQ_DOC_TIPOS = INQ_DOC_SLOTS.map((s) => s.tipo).concat(['inquilino_otro']);
+  const PROP_DOC_TIPOS = PROP_DOC_SLOTS.map((s) => s.tipo);
+  const ALQ_DOC_TIPOS = [
+    'alquiler_contrato', 'alquiler_seguro', 'alquiler_incasol', 'alquiler_administracion', 'alquiler_otro',
+    'contrato', 'contrato_arras',
+  ].concat(PROP_DOC_TIPOS);
 
   let currentUser = null;
   let expediente = null;
+  let docsCache = [];
 
   function fmtEur(n) {
     if (n == null || n === '') return '—';
@@ -40,6 +62,11 @@
     return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
   }
 
+  function toast(msg, type) {
+    if (window.nhToast) window.nhToast(msg, type || 'error');
+    else alert(msg);
+  }
+
   function setHeaderUser(user) {
     const nombre = user.user_metadata?.nombre || user.email?.split('@')[0] || 'Propietario';
     document.getElementById('pUserName').textContent = nombre;
@@ -49,18 +76,21 @@
   }
 
   function showSection(id) {
-    document.querySelectorAll('.p-section').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.p-nav-btn[data-sec]').forEach(btn => {
+    document.querySelectorAll('.p-section').forEach((el) => el.classList.remove('active'));
+    document.querySelectorAll('.p-nav-btn[data-sec]').forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.sec === id);
     });
     const sec = document.getElementById('sec-' + id);
     if (sec) sec.classList.add('active');
     if (id === 'incidencias') loadIncidencias();
-    if (id === 'documentacion' || id === 'inquilino') loadDocumentos();
+    if (id === 'documentacion' || id === 'inquilino') {
+      renderUploadSlots();
+      loadDocumentos();
+    }
   }
 
   function bindNav() {
-    document.querySelectorAll('.p-nav-btn[data-sec]').forEach(btn => {
+    document.querySelectorAll('.p-nav-btn[data-sec]').forEach((btn) => {
       btn.addEventListener('click', () => showSection(btn.dataset.sec));
     });
     document.getElementById('pLogout')?.addEventListener('click', () => nhAuth.logout());
@@ -70,7 +100,7 @@
   }
 
   function renderTimeline(estado) {
-    const idx = ESTADOS.findIndex(e => e.key === estado);
+    const idx = ESTADOS.findIndex((e) => e.key === estado);
     const cur = idx >= 0 ? idx : 0;
     const el = document.getElementById('timelineAlquiler');
     if (!el) return;
@@ -89,15 +119,107 @@
     }).join('');
   }
 
-  function renderDl(targetId, rows) {
-    const el = document.getElementById(targetId);
-    if (!el) return;
-    el.innerHTML = rows.map(([label, val]) =>
-      `<dt>${esc(label)}</dt><dd>${esc(val || '—')}</dd>`
-    ).join('');
+  function dateInputVal(d) {
+    if (!d) return '';
+    const s = String(d).slice(0, 10);
+    return /^\d{4}-\d{2}-\d{2}$/.test(s) ? s : '';
   }
 
-  function applyExpediente(row) {
+  function fillForms(row) {
+    const set = (id, val) => {
+      const el = document.getElementById(id);
+      if (el) el.value = val ?? '';
+    };
+    set('fPropNombre', row.nombre);
+    set('fPropDni', row.dni);
+    set('fPropTel', row.telefono);
+    set('fPropEmail', row.email || currentUser?.email);
+    set('fPropDir', row.direccion_propietario);
+    set('fPropIban', row.iban_cobro);
+    set('fPropNotas', row.notas_propietario);
+    set('fInqNombre', row.inquilino_nombre);
+    set('fInqTel', row.inquilino_telefono);
+    set('fInqEmail', row.inquilino_email);
+    set('fContratoInicio', dateInputVal(row.contrato_inicio));
+    set('fContratoFin', dateInputVal(row.contrato_fin));
+    set('fInmDir', row.inmueble_direccion);
+    set('fInmRef', row.inmueble_ref);
+    set('fInmCatastro', row.inmueble_ref_catastral);
+    set('fInmRenta', row.renta_mensual != null ? String(row.renta_mensual) : '');
+    set('fInmNotas', row.inmueble_notas);
+  }
+
+  function formPayload(formEl) {
+    const fd = new FormData(formEl);
+    const o = {};
+    fd.forEach((v, k) => { o[k] = typeof v === 'string' ? v.trim() : v; });
+    return o;
+  }
+
+  function showSaveMsg(id, ok, text) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = text;
+    el.style.display = 'inline';
+    el.classList.toggle('err', !ok);
+    setTimeout(() => { el.style.display = 'none'; }, 5000);
+  }
+
+  async function ensureExpediente() {
+    if (expediente?.id) return expediente;
+    await nhAuth.ensureClientRecord(currentUser, { tipo: 'propietario' });
+    expediente = await fetchExpediente();
+    return expediente;
+  }
+
+  async function saveExpedientePartial(payload, msgId) {
+    await ensureExpediente();
+    if (!expediente?.id) {
+      toast('No hay expediente activo. Recarga la página o contacta con Juan.');
+      return false;
+    }
+    const { data, error } = await window.nhSupabase.rpc('update_propietario_alquiler_expediente', {
+      p_data: payload,
+    });
+    if (error) {
+      console.error('saveExpediente', error);
+      showSaveMsg(msgId, false, error.message || 'Error al guardar');
+      toast('No se pudo guardar: ' + (error.message || 'error'), 'error');
+      return false;
+    }
+    expediente = typeof data === 'string' ? JSON.parse(data) : data;
+    window.alqExpediente = expediente;
+    applyExpedienteSummary(expediente);
+    showSaveMsg(msgId, true, 'Guardado correctamente');
+    toast('Datos guardados', 'success');
+    return true;
+  }
+
+  function bindForms() {
+    document.getElementById('formPropietario')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnSavePropietario');
+      btn.disabled = true;
+      await saveExpedientePartial(formPayload(e.target), 'msgPropietario');
+      btn.disabled = false;
+    });
+    document.getElementById('formInquilino')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnSaveInquilino');
+      btn.disabled = true;
+      await saveExpedientePartial(formPayload(e.target), 'msgInquilino');
+      btn.disabled = false;
+    });
+    document.getElementById('formInmueble')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnSaveInmueble');
+      btn.disabled = true;
+      await saveExpedientePartial(formPayload(e.target), 'msgInmueble');
+      btn.disabled = false;
+    });
+  }
+
+  function applyExpedienteSummary(row) {
     expediente = row;
     window.alqExpediente = row;
     const estado = row.estado_gestion || 'alta';
@@ -105,40 +227,16 @@
     document.getElementById('statRenta').textContent = fmtEur(row.renta_mensual);
 
     const badge = document.getElementById('alqResumenBadge');
-    if (row.suscripcion_activa) {
-      badge.innerHTML = '<span class="nh-pay-badge nh-pay-badge--ok">Cuota domiciliada</span>';
-    } else {
-      badge.innerHTML = '<span class="nh-pay-badge nh-pay-badge--pending">Cuota pendiente</span>';
+    if (badge) {
+      if (row.suscripcion_activa) {
+        badge.innerHTML = '<span class="nh-pay-badge nh-pay-badge--done">Cuota domiciliada</span>';
+      } else {
+        badge.innerHTML = '<span class="nh-pay-badge nh-pay-badge--pending">Cuota pendiente</span>';
+      }
     }
 
     renderTimeline(estado);
-
-    renderDl('dlInquilino', [
-      ['Nombre', row.inquilino_nombre],
-      ['Teléfono', row.inquilino_telefono],
-      ['Email', row.inquilino_email],
-      ['Inicio contrato', fmtDate(row.contrato_inicio)],
-      ['Fin / revisión', fmtDate(row.contrato_fin)],
-    ]);
-
-    renderDl('dlPropietario', [
-      ['Nombre', row.nombre],
-      ['DNI/NIE', row.dni],
-      ['Teléfono', row.telefono],
-      ['Email', row.email],
-      ['Dirección postal', row.direccion_propietario],
-      ['IBAN cobro renta', row.iban_cobro ? '•••• ' + String(row.iban_cobro).slice(-4) : null],
-      ['Notas', row.notas_propietario],
-    ]);
-
-    renderDl('dlInmueble', [
-      ['Dirección', row.inmueble_direccion],
-      ['Referencia NH', row.inmueble_ref],
-      ['Ref. catastral', row.inmueble_ref_catastral],
-      ['Renta', fmtEur(row.renta_mensual)],
-      ['Servicio', row.servicio === 'integral' ? 'Alquiler integral (previo)' : 'Administración 60 €/mes'],
-      ['Notas', row.inmueble_notas],
-    ]);
+    fillForms(row);
 
     if (window.nhAlquilerStripe?.render) void window.nhAlquilerStripe.render(row);
   }
@@ -171,7 +269,7 @@
       el.innerHTML = '<div class="p-empty"><p>No se pudieron cargar las incidencias.</p></div>';
       return;
     }
-    const abiertas = (data || []).filter(i => !['resuelta', 'cerrada'].includes(i.estado)).length;
+    const abiertas = (data || []).filter((i) => !['resuelta', 'cerrada'].includes(i.estado)).length;
     document.getElementById('statIncidencias').textContent = String(abiertas);
 
     if (!data?.length) {
@@ -181,7 +279,7 @@
       </div>`;
       return;
     }
-    el.innerHTML = data.map(i => `<div class="p-lead-row">
+    el.innerHTML = data.map((i) => `<div class="p-lead-row">
       <span class="p-lead-tipo">${esc(i.estado)}</span>
       <div style="flex:1">
         <div style="font-weight:600;font-size:.9rem">${esc(i.titulo)}</div>
@@ -192,6 +290,10 @@
     </div>`).join('');
   }
 
+  function storageFolder(email) {
+    return email.toLowerCase().replace(/[^a-z0-9@._+-]/g, '_');
+  }
+
   async function resolveDocUrl(url) {
     if (!url) return null;
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
@@ -199,15 +301,107 @@
     return error ? null : data?.signedUrl || null;
   }
 
-  function docRowHtml(d, href) {
+  function docRowHtml(d, href, canDelete) {
     const btn = href
-      ? `<a href="${href}" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem">Ver</a>`
+      ? `<a href="${href}" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:.78rem;padding:.4rem .9rem">Ver PDF</a>`
       : `<span style="font-size:.75rem;color:var(--gris-medio)">Pendiente</span>`;
+    const del = canDelete
+      ? `<button type="button" class="btn btn-outline p-doc-del" data-id="${esc(d.id)}" style="font-size:.78rem;padding:.4rem .7rem;border-color:#fca5a5;color:#b91c1c">Eliminar</button>`
+      : '';
     return `<div class="p-doc-row">
       <div class="p-doc-name">${esc(d.nombre)}</div>
-      <div style="font-size:.75rem;color:var(--gris-medio);text-transform:capitalize">${esc(d.estado || 'pendiente')}</div>
-      ${btn}
+      <div style="font-size:.75rem;color:var(--gris-medio);text-transform:capitalize">${esc(d.estado || 'subido')}</div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">${btn}${del}</div>
     </div>`;
+  }
+
+  function docsForTipo(tipo) {
+    return docsCache.filter((d) => d.tipo === tipo);
+  }
+
+  function renderUploadSlots() {
+    const renderBlock = (containerId, slots) => {
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      el.innerHTML = slots.map((slot) => {
+        const existing = docsForTipo(slot.tipo);
+        const chip = existing.length
+          ? `<span class="p-doc-chip ok">${existing.length} archivo(s)</span>`
+          : '<span class="p-doc-chip">Sin subir</span>';
+        return `<div class="p-doc-upload" data-tipo="${esc(slot.tipo)}">
+          <div class="p-doc-upload-head">
+            <strong>${esc(slot.label)}</strong>
+            ${chip}
+          </div>
+          <input type="file" accept="application/pdf,.pdf" data-tipo="${esc(slot.tipo)}" data-label="${esc(slot.label)}"/>
+        </div>`;
+      }).join('');
+      el.querySelectorAll('input[type=file]').forEach((input) => {
+        input.addEventListener('change', () => onFilePicked(input));
+      });
+    };
+    renderBlock('docsPropietarioUpload', PROP_DOC_SLOTS);
+    renderBlock('docsInquilinoUpload', INQ_DOC_SLOTS);
+  }
+
+  async function onFilePicked(input) {
+    const file = input.files?.[0];
+    if (!file) return;
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      toast('Solo se permiten archivos PDF', 'error');
+      input.value = '';
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      toast('El PDF no puede superar 10 MB', 'error');
+      input.value = '';
+      return;
+    }
+    const tipo = input.dataset.tipo;
+    const label = input.dataset.label || file.name;
+    input.disabled = true;
+    try {
+      await ensureExpediente();
+      const email = currentUser.email;
+      const folder = storageFolder(email);
+      const path = `${folder}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+      const { error: upErr } = await window.nhSupabase.storage
+        .from('documentos-clientes')
+        .upload(path, file, { upsert: false, contentType: 'application/pdf' });
+      if (upErr) throw upErr;
+
+      const { error: insErr } = await window.nhSupabase.from('cliente_documentos').insert({
+        perfil_id: currentUser.id,
+        cliente_email: email,
+        tipo,
+        nombre: label,
+        url: path,
+        estado: 'subido',
+      });
+      if (insErr) throw insErr;
+
+      toast('Documento subido correctamente', 'success');
+      await loadDocumentos();
+      renderUploadSlots();
+    } catch (err) {
+      console.error('upload', err);
+      toast(err.message || 'Error al subir el PDF', 'error');
+    } finally {
+      input.value = '';
+      input.disabled = false;
+    }
+  }
+
+  async function deleteDocument(id) {
+    if (!confirm('¿Eliminar este documento?')) return;
+    const { error } = await window.nhSupabase.from('cliente_documentos').delete().eq('id', id);
+    if (error) {
+      toast(error.message, 'error');
+      return;
+    }
+    toast('Documento eliminado', 'success');
+    await loadDocumentos();
+    renderUploadSlots();
   }
 
   async function loadDocumentos() {
@@ -217,29 +411,44 @@
       .ilike('cliente_email', currentUser.email)
       .order('created_at', { ascending: false });
 
-    const all = data || [];
-    const inq = all.filter(d => INQ_DOC_TIPOS.includes(d.tipo) || String(d.tipo || '').startsWith('inquilino'));
-    const alq = all.filter(d => ALQ_DOC_TIPOS.includes(d.tipo) || String(d.tipo || '').startsWith('alquiler'));
-
-    const emptyInq = '<p style="font-size:.85rem;color:var(--gris-medio)">Aún no hay documentos del inquilino visibles. Los subiremos cuando estén validados.</p>';
-    const emptyAlq = '<p style="font-size:.85rem;color:var(--gris-medio)">Contratos de administración, LAU e INCASÒL aparecerán aquí.</p>';
+    docsCache = data || [];
+    const inq = docsCache.filter((d) => INQ_DOC_TIPOS.includes(d.tipo) || String(d.tipo || '').startsWith('inquilino'));
+    const alq = docsCache.filter((d) =>
+      ALQ_DOC_TIPOS.includes(d.tipo) || String(d.tipo || '').startsWith('alquiler') || String(d.tipo || '').startsWith('prop_')
+    );
 
     const inqEl = document.getElementById('docsInquilino');
     const alqEl = document.getElementById('docsAlquiler');
+
     if (inqEl) {
-      if (!inq.length) inqEl.innerHTML = emptyInq;
-      else {
-        const rows = await Promise.all(inq.map(async d => docRowHtml(d, await resolveDocUrl(d.url))));
+      if (!inq.length) {
+        inqEl.innerHTML = '<p style="font-size:.85rem;color:var(--gris-medio)">Aún no hay PDFs del inquilino en el expediente.</p>';
+      } else {
+        const rows = await Promise.all(inq.map(async (d) => docRowHtml(
+          d,
+          await resolveDocUrl(d.url),
+          ['subido', 'pendiente', 'pendiente_revision'].includes(d.estado)
+        )));
         inqEl.innerHTML = rows.join('');
       }
     }
+
     if (alqEl) {
-      if (!alq.length) alqEl.innerHTML = emptyAlq;
-      else {
-        const rows = await Promise.all(alq.map(async d => docRowHtml(d, await resolveDocUrl(d.url))));
+      if (!alq.length) {
+        alqEl.innerHTML = '<p style="font-size:.85rem;color:var(--gris-medio)">Sube documentos arriba o espera los contratos firmados con Nueva Habitat.</p>';
+      } else {
+        const rows = await Promise.all(alq.map(async (d) => docRowHtml(
+          d,
+          await resolveDocUrl(d.url),
+          String(d.tipo || '').startsWith('prop_') && ['subido', 'pendiente'].includes(d.estado)
+        )));
         alqEl.innerHTML = rows.join('');
       }
     }
+
+    document.querySelectorAll('.p-doc-del').forEach((btn) => {
+      btn.addEventListener('click', () => deleteDocument(btn.dataset.id));
+    });
   }
 
   async function init() {
@@ -261,34 +470,36 @@
     currentUser = user;
     window.currentUser = user;
     setHeaderUser(user);
+    bindForms();
 
     await nhAuth.ensureClientRecord(user, { tipo: 'propietario' });
 
     let row = await fetchExpediente();
     if (!row) {
       document.getElementById('alqResumenCopy').textContent =
-        'Estamos preparando tu expediente. Si acabas de registrarte, Juan Cárdenas te contactará en menos de 24 h.';
+        'Completa tus datos, inmueble e inquilino abajo. Si acabas de registrarte, Juan Cárdenas puede ayudarte por WhatsApp.';
+      document.getElementById('statEstado').textContent = 'Alta';
+      fillForms({ email: user.email, nombre: user.user_metadata?.nombre, telefono: user.user_metadata?.telefono });
       const honorBody = document.getElementById('honorariosAlquilerBody');
       const honorResumen = document.getElementById('honorariosResumenCard');
-      const pendingMsg = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Tu ficha de propietario se activará en cuanto confirmemos el alta (o tras ejecutar la migración en Supabase). Mientras tanto puedes escribir a Juan por WhatsApp.</p>';
-      if (honorBody) honorBody.innerHTML = pendingMsg;
-      if (honorResumen) {
-        honorResumen.innerHTML = '<div style="font-size:.85rem;opacity:.9">Expediente en preparación</div>';
+      if (honorBody) {
+        honorBody.innerHTML = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Guarda primero tus datos de propietario. Luego podrás domiciliar la cuota de 60 €/mes aquí.</p>';
       }
-      document.getElementById('statEstado').textContent = 'Alta';
+      if (honorResumen) honorResumen.innerHTML = '<div style="font-size:.85rem;opacity:.9">Cuota 60 €/mes · pendiente de alta</div>';
     } else {
-      applyExpediente(row);
+      applyExpedienteSummary(row);
       await loadIncidencias();
-      await loadDocumentos();
     }
 
+    renderUploadSlots();
+    await loadDocumentos();
     bindNav();
 
     const sessionId = new URLSearchParams(location.search).get('session_id');
     if (sessionId && window.nhAlquilerStripe?.verifySession) {
       await window.nhAlquilerStripe.verifySession(sessionId);
       row = await fetchExpediente();
-      if (row) applyExpediente(row);
+      if (row) applyExpedienteSummary(row);
     }
   }
 
