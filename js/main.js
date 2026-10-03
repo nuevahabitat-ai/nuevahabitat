@@ -44,6 +44,25 @@
 
 /* ── Nav: Empezar ahora + teléfonos (vertical, a la derecha) ─── */
 (function () {
+  const NH_START_MENU_V = '3';
+  const NH_START_MENU_HTML = `
+        <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
+        <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
+        <a href="/registro?tipo=alquiler" role="menuitem"><strong>Administración de alquileres</strong><span>Registro o login · panel propietario · 60 €/mes</span></a>
+        <a href="/administracion-alquileres" role="menuitem"><strong>Información del servicio</strong><span>Qué incluye la administración</span></a>
+        <a href="/alquiler-integral" role="menuitem"><strong>Alquiler integral</strong><span>499 € · publicar, filtrar y cerrar contrato</span></a>
+      `;
+
+  function syncStartMenu(wrap) {
+    const menu = wrap.querySelector('.nav-start-menu');
+    if (!menu) return;
+    const badAlq = menu.querySelector('a[href="/administracion-alquileres"][role="menuitem"] strong');
+    const okAlq = menu.querySelector('a[href="/registro?tipo=alquiler"]');
+    if (menu.dataset.nhMenuV !== NH_START_MENU_V || (badAlq && !okAlq)) {
+      menu.innerHTML = NH_START_MENU_HTML;
+      menu.dataset.nhMenuV = NH_START_MENU_V;
+    }
+  }
   document.querySelectorAll('.nav-actions .nav-tels').forEach((span) => {
     if (span.dataset.nhTelsClean) return;
     const links = [...span.querySelectorAll('a')];
@@ -81,13 +100,8 @@
       const menu = document.createElement('div');
       menu.className = 'nav-start-menu';
       menu.setAttribute('role', 'menu');
-      menu.innerHTML = `
-        <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
-        <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
-        <a href="/registro?tipo=alquiler" role="menuitem"><strong>Administrar mi alquiler</strong><span>Panel propietario · 60 €/mes IVA incl.</span></a>
-        <a href="/administracion-alquileres" role="menuitem"><strong>Información del servicio</strong><span>Qué incluye la administración</span></a>
-        <a href="/alquiler-integral" role="menuitem"><strong>Alquiler integral</strong><span>499 € · publicar, filtrar y cerrar contrato</span></a>
-      `;
+      menu.innerHTML = NH_START_MENU_HTML;
+      menu.dataset.nhMenuV = NH_START_MENU_V;
       wrap.appendChild(menu);
 
       const close = () => {
@@ -108,6 +122,8 @@
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') close();
       });
+    } else {
+      syncStartMenu(wrap);
     }
 
     if (tels) cluster.append(wrap, tels);
@@ -138,13 +154,11 @@
       else ul.appendChild(wrapLi);
     } else {
       const menu = wrapLi.querySelector('.nav-dropdown-menu');
-      if (menu) {
-        if (!menu.querySelector('a[href="/administracion-alquileres"]')) {
-          menu.insertAdjacentHTML('afterbegin', '<a href="/administracion-alquileres" role="menuitem">Administración de alquileres</a>');
-        }
-        if (!menu.querySelector('a[href="/alquiler-integral"]')) {
-          menu.insertAdjacentHTML('beforeend', '<a href="/alquiler-integral" role="menuitem">Alquiler integral</a>');
-        }
+      if (menu && !menu.querySelector('a[href="/registro?tipo=alquiler"]')) {
+        menu.insertAdjacentHTML(
+          'afterbegin',
+          '<a href="/registro?tipo=alquiler" role="menuitem">Registro · panel propietario</a>'
+        );
       }
     }
 
