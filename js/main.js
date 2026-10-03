@@ -85,6 +85,7 @@
         <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
         <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
         <a href="/administracion-alquileres" role="menuitem"><strong>Administración de alquileres</strong><span>60 €/mes · IVA incl. · larga duración</span></a>
+        <a href="/alquiler-integral" role="menuitem"><strong>Alquiler integral</strong><span>499 € · publicar, filtrar y cerrar contrato</span></a>
       `;
       wrap.appendChild(menu);
 
@@ -115,7 +116,7 @@
   function mountAlquileresNav(ul) {
     ul.querySelectorAll('li').forEach((li) => {
       if (li.classList.contains('nav-alquileres-wrap')) return;
-      const a = li.querySelector('a[href="/administracion-alquileres"]');
+      const a = li.querySelector('a[href="/administracion-alquileres"], a[href="/alquiler-integral"]');
       if (a) li.remove();
     });
 
@@ -128,10 +129,21 @@
         <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Alquileres</button>
         <div class="nav-dropdown-menu" role="menu">
           <a href="/administracion-alquileres" role="menuitem">Administración de alquileres</a>
+          <a href="/alquiler-integral" role="menuitem">Alquiler integral</a>
         </div>
       `;
       if (blogLi) blogLi.after(wrapLi);
       else ul.appendChild(wrapLi);
+    } else {
+      const menu = wrapLi.querySelector('.nav-dropdown-menu');
+      if (menu) {
+        if (!menu.querySelector('a[href="/administracion-alquileres"]')) {
+          menu.insertAdjacentHTML('afterbegin', '<a href="/administracion-alquileres" role="menuitem">Administración de alquileres</a>');
+        }
+        if (!menu.querySelector('a[href="/alquiler-integral"]')) {
+          menu.insertAdjacentHTML('beforeend', '<a href="/alquiler-integral" role="menuitem">Alquiler integral</a>');
+        }
+      }
     }
 
     if (!wrapLi.dataset.nhAlqBound) {
@@ -159,7 +171,7 @@
   document.querySelectorAll('.nav-links').forEach(mountAlquileresNav);
 
   const path = window.location.pathname.replace(/\/$/, '') || '/';
-  if (path === '/administracion-alquileres') {
+  if (path === '/administracion-alquileres' || path === '/alquiler-integral') {
     document.querySelectorAll('.nav-alquileres-wrap').forEach((li) => li.classList.add('is-active'));
   }
 
@@ -176,6 +188,15 @@
       link.dataset.nhAlqMobile = 'admin';
       link.textContent = 'Alquileres · Administración de alquileres';
       if (blogLink) blogLink.after(link);
+      else mobileNav.appendChild(link);
+    }
+    if (!mobileNav.querySelector('a[data-nh-alq-mobile="integral"]')) {
+      const adminLink = mobileNav.querySelector('a[data-nh-alq-mobile="admin"]');
+      const link = document.createElement('a');
+      link.href = '/alquiler-integral';
+      link.dataset.nhAlqMobile = 'integral';
+      link.textContent = 'Alquileres · Alquiler integral';
+      if (adminLink) adminLink.after(link);
       else mobileNav.appendChild(link);
     }
   }
