@@ -460,9 +460,6 @@
     } catch (clientErr) {
       const msg = clientErr.message || '';
       const tryApi = async () => {
-        if (file.size > 4 * 1024 * 1024) {
-          throw new Error('Archivo grande: crea el bucket en Supabase (migración 045) y recarga la página.');
-        }
         const base64 = await fileToBase64(file);
         await apiPost('upload', {
           tipo,
@@ -474,6 +471,7 @@
         insertedByApi = true;
       };
 
+      const useApiFallback = /bucket not found|permission denied|row-level security|policy/i.test(msg);
       if (/bucket not found/i.test(msg)) {
         await ensureStorageBucket();
         try {
@@ -481,6 +479,8 @@
         } catch (retryErr) {
           await tryApi();
         }
+      } else if (useApiFallback) {
+        await tryApi();
       } else {
         await tryApi();
       }
@@ -495,7 +495,20 @@
         url: path,
         estado: 'subido',
       });
-      if (insErr) throw insErr;
+      if (insErr) {
+        const insMsg = insErr.message || '';
+        if (/permission denied|row-level security|policy/i.test(insMsg)) {
+          await apiPost('upload', {
+            tipo,
+            label,
+            fileName: file.name,
+            mimeType: file.type || 'application/octet-stream',
+            base64: await fileToBase64(file),
+          });
+        } else {
+          throw insErr;
+        }
+      }
     }
   }
 
