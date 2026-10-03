@@ -171,7 +171,12 @@
   document.querySelectorAll('.nav-links').forEach(mountAlquileresNav);
 
   const path = window.location.pathname.replace(/\/$/, '') || '/';
-  if (path === '/administracion-alquileres' || path === '/alquiler-integral') {
+  if (
+    path === '/administracion-alquileres' ||
+    path === '/alquiler-integral' ||
+    path.startsWith('/administracion-alquileres-') ||
+    path.startsWith('/alquiler-integral-')
+  ) {
     document.querySelectorAll('.nav-alquileres-wrap').forEach((li) => li.classList.add('is-active'));
   }
 

@@ -924,6 +924,18 @@
       "cluster": "comprador",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "administracion-alquileres-les-corts",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-l-hospitalet",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
     }
   ]
 }
