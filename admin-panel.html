@@ -565,6 +565,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
         Administración
       </div>
+      <div class="adm-nav-item" data-sec="alquiler-integral">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6l2 2h6a2 2 0 012 2z"/><path stroke-linecap="round" d="M9 22V12h6v10"/></svg>
+        Integral
+      </div>
       <div class="adm-nav-group" style="margin-top:.5rem">Finanzas</div>
       <div class="adm-nav-item" data-sec="finanzas">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1710,37 +1714,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
           <div class="adm-section-title">Administración de alquileres</div>
           <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadAlquilerAdmin()">↻ Actualizar</button>
         </div>
-        <p class="text-muted" style="font-size:.8rem;margin:-.5rem 0 1rem;line-height:1.5">Propietarios registrados en el panel de administración de alquiler. Abre cada expediente para ver datos, inquilino, inmueble y documentación subida.</p>
-
-        <details class="adm-card alq-supabase-guide" id="alq-admin-supabase-guide" style="margin-bottom:1rem;border-color:rgba(184,147,106,.35)">
-          <summary style="cursor:pointer;font-weight:600;font-size:.88rem;color:var(--gold-light);list-style:none;display:flex;align-items:center;gap:.5rem">
-            <span aria-hidden="true">ℹ️</span> Requisitos Supabase y Vercel (módulo alquiler)
-          </summary>
-          <div style="margin-top:.85rem;font-size:.78rem;line-height:1.65;color:var(--text)">
-            <p style="margin-bottom:.65rem"><strong>Para que esta sección y el panel del propietario funcionen</strong>, en Supabase → SQL Editor deben estar aplicadas estas migraciones del repo (<code>supabase/migrations/</code>):</p>
-            <ol style="margin:0 0 .75rem 1.1rem;color:var(--muted)">
-              <li><strong>042</strong> — Tablas <code>propietarios_alquiler</code>, incidencias y RLS admin (lectura/edición aquí en el panel).</li>
-              <li><strong>048</strong> — Tabla <code>cliente_documentos</code> si no existía (documentación del propietario).</li>
-              <li><strong>047</strong> — RLS sin consultar <code>auth.users</code> (evita «permission denied for table users»).</li>
-              <li><strong>049</strong> — RPC <code>update_propietario_alquiler_expediente</code> (guardar datos en panel propietario).</li>
-              <li><strong>050</strong> — Alquiler integral: columnas pago 499 € (<code>integral_pagado</code>, transferencia, Stripe) y <code>sync_propietario_alquiler</code> con <code>servicio=integral</code>.</li>
-              <li><strong>045</strong> — Bucket Storage <code>documentos-clientes</code> (50 MB).</li>
-              <li><strong>046</strong> — La RPC de guardado crea expediente si falta fila.</li>
-            </ol>
-            <p style="margin-bottom:.5rem"><strong>Vercel</strong> (proyecto nuevahabitat): variables obligatorias para subida/guardado vía API del panel propietario:</p>
-            <ul style="margin:0 0 .75rem 1.1rem;color:var(--muted)">
-              <li><code>SUPABASE_SERVICE_ROLE_KEY</code></li>
-              <li><code>SUPABASE_URL</code> y <code>SUPABASE_ANON_KEY</code> (o las que ya usa el sitio)</li>
-              <li><code>STRIPE_*</code> — cuota 60 €/mes (administración) y pago único 499 € (alquiler integral)</li>
-            </ul>
-            <p style="margin-bottom:.35rem"><strong>Comprobar en Supabase</strong> (pega en SQL Editor; debe devolver filas sin error):</p>
-            <pre style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.65rem .75rem;font-size:.68rem;overflow:auto;margin:.35rem 0 .75rem;white-space:pre-wrap">SELECT COUNT(*) AS propietarios FROM public.propietarios_alquiler;
-SELECT proname FROM pg_proc p JOIN pg_namespace n ON n.oid = p.pronamespace
-  WHERE n.nspname = 'public' AND proname IN ('update_propietario_alquiler_expediente','get_my_propietario_alquiler','sync_propietario_alquiler');
-SELECT id FROM storage.buckets WHERE id = 'documentos-clientes';</pre>
-            <p style="font-size:.72rem;color:var(--muted);margin:0"><strong>Errores frecuentes:</strong> «cliente_documentos does not exist» → 048. «Could not find the function update_propietario…» → 049 + <code>NOTIFY pgrst, 'reload schema';</code>. «permission denied for table users» → 047. Lista vacía aquí pero hay registros en Auth → ejecuta 042 y revisa email en <code>propietarios_alquiler</code>.</p>
-          </div>
-        </details>
+        <p class="text-muted" style="font-size:.8rem;margin:-.5rem 0 1rem;line-height:1.5">Propietarios con administración de alquiler (60 €/mes). Abre cada expediente para ver resumen, propietario, inmueble, inquilino y documentación.</p>
 
         <div class="adm-filter-bar">
           <div class="adm-field">
@@ -1760,14 +1734,6 @@ SELECT id FROM storage.buckets WHERE id = 'documentos-clientes';</pre>
             </select>
           </div>
           <div class="adm-field">
-            <label for="alq-filter-servicio">Servicio</label>
-            <select id="alq-filter-servicio" onchange="renderAlquilerAdminTable()">
-              <option value="">Todos</option>
-              <option value="administracion">Administración 60 €/mes</option>
-              <option value="integral">Alquiler integral 499 €</option>
-            </select>
-          </div>
-          <div class="adm-field">
             <label for="alq-filter-cuota">Cuota 60 €</label>
             <select id="alq-filter-cuota" onchange="renderAlquilerAdminTable()">
               <option value="">Todas</option>
@@ -1780,6 +1746,48 @@ SELECT id FROM storage.buckets WHERE id = 'documentos-clientes';</pre>
         <div class="adm-card">
           <div class="adm-card-head"><h3>Expedientes propietario</h3></div>
           <div id="alq-admin-table"><p class="text-muted">Cargando…</p></div>
+        </div>
+      </section>
+
+      <!-- ══ ALQUILERES · INTEGRAL (propietarios panel 499 €) ═════ -->
+      <section class="adm-section" id="sec-alquiler-integral">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Alquiler integral</div>
+          <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadAlquilerIntegral()">↻ Actualizar</button>
+        </div>
+        <p class="text-muted" style="font-size:.8rem;margin:-.5rem 0 1rem;line-height:1.5">Propietarios del servicio de alquiler integral (499 €). Misma base de datos y expediente que el panel del propietario: resumen, datos, inmueble, candidato inquilino y documentación.</p>
+
+        <div class="adm-filter-bar">
+          <div class="adm-field">
+            <label for="alq-integral-filter-q">Buscar</label>
+            <input type="search" id="alq-integral-filter-q" placeholder="Nombre, email, dirección…" oninput="renderAlquilerIntegralTable()"/>
+          </div>
+          <div class="adm-field">
+            <label for="alq-integral-filter-estado">Estado gestión</label>
+            <select id="alq-integral-filter-estado" onchange="renderAlquilerIntegralTable()">
+              <option value="">Todos</option>
+              <option value="alta">Alta</option>
+              <option value="documentacion">Documentación</option>
+              <option value="contrato">Contrato</option>
+              <option value="activo">Activo</option>
+              <option value="renovacion">Renovación</option>
+              <option value="baja">Baja</option>
+            </select>
+          </div>
+          <div class="adm-field">
+            <label for="alq-integral-filter-pago">Pago 499 €</label>
+            <select id="alq-integral-filter-pago" onchange="renderAlquilerIntegralTable()">
+              <option value="">Todos</option>
+              <option value="pagado">Pagado</option>
+              <option value="transferencia">Transferencia en revisión</option>
+              <option value="pendiente">Pendiente</option>
+            </select>
+          </div>
+          <span class="adm-filter-count" id="alq-integral-filter-count"></span>
+        </div>
+        <div class="adm-card">
+          <div class="adm-card-head"><h3>Expedientes alquiler integral</h3></div>
+          <div id="alq-integral-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
 
@@ -2574,7 +2582,7 @@ function switchSection(id){
   document.getElementById('sec-'+id).classList.add('active');
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos','alquiler-admin':'Administración de alquileres',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
+  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos','alquiler-admin':'Administración de alquileres','alquiler-integral':'Alquiler integral',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
   document.getElementById('adm-section-title').textContent = titles[id]||id;
   if(id==='dashboard')   loadDashboard();
   if(id==='leads')       loadLeads();
@@ -2586,6 +2594,7 @@ function switchSection(id){
   if(id==='documentos')  loadDocumentosAdmin();
   if(id==='seguimientos') loadParticulares();
   if(id==='alquiler-admin') loadAlquilerAdmin();
+  if(id==='alquiler-integral') loadAlquilerIntegral();
   if(id==='finanzas')     loadFinSection();
   if(id==='blog')        loadBlog();
   if(id==='newsletter')  loadNewsletter();
@@ -8555,6 +8564,7 @@ let _alqPropData = [];
 let _alqModalId = null;
 let _alqModalTab = 'resumen';
 let _alqModalDocs = [];
+let _alqListMode = 'administracion';
 
 function escAlq(s) {
   return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -8570,23 +8580,56 @@ function fmtAlqEur(n) {
   return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(n));
 }
 
-function getAlqFilterValues() {
+function alqRowServicio(r) {
+  return (r?.servicio || 'administracion') === 'integral' ? 'integral' : 'administracion';
+}
+
+function alqViewDom(mode) {
+  if (mode === 'integral') {
+    return {
+      mode: 'integral',
+      tableId: 'alq-integral-table',
+      countId: 'alq-integral-filter-count',
+      emptyMsg: 'No hay expedientes de alquiler integral que coincidan.',
+    };
+  }
+  return {
+    mode: 'administracion',
+    tableId: 'alq-admin-table',
+    countId: 'alq-filter-count',
+    emptyMsg: 'No hay propietarios de administración de alquiler que coincidan.',
+  };
+}
+
+function getAlqFilterValues(mode) {
+  if (mode === 'integral') {
+    return {
+      q: (document.getElementById('alq-integral-filter-q')?.value || '').trim().toLowerCase(),
+      estado: document.getElementById('alq-integral-filter-estado')?.value || '',
+      pago: document.getElementById('alq-integral-filter-pago')?.value || '',
+    };
+  }
   return {
     q: (document.getElementById('alq-filter-q')?.value || '').trim().toLowerCase(),
     estado: document.getElementById('alq-filter-estado')?.value || '',
-    servicio: document.getElementById('alq-filter-servicio')?.value || '',
     cuota: document.getElementById('alq-filter-cuota')?.value || '',
   };
 }
 
-function filterAlqPropRows(list) {
-  const f = getAlqFilterValues();
-  return (list || []).filter((r) => {
+function filterAlqPropRows(list, mode) {
+  const f = getAlqFilterValues(mode);
+  const pool = (list || []).filter((r) => alqRowServicio(r) === mode);
+  return pool.filter((r) => {
     if (f.estado && r.estado_gestion !== f.estado) return false;
-    const svc = r.servicio || 'administracion';
-    if (f.servicio && svc !== f.servicio) return false;
-    if (f.cuota === 'activa' && !r.suscripcion_activa) return false;
-    if (f.cuota === 'pendiente' && r.suscripcion_activa) return false;
+    if (mode === 'administracion') {
+      if (f.cuota === 'activa' && !r.suscripcion_activa) return false;
+      if (f.cuota === 'pendiente' && r.suscripcion_activa) return false;
+    }
+    if (mode === 'integral' && f.pago) {
+      if (f.pago === 'pagado' && !r.integral_pagado) return false;
+      if (f.pago === 'transferencia' && (!r.integral_transferencia_pendiente || r.integral_pagado)) return false;
+      if (f.pago === 'pendiente' && (r.integral_pagado || r.integral_transferencia_pendiente)) return false;
+    }
     if (f.q) {
       const hay = [r.nombre, r.email, r.telefono, r.inmueble_direccion, r.inquilino_nombre, r.dni]
         .filter(Boolean).join(' ').toLowerCase();
@@ -8596,69 +8639,95 @@ function filterAlqPropRows(list) {
   });
 }
 
-async function loadAlquilerAdmin() {
-  const tbl = document.getElementById('alq-admin-table');
-  if (tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
-  const { data, error } = await window.nhSupabase
-    .from('propietarios_alquiler')
-    .select('*')
-    .order('updated_at', { ascending: false });
-  if (error) {
-    if (tbl) {
-      tbl.innerHTML = `<p class="alert-box alert-error">No se pudieron cargar expedientes: ${escAlq(error.message)}</p>
-        <p class="text-muted" style="font-size:.75rem;margin-top:.5rem">Revisa el bloque <strong>Requisitos Supabase y Vercel</strong> arriba (migraciones 042, 048, 047, 049).</p>`;
+function alqPagoBadgeHtml(r, mode) {
+  if (mode === 'integral') {
+    if (r.integral_pagado) return '<span class="adm-pay-badge adm-pay-badge--ok">499 € pagado</span>';
+    if (r.integral_transferencia_pendiente) {
+      return '<span class="adm-pay-badge" style="background:rgba(184,147,106,.15)">Transfer. 499 €</span>';
     }
-    document.getElementById('alq-admin-supabase-guide')?.setAttribute('open', 'open');
-    nhToast('Error al cargar alquileres: ' + error.message, 'error');
-    return;
+    return '<span class="adm-pay-badge adm-pay-badge--pend">499 € pend.</span>';
   }
-  _alqPropData = data || [];
-  renderAlquilerAdminTable();
+  return r.suscripcion_activa
+    ? '<span class="adm-pay-badge adm-pay-badge--ok">Domiciliada</span>'
+    : '<span class="adm-pay-badge adm-pay-badge--pend">Pendiente</span>';
 }
 
-function renderAlquilerAdminTable() {
-  const tbl = document.getElementById('alq-admin-table');
-  const countEl = document.getElementById('alq-filter-count');
+function renderAlquilerPropTable(mode) {
+  _alqListMode = mode;
+  const cfg = alqViewDom(mode);
+  const tbl = document.getElementById(cfg.tableId);
+  const countEl = document.getElementById(cfg.countId);
   if (!tbl) return;
-  const filtered = filterAlqPropRows(_alqPropData);
+  const pool = (_alqPropData || []).filter((r) => alqRowServicio(r) === mode);
+  const filtered = filterAlqPropRows(_alqPropData, mode);
   if (countEl) {
-    countEl.textContent = filtered.length === _alqPropData.length
+    countEl.textContent = filtered.length === pool.length
       ? `${filtered.length} expediente${filtered.length === 1 ? '' : 's'}`
-      : `${filtered.length} de ${_alqPropData.length}`;
+      : `${filtered.length} de ${pool.length}`;
   }
   if (!filtered.length) {
-    tbl.innerHTML = '<p class="text-muted">No hay propietarios de administración de alquiler que coincidan.</p>';
+    tbl.innerHTML = `<p class="text-muted">${cfg.emptyMsg}</p>`;
     return;
   }
   tbl.innerHTML = `<table class="adm-table"><thead><tr>
-    <th>Propietario</th><th>Servicio</th><th>Inmueble</th><th>Estado</th><th>Pago</th><th>Alta</th>
+    <th>Propietario</th><th>Inmueble</th><th>Estado</th><th>Pago</th><th>Alta</th>
   </tr></thead><tbody>${filtered.map((r) => {
-    const integral = (r.servicio || 'administracion') === 'integral';
-    const svcLabel = integral
-      ? '<span class="adm-pay-badge" style="background:rgba(184,147,106,.2);color:var(--gold-light)">Integral</span>'
-      : '<span class="adm-pay-badge adm-pay-badge--pend">Admin</span>';
-    let pago;
-    if (integral) {
-      pago = r.integral_pagado
-        ? '<span class="adm-pay-badge adm-pay-badge--ok">499 € pagado</span>'
-        : r.integral_transferencia_pendiente
-          ? '<span class="adm-pay-badge" style="background:rgba(184,147,106,.15)">Transfer. 499 €</span>'
-          : '<span class="adm-pay-badge adm-pay-badge--pend">499 € pend.</span>';
-    } else {
-      pago = r.suscripcion_activa
-        ? '<span class="adm-pay-badge adm-pay-badge--ok">Domiciliada</span>'
-        : '<span class="adm-pay-badge adm-pay-badge--pend">Pendiente</span>';
-    }
     const est = ALQ_ESTADO_LABEL[r.estado_gestion] || r.estado_gestion || '—';
+    const pago = alqPagoBadgeHtml(r, mode);
     return `<tr class="vend-row-click" onclick="openAlqAdminModal('${r.id}')">
       <td><strong>${escAlq(r.nombre || '—')}</strong><br><span style="font-size:.72rem;color:var(--muted)">${escAlq(r.email)}</span></td>
-      <td>${svcLabel}</td>
       <td style="font-size:.78rem">${escAlq(r.inmueble_direccion || '—')}</td>
       <td><span class="badge badge-ok">${escAlq(est)}</span></td>
       <td>${pago}</td>
       <td style="font-size:.72rem;color:var(--muted);white-space:nowrap">${fmtAlqDate(r.created_at)}</td>
     </tr>`;
   }).join('')}</tbody></table>`;
+}
+
+function renderAlquilerAdminTable() {
+  renderAlquilerPropTable('administracion');
+}
+
+function renderAlquilerIntegralTable() {
+  renderAlquilerPropTable('integral');
+}
+
+async function fetchAlquilerPropietarios() {
+  const { data, error } = await window.nhSupabase
+    .from('propietarios_alquiler')
+    .select('*')
+    .order('updated_at', { ascending: false });
+  if (error) throw error;
+  _alqPropData = data || [];
+}
+
+async function loadAlquilerAdmin() {
+  const tbl = document.getElementById('alq-admin-table');
+  if (tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
+  try {
+    await fetchAlquilerPropietarios();
+    renderAlquilerAdminTable();
+    if (document.getElementById('sec-alquiler-integral')?.classList.contains('active')) {
+      renderAlquilerIntegralTable();
+    }
+  } catch (error) {
+    if (tbl) {
+      tbl.innerHTML = `<p class="alert-box alert-error">No se pudieron cargar expedientes: ${escAlq(error.message)}</p>`;
+    }
+    const intTbl = document.getElementById('alq-integral-table');
+    if (intTbl) intTbl.innerHTML = `<p class="alert-box alert-error">No se pudieron cargar expedientes: ${escAlq(error.message)}</p>`;
+    nhToast('Error al cargar alquileres: ' + error.message, 'error');
+  }
+}
+
+async function loadAlquilerIntegral() {
+  const tbl = document.getElementById('alq-integral-table');
+  if (tbl && !_alqPropData.length) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
+  if (!_alqPropData.length) {
+    await loadAlquilerAdmin();
+    return;
+  }
+  renderAlquilerIntegralTable();
 }
 
 function alqDlRow(label, val) {
@@ -8784,7 +8853,8 @@ async function openAlqAdminModal(id) {
   const row = _alqPropData.find((x) => x.id === id);
   if (!row) { nhToast('Expediente no encontrado', 'error'); return; }
   document.getElementById('alq-modal-title').textContent = row.nombre || row.email || 'Propietario';
-  document.getElementById('alq-modal-kicker').textContent = row.inmueble_direccion || row.email || 'Administración alquiler';
+  const svcLabel = alqRowServicio(row) === 'integral' ? 'Alquiler integral' : 'Administración alquiler';
+  document.getElementById('alq-modal-kicker').textContent = row.inmueble_direccion || row.email || svcLabel;
   document.querySelectorAll('#alq-admin-modal .vend-modal-tabs .adm-subtab').forEach((b) => {
     b.classList.toggle('active', b.dataset.alqModalTab === 'resumen');
   });
@@ -8822,12 +8892,16 @@ async function saveAlqAdminEstado() {
     if (idx >= 0) _alqPropData[idx] = data;
   }
   nhToast('Estado actualizado', 'success');
-  renderAlquilerAdminTable();
+  renderAlquilerPropTable(_alqListMode);
+  if (_alqListMode === 'administracion') renderAlquilerIntegralTable();
+  else renderAlquilerAdminTable();
   renderAlqAdminModalBody();
 }
 
 window.loadAlquilerAdmin = loadAlquilerAdmin;
+window.loadAlquilerIntegral = loadAlquilerIntegral;
 window.renderAlquilerAdminTable = renderAlquilerAdminTable;
+window.renderAlquilerIntegralTable = renderAlquilerIntegralTable;
 window.openAlqAdminModal = openAlqAdminModal;
 window.closeAlqAdminModal = closeAlqAdminModal;
 window.alqAdminModalTab = alqAdminModalTab;
