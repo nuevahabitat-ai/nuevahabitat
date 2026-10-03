@@ -1,7 +1,10 @@
 /**
- * POST /api/stripe-checkout — Stripe Checkout (tarjeta)
- * GET/POST /api/stripe-checkout?transfer=1 — Transferencia bancaria
- * POST /api/stripe-verify-session — Verificar sesión tras pago (rewrite → __action=verify-session)
+ * POST /api/stripe-checkout — Stripe Checkout (tarjeta comprador/vendedor)
+ * GET/POST /api/stripe-checkout?transfer=1 — Transferencia honorarios compra/venta
+ * POST /api/stripe-verify-session — rewrite → __action=verify-session
+ * Alquiler propietario (misma función, límite 12 Hobby):
+ *   POST ?__action=alquiler-subscribe | alquiler-verify-session | alquiler-portal
+ *   GET/POST ?transfer=1&alquiler=1 — cuota mensual por transferencia
  */
 import Stripe from 'stripe';
 import { getBankConfig, paymentReference } from '../lib/server/bank-config.js';
@@ -12,10 +15,19 @@ import {
   fetchClienteRow,
   markTransferenciaPendiente,
   markHonorariosPaid,
+  fetchPropietarioAlquilerAsUser,
+  fetchPropietarioAlquilerRow,
+  markAlquilerSubscription,
+  markCuotaAlquilerTransferenciaPendiente,
 } from '../lib/server/supabase-server.js';
 import { notifyTransferenciaPendiente } from '../lib/server/payment-notify.js';
 
 const DEFAULT_HONORARIOS = { comprador: 6050, vendedor: 3630 };
+const DEFAULT_CUOTA_ALQUILER_EUR = 60;
+
+function isAlquilerRequest(req) {
+  return req.query?.alquiler === '1' || req.body?.alquiler === true;
+}
 
 function siteOrigin(req) {
   const proto = req.headers['x-forwarded-proto'] || 'https';
@@ -99,6 +111,217 @@ async function handleTransfer(req, res) {
   }
 }
 
+async function handleAlquilerVerifySession(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey || !SB_SERVICE) {
+    return res.status(503).json({ ok: false, error: 'Servicio no configurado' });
+  }
+
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  const user = await getUserFromJwt(jwt);
+  if (!user?.email) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+
+  const sessionId = (req.body?.sessionId || '').trim();
+  if (!sessionId) return res.status(400).json({ ok: false, error: 'sessionId required' });
+
+  try {
+    const stripe = new Stripe(secretKey, { apiVersion: '2024-11-20.acacia' });
+    const session = await stripe.checkout.sessions.retrieve(sessionId, { expand: ['subscription'] });
+    const meta = session.metadata || {};
+    const metaEmail = (meta.nh_email || '').toLowerCase();
+    if (metaEmail && metaEmail !== user.email.toLowerCase()) {
+      return res.status(403).json({ ok: false, error: 'Sesión no pertenece a este usuario' });
+    }
+
+    const row = await fetchPropietarioAlquilerRow(user.email);
+    if (!row?.id) return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
+    if (row.suscripcion_activa && row.stripe_subscription_id) {
+      return res.status(200).json({ ok: true, alreadyActive: true });
+    }
+
+    const subId = typeof session.subscription === 'string' ? session.subscription : session.subscription?.id;
+    let sub = session.subscription;
+    if (subId && typeof sub !== 'object') sub = await stripe.subscriptions.retrieve(subId);
+
+    const customerId = typeof session.customer === 'string' ? session.customer : session.customer?.id;
+    const periodEnd = sub?.current_period_end
+      ? new Date(sub.current_period_end * 1000).toISOString()
+      : null;
+
+    await markAlquilerSubscription({
+      recordId: row.id,
+      customerId,
+      subscriptionId: subId,
+      status: sub?.status || 'active',
+      periodEnd,
+      active: sub?.status === 'active' || sub?.status === 'trialing',
+    });
+
+    return res.status(200).json({ ok: true, active: true, status: sub?.status });
+  } catch (err) {
+    console.error('stripe alquiler verify:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Error al verificar' });
+  }
+}
+
+async function handleAlquilerPortal(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey || !SB_SERVICE) {
+    return res.status(503).json({ ok: false, error: 'Servicio no configurado' });
+  }
+
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  const user = await getUserFromJwt(jwt);
+  if (!user?.email) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+
+  try {
+    const row = await fetchPropietarioAlquilerAsUser(user.email, jwt);
+    if (!row?.stripe_customer_id) {
+      return res.status(400).json({ ok: false, error: 'Aún no hay domiciliación activa' });
+    }
+    const stripe = new Stripe(secretKey, { apiVersion: '2024-11-20.acacia' });
+    const origin = siteOrigin(req);
+    const portal = await stripe.billingPortal.sessions.create({
+      customer: row.stripe_customer_id,
+      return_url: `${origin}/panel-propietario?sec=honorarios`,
+    });
+    return res.status(200).json({ ok: true, url: portal.url });
+  } catch (err) {
+    console.error('stripe alquiler portal:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Error portal' });
+  }
+}
+
+async function handleAlquilerTransfer(req, res) {
+  if (!SB_SERVICE) {
+    return res.status(503).json({ ok: false, error: 'Servicio no configurado', code: 'NO_SERVICE_KEY' });
+  }
+
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  const user = await getUserFromJwt(jwt);
+  if (!user?.email || !jwt) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+
+  try {
+    const row = await fetchPropietarioAlquilerAsUser(user.email, jwt);
+    if (!row) return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
+
+    const bank = getBankConfig();
+    const totalEur = Number(row.cuota_mensual) || DEFAULT_CUOTA_ALQUILER_EUR;
+    const reference = paymentReference('propietario_alquiler', row.id);
+    const concept = `${bank.conceptPrefix} ${reference} CUOTA`;
+
+    if (req.method === 'GET') {
+      return res.status(200).json({
+        ok: true,
+        bank: {
+          holders: bank.holders,
+          iban: bank.ibanFormatted,
+          ibanRaw: bank.iban,
+          bic: bank.bic || null,
+          entity: bank.entity,
+        },
+        payment: { totalEur, reference, concept, recordId: row.id },
+        status: {
+          subscribed: !!row.suscripcion_activa,
+          transferPending: !!row.cuota_transferencia_pendiente,
+          transferAt: row.cuota_transferencia_at || null,
+        },
+      });
+    }
+
+    if (row.suscripcion_activa) {
+      return res.status(400).json({ ok: false, error: 'Ya tienes domiciliación activa', code: 'ALREADY_ACTIVE' });
+    }
+    if (row.cuota_transferencia_pendiente) {
+      return res.status(200).json({ ok: true, alreadyPending: true, reference, concept });
+    }
+
+    await markCuotaAlquilerTransferenciaPendiente({ recordId: row.id });
+    return res.status(200).json({ ok: true, pending: true, reference, concept });
+  } catch (err) {
+    console.error('stripe alquiler transfer:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Error' });
+  }
+}
+
+async function handleAlquilerSubscribe(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey || !SB_SERVICE) {
+    return res.status(503).json({ ok: false, error: 'Stripe no configurado', code: 'NO_STRIPE' });
+  }
+
+  const auth = req.headers.authorization || '';
+  const jwt = auth.startsWith('Bearer ') ? auth.slice(7) : null;
+  const user = await getUserFromJwt(jwt);
+  if (!user?.email || !jwt) return res.status(401).json({ ok: false, error: 'Not authenticated' });
+
+  const email = user.email.trim();
+
+  try {
+    const row = await fetchPropietarioAlquilerAsUser(email, jwt);
+    if (!row) return res.status(404).json({ ok: false, error: 'Expediente de alquiler no encontrado' });
+    if (row.suscripcion_activa && row.stripe_subscription_id) {
+      return res.status(400).json({ ok: false, error: 'La domiciliación ya está activa', code: 'ALREADY_ACTIVE' });
+    }
+
+    const totalEur = Number(row.cuota_mensual) || DEFAULT_CUOTA_ALQUILER_EUR;
+    const amountCents = eurosToCents(totalEur);
+    const priceId = process.env.STRIPE_ALQUILER_PRICE_ID;
+    const stripe = new Stripe(secretKey, { apiVersion: '2024-11-20.acacia' });
+    const origin = siteOrigin(req);
+
+    const lineItems = priceId
+      ? [{ price: priceId, quantity: 1 }]
+      : [{
+        quantity: 1,
+        price_data: {
+          currency: 'eur',
+          unit_amount: amountCents,
+          recurring: { interval: 'month' },
+          product_data: {
+            name: 'Administración de alquiler NuevaHabitat',
+            description: `${totalEur.toLocaleString('es-ES')} €/mes IVA incluido · gestión sin contacto con el inquilino`,
+          },
+        },
+      }];
+
+    const session = await stripe.checkout.sessions.create({
+      mode: 'subscription',
+      customer_email: email,
+      line_items: lineItems,
+      metadata: {
+        nh_tipo: 'propietario_alquiler',
+        nh_record_id: row.id,
+        nh_user_id: user.id,
+        nh_email: email,
+      },
+      subscription_data: {
+        metadata: {
+          nh_tipo: 'propietario_alquiler',
+          nh_record_id: row.id,
+          nh_email: email,
+        },
+      },
+      success_url: `${origin}/panel-propietario?session_id={CHECKOUT_SESSION_ID}&sec=honorarios`,
+      cancel_url: `${origin}/panel-propietario?pago=cancel&sec=honorarios`,
+    });
+
+    return res.status(200).json({ ok: true, url: session.url, sessionId: session.id });
+  } catch (err) {
+    console.error('stripe alquiler subscribe:', err);
+    return res.status(500).json({ ok: false, error: err.message || 'Error al crear suscripción' });
+  }
+}
+
 async function handleVerifySession(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -160,10 +383,23 @@ export default async function handler(req, res) {
     return handleVerifySession(req, res);
   }
 
+  if (req.query?.__action === 'alquiler-verify-session') {
+    return handleAlquilerVerifySession(req, res);
+  }
+
+  if (req.query?.__action === 'alquiler-portal') {
+    return handleAlquilerPortal(req, res);
+  }
+
+  if (req.query?.__action === 'alquiler-subscribe') {
+    return handleAlquilerSubscribe(req, res);
+  }
+
   if (isTransferRequest(req)) {
     if (req.method !== 'GET' && req.method !== 'POST') {
       return res.status(405).json({ error: 'Method not allowed' });
     }
+    if (isAlquilerRequest(req)) return handleAlquilerTransfer(req, res);
     return handleTransfer(req, res);
   }
 

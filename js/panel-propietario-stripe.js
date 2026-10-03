@@ -159,7 +159,7 @@
     const token = await getToken();
     if (!token) return null;
     try {
-      const res = await fetch('/api/stripe-alquiler-subscription?transfer=1', {
+      const res = await fetch('/api/stripe-checkout?transfer=1&alquiler=1', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -197,7 +197,7 @@
     try {
       const token = await getToken();
       if (!token) throw new Error('Sesión expirada');
-      const res = await fetch('/api/stripe-alquiler-subscription', {
+      const res = await fetch('/api/stripe-checkout?__action=alquiler-subscribe', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: '{}',
@@ -221,7 +221,7 @@
     try {
       const token = await getToken();
       if (!token) throw new Error('Sesión expirada');
-      const res = await fetch('/api/stripe-alquiler-subscription?transfer=1', {
+      const res = await fetch('/api/stripe-checkout?transfer=1&alquiler=1', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ transfer: true }),
@@ -244,7 +244,7 @@
     const token = await getToken();
     if (!token) return;
     try {
-      const res = await fetch('/api/stripe-alquiler-subscription?__action=portal', {
+      const res = await fetch('/api/stripe-checkout?__action=alquiler-portal', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       });
@@ -260,7 +260,7 @@
     const token = await getToken();
     if (!token) return;
     try {
-      const res = await fetch('/api/stripe-alquiler-subscription?__action=verify-session', {
+      const res = await fetch('/api/stripe-checkout?__action=alquiler-verify-session', {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionId }),
