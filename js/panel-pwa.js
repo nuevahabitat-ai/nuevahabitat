@@ -105,7 +105,7 @@
       showLocalNotification(
         'Actualización de visitas',
         `Tienes ${pending.length} visita(s) en tu expediente.`,
-        '/panel?sec=visitas',
+        '/panel?sec=visitas&tipo=comprador',
         'nh-visitas'
       );
     }
@@ -122,30 +122,42 @@
       showLocalNotification(
         'Nuevo documento',
         'Hay un documento nuevo en tu expediente.',
-        '/panel?sec=documentos',
+        '/panel?sec=documentacion',
         'nh-docs'
       );
     }
     writeState({ docsSig });
   }
 
+  function setNotifyBtnLabel(text, disabled) {
+    const btn = document.getElementById('pNotifyBtn');
+    const label = document.getElementById('pNotifyBtnLabel');
+    if (label) label.textContent = text;
+    else if (btn) btn.lastChild && btn.lastChild.nodeType === 3 ? (btn.lastChild.textContent = ' ' + text) : null;
+    if (btn && disabled != null) btn.disabled = !!disabled;
+  }
+
   function setupNotifyButton() {
     const btn = document.getElementById('pNotifyBtn');
     if (!btn) return;
     btn.addEventListener('click', async () => {
+      if (!('Notification' in window)) {
+        setNotifyBtnLabel('No disponible en este navegador', true);
+        return;
+      }
       const perm = await requestNotificationPermission();
       if (perm === 'granted') {
-        btn.textContent = 'Notificaciones activas';
-        btn.disabled = true;
+        setNotifyBtnLabel('Notificaciones activas', true);
         if (window.currentUser) await pollUpdates(window.currentUser, window.userTipo);
-        showLocalNotification('NuevaHabitat', 'Recibirás avisos de visitas y documentos.', '/panel', 'nh-welcome');
+        showLocalNotification('NuevaHabitat', 'Recibirás avisos de visitas y documentos nuevos.', '/panel?sec=resumen', 'nh-welcome');
       } else if (perm === 'denied') {
-        btn.textContent = 'Bloqueadas en el navegador';
+        setNotifyBtnLabel('Bloqueadas · revisa el navegador', false);
+      } else if (perm === 'unsupported') {
+        setNotifyBtnLabel('No disponible', true);
       }
     });
     if (Notification.permission === 'granted') {
-      btn.textContent = 'Notificaciones activas';
-      btn.disabled = true;
+      setNotifyBtnLabel('Notificaciones activas', true);
     }
   }
 

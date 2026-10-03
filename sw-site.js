@@ -1,24 +1,27 @@
 /* Service Worker — Web pública NuevaHabitat (clientes) */
-const CACHE = 'nh-web-v2';
+const CACHE = 'nh-web-v3';
 const SHELL = [
   '/',
   '/index.html',
   '/login',
   '/login.html',
-  '/panel',
   '/css/styles.css',
   '/js/main.js',
   '/js/nh-pwa-install.js',
   '/imagenes/Logo/logosinfondo2.png',
 ];
 
-/** Auth y registro: siempre red primero (evita formulario antiguo en caché) */
+/** Auth, registro y panel: siempre red primero (evita UI antigua en caché) */
 const NETWORK_FIRST = [
   /^\/registro(\.html)?$/,
   /^\/login(\.html)?$/,
+  /^\/acceso-alquileres(\.html)?$/,
   /^\/confirmar-cuenta(\.html)?$/,
+  /^\/panel(\.html)?$/,
   /^\/panel-propietario(\.html)?$/,
   /^\/js\/supabase\.js$/,
+  /^\/js\/panel-cliente-docs\.js$/,
+  /^\/js\/panel-pwa\.js$/,
   /^\/js\/panel-propietario/,
 ];
 
