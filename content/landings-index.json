@@ -936,6 +936,12 @@
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-l-hospitalet",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
     }
   ]
 }
