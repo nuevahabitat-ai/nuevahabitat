@@ -242,12 +242,37 @@
     }
   }
 
+  function applySavedRow(row, msgId) {
+    expediente = row;
+    window.alqExpediente = row;
+    applyExpedienteSummary(row);
+    showSaveMsg(msgId, true, 'Guardado correctamente');
+    toast('Datos guardados', 'success');
+    return true;
+  }
+
   async function saveExpedientePartial(payload, msgId) {
     await ensureExpediente();
+    if (!expediente?.id) {
+      try {
+        const ensured = await apiPost('ensure');
+        if (ensured.row?.id) expediente = ensured.row;
+      } catch (e) {
+        console.warn('ensure before save', e);
+      }
+    }
     if (!expediente?.id) {
       toast('No hay expediente activo. Recarga la página o contacta con Juan.');
       return false;
     }
+
+    try {
+      const saved = await apiPost('save-expediente', { data: payload });
+      if (saved.row) return applySavedRow(saved.row, msgId);
+    } catch (apiErr) {
+      console.warn('save-expediente api', apiErr);
+    }
+
     const { data, error } = await window.nhSupabase.rpc('update_propietario_alquiler_expediente', {
       p_data: payload,
     });
@@ -257,12 +282,8 @@
       toast('No se pudo guardar: ' + (error.message || 'error'), 'error');
       return false;
     }
-    expediente = typeof data === 'string' ? JSON.parse(data) : data;
-    window.alqExpediente = expediente;
-    applyExpedienteSummary(expediente);
-    showSaveMsg(msgId, true, 'Guardado correctamente');
-    toast('Datos guardados', 'success');
-    return true;
+    const row = typeof data === 'string' ? JSON.parse(data) : data;
+    return applySavedRow(row, msgId);
   }
 
   function bindForms() {
@@ -314,6 +335,17 @@
   async function fetchExpediente() {
     const email = currentUser?.email;
     if (!email) return null;
+
+    try {
+      const { data: rpcRow, error: rpcErr } = await window.nhSupabase.rpc('get_my_propietario_alquiler');
+      if (!rpcErr && rpcRow) {
+        return typeof rpcRow === 'string' ? JSON.parse(rpcRow) : rpcRow;
+      }
+      if (rpcErr) console.warn('get_my_propietario_alquiler', rpcErr);
+    } catch (e) {
+      console.warn('get_my_propietario_alquiler', e);
+    }
+
     const { data, error } = await window.nhSupabase
       .from('propietarios_alquiler')
       .select('*')
@@ -449,9 +481,6 @@
     } catch (clientErr) {
       const msg = clientErr.message || '';
       const tryApi = async () => {
-        if (file.size > 4 * 1024 * 1024) {
-          throw new Error('Archivo grande: crea el bucket en Supabase (migración 045) y recarga la página.');
-        }
         const base64 = await fileToBase64(file);
         await apiPost('upload', {
           tipo,
@@ -463,6 +492,7 @@
         insertedByApi = true;
       };
 
+      const useApiFallback = /bucket not found|permission denied|row-level security|policy/i.test(msg);
       if (/bucket not found/i.test(msg)) {
         await ensureStorageBucket();
         try {
@@ -470,6 +500,8 @@
         } catch (retryErr) {
           await tryApi();
         }
+      } else if (useApiFallback) {
+        await tryApi();
       } else {
         await tryApi();
       }
@@ -484,7 +516,20 @@
         url: path,
         estado: 'subido',
       });
-      if (insErr) throw insErr;
+      if (insErr) {
+        const insMsg = insErr.message || '';
+        if (/permission denied|row-level security|policy/i.test(insMsg)) {
+          await apiPost('upload', {
+            tipo,
+            label,
+            fileName: file.name,
+            mimeType: file.type || 'application/octet-stream',
+            base64: await fileToBase64(file),
+          });
+        } else {
+          throw insErr;
+        }
+      }
     }
   }
 
