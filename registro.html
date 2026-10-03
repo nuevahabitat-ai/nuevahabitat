@@ -36,7 +36,7 @@
     <div class="auth-form-box">
       <span class="overline">Es gratis y sin compromiso</span>
       <h1>Crear cuenta</h1>
-      <p>Empieza a vender, comprar o delegar la gestión de tu alquiler.</p>
+      <p>Registro para <strong>vender</strong> o <strong>comprar</strong> vivienda. ¿Administras un alquiler? <a href="/acceso-alquileres" style="color:var(--oro);font-weight:600">Acceso propietario →</a></p>
 
       <button class="auth-social-btn" id="btnGoogle" type="button">
         <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
@@ -75,18 +75,7 @@
             <label class="reg-tipo-card" style="display:flex;align-items:flex-start;gap:.6rem;padding:1rem;border:1.5px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem">
               <input type="radio" name="tipo" id="tipoComprar" value="comprar" style="accent-color:var(--oro);margin-top:.2rem"/> <span><strong>Comprar</strong><br/><span style="font-size:.75rem;color:var(--gris-texto)">Panel comprador</span></span>
             </label>
-            <label class="reg-tipo-card reg-tipo-card--alquiler" style="display:flex;align-items:flex-start;gap:.75rem;padding:1.1rem;border:2px solid var(--crema-dark);border-radius:var(--radius-sm);cursor:pointer;font-size:.9rem;grid-column:1/-1;background:linear-gradient(135deg,#faf8f5,var(--blanco))">
-              <input type="radio" name="tipo" id="tipoAlquiler" value="alquiler" style="accent-color:var(--oro);margin-top:.35rem"/>
-              <span>
-                <strong style="font-size:.95rem">Administración de alquileres</strong>
-                <span style="display:block;font-size:.8125rem;color:var(--gris-texto);line-height:1.45;margin-top:.25rem">Crea cuenta y entra al <strong>panel propietario</strong> (60 €/mes IVA incl.) · mismo registro con Google o email</span>
-              </span>
-            </label>
           </div>
-          <p id="regAlquilerHint" style="display:none;font-size:.8125rem;color:var(--gris-texto);margin:.75rem 0 0;padding:.75rem 1rem;background:#f0fdf4;border:1px solid #86efac;border-radius:6px;line-height:1.5">
-            Al continuar (Google o «Crear mi cuenta») te daremos de alta como <strong>propietario</strong> y entrarás en <a href="/panel-propietario" style="color:var(--oro)">/panel-propietario</a>. No es el formulario de «solicitar administración».
-          </p>
-          <p style="font-size:.75rem;color:var(--gris-medio);margin-top:.75rem;line-height:1.5">¿Solo quieres información del servicio? <a href="/administracion-alquileres" style="color:var(--oro)">Ver landing</a> · ¿Poner el piso en alquiler desde cero? <a href="/alquiler-integral" style="color:var(--oro)">Alquiler integral (499 €)</a></p>
         </div>
         <div class="form-group">
           <label>Contraseña</label>
@@ -108,32 +97,24 @@
 document.addEventListener('supabase:ready', async () => {
   if (new URLSearchParams(location.search).get('logout') === '1') return;
 
+  const urlTipo = new URLSearchParams(location.search).get('tipo');
+  if (urlTipo === 'alquiler') {
+    window.location.replace('/acceso-alquileres' + (location.search.includes('modo') ? location.search : '?modo=registro'));
+    return;
+  }
+
   const user = await nhAuth.getUser();
   if (user) { nhAuth.redirectAfterLogin(user); return; }
 
-  // Preseleccionar tipo desde URL (?tipo=vender o ?tipo=comprar)
-  const urlTipo = new URLSearchParams(location.search).get('tipo');
   if (urlTipo === 'vender') document.getElementById('tipoVender').checked = true;
   else if (urlTipo === 'comprar') document.getElementById('tipoComprar').checked = true;
-  else if (urlTipo === 'alquiler') {
-    document.getElementById('tipoAlquiler').checked = true;
-    const intro = document.querySelector('.auth-form-box > p');
-    if (intro) intro.innerHTML = 'Alta de <strong>propietario</strong> para el panel de administración de alquileres (Google o email).';
-  }
 
   function syncTipoUi() {
-    const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
     document.querySelectorAll('.reg-tipo-card').forEach((el) => {
       const on = el.querySelector('input[type=radio]')?.checked;
-      el.style.borderColor = on ? 'var(--oro)' : (el.classList.contains('reg-tipo-card--alquiler') ? 'var(--crema-dark)' : 'var(--crema-dark)');
+      el.style.borderColor = on ? 'var(--oro)' : 'var(--crema-dark)';
       el.style.boxShadow = on ? '0 6px 20px rgba(0,0,0,.06)' : 'none';
     });
-    const hint = document.getElementById('regAlquilerHint');
-    if (hint) hint.style.display = tipo === 'alquiler' ? 'block' : 'none';
-    const login = document.getElementById('regLoginLink');
-    if (login) {
-      login.href = tipo === 'alquiler' ? '/login?redirect=%2Fpanel-propietario' : '/login';
-    }
   }
   document.querySelectorAll('input[name="tipo"]').forEach((r) => r.addEventListener('change', syncTipoUi));
   syncTipoUi();
@@ -148,7 +129,7 @@ document.addEventListener('supabase:ready', async () => {
 
   document.getElementById('btnGoogle').addEventListener('click', async () => {
     const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
-    if (!tipo) { showError('Elige primero: vender, comprar o administración de alquileres.'); return; }
+    if (!tipo) { showError('Elige primero: vender o comprar.'); return; }
     localStorage.setItem('nh_reg_tipo', tipo);
     await nhAuth.loginGoogle();
   });
@@ -157,7 +138,7 @@ document.addEventListener('supabase:ready', async () => {
     e.preventDefault();
     errBox.style.display = 'none';
     const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
-    if (!tipo) { showError('Selecciona si quieres vender, comprar o administrar un alquiler.'); return; }
+    if (!tipo) { showError('Selecciona si quieres vender o comprar.'); return; }
     const nombre = document.getElementById('regNombre').value.trim() + ' ' + document.getElementById('regApellidos').value.trim();
     const email  = document.getElementById('regEmail').value.trim();
 

@@ -44,21 +44,20 @@
 
 /* ── Nav: Empezar ahora + teléfonos (vertical, a la derecha) ─── */
 (function () {
-  const NH_START_MENU_V = '3';
+  const NH_START_MENU_V = '4';
   const NH_START_MENU_HTML = `
         <a href="/registro?tipo=vender" role="menuitem"><strong>Vender mi vivienda</strong><span>Precio fijo · cobro en escritura</span></a>
         <a href="/registro?tipo=comprar" role="menuitem"><strong>Comprar vivienda</strong><span>Compradores cualificados y asesoría</span></a>
-        <a href="/registro?tipo=alquiler" role="menuitem"><strong>Administración de alquileres</strong><span>Registro o login · panel propietario · 60 €/mes</span></a>
-        <a href="/administracion-alquileres" role="menuitem"><strong>Información del servicio</strong><span>Qué incluye la administración</span></a>
+        <a href="/acceso-alquileres" role="menuitem"><strong>Administración de alquileres</strong><span>Entrar o registrarse · panel propietario</span></a>
         <a href="/alquiler-integral" role="menuitem"><strong>Alquiler integral</strong><span>499 € · publicar, filtrar y cerrar contrato</span></a>
       `;
 
   function syncStartMenu(wrap) {
     const menu = wrap.querySelector('.nav-start-menu');
     if (!menu) return;
-    const badAlq = menu.querySelector('a[href="/administracion-alquileres"][role="menuitem"] strong');
-    const okAlq = menu.querySelector('a[href="/registro?tipo=alquiler"]');
-    if (menu.dataset.nhMenuV !== NH_START_MENU_V || (badAlq && !okAlq)) {
+    const badAlq = menu.querySelector('a[href="/registro?tipo=alquiler"]');
+    const okAlq = menu.querySelector('a[href="/acceso-alquileres"]');
+    if (menu.dataset.nhMenuV !== NH_START_MENU_V || (badAlq || !okAlq)) {
       menu.innerHTML = NH_START_MENU_HTML;
       menu.dataset.nhMenuV = NH_START_MENU_V;
     }
@@ -145,8 +144,8 @@
       wrapLi.innerHTML = `
         <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Alquileres</button>
         <div class="nav-dropdown-menu" role="menu">
-          <a href="/registro?tipo=alquiler" role="menuitem">Crear cuenta (panel propietario)</a>
-          <a href="/administracion-alquileres" role="menuitem">Administración de alquileres</a>
+          <a href="/acceso-alquileres" role="menuitem">Acceso panel propietario</a>
+          <a href="/administracion-alquileres" role="menuitem">Información del servicio</a>
           <a href="/alquiler-integral" role="menuitem">Alquiler integral</a>
         </div>
       `;
@@ -154,10 +153,10 @@
       else ul.appendChild(wrapLi);
     } else {
       const menu = wrapLi.querySelector('.nav-dropdown-menu');
-      if (menu && !menu.querySelector('a[href="/registro?tipo=alquiler"]')) {
+      if (menu && !menu.querySelector('a[href="/acceso-alquileres"]')) {
         menu.insertAdjacentHTML(
           'afterbegin',
-          '<a href="/registro?tipo=alquiler" role="menuitem">Registro · panel propietario</a>'
+          '<a href="/acceso-alquileres" role="menuitem">Acceso panel propietario</a>'
         );
       }
     }
