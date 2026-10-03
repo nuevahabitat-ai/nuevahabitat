@@ -17,13 +17,13 @@ Producción: `https://www.nuevahabitat.com`
 
 ## Deploy Vercel
 
-- **Siempre** desplegar con scope **`nuevahabitat`**:  
-  `npx vercel --prod --yes --scope nuevahabitat`
+- **Dominio producción** (`www.nuevahabitat.com`) → solo deployment **Production** de la rama **`main`**. Ramas `cursor/*` = **Preview** (`*.vercel.app`, sin dominio custom).
+- Tras PR listo: **merge a `main`** (Vercel despliega solo; no hace falta CLI si Git está conectado).
+- CLI opcional desde `main`: `npx vercel --prod --yes --scope nuevahabitat`
 - Proyecto: `nuevahabitat/nuevahabitat`
-- Tras push o cambios listos para producción, hacer deploy salvo que el usuario diga lo contrario.
 
 ## Orden habitual
 
-1. Commit (si procede)
-2. Push → `nuevahabitat-ai`
-3. Deploy → `--scope nuevahabitat`
+1. Commit + push rama `cursor/…-477b`
+2. PR → **Ready for review** → **merge a `main`**
+3. Comprobar en Vercel que el deployment dice **Production** y lista `www.nuevahabitat.com`

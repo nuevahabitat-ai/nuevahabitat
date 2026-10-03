@@ -1,0 +1,29 @@
+# Valida el build en cada push/PR a main.
+# El dominio www.nuevahabitat.com lo asigna Vercel solo a despliegues Production (rama main).
+name: Production build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: npm install --omit=dev
+      - name: Build landings (mismo comando que Vercel)
+        run: node scripts/build-landings.js
+      - name: Comprobar archivos clave de producción
+        run: |
+          test -f acceso-alquileres.html
+          test -f panel.html
+          test -f panel-propietario.html
+          grep -q 'Documentación' panel.html
+          grep -q 'panel-cliente-docs' panel.html

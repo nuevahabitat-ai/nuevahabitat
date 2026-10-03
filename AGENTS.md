@@ -24,7 +24,9 @@ Traducir lenguaje natural del operador a JSON y hacer POST. Consultar `GET /api/
 ## Deploy
 
 - Push: cuenta `nuevahabitat-ai`, remote `origin`
-- Vercel: `npx vercel --prod --yes --scope nuevahabitat`
+- **Producción (`www.nuevahabitat.com`)**: solo cuando el commit está en **`main`** y Vercel termina el deployment **Production** (dominio custom). Los pushes a ramas `cursor/*` generan **Preview** (`*.vercel.app`) — **no** llevan el dominio principal.
+- Tras abrir PR: **marcar ready for review y mergear a `main`** para que el usuario vea cambios en producción (no basta con push a la rama).
+- Vercel CLI (opcional): `npx vercel --prod --yes --scope nuevahabitat` desde `main`
 - Tras landings JSON: `node scripts/build-landings.js`
 
 ## Secretos (solo Vercel, nunca en repo)
