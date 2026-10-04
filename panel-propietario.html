@@ -141,6 +141,9 @@
         <button type="button" class="p-nav-btn" data-sec="inmueble"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg> Inmueble</button>
         <button type="button" class="p-nav-btn" data-sec="documentacion"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Documentación</button>
         <button type="button" class="p-nav-btn" data-sec="honorarios"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path stroke-linecap="round" d="M2 10h20"/></svg> Honorarios</button>
+        <div class="p-sep"></div>
+        <div class="p-nav-label">Cuenta</div>
+        <button type="button" class="p-nav-btn" data-sec="configuraciones"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Configuración</button>
       </nav>
 
       <div class="p-content">
@@ -291,12 +294,34 @@
             </p>
           </div>
         </div>
+
+        <div class="p-section" id="sec-configuraciones">
+          <div class="p-card">
+            <div class="p-card-title">Configuración de la cuenta</div>
+            <dl style="display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem;font-size:.875rem;margin:0 0 1.25rem">
+              <dt style="color:var(--gris-medio)">Email</dt><dd id="cfgPropEmail">—</dd>
+              <dt style="color:var(--gris-medio)">Servicio</dt><dd id="cfgPropServicio">—</dd>
+            </dl>
+            <div class="gap-row" style="display:flex;flex-wrap:wrap;gap:.65rem;margin-bottom:1.25rem">
+              <button type="button" class="btn btn-outline" style="font-size:.82rem" onclick="nhPanelRequestPasswordReset()">Cambiar contraseña (email)</button>
+              <button type="button" class="btn" style="font-size:.82rem;border:1.5px solid var(--gris-medio)" onclick="nhAuth.signOutClear().then(()=>location.href='/acceso-alquileres?logout=1')">Cerrar sesión</button>
+            </div>
+          </div>
+          <div class="p-card" style="border:1.5px solid rgba(239,68,68,.35)">
+            <div class="p-card-title" style="color:#b91c1c">Zona de peligro</div>
+            <p style="font-size:.85rem;color:var(--gris-texto);line-height:1.6;margin:0 0 1rem">
+              Eliminar tu cuenta borra el expediente de alquiler, los documentos asociados en nuestro sistema y tu acceso al panel. <strong>No se puede deshacer.</strong>
+            </p>
+            <button type="button" class="btn" style="background:#b91c1c;color:#fff;font-size:.82rem;padding:.6rem 1.1rem;border:none" onclick="nhPanelDeleteAccount({ endpoint: '/api/panel-propietario?action=delete-account', body: { action: 'delete-account' }, redirect: '/' })">Eliminar mi cuenta y datos</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <script src="js/supabase.js"></script>
+<script src="js/panel-account-settings.js"></script>
 <script src="js/panel-propietario-stripe.js"></script>
 <script src="js/panel-propietario.js"></script>
 <script src="js/mbn.js"></script>

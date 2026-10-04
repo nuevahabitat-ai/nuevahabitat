@@ -1,44 +1,35 @@
-/* Service Worker — Panel Admin NuevaHabitat */
-const CACHE = 'nh-admin-v2';
-const SHELL = [
-  '/admin-panel',
-  '/admin-panel.html',
-  '/imagenes/Logo/logosinfondo2.png',
-];
+/* Service Worker — Panel Admin NuevaHabitat (network-first para JS/HTML actualizado) */
+const CACHE = 'nh-admin-v3';
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(SHELL).catch(() => {}))
-  );
-  self.skipWaiting();
+  event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
       Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-  if (!url.pathname.startsWith('/admin-panel')) return;
+  if (url.origin !== self.location.origin) return;
+  const isAdmin = url.pathname.startsWith('/admin-panel') || url.pathname === '/sw-admin.js';
+  if (!isAdmin) return;
+
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const network = fetch(event.request)
-        .then((res) => {
-          if (res && res.status === 200 && url.origin === self.location.origin) {
-            const clone = res.clone();
-            caches.open(CACHE).then((c) => c.put(event.request, clone));
-          }
-          return res;
-        })
-        .catch(() => cached);
-      return cached || network;
-    })
+    fetch(event.request)
+      .then((res) => {
+        if (res && res.status === 200) {
+          const clone = res.clone();
+          caches.open(CACHE).then((c) => c.put(event.request, clone));
+        }
+        return res;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
 
