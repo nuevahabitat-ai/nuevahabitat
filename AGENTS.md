@@ -24,9 +24,10 @@ Traducir lenguaje natural del operador a JSON y hacer POST. Consultar `GET /api/
 ## Deploy
 
 - Push: cuenta `nuevahabitat-ai`, remote `origin`
-- **Producción (`www.nuevahabitat.com`)**: solo cuando el commit está en **`main`** y Vercel termina el deployment **Production** (dominio custom). Los pushes a ramas `cursor/*` generan **Preview** (`*.vercel.app`) — **no** llevan el dominio principal.
-- Tras abrir PR: **marcar ready for review y mergear a `main`** para que el usuario vea cambios en producción (no basta con push a la rama).
-- Vercel CLI (opcional): `npx vercel --prod --yes --scope nuevahabitat` desde `main`
+- **Solo producción:** Vercel está configurado para **no construir Preview** en ramas distintas de `main` (`ignoreCommand` + `git.deploymentEnabled` en `vercel.json`). Un push a `cursor/*` **no** publica en `www.nuevahabitat.com`.
+- **Producción (`www.nuevahabitat.com`)**: commit en **`main`** + deployment **Production** en Vercel (dominio custom).
+- Tras abrir PR: **mergear a `main`** para que el usuario vea cambios en producción (no basta con push a la rama ni URLs preview).
+- Vercel CLI (solo emergencias, checkout `main`): `npx vercel --prod --yes --scope nuevahabitat`
 - Tras landings JSON: `node scripts/build-landings.js`
 
 ## Secretos (solo Vercel, nunca en repo)

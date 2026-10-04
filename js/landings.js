@@ -153,7 +153,15 @@ window.NH_LANDING_ORDER = [
   "nuevahabitat-vs-housfy-barcelona",
   "nuevahabitat-vs-idealista-particular",
   "vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
-  "comprar-piso-barcelona"
+  "comprar-piso-barcelona",
+  "administracion-alquileres",
+  "alquiler-integral",
+  "administracion-alquileres-les-corts",
+  "administracion-alquileres-l-hospitalet",
+  "demo-panel-propietario-alquiler",
+  "alquiler-integral-l-hospitalet",
+  "alquiler-integral-les-corts",
+  "alquiler-integral-eixample"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
@@ -162,6 +170,7 @@ window.NH_LANDING_CLUSTERS = {
   particular: { label: 'Vender como particular', slugs: [] },
   comparativa: { label: 'Comparativas', slugs: [] },
   comprador: { label: 'Comprar', slugs: [] },
+  alquileres: { label: 'Alquileres', slugs: [] },
 };
 window.NH_LANDINGS = {
   "vender-badalona": {
@@ -286,7 +295,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
-    "cardTeaser": "¿Vendes tu piso en el Eixample? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+    "cardTeaser": "Vender en Eixample Derecho, Esquerre, Passeig de Gràcia, Fort Pienc o Sant Antoni con valoración por manzana."
   },
   "vender-el-besos-barcelona": {
     "slug": "vender-el-besos-barcelona",
@@ -372,7 +381,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
-    "cardTeaser": "¿Vendes tu piso en Gràcia? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+    "cardTeaser": "Vender en Gràcia (08012, 08024): fincas sin ascensor, terrazas en Plaça del Sol o Camp d'en Grassot."
   },
   "vender-guinardo-barcelona": {
     "slug": "vender-guinardo-barcelona",
@@ -510,7 +519,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/lescorts1.jpg",
-    "cardTeaser": "¿Vendes tu piso en Les Corts? NuevaHabitat: plataforma para vendedores con honorarios fijos de 3.000€ + IVA."
+    "cardTeaser": "Vender en Les Corts desde Mejía Lequerica 42: Numància, Pedralbes, Zona Universitaria y entorno Camp Nou."
   },
   "vender-montjuic-barcelona": {
     "slug": "vender-montjuic-barcelona",
@@ -596,7 +605,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/barcelona2.jpg",
-    "cardTeaser": "¿Vendes tu piso en la Barceloneta? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+    "cardTeaser": "Vender frente al mar en la Barceloneta (08003): pisos compactos, vistas y comprador internacional."
   },
   "vender-piso-born-barcelona": {
     "slug": "vender-piso-born-barcelona",
@@ -613,7 +622,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/born1.jpg",
-    "cardTeaser": "¿Vendes tu piso en el Born o Sant Pere? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+    "cardTeaser": "Vender en el Born y Sant Pere (08003): fincas con vigas, reforma premium y comprador internacional."
   },
   "vender-piso-ciutat-vella-barcelona": {
     "slug": "vender-piso-ciutat-vella-barcelona",
@@ -630,7 +639,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/ciutatvella2.jpg",
-    "cardTeaser": "¿Vendes tu piso en Ciutat Vella? Guía por barrios (Gòtic, Born, Raval, Barceloneta)."
+    "cardTeaser": "¿Vendes en el centro histórico de Barcelona? Guía por barrio (Gòtic, Born, Raval, Barceloneta), valoración …"
   },
   "vender-piso-gotic-barcelona": {
     "slug": "vender-piso-gotic-barcelona",
@@ -647,7 +656,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/gotic1.jpg",
-    "cardTeaser": "¿Vendes tu piso en el Barri Gòtic? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+    "cardTeaser": "Vender en el Barri Gòtic (08002): finca medieval, luz en calles estrechas y normativa turística."
   },
   "vender-piso-raval-barcelona": {
     "slug": "vender-piso-raval-barcelona",
@@ -664,7 +673,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/raval1.jpg",
-    "cardTeaser": "¿Vendes tu piso en el Raval? NuevaHabitat: honorarios fijos de 3.000€ + IVA."
+    "cardTeaser": "Vender en el Raval (08001): norte creativo junto MACBA vs."
   },
   "vender-poble-sec": {
     "slug": "vender-poble-sec",
@@ -2418,6 +2427,78 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/barcelona2.jpg",
     "cardTeaser": "Comprar en Vila Olímpica con guía experto: búsqueda, negociación, trámites hasta escritura."
+  },
+  "administracion-alquileres": {
+    "slug": "administracion-alquileres",
+    "cluster": "alquileres",
+    "footerLabel": "Administración de alquileres",
+    "keyword_principal": "administración de alquileres Barcelona",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "Gestión mensual 60 € IVA incl.: contrato LAU, incidencias, renovaciones. El inquilino habla solo con Nueva Habitat."
+  },
+  "alquiler-integral": {
+    "slug": "alquiler-integral",
+    "cluster": "alquileres",
+    "footerLabel": "Alquiler integral",
+    "keyword_principal": "alquiler integral Barcelona",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "499 € precio fijo: anuncio, filtro de candidatos, visitas, top 3 perfiles, contrato y fianza INCASÒL."
+  },
+  "administracion-alquileres-les-corts": {
+    "slug": "administracion-alquileres-les-corts",
+    "cluster": "alquileres",
+    "footerLabel": "Administración alquileres · Les Corts",
+    "keyword_principal": "administración alquileres Les Corts",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes IVA incl. · visita e informe · panel propietario · oficina Mejía Lequerica 42."
+  },
+  "administracion-alquileres-l-hospitalet": {
+    "slug": "administracion-alquileres-l-hospitalet",
+    "cluster": "alquileres",
+    "footerLabel": "Administración alquileres · L'Hospitalet",
+    "keyword_principal": "administración alquileres L'Hospitalet",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Gestión de alquiler larga duración en Centre, Bellvitge y Gran Via a precio fijo mensual."
+  },
+  "demo-panel-propietario-alquiler": {
+    "slug": "demo-panel-propietario-alquiler",
+    "cluster": "alquileres",
+    "footerLabel": "Demo panel propietario",
+    "keyword_principal": "panel propietario alquiler demo",
+    "priority": 0.75,
+    "indexable": false,
+    "cardTeaser": "Demostración interactiva con datos simulados (incidencias, expediente, 60 €/mes)."
+  },
+  "alquiler-integral-l-hospitalet": {
+    "slug": "alquiler-integral-l-hospitalet",
+    "cluster": "alquileres",
+    "footerLabel": "Alquiler integral · L'Hospitalet",
+    "keyword_principal": "alquiler integral L'Hospitalet",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Poner tu piso en alquiler en L'Hospitalet con tarifa fija 499 € hasta firma de contrato."
+  },
+  "alquiler-integral-les-corts": {
+    "slug": "alquiler-integral-les-corts",
+    "cluster": "alquileres",
+    "footerLabel": "Alquiler integral · Les Corts",
+    "keyword_principal": "alquiler integral Les Corts",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Delega captación y cierre en Numància, ZU o Pedralbes. Oficina Mejía Lequerica 42 · 499 € fijo."
+  },
+  "alquiler-integral-eixample": {
+    "slug": "alquiler-integral-eixample",
+    "cluster": "alquileres",
+    "footerLabel": "Alquiler integral · Eixample",
+    "keyword_principal": "alquiler integral Eixample",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Gestionamos visitas, filtro y contrato en Dreta, Esquerre y Sant Antoni · 499 € precio fijo."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

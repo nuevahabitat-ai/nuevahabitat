@@ -78,6 +78,13 @@ function loadKeywordsMap() {
   return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : {};
 }
 
+function loadSeoStaticLandings() {
+  const p = path.join(ROOT, 'content', 'seo-static-landings.json');
+  if (!fs.existsSync(p)) return [];
+  const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+  return Array.isArray(data.landings) ? data.landings : [];
+}
+
 function validateLandings(all) {
   const errors = [];
   const keywords = loadKeywordsMap();
@@ -784,6 +791,7 @@ function writeLandingsJs(allMap, order) {
     "  particular: { label: 'Vender como particular', slugs: [] },",
     "  comparativa: { label: 'Comparativas', slugs: [] },",
     "  comprador: { label: 'Comprar', slugs: [] },",
+    "  alquileres: { label: 'Alquileres', slugs: [] },",
     '};',
     'window.NH_LANDINGS = ' + JSON.stringify(allMap, null, 2) + ';',
     'Object.keys(window.NH_LANDINGS).forEach(function(slug){',
@@ -924,7 +932,23 @@ function main() {
   const otherLandings = generated
     .filter((L) => L.cluster !== 'barrio' && !(L.cluster === 'comprador' && L.compradorTipo === 'barrio'))
     .map((L) => L.slug);
-  const order = [...barrioSlugs, ...compradorBarrioSlugs, ...otherLandings];
+
+  const staticSeo = loadSeoStaticLandings();
+  staticSeo.forEach((L) => {
+    if (!L.slug || allMap[L.slug]) return;
+    allMap[L.slug] = {
+      slug: L.slug,
+      cluster: L.cluster || 'alquileres',
+      footerLabel: L.footerLabel,
+      keyword_principal: L.keyword_principal,
+      priority: L.priority,
+      indexable: L.indexable !== false,
+      cardTeaser: L.cardTeaser,
+    };
+  });
+  const staticSlugs = staticSeo.map((L) => L.slug).filter((slug) => allMap[slug]);
+
+  const order = [...barrioSlugs, ...compradorBarrioSlugs, ...otherLandings, ...staticSlugs];
 
   writeLandingsJs(allMap, order);
 

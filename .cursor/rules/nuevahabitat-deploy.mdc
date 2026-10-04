@@ -17,9 +17,11 @@ Producción: `https://www.nuevahabitat.com`
 
 ## Deploy Vercel
 
-- **Dominio producción** (`www.nuevahabitat.com`) → solo deployment **Production** de la rama **`main`**. Ramas `cursor/*` = **Preview** (`*.vercel.app`, sin dominio custom).
-- Tras PR listo: **merge a `main`** (Vercel despliega solo; no hace falta CLI si Git está conectado).
-- CLI opcional desde `main`: `npx vercel --prod --yes --scope nuevahabitat`
+- **Solo producción.** No usar Preview ni desplegar ramas `cursor/*`: `vercel.json` tiene `ignoreCommand` + `git.deploymentEnabled` para que **solo `main`** dispare build.
+- **Dominio producción** (`www.nuevahabitat.com`) → deployment **Production** únicamente tras **merge a `main`**.
+- **Prohibido** para agentes: `npx vercel` sin `--prod`, enlaces `*.vercel.app` como “ya está desplegado”, o asumir que un push a rama feature publica en el dominio custom.
+- Tras PR listo: **merge a `main`** y comprobar en Vercel **Production** + `www.nuevahabitat.com`.
+- CLI solo emergencias, **desde `main` checkout**: `npx vercel --prod --yes --scope nuevahabitat`
 - Proyecto: `nuevahabitat/nuevahabitat`
 
 ## Orden habitual

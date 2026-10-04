@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-03T13:30:00.000Z",
+  "updated": "2026-10-04T09:33:52.377Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -926,10 +926,34 @@
       "priority": 0.9
     },
     {
+      "slug": "administracion-alquileres",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
+      "slug": "alquiler-integral",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
       "slug": "administracion-alquileres-les-corts",
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-l-hospitalet",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "demo-panel-propietario-alquiler",
+      "cluster": "alquileres",
+      "indexable": false,
+      "priority": 0.75
     },
     {
       "slug": "alquiler-integral-l-hospitalet",
@@ -938,7 +962,13 @@
       "priority": 0.86
     },
     {
-      "slug": "administracion-alquileres-l-hospitalet",
+      "slug": "alquiler-integral-les-corts",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-eixample",
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86

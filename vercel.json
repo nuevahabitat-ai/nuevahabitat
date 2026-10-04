@@ -1,5 +1,13 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "name": "nuevahabitat",
+  "ignoreCommand": "node scripts/vercel-only-main-build.js",
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "cursor/*": false
+    }
+  },
   "buildCommand": "node scripts/build-landings.js",
   "outputDirectory": ".",
   "framework": null,
