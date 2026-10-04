@@ -159,7 +159,9 @@ window.NH_LANDING_ORDER = [
   "administracion-alquileres-les-corts",
   "administracion-alquileres-l-hospitalet",
   "demo-panel-propietario-alquiler",
-  "alquiler-integral-l-hospitalet"
+  "alquiler-integral-l-hospitalet",
+  "alquiler-integral-les-corts",
+  "alquiler-integral-eixample"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
@@ -2479,6 +2481,24 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "Poner tu piso en alquiler en L'Hospitalet con tarifa fija 499 € hasta firma de contrato."
+  },
+  "alquiler-integral-les-corts": {
+    "slug": "alquiler-integral-les-corts",
+    "cluster": "alquileres",
+    "footerLabel": "Alquiler integral · Les Corts",
+    "keyword_principal": "alquiler integral Les Corts",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Delega captación y cierre en Numància, ZU o Pedralbes. Oficina Mejía Lequerica 42 · 499 € fijo."
+  },
+  "alquiler-integral-eixample": {
+    "slug": "alquiler-integral-eixample",
+    "cluster": "alquileres",
+    "footerLabel": "Alquiler integral · Eixample",
+    "keyword_principal": "alquiler integral Eixample",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Gestionamos visitas, filtro y contrato en Dreta, Esquerre y Sant Antoni · 499 € precio fijo."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

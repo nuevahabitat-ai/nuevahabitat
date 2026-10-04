@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04T09:30:53.833Z",
+  "updated": "2026-10-04T09:33:52.377Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -957,6 +957,18 @@
     },
     {
       "slug": "alquiler-integral-l-hospitalet",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-les-corts",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-eixample",
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86

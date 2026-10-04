@@ -54,6 +54,24 @@
       "priority": 0.86,
       "indexable": true,
       "cardTeaser": "Poner tu piso en alquiler en L'Hospitalet con tarifa fija 499 € hasta firma de contrato."
+    },
+    {
+      "slug": "alquiler-integral-les-corts",
+      "cluster": "alquileres",
+      "footerLabel": "Alquiler integral · Les Corts",
+      "keyword_principal": "alquiler integral Les Corts",
+      "priority": 0.86,
+      "indexable": true,
+      "cardTeaser": "Delega captación y cierre en Numància, ZU o Pedralbes. Oficina Mejía Lequerica 42 · 499 € fijo."
+    },
+    {
+      "slug": "alquiler-integral-eixample",
+      "cluster": "alquileres",
+      "footerLabel": "Alquiler integral · Eixample",
+      "keyword_principal": "alquiler integral Eixample",
+      "priority": 0.86,
+      "indexable": true,
+      "cardTeaser": "Gestionamos visitas, filtro y contrato en Dreta, Esquerre y Sant Antoni · 499 € precio fijo."
     }
   ]
 }
