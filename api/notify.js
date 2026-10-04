@@ -13,10 +13,39 @@ import {
   purgeNonFormularioLeadsServer,
   getLeadByIdServer,
   isFormularioWebLead,
+  isAlquilerPropietarioLead,
+  propietarioAlquilerToLeadRow,
   updateLeadServer,
   deleteLeadServer,
 } from '../lib/server/leads-api.js';
+import {
+  listPropietariosAlquilerServer,
+  patchPropietarioAlquilerAdmin,
+  deletePropietarioAlquilerAdmin,
+} from '../lib/server/propietarios-alquiler-admin-api.js';
 import { getUserFromJwt } from '../lib/server/supabase-server.js';
+
+function normLeadEmail(e) {
+  return String(e || '').trim().toLowerCase();
+}
+
+function mergePropietariosIntoLeads(leads, propietarios) {
+  const out = [...(leads || [])];
+  const seen = new Set(
+    out.filter(isAlquilerPropietarioLead).map((l) => normLeadEmail(l.email)).filter(Boolean)
+  );
+  for (const p of propietarios || []) {
+    const em = normLeadEmail(p.email);
+    if (em && seen.has(em)) continue;
+    const row = propietarioAlquilerToLeadRow(p);
+    if (row) {
+      out.push(row);
+      if (em) seen.add(em);
+    }
+  }
+  out.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
+  return out;
+}
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com';
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || process.env.INFO_EMAIL || 'info@nuevahabitat.com';
@@ -635,7 +664,9 @@ async function handleAdminLeads(req, res, body) {
       purge = await purgeNonFormularioLeadsServer();
     }
     const limit = Math.min(Number(body?.limit) || 500, 1000);
-    const data = await listLeadsServer({ limit, formularioOnly: true });
+    const leads = await listLeadsServer({ limit, formularioOnly: true });
+    const propietarios = await listPropietariosAlquilerServer();
+    const data = mergePropietariosIntoLeads(leads, propietarios);
     return res.status(200).json({ ok: true, data, purge });
   } catch (err) {
     console.error('admin-leads', err);
@@ -727,6 +758,46 @@ async function handleInsertLead(req, res, body) {
   } catch (err) {
     console.error('api/leads', err);
     return res.status(500).json({ error: err.message });
+  }
+}
+
+async function handleAdminPropietarioAlquilerUpdate(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const id = body?.id || body?.propietarioId;
+  if (!id) return res.status(400).json({ ok: false, error: 'id requerido' });
+  try {
+    const result = await patchPropietarioAlquilerAdmin(id, {
+      estado_gestion: body.estado_gestion,
+      activo: body.activo,
+      notas_propietario: body.notas_propietario,
+    });
+    if (!result.ok) {
+      const status = result.error?.includes('no encontrado') ? 404 : 400;
+      return res.status(status).json({ ok: false, error: result.error || 'No se pudo actualizar' });
+    }
+    return res.status(200).json({ ok: true, row: result.row });
+  } catch (err) {
+    console.error('admin-propietario-alquiler-update', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
+async function handleAdminPropietarioAlquilerDelete(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const id = body?.id || body?.propietarioId;
+  if (!id) return res.status(400).json({ ok: false, error: 'id requerido' });
+  try {
+    const result = await deletePropietarioAlquilerAdmin(id);
+    if (!result.ok) {
+      const status = result.error?.includes('no encontrado') ? 404 : 400;
+      return res.status(status).json({ ok: false, error: result.error || 'No se pudo eliminar' });
+    }
+    return res.status(200).json({ ok: true, deleted: result.deleted });
+  } catch (err) {
+    console.error('admin-propietario-alquiler-delete', err);
+    return res.status(500).json({ ok: false, error: err.message });
   }
 }
 
@@ -859,6 +930,8 @@ export default async function handler(req, res) {
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
   if (action === 'admin-lead-update') return handleAdminLeadUpdate(req, res, body);
   if (action === 'admin-lead-delete') return handleAdminLeadDelete(req, res, body);
+  if (action === 'admin-propietario-alquiler-update') return handleAdminPropietarioAlquilerUpdate(req, res, body);
+  if (action === 'admin-propietario-alquiler-delete') return handleAdminPropietarioAlquilerDelete(req, res, body);
   if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
   if (action === 'resend-all-form-leads') return handleResendAllFormLeadsAdmin(req, res, body);
