@@ -108,6 +108,14 @@
     const parts = nombre.trim().split(/\s+/);
     const ini = (parts[0]?.[0] || '') + (parts[1]?.[0] || parts[0]?.[1] || '');
     document.getElementById('pAvatar').textContent = ini.slice(0, 2).toUpperCase();
+    const cfgEmail = document.getElementById('cfgPropEmail');
+    const cfgSvc = document.getElementById('cfgPropServicio');
+    if (cfgEmail) cfgEmail.textContent = user.email || '—';
+    if (cfgSvc) {
+      cfgSvc.textContent = nhAuth.getAlquilerPanelMode(user) === 'integral'
+        ? 'Alquiler integral (499 €)'
+        : 'Administración de alquiler (60 €/mes)';
+    }
   }
 
   function showSection(id) {

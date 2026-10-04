@@ -8981,7 +8981,7 @@ function renderAlqAdminModalBody() {
     const arch = alqRowArchivado(row);
     body.innerHTML = `
       <p class="text-muted" style="font-size:.82rem;line-height:1.55;margin:0 0 1rem">
-        Acciones para cuando ya no trabajáis con este propietario. <strong>Dar de baja</strong> y <strong>descartar</strong> ocultan el expediente del listado principal (filtra por estado «Baja» o «Descartado»). <strong>Eliminar</strong> borra el registro en base de datos.
+        Acciones para cuando ya no trabajáis con este propietario. <strong>Dar de baja</strong> y <strong>descartar</strong> ocultan el expediente del listado principal (filtra por estado «Baja» o «Descartado»). <strong>Eliminar</strong> borra expediente, documentos y cuenta de acceso (login).
       </p>
       <dl class="dash-dl">
         ${alqDlRow('Activo en cartera', row.activo === false ? 'No' : 'Sí')}
@@ -9149,12 +9149,34 @@ async function alqReactivarPropietario() {
   renderAlqAdminModalBody();
 }
 
+async function adminAccountApi(body) {
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (!session?.access_token) throw new Error('Sesión no disponible');
+  const res = await fetch('/api/account', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify(body),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) throw new Error(json.error || `Error (${res.status})`);
+  return json;
+}
+
 async function alqEliminarPropietario() {
   const row = _alqPropData.find((x) => x.id === _alqModalId);
   if (!row) return;
-  if (!confirm(`¿Eliminar definitivamente a «${row.nombre || row.email}»? No se puede deshacer.`)) return;
+  if (!confirm(`¿Eliminar definitivamente a «${row.nombre || row.email}»?\n\nSe borrarán expediente, documentos y la cuenta de acceso (login). No se puede deshacer.`)) return;
   try {
-    await adminLeadApi('admin-propietario-alquiler-delete', { id: row.id });
+    await adminAccountApi({
+      action: 'admin-delete-propietario',
+      propietarioId: row.id,
+      email: row.email,
+      perfil_id: row.perfil_id,
+      deleteAuth: true,
+    });
   } catch (err) {
     nhToast('Error: ' + err.message, 'error');
     return;
