@@ -913,7 +913,7 @@ async function initPanel() {
 
   const urlTipoEarly = new URLSearchParams(location.search).get('tipo');
   if (nhAuth.getUserTipo(user) === 'propietario' && urlTipoEarly !== 'comprador' && urlTipoEarly !== 'vendedor') {
-    window.location.replace('/panel-propietario');
+    window.location.replace(nhAuth.getPanelUrl(user));
     return;
   }
 

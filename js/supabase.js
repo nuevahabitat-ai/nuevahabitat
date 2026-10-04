@@ -15,6 +15,8 @@ const CONFIRM_URL = () => window.location.origin + '/confirmar-cuenta';
 function clearAuthStorage() {
   localStorage.removeItem('nh_reg_tipo');
   localStorage.removeItem('nh_reg_email');
+  localStorage.removeItem('nh_alquiler_servicio');
+  sessionStorage.removeItem('nh_alquiler_variant');
   Object.keys(localStorage).forEach(k => {
     if (k.startsWith('sb-') && k.endsWith('-auth-token')) localStorage.removeItem(k);
   });
@@ -90,8 +92,35 @@ window.nhAuth = {
   getPanelUrl(user) {
     if (nhAuth.isAdmin(user)) return '/admin-panel';
     const tipo = nhAuth.getUserTipo(user);
-    if (tipo === 'propietario') return '/panel-propietario';
+    if (tipo === 'propietario') {
+      const mode = nhAuth.getAlquilerPanelMode(user);
+      return '/panel-propietario?servicio=' + mode;
+    }
     return '/panel?tipo=' + tipo;
+  },
+
+  /** Cierra sesión Supabase y limpia contexto local (sin redirigir). */
+  async signOutClear() {
+    if (window.nhSupabase) {
+      try {
+        await window.nhSupabase.auth.signOut({ scope: 'global' });
+      } catch (_) {
+        try { await window.nhSupabase.auth.signOut({ scope: 'local' }); } catch (_) {}
+      }
+    }
+    clearAuthStorage();
+  },
+
+  /**
+   * Página de acceso alquiler con ?logout=1: cerrar sesión y dejar formulario limpio.
+   * @returns {boolean} true si se procesó logout
+   */
+  async handleAccesoAlquilerLogoutQuery() {
+    if (new URLSearchParams(window.location.search).get('logout') !== '1') return false;
+    await nhAuth.signOutClear();
+    const path = window.location.pathname.replace(/\.html$/, '') || '/';
+    history.replaceState(null, '', path);
+    return true;
   },
 
   /**
@@ -156,6 +185,9 @@ window.nhAuth = {
     });
     if (!error && data?.user) {
       localStorage.setItem('nh_reg_tipo', tipo || 'comprar');
+      if (tipo === 'comprar' || tipo === 'vender' || tipo === 'comprador' || tipo === 'vendedor') {
+        localStorage.removeItem('nh_alquiler_servicio');
+      }
       if (data.session?.user) {
         if (tipo === 'alquiler_integral') {
           await nhAuth.applyAlquilerAccessProfile(data.session.user, 'integral');
@@ -213,12 +245,7 @@ window.nhAuth = {
   },
 
   async logout() {
-    try {
-      await window.nhSupabase.auth.signOut({ scope: 'global' });
-    } catch (_) {
-      try { await window.nhSupabase.auth.signOut({ scope: 'local' }); } catch (_) {}
-    }
-    clearAuthStorage();
+    await nhAuth.signOutClear();
     window.location.replace('/login?logout=1');
   },
 
@@ -257,6 +284,11 @@ window.nhAuth = {
 
   redirectAfterLogin(user) {
     sessionStorage.removeItem('nh_logout_at');
+    const tipo = nhAuth.getUserTipo(user);
+    if (tipo === 'comprador' || tipo === 'vendedor') {
+      localStorage.removeItem('nh_alquiler_servicio');
+      sessionStorage.removeItem('nh_alquiler_variant');
+    }
     const redir = new URLSearchParams(window.location.search).get('redirect');
     if (redir) {
       try {

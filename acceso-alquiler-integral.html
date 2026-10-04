@@ -82,6 +82,8 @@
 <script src="js/supabase.js"></script>
 <script>
 document.addEventListener('supabase:ready', async () => {
+  if (await nhAuth.handleAccesoAlquilerLogoutQuery()) return;
+
   localStorage.setItem('nh_reg_tipo', 'alquiler_integral');
   localStorage.setItem('nh_alquiler_servicio', 'integral');
 
@@ -122,16 +124,18 @@ document.addEventListener('supabase:ready', async () => {
     window.location.replace('/panel-propietario?servicio=integral');
   }
 
-  if (new URLSearchParams(location.search).get('logout') !== '1') {
-    const user = await nhAuth.getUser();
-    if (user && !nhAuth.isAdmin(user)) {
-      try {
-        await goPanel(user);
-      } catch (e) {
-        console.warn('auto goPanel integral', e);
-      }
+  const user = await nhAuth.getUser();
+  if (user) {
+    if (nhAuth.isAdmin(user)) {
+      window.location.replace('/admin-panel');
       return;
     }
+    try {
+      await goPanel(user);
+    } catch (e) {
+      console.warn('auto goPanel integral', e);
+    }
+    return;
   }
 
   document.getElementById('btnGoogle').addEventListener('click', async () => {
