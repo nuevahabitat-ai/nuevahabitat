@@ -738,6 +738,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button class="adm-subtab" data-lf="estado" data-val="contactado">Contactados</button>
             <button class="adm-subtab" data-lf="estado" data-val="cualificado">Cualificados</button>
             <button class="adm-subtab" data-lf="estado" data-val="cerrado">Cerrados</button>
+            <button class="adm-subtab" data-lf="estado" data-val="descartado">Descartados</button>
           </div>
           <div class="gap-row" style="margin-bottom:1rem;flex-wrap:wrap">
             <select id="lead-filter-tipo" class="adm-field" style="padding:.5rem .75rem;max-width:180px">
@@ -2411,6 +2412,23 @@ async function fetchAdminLeads(opts = {}) {
   return json;
 }
 window.fetchAdminLeads = fetchAdminLeads;
+
+async function adminLeadApi(action, payload = {}) {
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (!session?.access_token) throw new Error('Sesión no disponible');
+  const res = await fetch(`/api/notify?__action=${encodeURIComponent(action)}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) throw new Error(json.error || `Error (${res.status})`);
+  return json;
+}
+window.adminLeadApi = adminLeadApi;
 
 function updateNavLeadsBadge(leads) {
   const el = document.getElementById('nav-leads-badge');
@@ -4227,8 +4245,9 @@ function leadActionBtns(l, compact) {
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}resendLeadAdminEmail('${l.id}')" title="Reenviar email aviso">✉</button>
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','contactado')" title="Contactado">📞</button>
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','cualificado')" title="Cualificado">✓</button>
-    <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}setLeadEstado('${l.id}','descartado')" title="Descartar">✕</button>
+    <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}setLeadEstado('${l.id}','descartado')" title="Descartar (oculto del listado por defecto)">✕</button>
     <button type="button" class="adm-btn adm-btn-gold${sm}" onclick="${stop}setLeadEstado('${l.id}','cerrado')" title="Cerrado">🏁</button>
+    <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}deleteLead('${l.id}')" title="Eliminar definitivamente">🗑</button>
   </div>`;
 }
 
@@ -4261,6 +4280,10 @@ function buildLeadModalContent(l) {
       <strong>Notas</strong>
       <input type="text" class="adm-field" style="width:100%;margin-top:.35rem" placeholder="Notas internas…" value="${dashEsc(l.notas || '')}"
         onchange="saveLeadNotas('${l.id}', this.value); openLeadModal('${l.id}')"/>
+    </div>
+    <div class="dash-modal-block" style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem">
+      <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="setLeadEstado('${l.id}','descartado'); closeDashModal();">Descartar lead</button>
+      <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteLead('${l.id}', true)">Eliminar definitivamente</button>
     </div>`;
 }
 
@@ -4317,6 +4340,7 @@ function renderLeadsCards(list) {
 function filterLeadsList() {
   return _leadsData.filter(l => {
     if (!isFormularioWebLead(l)) return false;
+    if (!_leadFilterEstado && l.estado === 'descartado') return false;
     if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
     if (_leadFilterTipo && l.tipo !== _leadFilterTipo) return false;
     if (_leadFilterSegment && leadSegment(l) !== _leadFilterSegment) return false;
@@ -4362,19 +4386,53 @@ async function loadLeads(){
 
 async function setLeadEstado(id, estado) {
   if (!LEAD_ESTADOS.includes(estado)) return;
-  const { error } = await window.nhSupabase.from('leads').update({ estado }).eq('id', id);
-  if (error) { window.nhToast && nhToast('Error: ' + error.message); return; }
+  try {
+    await adminLeadApi('admin-lead-update', { leadId: id, estado });
+  } catch (err) {
+    window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
+    return;
+  }
   const l = _leadsData.find(x => x.id === id);
   if (l) l.estado = estado;
+  _dashCache.leads = _leadsData.slice(0, 6);
+  updateNavLeadsBadge(_leadsData);
   renderLeadsView();
+  renderDashLeads(_dashCache.leads);
   window.nhToast && nhToast('Estado actualizado: ' + estado, 'success', 2500);
 }
+window.setLeadEstado = setLeadEstado;
 
 async function saveLeadNotas(id, notas) {
-  await window.nhSupabase.from('leads').update({ notas: notas.trim() || null }).eq('id', id);
+  try {
+    await adminLeadApi('admin-lead-update', { leadId: id, notas });
+  } catch (err) {
+    window.nhToast && nhToast('Error al guardar notas: ' + err.message, 'error', 5000);
+    return;
+  }
   const l = _leadsData.find(x => x.id === id);
   if (l) l.notas = notas.trim();
 }
+window.saveLeadNotas = saveLeadNotas;
+
+async function deleteLead(id, fromModal) {
+  const l = findLeadById(id);
+  const label = l?.nombre ? ` «${l.nombre}»` : '';
+  if (!confirm(`¿Eliminar definitivamente el lead${label}? Esta acción no se puede deshacer.`)) return;
+  try {
+    await adminLeadApi('admin-lead-delete', { leadId: id });
+  } catch (err) {
+    window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
+    return;
+  }
+  _leadsData = _leadsData.filter(x => x.id !== id);
+  _dashCache.leads = _leadsData.slice(0, 6);
+  updateNavLeadsBadge(_leadsData);
+  renderLeadsView();
+  renderDashLeads(_dashCache.leads);
+  if (fromModal) closeDashModal();
+  window.nhToast && nhToast('Lead eliminado', 'success', 3000);
+}
+window.deleteLead = deleteLead;
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-lf="estado"]').forEach(btn => {

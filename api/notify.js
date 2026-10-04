@@ -13,6 +13,8 @@ import {
   purgeNonFormularioLeadsServer,
   getLeadByIdServer,
   isFormularioWebLead,
+  updateLeadServer,
+  deleteLeadServer,
 } from '../lib/server/leads-api.js';
 import { getUserFromJwt } from '../lib/server/supabase-server.js';
 
@@ -728,6 +730,45 @@ async function handleInsertLead(req, res, body) {
   }
 }
 
+async function handleAdminLeadUpdate(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const leadId = body?.leadId || body?.id;
+  if (!leadId) return res.status(400).json({ ok: false, error: 'leadId requerido' });
+  try {
+    const result = await updateLeadServer(leadId, {
+      estado: body.estado,
+      notas: body.notas,
+    });
+    if (!result.ok) {
+      const status = result.error?.includes('no encontrado') ? 404 : 400;
+      return res.status(status).json({ ok: false, error: result.error || 'No se pudo actualizar' });
+    }
+    return res.status(200).json({ ok: true, row: result.row });
+  } catch (err) {
+    console.error('admin-lead-update', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
+async function handleAdminLeadDelete(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const leadId = body?.leadId || body?.id;
+  if (!leadId) return res.status(400).json({ ok: false, error: 'leadId requerido' });
+  try {
+    const result = await deleteLeadServer(leadId);
+    if (!result.ok) {
+      const status = result.error?.includes('no encontrado') ? 404 : 400;
+      return res.status(status).json({ ok: false, error: result.error || 'No se pudo eliminar' });
+    }
+    return res.status(200).json({ ok: true, deleted: result.deleted });
+  } catch (err) {
+    console.error('admin-lead-delete', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleResendLeadAdmin(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -816,6 +857,8 @@ export default async function handler(req, res) {
   const action = req.query?.__action || req.query?.action;
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
+  if (action === 'admin-lead-update') return handleAdminLeadUpdate(req, res, body);
+  if (action === 'admin-lead-delete') return handleAdminLeadDelete(req, res, body);
   if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
   if (action === 'resend-all-form-leads') return handleResendAllFormLeadsAdmin(req, res, body);
