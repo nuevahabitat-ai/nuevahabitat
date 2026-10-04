@@ -2450,7 +2450,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Les Corts",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes desde Mejía Lequerica 42. Numància, Zona Universitaria y Pedralbes."
+    "cardTeaser": "60 €/mes IVA incl. · visita e informe · panel propietario · oficina Mejía Lequerica 42."
   },
   "administracion-alquileres-l-hospitalet": {
     "slug": "administracion-alquileres-l-hospitalet",
