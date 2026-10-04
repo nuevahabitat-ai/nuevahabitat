@@ -631,6 +631,14 @@
     input.disabled = true;
     try {
       await uploadDocumentFile(file, tipo, label);
+      if (nhAuth.getAlquilerPanelMode(currentUser) === 'integral') {
+        try {
+          const aligned = await apiPost('align-servicio', { servicio: 'integral' });
+          if (aligned.row) applyExpedienteSummary(aligned.row);
+        } catch (syncErr) {
+          console.warn('align-servicio tras upload', syncErr);
+        }
+      }
       toast('Documento subido correctamente', 'success');
       await loadDocumentos();
       renderUploadSlots();
