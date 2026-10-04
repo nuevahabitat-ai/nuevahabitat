@@ -158,6 +158,7 @@ window.NH_LANDING_ORDER = [
   "alquiler-integral",
   "administracion-alquileres-les-corts",
   "administracion-alquileres-l-hospitalet",
+  "demo-panel-propietario-alquiler",
   "alquiler-integral-l-hospitalet"
 ];
 window.NH_LANDING_CLUSTERS = {
@@ -2460,6 +2461,15 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "Gestión de alquiler larga duración en Centre, Bellvitge y Gran Via a precio fijo mensual."
+  },
+  "demo-panel-propietario-alquiler": {
+    "slug": "demo-panel-propietario-alquiler",
+    "cluster": "alquileres",
+    "footerLabel": "Demo panel propietario",
+    "keyword_principal": "panel propietario alquiler demo",
+    "priority": 0.75,
+    "indexable": false,
+    "cardTeaser": "Demostración interactiva con datos simulados (incidencias, expediente, 60 €/mes)."
   },
   "alquiler-integral-l-hospitalet": {
     "slug": "alquiler-integral-l-hospitalet",

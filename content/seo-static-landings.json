@@ -38,6 +38,15 @@
       "cardTeaser": "Gestión de alquiler larga duración en Centre, Bellvitge y Gran Via a precio fijo mensual."
     },
     {
+      "slug": "demo-panel-propietario-alquiler",
+      "cluster": "alquileres",
+      "footerLabel": "Demo panel propietario",
+      "keyword_principal": "panel propietario alquiler demo",
+      "priority": 0.75,
+      "indexable": false,
+      "cardTeaser": "Demostración interactiva con datos simulados (incidencias, expediente, 60 €/mes)."
+    },
+    {
       "slug": "alquiler-integral-l-hospitalet",
       "cluster": "alquileres",
       "footerLabel": "Alquiler integral · L'Hospitalet",
