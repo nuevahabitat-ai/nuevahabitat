@@ -725,6 +725,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button class="adm-subtab active" data-lf="segment" data-val="">Todos</button>
             <button class="adm-subtab" data-lf="segment" data-val="vendedor">Vendedores</button>
             <button class="adm-subtab" data-lf="segment" data-val="comprador">Compradores</button>
+            <button class="adm-subtab" data-lf="segment" data-val="alquiler_admin">Alquiler administración</button>
+            <button class="adm-subtab" data-lf="segment" data-val="alquiler_integral">Alquiler integral</button>
             <button class="adm-subtab" data-lf="segment" data-val="otros">Otros</button>
           </div>
           <div class="adm-subtabs" style="margin-bottom:.65rem;flex-wrap:wrap">
@@ -1732,6 +1734,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
               <option value="activo">Activo</option>
               <option value="renovacion">Renovación</option>
               <option value="baja">Baja</option>
+              <option value="descartado">Descartado</option>
             </select>
           </div>
           <div class="adm-field">
@@ -1773,6 +1776,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
               <option value="activo">Activo</option>
               <option value="renovacion">Renovación</option>
               <option value="baja">Baja</option>
+              <option value="descartado">Descartado</option>
             </select>
           </div>
           <div class="adm-field">
@@ -1809,6 +1813,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button type="button" class="adm-subtab" data-alq-modal-tab="inmueble" onclick="alqAdminModalTab('inmueble')">Inmueble</button>
             <button type="button" class="adm-subtab" data-alq-modal-tab="inquilino" onclick="alqAdminModalTab('inquilino')">Inquilino</button>
             <button type="button" class="adm-subtab" data-alq-modal-tab="documentacion" onclick="alqAdminModalTab('documentacion')">Documentación</button>
+            <button type="button" class="adm-subtab" data-alq-modal-tab="gestion" onclick="alqAdminModalTab('gestion')">Gestión</button>
           </div>
           <div class="dash-modal-body" id="alq-modal-body"></div>
           <div class="dash-modal-foot" id="alq-modal-foot"></div>
@@ -4141,9 +4146,26 @@ function isFormularioWebLead(l) {
   if (leadEsRegistroPanel(l)) return false;
   const o = (l.origen || '').trim();
   if (o === 'newsletter_blog') return false;
+  if (o === 'alquiler_integral' || o === 'alquiler_administracion') return false;
   if ((l.telefono || '').trim() === 'newsletter') return false;
   const t = (l.tipo || '').trim().toLowerCase();
   return ['compra', 'venta', 'valoracion', 'hipoteca'].includes(t);
+}
+
+function isAlquilerPropietarioLead(l) {
+  const o = (l?.origen || '').trim();
+  return o === 'alquiler_integral' || o === 'alquiler_administracion';
+}
+
+function isAdminLeadsListRow(l) {
+  return isFormularioWebLead(l) || isAlquilerPropietarioLead(l);
+}
+
+function leadPropietarioAlquilerId(l) {
+  if (l?.propietario_alquiler_id) return l.propietario_alquiler_id;
+  const id = String(l?.id || '');
+  if (id.startsWith('pa:')) return id.slice(3);
+  return null;
 }
 
 async function resendLeadAdminEmail(leadId) {
@@ -4195,6 +4217,9 @@ async function resendAllFormLeadEmails() {
 window.resendAllFormLeadEmails = resendAllFormLeadEmails;
 
 function leadSegment(l) {
+  const o = (l.origen || '').trim();
+  if (o === 'alquiler_administracion') return 'alquiler_admin';
+  if (o === 'alquiler_integral') return 'alquiler_integral';
   const t = l.tipo || '';
   if (t === 'compra') return 'comprador';
   if (t === 'venta' || t === 'valoracion') return 'vendedor';
@@ -4205,6 +4230,8 @@ function leadSegment(l) {
 function leadCategoriaLabel(l) {
   const seg = leadSegment(l);
   const panel = leadEsRegistroPanel(l);
+  if (seg === 'alquiler_admin') return 'Alquiler · administración (60 €/mes)';
+  if (seg === 'alquiler_integral') return 'Alquiler · integral (499 €)';
   if (seg === 'comprador') {
     return panel ? 'Lead comprador · registrado panel' : 'Lead comprador · formulario';
   }
@@ -4216,7 +4243,7 @@ function leadCategoriaLabel(l) {
 
 function leadCategoriaBadgeHtml(l) {
   const seg = leadSegment(l);
-  const cls = seg === 'comprador' ? 'buy' : seg === 'vendedor' ? 'sell' : '';
+  const cls = seg === 'comprador' ? 'buy' : seg === 'vendedor' ? 'sell' : seg.startsWith('alquiler') ? 'sell' : '';
   return `<span class="lead-cat-badge ${cls}">${dashEsc(leadCategoriaLabel(l))}</span>`;
 }
 
@@ -4224,6 +4251,8 @@ function leadOrigenLabel(origen) {
   if (!origen) return 'Web';
   if (origen === 'registro_cuenta') return 'Alta en panel (registro.html)';
   if (origen === 'newsletter_blog') return 'Newsletter blog';
+  if (origen === 'alquiler_administracion') return 'Panel propietario · administración alquiler';
+  if (origen === 'alquiler_integral') return 'Panel propietario · alquiler integral';
   return origen.replace(/_/g, ' ');
 }
 
@@ -4240,9 +4269,15 @@ function leadEstadoBadge(est) {
 function leadActionBtns(l, compact) {
   const sm = compact ? ' adm-btn-sm' : ' adm-btn-sm';
   const stop = 'event.stopPropagation();';
+  const isPa = !!leadPropietarioAlquilerId(l);
+  const propBtn = isPa
+    ? `<button type="button" class="adm-btn adm-btn-gold${sm}" onclick="${stop}openAlqFromLead('${l.id}')" title="Abrir expediente alquiler">🏠</button>`
+    : '';
+  const mailBtn = isPa ? '' : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}resendLeadAdminEmail('${l.id}')" title="Reenviar email aviso">✉</button>`;
   return `<div class="gap-row lead-card-actions">
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadModal('${l.id}')" title="Ver ficha">👁</button>
-    <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}resendLeadAdminEmail('${l.id}')" title="Reenviar email aviso">✉</button>
+    ${propBtn}
+    ${mailBtn}
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','contactado')" title="Contactado">📞</button>
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','cualificado')" title="Cualificado">✓</button>
     <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}setLeadEstado('${l.id}','descartado')" title="Descartar (oculto del listado por defecto)">✕</button>
@@ -4339,7 +4374,7 @@ function renderLeadsCards(list) {
 
 function filterLeadsList() {
   return _leadsData.filter(l => {
-    if (!isFormularioWebLead(l)) return false;
+    if (!isAdminLeadsListRow(l)) return false;
     if (!_leadFilterEstado && l.estado === 'descartado') return false;
     if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
     if (_leadFilterTipo && l.tipo !== _leadFilterTipo) return false;
@@ -4352,12 +4387,14 @@ function filterLeadsList() {
 
 function renderLeadsCounts() {
   const el = document.getElementById('leads-counts');
-  if (!el || !_leadsData.length) { if (el) el.textContent = _leadsData.length ? '' : 'Sin leads aún'; return; }
-  const v = _leadsData.filter(l => leadSegment(l) === 'vendedor').length;
-  const c = _leadsData.filter(l => leadSegment(l) === 'comprador').length;
-  const fp = _leadsData.filter(l => !leadEsRegistroPanel(l)).length;
-  const rp = _leadsData.filter(l => leadEsRegistroPanel(l)).length;
-  el.innerHTML = `${_leadsData.length} total · ${v} vendedor · ${c} comprador<br/>${fp} formulario · ${rp} panel`;
+  const rows = _leadsData.filter(isAdminLeadsListRow);
+  if (!el || !rows.length) { if (el) el.textContent = rows.length ? '' : 'Sin leads aún'; return; }
+  const v = rows.filter(l => leadSegment(l) === 'vendedor').length;
+  const c = rows.filter(l => leadSegment(l) === 'comprador').length;
+  const aqA = rows.filter(l => leadSegment(l) === 'alquiler_admin').length;
+  const aqI = rows.filter(l => leadSegment(l) === 'alquiler_integral').length;
+  const fp = rows.filter(l => isFormularioWebLead(l)).length;
+  el.innerHTML = `${rows.length} total · ${v} vendedor · ${c} comprador · ${aqA} alq. admin · ${aqI} alq. integral<br/>${fp} formulario web`;
 }
 
 function renderLeadsView() {
@@ -4386,6 +4423,38 @@ async function loadLeads(){
 
 async function setLeadEstado(id, estado) {
   if (!LEAD_ESTADOS.includes(estado)) return;
+  const l = findLeadById(id);
+  const propId = l && leadPropietarioAlquilerId(l);
+  if (propId) {
+    const patch = { id: propId };
+    if (estado === 'descartado') {
+      patch.estado_gestion = 'descartado';
+      patch.activo = false;
+    } else if (estado === 'cerrado') {
+      patch.estado_gestion = 'baja';
+      patch.activo = false;
+    } else {
+      patch.estado_gestion = 'alta';
+      patch.activo = true;
+    }
+    try {
+      await adminLeadApi('admin-propietario-alquiler-update', patch);
+    } catch (err) {
+      window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
+      return;
+    }
+    if (l) l.estado = estado;
+    const idx = _alqPropData.findIndex((x) => x.id === propId);
+    if (idx >= 0 && patch.estado_gestion) _alqPropData[idx].estado_gestion = patch.estado_gestion;
+    if (idx >= 0 && patch.activo != null) _alqPropData[idx].activo = patch.activo;
+    _dashCache.leads = _leadsData.slice(0, 6);
+    updateNavLeadsBadge(_leadsData);
+    renderLeadsView();
+    renderDashLeads(_dashCache.leads);
+    renderAlquilerPropTable(_alqListMode);
+    window.nhToast && nhToast('Expediente alquiler actualizado: ' + estado, 'success', 2500);
+    return;
+  }
   try {
     await adminLeadApi('admin-lead-update', { leadId: id, estado });
   } catch (err) {
@@ -4417,22 +4486,39 @@ window.saveLeadNotas = saveLeadNotas;
 async function deleteLead(id, fromModal) {
   const l = findLeadById(id);
   const label = l?.nombre ? ` «${l.nombre}»` : '';
-  if (!confirm(`¿Eliminar definitivamente el lead${label}? Esta acción no se puede deshacer.`)) return;
+  const propId = l && leadPropietarioAlquilerId(l);
+  const msg = propId
+    ? `¿Eliminar definitivamente el expediente de alquiler${label}? Se borra la fila en propietarios (documentos en storage no se eliminan automáticamente).`
+    : `¿Eliminar definitivamente el lead${label}? Esta acción no se puede deshacer.`;
+  if (!confirm(msg)) return;
   try {
-    await adminLeadApi('admin-lead-delete', { leadId: id });
+    if (propId) await adminLeadApi('admin-propietario-alquiler-delete', { id: propId });
+    else await adminLeadApi('admin-lead-delete', { leadId: id });
   } catch (err) {
     window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
     return;
   }
   _leadsData = _leadsData.filter(x => x.id !== id);
+  if (propId) _alqPropData = _alqPropData.filter(x => x.id !== propId);
   _dashCache.leads = _leadsData.slice(0, 6);
   updateNavLeadsBadge(_leadsData);
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
+  if (propId) renderAlquilerPropTable(_alqListMode);
   if (fromModal) closeDashModal();
-  window.nhToast && nhToast('Lead eliminado', 'success', 3000);
+  window.nhToast && nhToast(propId ? 'Propietario eliminado' : 'Lead eliminado', 'success', 3000);
 }
 window.deleteLead = deleteLead;
+
+function openAlqFromLead(leadId) {
+  const l = findLeadById(leadId);
+  const propId = l && leadPropietarioAlquilerId(l);
+  if (!propId) return;
+  const seg = leadSegment(l);
+  switchSection(seg === 'alquiler_integral' ? 'alquiler-integral' : 'alquiler-admin');
+  setTimeout(() => openAlqAdminModal(propId), 120);
+}
+window.openAlqFromLead = openAlqFromLead;
 
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-lf="estado"]').forEach(btn => {
@@ -8617,6 +8703,7 @@ const ALQ_ESTADO_LABEL = {
   activo: 'Activo',
   renovacion: 'Renovación',
   baja: 'Baja',
+  descartado: 'Descartado',
 };
 let _alqPropData = [];
 let _alqModalId = null;
@@ -8674,10 +8761,15 @@ function getAlqFilterValues(mode) {
   };
 }
 
+function alqRowArchivado(r) {
+  return r?.activo === false || r?.estado_gestion === 'baja' || r?.estado_gestion === 'descartado';
+}
+
 function filterAlqPropRows(list, mode) {
   const f = getAlqFilterValues(mode);
   const pool = (list || []).filter((r) => alqRowServicio(r) === mode);
   return pool.filter((r) => {
+    if (!f.estado && alqRowArchivado(r)) return false;
     if (f.estado && r.estado_gestion !== f.estado) return false;
     if (mode === 'administracion') {
       if (f.cuota === 'activa' && !r.suscripcion_activa) return false;
@@ -8885,15 +8977,42 @@ function renderAlqAdminModalBody() {
       </tbody></table>`;
       void hydrateAlqDocLinks();
     }
+  } else if (_alqModalTab === 'gestion') {
+    const arch = alqRowArchivado(row);
+    body.innerHTML = `
+      <p class="text-muted" style="font-size:.82rem;line-height:1.55;margin:0 0 1rem">
+        Acciones para cuando ya no trabajáis con este propietario. <strong>Dar de baja</strong> y <strong>descartar</strong> ocultan el expediente del listado principal (filtra por estado «Baja» o «Descartado»). <strong>Eliminar</strong> borra el registro en base de datos.
+      </p>
+      <dl class="dash-dl">
+        ${alqDlRow('Activo en cartera', row.activo === false ? 'No' : 'Sí')}
+        ${alqDlRow('Estado actual', ALQ_ESTADO_LABEL[row.estado_gestion] || row.estado_gestion)}
+      </dl>
+      <div class="adm-field" style="margin-top:1rem">
+        <label for="alq-gestion-notas">Notas internas (gestión)</label>
+        <textarea id="alq-gestion-notas" class="adm-field" rows="3" style="width:100%;resize:vertical">${escAlq(row.notas_propietario || '')}</textarea>
+      </div>
+      <div class="gap-row" style="margin-top:1rem;flex-wrap:wrap">
+        <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="alqReactivarPropietario()">↩ Reactivar (alta)</button>
+        <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="alqDarDeBajaPropietario()">Dar de baja</button>
+        <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="alqDescartarPropietario()">Descartar expediente</button>
+        <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="alqEliminarPropietario()">Eliminar definitivamente</button>
+      </div>
+      ${arch ? '<p class="text-muted" style="font-size:.75rem;margin-top:.75rem">Este expediente está archivado y no aparece en el listado hasta que filtres por Baja/Descartado o lo reactives.</p>' : ''}`;
   }
 
   if (foot) {
     const wa = normalizePhoneWa(row.telefono);
+    const saveEstadoBtn = _alqModalTab === 'resumen'
+      ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqAdminEstado()">Guardar estado</button>`
+      : '';
+    const saveNotasBtn = _alqModalTab === 'gestion'
+      ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqGestionNotas()">Guardar notas</button>`
+      : '';
     foot.innerHTML = `
       ${wa ? `<a class="adm-btn adm-btn-green adm-btn-sm" href="https://wa.me/${wa}" target="_blank" rel="noopener">WhatsApp</a>` : ''}
       ${row.email ? `<a class="adm-btn adm-btn-ghost adm-btn-sm" href="mailto:${escAlq(row.email)}">Email</a>` : ''}
       <a class="adm-btn adm-btn-ghost adm-btn-sm" href="/panel-propietario" target="_blank" rel="noopener">Ver panel propietario</a>
-      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqAdminEstado()">Guardar estado</button>`;
+      ${saveEstadoBtn}${saveNotasBtn}`;
   }
 }
 
@@ -8941,30 +9060,111 @@ function closeAlqAdminModal() {
   _alqModalId = null;
 }
 
+async function patchAlqPropietarioLocal(id, patch) {
+  const json = await adminLeadApi('admin-propietario-alquiler-update', { id, ...patch });
+  const data = json.row;
+  if (data) {
+    const idx = _alqPropData.findIndex((x) => x.id === id);
+    if (idx >= 0) _alqPropData[idx] = data;
+  }
+  return data;
+}
+
 async function saveAlqAdminEstado() {
   const row = _alqPropData.find((x) => x.id === _alqModalId);
   if (!row) return;
   const estado = document.getElementById('alq-admin-estado')?.value;
   if (!estado) return;
-  const { data, error } = await window.nhSupabase
-    .from('propietarios_alquiler')
-    .update({ estado_gestion: estado })
-    .eq('id', row.id)
-    .select('*')
-    .maybeSingle();
-  if (error) {
-    nhToast('Error al guardar: ' + error.message, 'error');
+  try {
+    await patchAlqPropietarioLocal(row.id, {
+      estado_gestion: estado,
+      activo: (estado === 'baja' || estado === 'descartado') ? false : true,
+    });
+  } catch (err) {
+    nhToast('Error al guardar: ' + err.message, 'error');
     return;
-  }
-  if (data) {
-    const idx = _alqPropData.findIndex((x) => x.id === row.id);
-    if (idx >= 0) _alqPropData[idx] = data;
   }
   nhToast('Estado actualizado', 'success');
   renderAlquilerPropTable(_alqListMode);
   if (_alqListMode === 'administracion') renderAlquilerIntegralTable();
   else renderAlquilerAdminTable();
   renderAlqAdminModalBody();
+}
+
+async function saveAlqGestionNotas() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  const notas = document.getElementById('alq-gestion-notas')?.value || '';
+  try {
+    await patchAlqPropietarioLocal(row.id, { notas_propietario: notas });
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error');
+    return;
+  }
+  nhToast('Notas guardadas', 'success');
+  renderAlqAdminModalBody();
+}
+
+async function alqDarDeBajaPropietario() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  if (!confirm(`¿Dar de baja a «${row.nombre || row.email}»?`)) return;
+  try {
+    await patchAlqPropietarioLocal(row.id, { estado_gestion: 'baja', activo: false });
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error');
+    return;
+  }
+  nhToast('Propietario dado de baja', 'success');
+  closeAlqAdminModal();
+  renderAlquilerPropTable(_alqListMode);
+}
+
+async function alqDescartarPropietario() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  if (!confirm(`¿Descartar el expediente de «${row.nombre || row.email}»?`)) return;
+  try {
+    await patchAlqPropietarioLocal(row.id, { estado_gestion: 'descartado', activo: false });
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error');
+    return;
+  }
+  nhToast('Expediente descartado', 'success');
+  closeAlqAdminModal();
+  renderAlquilerPropTable(_alqListMode);
+}
+
+async function alqReactivarPropietario() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  try {
+    await patchAlqPropietarioLocal(row.id, { estado_gestion: 'alta', activo: true });
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error');
+    return;
+  }
+  nhToast('Expediente reactivado', 'success');
+  renderAlquilerPropTable(_alqListMode);
+  renderAlqAdminModalBody();
+}
+
+async function alqEliminarPropietario() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  if (!confirm(`¿Eliminar definitivamente a «${row.nombre || row.email}»? No se puede deshacer.`)) return;
+  try {
+    await adminLeadApi('admin-propietario-alquiler-delete', { id: row.id });
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error');
+    return;
+  }
+  _alqPropData = _alqPropData.filter((x) => x.id !== row.id);
+  _leadsData = _leadsData.filter((l) => leadPropietarioAlquilerId(l) !== row.id);
+  nhToast('Propietario eliminado', 'success');
+  closeAlqAdminModal();
+  renderAlquilerPropTable(_alqListMode);
+  renderLeadsView();
 }
 
 window.loadAlquilerAdmin = loadAlquilerAdmin;
@@ -8975,6 +9175,11 @@ window.openAlqAdminModal = openAlqAdminModal;
 window.closeAlqAdminModal = closeAlqAdminModal;
 window.alqAdminModalTab = alqAdminModalTab;
 window.saveAlqAdminEstado = saveAlqAdminEstado;
+window.saveAlqGestionNotas = saveAlqGestionNotas;
+window.alqDarDeBajaPropietario = alqDarDeBajaPropietario;
+window.alqDescartarPropietario = alqDescartarPropietario;
+window.alqReactivarPropietario = alqReactivarPropietario;
+window.alqEliminarPropietario = alqEliminarPropietario;
 
 /* ── Newsletter ─────────────────────────────────────────────────── */
 async function loadNewsletter(){
