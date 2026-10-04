@@ -26,3 +26,4 @@ imagenes/*.docx
 *.exe
 *.msi
 CursorUserSetup*
+*.pyc

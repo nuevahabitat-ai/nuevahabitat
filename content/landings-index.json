@@ -990,6 +990,54 @@
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-sants",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-sants",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-poblenou",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-poblenou",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-sarria",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-sarria",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-badalona",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-badalona",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
     }
   ]
 }

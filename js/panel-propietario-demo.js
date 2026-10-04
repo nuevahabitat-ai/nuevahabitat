@@ -54,6 +54,30 @@
       renta_mensual: 1280,
       zonaLabel: 'Gràcia',
     },
+    sants: {
+      inmueble_direccion: 'Carrer de Sants, 180 · 3r 2a · 08028 Barcelona (Hostafrancs)',
+      inmueble_ref: 'NH-INT-ST-3011',
+      renta_mensual: 1050,
+      zonaLabel: 'Sants',
+    },
+    poblenou: {
+      inmueble_direccion: 'Carrer de Pujades, 24 · 4t 1a · 08005 Barcelona (Poblenou)',
+      inmueble_ref: 'NH-INT-PB-4410',
+      renta_mensual: 1380,
+      zonaLabel: 'Poblenou',
+    },
+    sarria: {
+      inmueble_direccion: 'Carrer Major de Sarrià, 102 · 2n · 08017 Barcelona',
+      inmueble_ref: 'NH-INT-SR-5102',
+      renta_mensual: 1750,
+      zonaLabel: 'Sarrià',
+    },
+    badalona: {
+      inmueble_direccion: 'Carrer de Martí i Julià, 8 · 2n · 08912 Badalona (Centre)',
+      inmueble_ref: 'NH-INT-BD-8801',
+      renta_mensual: 920,
+      zonaLabel: 'Badalona',
+    },
   };
 
   let demoContext = { mode: 'admin', zona: 'lescorts' };

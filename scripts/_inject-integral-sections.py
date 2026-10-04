@@ -66,6 +66,10 @@ PAGES = {
     'alquiler-integral-eixample.html': ('eixample', 'el Eixample', 'En el Eixample ajustamos renta y anuncio por micro-zona (Dreta, Esquerre, Sant Antoni, Sagrada Família).'),
     'alquiler-integral-l-hospitalet.html': ('hospitalet', 'L\'Hospitalet', 'En L\'Hospitalet cubrimos Centre, Bellvitge, Pubilla Cases y Gran Via con el mismo pack 499 €.'),
     'alquiler-integral-gracia.html': ('gracia', 'Gràcia', 'En Gràcia ajustamos renta y anuncio por micro-zona (Vila de Gràcia, Camp d\'en Grassot, Vallcarca).'),
+    'alquiler-integral-sants.html': ('sants', 'Sants', 'En Sants-Montjuïc ajustamos renta en Hostafrancs, La Bordeta y entorno Estació de Sants.'),
+    'alquiler-integral-poblenou.html': ('poblenou', 'Poblenou', 'En Poblenou y 22@ publicamos con comparables de Sant Martí, no medias de toda Barcelona.'),
+    'alquiler-integral-sarria.html': ('sarria', 'Sarrià', 'En Sarrià-Sant Gervasi captamos inquilinos solventes en Bonanova, Putxet y Sarrià centre.'),
+    'alquiler-integral-badalona.html': ('badalona', 'Badalona', 'En Badalona cubrimos Centre, Gorg, Montigalà y Pep Ventura con el pack 499 €.'),
 }
 
 MARKER = '<!-- NH_INTEGRAL_PROCESO_DEMO -->'
