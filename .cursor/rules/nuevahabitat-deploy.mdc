@@ -24,8 +24,23 @@ Producción: `https://www.nuevahabitat.com`
 - CLI solo emergencias, **desde `main` checkout**: `npx vercel --prod --yes --scope nuevahabitat`
 - Proyecto: `nuevahabitat/nuevahabitat`
 
-## Orden habitual
+## Orden habitual (agente Cloud — automático, sin pedir merge manual)
 
-1. Commit + push rama `cursor/…-477b`
-2. PR → **Ready for review** → **merge a `main`**
-3. Comprobar en Vercel que el deployment dice **Production** y lista `www.nuevahabitat.com`
+El operador **no** debe tener que mergear en GitHub. El agente cierra el ciclo solo:
+
+1. **Commit** en rama `cursor/…-7bcd` (o la que toque).
+2. **Push inmediato:** `git push -u origin HEAD` (reintentar hasta 4 veces con backoff). Si falla: `bash scripts/git-push-origin.sh`.
+3. **PR:** crear/actualizar con `ManagePullRequest`; marcar ready for review si aplica.
+4. **Production:** cuando CI esté verde, **merge a `main` tú mismo** — no delegues al usuario:
+   - Preferido: `bash scripts/ship-to-production.sh [/ruta-a-verificar]`
+   - O: `git fetch origin main && git checkout main && git pull --ff-only origin main && git merge --no-edit origin/<rama> && git push origin main`
+   - Alternativa: `gh pr merge <n> --squash` si `gh` está autenticado.
+5. **Verificar:** curl/ WebFetch a `https://www.nuevahabitat.com/...` (200), o Vercel **Production** + dominio custom.
+
+Si el push falla por token: reintentar en el mismo turno; **no** sustituir merge manual por “abre el PR”. Solo si tras reintentos sigue 401, pedir **una vez** reconectar GitHub en Environment o secreto `GITHUB_TOKEN`.
+
+## Orden habitual (resumen)
+
+1. Commit + push rama `cursor/…`
+2. Merge automático a **`main`** (agente)
+3. Comprobar **Production** en `www.nuevahabitat.com`
