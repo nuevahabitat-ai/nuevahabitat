@@ -129,13 +129,9 @@
       btn.addEventListener('click', () => showSection(btn.dataset.sec));
     });
     document.getElementById('pLogout')?.addEventListener('click', async () => {
-      try {
-        await window.nhSupabase.auth.signOut({ scope: 'global' });
-      } catch (_) {
-        try { await window.nhSupabase.auth.signOut({ scope: 'local' }); } catch (_) {}
-      }
-      sessionStorage.setItem('nh_logout_at', String(Date.now()));
-      const dest = expediente?.servicio === 'integral' ? '/acceso-alquiler-integral?logout=1' : '/acceso-alquileres?logout=1';
+      const integral = panelModeIntegral(expediente);
+      await nhAuth.signOutClear();
+      const dest = integral ? '/acceso-alquiler-integral?logout=1' : '/acceso-alquileres?logout=1';
       window.location.replace(dest);
     });
     const q = new URLSearchParams(location.search);

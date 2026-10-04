@@ -131,6 +131,7 @@ document.addEventListener('supabase:ready', async () => {
     const tipo = document.querySelector('input[name="tipo"]:checked')?.value;
     if (!tipo) { showError('Elige primero: vender o comprar.'); return; }
     localStorage.setItem('nh_reg_tipo', tipo);
+    localStorage.removeItem('nh_alquiler_servicio');
     await nhAuth.loginGoogle();
   });
 

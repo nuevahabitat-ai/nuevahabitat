@@ -106,6 +106,8 @@
 <script src="js/supabase.js"></script>
 <script>
 document.addEventListener('supabase:ready', async () => {
+  if (await nhAuth.handleAccesoAlquilerLogoutQuery()) return;
+
   localStorage.setItem('nh_reg_tipo', 'alquiler');
   localStorage.setItem('nh_alquiler_servicio', 'administracion');
 
@@ -145,29 +147,36 @@ document.addEventListener('supabase:ready', async () => {
     return (await expedienteServicio(user)) === 'integral';
   }
 
-  if (new URLSearchParams(location.search).get('logout') !== '1') {
-    const user = await nhAuth.getUser();
-    if (user) {
-      if (nhAuth.getUserTipo(user) === 'propietario' && !(await isIntegralAccount(user))) {
-        window.location.replace('/panel-propietario');
-        return;
-      }
-      if (user && nhAuth.getUserTipo(user) === 'propietario' && await isIntegralAccount(user)) {
-        showError('Tu cuenta es de alquiler integral. Entra en /acceso-alquiler-integral.');
-        return;
-      }
-      showError('Has iniciado sesión como comprador o vendedor. Cierra sesión en /login si quieres usar otra cuenta de propietario.');
-    }
-  }
-
   async function ensurePropietarioAndGo(user) {
     await nhAuth.applyAlquilerAccessProfile(user, 'administracion');
     sessionStorage.setItem('nh_alquiler_variant', 'administracion');
     window.location.replace('/panel-propietario?servicio=administracion');
   }
 
+  const userEarly = await nhAuth.getUser();
+  if (userEarly) {
+    if (nhAuth.isAdmin(userEarly)) {
+      window.location.replace('/admin-panel');
+      return;
+    }
+    if (await isIntegralAccount(userEarly)) {
+      showError('Tu cuenta es de alquiler integral (499 €). Usa /acceso-alquiler-integral.');
+      return;
+    }
+    if (nhAuth.getUserTipo(userEarly) === 'propietario') {
+      try {
+        await ensurePropietarioAndGo(userEarly);
+      } catch (e) {
+        console.warn('auto goPanel admin', e);
+      }
+      return;
+    }
+    showError('Has iniciado sesión como comprador o vendedor. Cierra sesión en /login si quieres usar otra cuenta de propietario.');
+  }
+
   document.getElementById('btnGoogle').addEventListener('click', async () => {
     localStorage.setItem('nh_reg_tipo', 'alquiler');
+    localStorage.setItem('nh_alquiler_servicio', 'administracion');
     await nhAuth.loginGoogle('/confirmar-cuenta');
   });
 
@@ -190,14 +199,14 @@ document.addEventListener('supabase:ready', async () => {
     const user = data?.session?.user || data?.user;
     const tipo = nhAuth.getUserTipo(user);
     if (tipo !== 'propietario') {
-      await window.nhSupabase.auth.signOut();
+      await nhAuth.signOutClear();
       showError('Esta entrada es solo para propietarios con administración de alquileres. Si compras o vendes, usa /login.');
       btn.disabled = false;
       btn.textContent = 'Entrar al panel propietario';
       return;
     }
     if (await isIntegralAccount(user)) {
-      await window.nhSupabase.auth.signOut();
+      await nhAuth.signOutClear();
       showError('Esta cuenta es de alquiler integral (499 €). Usa /acceso-alquiler-integral.');
       btn.disabled = false;
       btn.textContent = 'Entrar al panel propietario';
