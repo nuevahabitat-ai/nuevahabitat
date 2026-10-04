@@ -164,7 +164,15 @@ window.NH_LANDING_ORDER = [
   "alquiler-integral-eixample",
   "administracion-alquileres-eixample",
   "administracion-alquileres-gracia",
-  "alquiler-integral-gracia"
+  "alquiler-integral-gracia",
+  "administracion-alquileres-sants",
+  "alquiler-integral-sants",
+  "administracion-alquileres-poblenou",
+  "alquiler-integral-poblenou",
+  "administracion-alquileres-sarria",
+  "alquiler-integral-sarria",
+  "administracion-alquileres-badalona",
+  "alquiler-integral-badalona"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
@@ -2529,6 +2537,78 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "499 € fijo · captación y cierre en Gràcia · top 3 perfiles y LAU."
+  },
+  "administracion-alquileres-sants": {
+    "slug": "administracion-alquileres-sants",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Sants",
+    "keyword_principal": "administración alquileres Sants",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Sants · panel propietario."
+  },
+  "alquiler-integral-sants": {
+    "slug": "alquiler-integral-sants",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Sants",
+    "keyword_principal": "alquiler integral Sants",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Sants."
+  },
+  "administracion-alquileres-poblenou": {
+    "slug": "administracion-alquileres-poblenou",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Poblenou",
+    "keyword_principal": "administración alquileres Poblenou",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Poblenou · panel propietario."
+  },
+  "alquiler-integral-poblenou": {
+    "slug": "alquiler-integral-poblenou",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Poblenou",
+    "keyword_principal": "alquiler integral Poblenou",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Poblenou."
+  },
+  "administracion-alquileres-sarria": {
+    "slug": "administracion-alquileres-sarria",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Sarrià",
+    "keyword_principal": "administración alquileres Sarrià",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Sarrià · panel propietario."
+  },
+  "alquiler-integral-sarria": {
+    "slug": "alquiler-integral-sarria",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Sarrià",
+    "keyword_principal": "alquiler integral Sarrià",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Sarrià."
+  },
+  "administracion-alquileres-badalona": {
+    "slug": "administracion-alquileres-badalona",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Badalona",
+    "keyword_principal": "administración alquileres Badalona",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Badalona · panel propietario."
+  },
+  "alquiler-integral-badalona": {
+    "slug": "alquiler-integral-badalona",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Badalona",
+    "keyword_principal": "alquiler integral Badalona",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Badalona."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

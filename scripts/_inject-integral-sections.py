@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Inject shared proceso + demo sections into alquiler integral HTML pages."""
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,7 +82,12 @@ for fname, (zona, label, note) in PAGES.items():
         continue
     text = path.read_text(encoding='utf-8')
     if MARKER in text:
-        text = text.split(MARKER)[0].rstrip() + '\n' + MARKER + block(zona, label, note) + '\n'
+        pat = (
+            re.escape(MARKER)
+            + r"[\s\S]*?(?=\n<section style=\"padding:5rem 0;background:var\(--crema\)\">\n  <div class=\"container\" style=\"max-width:820px\">\n    <div class=\"text-center\" style=\"margin-bottom:2.5rem\">\n      <span class=\"overline\">FAQ|\n<section id=\"solicitar\"|\n<footer|\Z)"
+        )
+        repl = MARKER + block(zona, label, note) + "\n"
+        text = re.sub(pat, repl, text, count=1)
     else:
         # insert before FAQ section (crema) or before solicitar
         needle = '<section style="padding:5rem 0;background:var(--crema)">\n  <div class="container" style="max-width:820px">\n    <div class="text-center" style="margin-bottom:2.5rem">\n      <span class="overline">FAQ'

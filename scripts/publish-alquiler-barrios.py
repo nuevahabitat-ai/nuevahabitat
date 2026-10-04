@@ -377,6 +377,11 @@ def inject_hub(path: Path) -> None:
             text,
             count=1,
         )
+    else:
+        for needle in ('<section id="solicitar"', '<footer>'):
+            if needle in text:
+                text = text.replace(needle, block + "\n\n" + needle, 1)
+                break
     path.write_text(text, encoding="utf-8")
 
 
