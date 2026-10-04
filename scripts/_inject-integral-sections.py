@@ -65,6 +65,7 @@ PAGES = {
     'alquiler-integral-les-corts.html': ('lescorts', 'Les Corts', 'En Les Corts trabajamos desde Mejía Lequerica 42 (Numància, ZU, Pedralbes).'),
     'alquiler-integral-eixample.html': ('eixample', 'el Eixample', 'En el Eixample ajustamos renta y anuncio por micro-zona (Dreta, Esquerre, Sant Antoni, Sagrada Família).'),
     'alquiler-integral-l-hospitalet.html': ('hospitalet', 'L\'Hospitalet', 'En L\'Hospitalet cubrimos Centre, Bellvitge, Pubilla Cases y Gran Via con el mismo pack 499 €.'),
+    'alquiler-integral-gracia.html': ('gracia', 'Gràcia', 'En Gràcia ajustamos renta y anuncio por micro-zona (Vila de Gràcia, Camp d\'en Grassot, Vallcarca).'),
 }
 
 MARKER = '<!-- NH_INTEGRAL_PROCESO_DEMO -->'

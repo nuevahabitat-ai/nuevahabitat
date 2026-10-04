@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04T09:33:52.377Z",
+  "updated": "2026-10-04T10:18:37.126Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -969,6 +969,24 @@
     },
     {
       "slug": "alquiler-integral-eixample",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-eixample",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-gracia",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-gracia",
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86

@@ -161,7 +161,10 @@ window.NH_LANDING_ORDER = [
   "demo-panel-propietario-alquiler",
   "alquiler-integral-l-hospitalet",
   "alquiler-integral-les-corts",
-  "alquiler-integral-eixample"
+  "alquiler-integral-eixample",
+  "administracion-alquileres-eixample",
+  "administracion-alquileres-gracia",
+  "alquiler-integral-gracia"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
@@ -2499,6 +2502,33 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "Gestionamos visitas, filtro y contrato en Dreta, Esquerre y Sant Antoni · 499 € precio fijo."
+  },
+  "administracion-alquileres-eixample": {
+    "slug": "administracion-alquileres-eixample",
+    "cluster": "alquileres",
+    "footerLabel": "Administración alquileres · Eixample",
+    "keyword_principal": "administración alquileres Eixample",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes IVA incl. · Dreta, Esquerre, Sant Antoni · cero contacto con inquilino."
+  },
+  "administracion-alquileres-gracia": {
+    "slug": "administracion-alquileres-gracia",
+    "cluster": "alquileres",
+    "footerLabel": "Administración alquileres · Gràcia",
+    "keyword_principal": "administración alquileres Gràcia",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Gestión mensual en Vila de Gràcia y Camp d'en Grassot · panel propietario."
+  },
+  "alquiler-integral-gracia": {
+    "slug": "alquiler-integral-gracia",
+    "cluster": "alquileres",
+    "footerLabel": "Alquiler integral · Gràcia",
+    "keyword_principal": "alquiler integral Gràcia",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Gràcia · top 3 perfiles y LAU."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

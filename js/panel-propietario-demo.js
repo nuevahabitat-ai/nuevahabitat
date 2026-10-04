@@ -48,6 +48,12 @@
       renta_mensual: 980,
       zonaLabel: 'L\'Hospitalet',
     },
+    gracia: {
+      inmueble_direccion: 'Carrer de Verdi, 58 · 2n 1a · 08012 Barcelona (Vila de Gràcia)',
+      inmueble_ref: 'NH-INT-GR-2208',
+      renta_mensual: 1280,
+      zonaLabel: 'Gràcia',
+    },
   };
 
   let demoContext = { mode: 'admin', zona: 'lescorts' };
