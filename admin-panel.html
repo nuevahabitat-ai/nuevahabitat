@@ -8666,7 +8666,13 @@ function renderAlquilerPropTable(mode) {
       : `${filtered.length} de ${pool.length}`;
   }
   if (!filtered.length) {
-    tbl.innerHTML = `<p class="text-muted">${cfg.emptyMsg}</p>`;
+    const total = (_alqPropData || []).length;
+    const poolN = pool.length;
+    let hint = '';
+    if (mode === 'integral' && total > 0 && poolN === 0) {
+      hint = `<p class="text-muted" style="font-size:.75rem;margin-top:.5rem;line-height:1.5">Hay ${total} expediente(s) en total, pero ninguno con <code>servicio=integral</code> en Supabase. Ejecuta la migración <strong>052</strong> o actualiza el campo <code>servicio</code> del propietario.</p>`;
+    }
+    tbl.innerHTML = `<p class="text-muted">${cfg.emptyMsg}</p>${hint}`;
     return;
   }
   tbl.innerHTML = `<table class="adm-table"><thead><tr>
@@ -8693,6 +8699,11 @@ function renderAlquilerIntegralTable() {
 }
 
 async function fetchAlquilerPropietarios() {
+  const rpc = await window.nhSupabase.rpc('admin_list_propietarios_alquiler');
+  if (!rpc.error && Array.isArray(rpc.data)) {
+    _alqPropData = rpc.data;
+    return;
+  }
   const { data, error } = await window.nhSupabase
     .from('propietarios_alquiler')
     .select('*')
