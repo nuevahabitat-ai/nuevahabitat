@@ -287,7 +287,8 @@
     { "source": "/blog/:slug", "destination": "/blog-articulo?slug=:slug" },
     { "source": "/api/stripe-verify-session", "destination": "/api/stripe-checkout?__action=verify-session" },
     { "source": "/api/leads", "destination": "/api/notify?__action=insert-lead" },
-    { "source": "/api/panel-propietario", "destination": "/api/stripe-checkout?__action=panel-propietario" }
+    { "source": "/api/panel-propietario", "destination": "/api/stripe-checkout?__action=panel-propietario" },
+    { "source": "/api/account", "destination": "/api/notify?__action=account" }
   ],
   "headers": [
     {

@@ -9162,7 +9162,7 @@ async function alqReactivarPropietario() {
 async function adminAccountApi(body) {
   const { data: { session } } = await window.nhSupabase.auth.getSession();
   if (!session?.access_token) throw new Error('Sesión no disponible');
-  const res = await fetch('/api/account', {
+  const res = await fetch('/api/notify?__action=account', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

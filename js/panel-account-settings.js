@@ -3,7 +3,7 @@
  */
 window.nhPanelDeleteAccount = async function nhPanelDeleteAccount(opts = {}) {
   const {
-    endpoint = '/api/account',
+    endpoint = '/api/notify?__action=account',
     body = { action: 'delete-self', confirm: 'ELIMINAR' },
     redirect = '/',
   } = opts;

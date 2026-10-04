@@ -24,6 +24,8 @@ import {
   deletePropietarioAlquilerAdmin,
 } from '../lib/server/propietarios-alquiler-admin-api.js';
 import { getUserFromJwt } from '../lib/server/supabase-server.js';
+import { purgeClientAccount } from '../lib/server/account-delete.js';
+import { getPropietarioAlquilerById } from '../lib/server/propietarios-alquiler-admin-api.js';
 
 function normLeadEmail(e) {
   return String(e || '').trim().toLowerCase();
@@ -914,6 +916,56 @@ async function handleResendAllFormLeadsAdmin(req, res, body) {
   }
 }
 
+/** Borrado de cuenta (cliente o admin) — antes /api/account */
+async function handleAccount(req, res, body) {
+  const authHeader = req.headers.authorization || '';
+  const jwt = authHeader.startsWith('Bearer ') ? authHeader.slice(7).trim() : '';
+  const user = await getUserFromJwt(jwt);
+  if (!user?.id) return res.status(401).json({ ok: false, error: 'No autenticado' });
+  const email = String(user.email || '').trim().toLowerCase();
+  const isAdmin = email === PANEL_ADMIN_EMAIL;
+  const sub = body?.action || 'delete-self';
+
+  if (sub === 'delete-self') {
+    const confirm = String(body.confirm || '').trim().toUpperCase();
+    if (confirm !== 'ELIMINAR') {
+      return res.status(400).json({ ok: false, error: 'Escribe ELIMINAR para confirmar' });
+    }
+    const result = await purgeClientAccount({ userId: user.id, email, deleteAuth: true });
+    if (!result.ok) return res.status(500).json({ ok: false, error: result.error });
+    return res.status(200).json({ ok: true, deleted: true });
+  }
+
+  if (sub === 'admin-delete-propietario') {
+    if (!isAdmin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+    const propId = body.propietarioId || body.id;
+    let targetUserId = body.userId || body.perfil_id;
+    let targetEmail = body.email ? String(body.email).trim() : '';
+    if (propId) {
+      const row = await getPropietarioAlquilerById(propId);
+      if (!row) return res.status(404).json({ ok: false, error: 'Propietario no encontrado' });
+      targetEmail = targetEmail || row.email;
+      targetUserId = targetUserId || row.perfil_id;
+      const delRow = await deletePropietarioAlquilerAdmin(propId);
+      if (!delRow.ok) {
+        return res.status(500).json({ ok: false, error: delRow.error || 'No se pudo eliminar expediente' });
+      }
+    }
+    if (!targetEmail) {
+      return res.status(400).json({ ok: false, error: 'propietarioId o email requerido' });
+    }
+    const purge = await purgeClientAccount({
+      userId: targetUserId,
+      email: targetEmail,
+      deleteAuth: body.deleteAuth !== false,
+    });
+    if (!purge.ok) return res.status(500).json({ ok: false, error: purge.error });
+    return res.status(200).json({ ok: true, deleted: true });
+  }
+
+  return res.status(400).json({ ok: false, error: 'Acción no válida' });
+}
+
 /* ══════════════════════════════════════════════════════════════════════
    HANDLER PRINCIPAL
 ══════════════════════════════════════════════════════════════════════ */
@@ -935,6 +987,7 @@ export default async function handler(req, res) {
   if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
   if (action === 'resend-all-form-leads') return handleResendAllFormLeadsAdmin(req, res, body);
+  if (action === 'account') return handleAccount(req, res, body);
 
   const apiKey = process.env.RESEND_API_KEY;
   let { nombre, telefono, email, mensaje, tipo, inmueble, template, extra, calendar, leadId, origen, skipAdminNotification } = body;
