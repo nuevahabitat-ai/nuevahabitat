@@ -49,12 +49,18 @@ html {
   text-size-adjust: 100%;
 }
 
+html {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 body {
   font-family: var(--font-sans);
   color: var(--negro);
   background: var(--blanco);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 img { display: block; max-width: 100%; height: auto; }
@@ -166,6 +172,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-width: 0;
 }
 
 .nav-logo {
@@ -2037,6 +2044,7 @@ footer {
   .container { padding: 0 1.25rem; }
 
   /* Nav */
+  #navbar { overflow-x: clip; max-width: 100%; }
   .nav-links, .nav-tel, .nav-tels, .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
   #navbar { padding: .8rem 0; }
@@ -2740,7 +2748,15 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
   .page-hero-content h1 { font-size: clamp(1.75rem, 7vw, 2.5rem); }
   .page-hero-content p  { font-size: .9rem; }
   .page-hero-btns { flex-direction: column; gap: .75rem; }
-  .page-hero-btns .btn { text-align: center; justify-content: center; }
+  .page-hero-btns .btn {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+  }
+  .page-hero-content { max-width: 100%; min-width: 0; }
 
   /* Form inputs en mobile */
   .form-group input, .form-group textarea, .form-group select {
@@ -3732,7 +3748,6 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
 }
 
 @media (max-width: 960px) {
-  .alq-compare-table { min-width: 520px; }
   .alq-docs-grid,
   .alq-int-pack { grid-template-columns: 1fr; }
   .alq-journey-step,
@@ -3743,4 +3758,79 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
   .alq-journey-step.is-reverse .alq-journey-body { order: unset; }
   .alq-renta-grid { grid-template-columns: 1fr; }
   .alq-mgmt-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 960px) {
+  /* Tablas comparativas: scroll interno, sin ensanchar la página */
+  .alq-guide-inner,
+  .alq-compare-wrap,
+  .container {
+    min-width: 0;
+  }
+
+  .alq-table-scroll,
+  .alq-compare-wrap > div,
+  .alq-guide-inner > div:has(.alq-compare-table),
+  .container > .fade-up:has(.alq-compare-table) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .alq-table-scroll .alq-compare-table,
+  .alq-compare-wrap > div .alq-compare-table,
+  .alq-guide-inner .alq-compare-table,
+  .container .fade-up .alq-compare-table {
+    min-width: 520px;
+    width: max-content;
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .alq-journey,
+  .alq-services,
+  .alq-bridge,
+  .alq-guide,
+  .alq-price-band,
+  .alq-renta-clarity {
+    padding-top: 3.25rem;
+    padding-bottom: 3.25rem;
+  }
+
+  #demo-panel-alquiler iframe,
+  .alq-panel-demo iframe {
+    min-height: min(720px, 78vh) !important;
+  }
+
+  /* Formularios y bloques duales en landings alquiler */
+  .container > div[style*="grid-template-columns:1fr 1.1fr"],
+  .container > div[style*="grid-template-columns:1fr 1fr"],
+  .container > div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .container > div[style*="minmax(280px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .alq-hero-badge {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .section-title {
+    font-size: clamp(1.45rem, 5.5vw, 2rem);
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-logo .logo-text,
+  .nav-logo-divider { display: none; }
+  .nav-logo img { height: 48px; }
 }
