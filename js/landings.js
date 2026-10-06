@@ -177,7 +177,12 @@ window.NH_LANDING_ORDER = [
   "administracion-alquileres-sant-andreu",
   "administracion-alquileres-nou-barris",
   "administracion-alquileres-ciutat-vella",
-  "administracion-alquileres-sant-antoni"
+  "administracion-alquileres-sant-antoni",
+  "alquiler-integral-horta",
+  "alquiler-integral-sant-andreu",
+  "alquiler-integral-nou-barris",
+  "alquiler-integral-ciutat-vella",
+  "alquiler-integral-sant-antoni"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
@@ -2659,6 +2664,51 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "60 €/mes · Sant Antoni · panel propietario."
+  },
+  "alquiler-integral-horta": {
+    "slug": "alquiler-integral-horta",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Horta-Guinardó",
+    "keyword_principal": "alquiler integral Horta-Guinardó",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Horta-Guinardó."
+  },
+  "alquiler-integral-sant-andreu": {
+    "slug": "alquiler-integral-sant-andreu",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Sant Andreu",
+    "keyword_principal": "alquiler integral Sant Andreu",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Sant Andreu."
+  },
+  "alquiler-integral-nou-barris": {
+    "slug": "alquiler-integral-nou-barris",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Nou Barris",
+    "keyword_principal": "alquiler integral Nou Barris",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Nou Barris."
+  },
+  "alquiler-integral-ciutat-vella": {
+    "slug": "alquiler-integral-ciutat-vella",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Ciutat Vella",
+    "keyword_principal": "alquiler integral Ciutat Vella",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Ciutat Vella."
+  },
+  "alquiler-integral-sant-antoni": {
+    "slug": "alquiler-integral-sant-antoni",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Sant Antoni",
+    "keyword_principal": "alquiler integral Sant Antoni",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Sant Antoni."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

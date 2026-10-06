@@ -26,6 +26,11 @@ ZONE_LABEL = {
     "poblenou": "Poblenou",
     "sarria": "Sarrià",
     "badalona": "Badalona",
+    "horta": "Horta-Guinardó",
+    "sant-andreu": "Sant Andreu",
+    "nou-barris": "Nou Barris",
+    "ciutat-vella": "Ciutat Vella",
+    "sant-antoni": "Sant Antoni",
 }
 
 ADMIN_SLUG = {
@@ -37,6 +42,11 @@ ADMIN_SLUG = {
     "poblenou": "administracion-alquileres-poblenou",
     "sarria": "administracion-alquileres-sarria",
     "badalona": "administracion-alquileres-badalona",
+    "horta": "administracion-alquileres-horta",
+    "sant-andreu": "administracion-alquileres-sant-andreu",
+    "nou-barris": "administracion-alquileres-nou-barris",
+    "ciutat-vella": "administracion-alquileres-ciutat-vella",
+    "sant-antoni": "administracion-alquileres-sant-antoni",
 }
 
 
