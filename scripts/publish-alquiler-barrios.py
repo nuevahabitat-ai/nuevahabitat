@@ -392,6 +392,13 @@ def inject_servicios(path: Path, z: dict) -> None:
         if needle not in text:
             needle = "<footer>"
         text = text.replace(needle, block + "\n\n" + needle, 1)
+    while text.count('id="servicios-complementarios"') > 1:
+        text = re.sub(
+            r'\n<section class="alq-guide" id="servicios-complementarios"[\s\S]*?</section>\n',
+            "\n",
+            text,
+            count=1,
+        )
     path.write_text(text, encoding="utf-8")
 
 
