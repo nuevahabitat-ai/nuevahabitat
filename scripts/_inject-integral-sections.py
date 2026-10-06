@@ -71,6 +71,11 @@ PAGES = {
     'alquiler-integral-poblenou.html': ('poblenou', 'Poblenou', 'En Poblenou y 22@ publicamos con comparables de Sant Martí, no medias de toda Barcelona.'),
     'alquiler-integral-sarria.html': ('sarria', 'Sarrià', 'En Sarrià-Sant Gervasi captamos inquilinos solventes en Bonanova, Putxet y Sarrià centre.'),
     'alquiler-integral-badalona.html': ('badalona', 'Badalona', 'En Badalona cubrimos Centre, Gorg, Montigalà y Pep Ventura con el pack 499 €.'),
+    'alquiler-integral-horta.html': ('horta', 'Horta-Guinardó', 'En Horta-Guinardó ajustamos renta en Montbau, Vall d\'Hebron, La Clota y el Guinardó.'),
+    'alquiler-integral-sant-andreu.html': ('santandreu', 'Sant Andreu', 'En Sant Andreu captamos en Congrés, La Sagrera, Bon Pastor y Gran de Sant Andreu.'),
+    'alquiler-integral-nou-barris.html': ('noubarris', 'Nou Barris', 'En Nou Barris publicamos con comparables de Porta, Verdum, Roquetes y Trinitat Vella.'),
+    'alquiler-integral-ciutat-vella.html': ('ciutatvella', 'Ciutat Vella', 'En Ciutat Vella filtramos perfiles en Gòtic, Born, Raval y Barceloneta con criterio LAU.'),
+    'alquiler-integral-sant-antoni.html': ('santantoni', 'Sant Antoni', 'En Sant Antoni (08015) concertamos visitas junto al mercado y Ronda Sant Antoni.'),
 }
 
 MARKER = '<!-- NH_INTEGRAL_PROCESO_DEMO -->'

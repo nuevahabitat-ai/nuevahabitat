@@ -166,7 +166,11 @@ ZONAS = [
         "label": "Horta-Guinardó",
         "label_short": "Horta-Guinardó",
         "admin_slug": "administracion-alquileres-horta",
-        "integral_slug": "alquiler-integral",
+        "integral_slug": "alquiler-integral-horta",
+        "integral_overline": "Horta-Guinardó · 499 € fijo · captación y cierre",
+        "integral_title": "Alquiler integral Horta-Guinardó · 499 € fijo · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Horta-Guinardó: 499 € precio fijo. Anuncio, visitas, top 3 perfiles, LAU e INCASÒL en Montbau y Vall d'Hebron.",
+        "hero_integral": "Montbau, Vall d'Hebron, La Clota, Guinardó y Horta centre",
         "demo_zona": "horta",
         "hero_img": "imagenes/horta1.jpg",
         "vender_slug": "vender-horta",
@@ -185,7 +189,11 @@ ZONAS = [
         "label": "Sant Andreu",
         "label_short": "Sant Andreu",
         "admin_slug": "administracion-alquileres-sant-andreu",
-        "integral_slug": "alquiler-integral",
+        "integral_slug": "alquiler-integral-sant-andreu",
+        "integral_overline": "Sant Andreu · 499 € fijo · captación y cierre",
+        "integral_title": "Alquiler integral Sant Andreu · 499 € · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Sant Andreu de Palomar: 499 € fijo. Publicación, filtro, visitas y contrato LAU en Congrés y La Sagrera.",
+        "hero_integral": "Congrés i Indians, La Sagrera, Bon Pastor y Sant Andreu centre",
         "demo_zona": "santandreu",
         "hero_img": "imagenes/barcelona5.jpg",
         "vender_slug": "vender-sant-andreu",
@@ -204,7 +212,11 @@ ZONAS = [
         "label": "Nou Barris",
         "label_short": "Nou Barris",
         "admin_slug": "administracion-alquileres-nou-barris",
-        "integral_slug": "alquiler-integral",
+        "integral_slug": "alquiler-integral-nou-barris",
+        "integral_overline": "Nou Barris · 499 € fijo · particulares solventes",
+        "integral_title": "Alquiler integral Nou Barris · 499 € fijo · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Nou Barris: 499 € precio fijo. Captación y cierre en La Porta, Verdum y Roquetes.",
+        "hero_integral": "La Porta, Verdum, Roquetes, Trinitat Vella y Prosperitat",
         "demo_zona": "noubarris",
         "hero_img": "imagenes/noubarris1.jpg",
         "vender_slug": "vender-nou-barris",
@@ -223,7 +235,11 @@ ZONAS = [
         "label": "Ciutat Vella",
         "label_short": "Ciutat Vella",
         "admin_slug": "administracion-alquileres-ciutat-vella",
-        "integral_slug": "alquiler-integral",
+        "integral_slug": "alquiler-integral-ciutat-vella",
+        "integral_overline": "Ciutat Vella · 499 € fijo · delega captación y cierre",
+        "integral_title": "Alquiler integral Ciutat Vella · 499 € · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Ciutat Vella: 499 € fijo. Anuncio, visitas, top 3 perfiles y LAU en Gòtic, Born y Raval.",
+        "hero_integral": "Gòtic, El Born, Raval, Barceloneta y Sant Pere",
         "demo_zona": "ciutatvella",
         "hero_img": "imagenes/ciutatvella2.jpg",
         "vender_slug": "vender-piso-ciutat-vella-barcelona",
@@ -242,7 +258,11 @@ ZONAS = [
         "label": "Sant Antoni",
         "label_short": "Sant Antoni",
         "admin_slug": "administracion-alquileres-sant-antoni",
-        "integral_slug": "alquiler-integral",
+        "integral_slug": "alquiler-integral-sant-antoni",
+        "integral_overline": "Sant Antoni · 499 € fijo · captación y cierre",
+        "integral_title": "Alquiler integral Sant Antoni · 499 € · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Sant Antoni Barcelona: 499 € precio fijo. Visitas, filtro de candidatos y contrato LAU junto al Mercat.",
+        "hero_integral": "Mercat de Sant Antoni, Ronda Sant Antoni, Comte Borrell y Urgell",
         "demo_zona": "santantoni",
         "hero_img": "imagenes/eixample2.jpg",
         "vender_slug": "vender-sant-antoni",
@@ -382,7 +402,8 @@ def inject_servicios(path: Path, z: dict) -> None:
     )
     if MARKER in text:
         text = re.sub(
-            re.escape(MARKER) + r"[\s\S]*?(?=\n<section|\n<footer|\Z)",
+            re.escape(MARKER)
+            + r"[\s\S]*?<section class=\"alq-guide\" id=\"servicios-complementarios\"[\s\S]*?</section>\n*",
             block.strip() + "\n\n",
             text,
             count=1,
@@ -508,6 +529,28 @@ def write_admin(z: dict) -> None:
     print("admin", out.name)
 
 
+def fix_admin_integral_links(z: dict) -> None:
+    path = ROOT / f'{z["admin_slug"]}.html'
+    if not path.exists():
+        return
+    text = path.read_text(encoding="utf-8")
+    slug = z["integral_slug"]
+    label = z["label"]
+    pairs = (
+        (
+            f'<a href="/alquiler-integral">Alquiler integral {label} 499 €</a>',
+            f'<a href="/{slug}">Alquiler integral {label} 499 €</a>',
+        ),
+        (
+            f'href="/alquiler-integral" style="color:var(--oro-claro)">Alquiler integral {label} 499 €',
+            f'href="/{slug}" style="color:var(--oro-claro)">Alquiler integral {label} 499 €',
+        ),
+    )
+    for old, new in pairs:
+        text = text.replace(old, new)
+    path.write_text(text, encoding="utf-8")
+
+
 def write_integral(z: dict) -> None:
     out = ROOT / f'{z["integral_slug"]}.html'
     if out.exists():
@@ -516,6 +559,10 @@ def write_integral(z: dict) -> None:
     base = next(x for x in ZONAS if x["key"] == "eixample")
     text = tpl.replace(base["integral_slug"], z["integral_slug"])
     text = text.replace(base["admin_slug"], z["admin_slug"])
+    text = text.replace(
+        f"https://www.nuevahabitat.com/{base['integral_slug']}",
+        f"https://www.nuevahabitat.com/{z['integral_slug']}",
+    )
     text = text.replace("vender-eixample", z["vender_slug"])
     text = text.replace("zona=eixample", f'zona={z["demo_zona"]}')
     text = text.replace(base["hero_img"], z["hero_img"])
@@ -540,6 +587,25 @@ def write_integral(z: dict) -> None:
     text = re.sub(
         r'Mira <a href="/[^"]+">administración de alquileres en [^<]+</a> \(60 €/mes\)',
         f'Mira {admin_link} (60 €/mes)',
+        text,
+        count=1,
+    )
+    served = json.dumps(z["area_served"], ensure_ascii=False)
+    text = re.sub(
+        r'"areaServed": \[[^\]]+\]',
+        f'"areaServed": {served}',
+        text,
+        count=1,
+    )
+    text = re.sub(
+        r"background-image:url\('imagenes/[^']+'\)",
+        f"background-image:url('{z['hero_img']}')",
+        text,
+        count=1,
+    )
+    text = re.sub(
+        r'<meta property="og:image" content="https://www\.nuevahabitat\.com/imagenes/[^"]+"',
+        f'<meta property="og:image" content="https://www.nuevahabitat.com/{z["hero_img"]}"',
         text,
         count=1,
     )
@@ -635,12 +701,16 @@ def update_json_index() -> None:
 
 
 def main() -> None:
-    new_admin_only = {"horta", "sant-andreu", "nou-barris", "ciutat-vella", "sant-antoni"}
+    new_barrios = {"horta", "sant-andreu", "nou-barris", "ciutat-vella", "sant-antoni"}
     for z in ZONAS:
-        if z["key"] in new_admin_only:
+        if z["key"] in new_barrios:
             write_admin(z)
+            write_integral(z)
+            fix_admin_integral_links(z)
+            inject_servicios(ROOT / f'{z["admin_slug"]}.html', z)
+            inject_servicios(ROOT / f'{z["integral_slug"]}.html', z)
     for z in ZONAS:
-        if z["key"] in new_admin_only:
+        if z["key"] in new_barrios:
             continue
         inject_servicios(ROOT / f'{z["admin_slug"]}.html', z)
         p = ROOT / f'{z["integral_slug"]}.html'
