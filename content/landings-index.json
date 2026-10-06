@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T07:17:20.251Z",
+  "updated": "2026-10-06T19:14:03.071Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -1095,6 +1095,66 @@
     },
     {
       "slug": "alquiler-integral-sant-antoni",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-poble-sec",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-poble-sec",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-el-clot",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-el-clot",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-fort-pienc",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-fort-pienc",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-esplugues",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-esplugues",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-sant-gervasi",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-sant-gervasi",
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86

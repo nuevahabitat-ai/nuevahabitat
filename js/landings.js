@@ -182,7 +182,17 @@ window.NH_LANDING_ORDER = [
   "alquiler-integral-sant-andreu",
   "alquiler-integral-nou-barris",
   "alquiler-integral-ciutat-vella",
-  "alquiler-integral-sant-antoni"
+  "alquiler-integral-sant-antoni",
+  "administracion-alquileres-poble-sec",
+  "alquiler-integral-poble-sec",
+  "administracion-alquileres-el-clot",
+  "alquiler-integral-el-clot",
+  "administracion-alquileres-fort-pienc",
+  "alquiler-integral-fort-pienc",
+  "administracion-alquileres-esplugues",
+  "alquiler-integral-esplugues",
+  "administracion-alquileres-sant-gervasi",
+  "alquiler-integral-sant-gervasi"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
@@ -2709,6 +2719,96 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "499 € fijo · captación y cierre en Sant Antoni."
+  },
+  "administracion-alquileres-poble-sec": {
+    "slug": "administracion-alquileres-poble-sec",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Poble-sec",
+    "keyword_principal": "administración alquileres Poble-sec",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Poble-sec · panel propietario."
+  },
+  "alquiler-integral-poble-sec": {
+    "slug": "alquiler-integral-poble-sec",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Poble-sec",
+    "keyword_principal": "alquiler integral Poble-sec",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Poble-sec."
+  },
+  "administracion-alquileres-el-clot": {
+    "slug": "administracion-alquileres-el-clot",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · El Clot",
+    "keyword_principal": "administración alquileres El Clot",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · El Clot · panel propietario."
+  },
+  "alquiler-integral-el-clot": {
+    "slug": "alquiler-integral-el-clot",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · El Clot",
+    "keyword_principal": "alquiler integral El Clot",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en El Clot."
+  },
+  "administracion-alquileres-fort-pienc": {
+    "slug": "administracion-alquileres-fort-pienc",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Fort Pienc",
+    "keyword_principal": "administración alquileres Fort Pienc",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Fort Pienc · panel propietario."
+  },
+  "alquiler-integral-fort-pienc": {
+    "slug": "alquiler-integral-fort-pienc",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Fort Pienc",
+    "keyword_principal": "alquiler integral Fort Pienc",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Fort Pienc."
+  },
+  "administracion-alquileres-esplugues": {
+    "slug": "administracion-alquileres-esplugues",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Esplugues de Llobregat",
+    "keyword_principal": "administración alquileres Esplugues de Llobregat",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Esplugues de Llobregat · panel propietario."
+  },
+  "alquiler-integral-esplugues": {
+    "slug": "alquiler-integral-esplugues",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Esplugues de Llobregat",
+    "keyword_principal": "alquiler integral Esplugues de Llobregat",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Esplugues de Llobregat."
+  },
+  "administracion-alquileres-sant-gervasi": {
+    "slug": "administracion-alquileres-sant-gervasi",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Sant Gervasi – Galvany",
+    "keyword_principal": "administración alquileres Sant Gervasi – Galvany",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Sant Gervasi – Galvany · panel propietario."
+  },
+  "alquiler-integral-sant-gervasi": {
+    "slug": "alquiler-integral-sant-gervasi",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Sant Gervasi – Galvany",
+    "keyword_principal": "alquiler integral Sant Gervasi – Galvany",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Sant Gervasi – Galvany."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){
