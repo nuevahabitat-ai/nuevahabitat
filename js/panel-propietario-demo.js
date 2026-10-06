@@ -108,6 +108,36 @@
       renta_mensual: 1180,
       zonaLabel: 'Sant Antoni',
     },
+    poblesec: {
+      inmueble_direccion: 'Carrer de Blai, 42 · 2n 1a · 08004 Barcelona (Poble-sec)',
+      inmueble_ref: 'NH-INT-PS-7101',
+      renta_mensual: 1150,
+      zonaLabel: 'Poble-sec',
+    },
+    elclot: {
+      inmueble_direccion: 'Passeig del Clot, 180 · 4t · 08018 Barcelona (El Clot)',
+      inmueble_ref: 'NH-INT-EC-7102',
+      renta_mensual: 1080,
+      zonaLabel: 'El Clot',
+    },
+    fortpienc: {
+      inmueble_direccion: 'Carrer de Nàpols, 220 · 3r 1a · 08013 Barcelona (Fort Pienc)',
+      inmueble_ref: 'NH-INT-FP-7103',
+      renta_mensual: 1420,
+      zonaLabel: 'Fort Pienc',
+    },
+    esplugues: {
+      inmueble_direccion: 'Carrer de Montserrat, 12 · 2n · 08950 Esplugues (Centre)',
+      inmueble_ref: 'NH-INT-EP-7104',
+      renta_mensual: 980,
+      zonaLabel: 'Esplugues',
+    },
+    santgervasi: {
+      inmueble_direccion: 'Carrer de Santaló, 45 · 1r · 08021 Barcelona (Galvany)',
+      inmueble_ref: 'NH-INT-SG-7105',
+      renta_mensual: 1880,
+      zonaLabel: 'Sant Gervasi',
+    },
   };
 
   let demoContext = { mode: 'admin', zona: 'lescorts' };

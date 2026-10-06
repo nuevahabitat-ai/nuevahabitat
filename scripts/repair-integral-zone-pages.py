@@ -31,6 +31,11 @@ ZONE_LABEL = {
     "nou-barris": "Nou Barris",
     "ciutat-vella": "Ciutat Vella",
     "sant-antoni": "Sant Antoni",
+    "poble-sec": "Poble-sec",
+    "el-clot": "El Clot",
+    "fort-pienc": "Fort Pienc",
+    "esplugues": "Esplugues de Llobregat",
+    "sant-gervasi": "Sant Gervasi",
 }
 
 ADMIN_SLUG = {
@@ -47,6 +52,11 @@ ADMIN_SLUG = {
     "nou-barris": "administracion-alquileres-nou-barris",
     "ciutat-vella": "administracion-alquileres-ciutat-vella",
     "sant-antoni": "administracion-alquileres-sant-antoni",
+    "poble-sec": "administracion-alquileres-poble-sec",
+    "el-clot": "administracion-alquileres-el-clot",
+    "fort-pienc": "administracion-alquileres-fort-pienc",
+    "esplugues": "administracion-alquileres-esplugues",
+    "sant-gervasi": "administracion-alquileres-sant-gervasi",
 }
 
 

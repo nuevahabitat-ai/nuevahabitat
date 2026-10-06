@@ -76,6 +76,11 @@ PAGES = {
     'alquiler-integral-nou-barris.html': ('noubarris', 'Nou Barris', 'En Nou Barris publicamos con comparables de Porta, Verdum, Roquetes y Trinitat Vella.'),
     'alquiler-integral-ciutat-vella.html': ('ciutatvella', 'Ciutat Vella', 'En Ciutat Vella filtramos perfiles en Gòtic, Born, Raval y Barceloneta con criterio LAU.'),
     'alquiler-integral-sant-antoni.html': ('santantoni', 'Sant Antoni', 'En Sant Antoni (08015) concertamos visitas junto al mercado y Ronda Sant Antoni.'),
+    'alquiler-integral-poble-sec.html': ('poblesec', 'Poble-sec', 'En Poble-sec usamos comparables del Paral·lel y Blai, no medias de todo Sants-Montjuïc.'),
+    'alquiler-integral-el-clot.html': ('elclot', 'El Clot', 'En El Clot y Sant Martí ajustamos renta según €/m² del Clot y entorno Glòries.'),
+    'alquiler-integral-fort-pienc.html': ('fortpienc', 'Fort Pienc', 'En Fort Pienc publicamos con referencias de Nàpols, Marina y Sagrada Família.'),
+    'alquiler-integral-esplugues.html': ('esplugues', 'Esplugues', 'En Esplugues captamos con comparables del Centre, Can Clota y Finestrelles.'),
+    'alquiler-integral-sant-gervasi.html': ('santgervasi', 'Sant Gervasi', 'En Galvany y Tres Torres filtramos perfiles acordes a rentas altas por m².'),
 }
 
 MARKER = '<!-- NH_INTEGRAL_PROCESO_DEMO -->'
