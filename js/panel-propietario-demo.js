@@ -78,6 +78,36 @@
       renta_mensual: 920,
       zonaLabel: 'Badalona',
     },
+    horta: {
+      inmueble_direccion: 'Passeig de Maragall, 120 · 3r 1a · 08031 Barcelona (Horta)',
+      inmueble_ref: 'NH-ADM-HO-6102',
+      renta_mensual: 1080,
+      zonaLabel: 'Horta-Guinardó',
+    },
+    santandreu: {
+      inmueble_direccion: 'Carrer de Sant Antoni Maria Claret, 88 · 2n · 08030 Barcelona (Congrés)',
+      inmueble_ref: 'NH-ADM-SA-6201',
+      renta_mensual: 1020,
+      zonaLabel: 'Sant Andreu',
+    },
+    noubarris: {
+      inmueble_direccion: 'Via Júlia, 180 · 4t · 08042 Barcelona (La Porta)',
+      inmueble_ref: 'NH-ADM-NB-6304',
+      renta_mensual: 890,
+      zonaLabel: 'Nou Barris',
+    },
+    ciutatvella: {
+      inmueble_direccion: 'Carrer del Rec, 12 · 2n 1a · 08003 Barcelona (El Born)',
+      inmueble_ref: 'NH-ADM-CV-6402',
+      renta_mensual: 1250,
+      zonaLabel: 'Ciutat Vella',
+    },
+    santantoni: {
+      inmueble_direccion: 'Carrer de Floridablanca, 55 · 3r 2a · 08015 Barcelona (Sant Antoni)',
+      inmueble_ref: 'NH-ADM-AN-6508',
+      renta_mensual: 1180,
+      zonaLabel: 'Sant Antoni',
+    },
   };
 
   let demoContext = { mode: 'admin', zona: 'lescorts' };

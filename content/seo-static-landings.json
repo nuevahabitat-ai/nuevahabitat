@@ -171,6 +171,51 @@
       "priority": 0.86,
       "indexable": true,
       "cardTeaser": "499 € fijo · captación y cierre en Badalona."
+    },
+    {
+      "slug": "administracion-alquileres-horta",
+      "cluster": "alquileres",
+      "footerLabel": "Administración · Horta-Guinardó",
+      "keyword_principal": "administración alquileres Horta-Guinardó",
+      "priority": 0.86,
+      "indexable": true,
+      "cardTeaser": "60 €/mes · Horta-Guinardó · panel propietario."
+    },
+    {
+      "slug": "administracion-alquileres-sant-andreu",
+      "cluster": "alquileres",
+      "footerLabel": "Administración · Sant Andreu",
+      "keyword_principal": "administración alquileres Sant Andreu",
+      "priority": 0.86,
+      "indexable": true,
+      "cardTeaser": "60 €/mes · Sant Andreu · panel propietario."
+    },
+    {
+      "slug": "administracion-alquileres-nou-barris",
+      "cluster": "alquileres",
+      "footerLabel": "Administración · Nou Barris",
+      "keyword_principal": "administración alquileres Nou Barris",
+      "priority": 0.86,
+      "indexable": true,
+      "cardTeaser": "60 €/mes · Nou Barris · panel propietario."
+    },
+    {
+      "slug": "administracion-alquileres-ciutat-vella",
+      "cluster": "alquileres",
+      "footerLabel": "Administración · Ciutat Vella",
+      "keyword_principal": "administración alquileres Ciutat Vella",
+      "priority": 0.86,
+      "indexable": true,
+      "cardTeaser": "60 €/mes · Ciutat Vella · panel propietario."
+    },
+    {
+      "slug": "administracion-alquileres-sant-antoni",
+      "cluster": "alquileres",
+      "footerLabel": "Administración · Sant Antoni",
+      "keyword_principal": "administración alquileres Sant Antoni",
+      "priority": 0.86,
+      "indexable": true,
+      "cardTeaser": "60 €/mes · Sant Antoni · panel propietario."
     }
   ]
 }

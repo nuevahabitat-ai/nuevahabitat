@@ -172,7 +172,12 @@ window.NH_LANDING_ORDER = [
   "administracion-alquileres-sarria",
   "alquiler-integral-sarria",
   "administracion-alquileres-badalona",
-  "alquiler-integral-badalona"
+  "alquiler-integral-badalona",
+  "administracion-alquileres-horta",
+  "administracion-alquileres-sant-andreu",
+  "administracion-alquileres-nou-barris",
+  "administracion-alquileres-ciutat-vella",
+  "administracion-alquileres-sant-antoni"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
@@ -2609,6 +2614,51 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "499 € fijo · captación y cierre en Badalona."
+  },
+  "administracion-alquileres-horta": {
+    "slug": "administracion-alquileres-horta",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Horta-Guinardó",
+    "keyword_principal": "administración alquileres Horta-Guinardó",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Horta-Guinardó · panel propietario."
+  },
+  "administracion-alquileres-sant-andreu": {
+    "slug": "administracion-alquileres-sant-andreu",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Sant Andreu",
+    "keyword_principal": "administración alquileres Sant Andreu",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Sant Andreu · panel propietario."
+  },
+  "administracion-alquileres-nou-barris": {
+    "slug": "administracion-alquileres-nou-barris",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Nou Barris",
+    "keyword_principal": "administración alquileres Nou Barris",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Nou Barris · panel propietario."
+  },
+  "administracion-alquileres-ciutat-vella": {
+    "slug": "administracion-alquileres-ciutat-vella",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Ciutat Vella",
+    "keyword_principal": "administración alquileres Ciutat Vella",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Ciutat Vella · panel propietario."
+  },
+  "administracion-alquileres-sant-antoni": {
+    "slug": "administracion-alquileres-sant-antoni",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Sant Antoni",
+    "keyword_principal": "administración alquileres Sant Antoni",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Sant Antoni · panel propietario."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-04T10:22:57.417Z",
+  "updated": "2026-10-06T07:07:17.868Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -1035,6 +1035,36 @@
     },
     {
       "slug": "alquiler-integral-badalona",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-horta",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-sant-andreu",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-nou-barris",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-ciutat-vella",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-sant-antoni",
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86
