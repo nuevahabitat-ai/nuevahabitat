@@ -580,6 +580,14 @@ def hub_grid() -> str:
 
 def inject_hub(path: Path) -> None:
     text = path.read_text(encoding="utf-8")
+    while 'id="barrios-alquiler"' in text or HUB_MARKER in text:
+        text = re.sub(r"\n?<!-- NH_HUB_BARRIOS_ALQUILER -->\n?", "", text, count=1)
+        text = re.sub(
+            r'\n<section id="barrios-alquiler"[\s\S]*?</section>\n',
+            "\n",
+            text,
+            count=1,
+        )
     block = HUB_MARKER + hub_grid()
     if HUB_MARKER in text:
         text = re.sub(
