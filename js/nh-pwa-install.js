@@ -39,17 +39,22 @@
     const s = document.createElement('style');
     s.id = 'nh-pwa-install-style';
     s.textContent = `
-.nh-pwa-install{position:fixed;left:0;right:0;bottom:0;z-index:10050;padding:.65rem .65rem calc(.65rem + env(safe-area-inset-bottom));pointer-events:none;opacity:0;transform:translateY(110%);transition:transform .35s ease,opacity .35s ease}
+.nh-pwa-install{position:fixed;left:0;right:0;bottom:calc(62px + env(safe-area-inset-bottom,0px));z-index:100001;padding:.5rem .75rem;pointer-events:none;opacity:0;transform:translateY(110%);transition:transform .35s ease,opacity .35s ease;box-sizing:border-box;max-width:100vw}
 .nh-pwa-install.show{opacity:1;transform:translateY(0);pointer-events:auto}
-.nh-pwa-install-inner{display:flex;align-items:flex-start;gap:.75rem;background:linear-gradient(135deg,#1a1a1a,#2a241c);border:1px solid rgba(184,147,106,.35);border-radius:14px;padding:.85rem 1rem;box-shadow:0 12px 40px rgba(0,0,0,.45);max-width:520px;margin:0 auto}
-.nh-pwa-install-icon{width:44px;height:44px;border-radius:10px;flex-shrink:0;object-fit:contain;background:#0d0d0d;padding:4px}
+.nh-pwa-install-inner{display:flex;align-items:flex-start;gap:.65rem;background:linear-gradient(135deg,#1a1a1a,#2a241c);border:1px solid rgba(184,147,106,.35);border-radius:14px;padding:.75rem .85rem;box-shadow:0 12px 40px rgba(0,0,0,.45);max-width:520px;margin:0 auto;width:100%;box-sizing:border-box}
+.nh-pwa-install-icon{width:40px;height:40px;border-radius:10px;flex-shrink:0;object-fit:contain;background:#0d0d0d;padding:4px}
 .nh-pwa-install-body{flex:1;min-width:0}
-.nh-pwa-install-body strong{display:block;font-size:.875rem;color:#fff;margin-bottom:.2rem;line-height:1.3}
-.nh-pwa-install-body p{margin:0;font-size:.75rem;color:rgba(255,255,255,.72);line-height:1.45}
-.nh-pwa-install-steps{margin:.45rem 0 0;padding-left:1.1rem;font-size:.72rem;color:rgba(255,255,255,.78);line-height:1.5}
-.nh-pwa-install-actions{display:flex;flex-direction:column;gap:.35rem;flex-shrink:0}
-.nh-pwa-install-btn{background:#b8936a;border:none;color:#0d0d0d;font-weight:700;font-size:.72rem;padding:.5rem .75rem;border-radius:8px;cursor:pointer;white-space:nowrap;font-family:inherit}
-.nh-pwa-install-dismiss{background:transparent;border:none;color:rgba(255,255,255,.55);font-size:1rem;line-height:1;padding:.25rem;cursor:pointer;align-self:flex-end}
+.nh-pwa-install-body strong{display:block;font-size:.8125rem;color:#fff;margin-bottom:.2rem;line-height:1.3}
+.nh-pwa-install-body p{margin:0;font-size:.72rem;color:rgba(255,255,255,.72);line-height:1.45;overflow-wrap:anywhere}
+.nh-pwa-install-steps{margin:.45rem 0 0;padding-left:1.1rem;font-size:.68rem;color:rgba(255,255,255,.78);line-height:1.45}
+.nh-pwa-install-actions{display:flex;flex-direction:column;gap:.35rem;flex-shrink:0;align-items:flex-end}
+.nh-pwa-install-btn{background:#b8936a;border:none;color:#0d0d0d;font-weight:700;font-size:.72rem;padding:.5rem .65rem;border-radius:8px;cursor:pointer;white-space:nowrap;font-family:inherit;max-width:100%}
+.nh-pwa-install-dismiss{background:transparent;border:none;color:rgba(255,255,255,.55);font-size:1rem;line-height:1;padding:.25rem;cursor:pointer;align-self:flex-end;min-width:44px;min-height:44px}
+@media(max-width:480px){
+  .nh-pwa-install-inner{flex-wrap:wrap;padding:.7rem .75rem}
+  .nh-pwa-install-actions{flex-direction:row;width:100%;justify-content:space-between;align-items:center;margin-top:.15rem}
+  .nh-pwa-install-btn{flex:1;text-align:center;white-space:normal;line-height:1.25}
+}
 @media(min-width:901px){.nh-pwa-install{display:none!important}}`;
     document.head.appendChild(s);
   }
@@ -128,10 +133,12 @@
     }
 
     ui.bar.classList.add('show');
+    document.body.classList.add('nh-pwa-install-open');
   }
 
   function hideBar(ui, config) {
     ui.bar.classList.remove('show');
+    document.body.classList.remove('nh-pwa-install-open');
     dismiss(config.storageKey);
   }
 

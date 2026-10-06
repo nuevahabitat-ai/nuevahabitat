@@ -2043,10 +2043,16 @@ footer {
   :root { --max-w: 100%; --nav-h: 80px; --det-bar-h: 52px; }
   .container { padding: 0 1.25rem; }
 
-  /* Nav */
+  /* Nav — ocultar cluster (JS envuelve .nav-cta en .nav-start-wrap → anula display:none simple) */
   #navbar { overflow-x: clip; max-width: 100%; }
-  .nav-links, .nav-tel, .nav-tels, .nav-cta { display: none; }
+  .nav-links,
+  .nav-cta-cluster,
+  .nav-tel,
+  .nav-tels,
+  .nav-cta,
+  .nav-start-wrap .nav-cta { display: none !important; }
   .nav-hamburger { display: flex; }
+  .nav-actions { gap: 0; min-width: 0; }
   #navbar { padding: .8rem 0; }
   .nav-logo img { height: 54px; }
   .nav-logo .logo-name { font-size: 1rem; }
@@ -2938,6 +2944,15 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
   @media (max-width: 768px) {
     .mbn { padding-bottom: env(safe-area-inset-bottom); height: calc(62px + env(safe-area-inset-bottom)); }
     body { padding-bottom: calc(66px + env(safe-area-inset-bottom)); }
+  }
+}
+
+@media (max-width: 768px) {
+  body.nh-pwa-install-open {
+    padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px) + 7.5rem);
+  }
+  body.nh-pwa-install-open .whatsapp-float {
+    bottom: calc(62px + env(safe-area-inset-bottom, 0px) + 7.25rem);
   }
 }
 
