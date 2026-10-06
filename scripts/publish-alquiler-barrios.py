@@ -16,7 +16,7 @@ ZONAS = [
         "admin_slug": "administracion-alquileres-les-corts",
         "integral_slug": "alquiler-integral-les-corts",
         "demo_zona": "lescorts",
-        "hero_img": "imagenes/inmobiliario1.jpg",
+        "hero_img": "imagenes/lescorts1.jpg",
         "vender_slug": "vender-les-corts",
         "admin_overline": "Les Corts · Numància, ZU, Pedralbes",
         "integral_overline": "Les Corts · 499 € fijo · oficina en el distrito",
@@ -598,6 +598,36 @@ def inject_servicios(path: Path, z: dict) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def apply_hero_img(text: str, hero_img: str) -> str:
+    text = re.sub(
+        r"background-image:url\('imagenes/[^']+'\)",
+        f"background-image:url('{hero_img}')",
+        text,
+        count=1,
+    )
+    text = re.sub(
+        r'<meta property="og:image" content="https://www\.nuevahabitat\.com/imagenes/[^"]+"',
+        f'<meta property="og:image" content="https://www.nuevahabitat.com/{hero_img}"',
+        text,
+        count=1,
+    )
+    return text
+
+
+def repair_all_hero_images() -> None:
+    for z in ZONAS:
+        hero = z["hero_img"]
+        for slug in (z["admin_slug"], z["integral_slug"]):
+            path = ROOT / f"{slug}.html"
+            if not path.exists():
+                continue
+            text = path.read_text(encoding="utf-8")
+            fixed = apply_hero_img(text, hero)
+            if fixed != text:
+                path.write_text(fixed, encoding="utf-8")
+                print("hero", path.name)
+
+
 def write_admin(z: dict) -> None:
     out = ROOT / f'{z["admin_slug"]}.html'
     if out.exists():
@@ -627,7 +657,7 @@ def write_admin(z: dict) -> None:
                 count=1,
             )
         text = text.replace("Les Corts", z["label"])
-        text = text.replace("lescorts", z["demo_zona"])
+        # No reemplazar "lescorts" en todo el HTML: rompe imagenes/lescorts1.jpg → *1.jpg inexistente.
         text = re.sub(
             r'(<div class="page-hero-content fade-up">\s*<span class="overline">)[^<]+(</span>)',
             rf'\1{z["admin_overline"]}\2',
@@ -700,6 +730,7 @@ def write_admin(z: dict) -> None:
             text,
             count=1,
         )
+    text = apply_hero_img(text, z["hero_img"])
     out.write_text(text, encoding="utf-8")
     print("admin", out.name)
 
@@ -840,18 +871,7 @@ def write_integral(z: dict) -> None:
         text,
         count=1,
     )
-    text = re.sub(
-        r"background-image:url\('imagenes/[^']+'\)",
-        f"background-image:url('{z['hero_img']}')",
-        text,
-        count=1,
-    )
-    text = re.sub(
-        r'<meta property="og:image" content="https://www\.nuevahabitat\.com/imagenes/[^"]+"',
-        f'<meta property="og:image" content="https://www.nuevahabitat.com/{z["hero_img"]}"',
-        text,
-        count=1,
-    )
+    text = apply_hero_img(text, z["hero_img"])
     text = apply_integral_mercado(text, z)
     out.write_text(text, encoding="utf-8")
     print("integral", out.name)
@@ -968,6 +988,7 @@ def main() -> None:
             inject_servicios(p, z)
     inject_hub(ROOT / "administracion-alquileres.html")
     inject_hub(ROOT / "alquiler-integral.html")
+    repair_all_hero_images()
     update_json_index()
 
 
