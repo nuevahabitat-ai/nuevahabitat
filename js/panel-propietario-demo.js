@@ -138,6 +138,36 @@
       renta_mensual: 1880,
       zonaLabel: 'Sant Gervasi',
     },
+    cornella: {
+      inmueble_direccion: 'Avinguda del Parc, 12 · 3r · 08940 Cornellà (Centre)',
+      inmueble_ref: 'NH-INT-CR-7201',
+      renta_mensual: 920,
+      zonaLabel: 'Cornellà',
+    },
+    diagonalmar: {
+      inmueble_direccion: 'Carrer de la Marina, 88 · 8è · 08019 Barcelona (Diagonal Mar)',
+      inmueble_ref: 'NH-INT-DM-7202',
+      renta_mensual: 1580,
+      zonaLabel: 'Diagonal Mar',
+    },
+    pedralbes: {
+      inmueble_direccion: 'Avinguda de Pedralbes, 60 · 2n · 08034 Barcelona',
+      inmueble_ref: 'NH-INT-PD-7203',
+      renta_mensual: 2100,
+      zonaLabel: 'Pedralbes',
+    },
+    barceloneta: {
+      inmueble_direccion: 'Carrer de la Maquinista, 8 · 1r · 08003 Barcelona',
+      inmueble_ref: 'NH-INT-BC-7204',
+      renta_mensual: 1250,
+      zonaLabel: 'La Barceloneta',
+    },
+    sagradafamilia: {
+      inmueble_direccion: 'Carrer de Provença, 420 · 4t 2a · 08025 Barcelona',
+      inmueble_ref: 'NH-INT-SF-7205',
+      renta_mensual: 1480,
+      zonaLabel: 'Sagrada Família',
+    },
   };
 
   let demoContext = { mode: 'admin', zona: 'lescorts' };

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Barrio landings: administración 60€ + alquiler integral 499€ (18 zonas Barcelona y área)."""
+"""Barrio landings: administración 60€ + alquiler integral 499€ (23 zonas Barcelona y área)."""
 from __future__ import annotations
 
 import json
@@ -406,6 +406,136 @@ ZONAS = [
         "rent_example_high": 2100,
         "euro_m2_band": "22–26 €/m²",
     },
+    {
+        "key": "cornella",
+        "label": "Cornellà de Llobregat",
+        "label_short": "Cornellà",
+        "admin_slug": "administracion-alquileres-cornella",
+        "integral_slug": "alquiler-integral-cornella",
+        "demo_zona": "cornella",
+        "hero_img": "imagenes/barcelona1.jpeg",
+        "vender_slug": "vender-cornella",
+        "admin_template": "les-corts",
+        "admin_overline": "Cornellà · Centre, Sant Ildefons, Can Mercader",
+        "admin_title": "Delegar alquiler Cornellà · 60 €/mes fijos · propietario sin estrés · NuevaHabitat",
+        "admin_desc": "Administración de alquileres en Cornellà de Llobregat: 60 €/mes IVA incl. Incidencias, LAU y mediación en Centre, Sant Ildefons y Can Mercader.",
+        "admin_keywords": "administración alquileres Cornellà, gestionar alquiler Cornellà de Llobregat, precio m2 alquiler Cornellà, administrador fincas 08940",
+        "integral_overline": "Cornellà · 499 € cerrado · captación área metropolitana",
+        "integral_title": "Alquiler integral Cornellà · 499 € · renta según mercado local · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Cornellà: 499 € fijo. Anuncio, visitas, top 3 perfiles y LAU con comparables de €/m² del municipio.",
+        "hero_integral": "Centre, Sant Ildefons, Can Mercader, Almeda y eje Gran Via de Cornellà",
+        "demo_place": "Avinguda del Parc (Centre)",
+        "area_served": ["Cornellà de Llobregat", "Sant Ildefons", "Can Mercader", "08940", "08950"],
+        "hero_zones": "Centre, Sant Ildefons, Can Mercader y Gran Via",
+        "trust_lead": "Cornellà · metro L5",
+        "rent_example_low": 850,
+        "rent_example_high": 1050,
+        "euro_m2_band": "13–15 €/m²",
+    },
+    {
+        "key": "diagonal-mar",
+        "label": "Diagonal Mar",
+        "label_short": "Diagonal Mar",
+        "admin_slug": "administracion-alquileres-diagonal-mar",
+        "integral_slug": "alquiler-integral-diagonal-mar",
+        "demo_zona": "diagonalmar",
+        "hero_img": "imagenes/barcelona7.webp",
+        "vender_slug": "vender-diagonal-mar-barcelona",
+        "admin_template": "les-corts",
+        "admin_overline": "Diagonal Mar · Front Marítim · Selva de Mar · 22@",
+        "admin_title": "Administración alquiler Diagonal Mar · 60 €/mes · torres y familias · NuevaHabitat",
+        "admin_desc": "Administración de alquileres en Diagonal Mar y Front Marítim: 60 €/mes IVA incl. Gestión LAU e incidencias en torres y vivienda junto al parc.",
+        "admin_keywords": "administración alquileres Diagonal Mar, gestionar alquiler Front Marítim Barcelona, alquiler 08019, administrador fincas Sant Martí",
+        "integral_overline": "Diagonal Mar · 499 € fijo · perfil profesional",
+        "integral_title": "Poner en alquiler Diagonal Mar · 499 € integral · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Diagonal Mar Barcelona: 499 € precio fijo. Captación con €/m² de torres y pisos familiares del Front Marítim.",
+        "hero_integral": "Diagonal Mar, Parc del Centre del Port, Selva de Mar y Rambla de Poblenou",
+        "demo_place": "Carrer de la Marina (Diagonal Mar)",
+        "area_served": ["Diagonal Mar", "Front Marítim", "Sant Martí", "08019", "08005"],
+        "hero_zones": "Diagonal Mar, Selva de Mar y entorno CCIB",
+        "trust_lead": "Diagonal Mar · 08019",
+        "rent_example_low": 1350,
+        "rent_example_high": 1750,
+        "euro_m2_band": "19–23 €/m²",
+    },
+    {
+        "key": "pedralbes",
+        "label": "Pedralbes",
+        "label_short": "Pedralbes",
+        "admin_slug": "administracion-alquileres-pedralbes",
+        "integral_slug": "alquiler-integral-pedralbes",
+        "demo_zona": "pedralbes",
+        "hero_img": "imagenes/lescorts4.jpg",
+        "vender_slug": "vender-pedralbes-barcelona",
+        "admin_template": "les-corts",
+        "admin_overline": "Pedralbes · Les Corts · Diagonal · Reina Elisenda",
+        "admin_title": "Gestión alquiler Pedralbes · 60 €/mes · discreción total · NuevaHabitat",
+        "admin_desc": "Administración de alquileres en Pedralbes (Les Corts): 60 €/mes IVA incl. Incidencias, LAU e inquilino sin contacto directo contigo.",
+        "admin_keywords": "administración alquileres Pedralbes, gestionar alquiler Pedralbes Barcelona, precio m2 alquiler Pedralbes, alquiler 08034",
+        "integral_overline": "Pedralbes · 499 € fijo · inquilino solvente",
+        "integral_title": "Alquiler integral Pedralbes · 499 € · captación premium · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Pedralbes: 499 € fijo. Visitas discretas, comparables €/m² altos y contrato LAU en zona Diagonal.",
+        "hero_integral": "Pedralbes centre, Reina Elisenda, Monestir de Pedralbes y entorno Camp Nou",
+        "demo_place": "Avinguda de Pedralbes",
+        "area_served": ["Pedralbes", "Les Corts", "08034", "08028"],
+        "hero_zones": "Pedralbes, Reina Elisenda y Diagonal",
+        "trust_lead": "Pedralbes · 08034",
+        "rent_example_low": 1800,
+        "rent_example_high": 2400,
+        "euro_m2_band": "24–28 €/m²",
+    },
+    {
+        "key": "barceloneta",
+        "label": "La Barceloneta",
+        "label_short": "La Barceloneta",
+        "admin_slug": "administracion-alquileres-barceloneta",
+        "integral_slug": "alquiler-integral-barceloneta",
+        "demo_zona": "barceloneta",
+        "hero_img": "imagenes/barcelona2.jpg",
+        "vender_slug": "vender-piso-barceloneta",
+        "admin_template": "les-corts",
+        "admin_overline": "Barceloneta · Ciutat Vella · platja · port",
+        "admin_title": "Administrador alquiler Barceloneta · 60 €/mes · LAU junto al mar · NuevaHabitat",
+        "admin_desc": "Administración de alquileres en La Barceloneta: 60 €/mes IVA incl. Humedades, comunidades estrechas y mediación sin hablar con el inquilino.",
+        "admin_keywords": "administración alquileres Barceloneta, gestionar alquiler La Barceloneta, precio alquiler m2 Barceloneta, alquiler 08003",
+        "integral_overline": "Barceloneta · 499 € fijo · uso habitual claro",
+        "integral_title": "Alquiler integral Barceloneta · 499 € · filtro y contrato · NuevaHabitat",
+        "integral_desc": "Alquiler integral en La Barceloneta: 499 € precio fijo. Anuncio, visitas, top 3 perfiles y LAU con criterio vivienda habitual.",
+        "hero_integral": "La Barceloneta, Passeig Joan de Borbó, carrer de la Maquinista y platja",
+        "demo_place": "Carrer de la Maquinista (Barceloneta)",
+        "area_served": ["La Barceloneta", "Ciutat Vella", "08003", "08039"],
+        "hero_zones": "Barceloneta, Passeig Joan de Borbó y port",
+        "trust_lead": "Barceloneta · 08003",
+        "rent_example_low": 1100,
+        "rent_example_high": 1400,
+        "euro_m2_band": "18–22 €/m²",
+    },
+    {
+        "key": "sagrada-familia",
+        "label": "Sagrada Família",
+        "label_short": "Sagrada Família",
+        "admin_slug": "administracion-alquileres-sagrada-familia",
+        "integral_slug": "alquiler-integral-sagrada-familia",
+        "demo_zona": "sagradafamilia",
+        "hero_img": "imagenes/eixample1.jpg",
+        "vender_slug": "vender-sagrada-familia-barcelona",
+        "admin_template": "les-corts",
+        "admin_overline": "Sagrada Família · Provença · Mallorca · Eixample",
+        "admin_title": "Administración alquiler Sagrada Família · 60 €/mes · Eixample · NuevaHabitat",
+        "admin_desc": "Administración de alquileres junto a la Sagrada Família: 60 €/mes IVA incl. Incidencias, LAU y seguimiento de renta en Provença y Mallorca.",
+        "admin_keywords": "administración alquileres Sagrada Família, gestionar alquiler Provença Barcelona, alquiler 08025, administrador fincas Eixample",
+        "integral_overline": "Sagrada Família · 499 € fijo · alta demanda",
+        "integral_title": "Delegar alquiler Sagrada Família · 499 € integral · NuevaHabitat",
+        "integral_desc": "Alquiler integral en el entorno Sagrada Família: 499 € fijo. Publicación, visitas, top 3 perfiles y LAU con renta según €/m² del Eixample.",
+        "hero_integral": "Sagrada Família, Provença, Mallorca, Marina y Sant Pau",
+        "demo_place": "Carrer de Provença (Sagrada Família)",
+        "area_served": ["Sagrada Família", "Eixample", "08025", "08013"],
+        "hero_zones": "Provença, Mallorca y entorno basílica",
+        "trust_lead": "Sagrada Família · turismo filtrado",
+        "rent_example_low": 1300,
+        "rent_example_high": 1650,
+        "euro_m2_band": "19–22 €/m²",
+    },
 ]
 
 ADMIN_MICRO = {
@@ -525,6 +655,51 @@ ADMIN_MICRO = {
     <p>Familias de larga duración; incidencias de calderas individuales y terrazas.</p>
     <h3>Avinguda Diagonal i entorn</h3>
     <p>Propietarios expatriados o en otra ciudad: un único interlocutor operativo en Barcelona.</p>
+""",
+    "cornella": """
+    <p><strong>Cornellà de Llobregat</strong> combina <strong>Centre</strong>, <strong>Sant Ildefons</strong> (metro L5) y <strong>Can Mercader</strong>. El alquiler orientativo ronda <strong>13–15 €/m²</strong> (p. ej. 70 m² en <strong>850–1.050 €/mes</strong>). Propietarios que viven en Barcelona delegan incidencias con <strong>60 €/mes IVA incluido</strong> sin pagar comisión sobre la renta.</p>
+    <h3>Centre i Gran Via Cornellà</h3>
+    <p>Familias y parejas; calendario LAU, seguimiento de pagos y mediación en averías.</p>
+    <h3>Sant Ildefons</h3>
+    <p>Alta demanda por metro; inventario detallado en entrada y salida.</p>
+    <h3>Can Mercader i Almeda</h3>
+    <p>Comunidades con garaje; coordinación con administrador de finca sin saturarte de llamadas.</p>
+""",
+    "diagonal-mar": """
+    <p><strong>Diagonal Mar</strong> y el <strong>Front Marítim</strong> mezclan torres de obra recente y familias en vivienda junto al parc. Renta orientativa <strong>19–23 €/m²</strong> (80 m² en <strong>1.350–1.750 €/mes</strong>). Administración <strong>60 €/mes</strong> para propietarios con inquilinos exigentes y fincas con portería.</p>
+    <h3>Torres Diagonal Mar</h3>
+    <p>Incidencias de climatización y ascensor; documentación impecable en fianza INCASÒL.</p>
+    <h3>Selva de Mar i Rambla Poblenou</h3>
+    <p>Transición hacia 22@; mismo canal único con el inquilino.</p>
+    <h3>Propietario inversor</h3>
+    <p>Resúmenes operativos por email; tú cobras la renta en tu cuenta.</p>
+""",
+    "pedralbes": """
+    <p><strong>Pedralbes</strong> (08034) es uno de los mercados con mayor <strong>€/m²</strong> de alquiler en Barcelona: orientativamente <strong>24–28 €/m²</strong>, con viviendas amplias en <strong>1.800–2.400 €/mes</strong>. La administración a <strong>60 €/mes IVA incluido</strong> evita ceder un 5 % anual de esa renta a un administrador tradicional.</p>
+    <h3>Pedralbes centre i monestir</h3>
+    <p>Discreción total: el inquilino no tiene tu teléfono; proveedores de calidad.</p>
+    <h3>Reina Elisenda i Diagonal</h3>
+    <p>Contratos LAU revisados en cada renovación; terrazas y calderas individuales.</p>
+    <h3>Propietarios fuera de España</h3>
+    <p>Gestión operativa desde Mejía Lequerica (Les Corts), a minutos del distrito.</p>
+""",
+    "barceloneta": """
+    <p><strong>La Barceloneta</strong> exige contratos claros de <strong>vivienda habitual</strong> (no confundir con uso turístico). Alquiler orientativo <strong>18–22 €/m²</strong> en plantas sin humedad; <strong>60 €/mes IVA incluido</strong> para mediación, salitre en terrazas y comunidades muy estrechas.</p>
+    <h3>Passeig Joan de Borbó</h3>
+    <p>Ruido y ventilación; comunicación profesional con el inquilino.</p>
+    <h3>Carrers interiors Barceloneta</h3>
+    <p>Fincas históricas; fontanería y electricidad certificada coordinada por Nueva Habitat.</p>
+    <h3>Fin de contrato</h3>
+    <p>Inventario y fianza INCASÒL con criterio LAU; sin sustituir abogado en contencioso.</p>
+""",
+    "sagrada-familia": """
+    <p>El entorno de la <strong>Sagrada Família</strong> (<strong>Provença</strong>, <strong>Mallorca</strong>, <strong>Marina</strong>) tiene demanda constante de larga duración. Mercado orientativo <strong>19–22 €/m²</strong> (75 m² en <strong>1.300–1.650 €/mes</strong>). Cuota fija <strong>60 €/mes</strong> para no mezclar turismo de paso con tu contrato de alquiler habitual.</p>
+    <h3>Provença i Mallorca</h3>
+    <p>Edificios del Eixample; calderas comunitarias y obras de fachada coordinadas.</p>
+    <h3>Entorn basílica</h3>
+    <p>Alta rotación de consultas: filtramos curiosos si el piso está vacío vía <a href="/alquiler-integral">integral 499 €</a>.</p>
+    <h3>Mercado tensionado</h3>
+    <p>Revisamos plazos y comunicaciones cuando aplica normativa catalana vigente.</p>
 """,
     "badalona": """
     <p>Badalona concentra propietarios que viven en Barcelona o fuera del Maresme: <strong>Centre</strong>, <strong>Gorg</strong>, <strong>Montigalà</strong> y <strong>Pep Ventura</strong>. Misma tarifa <strong>60 €/mes IVA incluido</strong> con desplazamiento habitual desde Les Corts.</p>
@@ -966,11 +1141,11 @@ def update_json_index() -> None:
 
 def main() -> None:
     new_barrios = {
-        "poble-sec",
-        "el-clot",
-        "fort-pienc",
-        "esplugues",
-        "sant-gervasi",
+        "cornella",
+        "diagonal-mar",
+        "pedralbes",
+        "barceloneta",
+        "sagrada-familia",
     }
     for z in ZONAS:
         if z["key"] in new_barrios:
