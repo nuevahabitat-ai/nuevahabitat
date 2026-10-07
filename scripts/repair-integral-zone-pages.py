@@ -36,6 +36,11 @@ ZONE_LABEL = {
     "fort-pienc": "Fort Pienc",
     "esplugues": "Esplugues de Llobregat",
     "sant-gervasi": "Sant Gervasi",
+    "cornella": "Cornellà de Llobregat",
+    "diagonal-mar": "Diagonal Mar",
+    "pedralbes": "Pedralbes",
+    "barceloneta": "La Barceloneta",
+    "sagrada-familia": "Sagrada Família",
 }
 
 ADMIN_SLUG = {
@@ -57,6 +62,11 @@ ADMIN_SLUG = {
     "fort-pienc": "administracion-alquileres-fort-pienc",
     "esplugues": "administracion-alquileres-esplugues",
     "sant-gervasi": "administracion-alquileres-sant-gervasi",
+    "cornella": "administracion-alquileres-cornella",
+    "diagonal-mar": "administracion-alquileres-diagonal-mar",
+    "pedralbes": "administracion-alquileres-pedralbes",
+    "barceloneta": "administracion-alquileres-barceloneta",
+    "sagrada-familia": "administracion-alquileres-sagrada-familia",
 }
 
 

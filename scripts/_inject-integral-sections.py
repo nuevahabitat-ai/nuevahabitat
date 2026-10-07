@@ -81,6 +81,11 @@ PAGES = {
     'alquiler-integral-fort-pienc.html': ('fortpienc', 'Fort Pienc', 'En Fort Pienc publicamos con referencias de Nàpols, Marina y Sagrada Família.'),
     'alquiler-integral-esplugues.html': ('esplugues', 'Esplugues', 'En Esplugues captamos con comparables del Centre, Can Clota y Finestrelles.'),
     'alquiler-integral-sant-gervasi.html': ('santgervasi', 'Sant Gervasi', 'En Galvany y Tres Torres filtramos perfiles acordes a rentas altas por m².'),
+    'alquiler-integral-cornella.html': ('cornella', 'Cornellà', 'En Cornellà publicamos con comparables del Centre y Sant Ildefons, no de Barcelona ciudad.'),
+    'alquiler-integral-diagonal-mar.html': ('diagonalmar', 'Diagonal Mar', 'En Diagonal Mar y Front Marítim ajustamos renta en torres y vivienda familiar del 08019.'),
+    'alquiler-integral-pedralbes.html': ('pedralbes', 'Pedralbes', 'En Pedralbes captamos inquilinos solventes con criterio de renta alta por m².'),
+    'alquiler-integral-barceloneta.html': ('barceloneta', 'La Barceloneta', 'En Barceloneta dejamos claro uso habitual en anuncio y contrato LAU.'),
+    'alquiler-integral-sagrada-familia.html': ('sagradafamilia', 'Sagrada Família', 'En Provença y Mallorca concertamos visitas sin mezclar perfiles turísticos.'),
 }
 
 MARKER = '<!-- NH_INTEGRAL_PROCESO_DEMO -->'

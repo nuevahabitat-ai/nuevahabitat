@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-06T19:14:03.071Z",
+  "updated": "2026-10-07T18:50:27.518Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -1155,6 +1155,66 @@
     },
     {
       "slug": "alquiler-integral-sant-gervasi",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-cornella",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-cornella",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-diagonal-mar",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-diagonal-mar",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-pedralbes",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-pedralbes",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-barceloneta",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-barceloneta",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquileres-sagrada-familia",
+      "cluster": "alquileres",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-sagrada-familia",
       "cluster": "alquileres",
       "indexable": true,
       "priority": 0.86

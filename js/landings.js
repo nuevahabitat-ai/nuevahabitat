@@ -192,7 +192,17 @@ window.NH_LANDING_ORDER = [
   "administracion-alquileres-esplugues",
   "alquiler-integral-esplugues",
   "administracion-alquileres-sant-gervasi",
-  "alquiler-integral-sant-gervasi"
+  "alquiler-integral-sant-gervasi",
+  "administracion-alquileres-cornella",
+  "alquiler-integral-cornella",
+  "administracion-alquileres-diagonal-mar",
+  "alquiler-integral-diagonal-mar",
+  "administracion-alquileres-pedralbes",
+  "alquiler-integral-pedralbes",
+  "administracion-alquileres-barceloneta",
+  "alquiler-integral-barceloneta",
+  "administracion-alquileres-sagrada-familia",
+  "alquiler-integral-sagrada-familia"
 ];
 window.NH_LANDING_CLUSTERS = {
   barrio: { label: 'Por barrio', slugs: [] },
@@ -2809,6 +2819,96 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "499 € fijo · captación y cierre en Sant Gervasi – Galvany."
+  },
+  "administracion-alquileres-cornella": {
+    "slug": "administracion-alquileres-cornella",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Cornellà de Llobregat",
+    "keyword_principal": "administración alquileres Cornellà de Llobregat",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Cornellà de Llobregat · panel propietario."
+  },
+  "alquiler-integral-cornella": {
+    "slug": "alquiler-integral-cornella",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Cornellà de Llobregat",
+    "keyword_principal": "alquiler integral Cornellà de Llobregat",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Cornellà de Llobregat."
+  },
+  "administracion-alquileres-diagonal-mar": {
+    "slug": "administracion-alquileres-diagonal-mar",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Diagonal Mar",
+    "keyword_principal": "administración alquileres Diagonal Mar",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Diagonal Mar · panel propietario."
+  },
+  "alquiler-integral-diagonal-mar": {
+    "slug": "alquiler-integral-diagonal-mar",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Diagonal Mar",
+    "keyword_principal": "alquiler integral Diagonal Mar",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Diagonal Mar."
+  },
+  "administracion-alquileres-pedralbes": {
+    "slug": "administracion-alquileres-pedralbes",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Pedralbes",
+    "keyword_principal": "administración alquileres Pedralbes",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Pedralbes · panel propietario."
+  },
+  "alquiler-integral-pedralbes": {
+    "slug": "alquiler-integral-pedralbes",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Pedralbes",
+    "keyword_principal": "alquiler integral Pedralbes",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Pedralbes."
+  },
+  "administracion-alquileres-barceloneta": {
+    "slug": "administracion-alquileres-barceloneta",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · La Barceloneta",
+    "keyword_principal": "administración alquileres La Barceloneta",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · La Barceloneta · panel propietario."
+  },
+  "alquiler-integral-barceloneta": {
+    "slug": "alquiler-integral-barceloneta",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · La Barceloneta",
+    "keyword_principal": "alquiler integral La Barceloneta",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en La Barceloneta."
+  },
+  "administracion-alquileres-sagrada-familia": {
+    "slug": "administracion-alquileres-sagrada-familia",
+    "cluster": "alquileres",
+    "footerLabel": "Administración · Sagrada Família",
+    "keyword_principal": "administración alquileres Sagrada Família",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "60 €/mes · Sagrada Família · panel propietario."
+  },
+  "alquiler-integral-sagrada-familia": {
+    "slug": "alquiler-integral-sagrada-familia",
+    "cluster": "alquileres",
+    "footerLabel": "Integral · Sagrada Família",
+    "keyword_principal": "alquiler integral Sagrada Família",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "499 € fijo · captación y cierre en Sagrada Família."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){
