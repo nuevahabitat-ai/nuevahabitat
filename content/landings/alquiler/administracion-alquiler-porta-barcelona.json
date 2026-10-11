@@ -1,0 +1,217 @@
+{
+  "slug": "administracion-alquiler-porta-barcelona",
+  "cluster": "alquiler",
+  "layout": "alquiler-hub",
+  "servicio": "administracion",
+  "indexable": true,
+  "barrioNombre": "Porta",
+  "keyword_principal": "administracion alquiler porta barcelona",
+  "keyword_aliases": [
+    "administracion alquiler porta barcelona gestion",
+    "porta alquiler propietarios",
+    "gestionar alquiler 08016",
+    "administrar renta porta"
+  ],
+  "footerLabel": "Admin Porta",
+  "breadcrumbCurrent": "Porta",
+  "priority": 0.86,
+  "origen_lead": "administracion-alquiler-porta-barcelona",
+  "postalCodes": [
+    "08016"
+  ],
+  "zonas": [
+    "Porta"
+  ],
+  "meta": {
+    "title": "Administración de alquiler en Porta: gestión mensual en… | NuevaHabitat",
+    "description": "Administración de alquiler en Porta (08016). INCASÒL, LAU, zona tensionada, visitas filtradas y gestor Les Corts. Renta orientativa 850–1.050 €/mes.",
+    "keywords": "administracion alquiler porta barcelona"
+  },
+  "hero": {
+    "badge": "Porta · 08016 · Admin",
+    "h1": "Administración de alquiler en Porta: gestión mensual en el eje Fabra i Puig–Passeig Valldaura",
+    "lead": "¿Propietario en <strong>Porta</strong> (08016)? Cobramos rentas y resolvemos incidencias con <strong>LAU</strong> e <strong>INCASÒL</strong>. Renta orientativa <strong>850–1.050 €/mes</strong>. <strong>NuevaHabitat</strong> — Les Corts.",
+    "image": "imagenes/noubarris1.jpg",
+    "imageAlt": "Administración alquiler Porta Barcelona"
+  },
+  "heroStats": [
+    {
+      "label": "Cobro renta",
+      "value": "Mensual",
+      "note": "Informe al propietario",
+      "highlight": true
+    },
+    {
+      "label": "Incidencias",
+      "value": "Canal gestor",
+      "note": "Fontanería, comunidad"
+    },
+    {
+      "label": "Renovaciones",
+      "value": "LAU + índice",
+      "note": "Zona tensionada"
+    }
+  ],
+  "calculadora": {
+    "precioDefault": 1000,
+    "titulo": "Gestión mensual del arrendamiento",
+    "subtitulo": "Renta orientativa en Porta: 850–1.050 €/mes. Ajustamos según estado, amueblado y calle."
+  },
+  "argumento_principal": "<p><strong>Administración de alquiler</strong> en <strong>Porta</strong> (08016): propietarios que alquilan sin tiempo, sin experiencia LAU o desde el extranjero. Renta orientativa <strong>850–1.050 €/mes</strong> según estado y calle. <strong>Administración</strong> mensual una vez alquilado. Equipo <strong>NuevaHabitat</strong> en Les Corts.</p><p>Guía: <a href=\"/administracion-alquiler-barcelona\">Administración de alquiler Barcelona</a>. Si el piso estaba en venta: <a href=\"/vender-piso-alquilado-barcelona\">vender piso alquilado</a>.</p><h2>Fianza INCASÒL y zona tensionada en Barcelona</h2><p>En Barcelona la fianza legal se deposita en el <strong>INCASÒL</strong> en un plazo máximo de dos meses desde la firma. Todo el municipio está en <strong>zona de mercado residencial tensionado</strong>: contratos nuevos deben respetar topes de renta, informar de la renta anterior y justificar mejoras si subes precio. Revisamos borrador antes de firmar para evitar nulidades y sanciones.</p><h2>Porta y conexión metro</h2><p><strong>Porta</strong> concentra familias con L1/L3/L4 — inquilino estable si contrato claro. Renovaciones y actualización renta según LAU tensionada.</p><h2>Vecindad consolidada</h2><p>Relación vecinal activa: incidencias ruido o convivencia mejor con gestor intermediario.</p><h2>Notas Porta (administracion-alquiler-porta-barcelona)</h2><p>Liquidación en 08016: calles del entorno Porta exigen conciliación bancaria mensual y archivo de transferencias del inquilino. Renta 850–1.050 €/mes revisada trimestralmente según índice si renueva LAU. Gestor Les Corts coordina técnicos acreditados sin sustituir asesoramiento fiscal individual del propietario.</p><h2>Seguro e impagos</h2><p>Valoramos seguro de impago cuando el perfil inquilino lo requiere. En Porta la rotación genera costes de pintura entre contratos — informe mensual al propietario con saldo y pendientes.</p><h2>Perfil inquilino en Porta</h2><p>Familias numerosas, parejas que buscan tres habitaciones, trabajadores con desplazamiento en metro.</p><h2>Errores que vemos en 08016</h2><ol><li>Confundir Porta con Verdum en pricing.</li><li>No domiciliar renta.</li><li>Incidencias sin proveedores de confianza.</li><li>Olvidar inspección anual opcional del piso.</li><li>Mezclar alquiler y venta sin avisar inquilino.</li></ol><h2>Documentación propietario</h2><ul><li>Escritura o nota simple, IBI, certificado energético.</li><li>Estado del piso: última reforma, electrodomésticos incluidos.</li><li>Comunidad al día; derramas comunicadas.</li><li>Seguro hogar; responsabilidad civil arrendador.</li><li>Si hay hipoteca: cláusula bancaria para alquiler.</li></ul><h2>Panel y comunicación</h2><p>Incidencias, rentas y documentos centralizados. WhatsApp con gestor en horario comercial — no un call center genérico.</p><h2>Interlinking Barcelona</h2><p>Enlace <a href=\"/vender-como-particular-nou-barris-barcelona\">particular Nou Barris</a> para propietario indeciso vender/alquilar.</p><h2>Próximo paso administracion-alquiler-porta-barcelona</h2><p>Formulario: micro-zona, m², renta deseada, situación (libre, alquilado, herencia). Consulta sin compromiso en 24 h laborables desde Carrer Mejía Lequerica 42.</p>",
+  "como_ayudamos": {
+    "title": "Administración en Porta",
+    "description": "Una vez alquilado, nos ocupamos del día a día.",
+    "steps": [
+      {
+        "title": "Alta del arrendamiento",
+        "body": "Datos inquilino, IBAN, contacto."
+      },
+      {
+        "title": "Cobro y liquidación",
+        "body": "Renta al propietario con informe."
+      },
+      {
+        "title": "Incidencias",
+        "body": "Coordinación técnicos y comunidad."
+      },
+      {
+        "title": "Renovaciones",
+        "body": "Preaviso, índice, documentación."
+      },
+      {
+        "title": "Fin de contrato",
+        "body": "Devolución fianza y acta salida."
+      }
+    ]
+  },
+  "comparativa_modelos": {
+    "title": "Porta: quién administra tu alquiler",
+    "rows": [
+      {
+        "modelo": "Autogestión WhatsApp",
+        "tiempo": "Continuo",
+        "coste": "Tu tiempo",
+        "riesgo": "Impago tardío",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "Administrador persona física suelto",
+        "tiempo": "Variable",
+        "coste": "Sin panel",
+        "riesgo": "Sin trazabilidad",
+        "tipo": "neutral"
+      },
+      {
+        "modelo": "Inmobiliaria carísima",
+        "tiempo": "Lento",
+        "coste": "% anual alto",
+        "riesgo": "Poco digital",
+        "tipo": "lose"
+      },
+      {
+        "modelo": "NH administración",
+        "tiempo": "Mensual",
+        "coste": "Cuota transparente",
+        "riesgo": "Gestor Les Corts",
+        "tipo": "win"
+      }
+    ]
+  },
+  "mitos": {
+    "title": "Mitos administración Porta",
+    "items": [
+      {
+        "mito": "El precio lo pone Idealista",
+        "realidad": "Zona tensionada y estado del piso mandan — anuncio sin estudio alarga vacío."
+      },
+      {
+        "mito": "La fianza basta en efectivo",
+        "realidad": "INCASÒL obligatorio en Cataluña."
+      },
+      {
+        "mito": "Solo cobro el ingreso",
+        "realidad": "Incidencias, renovaciones e impagos requieren protocolo."
+      },
+      {
+        "mito": "No hace falta inventario",
+        "realidad": "Acta de entrega evita conflictos al final."
+      },
+      {
+        "mito": "Barcelona es un solo mercado",
+        "realidad": "Porta tiene renta y perfil propios."
+      }
+    ]
+  },
+  "checklist": {
+    "title": "Checklist propietario Porta",
+    "intro": "Antes de firmar o externalizar.",
+    "items": [
+      "Certificado energético vigente",
+      "Comunidad e IBI al día",
+      "Renta anterior documentada (tensionado)",
+      "Seguro hogar arrendador",
+      "Inventario y fotos estado",
+      "IBAN y contacto inquilino actualizados"
+    ]
+  },
+  "faq": [
+    {
+      "q": "¿Trabajáis en Porta?",
+      "a": "Sí. Esta landing cubre Porta (Barcelona). Valoración orientativa de renta 850–1.050 €/mes según calle, estado y LAU."
+    },
+    {
+      "q": "¿Dónde se deposita la fianza?",
+      "a": "En Cataluña, INCASÒL. Gestionamos recordatorio de plazo y documentación si contratas gestión con nosotros."
+    },
+    {
+      "q": "¿Zona tensionada?",
+      "a": "Sí en Barcelona ciudad. Verificamos renta de referencia y cláusulas obligatorias en anuncio y contrato."
+    },
+    {
+      "q": "¿Qué incluye la administración?",
+      "a": "Cobro de rentas, relación con inquilino, incidencias habituales, renovaciones, informes al propietario y coordinación con comunidad cuando aplica."
+    },
+    {
+      "q": "¿Puedo seguir viviendo fuera de Barcelona?",
+      "a": "Sí. Panel y WhatsApp con gestor en Les Corts; visitas e incidencias las coordinamos nosotros."
+    },
+    {
+      "q": "¿Alquiler de habitaciones?",
+      "a": "Esta landing es para vivienda completa. Si compartes piso, indícalo en el formulario para orientarte."
+    },
+    {
+      "q": "¿Plazo hasta primer ingreso?",
+      "a": "Administración empieza desde la primera renta cobrada tras alta del inquilino."
+    },
+    {
+      "q": "¿Honorarios?",
+      "a": "Presupuesto claro por escrito tras revisar tu caso — sin comisión opaca del 10% sobre años de renta sin explicar servicios."
+    },
+    {
+      "q": "¿Vinculación con venta NuevaHabitat?",
+      "a": "Si más adelante vendes, mismo equipo conoce historial del piso y contrato vigente."
+    },
+    {
+      "q": "¿Próximo paso?",
+      "a": "Formulario en esta página: barrio, m², renta deseada y teléfono. Respuesta en 24 h laborables."
+    }
+  ],
+  "relacionadas": [
+    {
+      "slug": "alquiler-integral-barcelona",
+      "label": "Administración de alquiler Barcelona"
+    },
+    {
+      "slug": "vender-piso-alquilado-barcelona",
+      "label": "Vender piso alquilado"
+    },
+    {
+      "slug": "contacto",
+      "label": "Contacto Les Corts"
+    }
+  ],
+  "keywords_footer": "administracion alquiler porta barcelona · 08016 · INCASÒL · LAU · NuevaHabitat Les Corts",
+  "whatsappText": "Hola%2C%20consulto%20administraci%C3%B3n%20de%20alquiler%20en%20Porta",
+  "formPlaceholder": "Porta — m² y renta deseada",
+  "form_side_text": "Porta: te proponemos cuota de administración por escrito tras revisar contrato y estado."
+}

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11T10:47:35.272Z",
+  "updated": "2026-10-11T10:54:07.166Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -984,6 +984,78 @@
       "cluster": "comprador",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "administracion-alquiler-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "administracion-alquiler-ciutat-meridiana-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-porta-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-trinitat-nova-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-turo-peira-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-vallcarca-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "alquiler-integral-can-baro-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-congres-indians-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-el-carmel-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-putxet-farro-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-zona-universitaria-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "administracion-alquileres",

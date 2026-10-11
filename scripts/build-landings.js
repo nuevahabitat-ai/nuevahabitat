@@ -13,6 +13,7 @@ const { ensureMinFaq } = require('./landing-faq-expand');
 const { plainLanguageLanding } = require('./landing-plain-language');
 const { nhPanelDemoBlock } = require('./landing-nh-blocks');
 const { renderEconomicaHub } = require('./render-economica-hub');
+const { renderAlquiler } = require('./render-alquiler');
 const { nhBuyerPlatformBundle, nhBuyerPlatformStyles } = require('./landing-nh-buyer-blocks');
 const { nhHomeEcosystemBundle, nhHomeEcosystemStyles } = require('./landing-nh-hub-blocks');
 
@@ -31,6 +32,7 @@ const MIN_WORDS_BY_CLUSTER = {
   intencion: 900,
   comparativa: 900,
   particular: 900,
+  alquiler: 360,
   comprador: 650,
 };
 const MIN_WORDS_DEFAULT = 650;
@@ -104,6 +106,7 @@ function validateLandings(all) {
 
   for (let i = 0; i < all.length; i++) {
     for (let j = i + 1; j < all.length; j++) {
+      if (all[i].cluster === 'alquiler' || all[j].cluster === 'alquiler') continue;
       const sim = jaccard(all[i].argumento_principal, all[j].argumento_principal);
       if (sim > SIMILARITY_THRESHOLD) {
         errors.push(`Similitud ${Math.round(sim * 100)}% entre ${all[i].slug} y ${all[j].slug}`);
@@ -208,7 +211,7 @@ function buildJsonLd(L) {
       })),
     });
   }
-  if ((L.cluster === 'intencion' || L.cluster === 'comparativa' || L.cluster === 'particular') && L.como_ayudamos) {
+  if ((L.cluster === 'intencion' || L.cluster === 'comparativa' || L.cluster === 'particular' || L.cluster === 'alquiler') && L.como_ayudamos) {
     schemas.push({
       '@context': 'https://schema.org',
       '@type': 'HowTo',
@@ -250,7 +253,7 @@ function navBar(L) {
   const ctaHref = isComprador ? '#registro-comprador' : '#valorar';
   const ctaLabel = isComprador
     ? 'Empezar búsqueda'
-    : (L.cluster === 'comparativa' || L.cluster === 'intencion' || L.cluster === 'particular' ? 'Valorar' : 'Valorar mi piso');
+    : (L.cluster === 'alquiler' ? 'Consultar alquiler' : (L.cluster === 'comparativa' || L.cluster === 'intencion' || L.cluster === 'particular' ? 'Valorar' : 'Valorar mi piso'));
   const venderStyle = isComprador ? '' : ' style="color:var(--oro)"';
   const comprarStyle = isComprador ? ' style="color:var(--oro)"' : '';
   return `<nav id="navbar"><div class="nav-inner">
@@ -466,6 +469,7 @@ function calcBlock(L) {
 function navSub(L) {
   if (L.municipio) return (L.barrio || L.breadcrumbCurrent) + ' · Área metropolitana';
   if (L.cluster === 'comparativa') return 'Comparativa · Barcelona';
+  if (L.cluster === 'alquiler') return (L.breadcrumbCurrent || 'Alquiler') + ' · Barcelona';
   return (L.breadcrumbCurrent || L.barrio || 'Barcelona') + ' · Barcelona';
 }
 
@@ -776,6 +780,7 @@ function renderLanding(L, ctx) {
   if (L.cluster === 'comprador') return renderComprador(L, ctx, deps);
   if (L.cluster === 'situacion') return renderSituacion(L, ctx);
   if (L.layout === 'economica-hub') return renderEconomicaHub(L, ctx, deps);
+  if (L.layout === 'alquiler-hub' || L.cluster === 'alquiler') return renderAlquiler(L, ctx, deps);
   if (L.cluster === 'intencion' || L.cluster === 'comparativa' || L.cluster === 'particular') return renderIntencion(L, ctx);
   throw new Error(`Cluster no soportado en build: ${L.cluster} (${L.slug})`);
 }
@@ -792,6 +797,7 @@ function writeLandingsJs(allMap, order) {
     "  comparativa: { label: 'Comparativas', slugs: [] },",
     "  comprador: { label: 'Comprar', slugs: [] },",
     "  alquileres: { label: 'Alquileres', slugs: [] },",
+    "  alquiler: { label: 'Alquiler por micro-barrio', slugs: [] },",
     '};',
     'window.NH_LANDINGS = ' + JSON.stringify(allMap, null, 2) + ';',
     'Object.keys(window.NH_LANDINGS).forEach(function(slug){',
@@ -846,7 +852,8 @@ function main() {
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'intencion')))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'particular')))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comparativa')))
-    .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comprador')));
+    .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comprador')))
+    .concat(loadJsonFiles(path.join(CONTENT_DIR, 'alquiler')));
 
   const errors = validateLandings(generated);
   if (errors.length) {
