@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-07T18:50:27.518Z",
+  "updated": "2026-10-11T10:47:35.272Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -782,6 +782,12 @@
       "priority": 0.93
     },
     {
+      "slug": "vender-como-particular-bon-pastor-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-ciutat-vella-barcelona",
       "cluster": "particular",
       "indexable": true,
@@ -806,6 +812,12 @@
       "priority": 0.9
     },
     {
+      "slug": "vender-como-particular-fort-pienc-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-gracia-barcelona",
       "cluster": "particular",
       "indexable": true,
@@ -824,16 +836,40 @@
       "priority": 0.9
     },
     {
+      "slug": "vender-como-particular-la-sagrera-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-les-corts-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.91
     },
     {
+      "slug": "vender-como-particular-montjuic-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-navas-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-nou-barris-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-pedralbes-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "vender-como-particular-poble-sec-barcelona",
@@ -872,6 +908,12 @@
       "priority": 0.9
     },
     {
+      "slug": "vender-como-particular-sant-pere-santa-caterina-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-sants-barcelona",
       "cluster": "particular",
       "indexable": true,
@@ -882,6 +924,24 @@
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-tetuan-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-trinitat-vella-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-vall-d-hebron-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",

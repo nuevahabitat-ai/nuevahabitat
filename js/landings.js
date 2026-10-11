@@ -130,23 +130,33 @@ window.NH_LANDING_ORDER = [
   "venta-piso-economica-sarria-barcelona",
   "vender-como-particular-badalona-barcelona",
   "vender-como-particular-barcelona",
+  "vender-como-particular-bon-pastor-barcelona",
   "vender-como-particular-ciutat-vella-barcelona",
   "vender-como-particular-cornella-barcelona",
   "vender-como-particular-eixample-barcelona",
   "vender-como-particular-esplugues-barcelona",
+  "vender-como-particular-fort-pienc-barcelona",
   "vender-como-particular-gracia-barcelona",
   "vender-como-particular-horta-barcelona",
   "vender-como-particular-l-hospitalet-barcelona",
+  "vender-como-particular-la-sagrera-barcelona",
   "vender-como-particular-les-corts-barcelona",
+  "vender-como-particular-montjuic-barcelona",
+  "vender-como-particular-navas-barcelona",
   "vender-como-particular-nou-barris-barcelona",
+  "vender-como-particular-pedralbes-barcelona",
   "vender-como-particular-poble-sec-barcelona",
   "vender-como-particular-poblenou-barcelona",
   "vender-como-particular-sant-andreu-barcelona",
   "vender-como-particular-sant-antoni-barcelona",
   "vender-como-particular-sant-gervasi-barcelona",
   "vender-como-particular-sant-marti-barcelona",
+  "vender-como-particular-sant-pere-santa-caterina-barcelona",
   "vender-como-particular-sants-barcelona",
   "vender-como-particular-sarria-barcelona",
+  "vender-como-particular-tetuan-barcelona",
+  "vender-como-particular-trinitat-vella-barcelona",
+  "vender-como-particular-vall-d-hebron-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
   "nuevahabitat-vs-clikalia-barcelona",
   "nuevahabitat-vs-fotocasa-particular",
@@ -1735,6 +1745,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/comercial2.jpg",
     "cardTeaser": "Guía para propietarios que venden por su cuenta en Barcelona: documentos, errores típicos, visitas con crit…"
   },
+  "vender-como-particular-bon-pastor-barcelona": {
+    "slug": "vender-como-particular-bon-pastor-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Bon Pastor",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular bon pastor barcelona",
+    "badge": "Bon Pastor · 08030 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/sants2.jpg",
+    "cardTeaser": "Guía particular Bon Pastor: 3.100 – 3.800 €/m² (Bon Pastor · Maquinista · Besòs)."
+  },
   "vender-como-particular-ciutat-vella-barcelona": {
     "slug": "vender-como-particular-ciutat-vella-barcelona",
     "cluster": "particular",
@@ -1783,6 +1805,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/esplugues1.jpg",
     "cardTeaser": "Guía particular Esplugues de Llobregat: 3.200 – 3.800 €/m² (Can Vidalet · Centre · Finestrelles)."
   },
+  "vender-como-particular-fort-pienc-barcelona": {
+    "slug": "vender-como-particular-fort-pienc-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Fort Pienc",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular fort pienc barcelona",
+    "badge": "Fort Pienc · 08013 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "Guía particular Fort Pienc: 4.500 – 5.800 €/m² (Fort Pienc · Arc Triomf · Estació Nord)."
+  },
   "vender-como-particular-gracia-barcelona": {
     "slug": "vender-como-particular-gracia-barcelona",
     "cluster": "particular",
@@ -1819,6 +1853,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/hospitalet1.jpg",
     "cardTeaser": "Guía particular L'Hospitalet de Llobregat: 2.750 – 3.200 €/m² (Centre · Bellvitge · Pubilla)."
   },
+  "vender-como-particular-la-sagrera-barcelona": {
+    "slug": "vender-como-particular-la-sagrera-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular La Sagrera",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular la sagrera barcelona",
+    "badge": "La Sagrera · 08027 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet5.jpg",
+    "cardTeaser": "Guía particular La Sagrera: 3.500 – 4.400 €/m² (Sagrera · parque · estación)."
+  },
   "vender-como-particular-les-corts-barcelona": {
     "slug": "vender-como-particular-les-corts-barcelona",
     "cluster": "particular",
@@ -1831,6 +1877,30 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Guía para propietarios en Les Corts (Numància, Pedralbes, Zona Universitaria): precios 4.700–6.200 €/m², er…"
   },
+  "vender-como-particular-montjuic-barcelona": {
+    "slug": "vender-como-particular-montjuic-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Montjuïc",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular montjuic barcelona",
+    "badge": "Montjuïc · 08038 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Guía particular Montjuïc: 3.600 – 4.600 €/m² (Montjuïc · Guatlla · Poble-sec nord)."
+  },
+  "vender-como-particular-navas-barcelona": {
+    "slug": "vender-como-particular-navas-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Navas",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular navas barcelona",
+    "badge": "Navas · 08030 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet4.jpg",
+    "cardTeaser": "Guía particular Navas: 3.300 – 4.100 €/m² (Navas · Fabra i Puig · Meridiana)."
+  },
   "vender-como-particular-nou-barris-barcelona": {
     "slug": "vender-como-particular-nou-barris-barcelona",
     "cluster": "particular",
@@ -1842,6 +1912,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Guía particular Nou Barris: 2.900 – 3.400 €/m² (Verdum · Roquetes · Trinitat Vella)."
+  },
+  "vender-como-particular-pedralbes-barcelona": {
+    "slug": "vender-como-particular-pedralbes-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Pedralbes",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular pedralbes barcelona",
+    "badge": "Pedralbes · 08034 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/lescorts4.jpg",
+    "cardTeaser": "Guía particular Pedralbes: 6.200 – 8.500 €/m² (Pedralbes · Monestir · Diagonal alta)."
   },
   "vender-como-particular-poble-sec-barcelona": {
     "slug": "vender-como-particular-poble-sec-barcelona",
@@ -1915,6 +1997,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/interior11.jpg",
     "cardTeaser": "Guía particular Sant Martí: 3.900 – 5.200 €/m² (Poblenou · Clot · 22@ · Besòs)."
   },
+  "vender-como-particular-sant-pere-santa-caterina-barcelona": {
+    "slug": "vender-como-particular-sant-pere-santa-caterina-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sant Pere",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sant pere barcelona",
+    "badge": "Sant Pere · 08003 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/born1.jpg",
+    "cardTeaser": "Guía particular Sant Pere / Santa Caterina: 4.800 – 6.200 €/m² (Sant Pere · Santa Caterina · mercat)."
+  },
   "vender-como-particular-sants-barcelona": {
     "slug": "vender-como-particular-sants-barcelona",
     "cluster": "particular",
@@ -1938,6 +2032,42 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Guía particular Sarrià: Bonanova, Galvany, Tres Torres."
+  },
+  "vender-como-particular-tetuan-barcelona": {
+    "slug": "vender-como-particular-tetuan-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Tetuan",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular tetuan barcelona",
+    "badge": "Tetuan · 08025 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample5.jpg",
+    "cardTeaser": "Guía particular Tetuan: 4.200 – 5.400 €/m² (Tetuan · Gran Via · Glòries)."
+  },
+  "vender-como-particular-trinitat-vella-barcelona": {
+    "slug": "vender-como-particular-trinitat-vella-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Trinitat Vella",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular trinitat vella barcelona",
+    "badge": "Trinitat Vella · 08033 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris2.jpg",
+    "cardTeaser": "Guía particular Trinitat Vella: 2.900 – 3.600 €/m² (Trinitat Vella · Via Barcino)."
+  },
+  "vender-como-particular-vall-d-hebron-barcelona": {
+    "slug": "vender-como-particular-vall-d-hebron-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Vall d'Hebron",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular vall d hebron barcelona",
+    "badge": "Vall d'Hebron · 08035 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "Guía particular Vall d'Hebron: 3.900 – 5.100 €/m² (Vall d'Hebron · Montbau · Collserola)."
   },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
     "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",

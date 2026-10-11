@@ -1827,6 +1827,190 @@
       </aside>
       `,
     },
+
+    'particular-idealista-90-dias-barcelona-2026': {
+      readMin: 12,
+      faq: [
+        { q: '¿Cuánto tarda de media un particular en vender en Idealista en Barcelona?', a: 'Con precio y documentación correctos, muchos pisos líquidos cierran en 45–75 días. Si llevas más de 90 días con visitas pero sin oferta seria, el cuello de botella suele ser precio de salida, filtro de compradores o cargas/ITE no explicadas en el anuncio.' },
+        { q: '¿Renovar el anuncio en Idealista arregla la venta?', a: 'Renovar visibilidad ayuda si el problema era alcance. No corrige un precio 8–12% por encima del mercado, fotos pobres o compradores sin hipoteca preaprobada. Primero diagnostica la señal (visitas vs ofertas), luego inviertes en portal.' },
+        { q: '¿Puedo seguir en Idealista y usar NuevaHabitat a la vez?', a: 'Sí. No exigimos exclusivas abusivas: puedes mantener tu anuncio particular mientras activamos compradores de cartera, panel vendedor y visitas filtradas. Honorarios 3.630 € (3.000 € + IVA) solo en escritura.' },
+        { q: '¿Qué es el panel vendedor de NuevaHabitat?', a: 'Es el espacio digital donde ves visitas programadas, interesados cualificados, documentación compartida y estado de la operación — sin depender de llamadas sueltas o chats de portal sin filtrar.' },
+        { q: '¿Cuándo tiene sentido seguir como particular en Barcelona?', a: 'Si dominas comparables de tu micro-barrio, tienes comprador conocido o el piso es muy estándar, libre de cargas y bien documentado. En tickets de 350.000 €+ en Eixample, Gràcia o Sarrià, un error de pricing suele costar más que cualquier honorario fijo.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>Idealista y Fotocasa venden visibilidad, no filtrado ni cierre: a los 90 días el diagnóstico suele ser precio, comprador o documentos.</li>
+          <li>Marco 30 / 60 / 90 días para decidir si renueva el pack, ajusta precio o cambia de estrategia.</li>
+          <li>Siete señales concretas (tabla) distinguen “poco tráfico” de “tráfico inútil”.</li>
+          <li>Plataforma particular NuevaHabitat: <strong>panel vendedor</strong>, visitas con criterio y <strong>3.630 €</strong> solo en escritura.</li>
+          <li>Guías por barrio: <a href="/vender-como-particular-barcelona">vender como particular en Barcelona</a>.</li>
+        </ul>
+      </aside>
+      <nav class="blog-toc">
+        <p>Contenido del artículo</p>
+        <ol>
+          <li><a href="#marco-90">Marco 30, 60 y 90 días en portal</a></li>
+          <li><a href="#siete-senales">Las 7 señales (no es el portal)</a></li>
+          <li><a href="#diagnostico">Diagnóstico: visitas vs ofertas</a></li>
+          <li><a href="#documentacion">Documentación que frena al particular</a></li>
+          <li><a href="#alternativa">Alternativa precio fijo y panel vendedor</a></li>
+          <li><a href="#barrios">Particular por barrio en Barcelona</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ol>
+      </nav>
+      <p>Publicar en <strong>Idealista o Fotocasa como particular en Barcelona</strong> es el primer paso lógico: pagas un pack, subes fotos y esperas llamadas. A los <strong>90 días</strong>, muchos propietarios renuevan el anuncio convencidos de que “el portal no funciona”. En la mayoría de casos el portal sí muestra el piso; lo que falla es otra variable: precio de salida respecto a comparables cerrados, curiosos sin hipoteca, anuncio que mezcla barrios distintos o documentación que aparece tarde (ITE, derramas, hipoteca pendiente). Este artículo es un marco de decisión para 2026, no un discurso contra vender solo — alineado con nuestra guía <a href="/blog/idealista-fotocasa-vs-inmobiliaria-barcelona">Idealista/Fotocasa vs inmobiliaria</a> y el cluster <a href="/vender-como-particular-barcelona">vender como particular en Barcelona</a>.</p>
+      <h2 id="marco-90">Marco 30, 60 y 90 días: qué deberías ver en Barcelona</h2>
+      <p>El mercado barcelonés en 2026 sigue siendo selectivo: compradores con preaprobación negocian; el resto visita. Usa estos hitos como referencia, no como ley absoluta — un ático en Pedralbes y un tercero en Nou Barris no comparten tiempos.</p>
+      <p><strong>Primeros 30 días:</strong> deberías tener interés medible (alertas, mensajes, 5–10 visitas si el precio es realista). Si casi nadie contacta, sospecha de precio alto, fotos deficientes o título que no encaja con la búsqueda (metros, barrio, estado).</p>
+      <p><strong>Día 30–60:</strong> esperas al menos una conversación seria sobre precio o una segunda visita con acompañante y preguntas sobre comunidad e hipoteca. Si hay muchas visitas pero cero segundas visitas, el piso “no convence” frente a alternativas del mismo presupuesto — a menudo por estado, distribución o comparables mal elegidos.</p>
+      <p><strong>Día 60–90:</strong> si no hay oferta o arras en camino, no es “mala suerte”: es señal para recalcular. Renovar el pack del portal sin tocar precio ni mensaje suele repetir el mismo resultado. Más contexto en <a href="/blog/como-vender-rapido">vender en menos de 60 días</a> y en <a href="/blog/guia-valoracion-piso-barcelona-2026">cómo valorar tu piso en 2026</a>.</p>
+      <h2 id="siete-senales">Las 7 señales de que el problema no es Idealista</h2>
+      <table class="blog-table">
+        <thead><tr><th>Señal (≈90 días)</th><th>Causa probable</th><th>Acción prioritaria</th></tr></thead>
+        <tbody>
+          <tr><td>Muchas visitas, cero ofertas</td><td>Precio 5–12% por encima del cierre real en tu micro-zona</td><td>Revalorar con comparables cerrados; bajar o justificar con reforma/documentos</td></tr>
+          <tr><td>Pocas visitas pese a anuncio “destacado”</td><td>Fotos, título o precio fuera de rango; barrio mal etiquetado</td><td>Reportaje profesional; alinear con guía de barrio (ej. <a href="/vender-como-particular-eixample-barcelona">particular Eixample</a>)</td></tr>
+          <tr><td>Interesados “vuelven la semana que viene” sin volver</td><td>Sin hipoteca preaprobada o compra-contado no demostrada</td><td>Filtrar antes de visita; pedir carta o viabilidad (NuevaHabitat lo hace en cartera)</td></tr>
+          <tr><td>Regateo agresivo desde la primera visita</td><td>Anuncio inflado vs mercado; comprador experto</td><td>Fijar precio anclado a datos; negociación con argumentos, no urgencia</td></tr>
+          <tr><td>Compradores se caen al hablar de comunidad o ITE</td><td>Derrama, obra o ITE desfavorable no explicada</td><td>Transparencia en anuncio; documentos listos — ver <a href="/blog/documentos-vender-piso">documentos para vender</a></td></tr>
+          <tr><td>Solo contactos de agencias pidiendo exclusiva</td><td>Señal de que el retail ve margen en tu precio o foto</td><td>Comparar <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona">particular vs NuevaHabitat</a>, no firmar 6% por desesperación</td></tr>
+          <tr><td>Llevas 90 días y has bajado 2 veces sin oferta</td><td>Mezcla de precio + ejecución (visitas sin criterio)</td><td>Cambiar sistema: panel, filtro y acompañamiento — no solo otro pack en portal</td></tr>
+        </tbody>
+      </table>
+      <h2 id="diagnostico">Diagnóstico rápido: tráfico vs calidad</h2>
+      <p>Anota tres números: contactos totales, visitas realizadas y personas que pidieron segunda visita o documentación. Si el ratio visitas/contactos es alto pero segundas visitas es casi cero, el cuello de botella es el producto o el precio, no el portal. Si contactos es bajo, el anuncio no compite en la primera pantalla de búsqueda: revisa posicionamiento de precio por m² frente a vecinos en Idealista (con descuento mental del 5–10% respecto al cierre real, como explicamos en <a href="/blog/precio-pisos-barcelona">precios Barcelona 2026</a>).</p>
+      <p>El particular suele aceptar todas las visitas “por si acaso”. En Barcelona eso consume fines de semana y quema la paciencia familiar sin acercar arras. Las agencias tradicionales filtran; los portales no. Ahí está el coste oculto de vender solo que detallamos en <a href="/nuevahabitat-vs-idealista-particular">NuevaHabitat vs Idealista particular</a>.</p>
+      <h2 id="documentacion">Documentación que frena al particular (aunque el portal vaya bien)</h2>
+      <p>Compradores informados en 2026 piden antes de arras: nota simple actualizada, certificado energético, estado de cargas, ITE de la finca cuando aplica, certificado de estar al corriente de comunidad y claridad sobre <a href="/blog/vender-hipoteca-pendiente-guia">hipoteca pendiente</a> o <a href="/blog/vender-piso-alquilado-guia-barcelona">piso alquilado</a>. Si eso sale tarde, la oferta cae o se renegocia a la baja — parece “que el comprador se echó atrás”, pero es ejecución documental.</p>
+      <p>En Ciutat Vella y fincas antiguas, la ITE pesa tanto como la reforma interior. Si vendes allí como particular, usa la guía <a href="/vender-como-particular-ciutat-vella-barcelona">particular Ciutat Vella</a> para no mezclar comparables del Gòtic con Sant Pere.</p>
+      <h2 id="alternativa">Cuándo cambiar de estrategia: precio fijo, panel vendedor y particulares NuevaHabitat</h2>
+      <p>No hace falta firmar un 6% de comisión para dejar de estar solo. <strong>NuevaHabitat</strong> está pensada para el <strong>propietario particular</strong> que quiere transparencia de coste y herramientas de agencia: valoración con visita, reportaje, difusión a compradores cualificados, negociación y acompañamiento hasta notaría por <strong>3.630 € totales</strong> (3.000 € + IVA), <strong>solo en escritura</strong>. Si no vendes, no pagas honorarios de cierre.</p>
+      <p>El <strong>panel vendedor</strong> concentra en un solo sitio visitas, interesados filtrados y estado de la operación — evitas perseguir leads dispersos en apps de mensajería. Puedes <a href="/registro">registrarte en la plataforma</a>, solicitar <a href="/vender">valoración gratuita</a> o contrastar con la <a href="/vender#calc">calculadora de ahorro</a> frente a comisión variable. Comparativas: <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">vs agencia tradicional</a>, <a href="/blog/housfy-vs-precio-fijo-barcelona">Housfy vs precio fijo</a>, <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad abusiva</a>.</p>
+      <h2 id="barrios">Particular por barrio: no publiques “Barcelona” genérico</h2>
+      <p>Google y los compradores buscan micro-zona. Si tu piso está en Sants, Gràcia, Poblenou, Les Corts o Sarrià, alinea precio y discurso con la guía local — el particular que copia el €/m² del distrito vecino alarga los 90 días:</p>
+      <ul>
+        <li><a href="/vender-como-particular-sants-barcelona">Vender como particular en Sants</a></li>
+        <li><a href="/vender-como-particular-gracia-barcelona">Particular en Gràcia</a></li>
+        <li><a href="/vender-como-particular-poblenou-barcelona">Particular en Poblenou / 22@</a></li>
+        <li><a href="/vender-como-particular-les-corts-barcelona">Particular en Les Corts</a></li>
+        <li><a href="/vender-como-particular-sarria-barcelona">Particular en Sarrià</a></li>
+      </ul>
+      <p>Pilar completo: <a href="/vender-como-particular-barcelona">vender como particular en Barcelona (guía 2026)</a>. Si también compras en cadena, lee <a href="/blog/cadena-compraventa-tasacion-hipoteca-barcelona-2026">cadena compraventa, tasación e hipoteca</a>.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Cuánto tarda de media un particular en vender en Idealista en Barcelona?</summary><p>Con precio y documentos correctos, 45–75 días en pisos líquidos. Más de 90 días con visitas pero sin oferta apunta a precio, filtro o documentación.</p></details>
+        <details class="blog-faq-item"><summary>¿Renovar el anuncio en Idealista arregla la venta?</summary><p>Solo si el problema era alcance. No corrige sobreprecio ni compradores sin financiación.</p></details>
+        <details class="blog-faq-item"><summary>¿Puedo seguir en Idealista y usar NuevaHabitat?</summary><p>Sí, sin exclusiva abusiva. Honorarios 3.630 € solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué es el panel vendedor?</summary><p>Panel digital con visitas, interesados cualificados y seguimiento de la operación.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuándo seguir como particular?</summary><p>Comprador conocido, dominio de comparables y piso documentado. En tickets altos, un error de pricing cuesta más que un honorario fijo.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Llevas meses en Idealista y las señales apuntan a precio o filtro, no al portal?</p>
+        <a href="/vender-como-particular-barcelona" class="btn">Guía particular + valoración</a>
+      </aside>
+      <aside class="blog-author">
+        <div>
+          <strong>Equipo NuevaHabitat</strong>
+          <p>Acompañamos a particulares que venden en Barcelona con precio fijo, panel vendedor y visitas con criterio — desde Les Corts, sin comisión del 6%.</p>
+        </div>
+      </aside>
+      `,
+    },
+
+    'cadena-compraventa-tasacion-hipoteca-barcelona-2026': {
+      readMin: 12,
+      faq: [
+        { q: '¿Qué es una cadena de compraventa inmobiliaria?', a: 'Es cuando tu venta depende de que tú compres otra vivienda (o al revés): el dinero de la venta financia la compra. En Barcelona es habitual en familias que cambian de barrio o metros. Un retraso en un eslabón bloquea el resto.' },
+        { q: '¿Cuánto tarda el banco en tasar una vivienda en 2026?', a: 'Suele oscilar entre 1 y 3 semanas desde la solicitud hasta el informe, según banco, carga de trabajo y acceso al piso. En verano o con tasadores saturados puede alargarse más — conviene encadenar plazos en arras con margen.' },
+        { q: '¿Qué pasa si la tasación sale por debajo del precio de compra?', a: 'El banco financia sobre tasación (con topes legales). Debes aportar más capital propio o renegociar precio con el vendedor. En cadena, esto puede obligarte a replantear la venta de tu piso si contabas con un neto concreto.' },
+        { q: '¿Puedo comprar antes de vender mi piso en Barcelona?', a: 'Sí, con puente hipotecario, reserva doble bien planificada o alquiler temporal — cada opción tiene coste y riesgo. Muchas familias prefieren vender primero con plazos cortos en arras; guía en /vender-piso-antes-comprar-otro-barcelona.' },
+        { q: '¿Cómo ayuda NuevaHabitat en una cadena venta-compra?', a: 'En la venta: precio fijo 3.630 €, filtrado y cierre ágil para liberar neto. En la compra: acompañamiento 5.000 € + IVA solo en escritura. Coordinamos plazos para que no pierdas el piso destino por un cuello de botella evitable.' },
+      ],
+      body: `
+      <aside class="blog-summary">
+        <strong>Lo esencial</strong>
+        <ul>
+          <li>La <strong>cadena compraventa</strong> en Barcelona une dos operaciones: vender el actual y comprar el siguiente; el eslabón débil suele ser tasación o FEIN.</li>
+          <li>Timeline orientativo 2026: oferta → arras → tasación (1–3 sem) → aprobación → FEIN → escritura (60–90 días típicos).</li>
+          <li>Cláusulas de arras y condiciones suspensivas mal calibradas hacen perder el piso de destino.</li>
+          <li>Vender con acompañamiento acelera el tramo que tú controlas: <a href="/vender-piso-antes-comprar-otro-barcelona">vender antes de comprar otro</a>.</li>
+          <li>NuevaHabitat: venta particular <strong>3.630 €</strong> en escritura · compra <strong>5.000 € + IVA</strong> solo si cierras.</li>
+        </ul>
+      </aside>
+      <nav class="blog-toc">
+        <p>Contenido del artículo</p>
+        <ol>
+          <li><a href="#que-es-cadena">Qué es la cadena y por qué falla</a></li>
+          <li><a href="#timeline">Timeline realista 2026</a></li>
+          <li><a href="#tasacion">Tasación: cuellos de botella del banco</a></li>
+          <li><a href="#arras">Arras en cadena: plazos y cláusulas</a></li>
+          <li><a href="#vender-primero">Vender primero vs puente</a></li>
+          <li><a href="#vendedor-particular">Tramo venta: particular y panel vendedor</a></li>
+          <li><a href="#faq">Preguntas frecuentes</a></li>
+        </ol>
+      </nav>
+      <p>Si estás <strong>vendiendo tu piso en Barcelona y comprando otro</strong> a la vez, no tienes una operación sino dos enlazadas — una <strong>cadena de compraventa</strong>. El comprador de tu casa espera que firmes escritura en plazo; el vendedor del piso destino exige arras y fecha; tu banco pide <strong>tasación</strong>, FEIN y aprobación final. En 2026 los tipos están más estables que en 2024, pero los <strong>plazos internos del banco</strong> no se han acortado: siguen siendo la causa número uno de operaciones que “casi cierran” y se caen en la última semana. Esta guía ordena el calendario y enlaza con recursos NuevaHabitat para el tramo venta (<a href="/vender-como-particular-barcelona">particular</a> / <a href="/vender">valoración</a>) y compra (<a href="/comprar-piso-barcelona-guia">guía comprar en Barcelona</a>).</p>
+      <h2 id="que-es-cadena">Qué es la cadena y dónde se rompe</h2>
+      <p>En la cadena clásica vendes A para comprar B. Tu comprador de A puede estar también en cadena (vende C para pagarte). Tres eslabones implican tres notarías, tres gestorías y, a menudo, tres tasaciones. El eslabón más lento marca el ritmo. En Barcelona, los retrasos habituales son: tasación inferior al precio acordado, comprador de tu piso sin hipoteca lista, demora en cancelar <a href="/blog/vender-hipoteca-pendiente-guia">hipoteca pendiente</a> o arras con plazo irreal para la escritura.</p>
+      <p>Quien compra B sin haber vendido A asume riesgo de doble pago (hipoteca + alquiler temporal o dos cuotas). Quien vende A sin tener B reservado asume quedarse sin stock en barrios líquidos (Eixample, Gràcia, Les Corts). No hay respuesta única; sí un calendario coherente.</p>
+      <h2 id="timeline">Timeline orientativo de una cadena en 2026</h2>
+      <table class="blog-table">
+        <thead><tr><th>Fase</th><th>Plazo habitual</th><th>Quién lidera</th></tr></thead>
+        <tbody>
+          <tr><td>Oferta aceptada (compra B)</td><td>Día 0</td><td>Comprador (tú)</td></tr>
+          <tr><td>Arras compra B</td><td>7–21 días</td><td>Abogado / notaría según costumbre</td></tr>
+          <tr><td>Oferta / arras venta A</td><td>En paralelo o justo después</td><td>Vendedor (tú) — ideal alinear fechas</td></tr>
+          <tr><td>Solicitud tasación (compra B)</td><td>Tras arras o antes, según banco</td><td>Comprador + entidad</td></tr>
+          <tr><td>Informe de tasación</td><td>1–3 semanas</td><td>Tasador homologado banco</td></tr>
+          <tr><td>Aprobación definitiva + FEIN</td><td>1–3 semanas post-tasación</td><td>Banco</td></tr>
+          <tr><td>Escritura venta A</td><td>60–90 días desde arras (típico)</td><td>Coordinación gestorías</td></tr>
+          <tr><td>Escritura compra B</td><td>Mismo día o días después de A</td><td>Notaría (a menudo encadenada)</td></tr>
+        </tbody>
+      </table>
+      <p>Los 60–90 días no son ley: son el rango más frecuente en Barcelona cuando hay hipoteca en ambos lados. Si tu arras de compra promete escritura en 45 días pero tu banco tarda 25 días solo en tasar, la matemática no cuadra. Anticipa el calendario con tu gestor antes de firmar.</p>
+      <h2 id="tasacion">Por qué el banco tarda en la tasación (y qué hacer)</h2>
+      <p>La <strong>tasación hipotecaria</strong> no es una valoración de mercado para ti: es el límite de riesgo del banco. En 2026 los compradores siguen encontrando casos en los que el precio acordado en Barcelona supera la tasación un 5–15%, sobre todo en subidas rápidas de micro-barrio o pisos muy reformados respecto a comparables conservadores del tasador.</p>
+      <p><strong>Factores que alargan el plazo:</strong> dificultad para acceder al piso (alquilado, llaves con agencia), temporada alta (junio–septiembre), banco distinto al de la preaprobación, o solicitud de tasación antes de arras cuando el vendedor no colabora. <strong>Factores que acortan:</strong> hipoteca preaprobada clara (ver <a href="/blog/buscar-piso-hipoteca-barcelona">buscar piso con hipoteca</a>), visita del tasador en 48–72 h, documentación del inmueble disponible y un único interlocutor.</p>
+      <p>Si la tasación sale baja, tienes tres palancas: aportar más entrada, negociar con el vendedor de B (difícil en mercado prime) o cambiar de banco/producto — cada una consume días. En cadena, avisa de inmediato al comprador de A si tu neto de venta ya no cubre la entrada de B.</p>
+      <h2 id="arras">Arras en cadena: plazos y cláusulas que protegen la operación</h2>
+      <p>El <a href="/blog/contrato-arras">contrato de arras</a> debe reflejar la realidad bancaria, no el deseo de cerrar pronto. Claves en Cataluña:</p>
+      <ul>
+        <li><strong>Condición suspensiva de hipoteca</strong> bien redactada en la compra de B (plazo para obtener financiación y tasación mínima aceptable).</li>
+        <li><strong>Fecha de escritura venta A</strong> alineada con la necesidad de fondos para B (mismo día o D+1 es habitual con gestoría experimentada).</li>
+        <li><strong>Penalizaciones proporcionadas</strong>: arras penitenciales simétricas evitan bloqueos cuando un eslabón externo falla.</li>
+        <li><strong>Transparencia de cargas</strong> en A: hipoteca pendiente, usufructo, alquiler — evita sorpresas que retrasan cancelación registral.</li>
+      </ul>
+      <p>En la venta de A, un comprador con preaprobación visible cierra antes que uno “que está mirando bancos”. Si vendes como particular, ese filtro es tu responsabilidad; en NuevaHabitat forma parte del servicio de venta con <strong>precio fijo 3.630 €</strong> en escritura.</p>
+      <h2 id="vender-primero">Vender primero, reserva B o puente: opciones en Barcelona</h2>
+      <p><strong>Vender A primero</strong> con arras cortas y comprador financiado reduce riesgo de doble hipoteca. Necesitas alquiler temporal o acuerdo con familia si B aún no está cerrado — planifica 2–4 meses de transición. Guía detallada: <a href="/vender-piso-antes-comprar-otro-barcelona">vender piso antes de comprar otro en Barcelona</a>.</p>
+      <p><strong>Reservar B con arras</strong> mientras vendes A es viable si negocias plazos largos en B y cortos en A, y si tu banco confirma viabilidad con el neto esperado de la venta. <strong>Puente hipotecario</strong> (doble carga temporal) tiene coste de intereses y no todos los perfiles lo aprueban en 2026.</p>
+      <p>Para la compra, calcula el coste total con <a href="/blog/gastos-compraventa">gastos de compraventa en Cataluña</a> e <a href="/blog/guia-hipotecas">guía de hipotecas 2026</a>. Simula cuota en <a href="/hipotecas">hipotecas NuevaHabitat</a>.</p>
+      <h2 id="vendedor-particular">El tramo venta: acelerar A sin regalar precio</h2>
+      <p>En una cadena, tú controlas mejor la venta de A que la velocidad del tasador del banco de B. Un anuncio particular estancado 90 días en portal puede hundir toda la cadena — señales y soluciones en <a href="/blog/particular-idealista-90-dias-barcelona-2026">90 días como particular en Idealista</a>.</p>
+      <p><strong>NuevaHabitat</strong> combina enfoque <a href="/vender-como-particular-barcelona">particular con herramientas de profesional</a>: valoración, reportaje, compradores de cartera, <strong>panel vendedor</strong>, negociación y cierre. Honorarios de venta: <strong>3.630 €</strong> totales, solo en escritura. Puedes <a href="/registro">activar la plataforma</a> y coordinar plazos con el equipo para encajar escritura de A con la compra de B. Si también necesitas acompañamiento en la compra, consulta <a href="/comprar">servicio comprador</a> (5.000 € + IVA solo si firmas).</p>
+      <p>Enlaces útiles por situación: <a href="/vender-como-particular-sants-barcelona">particular Sants</a> · <a href="/vender-como-particular-eixample-barcelona">particular Eixample</a> · <a href="/blog/negociar-precio">negociar precio</a> · <a href="/blog/primera-vivienda">primera vivienda Barcelona</a>.</p>
+      <section class="blog-faq" id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details class="blog-faq-item"><summary>¿Qué es una cadena de compraventa?</summary><p>Dos o más operaciones enlazadas donde la venta financia la compra. Un retraso bloquea el resto.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto tarda el banco en tasar?</summary><p>Habitualmente 1–3 semanas; puede alargarse en verano o con acceso difícil al piso.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué pasa si la tasación es baja?</summary><p>Más entrada, renegociar precio o cambiar condiciones bancarias — avisa en cadena de inmediato.</p></details>
+        <details class="blog-faq-item"><summary>¿Comprar antes de vender?</summary><p>Posible con puente o reservas bien planificadas; riesgo y coste variables. Ver guía vender antes de comprar.</p></details>
+        <details class="blog-faq-item"><summary>¿Cómo ayuda NuevaHabitat?</summary><p>Venta 3.630 € en escritura con filtrado y panel; compra 5.000 € + IVA solo si cierras. Coordinación de plazos.</p></details>
+      </section>
+      <aside class="blog-cta">
+        <p>¿Vendes y compras a la vez en Barcelona?</p>
+        <a href="/vender-piso-antes-comprar-otro-barcelona" class="btn">Guía vender antes de comprar</a>
+      </aside>
+      <aside class="blog-author">
+        <div>
+          <strong>Equipo NuevaHabitat</strong>
+          <p>Coordinamos ventas y compras en cadena desde Barcelona con precio fijo, plazos realistas y acompañamiento hasta escritura.</p>
+        </div>
+      </aside>
+      `,
+    },
   };
   for (const [slug, patch] of Object.entries(PATCHES)) {
     if (window.NH_BLOG_POSTS && NH_BLOG_POSTS[slug]) Object.assign(NH_BLOG_POSTS[slug], patch);

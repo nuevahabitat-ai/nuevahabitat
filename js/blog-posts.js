@@ -390,5 +390,35 @@ window.NH_BLOG_POSTS = {
     excerpt: 'Bon Pastor, Navas, Montjuïc, Pedralbes, Trinitat Vella, Vall d\'Hebron, Tetuan, Sant Pere y La Sagrera: precios, errores de pricing y enlaces por micro-zona.',
     keywords: ['vender piso barrio Barcelona', 'micro barrios Barcelona vender', 'precio piso Bon Pastor', 'vender piso Navas', 'inmobiliaria precio fijo barrio Barcelona'],
     metaDescription: 'Guía para vender piso en micro-barrios de Barcelona 2026: pricing local, compradores y páginas por zona (Bon Pastor, Pedralbes, La Sagrera…) con honorarios fijos NuevaHabitat.'
+  },
+
+  'particular-idealista-90-dias-barcelona-2026': {
+    title: 'Llevas 90 días como particular en Idealista: 7 señales de que el problema no es el portal',
+    cat: 'Vender',
+    date: '2 oct 2026',
+    readMin: 12,
+    image: 'imagenes/inmobiliario3.jpg',
+    excerpt: 'Marco 30-60-90 días para vender solo en Barcelona: precio, compradores sin hipoteca, documentación y cuándo encaja precio fijo con panel vendedor.',
+    keywords: [
+      'vender piso Idealista Barcelona 2026', 'particular Idealista 90 días', 'vender como particular Barcelona',
+      'anuncio particular sin vender', 'vender por tu cuenta Barcelona', 'panel vendedor Barcelona',
+      'precio fijo vender piso Barcelona', 'NuevaHabitat particular', 'Fotocasa particular Barcelona'
+    ],
+    metaDescription: '¿Llevas meses en Idealista como particular en Barcelona? 7 señales de que falla precio, filtro o documentos — y alternativa precio fijo 3.630 € con panel vendedor NuevaHabitat.'
+  },
+
+  'cadena-compraventa-tasacion-hipoteca-barcelona-2026': {
+    title: 'Cadena compraventa en Barcelona 2026: tasación, hipoteca y plazos del banco',
+    cat: 'Comprar',
+    date: '2 oct 2026',
+    readMin: 12,
+    image: 'imagenes/inmobiliario4.jpg',
+    excerpt: 'Vender y comprar a la vez: timeline realista desde arras hasta escritura, retrasos de tasación y cómo no perder el piso de destino.',
+    keywords: [
+      'cadena compraventa Barcelona', 'tasación hipoteca 2026 Barcelona', 'vender y comprar piso Barcelona',
+      'plazos banco tasación vivienda', 'arras cadena venta compra', 'vender antes de comprar Barcelona',
+      'hipoteca preaprobada Barcelona', 'FEIN plazos compraventa'
+    ],
+    metaDescription: 'Guía cadena compraventa Barcelona 2026: por qué el banco tarda en tasar, plazos arras-escritura y claves si vendes tu piso y compras otro sin perder la operación.'
   }
 };
