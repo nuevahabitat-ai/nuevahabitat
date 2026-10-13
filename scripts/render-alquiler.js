@@ -2,6 +2,7 @@
  * Landings alquiler (integral / administración) — layout distinto al silo venta (lc-econ-hub).
  */
 const { economicaHubStyles } = require('./render-economica-hub');
+const { alquilerJourneySection } = require('./alquiler-journey-html');
 
 function heroStatsBlock(L) {
   const stats = L.heroStats || [];
@@ -113,6 +114,12 @@ ${navBar(L)}
 </header>
 ${heroStatsBlock(L)}
 ${callBanner()}
+${alquilerJourneySection({
+  mode: L.servicio === 'integral' ? 'integral' : 'admin',
+  overline: L.servicio === 'integral' ? 'Alquiler integral' : 'Administración de alquiler',
+  title: `Cómo trabajamos en ${L.barrioNombre || 'Barcelona'}`,
+  subtitle: 'Llamada con gestor, presupuesto, expediente y panel — sin contacto directo con el inquilino.',
+})}
 <div class="container" style="padding-top:2rem">
   <div class="lc-econ-intro">
     <span class="overline">${L.calculadora.titulo}</span>
