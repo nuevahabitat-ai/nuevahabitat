@@ -5,23 +5,42 @@
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.join(__dirname, '..', 'imagenes');
+const IMAGENES = path.join(__dirname, '..', 'imagenes');
+const PUBLIC_PROCESO = path.join(__dirname, '..', 'public', 'alquiler-proceso');
 
+/** Orden: public/alquiler-proceso (tus JPG) → imagenes/alquiler-proceso-*.jpg → genéricas */
 const IMAGE_CANDIDATES = {
-  step1: ['alquiler-proceso-01-llamada-gestor.jpg', 'comercial1.jpg'],
-  step2: ['alquiler-proceso-02-contrato-presupuesto.jpg', 'contrato1.jpg'],
-  step3: ['alquiler-proceso-03-expediente-documentacion.jpg', 'equipo2.jpg'],
-  step4: ['alquiler-proceso-04-panel-propietario.jpg', 'interior14.jpg'],
+  step1: [
+    { disk: path.join(PUBLIC_PROCESO, '01-llamada-gestor.jpg'), web: 'public/alquiler-proceso/01-llamada-gestor.jpg' },
+    { disk: path.join(IMAGENES, 'alquiler-proceso-01-llamada-gestor.jpg'), web: 'imagenes/alquiler-proceso-01-llamada-gestor.jpg' },
+    { disk: path.join(IMAGENES, 'comercial1.jpg'), web: 'imagenes/comercial1.jpg' },
+  ],
+  step2: [
+    { disk: path.join(PUBLIC_PROCESO, '02-contrato-presupuesto.jpg'), web: 'public/alquiler-proceso/02-contrato-presupuesto.jpg' },
+    { disk: path.join(IMAGENES, 'alquiler-proceso-02-contrato-presupuesto.jpg'), web: 'imagenes/alquiler-proceso-02-contrato-presupuesto.jpg' },
+    { disk: path.join(IMAGENES, 'contrato1.jpg'), web: 'imagenes/contrato1.jpg' },
+  ],
+  step3: [
+    { disk: path.join(PUBLIC_PROCESO, '03-expediente-documentacion.jpg'), web: 'public/alquiler-proceso/03-expediente-documentacion.jpg' },
+    { disk: path.join(IMAGENES, 'alquiler-proceso-03-expediente-documentacion.jpg'), web: 'imagenes/alquiler-proceso-03-expediente-documentacion.jpg' },
+    { disk: path.join(IMAGENES, 'equipo2.jpg'), web: 'imagenes/equipo2.jpg' },
+  ],
+  step4: [
+    { disk: path.join(PUBLIC_PROCESO, '04-panel-propietario.jpg'), web: 'public/alquiler-proceso/04-panel-propietario.jpg' },
+    { disk: path.join(IMAGENES, 'alquiler-proceso-04-panel-propietario.jpg'), web: 'imagenes/alquiler-proceso-04-panel-propietario.jpg' },
+    { disk: path.join(IMAGENES, 'interior14.jpg'), web: 'imagenes/interior14.jpg' },
+  ],
 };
 
 function pickImage(key, alt) {
   const list = IMAGE_CANDIDATES[key] || [];
-  for (const file of list) {
-    if (fs.existsSync(path.join(ROOT, file))) {
-      return `<img src="imagenes/${file}" alt="${alt}" loading="lazy"/>`;
+  for (const entry of list) {
+    if (fs.existsSync(entry.disk)) {
+      return `<img src="${entry.web}" alt="${alt}" loading="lazy"/>`;
     }
   }
-  return `<img src="imagenes/${list[list.length - 1]}" alt="${alt}" loading="lazy"/>`;
+  const last = list[list.length - 1];
+  return `<img src="${last.web}" alt="${alt}" loading="lazy"/>`;
 }
 
 /**

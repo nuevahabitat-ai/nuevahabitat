@@ -1,10 +1,12 @@
 Imágenes del módulo "Cómo funciona" (alquiler)
 
-Coloca aquí tus JPG con estos nombres (sustituyen a las fotos genéricas):
+Opción A — carpeta public (prioridad en el build):
+  public/alquiler-proceso/01-llamada-gestor.jpg
+  public/alquiler-proceso/02-contrato-presupuesto.jpg
+  public/alquiler-proceso/03-expediente-documentacion.jpg
+  public/alquiler-proceso/04-panel-propietario.jpg
 
-1. alquiler-proceso-01-llamada-gestor.jpg  — reserva llamada / gestor
-2. alquiler-proceso-02-contrato-presupuesto.jpg — presupuesto y contrato
-3. alquiler-proceso-03-expediente-documentacion.jpg — documentación y expediente
-4. alquiler-proceso-04-panel-propietario.jpg — panel incidencias
+Opción B — copias en imagenes/ (mismo contenido, URL /imagenes/...):
+  alquiler-proceso-01-llamada-gestor.jpg … 04-panel-propietario.jpg
 
-Tras subirlas: node scripts/sync-alquiler-journey.js && node scripts/build-landings.js
+Tras cambiar fotos: node scripts/sync-alquiler-journey.js && node scripts/build-landings.js
