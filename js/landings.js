@@ -165,15 +165,25 @@ window.NH_LANDING_ORDER = [
   "vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
   "comprar-piso-barcelona",
   "administracion-alquiler-barcelona",
+  "administracion-alquiler-bon-pastor-barcelona",
   "administracion-alquiler-ciutat-meridiana-barcelona",
+  "administracion-alquiler-navas-barcelona",
   "administracion-alquiler-porta-barcelona",
+  "administracion-alquiler-roquetes-barcelona",
   "administracion-alquiler-trinitat-nova-barcelona",
+  "administracion-alquiler-trinitat-vella-barcelona",
   "administracion-alquiler-turo-peira-barcelona",
   "administracion-alquiler-vallcarca-barcelona",
+  "administracion-alquiler-verneda-barcelona",
   "alquiler-integral-barcelona",
+  "alquiler-integral-camp-de-larpa-barcelona",
   "alquiler-integral-can-baro-barcelona",
   "alquiler-integral-congres-indians-barcelona",
+  "alquiler-integral-el-besos-barcelona",
   "alquiler-integral-el-carmel-barcelona",
+  "alquiler-integral-guinardo-barcelona",
+  "alquiler-integral-hostafrancs-barcelona",
+  "alquiler-integral-la-bordeta-barcelona",
   "alquiler-integral-putxet-farro-barcelona",
   "alquiler-integral-zona-universitaria-barcelona",
   "administracion-alquileres",
@@ -2624,6 +2634,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/comercial2.jpg",
     "cardTeaser": "Administración de alquiler en Barcelona: cobro de rentas, incidencias, renovaciones LAU e informes al propietario."
   },
+  "administracion-alquiler-bon-pastor-barcelona": {
+    "slug": "administracion-alquiler-bon-pastor-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Bon Pastor",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler bon pastor barcelona",
+    "badge": "Bon Pastor · 08030 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "Administracion de alquiler en Bon Pastor (08030)."
+  },
   "administracion-alquiler-ciutat-meridiana-barcelona": {
     "slug": "administracion-alquiler-ciutat-meridiana-barcelona",
     "cluster": "alquiler",
@@ -2635,6 +2657,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/noubarris2.jpg",
     "cardTeaser": "Administración de alquiler en Ciutat Meridiana (08033)."
+  },
+  "administracion-alquiler-navas-barcelona": {
+    "slug": "administracion-alquiler-navas-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Navas",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler navas barcelona",
+    "badge": "Navas · 08027 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Administracion de alquiler en Navas (08027)."
   },
   "administracion-alquiler-porta-barcelona": {
     "slug": "administracion-alquiler-porta-barcelona",
@@ -2648,6 +2682,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Administración de alquiler en Porta (08016)."
   },
+  "administracion-alquiler-roquetes-barcelona": {
+    "slug": "administracion-alquiler-roquetes-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Roquetes",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler roquetes barcelona",
+    "badge": "Roquetes · 08042 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris2.jpg",
+    "cardTeaser": "Administracion de alquiler en Roquetes (08042)."
+  },
   "administracion-alquiler-trinitat-nova-barcelona": {
     "slug": "administracion-alquiler-trinitat-nova-barcelona",
     "cluster": "alquiler",
@@ -2659,6 +2705,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/noubarris2.jpg",
     "cardTeaser": "Administración de alquiler en La Trinitat Nova (08033)."
+  },
+  "administracion-alquiler-trinitat-vella-barcelona": {
+    "slug": "administracion-alquiler-trinitat-vella-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Trinitat Vella",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler trinitat vella barcelona",
+    "badge": "Trinitat Vella · 08020 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris2.jpg",
+    "cardTeaser": "Administracion de alquiler en Trinitat Vella (08020)."
   },
   "administracion-alquiler-turo-peira-barcelona": {
     "slug": "administracion-alquiler-turo-peira-barcelona",
@@ -2684,6 +2742,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Administración de alquiler en Vallcarca i els Penitents (08023)."
   },
+  "administracion-alquiler-verneda-barcelona": {
+    "slug": "administracion-alquiler-verneda-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin La Verneda",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler verneda barcelona",
+    "badge": "La Verneda · 08020 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Administracion de alquiler en La Verneda i la Pau (08020)."
+  },
   "alquiler-integral-barcelona": {
     "slug": "alquiler-integral-barcelona",
     "cluster": "alquiler",
@@ -2695,6 +2765,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/interior12.jpg",
     "cardTeaser": "Alquiler integral en Barcelona: valoración de renta, visitas filtradas, contrato LAU, INCASÒL y entrega de llaves."
+  },
+  "alquiler-integral-camp-de-larpa-barcelona": {
+    "slug": "alquiler-integral-camp-de-larpa-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral Camp de l'Arpa",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral camp de larpa barcelona",
+    "badge": "Camp de l'Arpa · 08018 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Alquiler integral en Camp de l'Arpa del Clot (08018)."
   },
   "alquiler-integral-can-baro-barcelona": {
     "slug": "alquiler-integral-can-baro-barcelona",
@@ -2720,6 +2802,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/santandreu1.jpg",
     "cardTeaser": "Alquiler integral en Congrés i els Indians (08027)."
   },
+  "alquiler-integral-el-besos-barcelona": {
+    "slug": "alquiler-integral-el-besos-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral El Besos",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral el besos barcelona",
+    "badge": "El Besos · 08019 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Alquiler integral en El Besos i el Maresme (08019)."
+  },
   "alquiler-integral-el-carmel-barcelona": {
     "slug": "alquiler-integral-el-carmel-barcelona",
     "cluster": "alquiler",
@@ -2731,6 +2825,42 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/horta2.jpg",
     "cardTeaser": "Alquiler integral en El Carmel (08032)."
+  },
+  "alquiler-integral-guinardo-barcelona": {
+    "slug": "alquiler-integral-guinardo-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral Guinardo",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral guinardo barcelona",
+    "badge": "Guinardo · 08041 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "Alquiler integral en El Guinardo (08041)."
+  },
+  "alquiler-integral-hostafrancs-barcelona": {
+    "slug": "alquiler-integral-hostafrancs-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral Hostafrancs",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral hostafrancs barcelona",
+    "badge": "Hostafrancs · 08014 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/sants1.jpg",
+    "cardTeaser": "Alquiler integral en Hostafrancs (08014)."
+  },
+  "alquiler-integral-la-bordeta-barcelona": {
+    "slug": "alquiler-integral-la-bordeta-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral La Bordeta",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral la bordeta barcelona",
+    "badge": "La Bordeta · 08014 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/sants2.jpg",
+    "cardTeaser": "Alquiler integral en La Bordeta (08014)."
   },
   "alquiler-integral-putxet-farro-barcelona": {
     "slug": "alquiler-integral-putxet-farro-barcelona",

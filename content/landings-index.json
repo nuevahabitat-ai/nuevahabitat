@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-11T10:54:07.166Z",
+  "updated": "2026-10-13T07:03:53.921Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -992,7 +992,19 @@
       "priority": 0.9
     },
     {
+      "slug": "administracion-alquiler-bon-pastor-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "administracion-alquiler-ciutat-meridiana-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-navas-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1004,7 +1016,19 @@
       "priority": 0.86
     },
     {
+      "slug": "administracion-alquiler-roquetes-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "administracion-alquiler-trinitat-nova-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-trinitat-vella-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1022,10 +1046,22 @@
       "priority": 0.86
     },
     {
+      "slug": "administracion-alquiler-verneda-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "alquiler-integral-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "alquiler-integral-camp-de-larpa-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "alquiler-integral-can-baro-barcelona",
@@ -1040,7 +1076,31 @@
       "priority": 0.86
     },
     {
+      "slug": "alquiler-integral-el-besos-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "alquiler-integral-el-carmel-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-guinardo-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-hostafrancs-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-la-bordeta-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
