@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-13T07:22:33.769Z",
+  "updated": "2026-10-16T10:10:40.448Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -992,6 +992,12 @@
       "priority": 0.9
     },
     {
+      "slug": "administracion-alquiler-baro-de-viver-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "administracion-alquiler-bon-pastor-barcelona",
       "cluster": "alquiler",
       "indexable": true,
@@ -999,6 +1005,24 @@
     },
     {
       "slug": "administracion-alquiler-ciutat-meridiana-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-cornella-de-llobregat",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.845
+    },
+    {
+      "slug": "administracion-alquiler-esplugues-de-llobregat",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.847
+    },
+    {
+      "slug": "administracion-alquiler-la-sagrera-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1016,7 +1040,37 @@
       "priority": 0.86
     },
     {
+      "slug": "administracion-alquiler-provencals-del-poblenou-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "administracion-alquiler-roquetes-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-sant-boi-de-llobregat",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.845
+    },
+    {
+      "slug": "administracion-alquiler-sant-joan-despi",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.846
+    },
+    {
+      "slug": "administracion-alquiler-tetuan-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-torre-baro-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1046,6 +1100,12 @@
       "priority": 0.86
     },
     {
+      "slug": "administracion-alquiler-verdum-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "administracion-alquiler-verneda-barcelona",
       "cluster": "alquiler",
       "indexable": true,
@@ -1059,6 +1119,12 @@
     },
     {
       "slug": "alquiler-integral-camp-de-larpa-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-camp-den-grassot-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1088,6 +1154,12 @@
       "priority": 0.86
     },
     {
+      "slug": "alquiler-integral-esplugues-de-llobregat",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.847
+    },
+    {
       "slug": "alquiler-integral-guinardo-barcelona",
       "cluster": "alquiler",
       "indexable": true,
@@ -1100,13 +1172,61 @@
       "priority": 0.86
     },
     {
+      "slug": "alquiler-integral-l-hospitalet-de-llobregat",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.848
+    },
+    {
       "slug": "alquiler-integral-la-bordeta-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
     },
     {
+      "slug": "alquiler-integral-la-marina-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-la-sagrera-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-montjuic-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "alquiler-integral-putxet-farro-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-sant-boi-de-llobregat",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.844
+    },
+    {
+      "slug": "alquiler-integral-sant-joan-despi",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.846
+    },
+    {
+      "slug": "alquiler-integral-tetuan-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-verdum-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
