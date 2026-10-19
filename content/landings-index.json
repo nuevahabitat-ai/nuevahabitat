@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19T13:23:16.188Z",
+  "updated": "2026-10-19T18:59:44.646Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -992,6 +992,12 @@
       "priority": 0.9
     },
     {
+      "slug": "administracion-alquiler-barceloneta-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "administracion-alquiler-baro-de-viver-barcelona",
       "cluster": "alquiler",
       "indexable": true,
@@ -1016,10 +1022,22 @@
       "priority": 0.845
     },
     {
+      "slug": "administracion-alquiler-el-carmel-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "administracion-alquiler-esplugues-de-llobregat",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.847
+    },
+    {
+      "slug": "administracion-alquiler-fort-pienc-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "administracion-alquiler-la-sagrera-barcelona",
@@ -1029,6 +1047,12 @@
     },
     {
       "slug": "administracion-alquiler-navas-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-poble-sec-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1047,6 +1071,12 @@
     },
     {
       "slug": "administracion-alquiler-roquetes-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-sant-antoni-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1116,6 +1146,12 @@
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "alquiler-integral-bon-pastor-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "alquiler-integral-camp-de-larpa-barcelona",
@@ -1202,7 +1238,25 @@
       "priority": 0.86
     },
     {
+      "slug": "alquiler-integral-navas-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-porta-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "alquiler-integral-putxet-farro-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-roquetes-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1221,6 +1275,12 @@
     },
     {
       "slug": "alquiler-integral-tetuan-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-vallcarca-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
