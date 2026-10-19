@@ -11,6 +11,11 @@
   "buildCommand": "node scripts/build-landings.js",
   "outputDirectory": ".",
   "framework": null,
+  "functions": {
+    "api/**/*.js": {
+      "includeFiles": "lib/server/**"
+    }
+  },
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
