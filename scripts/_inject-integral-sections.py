@@ -23,7 +23,7 @@ def block(zona: str, zona_label: str, local_note: str) -> str:
       <li style="margin-bottom:1rem"><strong>Visitas discretas.</strong> Concertamos franjas contigo; Nueva Habitat visita el piso y representa al propietario con profesionalidad.</li>
       <li style="margin-bottom:1rem"><strong>Informe top 3.</strong> Tras las visitas, entregamos hasta <strong>tres perfiles recomendados</strong> con observaciones de solvencia básica y encaje con la vivienda.</li>
       <li style="margin-bottom:1rem"><strong>Reserva, seguro e inquilino.</strong> Gestionamos reserva del elegido, documentación para tu <strong>seguro de impago</strong> (póliza a tu nombre) y coordinación de fecha de firma.</li>
-      <li style="margin-bottom:1rem"><strong>Contrato, INCASÒL y llaves.</strong> Contrato LAU, inventario firmado, depósito de fianza ante <strong>INCASÒL</strong>, cambio de suministros y acta de entrega. Opcional: <a href="/administracion-alquileres">administración 60 €/mes</a> con el mismo panel.</li>
+      <li style="margin-bottom:1rem"><strong>Contrato, INCASÒL y llaves.</strong> Contrato LAU, inventario firmado, depósito de fianza ante <strong>INCASÒL</strong>, cambio de suministros y acta de entrega. Opcional: <a href="/administracion-alquileres">administración 59 €/mes</a> con el mismo panel.</li>
     </ol>
 
     <h3>Tú vs Nueva Habitat</h3>
@@ -55,7 +55,7 @@ def block(zona: str, zona_label: str, local_note: str) -> str:
     <div class="text-center fade-up" style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
       <a href="/demo-panel-propietario-alquiler.html?context=integral&amp;zona={zona}" target="_blank" rel="noopener" class="btn btn-gold">Demo a pantalla completa</a>
       <a href="/acceso-alquiler-integral" class="btn btn-outline">Entrar al panel real · 499 €</a>
-      <a href="/demo-panel-propietario-alquiler.html?zona={zona}" target="_blank" rel="noopener" class="btn btn-outline">Ver demo administración 60 €/mes</a>
+      <a href="/demo-panel-propietario-alquiler.html?zona={zona}" target="_blank" rel="noopener" class="btn btn-outline">Ver demo administración 59 €/mes</a>
     </div>
   </div>
 </section>

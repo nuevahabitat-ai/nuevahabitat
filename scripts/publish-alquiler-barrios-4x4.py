@@ -64,7 +64,7 @@ SERVICIOS_BLOCK = """
   <div class="container alq-guide-inner fade-up">
     <span class="overline">Servicios complementarios</span>
     <h2 class="section-title">Administración e integral en {label}</h2>
-    <p style="color:var(--gris-texto);line-height:1.75;max-width:820px">Son el mismo recorrido del propietario particular en dos momentos: si el piso está <strong>vacío</strong>, el <a href="/{integral_slug}">alquiler integral (499 €)</a> publica, visita y cierra contrato; si <strong>ya hay inquilino</strong>, la <a href="/{admin_slug}">administración (60 €/mes)</a> gestiona incidencias, LAU y relación sin que hables con el inquilino. Puedes encadenar ambos con el mismo panel.</p>
+    <p style="color:var(--gris-texto);line-height:1.75;max-width:820px">Son el mismo recorrido del propietario particular en dos momentos: si el piso está <strong>vacío</strong>, el <a href="/{integral_slug}">alquiler integral (499 €)</a> publica, visita y cierra contrato; si <strong>ya hay inquilino</strong>, la <a href="/{admin_slug}">administración (59 €/mes)</a> gestiona incidencias, LAU y relación sin que hables con el inquilino. Puedes encadenar ambos con el mismo panel.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:1.75rem">
       <article style="background:var(--blanco);border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:1.75rem">
         <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--oro);margin-bottom:.5rem">Piso vacío · captación</div>
@@ -74,7 +74,7 @@ SERVICIOS_BLOCK = """
       </article>
       <article style="background:var(--blanco);border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:1.75rem">
         <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--oro);margin-bottom:.5rem">Contrato en curso</div>
-        <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 .75rem">Administración · 60 €/mes</h3>
+        <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 .75rem">Administración · 59 €/mes</h3>
         <p style="font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 1rem">Incidencias, mediación, renovaciones y control de renta (tú cobras en tu cuenta).</p>
         <a href="/{admin_slug}" class="btn btn-outline" style="width:100%;justify-content:center">Ver administración {label}</a>
       </article>
@@ -128,7 +128,7 @@ def inject_servicios(path: Path, z: dict) -> None:
 def admin_body(z: dict) -> str:
     bodies = {
         "eixample": """
-    <p>El Eixample concentra edificios de finales del XIX, viviendas reformadas en la Dreta y bloques más asequibles en Sant Antoni. La renta y el perfil de inquilino cambian calle a calle: un piso en Pau Claris no se gestiona igual que uno en Comte Borrell. Nueva Habitat opera con <strong>60 €/mes IVA incluido</strong> en todo el distrito, con visitas desde la oficina de Les Corts (Mejía Lequerica 42).</p>
+    <p>El Eixample concentra edificios de finales del XIX, viviendas reformadas en la Dreta y bloques más asequibles en Sant Antoni. La renta y el perfil de inquilino cambian calle a calle: un piso en Pau Claris no se gestiona igual que uno en Comte Borrell. Nueva Habitat opera con <strong>59 €/mes IVA incluido</strong> en todo el distrito, con visitas desde la oficina de Les Corts (Mejía Lequerica 42).</p>
     <h3>Eixample Dreta y Esquerre (08009–08011)</h3>
     <p>Familias y profesionales con alta exigencia de documentación e inventario. Incidencias frecuentes: ascensores antiguos, filtraciones en terrazas, comunidades con obras. Modelo sin contacto directo propietario–inquilino.</p>
     <h3>Sant Antoni y entorno Mercat (08015)</h3>
@@ -137,7 +137,7 @@ def admin_body(z: dict) -> str:
     <p>Demanda estable de particulares; coordinación con porteros y fincas con locales en planta baja. Seguimiento de pagos sin retener la renta (no somos cobro garantizado).</p>
 """,
         "gracia": """
-    <p>Gràcia es uno de los distritos con más identidad de barrio de Barcelona: calles estrechas en Vila de Gràcia, fincas sin ascensor en parte del 08012 y edificios más modernos en Camp d'en Grassot (08025). Muchos propietarios viven fuera del distrito y delegan averías de fin de semana, ruidos y plazos LAU por <strong>60 €/mes IVA incluido</strong>.</p>
+    <p>Gràcia es uno de los distritos con más identidad de barrio de Barcelona: calles estrechas en Vila de Gràcia, fincas sin ascensor en parte del 08012 y edificios más modernos en Camp d'en Grassot (08025). Muchos propietarios viven fuera del distrito y delegan averías de fin de semana, ruidos y plazos LAU por <strong>59 €/mes IVA incluido</strong>.</p>
     <h3>Vila de Gràcia y Plaça de la Vila (08012)</h3>
     <p>Alquileres familiares y parejas jóvenes; inventario detallado y mediación en convivencia vecinal. Coordinación con comunidades pequeñas y fontanería de fincas antiguas.</p>
     <h3>Camp d'en Grassot i Gràcia Nova (08025)</h3>
@@ -198,26 +198,26 @@ def write_admin_eixample_gracia() -> None:
         if z["key"] == "eixample":
             text = re.sub(
                 r"<title>[^<]+</title>",
-                f'<title>Administración alquileres Eixample · 60 €/mes · Dreta, Sant Antoni · NuevaHabitat</title>',
+                f'<title>Administración alquileres Eixample · 59 €/mes · Dreta, Sant Antoni · NuevaHabitat</title>',
                 text,
                 count=1,
             )
             text = re.sub(
                 r'<meta name="description" content="[^"]*"',
-                '<meta name="description" content="Administración de alquileres en el Eixample Barcelona: 60 €/mes IVA incl. Incidencias, LAU, renovaciones sin hablar con el inquilino. Dreta, Esquerre, Sant Antoni, Sagrada Família."',
+                '<meta name="description" content="Administración de alquileres en el Eixample Barcelona: 59 €/mes IVA incl. Incidencias, LAU, renovaciones sin hablar con el inquilino. Dreta, Esquerre, Sant Antoni, Sagrada Família."',
                 text,
                 count=1,
             )
         if z["key"] == "gracia":
             text = re.sub(
                 r"<title>[^<]+</title>",
-                f'<title>Administración alquileres Gràcia · 60 €/mes · Vila de Gràcia · NuevaHabitat</title>',
+                f'<title>Administración alquileres Gràcia · 59 €/mes · Vila de Gràcia · NuevaHabitat</title>',
                 text,
                 count=1,
             )
             text = re.sub(
                 r'<meta name="description" content="[^"]*"',
-                '<meta name="description" content="Administración de alquileres en Gràcia Barcelona: 60 €/mes IVA incl. Delega incidencias, mediación y control de renta en Vila de Gràcia, Camp d\'en Grassot y Vallcarca."',
+                '<meta name="description" content="Administración de alquileres en Gràcia Barcelona: 59 €/mes IVA incl. Delega incidencias, mediación y control de renta en Vila de Gràcia, Camp d\'en Grassot y Vallcarca."',
                 text,
                 count=1,
             )
@@ -266,8 +266,8 @@ def write_integral_gracia() -> None:
         count=1,
     )
     text = text.replace(
-        f'¿Ya tienes inquilino en {z["label"]} y solo quieres delegar gestión? Mira administración de alquileres en {z["label"]} (60 €/mes).',
-        f'¿Ya tienes inquilino en {z["label"]} y solo quieres delegar gestión? Mira <a href="/{z["admin_slug"]}">administración de alquileres en {z["label"]}</a> (60 €/mes).',
+        f'¿Ya tienes inquilino en {z["label"]} y solo quieres delegar gestión? Mira administración de alquileres en {z["label"]} (59 €/mes).',
+        f'¿Ya tienes inquilino en {z["label"]} y solo quieres delegar gestión? Mira <a href="/{z["admin_slug"]}">administración de alquileres en {z["label"]}</a> (59 €/mes).',
     )
     out.write_text(text, encoding="utf-8")
     print("wrote", out.name)
@@ -287,7 +287,7 @@ def update_json_index() -> None:
                 "keyword_principal": "administración alquileres Eixample",
                 "priority": 0.86,
                 "indexable": True,
-                "cardTeaser": "60 €/mes IVA incl. · Dreta, Esquerre, Sant Antoni · cero contacto con inquilino.",
+                "cardTeaser": "59 €/mes IVA incl. · Dreta, Esquerre, Sant Antoni · cero contacto con inquilino.",
             },
             {
                 "slug": "administracion-alquileres-gracia",
@@ -329,7 +329,7 @@ def hub_zona_grid() -> str:
         <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin:0 0 1rem">Propietarios particulares en {z["label"]}: elige captación o gestión mensual.</p>
         <div style="display:flex;flex-direction:column;gap:.5rem">
           <a href="/{z["integral_slug"]}" class="btn btn-gold" style="justify-content:center;font-size:.875rem">Integral 499 € · {z["label"]}</a>
-          <a href="/{z["admin_slug"]}" class="btn btn-outline" style="justify-content:center;font-size:.875rem">Administración 60 €/mes</a>
+          <a href="/{z["admin_slug"]}" class="btn btn-outline" style="justify-content:center;font-size:.875rem">Administración 59 €/mes</a>
         </div>
       </article>"""
         )
@@ -375,8 +375,8 @@ def fix_eixample_integral_admin_link() -> None:
     path = ROOT / "alquiler-integral-eixample.html"
     text = path.read_text(encoding="utf-8")
     text = text.replace(
-        'Mira <a href="/administracion-alquileres">administración de alquileres en Barcelona</a> (60 €/mes)',
-        'Mira <a href="/administracion-alquileres-eixample">administración de alquileres en el Eixample</a> (60 €/mes)',
+        'Mira <a href="/administracion-alquileres">administración de alquileres en Barcelona</a> (59 €/mes)',
+        'Mira <a href="/administracion-alquileres-eixample">administración de alquileres en el Eixample</a> (59 €/mes)',
     )
     path.write_text(text, encoding="utf-8")
 

@@ -4,6 +4,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { ADMIN_ALQUILER_MENSUAL_IVA, ADMIN_ALQUILER_MENSUAL_LABEL } = require('../lib/pricing');
 
 const IMAGENES = path.join(__dirname, '..', 'imagenes');
 const PUBLIC_PROCESO = path.join(__dirname, '..', 'public', 'alquiler-proceso');
@@ -61,8 +62,8 @@ function alquilerJourneySection(opts = {}) {
   const contractLine = mode === 'integral'
     ? 'Firmas el <strong>alquiler integral (499 € precio fijo)</strong>: captación, visitas, contrato LAU e INCASÒL. Después puedes pasar a administración mensual.'
     : mode === 'admin'
-      ? 'Firmas la <strong>administración de alquiler (60 €/mes IVA incluido)</strong> con alcance por escrito.'
-      : 'Firmas el servicio que encaje: <strong>alquiler integral (499 €)</strong> si el piso está vacío, o <strong>administración (60 €/mes)</strong> si ya hay inquilino y contrato activo.';
+      ? `Firmas la <strong>administración de alquiler (${ADMIN_ALQUILER_MENSUAL_IVA})</strong> con alcance por escrito.`
+      : `Firmas el servicio que encaje: <strong>alquiler integral (499 €)</strong> si el piso está vacío, o <strong>administración (${ADMIN_ALQUILER_MENSUAL_LABEL})</strong> si ya hay inquilino y contrato activo.`;
 
   const step3Extra = mode === 'integral'
     ? '<li>Publicación, visitas filtradas e informe top 3 perfiles hasta firmar contrato.</li>'

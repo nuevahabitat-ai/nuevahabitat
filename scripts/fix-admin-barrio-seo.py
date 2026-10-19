@@ -21,7 +21,7 @@ FIXES = {
         ('¿Trabajáis Pedralbes y Numància con la misma tarifa?', '¿Trabajáis Dreta y Sant Antoni con la misma tarifa?'),
         ('placeholder="Ej. Numància, c/…"', 'placeholder="Ej. Pau Claris, Comte Borrell…"'),
         ('¿Gestionáis pisos cerca de la Zona Universitaria?', '¿Gestionáis pisos en mercado tensionado del Eixample?'),
-        ('Sí, en todo Eixample. La tarifa de 60 €/mes está pensada para vivienda habitual de larga duración.',
+        ('Sí, en todo Eixample. La tarifa de 59 €/mes está pensada para vivienda habitual de larga duración.',
          'Sí. Revisamos comunicaciones y plazos con especial cuidado cuando aplica normativa de mercado tensionado.'),
         ('Desde nuestra oficina en Eixample.', 'Desde nuestra oficina en Mejía Lequerica (Les Corts), con operativa en todo el Eixample.'),
     ],

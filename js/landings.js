@@ -3153,7 +3153,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración de alquileres Barcelona",
     "priority": 0.92,
     "indexable": true,
-    "cardTeaser": "Gestión mensual 60 € IVA incl.: contrato LAU, incidencias, renovaciones. El inquilino habla solo con Nueva Habitat."
+    "cardTeaser": "Gestión mensual 59 € IVA incl.: contrato LAU, incidencias, renovaciones. El inquilino habla solo con Nueva Habitat."
   },
   "alquiler-integral": {
     "slug": "alquiler-integral",
@@ -3171,7 +3171,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Les Corts",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes IVA incl. · visita e informe · panel propietario · oficina Mejía Lequerica 42."
+    "cardTeaser": "59 €/mes IVA incl. · visita e informe · panel propietario · oficina Mejía Lequerica 42."
   },
   "administracion-alquileres-l-hospitalet": {
     "slug": "administracion-alquileres-l-hospitalet",
@@ -3189,7 +3189,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "panel propietario alquiler demo",
     "priority": 0.75,
     "indexable": false,
-    "cardTeaser": "Demostración interactiva con datos simulados (incidencias, expediente, 60 €/mes)."
+    "cardTeaser": "Demostración interactiva con datos simulados (incidencias, expediente, 59 €/mes)."
   },
   "alquiler-integral-l-hospitalet": {
     "slug": "alquiler-integral-l-hospitalet",
@@ -3225,7 +3225,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Eixample",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes IVA incl. · Dreta, Esquerre, Sant Antoni · cero contacto con inquilino."
+    "cardTeaser": "59 €/mes IVA incl. · Dreta, Esquerre, Sant Antoni · cero contacto con inquilino."
   },
   "administracion-alquileres-gracia": {
     "slug": "administracion-alquileres-gracia",
@@ -3252,7 +3252,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Sants",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Sants · panel propietario."
+    "cardTeaser": "59 €/mes · Sants · panel propietario."
   },
   "alquiler-integral-sants": {
     "slug": "alquiler-integral-sants",
@@ -3270,7 +3270,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Poblenou",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Poblenou · panel propietario."
+    "cardTeaser": "59 €/mes · Poblenou · panel propietario."
   },
   "alquiler-integral-poblenou": {
     "slug": "alquiler-integral-poblenou",
@@ -3288,7 +3288,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Sarrià",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Sarrià · panel propietario."
+    "cardTeaser": "59 €/mes · Sarrià · panel propietario."
   },
   "alquiler-integral-sarria": {
     "slug": "alquiler-integral-sarria",
@@ -3306,7 +3306,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Badalona",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Badalona · panel propietario."
+    "cardTeaser": "59 €/mes · Badalona · panel propietario."
   },
   "alquiler-integral-badalona": {
     "slug": "alquiler-integral-badalona",
@@ -3324,7 +3324,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Horta-Guinardó",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Horta-Guinardó · panel propietario."
+    "cardTeaser": "59 €/mes · Horta-Guinardó · panel propietario."
   },
   "administracion-alquileres-sant-andreu": {
     "slug": "administracion-alquileres-sant-andreu",
@@ -3333,7 +3333,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Sant Andreu",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Sant Andreu · panel propietario."
+    "cardTeaser": "59 €/mes · Sant Andreu · panel propietario."
   },
   "administracion-alquileres-nou-barris": {
     "slug": "administracion-alquileres-nou-barris",
@@ -3342,7 +3342,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Nou Barris",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Nou Barris · panel propietario."
+    "cardTeaser": "59 €/mes · Nou Barris · panel propietario."
   },
   "administracion-alquileres-ciutat-vella": {
     "slug": "administracion-alquileres-ciutat-vella",
@@ -3351,7 +3351,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Ciutat Vella",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Ciutat Vella · panel propietario."
+    "cardTeaser": "59 €/mes · Ciutat Vella · panel propietario."
   },
   "administracion-alquileres-sant-antoni": {
     "slug": "administracion-alquileres-sant-antoni",
@@ -3360,7 +3360,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Sant Antoni",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Sant Antoni · panel propietario."
+    "cardTeaser": "59 €/mes · Sant Antoni · panel propietario."
   },
   "alquiler-integral-horta": {
     "slug": "alquiler-integral-horta",
@@ -3414,7 +3414,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Poble-sec",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Poble-sec · panel propietario."
+    "cardTeaser": "59 €/mes · Poble-sec · panel propietario."
   },
   "alquiler-integral-poble-sec": {
     "slug": "alquiler-integral-poble-sec",
@@ -3432,7 +3432,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres El Clot",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · El Clot · panel propietario."
+    "cardTeaser": "59 €/mes · El Clot · panel propietario."
   },
   "alquiler-integral-el-clot": {
     "slug": "alquiler-integral-el-clot",
@@ -3450,7 +3450,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Fort Pienc",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Fort Pienc · panel propietario."
+    "cardTeaser": "59 €/mes · Fort Pienc · panel propietario."
   },
   "alquiler-integral-fort-pienc": {
     "slug": "alquiler-integral-fort-pienc",
@@ -3468,7 +3468,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Esplugues de Llobregat",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Esplugues de Llobregat · panel propietario."
+    "cardTeaser": "59 €/mes · Esplugues de Llobregat · panel propietario."
   },
   "alquiler-integral-esplugues": {
     "slug": "alquiler-integral-esplugues",
@@ -3486,7 +3486,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Sant Gervasi – Galvany",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Sant Gervasi – Galvany · panel propietario."
+    "cardTeaser": "59 €/mes · Sant Gervasi – Galvany · panel propietario."
   },
   "alquiler-integral-sant-gervasi": {
     "slug": "alquiler-integral-sant-gervasi",
@@ -3504,7 +3504,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Cornellà de Llobregat",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Cornellà de Llobregat · panel propietario."
+    "cardTeaser": "59 €/mes · Cornellà de Llobregat · panel propietario."
   },
   "alquiler-integral-cornella": {
     "slug": "alquiler-integral-cornella",
@@ -3522,7 +3522,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Diagonal Mar",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Diagonal Mar · panel propietario."
+    "cardTeaser": "59 €/mes · Diagonal Mar · panel propietario."
   },
   "alquiler-integral-diagonal-mar": {
     "slug": "alquiler-integral-diagonal-mar",
@@ -3540,7 +3540,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Pedralbes",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Pedralbes · panel propietario."
+    "cardTeaser": "59 €/mes · Pedralbes · panel propietario."
   },
   "alquiler-integral-pedralbes": {
     "slug": "alquiler-integral-pedralbes",
@@ -3558,7 +3558,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres La Barceloneta",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · La Barceloneta · panel propietario."
+    "cardTeaser": "59 €/mes · La Barceloneta · panel propietario."
   },
   "alquiler-integral-barceloneta": {
     "slug": "alquiler-integral-barceloneta",
@@ -3576,7 +3576,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "administración alquileres Sagrada Família",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "60 €/mes · Sagrada Família · panel propietario."
+    "cardTeaser": "59 €/mes · Sagrada Família · panel propietario."
   },
   "alquiler-integral-sagrada-familia": {
     "slug": "alquiler-integral-sagrada-familia",

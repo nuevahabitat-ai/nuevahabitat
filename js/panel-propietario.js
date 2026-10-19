@@ -17,7 +17,7 @@
     { key: 'contrato', title: 'Publicación y visitas', desc: 'Anuncio optimizado, filtro de candidatos y visitas discretas.' },
     { key: 'activo', title: 'Informe top 3 inquilinos', desc: 'Perfiles recomendados para que elijas arrendatario.' },
     { key: 'renovacion', title: 'Contrato LAU y fianza', desc: 'Firma, depósito INCASÒL y entrega de llaves.' },
-    { key: 'baja', title: 'Opcional: administración 60 €/mes', desc: 'Tras firmar, puedes delegar la gestión mensual sin hablar con el inquilino.' },
+    { key: 'baja', title: 'Opcional: administración 59 €/mes', desc: 'Tras firmar, puedes delegar la gestión mensual sin hablar con el inquilino.' },
   ];
 
   const ESTADO_LABEL = {
@@ -114,7 +114,7 @@
     if (cfgSvc) {
       cfgSvc.textContent = nhAuth.getAlquilerPanelMode(user) === 'integral'
         ? 'Alquiler integral (499 €)'
-        : 'Administración de alquiler (60 €/mes)';
+        : 'Administración de alquiler (59 €/mes)';
     }
   }
 
@@ -796,7 +796,7 @@
       const honorBody = document.getElementById('honorariosAlquilerBody');
       const honorResumen = document.getElementById('honorariosResumenCard');
       if (honorBody) {
-        honorBody.innerHTML = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Guarda tus datos de propietario e inmueble. Luego podrás pagar aquí (499 € integral o 60 €/mes administración).</p>';
+        honorBody.innerHTML = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Guarda tus datos de propietario e inmueble. Luego podrás pagar aquí (499 € integral o 59 €/mes administración).</p>';
       }
       if (honorResumen) honorResumen.innerHTML = '<div style="font-size:.85rem;opacity:.9">Completa el expediente para activar pagos</div>';
     } else {

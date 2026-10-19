@@ -6,7 +6,7 @@
   const ESTADOS_ADMIN = [
     { key: 'alta', title: 'Alta en el servicio', desc: 'Cuenta creada y expediente abierto con Nueva Habitat.' },
     { key: 'documentacion', title: 'Documentación del inmueble', desc: 'Revisión de contrato, seguros, certificados y datos de cobro.' },
-    { key: 'contrato', title: 'Contrato de administración', desc: 'Firma del encargo de gestión a 60 €/mes IVA incluido.' },
+    { key: 'contrato', title: 'Contrato de administración', desc: 'Firma del encargo de gestión a 59 €/mes IVA incluido.' },
     { key: 'activo', title: 'Gestión activa', desc: 'Incidencias, mediación y seguimiento de renta en curso.' },
     { key: 'renovacion', title: 'Renovación / LAU', desc: 'Prórrogas, actualización de renta o fin de contrato.' },
     { key: 'baja', title: 'Baja del servicio', desc: 'Cierre de la administración (con preaviso acordado).' },
@@ -20,7 +20,7 @@
     { key: 'informe', title: 'Informe top 3', desc: 'Hasta tres perfiles recomendados con solvencia básica revisada para que elijas con datos.' },
     { key: 'seleccion', title: 'Reserva e inquilino elegido', desc: 'Reserva, verificación de documentación del inquilino y envío a tu aseguradora de impago si aplica.' },
     { key: 'contrato', title: 'Contrato LAU e INCASÒL', desc: 'Redacción LAU, inventario firmado, depósito de fianza y garantías adicionales si procede.' },
-    { key: 'llaves', title: 'Suministros y llaves', desc: 'Cambio de titularidad de suministros, acta de entrega y opción de pasar a administración 60 €/mes.' },
+    { key: 'llaves', title: 'Suministros y llaves', desc: 'Cambio de titularidad de suministros, acta de entrega y opción de pasar a administración 59 €/mes.' },
   ];
 
   const ZONA_PRESETS = {
@@ -363,7 +363,7 @@
         <li>Visibilidad del estado en cada paso hasta la firma del contrato.</li>
         <li>Chat y avisos con tu gestor (no con curiosos de portales).</li>
         <li>Subida de documentos del inmueble desde el expediente.</li>
-        <li>Tras firmar, puedes contratar <strong>administración 60 €/mes</strong> con el mismo diseño de panel.</li>`;
+        <li>Tras firmar, puedes contratar <strong>administración 59 €/mes</strong> con el mismo diseño de panel.</li>`;
     }
     const banner = document.getElementById('pDemoBanner');
     if (banner) {
@@ -438,7 +438,7 @@
     document.getElementById('cfgPropEmail').textContent = MOCK.email;
     document.getElementById('cfgPropServicio').textContent = demoContext.mode === 'integral'
       ? 'Alquiler integral (499 € fijo)'
-      : 'Administración de alquiler (60 €/mes)';
+      : 'Administración de alquiler (59 €/mes)';
 
     const actEl = document.getElementById('demoActivityList');
     if (actEl) {
@@ -469,7 +469,7 @@
           <div class="nh-pay-row"><span>Servicio captación + cierre</span><strong>499,00 €</strong></div>
           <div class="nh-pay-row nh-pay-row--total"><span>Total integral (ejemplo demo)</span><strong>499,00 €</strong></div>
         </div>
-        <p style="font-size:.85rem;color:var(--gris-texto);margin-top:1rem;line-height:1.55">Después de firmar con el inquilino puedes activar la <strong>administración 60 €/mes</strong> en el mismo panel.</p>
+        <p style="font-size:.85rem;color:var(--gris-texto);margin-top:1rem;line-height:1.55">Después de firmar con el inquilino puedes activar la <strong>administración 59 €/mes</strong> en el mismo panel.</p>
         <a href="/administracion-alquileres" class="btn btn-outline" style="margin-top:.75rem;font-size:.82rem">Ver administración (demo admin)</a>`;
       }
       return;
@@ -478,7 +478,7 @@
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:flex-end">
         <div>
           <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro-claro);margin-bottom:.35rem">Cuota administración</div>
-          <div style="font-family:var(--font-serif);font-size:2rem;font-weight:700;color:#fff">60 €<span style="font-size:1rem;font-weight:500;opacity:.75">/mes</span></div>
+          <div style="font-family:var(--font-serif);font-size:2rem;font-weight:700;color:#fff">59 €<span style="font-size:1rem;font-weight:500;opacity:.75">/mes</span></div>
           <p style="font-size:.8125rem;color:rgba(255,255,255,.72);margin:.5rem 0 0;max-width:320px">IVA incluido · alquiler larga duración · Les Corts</p>
         </div>
         <span class="nh-pay-badge nh-pay-badge--done">Domiciliación activa</span>
