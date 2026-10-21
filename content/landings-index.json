@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-19T18:59:44.646Z",
+  "updated": "2026-10-21T11:35:02.364Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -1040,7 +1040,19 @@
       "priority": 0.86
     },
     {
+      "slug": "administracion-alquiler-guinardo-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "administracion-alquiler-la-sagrera-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-montjuic-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1065,6 +1077,18 @@
     },
     {
       "slug": "administracion-alquiler-provencals-del-poblenou-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-putxet-farro-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "administracion-alquiler-raval-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1142,6 +1166,12 @@
       "priority": 0.86
     },
     {
+      "slug": "administracion-alquiler-zona-universitaria-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "alquiler-integral-barcelona",
       "cluster": "alquiler",
       "indexable": true,
@@ -1167,6 +1197,12 @@
     },
     {
       "slug": "alquiler-integral-can-baro-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-ciutat-meridiana-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
@@ -1256,6 +1292,12 @@
       "priority": 0.86
     },
     {
+      "slug": "alquiler-integral-raval-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "alquiler-integral-roquetes-barcelona",
       "cluster": "alquiler",
       "indexable": true,
@@ -1280,6 +1322,12 @@
       "priority": 0.86
     },
     {
+      "slug": "alquiler-integral-trinitat-nova-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "alquiler-integral-vallcarca-barcelona",
       "cluster": "alquiler",
       "indexable": true,
@@ -1287,6 +1335,12 @@
     },
     {
       "slug": "alquiler-integral-verdum-barcelona",
+      "cluster": "alquiler",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "alquiler-integral-verneda-barcelona",
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86

@@ -173,11 +173,15 @@ window.NH_LANDING_ORDER = [
   "administracion-alquiler-el-carmel-barcelona",
   "administracion-alquiler-esplugues-de-llobregat",
   "administracion-alquiler-fort-pienc-barcelona",
+  "administracion-alquiler-guinardo-barcelona",
   "administracion-alquiler-la-sagrera-barcelona",
+  "administracion-alquiler-montjuic-barcelona",
   "administracion-alquiler-navas-barcelona",
   "administracion-alquiler-poble-sec-barcelona",
   "administracion-alquiler-porta-barcelona",
   "administracion-alquiler-provencals-del-poblenou-barcelona",
+  "administracion-alquiler-putxet-farro-barcelona",
+  "administracion-alquiler-raval-barcelona",
   "administracion-alquiler-roquetes-barcelona",
   "administracion-alquiler-sant-antoni-barcelona",
   "administracion-alquiler-sant-boi-de-llobregat",
@@ -190,11 +194,13 @@ window.NH_LANDING_ORDER = [
   "administracion-alquiler-vallcarca-barcelona",
   "administracion-alquiler-verdum-barcelona",
   "administracion-alquiler-verneda-barcelona",
+  "administracion-alquiler-zona-universitaria-barcelona",
   "alquiler-integral-barcelona",
   "alquiler-integral-bon-pastor-barcelona",
   "alquiler-integral-camp-de-larpa-barcelona",
   "alquiler-integral-camp-den-grassot-barcelona",
   "alquiler-integral-can-baro-barcelona",
+  "alquiler-integral-ciutat-meridiana-barcelona",
   "alquiler-integral-congres-indians-barcelona",
   "alquiler-integral-el-besos-barcelona",
   "alquiler-integral-el-carmel-barcelona",
@@ -209,12 +215,15 @@ window.NH_LANDING_ORDER = [
   "alquiler-integral-navas-barcelona",
   "alquiler-integral-porta-barcelona",
   "alquiler-integral-putxet-farro-barcelona",
+  "alquiler-integral-raval-barcelona",
   "alquiler-integral-roquetes-barcelona",
   "alquiler-integral-sant-boi-de-llobregat",
   "alquiler-integral-sant-joan-despi",
   "alquiler-integral-tetuan-barcelona",
+  "alquiler-integral-trinitat-nova-barcelona",
   "alquiler-integral-vallcarca-barcelona",
   "alquiler-integral-verdum-barcelona",
+  "alquiler-integral-verneda-barcelona",
   "alquiler-integral-zona-universitaria-barcelona",
   "administracion-alquileres",
   "alquiler-integral",
@@ -2760,6 +2769,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Administracion de alquiler en Fort Pienc (08018)."
   },
+  "administracion-alquiler-guinardo-barcelona": {
+    "slug": "administracion-alquiler-guinardo-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Guinardó",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler guinardo barcelona",
+    "badge": "Guinardó · 08041 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "Administracion de alquiler en El Guinardó (08041)."
+  },
   "administracion-alquiler-la-sagrera-barcelona": {
     "slug": "administracion-alquiler-la-sagrera-barcelona",
     "cluster": "alquiler",
@@ -2771,6 +2792,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/hospitalet5.jpg",
     "cardTeaser": "Administracion de alquiler en La Sagrera (08027)."
+  },
+  "administracion-alquiler-montjuic-barcelona": {
+    "slug": "administracion-alquiler-montjuic-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Montjuïc",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler montjuic barcelona",
+    "badge": "Montjuïc · 08004 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Administracion de alquiler en Montjuïc (08004)."
   },
   "administracion-alquiler-navas-barcelona": {
     "slug": "administracion-alquiler-navas-barcelona",
@@ -2819,6 +2852,30 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/poblenou5.jpg",
     "cardTeaser": "Administracion de alquiler en Provençals del Poblenou (08005)."
+  },
+  "administracion-alquiler-putxet-farro-barcelona": {
+    "slug": "administracion-alquiler-putxet-farro-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Putxet",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler putxet farro barcelona",
+    "badge": "Putxet · 08017 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "Administracion de alquiler en El Putxet i el Farró (08017)."
+  },
+  "administracion-alquiler-raval-barcelona": {
+    "slug": "administracion-alquiler-raval-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Raval",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler raval barcelona",
+    "badge": "Raval · 08001 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona1.jpeg",
+    "cardTeaser": "Administracion de alquiler en El Raval (08001)."
   },
   "administracion-alquiler-roquetes-barcelona": {
     "slug": "administracion-alquiler-roquetes-barcelona",
@@ -2964,6 +3021,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/santmarti1.webp",
     "cardTeaser": "Administracion de alquiler en La Verneda i la Pau (08020)."
   },
+  "administracion-alquiler-zona-universitaria-barcelona": {
+    "slug": "administracion-alquiler-zona-universitaria-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Admin Zona Univ.",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "administracion alquiler zona universitaria barcelona",
+    "badge": "Zona Univ. · 08028 · Admin",
+    "testimonials": true,
+    "cardImage": "imagenes/lescorts1.jpg",
+    "cardTeaser": "Administracion de alquiler en Zona Universitaria (08028)."
+  },
   "alquiler-integral-barcelona": {
     "slug": "alquiler-integral-barcelona",
     "cluster": "alquiler",
@@ -3023,6 +3092,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/guinardo1.jpg",
     "cardTeaser": "Alquiler integral en Can Baró (08032)."
+  },
+  "alquiler-integral-ciutat-meridiana-barcelona": {
+    "slug": "alquiler-integral-ciutat-meridiana-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral Ciutat Meridiana",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral ciutat meridiana barcelona",
+    "badge": "Ciutat Meridiana · 08033 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris2.jpg",
+    "cardTeaser": "Alquiler integral en Ciutat Meridiana (08033)."
   },
   "alquiler-integral-congres-indians-barcelona": {
     "slug": "alquiler-integral-congres-indians-barcelona",
@@ -3192,6 +3273,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Alquiler integral en El Putxet i el Farró (08017)."
   },
+  "alquiler-integral-raval-barcelona": {
+    "slug": "alquiler-integral-raval-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral Raval",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral raval barcelona",
+    "badge": "Raval · 08001 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona1.jpeg",
+    "cardTeaser": "Alquiler integral en El Raval (08001)."
+  },
   "alquiler-integral-roquetes-barcelona": {
     "slug": "alquiler-integral-roquetes-barcelona",
     "cluster": "alquiler",
@@ -3240,6 +3333,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Alquiler integral en Tetuan (08018)."
   },
+  "alquiler-integral-trinitat-nova-barcelona": {
+    "slug": "alquiler-integral-trinitat-nova-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral Trinitat Nova",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral trinitat nova barcelona",
+    "badge": "Trinitat Nova · 08033 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris3.jpg",
+    "cardTeaser": "Alquiler integral en La Trinitat Nova (08033)."
+  },
   "alquiler-integral-vallcarca-barcelona": {
     "slug": "alquiler-integral-vallcarca-barcelona",
     "cluster": "alquiler",
@@ -3263,6 +3368,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Alquiler integral en Verdum (08042)."
+  },
+  "alquiler-integral-verneda-barcelona": {
+    "slug": "alquiler-integral-verneda-barcelona",
+    "cluster": "alquiler",
+    "footerLabel": "Integral La Verneda",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "alquiler integral verneda barcelona",
+    "badge": "La Verneda · 08020 · Integral",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "Alquiler integral en La Verneda i la Pau (08020)."
   },
   "alquiler-integral-zona-universitaria-barcelona": {
     "slug": "alquiler-integral-zona-universitaria-barcelona",
