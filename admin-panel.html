@@ -2356,6 +2356,39 @@ let editingPropertyId = null;
 let existingVideoUrl = '';
 let existingPlanoUrl = '';
 
+/** Evita refetch al cambiar de pestaña si los datos son recientes */
+const NH_PANEL_CACHE_MS = 45000;
+const _panelLoadAt = Object.create(null);
+function shouldSkipPanelReload(key) {
+  const at = _panelLoadAt[key] || 0;
+  return at > 0 && (Date.now() - at) < NH_PANEL_CACHE_MS;
+}
+function markPanelLoaded(key) {
+  _panelLoadAt[key] = Date.now();
+}
+function bustPanelCache(keys) {
+  const list = keys == null ? Object.keys(_panelLoadAt) : (Array.isArray(keys) ? keys : [keys]);
+  list.forEach((k) => { _panelLoadAt[k] = 0; });
+}
+function nhDebounce(fn, wait = 220) {
+  let timer;
+  return function debounced(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+async function nhPromiseTimeout(promise, ms, label) {
+  let timer;
+  const timeout = new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${label}: tiempo de espera agotado (${Math.round(ms / 1000)}s)`)), ms);
+  });
+  try {
+    return await Promise.race([promise, timeout]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 /* ── Date ─────────────────────────────────────────────────────── */
 (function(){
   const d = new Date();
@@ -3160,8 +3193,61 @@ function matchCompradorInmueble(comprador, inmueble){
   return window.nhMatching ? nhMatching.matchCompradorInmueble(comprador, inmueble) : false;
 }
 
+let _matchCountByCompId = null;
+let _matchCountByInmId = null;
+let _matchCountJob = 0;
+
+function invalidateMatchCounts() {
+  _matchCountByCompId = null;
+  _matchCountByInmId = null;
+}
+
+function ensureMatchCounts() {
+  if (_matchCountByCompId && _matchCountByInmId) return;
+  const comp = _compData || [];
+  const pub = (_pubData || []).filter((p) => p.estado !== 'vendido' && p.estado !== 'retirado');
+  _matchCountByCompId = new Map();
+  _matchCountByInmId = new Map();
+  if (!comp.length || !pub.length) return;
+  for (const c of comp) {
+    if (c.activo === false) {
+      _matchCountByCompId.set(c.id, 0);
+      continue;
+    }
+    let n = 0;
+    for (const p of pub) {
+      if (!matchCompradorInmueble(c, p)) continue;
+      n++;
+      _matchCountByInmId.set(p.id, (_matchCountByInmId.get(p.id) || 0) + 1);
+    }
+    _matchCountByCompId.set(c.id, n);
+  }
+}
+
+/** Recalcula badges de compatibles sin bloquear el primer pintado */
+function scheduleMatchCountRebuild() {
+  if (!_compData?.length || !_pubData?.length) return;
+  const job = ++_matchCountJob;
+  const run = () => {
+    if (job !== _matchCountJob) return;
+    invalidateMatchCounts();
+    ensureMatchCounts();
+    if (currentSection === 'compradores') renderCompradores();
+    if (currentSection === 'inmuebles') renderPublications();
+  };
+  if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 1200 });
+  else setTimeout(run, 40);
+}
+
 function countMatchesForComprador(comprador){
-  return (_pubData || []).filter(p => matchCompradorInmueble(comprador, p)).length;
+  if (!comprador?.id || comprador.activo === false) return 0;
+  if (!_matchCountByCompId) return 0;
+  return _matchCountByCompId.get(comprador.id) || 0;
+}
+
+function countMatchesForInmueble(inmueble){
+  if (!inmueble?.id || !_matchCountByInmId) return 0;
+  return _matchCountByInmId.get(inmueble.id) || 0;
 }
 
 function getMatchesForComprador(comprador){
@@ -3421,6 +3507,7 @@ async function ensureCompData(){
     if(_compData.length) return _compData;
   }
   _compData = data || _compData;
+  invalidateMatchCounts();
   return _compData;
 }
 
@@ -3460,7 +3547,7 @@ let _pubData = [];
 async function fetchPubData(){
   const { data, error } = await window.nhSupabase
     .from('inmuebles')
-    .select('id,ref,titulo,precio,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,descripcion,cartera_privada,created_at')
+    .select('id,ref,titulo,precio,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,cartera_privada,created_at')
     .order('created_at', { ascending:false });
   if(error){
     console.error('fetchPubData:', error);
@@ -3468,6 +3555,7 @@ async function fetchPubData(){
   } else {
     _pubData = data || [];
   }
+  invalidateMatchCounts();
   updateInmZonaDatalist();
   return _pubData;
 }
@@ -3571,12 +3659,22 @@ function clearInmFilters(){
 }
 window.clearInmFilters = clearInmFilters;
 
-async function loadPublications(){
+async function loadPublications(force){
+  if(!force && shouldSkipPanelReload('inmuebles') && _pubData.length){
+    renderPublications();
+    void ensureCompData().then(() => {
+      if(currentSection === 'inmuebles') renderPublications();
+    });
+    return;
+  }
   const grid = document.getElementById('pub-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando inmuebles…</p>';
   await fetchPubData();
-  if(!_compData.length) await ensureCompData();
   renderPublications();
+  markPanelLoaded('inmuebles');
+  void ensureCompData().then(() => {
+    scheduleMatchCountRebuild();
+  });
 }
 
 function renderPublications(){
@@ -3611,7 +3709,7 @@ function renderPublications(){
     const badgeColors = {disponible:'#b8936a',reservado:'#f97316',vendido:'#ef4444',retirado:'#888'};
     const badgeColor  = badgeColors[badge]||'#b8936a';
     const titleSafe = (p.titulo||'').replace(/"/g,'&quot;');
-    const matchCount = _compData.length ? getMatchesForInmueble(p).length : 0;
+    const matchCount = countMatchesForInmueble(p);
     return `
       <div class="pub-card">
         <div class="pub-img">
@@ -4059,7 +4157,15 @@ async function dashDeleteComprador(id){
   loadDashboard();
 }
 
-async function loadDashboard(){
+async function loadDashboard(force){
+  if(!force && shouldSkipPanelReload('dashboard') && _dashCache.compradores){
+    renderDashInmuebles(_dashCache.inmuebles || []);
+    renderDashLeads(_dashCache.leads || []);
+    renderDashSeguimientos(_dashCache.seguimientos || []);
+    renderDashCompradores(_dashCache.compradores || []);
+    renderMatchAlerts();
+    return;
+  }
   const sb = window.nhSupabase;
   const setEmpty = () => {
     ['dash-inm-list','dash-leads-list','dash-seg-list','dash-comp-list'].forEach(id => {
@@ -4095,7 +4201,7 @@ async function loadDashboard(){
       sb.from('inmuebles').select('id,ref,titulo,precio,tipo,estado,barrio,municipio,cp,direccion,habitaciones,banos,m2_construidos,m2_utiles,imagen_principal,imagenes,descripcion,propietario_nombre,propietario_telefono,propietario_email,created_at,updated_at,cartera_privada').eq('cartera_privada',false).order('created_at',{ascending:false}).limit(6),
       sb.from('particulares_seguimientos').select('id,particular_id,comentario,created_at,particulares(id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url)').order('created_at',{ascending:false}).limit(6),
       sb.from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,proxima_alarma_at,ultimo_contacto_at,created_at').order('created_at',{ascending:false}).limit(6),
-      sb.from('particulares').select('id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url,proxima_alarma_at,ultimo_contacto_at,activo').eq('activo',true).order('updated_at',{ascending:false}).limit(40),
+      sb.from('particulares').select('id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url,proxima_alarma_at,ultimo_contacto_at,activo').eq('activo',true).order('updated_at',{ascending:false}).limit(20),
     ]);
 
     _dashCache.inmuebles = inmRes.data || [];
@@ -4122,6 +4228,7 @@ async function loadDashboard(){
     renderDashSeguimientos(_dashCache.seguimientos);
     renderDashCompradores(_dashCache.compradores);
     renderMatchAlerts();
+    markPanelLoaded('dashboard');
   } catch (err) {
     console.error('loadDashboard:', err);
     setEmpty();
@@ -4563,25 +4670,29 @@ document.addEventListener('DOMContentLoaded', () => {
     renderLeadsView();
   });
 
+  const renderCompradoresDebounced = nhDebounce(renderCompradores, 240);
+  const renderPublicationsDebounced = nhDebounce(renderPublications, 240);
+  const renderParticularesDebounced = nhDebounce(renderParticulares, 240);
+
   ['cf-telefono','cf-precio-min','cf-precio-max','cf-hab','cf-ascensor','cf-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
-    el.addEventListener('input', renderCompradores);
-    el.addEventListener('change', renderCompradores);
+    el.addEventListener('input', renderCompradoresDebounced);
+    el.addEventListener('change', renderCompradoresDebounced);
   });
 
   ['if-precio-min','if-precio-max','if-hab','if-ascensor','if-estado','if-cartera','if-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
-    el.addEventListener('input', renderPublications);
-    el.addEventListener('change', renderPublications);
+    el.addEventListener('input', renderPublicationsDebounced);
+    el.addEventListener('change', renderPublicationsDebounced);
   });
 
   ['pf-telefono','pf-precio-min','pf-precio-max','pf-hab','pf-ascensor','pf-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
-    el.addEventListener('input', renderParticulares);
-    el.addEventListener('change', renderParticulares);
+    el.addEventListener('input', renderParticularesDebounced);
+    el.addEventListener('change', renderParticularesDebounced);
   });
 });
 
@@ -4722,17 +4833,32 @@ async function loadAdminClienteDocumentos(email, containerEl) {
   containerEl.innerHTML = `<table class="adm-table"><thead><tr><th>Documento</th><th>Tipo</th><th>Estado</th><th>Origen</th><th>Fecha</th><th></th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
 }
 
+let _docAdminRows = [];
+
+async function adminOpenStoredDocByIdx(idx) {
+  const d = _docAdminRows[idx];
+  if (!d?.url) return;
+  const href = await adminDocSignedUrl(d.url);
+  if (href) window.open(href, '_blank', 'noopener');
+  else nhToast('No se pudo abrir el documento', 'error');
+}
+window.adminOpenStoredDocByIdx = adminOpenStoredDocByIdx;
+
 async function loadDocumentosAdmin() {
-  const { data } = await window.nhSupabase.from('cliente_documentos')
-    .select('*').order('created_at', { ascending: false });
   const tbl = document.getElementById('documentos-table');
-  if (!data?.length) { tbl.innerHTML = '<p class="text-muted">Sin documentos.</p>'; return; }
-  const rows = await Promise.all(data.map(async (d) => {
-    const href = await adminDocSignedUrl(d.url);
-    const ver = href ? `<a href="${href}" target="_blank" rel="noopener">Ver</a>` : '–';
-    return `<tr><td>${d.cliente_email}</td><td>${d.nombre}</td><td>${d.tipo}</td><td>${d.estado}</td>
+  if (tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
+  const { data } = await window.nhSupabase.from('cliente_documentos')
+    .select('id,cliente_email,nombre,tipo,estado,url,created_at').order('created_at', { ascending: false });
+  _docAdminRows = data || [];
+  if (!tbl) return;
+  if (!_docAdminRows.length) { tbl.innerHTML = '<p class="text-muted">Sin documentos.</p>'; return; }
+  const rows = _docAdminRows.map((d, i) => {
+    const ver = d.url
+      ? `<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="adminOpenStoredDocByIdx(${i})">Ver</button>`
+      : '–';
+    return `<tr><td>${dashEsc(d.cliente_email)}</td><td>${dashEsc(d.nombre)}</td><td>${dashEsc(d.tipo)}</td><td>${dashEsc(d.estado || '–')}</td>
       <td>${ver} · <button class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteDocumento('${d.id}')">🗑</button></td></tr>`;
-  }));
+  });
   tbl.innerHTML = `<table class="adm-table"><thead><tr><th>Cliente</th><th>Documento</th><th>Tipo</th><th>Estado</th><th></th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
 }
 
@@ -5125,39 +5251,68 @@ window.admWhatsAppComprador = admWhatsAppComprador;
 window.admCallComprador = admCallComprador;
 window.admEmailComprador = admEmailComprador;
 
-async function loadCompradores(){
+async function loadCompradores(force){
+  if(!force && shouldSkipPanelReload('compradores') && _compData.length){
+    renderCompradores();
+    return;
+  }
   const grid = document.getElementById('comp-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
   const colsFull = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
   const colsBase = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
-  const [compRes] = await Promise.all([
-    window.nhSupabase.from('compradores').select(colsFull).order('created_at',{ascending:false}),
-    ensurePubData()
-  ]);
-  let { data, error } = compRes;
-  if(error && /ultimo_contacto_at|proxima_alarma_at/.test(error.message)){
-    ({ data, error } = await window.nhSupabase.from('compradores').select(colsBase).order('created_at',{ascending:false}));
-  }
-  if(error && /planta_max_sin_ascensor/.test(error.message)){
-    const colsLegacy = colsBase.replace(',planta_max_sin_ascensor', '').replace(',balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable', '');
-    ({ data, error } = await window.nhSupabase.from('compradores').select(colsLegacy).order('created_at',{ascending:false}));
-  }
-  if(error && /balcon_terraza_indispensable|m2_min|banos_min|exterior_indispensable/.test(error.message)){
-    const colsSinExtra = colsBase.replace(',balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable', '');
-    ({ data, error } = await window.nhSupabase.from('compradores').select(colsSinExtra).order('created_at',{ascending:false}));
-  }
-  if(error){
-    console.error('loadCompradores:', error);
-    nhToast('No se pudieron cargar compradores: '+error.message, 'error');
+  const colsHonorarios = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,created_at';
+  const colsMinimal = 'id,nombre,email,telefono,activo,presupuesto_max,habitaciones_min,ascensor,zona_buscada,notas,created_at';
+  try {
+    let { data, error } = await nhPromiseTimeout(
+      window.nhSupabase.from('compradores').select(colsFull).order('created_at',{ascending:false}),
+      28000,
+      'Compradores'
+    );
+    if(error && /ultimo_contacto_at|proxima_alarma_at/.test(error.message)){
+      ({ data, error } = await window.nhSupabase.from('compradores').select(colsBase).order('created_at',{ascending:false}));
+    }
+    if(error && /honorarios_transferencia|honorarios_metodo_pago/.test(error.message)){
+      ({ data, error } = await window.nhSupabase.from('compradores').select(colsHonorarios).order('created_at',{ascending:false}));
+    }
+    if(error && /planta_max_sin_ascensor/.test(error.message)){
+      const colsLegacy = colsBase.replace(',planta_max_sin_ascensor', '').replace(',balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable', '');
+      ({ data, error } = await window.nhSupabase.from('compradores').select(colsLegacy).order('created_at',{ascending:false}));
+    }
+    if(error && /balcon_terraza_indispensable|m2_min|banos_min|exterior_indispensable|tipo_inmueble/.test(error.message)){
+      const colsSinExtra = colsBase.replace(',balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable', '').replace(',tipo_inmueble', '');
+      ({ data, error } = await window.nhSupabase.from('compradores').select(colsSinExtra).order('created_at',{ascending:false}));
+    }
+    if(error && /honorarios/.test(error.message)){
+      ({ data, error } = await window.nhSupabase.from('compradores').select(colsMinimal).order('created_at',{ascending:false}));
+    }
+    if(error){
+      console.error('loadCompradores:', error);
+      nhToast('No se pudieron cargar compradores: '+error.message, 'error');
+      _compData = [];
+    } else {
+      _compData = data || [];
+      invalidateMatchCounts();
+    }
+  } catch (err) {
+    console.error('loadCompradores:', err);
+    nhToast('No se pudieron cargar compradores: '+(err.message||err), 'error');
     _compData = [];
-  } else {
-    _compData = data || [];
-    const fixed = await backfillCompradorContactFromNotas(_compData);
-    if(fixed > 0) console.info(`Compradores: ${fixed} contactos sincronizados desde notas`);
+    invalidateMatchCounts();
   }
   updateCompZonaDatalist();
   updateCompAlarmUI();
-  renderCompradores();
+  try {
+    renderCompradores();
+  } catch (renderErr) {
+    console.error('renderCompradores:', renderErr);
+    if (grid) {
+      grid.innerHTML = '<p class="text-muted" style="padding:1rem">Error al mostrar compradores. Recarga la página.</p>';
+    }
+  }
+  markPanelLoaded('compradores');
+  void ensurePubData().then(() => {
+    scheduleMatchCountRebuild();
+  }).catch(e => console.warn('loadCompradores ensurePubData:', e));
 }
 
 function filterCompradores(f){
@@ -5170,6 +5325,7 @@ function filterCompradores(f){
 
 function renderCompradores(){
   const grid = document.getElementById('comp-grid');
+  if(!grid) return;
   const list = filterCompradoresList(_compData);
   updateCompFilterCount(list.length, _compData.length);
 
@@ -5344,18 +5500,21 @@ async function saveComprador(){
   if(error){ document.getElementById('comp-form-err').textContent='Error: '+error.message; document.getElementById('comp-form-err').style.display='block'; return; }
   if(!editId && payload.activo) await notifyMatchesForNewComprador(payload);
   closeCompForm();
-  loadCompradores();
+  bustPanelCache(['compradores', 'dashboard']);
+  loadCompradores(true);
 }
 
 async function deleteComprador(id){
   if(!confirm('¿Eliminar este comprador?')) return;
   await window.nhSupabase.from('compradores').delete().eq('id',id);
-  loadCompradores();
+  bustPanelCache(['compradores', 'dashboard']);
+  loadCompradores(true);
 }
 
 async function toggleActivoComp(id, nuevoValor){
   await window.nhSupabase.from('compradores').update({activo:nuevoValor}).eq('id',id);
-  loadCompradores();
+  bustPanelCache('compradores');
+  loadCompradores(true);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -5626,7 +5785,12 @@ function vendUpdateCompradorPreview(selectId){
   vendUpdateHonSummary(selectId === 'v-comprador-id' ? 'form' : 'modal');
 }
 
-async function loadVendedores(){
+async function loadVendedores(force){
+  if(!force && shouldSkipPanelReload('vendedores') && _vendData.length){
+    renderVendedores();
+    renderVendSeguimientoSection();
+    return;
+  }
   const tbl = document.getElementById('vend-table');
   if(tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
   const { data, error } = await window.nhSupabase
@@ -5643,6 +5807,7 @@ async function loadVendedores(){
   _vendSeguimientoData = _vendData.filter(v => vendEstadoOperacion(v) === 'seguimiento');
   renderVendedores();
   renderVendSeguimientoSection();
+  markPanelLoaded('vendedores');
 }
 
 function vendPagoBadge(v){
@@ -6942,10 +7107,12 @@ function getCompradorContactState(c){
   return { ultimo, proxima };
 }
 
-async function backfillCompradorContactFromNotas(list){
+async function backfillCompradorContactFromNotas(list, opts = {}){
   if(!window.nhSupabase || !list?.length) return 0;
+  const limit = Math.max(1, Math.min(Number(opts.limit) || 12, 40));
   let fixed = 0;
   for(const c of list){
+    if(fixed >= limit) break;
     if(!c?.notas || !/whatsapp|llamad|llam[eé]|contactad|visita|telegram/i.test(c.notas)) continue;
     const parsed = parseUltimoContactoFromNotas(c.notas);
     const ultimoDate = c.ultimo_contacto_at ? new Date(c.ultimo_contacto_at) : (parsed || null);
@@ -7292,17 +7459,18 @@ async function loadVendSeguimientoOps(){
   renderVendSeguimientoSection();
 }
 
-async function loadParticulares(){
+async function loadParticulares(force){
+  if(!force && shouldSkipPanelReload('particulares') && _partData.length){
+    renderParticulares();
+    void loadVendSeguimientoOps();
+    return;
+  }
   const grid = document.getElementById('part-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
-  const [partRes] = await Promise.all([
-    window.nhSupabase
-      .from('particulares')
-      .select('id,url,fuente,titulo,direccion,precio,m2,habitaciones,banos,zona,barrio,municipio,contacto_nombre,telefono,email,descripcion,imagen_url,estado,ultimo_contacto_at,proxima_alarma_at,activo,created_at')
-      .order('created_at', { ascending:false }),
-    loadVendSeguimientoOps(),
-  ]);
-  const { data, error } = partRes;
+  const { data, error } = await window.nhSupabase
+    .from('particulares')
+    .select('id,url,fuente,titulo,direccion,precio,m2,habitaciones,banos,zona,barrio,municipio,contacto_nombre,telefono,email,imagen_url,estado,ultimo_contacto_at,proxima_alarma_at,activo,created_at')
+    .order('created_at', { ascending:false });
   if(error){
     console.error('loadParticulares:', error);
     nhToast('No se pudieron cargar particulares: '+error.message, 'error');
@@ -7313,6 +7481,8 @@ async function loadParticulares(){
   updatePartAlarmUI();
   updatePartZonaDatalist();
   renderParticulares();
+  markPanelLoaded('particulares');
+  void loadVendSeguimientoOps();
 }
 
 function filterParticulares(f){
