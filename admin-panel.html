@@ -2357,7 +2357,25 @@ let existingVideoUrl = '';
 let existingPlanoUrl = '';
 
 /** Evita refetch al cambiar de pestaña si los datos son recientes */
-const NH_PANEL_CACHE_MS = 45000;
+const NH_PANEL_CACHE_MS = 90000;
+const NH_GRID_PAGE = 36;
+let _compVisible = NH_GRID_PAGE;
+let _pubVisible = NH_GRID_PAGE;
+let _partVisible = NH_GRID_PAGE;
+
+function admGridShowMore(kind) {
+  if (kind === 'comp') { _compVisible += NH_GRID_PAGE; renderCompradores(); return; }
+  if (kind === 'pub') { _pubVisible += NH_GRID_PAGE; renderPublications(); return; }
+  if (kind === 'part') { _partVisible += NH_GRID_PAGE; renderParticulares(); }
+}
+window.admGridShowMore = admGridShowMore;
+
+function admGridMoreFooter(kind, total, shown) {
+  if (total <= shown) return '';
+  return `<div class="adm-grid-more" style="grid-column:1/-1;text-align:center;padding:1rem 0">
+    <button type="button" class="adm-btn adm-btn-gold" onclick="admGridShowMore('${kind}')">Mostrar más (${total - shown})</button>
+  </div>`;
+}
 const _panelLoadAt = Object.create(null);
 function shouldSkipPanelReload(key) {
   const at = _panelLoadAt[key] || 0;
@@ -2444,8 +2462,8 @@ async function fetchAdminLeads(opts = {}) {
       Authorization: `Bearer ${session.access_token}`,
     },
     body: JSON.stringify({
-      purge: opts.purge !== false,
-      limit: opts.limit || 500,
+      purge: opts.purge === true,
+      limit: opts.limit ?? 200,
     }),
   });
   const json = await res.json().catch(() => ({}));
@@ -2546,11 +2564,11 @@ async function initAdmin() {
     setupPubGridActions();
     setupWizardSteps();
 
-    // Mostrar panel ya; cargar datos en paralelo sin bloquear
-    await ensureAdminProfile(user);
-    loadDashboard().catch(e => console.error('loadDashboard:', e));
+    // Mostrar panel ya; perfil y dashboard en segundo plano (no bloquear UI)
+    void ensureAdminProfile(user);
+    setTimeout(() => loadDashboard().catch(e => console.error('loadDashboard:', e)), 120);
     refreshPartAlarmBadge().catch(()=>{});
-    window.nhAdminLeadsNotifyInit?.();
+    setTimeout(() => window.nhAdminLeadsNotifyInit?.(), 800);
   } catch (err) {
     console.error('initAdmin:', err);
     _adminReady = true;
@@ -3224,19 +3242,42 @@ function ensureMatchCounts() {
   }
 }
 
-/** Recalcula badges de compatibles sin bloquear el primer pintado */
+/** Recalcula badges de compatibles por trozos (no bloquea la UI) */
 function scheduleMatchCountRebuild() {
+  if (currentSection !== 'compradores' && currentSection !== 'inmuebles') return;
   if (!_compData?.length || !_pubData?.length) return;
   const job = ++_matchCountJob;
-  const run = () => {
+  const comp = _compData.filter((c) => c.activo !== false);
+  const pub = (_pubData || []).filter((p) => p.estado !== 'vendido' && p.estado !== 'retirado');
+  _matchCountByCompId = new Map();
+  _matchCountByInmId = new Map();
+  if (!comp.length || !pub.length) return;
+  let ci = 0;
+  const chunk = 4;
+  const step = () => {
     if (job !== _matchCountJob) return;
-    invalidateMatchCounts();
-    ensureMatchCounts();
+    const end = Math.min(ci + chunk, comp.length);
+    for (; ci < end; ci++) {
+      const c = comp[ci];
+      let n = 0;
+      for (const p of pub) {
+        if (!matchCompradorInmueble(c, p)) continue;
+        n++;
+        _matchCountByInmId.set(p.id, (_matchCountByInmId.get(p.id) || 0) + 1);
+      }
+      _matchCountByCompId.set(c.id, n);
+    }
+    if (ci < comp.length) {
+      const sched = typeof requestIdleCallback === 'function'
+        ? (fn) => requestIdleCallback(fn, { timeout: 800 })
+        : (fn) => setTimeout(fn, 16);
+      sched(step);
+      return;
+    }
     if (currentSection === 'compradores') renderCompradores();
     if (currentSection === 'inmuebles') renderPublications();
   };
-  if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 1200 });
-  else setTimeout(run, 40);
+  step();
 }
 
 function countMatchesForComprador(comprador){
@@ -3646,6 +3687,7 @@ function updateInmMatchBanner(shown){
 }
 
 function clearInmFilters(){
+  _pubVisible = NH_GRID_PAGE;
   ['if-precio-min','if-precio-max','if-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.value = '';
@@ -3662,19 +3704,24 @@ window.clearInmFilters = clearInmFilters;
 async function loadPublications(force){
   if(!force && shouldSkipPanelReload('inmuebles') && _pubData.length){
     renderPublications();
-    void ensureCompData().then(() => {
-      if(currentSection === 'inmuebles') renderPublications();
-    });
     return;
   }
+  _pubVisible = NH_GRID_PAGE;
   const grid = document.getElementById('pub-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando inmuebles…</p>';
   await fetchPubData();
   renderPublications();
   markPanelLoaded('inmuebles');
-  void ensureCompData().then(() => {
-    scheduleMatchCountRebuild();
-  });
+  if (currentSection === 'inmuebles') {
+    const defer = typeof requestIdleCallback === 'function'
+      ? (fn) => requestIdleCallback(fn, { timeout: 2000 })
+      : (fn) => setTimeout(fn, 200);
+    defer(() => {
+      void ensureCompData().then(() => {
+        if (currentSection === 'inmuebles') scheduleMatchCountRebuild();
+      });
+    });
+  }
 }
 
 function renderPublications(){
@@ -3700,8 +3747,9 @@ function renderPublications(){
     return;
   }
 
+  const visible = list.slice(0, _pubVisible);
   const badgeLabel = {disponible:'Disponible',reservado:'Reservado',vendido:'Vendido',retirado:'No disponible'};
-  grid.innerHTML = list.map(p=>{
+  grid.innerHTML = visible.map(p=>{
     const img = p.imagen_principal || 'imagenes/interior1.jpg';
     const price = p.precio?Number(p.precio).toLocaleString('es-ES')+' €':'–';
     const badge = p.estado||'disponible';
@@ -3738,7 +3786,7 @@ function renderPublications(){
           </div>
         </div>
       </div>`;
-  }).join('');
+  }).join('') + admGridMoreFooter('pub', list.length, visible.length);
 }
 
 /* ── Image slider for pub cards ─────────────────────────────── */
@@ -4174,35 +4222,32 @@ async function loadDashboard(force){
     });
   };
   try {
-    let leadsList = [];
-    try {
-      const leadsPayload = await fetchAdminLeads();
-      leadsList = leadsPayload.data || [];
-    } catch (leadsErr) {
+    const leadsPromise = fetchAdminLeads({ purge: false, limit: 120 }).catch((leadsErr) => {
       console.error('fetchAdminLeads dashboard', leadsErr);
       window.nhToast?.('Leads: ' + leadsErr.message, 'error', 5000);
-    }
+      return { data: [] };
+    });
 
-    const [compradoresCount, vendedoresCount, inmCount, visCount, partCount] = await Promise.all([
+    const [compradoresCount, vendedoresCount, inmCount, visCount, partCount, inmRes, segRes, compRes, partsRes, leadsPayload] = await Promise.all([
       sb.from('compradores').select('*',{count:'exact',head:true}),
       sb.from('vendedores').select('*',{count:'exact',head:true}),
       sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('cartera_privada',false),
       sb.from('visitas').select('*',{count:'exact',head:true}),
       sb.from('particulares').select('*',{count:'exact',head:true}).eq('activo',true),
+      sb.from('inmuebles').select('id,ref,titulo,precio,tipo,estado,barrio,municipio,habitaciones,banos,m2_utiles,imagen_principal,created_at,cartera_privada').eq('cartera_privada',false).order('created_at',{ascending:false}).limit(6),
+      sb.from('particulares_seguimientos').select('id,particular_id,comentario,created_at,particulares(id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,m2,habitaciones,banos,imagen_url)').order('created_at',{ascending:false}).limit(6),
+      sb.from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,habitaciones_min,ascensor,zona_buscada,proxima_alarma_at,ultimo_contacto_at,created_at').order('created_at',{ascending:false}).limit(6),
+      sb.from('particulares').select('id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,proxima_alarma_at,ultimo_contacto_at,activo').eq('activo',true).order('updated_at',{ascending:false}).limit(12),
+      leadsPromise,
     ]);
+
+    const leadsList = leadsPayload.data || [];
 
     document.getElementById('st-leads').textContent = leadsList.filter(l => l.estado === 'nuevo').length;
     document.getElementById('st-clientes').textContent = (compradoresCount.count ?? 0) + ' / ' + (vendedoresCount.count ?? 0);
     document.getElementById('st-inmuebles').textContent = inmCount.count ?? 0;
     document.getElementById('st-visitas').textContent = visCount.count ?? 0;
     document.getElementById('st-particulares').textContent = partCount.count ?? 0;
-
-    const [inmRes, segRes, compRes, partsRes] = await Promise.all([
-      sb.from('inmuebles').select('id,ref,titulo,precio,tipo,estado,barrio,municipio,cp,direccion,habitaciones,banos,m2_construidos,m2_utiles,imagen_principal,imagenes,descripcion,propietario_nombre,propietario_telefono,propietario_email,created_at,updated_at,cartera_privada').eq('cartera_privada',false).order('created_at',{ascending:false}).limit(6),
-      sb.from('particulares_seguimientos').select('id,particular_id,comentario,created_at,particulares(id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url)').order('created_at',{ascending:false}).limit(6),
-      sb.from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,zona_buscada,notas,proxima_alarma_at,ultimo_contacto_at,created_at').order('created_at',{ascending:false}).limit(6),
-      sb.from('particulares').select('id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,email,url,descripcion,m2,habitaciones,banos,imagen_url,proxima_alarma_at,ultimo_contacto_at,activo').eq('activo',true).order('updated_at',{ascending:false}).limit(20),
-    ]);
 
     _dashCache.inmuebles = inmRes.data || [];
     _leadsData = leadsList;
@@ -4528,7 +4573,7 @@ function renderLeadsView() {
 
 async function loadLeads(){
   try {
-    const payload = await fetchAdminLeads();
+    const payload = await fetchAdminLeads({ purge: false, limit: 300 });
     _leadsData = payload.data || [];
   } catch (err) {
     console.error('loadLeads', err);
@@ -5168,6 +5213,7 @@ function updateCompFilterCount(shown, total){
 }
 
 function clearCompFilters(){
+  _compVisible = NH_GRID_PAGE;
   ['cf-telefono','cf-precio-min','cf-precio-max','cf-zona'].forEach(id => {
     const el = document.getElementById(id);
     if(el) el.value = '';
@@ -5256,6 +5302,7 @@ async function loadCompradores(force){
     renderCompradores();
     return;
   }
+  _compVisible = NH_GRID_PAGE;
   const grid = document.getElementById('comp-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
   const colsFull = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
@@ -5310,12 +5357,10 @@ async function loadCompradores(force){
     }
   }
   markPanelLoaded('compradores');
-  void ensurePubData().then(() => {
-    scheduleMatchCountRebuild();
-  }).catch(e => console.warn('loadCompradores ensurePubData:', e));
 }
 
 function filterCompradores(f){
+  _compVisible = NH_GRID_PAGE;
   _compFilter = f;
   ['todos','activos','inactivos','alarmas'].forEach(k=>{
     document.getElementById('ctab-'+k)?.classList.toggle('active', k===f);
@@ -5339,7 +5384,8 @@ function renderCompradores(){
     return;
   }
 
-  grid.innerHTML = list.map(c=>{
+  const visible = list.slice(0, _compVisible);
+  grid.innerHTML = visible.map(c=>{
     const matchN = countMatchesForComprador(c);
     const alarm = compNeedsAlarm(c);
     const contact = getCompradorContactState(c);
@@ -5389,7 +5435,7 @@ function renderCompradores(){
         </div>
       </div>
     </div>`;
-  }).join('');
+  }).join('') + admGridMoreFooter('comp', list.length, visible.length);
 }
 
 function syncCompAscensorPlantaUi(){
@@ -7465,6 +7511,7 @@ async function loadParticulares(force){
     void loadVendSeguimientoOps();
     return;
   }
+  _partVisible = NH_GRID_PAGE;
   const grid = document.getElementById('part-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
   const { data, error } = await window.nhSupabase
@@ -7486,6 +7533,7 @@ async function loadParticulares(force){
 }
 
 function filterParticulares(f){
+  _partVisible = NH_GRID_PAGE;
   _partFilter = f;
   ['operaciones','todos','alarmas','nuevo','contactado','captado'].forEach(k=>{
     document.getElementById('part-tab-'+k)?.classList.toggle('active', k===f);
@@ -8001,6 +8049,7 @@ function renderParticulares(){
     return;
   }
   const grid = document.getElementById('part-grid');
+  if(!grid) return;
   let tabList = _partData;
   if(_partFilter === 'alarmas') tabList = tabList.filter(partNeedsAlarm);
   else if(_partFilter !== 'todos') tabList = tabList.filter(p => p.estado === _partFilter);
@@ -8013,7 +8062,8 @@ function renderParticulares(){
     grid.innerHTML = `<div class="pub-empty" style="grid-column:1/-1"><p class="text-muted">${hayFiltros ? 'Ningún particular coincide con estos filtros.<br>Prueba a ampliar criterios o usa «Limpiar filtros».' : 'No hay particulares.<br>Importa una URL o crea uno manualmente.'}</p></div>`;
     return;
   }
-  grid.innerHTML = list.map(p => {
+  const visible = list.slice(0, _partVisible);
+  grid.innerHTML = visible.map(p => {
     const alarm = partNeedsAlarm(p);
     return `
     <div class="pub-card pub-card-clickable" onclick="openPartCardModal('${p.id}')">
@@ -8050,7 +8100,7 @@ function renderParticulares(){
         <div onclick="event.stopPropagation()">${renderPartEstadoBar(p.id, p.estado)}</div>
       </div>
     </div>`;
-  }).join('');
+  }).join('') + admGridMoreFooter('part', list.length, visible.length);
 }
 
 window.openPartForm = openPartForm;
