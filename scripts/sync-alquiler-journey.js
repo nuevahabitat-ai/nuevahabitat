@@ -5,6 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const { alquilerJourneySection } = require('./alquiler-journey-html');
+const { ALQUILER_INTEGRAL_LABEL } = require('../lib/pricing');
 
 const ROOT = path.join(__dirname, '..');
 const JOURNEY_RE = /<section class="alq-journey"[^>]*>[\s\S]*?<\/section>\s*/;
@@ -28,7 +29,7 @@ function zoneIntro(name) {
     return {
       overline: 'Proceso alquiler integral',
       title: 'Del primer contacto al contrato firmado',
-      subtitle: '499 € precio fijo: misma metodología con gestor, expediente y panel propietario.',
+      subtitle: `${ALQUILER_INTEGRAL_LABEL}: misma metodología con gestor, expediente y panel propietario.`,
     };
   }
   return {};

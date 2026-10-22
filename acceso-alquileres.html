@@ -160,7 +160,7 @@ document.addEventListener('supabase:ready', async () => {
       return;
     }
     if (await isIntegralAccount(userEarly)) {
-      showError('Tu cuenta es de alquiler integral (499 €). Usa /acceso-alquiler-integral.');
+      showError('Tu cuenta es de alquiler integral (599 € IVA incluido · pago único). Usa /acceso-alquiler-integral.');
       return;
     }
     if (nhAuth.getUserTipo(userEarly) === 'propietario') {
@@ -207,7 +207,7 @@ document.addEventListener('supabase:ready', async () => {
     }
     if (await isIntegralAccount(user)) {
       await nhAuth.signOutClear();
-      showError('Esta cuenta es de alquiler integral (499 €). Usa /acceso-alquiler-integral.');
+      showError('Esta cuenta es de alquiler integral (599 € IVA incluido · pago único). Usa /acceso-alquiler-integral.');
       btn.disabled = false;
       btn.textContent = 'Entrar al panel propietario';
       return;

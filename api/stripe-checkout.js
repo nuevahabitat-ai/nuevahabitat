@@ -24,10 +24,11 @@ import {
 } from '../lib/server/supabase-server.js';
 import { notifyTransferenciaPendiente } from '../lib/server/payment-notify.js';
 import { handlePanelPropietarioApi } from '../lib/server/panel-propietario-api.js';
+import { ALQUILER_INTEGRAL_EUR } from '../lib/server/pricing.js';
 
 const DEFAULT_HONORARIOS = { comprador: 6050, vendedor: 3630 };
 const DEFAULT_CUOTA_ALQUILER_EUR = 60;
-const DEFAULT_INTEGRAL_ALQUILER_EUR = 499;
+const DEFAULT_INTEGRAL_ALQUILER_EUR = ALQUILER_INTEGRAL_EUR;
 
 function isAlquilerRequest(req) {
   return req.query?.alquiler === '1' || req.body?.alquiler === true;

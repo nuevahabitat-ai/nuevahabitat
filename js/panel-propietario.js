@@ -12,7 +12,7 @@
   ];
 
   const ESTADOS_INTEGRAL = [
-    { key: 'alta', title: 'Alta alquiler integral', desc: 'Cuenta creada. Paga los 499 € y completa datos del inmueble.' },
+    { key: 'alta', title: 'Alta alquiler integral', desc: 'Cuenta creada. Paga los 599 € (IVA incluido) y completa datos del inmueble.' },
     { key: 'documentacion', title: 'Documentación del propietario', desc: 'Nota simple, escrituras, CEE, cédula de habitabilidad y DNI.' },
     { key: 'contrato', title: 'Publicación y visitas', desc: 'Anuncio optimizado, filtro de candidatos y visitas discretas.' },
     { key: 'activo', title: 'Informe top 3 inquilinos', desc: 'Perfiles recomendados para que elijas arrendatario.' },
@@ -113,7 +113,7 @@
     if (cfgEmail) cfgEmail.textContent = user.email || '—';
     if (cfgSvc) {
       cfgSvc.textContent = nhAuth.getAlquilerPanelMode(user) === 'integral'
-        ? 'Alquiler integral (499 €)'
+        ? 'Alquiler integral (599 € IVA incluido · pago único)'
         : 'Administración de alquiler (59 €/mes)';
     }
   }
@@ -157,7 +157,7 @@
   function rowForPanelMode(row) {
     if (!row) return row;
     if (panelModeIntegral(row) && row.servicio !== 'integral') {
-      return { ...row, servicio: 'integral', cuota_mensual: 0, integral_tarifa: row.integral_tarifa ?? 499 };
+      return { ...row, servicio: 'integral', cuota_mensual: 0, integral_tarifa: row.integral_tarifa ?? 599 };
     }
     if (!panelModeIntegral(row) && row.servicio === 'integral') {
       return { ...row, servicio: 'administracion', cuota_mensual: row.cuota_mensual || 60 };
@@ -179,7 +179,7 @@
     const copy = document.getElementById('alqResumenCopy');
     if (copy) {
       copy.textContent = integral
-        ? 'Publicamos tu piso, filtramos candidatos y cerramos el alquiler hasta la firma. Completa datos, documentación y pago del servicio (499 €).'
+        ? 'Publicamos tu piso, filtramos candidatos y cerramos el alquiler hasta la firma. Completa datos, documentación y pago del servicio (599 € IVA incluido · pago único).'
         : 'Nueva Habitat gestiona la relación con el inquilino: incidencias, mediación y seguimiento contractual. Tú no hablas con el inquilino; te informamos por este panel.';
     }
     const gestTitle = document.getElementById('gestionProcesoTitle');
@@ -201,7 +201,7 @@
         : 'Completa los datos del arrendatario. Juan revisará la información antes de activar la gestión.';
     }
     const honTitle = document.getElementById('honorariosSectionTitle');
-    if (honTitle) honTitle.textContent = integral ? 'Pago del servicio (499 €)' : 'Pago de honorarios';
+    if (honTitle) honTitle.textContent = integral ? 'Pago del servicio (599 € IVA incluido · pago único)' : 'Pago de honorarios';
     document.querySelectorAll('[data-only-admin]').forEach((el) => {
       el.style.display = integral ? 'none' : '';
     });
@@ -409,8 +409,8 @@
     if (badge) {
       if (row.servicio === 'integral') {
         badge.innerHTML = row.integral_pagado
-          ? '<span class="nh-pay-badge nh-pay-badge--done">499 € pagados</span>'
-          : '<span class="nh-pay-badge nh-pay-badge--pending">Pago 499 € pendiente</span>';
+          ? '<span class="nh-pay-badge nh-pay-badge--done">599 € pagados</span>'
+          : '<span class="nh-pay-badge nh-pay-badge--pending">Pago 599 € IVA incluido pendiente</span>';
       } else if (row.suscripcion_activa) {
         badge.innerHTML = '<span class="nh-pay-badge nh-pay-badge--done">Cuota domiciliada</span>';
       } else {
@@ -796,7 +796,7 @@
       const honorBody = document.getElementById('honorariosAlquilerBody');
       const honorResumen = document.getElementById('honorariosResumenCard');
       if (honorBody) {
-        honorBody.innerHTML = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Guarda tus datos de propietario e inmueble. Luego podrás pagar aquí (499 € integral o 59 €/mes administración).</p>';
+        honorBody.innerHTML = '<p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6">Guarda tus datos de propietario e inmueble. Luego podrás pagar aquí (599 € IVA incluido · pago único o 59 €/mes administración).</p>';
       }
       if (honorResumen) honorResumen.innerHTML = '<div style="font-size:.85rem;opacity:.9">Completa el expediente para activar pagos</div>';
     } else {

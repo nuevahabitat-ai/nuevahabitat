@@ -3409,7 +3409,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Barcelona",
     "priority": 0.92,
     "indexable": true,
-    "cardTeaser": "499 € precio fijo: anuncio, filtro de candidatos, visitas, top 3 perfiles, contrato y fianza INCASÒL."
+    "cardTeaser": "599 € IVA incluido · pago único: anuncio, filtro de candidatos, visitas, top 3 perfiles, contrato y fianza INCASÒL."
   },
   "administracion-alquileres-les-corts": {
     "slug": "administracion-alquileres-les-corts",
@@ -3445,7 +3445,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral L'Hospitalet",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "Poner tu piso en alquiler en L'Hospitalet con tarifa fija 499 € hasta firma de contrato."
+    "cardTeaser": "Poner tu piso en alquiler en L'Hospitalet con 599 € IVA incluido · pago único hasta firma de contrato."
   },
   "alquiler-integral-les-corts": {
     "slug": "alquiler-integral-les-corts",
@@ -3454,7 +3454,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Les Corts",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "Delega captación y cierre en Numància, ZU o Pedralbes. Oficina Mejía Lequerica 42 · 499 € fijo."
+    "cardTeaser": "Delega captación y cierre en Numància, ZU o Pedralbes. Oficina Mejía Lequerica 42 · 599 € IVA incluido · pago único."
   },
   "alquiler-integral-eixample": {
     "slug": "alquiler-integral-eixample",
@@ -3463,7 +3463,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Eixample",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "Gestionamos visitas, filtro y contrato en Dreta, Esquerre y Sant Antoni · 499 € precio fijo."
+    "cardTeaser": "Gestionamos visitas, filtro y contrato en Dreta, Esquerre y Sant Antoni · 599 € IVA incluido · pago único."
   },
   "administracion-alquileres-eixample": {
     "slug": "administracion-alquileres-eixample",
@@ -3490,7 +3490,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Gràcia",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Gràcia · top 3 perfiles y LAU."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Gràcia · top 3 perfiles y LAU."
   },
   "administracion-alquileres-sants": {
     "slug": "administracion-alquileres-sants",
@@ -3508,7 +3508,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Sants",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Sants."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Sants."
   },
   "administracion-alquileres-poblenou": {
     "slug": "administracion-alquileres-poblenou",
@@ -3526,7 +3526,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Poblenou",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Poblenou."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Poblenou."
   },
   "administracion-alquileres-sarria": {
     "slug": "administracion-alquileres-sarria",
@@ -3544,7 +3544,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Sarrià",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Sarrià."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Sarrià."
   },
   "administracion-alquileres-badalona": {
     "slug": "administracion-alquileres-badalona",
@@ -3562,7 +3562,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Badalona",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Badalona."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Badalona."
   },
   "administracion-alquileres-horta": {
     "slug": "administracion-alquileres-horta",
@@ -3616,7 +3616,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Horta-Guinardó",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Horta-Guinardó."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Horta-Guinardó."
   },
   "alquiler-integral-sant-andreu": {
     "slug": "alquiler-integral-sant-andreu",
@@ -3625,7 +3625,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Sant Andreu",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Sant Andreu."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Sant Andreu."
   },
   "alquiler-integral-nou-barris": {
     "slug": "alquiler-integral-nou-barris",
@@ -3634,7 +3634,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Nou Barris",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Nou Barris."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Nou Barris."
   },
   "alquiler-integral-ciutat-vella": {
     "slug": "alquiler-integral-ciutat-vella",
@@ -3643,7 +3643,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Ciutat Vella",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Ciutat Vella."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Ciutat Vella."
   },
   "alquiler-integral-sant-antoni": {
     "slug": "alquiler-integral-sant-antoni",
@@ -3652,7 +3652,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Sant Antoni",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Sant Antoni."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Sant Antoni."
   },
   "administracion-alquileres-poble-sec": {
     "slug": "administracion-alquileres-poble-sec",
@@ -3670,7 +3670,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Poble-sec",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Poble-sec."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Poble-sec."
   },
   "administracion-alquileres-el-clot": {
     "slug": "administracion-alquileres-el-clot",
@@ -3688,7 +3688,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral El Clot",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en El Clot."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en El Clot."
   },
   "administracion-alquileres-fort-pienc": {
     "slug": "administracion-alquileres-fort-pienc",
@@ -3706,7 +3706,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Fort Pienc",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Fort Pienc."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Fort Pienc."
   },
   "administracion-alquileres-esplugues": {
     "slug": "administracion-alquileres-esplugues",
@@ -3724,7 +3724,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Esplugues de Llobregat",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Esplugues de Llobregat."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Esplugues de Llobregat."
   },
   "administracion-alquileres-sant-gervasi": {
     "slug": "administracion-alquileres-sant-gervasi",
@@ -3742,7 +3742,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Sant Gervasi – Galvany",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Sant Gervasi – Galvany."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Sant Gervasi – Galvany."
   },
   "administracion-alquileres-cornella": {
     "slug": "administracion-alquileres-cornella",
@@ -3760,7 +3760,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Cornellà de Llobregat",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Cornellà de Llobregat."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Cornellà de Llobregat."
   },
   "administracion-alquileres-diagonal-mar": {
     "slug": "administracion-alquileres-diagonal-mar",
@@ -3778,7 +3778,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Diagonal Mar",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Diagonal Mar."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Diagonal Mar."
   },
   "administracion-alquileres-pedralbes": {
     "slug": "administracion-alquileres-pedralbes",
@@ -3796,7 +3796,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Pedralbes",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Pedralbes."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Pedralbes."
   },
   "administracion-alquileres-barceloneta": {
     "slug": "administracion-alquileres-barceloneta",
@@ -3814,7 +3814,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral La Barceloneta",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en La Barceloneta."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en La Barceloneta."
   },
   "administracion-alquileres-sagrada-familia": {
     "slug": "administracion-alquileres-sagrada-familia",
@@ -3832,7 +3832,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "alquiler integral Sagrada Família",
     "priority": 0.86,
     "indexable": true,
-    "cardTeaser": "499 € fijo · captación y cierre en Sagrada Família."
+    "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Sagrada Família."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

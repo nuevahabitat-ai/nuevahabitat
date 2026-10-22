@@ -4,7 +4,11 @@
  */
 const fs = require('fs');
 const path = require('path');
-const { ADMIN_ALQUILER_MENSUAL_IVA, ADMIN_ALQUILER_MENSUAL_LABEL } = require('../lib/pricing');
+const {
+  ADMIN_ALQUILER_MENSUAL_IVA,
+  ADMIN_ALQUILER_MENSUAL_LABEL,
+  ALQUILER_INTEGRAL_LABEL,
+} = require('../lib/pricing');
 
 const IMAGENES = path.join(__dirname, '..', 'imagenes');
 const PUBLIC_PROCESO = path.join(__dirname, '..', 'public', 'alquiler-proceso');
@@ -60,10 +64,10 @@ function alquilerJourneySection(opts = {}) {
   const subtitle = opts.subtitle || 'Reserva una llamada con tu gestor, contrata con presupuesto claro, abrimos expediente y tú sigues todo desde el panel — sin hablar con el inquilino.';
 
   const contractLine = mode === 'integral'
-    ? 'Firmas el <strong>alquiler integral (499 € precio fijo)</strong>: captación, visitas, contrato LAU e INCASÒL. Después puedes pasar a administración mensual.'
+    ? `Firmas el <strong>alquiler integral (${ALQUILER_INTEGRAL_LABEL})</strong>: captación, visitas, contrato LAU e INCASÒL. Después puedes pasar a administración mensual.`
     : mode === 'admin'
       ? `Firmas la <strong>administración de alquiler (${ADMIN_ALQUILER_MENSUAL_IVA})</strong> con alcance por escrito.`
-      : `Firmas el servicio que encaje: <strong>alquiler integral (499 €)</strong> si el piso está vacío, o <strong>administración (${ADMIN_ALQUILER_MENSUAL_LABEL})</strong> si ya hay inquilino y contrato activo.`;
+      : `Firmas el servicio que encaje: <strong>alquiler integral (${ALQUILER_INTEGRAL_LABEL})</strong> si el piso está vacío, o <strong>administración (${ADMIN_ALQUILER_MENSUAL_LABEL})</strong> si ya hay inquilino y contrato activo.`;
 
   const step3Extra = mode === 'integral'
     ? '<li>Publicación, visitas filtradas e informe top 3 perfiles hasta firmar contrato.</li>'

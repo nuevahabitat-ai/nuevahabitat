@@ -13,7 +13,7 @@
   ];
 
   const ESTADOS_INTEGRAL = [
-    { key: 'solicitud', title: 'Solicitud y alta (499 €)', desc: 'Abres expediente, asignamos gestor y acordamos renta objetivo y calendario de visitas.' },
+    { key: 'solicitud', title: 'Solicitud y alta (599 € IVA incluido · pago único)', desc: 'Abres expediente, asignamos gestor y acordamos renta objetivo y calendario de visitas.' },
     { key: 'documentacion', title: 'Checklist documental', desc: 'DNI, nota simple, certificado energético, suministros e inventario fotográfico antes de publicar.' },
     { key: 'publicacion', title: 'Anuncio y difusión', desc: 'Texto orientado a particulares solventes, fotos y publicación en canales acordados contigo.' },
     { key: 'visitas', title: 'Criba y visitas', desc: 'Filtramos mensajes; visitas solo en tus franjas. Nueva Habitat representa al propietario.' },
@@ -334,7 +334,7 @@
     MOCK_ACTIVITY.push(
       { when: 'Hoy · 11:20', text: `Anuncio activo · ${preset.zonaLabel}. 12 mensajes filtrados, 4 visitas concertadas esta semana.` },
       { when: 'Ayer', text: 'Documentación validada: CE, nota simple e inventario fotográfico completos.' },
-      { when: '24 sept', text: 'Expediente alquiler integral abierto · tarifa 499 € acordada.' },
+      { when: '24 sept', text: 'Expediente alquiler integral abierto · tarifa 599 € IVA incluido acordada.' },
     );
 
     MOCK_DOCS.length = 0;
@@ -343,13 +343,13 @@
       { id: 'i2', tipo: 'prop_nota_simple', nombre: `Nota simple · ${preset.zonaLabel}`, estado: 'subido' },
       { id: 'i3', tipo: 'prop_certificado_energetico', nombre: 'CEE · etiqueta D', estado: 'subido' },
       { id: 'i4', tipo: 'prop_cedula_habitabilidad', nombre: 'Cédula de habitabilidad', estado: 'subido' },
-      { id: 'i5', tipo: 'alquiler_integral', nombre: 'Encargo alquiler integral · 499 €', estado: 'firmado' },
+      { id: 'i5', tipo: 'alquiler_integral', nombre: 'Encargo alquiler integral · 599 € IVA incluido', estado: 'firmado' },
     );
 
     document.getElementById('logoSubPanel')?.replaceChildren(document.createTextNode('Panel alquiler integral (demo)'));
-    document.getElementById('panelServicioBadge')?.replaceChildren(document.createTextNode('Alquiler integral · 499 €'));
+    document.getElementById('panelServicioBadge')?.replaceChildren(document.createTextNode('Alquiler integral · 599 € IVA incluido'));
     document.getElementById('alqResumenTitle')?.replaceChildren(document.createTextNode('Tu expediente de captación'));
-    document.getElementById('gestionProcesoTitle')?.replaceChildren(document.createTextNode('Proceso alquiler integral (499 €)'));
+    document.getElementById('gestionProcesoTitle')?.replaceChildren(document.createTextNode('Proceso alquiler integral (599 € IVA incluido · pago único)'));
     const copy = document.getElementById('alqResumenCopy');
     if (copy) {
       copy.textContent = 'Así ves el avance en la cuenta real: documentación, publicación, visitas, informe top 3 y cierre LAU. Datos simulados para que pruebes el menú.';
@@ -432,12 +432,12 @@
     const badge = document.getElementById('alqResumenBadge');
     if (badge) {
       badge.innerHTML = demoContext.mode === 'integral'
-        ? '<span class="nh-pay-badge nh-pay-badge--pending">499 € · captación</span>'
+        ? '<span class="nh-pay-badge nh-pay-badge--pending">599 € IVA incluido · captación</span>'
         : '<span class="nh-pay-badge nh-pay-badge--done">Cuota domiciliada</span>';
     }
     document.getElementById('cfgPropEmail').textContent = MOCK.email;
     document.getElementById('cfgPropServicio').textContent = demoContext.mode === 'integral'
-      ? 'Alquiler integral (499 € fijo)'
+      ? 'Alquiler integral (599 € IVA incluido · pago único)'
       : 'Administración de alquiler (59 €/mes)';
 
     const actEl = document.getElementById('demoActivityList');
@@ -457,7 +457,7 @@
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:flex-end">
         <div>
           <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro-claro);margin-bottom:.35rem">Tarifa alquiler integral</div>
-          <div style="font-family:var(--font-serif);font-size:2rem;font-weight:700;color:#fff">499 €<span style="font-size:1rem;font-weight:500;opacity:.75"> · fijo</span></div>
+          <div style="font-family:var(--font-serif);font-size:2rem;font-weight:700;color:#fff">599 € IVA incluido<span style="font-size:1rem;font-weight:500;opacity:.75"> · fijo</span></div>
           <p style="font-size:.8125rem;color:rgba(255,255,255,.72);margin:.5rem 0 0;max-width:340px">Captación y cierre: anuncio, visitas, top 3, LAU e INCASÒL. Sin comisión de un mes de renta.</p>
         </div>
         <span class="nh-pay-badge nh-pay-badge--pending">Pago al contratar servicio</span>
@@ -466,8 +466,8 @@
       if (body) {
         body.innerHTML = `
         <div class="nh-pay-summary">
-          <div class="nh-pay-row"><span>Servicio captación + cierre</span><strong>499,00 €</strong></div>
-          <div class="nh-pay-row nh-pay-row--total"><span>Total integral (ejemplo demo)</span><strong>499,00 €</strong></div>
+          <div class="nh-pay-row"><span>Servicio captación + cierre</span><strong>599,00 €</strong></div>
+          <div class="nh-pay-row nh-pay-row--total"><span>Total integral (ejemplo demo)</span><strong>599,00 €</strong></div>
         </div>
         <p style="font-size:.85rem;color:var(--gris-texto);margin-top:1rem;line-height:1.55">Después de firmar con el inquilino puedes activar la <strong>administración 59 €/mes</strong> en el mismo panel.</p>
         <a href="/administracion-alquileres" class="btn btn-outline" style="margin-top:.75rem;font-size:.82rem">Ver administración (demo admin)</a>`;

@@ -16,7 +16,7 @@
   }
 
   function integralTotal(row) {
-    return Number(row?.integral_tarifa) || 499;
+    return Number(row?.integral_tarifa) || 599;
   }
 
   function splitIva(total) {
@@ -105,7 +105,7 @@
         </div>
         <div class="nh-pay-status" style="background:rgba(184,147,106,.12);border-color:rgba(184,147,106,.35)">
           <strong style="color:var(--oro-oscuro,#92672a)">Transferencia en revisión</strong>
-          <span>Confirmaremos al recibir los 499 € (1–2 días laborables)</span>
+          <span>Confirmaremos al recibir los 599 € (IVA incluido) (1–2 días laborables)</span>
         </div>
         ${bankInfo ? renderIntegralTransferBlock(row, bankInfo) : ''}
       `;
@@ -132,7 +132,7 @@
     const concept = info.payment?.concept || info.payment?.reference || '';
     return `
       <div class="nh-bank-block">
-        <div class="nh-bank-title">Pagar por transferencia (499 €)</div>
+        <div class="nh-bank-title">Pagar por transferencia (599 € IVA incluido · pago único)</div>
         <p class="nh-bank-note">Importe exacto · concepto obligatorio</p>
         <dl class="nh-bank-dl">
           <div class="nh-bank-row"><dt>Titular</dt><dd>${info.bank.holders}</dd></div>
@@ -143,7 +143,7 @@
             <button type="button" class="nh-bank-copy" data-copy="${concept}">Copiar</button></dd></div>
         </dl>
         <button type="button" class="btn btn-outline nh-transfer-btn nh-transfer-integral" style="width:100%;justify-content:center;margin-top:.75rem">
-          Ya he transferido los 499 €
+          Ya he transferido los 599 € (IVA incluido)
         </button>
       </div>
     `;
@@ -326,7 +326,7 @@
       if (paymentState?.integral_pagado) return;
     } else if (paymentState?.suscripcion_activa) return;
     const msg = integral
-      ? '¿Confirmas la transferencia de 499 € con el concepto indicado?'
+      ? '¿Confirmas la transferencia de 599 € (IVA incluido) con el concepto indicado?'
       : '¿Confirmas que has realizado la transferencia con el importe y concepto indicados?';
     if (!confirm(msg)) return;
     transferNotify = true;
