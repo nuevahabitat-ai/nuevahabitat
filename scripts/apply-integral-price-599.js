@@ -58,26 +58,72 @@ const REPLACEMENTS = [
   [/¿499 € incluye IVA\?/g, '¿599 € incluye IVA?'],
   [/Alquiler integral 499€/g, 'Alquiler integral 599€ IVA incluido'],
   [/tarifa fija 499 €/g, '599 € IVA incluido · pago único'],
+  [/delega la gestión · 499 €/g, 'delega la gestión · 599 € IVA incl.'],
+  [/por <strong>499 €<\/strong>/g, 'por <strong>599 €</strong> (IVA incluido · pago único)'],
+  [/<strong>499 €<\/strong> · captación y cierre/g, '<strong>599 €</strong> · IVA incluido · captación y cierre'],
+  [/499 € tarifa fija/g, '599 € IVA incluido · pago único'],
+  [/Precio fijo 499 €/g, 'Precio fijo 599 € (IVA incluido)'],
+  [/Qué incluye 499 €/g, 'Qué incluye 599 € (IVA incluido)'],
+  [/499 € · precio fijo/g, '599 € IVA incluido · pago único'],
+  [/¿El precio 499 €/g, '¿El precio 599 €'],
+  [/499 € fijos/g, '599 € IVA incl. (pago único)'],
+  [/499 € fijo/g, '599 € IVA incluido · pago único'],
+  [/integral 499 €/g, 'integral 599 € IVA incl.'],
+  [/\(499 €\)/g, '(599 € IVA incluido · pago único)'],
+  [/Acceso alquiler integral · 499 €/g, 'Acceso alquiler integral · 599 € IVA incl.'],
+  [/pago 499 €\./g, 'pago 599 € IVA incluido.'],
+  [/servicio <strong>499 €<\/strong>/g, 'servicio <strong>599 €</strong> IVA incluido · pago único'],
+  [/\(499 €, publicación/g, '(599 € IVA incluido, publicación'],
+  [/Alquiler integral 499 €/g, 'Alquiler integral 599 € IVA incl.'],
+  [/<td class="win">499 € fijo<\/td>/g, '<td class="win">599 € IVA incl. · pago único</td>'],
+  [/Integral 499 € o administración/g, 'Integral 599 € IVA incl. (pago único) o administración'],
+  [/499€/g, '599€ IVA incl.'],
+  [/integral_tarifa: 499/g, 'integral_tarifa: 599'],
+  [/499 € · panel propietario/g, '599 € IVA incl. · panel propietario'],
+  [/· 499 € ·/g, '· 599 € IVA incl. ·'],
+  [/499 € —/g, '599 € IVA incl. —'],
+  [/499 € integral/g, '599 € IVA incl. · pago único'],
+  [/499 € cerrado/g, '599 € IVA incl. · pago único'],
+  [/499 € todo incluido/g, '599 € IVA incl. · pago único'],
+  [/alquiler integral 499€/gi, 'alquiler integral 599€ IVA incl.'],
+  [/499 € no explicado/g, '599 € no explicado'],
+  [/pack 499 € fijo/g, 'pack 599 € IVA incl. · pago único'],
+  [/h2>499 € fijo/g, 'h2>599 € IVA incl. · pago único'],
+  [/¿499 € incluye/g, '¿599 € incluye'],
+  [/ 499 €<\/a>/g, ' 599 € IVA incl.</a>'],
+  [/ 499 €'/g, " 599 € IVA incl.'"],
+  [/Integral 499 € ·/g, 'Integral 599 € IVA incl. ·'],
+  [/Alquiler integral · 499 €/g, 'Alquiler integral · 599 € IVA incl.'],
+  [/"cardTeaser": "499 € fijo/g, '"cardTeaser": "599 € IVA incl. · pago único'],
+  [/integral \(499 €\)/g, 'integral (599 € IVA incl. · pago único)'],
+  [/integral \(499€\)/g, 'integral (599€ IVA incl.)'],
+  [/499€\)/g, '599€ IVA incl.)'],
+  [/pack 499 €\./g, 'pack 599 € IVA incl. · pago único.'],
+  [/tarifa 499 €\./g, 'tarifa 599 € IVA incl. · pago único.'],
 ];
 
 const SKIP_DIRS = new Set(['node_modules', '.git', '.cursor']);
 
 function shouldFile(file) {
   const base = path.basename(file);
-  if (base.startsWith('scaffold-alquiler') && base.endsWith('.js')) return false;
   if (base === 'apply-integral-price-599.js') return false;
   const ext = path.extname(file).toLowerCase();
-  if (!['.html', '.json', '.js'].includes(ext)) return false;
+  if (ext === '.py' && (base.startsWith('publish-alquiler-barrios') || base === '_inject-integral-sections.py')) return true;
+  if (!['.html', '.json', '.js', '.py'].includes(ext)) return false;
   if (ext === '.html') {
     if (/^alquiler-integral/.test(base)) return true;
     if (/^administracion-alquiler/.test(base)) return true;
     if (/^acceso-alquiler/.test(base)) return true;
+    if (base === 'administracion-alquileres.html') return true;
     if (base === 'admin-panel.html' || base === 'login.html') return true;
     return false;
   }
   if (ext === '.js') {
     if (file.includes(`${path.sep}js${path.sep}panel-propietario`)) return true;
     if (file.includes(`${path.sep}js${path.sep}landings.js`)) return true;
+    if (file.includes(`${path.sep}js${path.sep}main.js`)) return true;
+    if (file.includes(`${path.sep}js${path.sep}supabase.js`)) return true;
+    if (base.startsWith('scaffold-alquiler') && file.includes(`${path.sep}scripts${path.sep}`)) return true;
     return false;
   }
   if (ext === '.json') {

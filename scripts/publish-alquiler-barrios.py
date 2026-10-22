@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Barrio landings: administración 60€ + alquiler integral 499€ (23 zonas Barcelona y área)."""
+"""Barrio landings: administración 60€ + alquiler integral 599€ IVA incl. (23 zonas Barcelona y área)."""
 from __future__ import annotations
 
 import json
@@ -19,11 +19,11 @@ ZONAS = [
         "hero_img": "imagenes/lescorts1.jpg",
         "vender_slug": "vender-les-corts",
         "admin_overline": "Les Corts · Numància, ZU, Pedralbes",
-        "integral_overline": "Les Corts · 499 € fijo · oficina en el distrito",
+        "integral_overline": "Les Corts · 599 € IVA incluido · pago único · oficina en el distrito",
         "admin_title": "Administración alquileres Les Corts · 59 €/mes · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Les Corts: 59 €/mes IVA incl. Incidencias, LAU e informe sin hablar con el inquilino. Numància, Pedralbes, Zona Universitaria.",
-        "integral_title": "Alquiler integral Les Corts · 499 € fijo · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Les Corts: 499 € precio fijo. Anuncio, visitas, top 3 perfiles, LAU e INCASÒL. Oficina Mejía Lequerica 42.",
+        "integral_title": "Alquiler integral Les Corts · 599 € IVA incluido · pago único · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Les Corts: 599 € IVA incluido · pago único. Anuncio, visitas, top 3 perfiles, LAU e INCASÒL. Oficina Mejía Lequerica 42.",
         "hero_integral": "Delegamos captación y cierre en Numància, Zona Universitaria y Pedralbes",
         "demo_place": "Numància",
         "area_served": ["Les Corts", "Numància", "Pedralbes", "Zona Universitaria", "08028", "08034"],
@@ -38,11 +38,11 @@ ZONAS = [
         "hero_img": "imagenes/eixample1.jpg",
         "vender_slug": "vender-eixample",
         "admin_overline": "Eixample · Dreta, Esquerre, Sant Antoni",
-        "integral_overline": "Eixample · 499 € fijo · delega captación y cierre",
+        "integral_overline": "Eixample · 599 € IVA incluido · pago único · delega captación y cierre",
         "admin_title": "Administración alquileres Eixample · 59 €/mes · Dreta, Sant Antoni · NuevaHabitat",
         "admin_desc": "Administración de alquileres en el Eixample Barcelona: 59 €/mes IVA incl. Incidencias, LAU y renovaciones. Dreta, Esquerre, Sant Antoni, Sagrada Família.",
-        "integral_title": "Alquiler integral Eixample · 499 € · visitas y contrato · NuevaHabitat",
-        "integral_desc": "Alquiler integral en el Eixample: 499 € fijo. Anuncio, filtro, visitas, top 3 perfiles, LAU e INCASÒL.",
+        "integral_title": "Alquiler integral Eixample · 599 € IVA incl. · visitas y contrato · NuevaHabitat",
+        "integral_desc": "Alquiler integral en el Eixample: 599 € IVA incluido · pago único. Anuncio, filtro, visitas, top 3 perfiles, LAU e INCASÒL.",
         "hero_integral": "Eixample Esquerre y Dret, Sant Antoni, Sagrada Família y entorno Passeig de Gràcia",
         "demo_place": "Pau Claris (Dreta)",
         "area_served": ["Eixample", "Eixample Dret", "Sant Antoni", "08009", "08011", "08015"],
@@ -57,11 +57,11 @@ ZONAS = [
         "hero_img": "imagenes/gracia1.jpg",
         "vender_slug": "vender-gracia",
         "admin_overline": "Gràcia · Vila de Gràcia, Camp d'en Grassot, Vallcarca",
-        "integral_overline": "Gràcia · 499 € fijo · particulares solventes",
+        "integral_overline": "Gràcia · 599 € IVA incluido · pago único · particulares solventes",
         "admin_title": "Administración alquileres Gràcia · 59 €/mes · Vila de Gràcia · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Gràcia: 59 €/mes IVA incl. Incidencias y control de renta en Vila de Gràcia, Camp d'en Grassot y Vallcarca.",
-        "integral_title": "Alquiler integral Gràcia · 499 € fijo · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Gràcia Barcelona: 499 € precio fijo. Captación y cierre en Vila de Gràcia y Camp d'en Grassot.",
+        "integral_title": "Alquiler integral Gràcia · 599 € IVA incluido · pago único · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Gràcia Barcelona: 599 € IVA incluido · pago único. Captación y cierre en Vila de Gràcia y Camp d'en Grassot.",
         "hero_integral": "Vila de Gràcia, Camp d'en Grassot, Vallcarca y Penitents",
         "demo_place": "Verdi (Vila de Gràcia)",
         "area_served": ["Gràcia", "Vila de Gràcia", "Camp d'en Grassot", "08012", "08023", "08025"],
@@ -76,11 +76,11 @@ ZONAS = [
         "hero_img": "imagenes/hospitalet1.jpg",
         "vender_slug": "vender-l-hospitalet",
         "admin_overline": "L'Hospitalet · Centre, Bellvitge, Pubilla Cases",
-        "integral_overline": "L'Hospitalet · 499 € fijo · captación y cierre",
+        "integral_overline": "L'Hospitalet · 599 € IVA incluido · pago único · captación y cierre",
         "admin_title": "Administración alquileres L'Hospitalet · 59 €/mes · NuevaHabitat",
         "admin_desc": "Administración de alquileres en L'Hospitalet: 59 €/mes IVA incl. Centre, Bellvitge, Pubilla Cases y Gran Via.",
-        "integral_title": "Alquiler integral L'Hospitalet · 499 € · NuevaHabitat",
-        "integral_desc": "Alquiler integral en L'Hospitalet de Llobregat: 499 € fijo hasta firma de contrato LAU.",
+        "integral_title": "Alquiler integral L'Hospitalet · 599 € IVA incl. · NuevaHabitat",
+        "integral_desc": "Alquiler integral en L'Hospitalet de Llobregat: 599 € IVA incluido · pago único hasta firma de contrato LAU.",
         "hero_integral": "Centre, Bellvitge, Pubilla Cases y Gran Via",
         "demo_place": "Gran Via (Centre)",
         "area_served": ["L'Hospitalet de Llobregat", "Centre", "Bellvitge", "08901", "08907"],
@@ -95,11 +95,11 @@ ZONAS = [
         "hero_img": "imagenes/sants1.jpg",
         "vender_slug": "vender-sants",
         "admin_overline": "Sants · Montjuïc, Hostafrancs, La Bordeta",
-        "integral_overline": "Sants · 499 € fijo · captación y cierre",
+        "integral_overline": "Sants · 599 € IVA incluido · pago único · captación y cierre",
         "admin_title": "Administración alquileres Sants · 59 €/mes · Montjuïc · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Sants-Montjuïc: 59 €/mes IVA incl. Incidencias, LAU y mediación sin contacto con el inquilino. Hostafrancs, La Bordeta, Sants Estació.",
-        "integral_title": "Alquiler integral Sants · 499 € fijo · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Sants Barcelona: 499 € precio fijo. Anuncio, visitas, top 3 perfiles y contrato LAU en Hostafrancs y La Bordeta.",
+        "integral_title": "Alquiler integral Sants · 599 € IVA incluido · pago único · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Sants Barcelona: 599 € IVA incluido · pago único. Anuncio, visitas, top 3 perfiles y contrato LAU en Hostafrancs y La Bordeta.",
         "hero_integral": "Sants Estació, Hostafrancs, La Bordeta y entorno Montjuïc",
         "demo_place": "Carrer de Sants (Hostafrancs)",
         "area_served": ["Sants", "Sants-Montjuïc", "Hostafrancs", "La Bordeta", "08014", "08028"],
@@ -114,11 +114,11 @@ ZONAS = [
         "hero_img": "imagenes/poblenou5.jpg",
         "vender_slug": "vender-poblenou",
         "admin_overline": "Poblenou · 22@, Diagonal Mar, Rambla del Poblenou",
-        "integral_overline": "Poblenou · 499 € fijo · captación y cierre",
+        "integral_overline": "Poblenou · 599 € IVA incluido · pago único · captación y cierre",
         "admin_title": "Administración alquileres Poblenou · 59 €/mes · 22@ · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Poblenou y Sant Martí: 59 €/mes IVA incl. Gestión diaria en 22@, Diagonal Mar y Rambla del Poblenou.",
-        "integral_title": "Alquiler integral Poblenou · 499 € · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Poblenou: 499 € fijo. Publicación, filtro de candidatos, visitas y cierre LAU en 22@ y Diagonal Mar.",
+        "integral_title": "Alquiler integral Poblenou · 599 € IVA incl. · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Poblenou: 599 € IVA incluido · pago único. Publicación, filtro de candidatos, visitas y cierre LAU en 22@ y Diagonal Mar.",
         "hero_integral": "22@, Rambla del Poblenou, Diagonal Mar y Vila Olímpica",
         "demo_place": "Rambla del Poblenou",
         "area_served": ["Poblenou", "Sant Martí", "22@", "Diagonal Mar", "08005", "08019"],
@@ -133,11 +133,11 @@ ZONAS = [
         "hero_img": "imagenes/eixample5.jpg",
         "vender_slug": "vender-sarria",
         "admin_overline": "Sarrià · Sant Gervasi, Bonanova, Putxet",
-        "integral_overline": "Sarrià · 499 € fijo · captación y cierre",
+        "integral_overline": "Sarrià · 599 € IVA incluido · pago único · captación y cierre",
         "admin_title": "Administración alquileres Sarrià · 59 €/mes · Sant Gervasi · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Sarrià-Sant Gervasi: 59 €/mes IVA incl. Discreción, incidencias y LAU en Bonanova, Putxet y Sant Gervasi.",
-        "integral_title": "Alquiler integral Sarrià · 499 € · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Sarrià-Sant Gervasi: 499 € precio fijo. Captación con inquilinos solventes en Bonanova y Putxet.",
+        "integral_title": "Alquiler integral Sarrià · 599 € IVA incl. · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Sarrià-Sant Gervasi: 599 € IVA incluido · pago único. Captación con inquilinos solventes en Bonanova y Putxet.",
         "hero_integral": "Sarrià centre, Bonanova, Putxet i Farró y Sant Gervasi",
         "demo_place": "Major de Sarrià",
         "area_served": ["Sarrià", "Sant Gervasi", "Bonanova", "Putxet", "08017", "08022"],
@@ -152,11 +152,11 @@ ZONAS = [
         "hero_img": "imagenes/interior11.jpg",
         "vender_slug": "vender-badalona",
         "admin_overline": "Badalona · Centre, Gorg, Montigalà, Pep Ventura",
-        "integral_overline": "Badalona · 499 € fijo · captación y cierre",
+        "integral_overline": "Badalona · 599 € IVA incluido · pago único · captación y cierre",
         "admin_title": "Administración alquileres Badalona · 59 €/mes · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Badalona: 59 €/mes IVA incl. Operativa desde Barcelona en Centre, Gorg, Montigalà y Pep Ventura.",
-        "integral_title": "Alquiler integral Badalona · 499 € · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Badalona: 499 € precio fijo. Anuncio, visitas, top 3 perfiles y LAU en Centre y Gorg.",
+        "integral_title": "Alquiler integral Badalona · 599 € IVA incl. · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Badalona: 599 € IVA incluido · pago único. Anuncio, visitas, top 3 perfiles y LAU en Centre y Gorg.",
         "hero_integral": "Centre, Gorg, Montigalà, Pep Ventura y La Salut",
         "demo_place": "Gorg (Centre)",
         "area_served": ["Badalona", "Centre Badalona", "Gorg", "Montigalà", "08911", "08917"],
@@ -167,9 +167,9 @@ ZONAS = [
         "label_short": "Horta-Guinardó",
         "admin_slug": "administracion-alquileres-horta",
         "integral_slug": "alquiler-integral-horta",
-        "integral_overline": "Horta-Guinardó · 499 € fijo · captación y cierre",
-        "integral_title": "Alquiler integral Horta-Guinardó · 499 € fijo · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Horta-Guinardó: 499 € precio fijo. Anuncio, visitas, top 3 perfiles, LAU e INCASÒL en Montbau y Vall d'Hebron.",
+        "integral_overline": "Horta-Guinardó · 599 € IVA incluido · pago único · captación y cierre",
+        "integral_title": "Alquiler integral Horta-Guinardó · 599 € IVA incluido · pago único · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Horta-Guinardó: 599 € IVA incluido · pago único. Anuncio, visitas, top 3 perfiles, LAU e INCASÒL en Montbau y Vall d'Hebron.",
         "hero_integral": "Montbau, Vall d'Hebron, La Clota, Guinardó y Horta centre",
         "demo_zona": "horta",
         "hero_img": "imagenes/horta1.jpg",
@@ -190,9 +190,9 @@ ZONAS = [
         "label_short": "Sant Andreu",
         "admin_slug": "administracion-alquileres-sant-andreu",
         "integral_slug": "alquiler-integral-sant-andreu",
-        "integral_overline": "Sant Andreu · 499 € fijo · captación y cierre",
-        "integral_title": "Alquiler integral Sant Andreu · 499 € · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Sant Andreu de Palomar: 499 € fijo. Publicación, filtro, visitas y contrato LAU en Congrés y La Sagrera.",
+        "integral_overline": "Sant Andreu · 599 € IVA incluido · pago único · captación y cierre",
+        "integral_title": "Alquiler integral Sant Andreu · 599 € IVA incl. · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Sant Andreu de Palomar: 599 € IVA incluido · pago único. Publicación, filtro, visitas y contrato LAU en Congrés y La Sagrera.",
         "hero_integral": "Congrés i Indians, La Sagrera, Bon Pastor y Sant Andreu centre",
         "demo_zona": "santandreu",
         "hero_img": "imagenes/barcelona5.jpg",
@@ -213,9 +213,9 @@ ZONAS = [
         "label_short": "Nou Barris",
         "admin_slug": "administracion-alquileres-nou-barris",
         "integral_slug": "alquiler-integral-nou-barris",
-        "integral_overline": "Nou Barris · 499 € fijo · particulares solventes",
-        "integral_title": "Alquiler integral Nou Barris · 499 € fijo · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Nou Barris: 499 € precio fijo. Captación y cierre en La Porta, Verdum y Roquetes.",
+        "integral_overline": "Nou Barris · 599 € IVA incluido · pago único · particulares solventes",
+        "integral_title": "Alquiler integral Nou Barris · 599 € IVA incluido · pago único · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Nou Barris: 599 € IVA incluido · pago único. Captación y cierre en La Porta, Verdum y Roquetes.",
         "hero_integral": "La Porta, Verdum, Roquetes, Trinitat Vella y Prosperitat",
         "demo_zona": "noubarris",
         "hero_img": "imagenes/noubarris1.jpg",
@@ -236,9 +236,9 @@ ZONAS = [
         "label_short": "Ciutat Vella",
         "admin_slug": "administracion-alquileres-ciutat-vella",
         "integral_slug": "alquiler-integral-ciutat-vella",
-        "integral_overline": "Ciutat Vella · 499 € fijo · delega captación y cierre",
-        "integral_title": "Alquiler integral Ciutat Vella · 499 € · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Ciutat Vella: 499 € fijo. Anuncio, visitas, top 3 perfiles y LAU en Gòtic, Born y Raval.",
+        "integral_overline": "Ciutat Vella · 599 € IVA incluido · pago único · delega captación y cierre",
+        "integral_title": "Alquiler integral Ciutat Vella · 599 € IVA incl. · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Ciutat Vella: 599 € IVA incluido · pago único. Anuncio, visitas, top 3 perfiles y LAU en Gòtic, Born y Raval.",
         "hero_integral": "Gòtic, El Born, Raval, Barceloneta y Sant Pere",
         "demo_zona": "ciutatvella",
         "hero_img": "imagenes/ciutatvella2.jpg",
@@ -259,9 +259,9 @@ ZONAS = [
         "label_short": "Sant Antoni",
         "admin_slug": "administracion-alquileres-sant-antoni",
         "integral_slug": "alquiler-integral-sant-antoni",
-        "integral_overline": "Sant Antoni · 499 € fijo · captación y cierre",
-        "integral_title": "Alquiler integral Sant Antoni · 499 € · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Sant Antoni Barcelona: 499 € precio fijo. Visitas, filtro de candidatos y contrato LAU junto al Mercat.",
+        "integral_overline": "Sant Antoni · 599 € IVA incluido · pago único · captación y cierre",
+        "integral_title": "Alquiler integral Sant Antoni · 599 € IVA incl. · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Sant Antoni Barcelona: 599 € IVA incluido · pago único. Visitas, filtro de candidatos y contrato LAU junto al Mercat.",
         "hero_integral": "Mercat de Sant Antoni, Ronda Sant Antoni, Comte Borrell y Urgell",
         "demo_zona": "santantoni",
         "hero_img": "imagenes/eixample2.jpg",
@@ -290,9 +290,9 @@ ZONAS = [
         "admin_title": "Gestión alquiler Poble-sec · 59 €/mes fijos · ayuda al propietario · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Poble-sec (Sants-Montjuïc): 59 €/mes IVA incl. Incidencias, LAU y mediación. Paral·lel, carrer Blai y entorno Montjuïc.",
         "admin_keywords": "administración alquileres Poble-sec, gestionar alquiler Paral·lel Barcelona, precio alquiler m2 Poble-sec, administrador fincas 08004",
-        "integral_overline": "Poble-sec · 499 € cerrado · sin comisión de un mes",
-        "integral_title": "Poner piso en alquiler Poble-sec · 499 € todo incluido · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Poble-sec: 499 € fijo. Te ayudamos a fijar renta según €/m² del barrio, visitas, top 3 perfiles y LAU en Paral·lel y Blai.",
+        "integral_overline": "Poble-sec · 599 € IVA incluido · pago único · sin comisión de un mes",
+        "integral_title": "Poner piso en alquiler Poble-sec · 599 € IVA incluido · pago único · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Poble-sec: 599 € IVA incluido · pago único. Te ayudamos a fijar renta según €/m² del barrio, visitas, top 3 perfiles y LAU en Paral·lel y Blai.",
         "hero_integral": "Avinguda Paral·lel, carrer Blai, Poble-sec centre y falda de Montjuïc",
         "demo_place": "Carrer de Blai (Poble-sec)",
         "area_served": ["Poble-sec", "Sants-Montjuïc", "Paral·lel", "08004", "08015"],
@@ -316,9 +316,9 @@ ZONAS = [
         "admin_title": "Administrador de alquiler El Clot · 59 €/mes · Sant Martí · NuevaHabitat",
         "admin_desc": "Administración de alquileres en El Clot y Sant Martí: 59 €/mes IVA incl. Ayuda al propietario en incidencias, LAU y seguimiento de renta cerca de Glòries y Clot.",
         "admin_keywords": "administración alquileres El Clot, gestionar alquiler Sant Martí Barcelona, precio m2 alquiler El Clot, alquiler 08018",
-        "integral_overline": "El Clot · 499 € fijo · captación en Sant Martí",
-        "integral_title": "Alquiler integral El Clot · renta orientada al m² · 499 € · NuevaHabitat",
-        "integral_desc": "Alquiler integral en El Clot Barcelona: 499 € precio fijo. Comparables de €/m² en Clot, visitas, informe top 3 y contrato LAU.",
+        "integral_overline": "El Clot · 599 € IVA incluido · pago único · captación en Sant Martí",
+        "integral_title": "Alquiler integral El Clot · renta orientada al m² · 599 € IVA incl. · NuevaHabitat",
+        "integral_desc": "Alquiler integral en El Clot Barcelona: 599 € IVA incluido · pago único. Comparables de €/m² en Clot, visitas, informe top 3 y contrato LAU.",
         "hero_integral": "El Clot, Plaça de les Glòries, La Sagrera y carrer Gran de Sant Martí",
         "demo_place": "Passeig del Clot (El Clot)",
         "area_served": ["El Clot", "Sant Martí", "La Sagrera", "08018", "08027"],
@@ -342,9 +342,9 @@ ZONAS = [
         "admin_title": "Administración alquiler Fort Pienc · 59 €/mes · Eixample nord · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Fort Pienc: 59 €/mes IVA incl. Propietarios junto a Sagrada Família: incidencias, LAU e inquilino sin tu teléfono.",
         "admin_keywords": "administración alquileres Fort Pienc, gestionar alquiler Sagrada Família, precio alquiler m2 Fort Pienc, alquiler 08013",
-        "integral_overline": "Fort Pienc · 499 € fijo · perfil solvente",
-        "integral_title": "Delegar alquiler Fort Pienc · 499 € · comparables €/m² · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Fort Pienc: 499 € fijo. Anuncio, filtro, visitas y LAU con renta alineada al mercado del Eixample nord.",
+        "integral_overline": "Fort Pienc · 599 € IVA incluido · pago único · perfil solvente",
+        "integral_title": "Delegar alquiler Fort Pienc · 599 € IVA incl. · comparables €/m² · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Fort Pienc: 599 € IVA incluido · pago único. Anuncio, filtro, visitas y LAU con renta alineada al mercado del Eixample nord.",
         "hero_integral": "Fort Pienc, Nàpols, Sicília, Marina y entorno Sagrada Família",
         "demo_place": "Carrer de Nàpols (Fort Pienc)",
         "area_served": ["Fort Pienc", "Eixample", "Sagrada Família", "08013", "08025"],
@@ -368,9 +368,9 @@ ZONAS = [
         "admin_title": "Gestión alquiler Esplugues · 59 €/mes · área metropolitana · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Esplugues de Llobregat: 59 €/mes IVA incl. Ayuda al propietario en Centre, Can Clota y Finestrelles desde oficina Barcelona.",
         "admin_keywords": "administración alquileres Esplugues, gestionar alquiler Esplugues Llobregat, precio m2 alquiler Esplugues, administrador fincas 08950",
-        "integral_overline": "Esplugues · 499 € fijo · captación área metropolitana",
-        "integral_title": "Alquiler integral Esplugues · 499 € · renta según m² local · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Esplugues: 499 € precio fijo. Publicación, visitas, top 3 perfiles y LAU con comparables de €/m² del municipio.",
+        "integral_overline": "Esplugues · 599 € IVA incluido · pago único · captación área metropolitana",
+        "integral_title": "Alquiler integral Esplugues · 599 € IVA incl. · renta según m² local · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Esplugues: 599 € IVA incluido · pago único. Publicación, visitas, top 3 perfiles y LAU con comparables de €/m² del municipio.",
         "hero_integral": "Centre, Can Clota, Finestrelles, Cornellà-Riera y entorno hospital Sant Joan Despí",
         "demo_place": "Carrer de Montserrat (Centre)",
         "area_served": ["Esplugues de Llobregat", "Can Clota", "Finestrelles", "08950", "08940"],
@@ -394,9 +394,9 @@ ZONAS = [
         "admin_title": "Administración alquiler Sant Gervasi · 59 €/mes · Galvany · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Sant Gervasi – Galvany: 59 €/mes IVA incl. Discreción, LAU e incidencias en Tres Torres y Putget.",
         "admin_keywords": "administración alquileres Sant Gervasi, gestionar alquiler Galvany Barcelona, precio alquiler m2 Sant Gervasi, alquiler 08021",
-        "integral_overline": "Sant Gervasi · 499 € fijo · inquilinos solventes",
-        "integral_title": "Alquiler integral Sant Gervasi · 499 € · €/m² Galvany · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Sant Gervasi – Galvany: 499 € fijo. Captación con comparables de €/m² alto, visitas y contrato LAU en Tres Torres.",
+        "integral_overline": "Sant Gervasi · 599 € IVA incluido · pago único · inquilinos solventes",
+        "integral_title": "Alquiler integral Sant Gervasi · 599 € IVA incl. · €/m² Galvany · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Sant Gervasi – Galvany: 599 € IVA incluido · pago único. Captación con comparables de €/m² alto, visitas y contrato LAU en Tres Torres.",
         "hero_integral": "Galvany, Tres Torres, Putget, Santaló y entorno Avinguda Diagonal",
         "demo_place": "Carrer de Santaló (Galvany)",
         "area_served": ["Sant Gervasi", "Galvany", "Tres Torres", "Putget", "08021", "08022"],
@@ -420,9 +420,9 @@ ZONAS = [
         "admin_title": "Delegar alquiler Cornellà · 59 €/mes fijos · propietario sin estrés · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Cornellà de Llobregat: 59 €/mes IVA incl. Incidencias, LAU y mediación en Centre, Sant Ildefons y Can Mercader.",
         "admin_keywords": "administración alquileres Cornellà, gestionar alquiler Cornellà de Llobregat, precio m2 alquiler Cornellà, administrador fincas 08940",
-        "integral_overline": "Cornellà · 499 € cerrado · captación área metropolitana",
-        "integral_title": "Alquiler integral Cornellà · 499 € · renta según mercado local · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Cornellà: 499 € fijo. Anuncio, visitas, top 3 perfiles y LAU con comparables de €/m² del municipio.",
+        "integral_overline": "Cornellà · 599 € IVA incluido · pago único · captación área metropolitana",
+        "integral_title": "Alquiler integral Cornellà · 599 € IVA incl. · renta según mercado local · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Cornellà: 599 € IVA incluido · pago único. Anuncio, visitas, top 3 perfiles y LAU con comparables de €/m² del municipio.",
         "hero_integral": "Centre, Sant Ildefons, Can Mercader, Almeda y eje Gran Via de Cornellà",
         "demo_place": "Avinguda del Parc (Centre)",
         "area_served": ["Cornellà de Llobregat", "Sant Ildefons", "Can Mercader", "08940", "08950"],
@@ -446,9 +446,9 @@ ZONAS = [
         "admin_title": "Administración alquiler Diagonal Mar · 59 €/mes · torres y familias · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Diagonal Mar y Front Marítim: 59 €/mes IVA incl. Gestión LAU e incidencias en torres y vivienda junto al parc.",
         "admin_keywords": "administración alquileres Diagonal Mar, gestionar alquiler Front Marítim Barcelona, alquiler 08019, administrador fincas Sant Martí",
-        "integral_overline": "Diagonal Mar · 499 € fijo · perfil profesional",
-        "integral_title": "Poner en alquiler Diagonal Mar · 499 € integral · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Diagonal Mar Barcelona: 499 € precio fijo. Captación con €/m² de torres y pisos familiares del Front Marítim.",
+        "integral_overline": "Diagonal Mar · 599 € IVA incluido · pago único · perfil profesional",
+        "integral_title": "Poner en alquiler Diagonal Mar · 599 € IVA incluido · pago único · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Diagonal Mar Barcelona: 599 € IVA incluido · pago único. Captación con €/m² de torres y pisos familiares del Front Marítim.",
         "hero_integral": "Diagonal Mar, Parc del Centre del Port, Selva de Mar y Rambla de Poblenou",
         "demo_place": "Carrer de la Marina (Diagonal Mar)",
         "area_served": ["Diagonal Mar", "Front Marítim", "Sant Martí", "08019", "08005"],
@@ -472,9 +472,9 @@ ZONAS = [
         "admin_title": "Gestión alquiler Pedralbes · 59 €/mes · discreción total · NuevaHabitat",
         "admin_desc": "Administración de alquileres en Pedralbes (Les Corts): 59 €/mes IVA incl. Incidencias, LAU e inquilino sin contacto directo contigo.",
         "admin_keywords": "administración alquileres Pedralbes, gestionar alquiler Pedralbes Barcelona, precio m2 alquiler Pedralbes, alquiler 08034",
-        "integral_overline": "Pedralbes · 499 € fijo · inquilino solvente",
-        "integral_title": "Alquiler integral Pedralbes · 499 € · captación premium · NuevaHabitat",
-        "integral_desc": "Alquiler integral en Pedralbes: 499 € fijo. Visitas discretas, comparables €/m² altos y contrato LAU en zona Diagonal.",
+        "integral_overline": "Pedralbes · 599 € IVA incluido · pago único · inquilino solvente",
+        "integral_title": "Alquiler integral Pedralbes · 599 € IVA incl. · captación premium · NuevaHabitat",
+        "integral_desc": "Alquiler integral en Pedralbes: 599 € IVA incluido · pago único. Visitas discretas, comparables €/m² altos y contrato LAU en zona Diagonal.",
         "hero_integral": "Pedralbes centre, Reina Elisenda, Monestir de Pedralbes y entorno Camp Nou",
         "demo_place": "Avinguda de Pedralbes",
         "area_served": ["Pedralbes", "Les Corts", "08034", "08028"],
@@ -498,9 +498,9 @@ ZONAS = [
         "admin_title": "Administrador alquiler Barceloneta · 59 €/mes · LAU junto al mar · NuevaHabitat",
         "admin_desc": "Administración de alquileres en La Barceloneta: 59 €/mes IVA incl. Humedades, comunidades estrechas y mediación sin hablar con el inquilino.",
         "admin_keywords": "administración alquileres Barceloneta, gestionar alquiler La Barceloneta, precio alquiler m2 Barceloneta, alquiler 08003",
-        "integral_overline": "Barceloneta · 499 € fijo · uso habitual claro",
-        "integral_title": "Alquiler integral Barceloneta · 499 € · filtro y contrato · NuevaHabitat",
-        "integral_desc": "Alquiler integral en La Barceloneta: 499 € precio fijo. Anuncio, visitas, top 3 perfiles y LAU con criterio vivienda habitual.",
+        "integral_overline": "Barceloneta · 599 € IVA incluido · pago único · uso habitual claro",
+        "integral_title": "Alquiler integral Barceloneta · 599 € IVA incl. · filtro y contrato · NuevaHabitat",
+        "integral_desc": "Alquiler integral en La Barceloneta: 599 € IVA incluido · pago único. Anuncio, visitas, top 3 perfiles y LAU con criterio vivienda habitual.",
         "hero_integral": "La Barceloneta, Passeig Joan de Borbó, carrer de la Maquinista y platja",
         "demo_place": "Carrer de la Maquinista (Barceloneta)",
         "area_served": ["La Barceloneta", "Ciutat Vella", "08003", "08039"],
@@ -524,9 +524,9 @@ ZONAS = [
         "admin_title": "Administración alquiler Sagrada Família · 59 €/mes · Eixample · NuevaHabitat",
         "admin_desc": "Administración de alquileres junto a la Sagrada Família: 59 €/mes IVA incl. Incidencias, LAU y seguimiento de renta en Provença y Mallorca.",
         "admin_keywords": "administración alquileres Sagrada Família, gestionar alquiler Provença Barcelona, alquiler 08025, administrador fincas Eixample",
-        "integral_overline": "Sagrada Família · 499 € fijo · alta demanda",
-        "integral_title": "Delegar alquiler Sagrada Família · 499 € integral · NuevaHabitat",
-        "integral_desc": "Alquiler integral en el entorno Sagrada Família: 499 € fijo. Publicación, visitas, top 3 perfiles y LAU con renta según €/m² del Eixample.",
+        "integral_overline": "Sagrada Família · 599 € IVA incluido · pago único · alta demanda",
+        "integral_title": "Delegar alquiler Sagrada Família · 599 € IVA incluido · pago único · NuevaHabitat",
+        "integral_desc": "Alquiler integral en el entorno Sagrada Família: 599 € IVA incluido · pago único. Publicación, visitas, top 3 perfiles y LAU con renta según €/m² del Eixample.",
         "hero_integral": "Sagrada Família, Provença, Mallorca, Marina y Sant Pau",
         "demo_place": "Carrer de Provença (Sagrada Família)",
         "area_served": ["Sagrada Família", "Eixample", "08025", "08013"],
@@ -697,7 +697,7 @@ ADMIN_MICRO = {
     <h3>Provença i Mallorca</h3>
     <p>Edificios del Eixample; calderas comunitarias y obras de fachada coordinadas.</p>
     <h3>Entorn basílica</h3>
-    <p>Alta rotación de consultas: filtramos curiosos si el piso está vacío vía <a href="/alquiler-integral">integral 499 €</a>.</p>
+    <p>Alta rotación de consultas: filtramos curiosos si el piso está vacío vía <a href="/alquiler-integral">integral 599 € IVA incl.</a>.</p>
     <h3>Mercado tensionado</h3>
     <p>Revisamos plazos y comunicaciones cuando aplica normativa catalana vigente.</p>
 """,
@@ -717,11 +717,11 @@ SERVICIOS_BLOCK = """
   <div class="container alq-guide-inner fade-up">
     <span class="overline">Servicios complementarios</span>
     <h2 class="section-title">Administración e integral en {label}</h2>
-    <p style="color:var(--gris-texto);line-height:1.75;max-width:820px">Si el piso está <strong>vacío</strong>, el <a href="/{integral_slug}">alquiler integral (499 €)</a> publica, visita y cierra contrato; si <strong>ya hay inquilino</strong>, la <a href="/{admin_slug}">administración (59 €/mes)</a> gestiona incidencias y LAU sin contacto directo. Mismo panel al encadenar servicios.</p>
+    <p style="color:var(--gris-texto);line-height:1.75;max-width:820px">Si el piso está <strong>vacío</strong>, el <a href="/{integral_slug}">alquiler integral (599 € IVA incluido · pago único)</a> publica, visita y cierra contrato; si <strong>ya hay inquilino</strong>, la <a href="/{admin_slug}">administración (59 €/mes)</a> gestiona incidencias y LAU sin contacto directo. Mismo panel al encadenar servicios.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:1.75rem">
       <article style="background:var(--blanco);border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:1.75rem">
         <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--oro);margin-bottom:.5rem">Piso vacío</div>
-        <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 .75rem">Integral · 499 €</h3>
+        <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 .75rem">Integral · 599 € IVA incluido</h3>
         <p style="font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 1rem">Captación y cierre en {label}.</p>
         <a href="/{integral_slug}" class="btn btn-gold" style="width:100%;justify-content:center">Ver integral</a>
       </article>
@@ -853,8 +853,8 @@ def write_admin(z: dict) -> None:
             count=1,
         )
         text = text.replace(
-            f'<a href="/alquiler-integral-les-corts">Alquiler integral Les Corts 499 €</a>',
-            f'<a href="/{z["integral_slug"]}">Alquiler integral 499 €</a>',
+            f'<a href="/alquiler-integral-les-corts">Alquiler integral Les Corts 599 € IVA incl.</a>',
+            f'<a href="/{z["integral_slug"]}">Alquiler integral 599 € IVA incl.</a>',
         )
         text = text.replace('id="normativa-les-corts"', f'id="normativa-{z["key"]}"')
         servicios = MARKER + SERVICIOS_BLOCK.format(
@@ -931,7 +931,7 @@ def apply_integral_mercado(text: str, z: dict) -> str:
     <span class="overline">Mercado local · orientativo</span>
     <h2 class="section-title">Precio del m² y ayuda al propietario en {label_short}</h2>
     <p>En {label}, el alquiler de larga duración suele situarse en torno a <strong>{z["euro_m2_band"]}</strong> según calle, planta y estado (dato orientativo, no tasación). Eso implica rentas del orden de <strong>{low_s}–{high_s} €/mes</strong> en pisos medios del barrio — sin prometer un importe concreto para tu inmueble.</p>
-    <p>Como propietario particular, el riesgo no es solo «encontrar inquilino»: es <strong>filtrar perfiles</strong>, no regalar un mes de renta en comisión, redactar LAU e <strong>INCASÒL</strong> bien y, después, no vivir pegado al teléfono. El alquiler integral Nueva Habitat concentra captación y cierre por <strong>499 € fijos</strong>; luego puedes pasar a <a href="/{admin}">administración 59 €/mes</a> con el mismo panel.</p>
+    <p>Como propietario particular, el riesgo no es solo «encontrar inquilino»: es <strong>filtrar perfiles</strong>, no regalar un mes de renta en comisión, redactar LAU e <strong>INCASÒL</strong> bien y, después, no vivir pegado al teléfono. El alquiler integral Nueva Habitat concentra captación y cierre por <strong>599 € IVA incluido · pago únicos</strong>; luego puedes pasar a <a href="/{admin}">administración 59 €/mes</a> con el mismo panel.</p>
 
     <h3>Qué incluye el pack en {label_short}</h3>
     <ul>
@@ -942,16 +942,16 @@ def apply_integral_mercado(text: str, z: dict) -> str:
     </ul>
 
     <div class="alq-compare-wrap">
-      <h3>499 € fijo vs. comisión clásica (ejemplo en {label_short})</h3>
+      <h3>599 € IVA incluido · pago único vs. comisión clásica (ejemplo en {label_short})</h3>
       <div style="overflow-x:auto">
         <table class="alq-compare-table">
           <thead>
             <tr><th scope="col">Renta mensual ejemplo</th><th scope="col">~1 mes comisión agencia + IVA</th><th scope="col">NuevaHabitat integral</th></tr>
           </thead>
           <tbody>
-            <tr><td><strong>{high_s} €/mes</strong></td><td>~{comm_high} €</td><td class="win">499 € fijo</td></tr>
-            <tr><td><strong>{mid_s} €/mes</strong></td><td>~{comm_mid} €</td><td class="win">499 € fijo</td></tr>
-            <tr><td><strong>{low_s} €/mes</strong></td><td>~{comm_low} €</td><td class="win">499 € fijo</td></tr>
+            <tr><td><strong>{high_s} €/mes</strong></td><td>~{comm_high} €</td><td class="win">599 € IVA incluido · pago único</td></tr>
+            <tr><td><strong>{mid_s} €/mes</strong></td><td>~{comm_mid} €</td><td class="win">599 € IVA incluido · pago único</td></tr>
+            <tr><td><strong>{low_s} €/mes</strong></td><td>~{comm_low} €</td><td class="win">599 € IVA incluido · pago único</td></tr>
           </tbody>
         </table>
       </div>
@@ -961,7 +961,7 @@ def apply_integral_mercado(text: str, z: dict) -> str:
     <h3>Cómo te ayudamos más allá del anuncio</h3>
     <ul>
       <li><strong>Menos estrés</strong> — un gestor ejecuta visitas y documentación; tú decides renta e inquilino final.</li>
-      <li><strong>Precio predecible</strong> — 499 € integral y 59 €/mes administración, sin % sobre la renta.</li>
+      <li><strong>Precio predecible</strong> — 599 € IVA incluido · pago único y 59 €/mes administración, sin % sobre la renta.</li>
       <li><strong>Continuidad</strong> — mismo equipo si quieres delegar incidencias después de firmar.</li>
     </ul>
 
@@ -987,12 +987,12 @@ def fix_admin_integral_links(z: dict) -> None:
     label = z["label"]
     pairs = (
         (
-            f'<a href="/alquiler-integral">Alquiler integral {label} 499 €</a>',
-            f'<a href="/{slug}">Alquiler integral {label} 499 €</a>',
+            f'<a href="/alquiler-integral">Alquiler integral {label} 599 € IVA incl.</a>',
+            f'<a href="/{slug}">Alquiler integral {label} 599 € IVA incl.</a>',
         ),
         (
-            f'href="/alquiler-integral" style="color:var(--oro-claro)">Alquiler integral {label} 499 €',
-            f'href="/{slug}" style="color:var(--oro-claro)">Alquiler integral {label} 499 €',
+            f'href="/alquiler-integral" style="color:var(--oro-claro)">Alquiler integral {label} 599 € IVA incl.',
+            f'href="/{slug}" style="color:var(--oro-claro)">Alquiler integral {label} 599 € IVA incl.',
         ),
     )
     for old, new in pairs:
@@ -1059,7 +1059,7 @@ def hub_grid() -> str:
         cards.append(
             f"""      <article class="fade-up" style="background:var(--blanco);border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:1.5rem">
         <h3 style="font-family:var(--font-serif);font-size:1.25rem;margin:0 0 .75rem">{z["label"]}</h3>
-        <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin:0 0 1rem">Integral 499 € o administración 59 €/mes en {z["label"]}.</p>
+        <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin:0 0 1rem">Integral 599 € IVA incluido (pago único) o administración 59 €/mes en {z["label"]}.</p>
         <div style="display:flex;flex-direction:column;gap:.5rem">
           <a href="/{z["integral_slug"]}" class="btn btn-gold" style="justify-content:center;font-size:.875rem">Alquiler integral</a>
           <a href="/{z["admin_slug"]}" class="btn btn-outline" style="justify-content:center;font-size:.875rem">Administración</a>
@@ -1118,7 +1118,7 @@ def update_json_index() -> None:
         for z in ZONAS:
             for slug, kw, teaser in (
                 (z["admin_slug"], f'administración alquileres {z["label"]}', f'59 €/mes · {z["label"]} · panel propietario.'),
-                (z["integral_slug"], f'alquiler integral {z["label"]}', f'499 € fijo · captación y cierre en {z["label"]}.'),
+                (z["integral_slug"], f'alquiler integral {z["label"]}', f'599 € IVA incluido · pago único · captación y cierre en {z["label"]}.'),
             ):
                 if slug in slugs:
                     continue

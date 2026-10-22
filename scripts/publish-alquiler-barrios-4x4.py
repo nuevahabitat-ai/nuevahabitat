@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scaffold missing barrio landings + cross-links for admin (60€) and integral (499€)."""
+"""Scaffold missing barrio landings + cross-links for admin (60€) and integral (599€ IVA incl.)."""
 from __future__ import annotations
 
 import json
@@ -19,7 +19,7 @@ ZONAS = [
         "hero_img": "imagenes/inmobiliario1.jpg",
         "vender_slug": "vender-les-corts",
         "admin_overline": "Les Corts · Numància, ZU, Pedralbes",
-        "integral_overline": "Les Corts · 499 € fijo · oficina en el distrito",
+        "integral_overline": "Les Corts · 599 € IVA incluido · pago único · oficina en el distrito",
     },
     {
         "key": "eixample",
@@ -31,7 +31,7 @@ ZONAS = [
         "hero_img": "imagenes/eixample1.jpg",
         "vender_slug": "vender-eixample",
         "admin_overline": "Eixample · Dreta, Esquerre, Sant Antoni",
-        "integral_overline": "Eixample · 499 € fijo · delega captación y cierre",
+        "integral_overline": "Eixample · 599 € IVA incluido · pago único · delega captación y cierre",
     },
     {
         "key": "gracia",
@@ -43,7 +43,7 @@ ZONAS = [
         "hero_img": "imagenes/gracia1.jpg",
         "vender_slug": "vender-gracia",
         "admin_overline": "Gràcia · Vila de Gràcia, Camp d'en Grassot, Vallcarca",
-        "integral_overline": "Gràcia · 499 € fijo · particulares solventes",
+        "integral_overline": "Gràcia · 599 € IVA incluido · pago único · particulares solventes",
     },
     {
         "key": "l-hospitalet",
@@ -55,7 +55,7 @@ ZONAS = [
         "hero_img": "imagenes/hospitalet1.jpg",
         "vender_slug": "vender-l-hospitalet",
         "admin_overline": "L'Hospitalet · Centre, Bellvitge, Pubilla Cases",
-        "integral_overline": "L'Hospitalet · 499 € fijo · captación y cierre",
+        "integral_overline": "L'Hospitalet · 599 € IVA incluido · pago único · captación y cierre",
     },
 ]
 
@@ -64,11 +64,11 @@ SERVICIOS_BLOCK = """
   <div class="container alq-guide-inner fade-up">
     <span class="overline">Servicios complementarios</span>
     <h2 class="section-title">Administración e integral en {label}</h2>
-    <p style="color:var(--gris-texto);line-height:1.75;max-width:820px">Son el mismo recorrido del propietario particular en dos momentos: si el piso está <strong>vacío</strong>, el <a href="/{integral_slug}">alquiler integral (499 €)</a> publica, visita y cierra contrato; si <strong>ya hay inquilino</strong>, la <a href="/{admin_slug}">administración (59 €/mes)</a> gestiona incidencias, LAU y relación sin que hables con el inquilino. Puedes encadenar ambos con el mismo panel.</p>
+    <p style="color:var(--gris-texto);line-height:1.75;max-width:820px">Son el mismo recorrido del propietario particular en dos momentos: si el piso está <strong>vacío</strong>, el <a href="/{integral_slug}">alquiler integral (599 € IVA incluido · pago único)</a> publica, visita y cierra contrato; si <strong>ya hay inquilino</strong>, la <a href="/{admin_slug}">administración (59 €/mes)</a> gestiona incidencias, LAU y relación sin que hables con el inquilino. Puedes encadenar ambos con el mismo panel.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:1.75rem">
       <article style="background:var(--blanco);border:1px solid var(--crema-dark);border-radius:var(--radius-lg);padding:1.75rem">
         <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--oro);margin-bottom:.5rem">Piso vacío · captación</div>
-        <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 .75rem">Alquiler integral · 499 €</h3>
+        <h3 style="font-family:var(--font-serif);font-size:1.35rem;margin:0 0 .75rem">Alquiler integral · 599 € IVA incl.</h3>
         <p style="font-size:.9rem;color:var(--gris-texto);line-height:1.65;margin:0 0 1rem">Anuncio, criba, visitas, informe top 3, LAU e INCASÒL en {label}.</p>
         <a href="/{integral_slug}" class="btn btn-gold" style="width:100%;justify-content:center">Ver integral {label}</a>
       </article>
@@ -237,7 +237,7 @@ def write_integral_gracia() -> None:
     text = text.replace("Alquiler integral Eixample", f'Alquiler integral {z["label"]}')
     text = text.replace("alquiler integral Eixample", f'alquiler integral {z["label"]}')
     text = text.replace("alquiler integral en el Eixample", f'alquiler integral en {z["label_short"]}')
-    text = text.replace("Eixample · 499 € fijo · delega captación y cierre", z["integral_overline"])
+    text = text.replace("Eixample · 599 € IVA incluido · pago único · delega captación y cierre", z["integral_overline"])
     text = text.replace(
         "No gestiones tú el alquiler en el Eixample:<br/>captamos inquilino y cerramos contrato por ti.",
         f'No gestiones tú el alquiler en {z["label"]}:<br/>captamos inquilino y cerramos contrato por ti.',
@@ -255,13 +255,13 @@ def write_integral_gracia() -> None:
     text = text.replace("el Eixample", z["label_short"])
     text = re.sub(
         r"<title>[^<]+</title>",
-        f'<title>Alquiler integral Gràcia · 499 € fijo · visitas y contrato · NuevaHabitat</title>',
+        f'<title>Alquiler integral Gràcia · 599 € IVA incluido · pago único · visitas y contrato · NuevaHabitat</title>',
         text,
         count=1,
     )
     text = re.sub(
         r'<meta name="description" content="[^"]*"',
-        "<meta name=\"description\" content=\"Alquiler integral en Gràcia Barcelona: 499 € precio fijo. Anuncio, filtro, visitas, top 3 perfiles, LAU e INCASÒL en Vila de Gràcia y Camp d'en Grassot.\"",
+        "<meta name=\"description\" content=\"Alquiler integral en Gràcia Barcelona: 599 € IVA incluido · pago único. Anuncio, filtro, visitas, top 3 perfiles, LAU e INCASÒL en Vila de Gràcia y Camp d'en Grassot.\"",
         text,
         count=1,
     )
@@ -305,7 +305,7 @@ def update_json_index() -> None:
                 "keyword_principal": "alquiler integral Gràcia",
                 "priority": 0.86,
                 "indexable": True,
-                "cardTeaser": "499 € fijo · captación y cierre en Gràcia · top 3 perfiles y LAU.",
+                "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Gràcia · top 3 perfiles y LAU.",
             },
         ]
         for e in new_entries:
@@ -328,7 +328,7 @@ def hub_zona_grid() -> str:
         <h3 style="font-family:var(--font-serif);font-size:1.25rem;margin:0 0 .75rem">{z["label"]}</h3>
         <p style="font-size:.875rem;color:var(--gris-texto);line-height:1.6;margin:0 0 1rem">Propietarios particulares en {z["label"]}: elige captación o gestión mensual.</p>
         <div style="display:flex;flex-direction:column;gap:.5rem">
-          <a href="/{z["integral_slug"]}" class="btn btn-gold" style="justify-content:center;font-size:.875rem">Integral 499 € · {z["label"]}</a>
+          <a href="/{z["integral_slug"]}" class="btn btn-gold" style="justify-content:center;font-size:.875rem">Integral 599 € IVA incl. · {z["label"]}</a>
           <a href="/{z["admin_slug"]}" class="btn btn-outline" style="justify-content:center;font-size:.875rem">Administración 59 €/mes</a>
         </div>
       </article>"""

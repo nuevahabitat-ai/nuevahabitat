@@ -12,7 +12,7 @@ def block(zona: str, zona_label: str, local_note: str) -> str:
   <div class="container alq-guide-inner fade-up">
     <span class="overline">Paso a paso</span>
     <h2 class="section-title">Cómo funciona el alquiler integral, explicado al detalle</h2>
-    <p>El alquiler integral (499 € precio fijo) concentra <strong>todo lo que ocurre desde que el piso está vacío hasta que el inquilino firma y entra</strong>. {local_note} Tú conservas la decisión final (renta orientativa, horarios de visita e inquilino); Nueva Habitat ejecuta captación, filtro, visitas y formalización LAU.</p>
+    <p>El alquiler integral (599 € IVA incluido · pago único) concentra <strong>todo lo que ocurre desde que el piso está vacío hasta que el inquilino firma y entra</strong>. {local_note} Tú conservas la decisión final (renta orientativa, horarios de visita e inquilino); Nueva Habitat ejecuta captación, filtro, visitas y formalización LAU.</p>
 
     <h3>Los 8 pasos del servicio</h3>
     <ol style="margin:1.25rem 0;padding-left:1.35rem;line-height:1.75;color:var(--gris-texto)">
@@ -47,14 +47,14 @@ def block(zona: str, zona_label: str, local_note: str) -> str:
     <div class="text-center fade-up" style="max-width:760px;margin:0 auto 2rem">
       <span class="overline">Panel interactivo</span>
       <h2 class="section-title">Prueba el panel del propietario (datos demo)</h2>
-      <p class="section-subtitle" style="margin:0 auto">Mismo diseño que la cuenta real del alquiler integral: expediente, pasos del proceso, documentación y tarifa 499 €. <strong>Datos simulados</strong> — entra en «Gestión y proceso» y «Honorarios».</p>
+      <p class="section-subtitle" style="margin:0 auto">Mismo diseño que la cuenta real del alquiler integral: expediente, pasos del proceso, documentación y tarifa 599 € IVA incluido. <strong>Datos simulados</strong> — entra en «Gestión y proceso» y «Honorarios».</p>
     </div>
     <div class="fade-up" style="border:1px solid var(--crema-dark);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);background:var(--blanco)">
       <iframe title="Demo panel alquiler integral {zona_label}" src="{demo_src}" style="display:block;width:100%;min-height:920px;border:0" loading="lazy"></iframe>
     </div>
     <div class="text-center fade-up" style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center">
       <a href="/demo-panel-propietario-alquiler.html?context=integral&amp;zona={zona}" target="_blank" rel="noopener" class="btn btn-gold">Demo a pantalla completa</a>
-      <a href="/acceso-alquiler-integral" class="btn btn-outline">Entrar al panel real · 499 €</a>
+      <a href="/acceso-alquiler-integral" class="btn btn-outline">Entrar al panel real · 599 € IVA incluido</a>
       <a href="/demo-panel-propietario-alquiler.html?zona={zona}" target="_blank" rel="noopener" class="btn btn-outline">Ver demo administración 59 €/mes</a>
     </div>
   </div>
@@ -65,12 +65,12 @@ PAGES = {
     'alquiler-integral.html': ('barcelona', 'Barcelona y área metropolitana', 'Operamos en Barcelona ciudad, L\'Hospitalet, Badalona y municipios habituales del área.'),
     'alquiler-integral-les-corts.html': ('lescorts', 'Les Corts', 'En Les Corts trabajamos desde Mejía Lequerica 42 (Numància, ZU, Pedralbes).'),
     'alquiler-integral-eixample.html': ('eixample', 'el Eixample', 'En el Eixample ajustamos renta y anuncio por micro-zona (Dreta, Esquerre, Sant Antoni, Sagrada Família).'),
-    'alquiler-integral-l-hospitalet.html': ('hospitalet', 'L\'Hospitalet', 'En L\'Hospitalet cubrimos Centre, Bellvitge, Pubilla Cases y Gran Via con el mismo pack 499 €.'),
+    'alquiler-integral-l-hospitalet.html': ('hospitalet', 'L\'Hospitalet', 'En L\'Hospitalet cubrimos Centre, Bellvitge, Pubilla Cases y Gran Via con el mismo pack 599 € IVA incluido.'),
     'alquiler-integral-gracia.html': ('gracia', 'Gràcia', 'En Gràcia ajustamos renta y anuncio por micro-zona (Vila de Gràcia, Camp d\'en Grassot, Vallcarca).'),
     'alquiler-integral-sants.html': ('sants', 'Sants', 'En Sants-Montjuïc ajustamos renta en Hostafrancs, La Bordeta y entorno Estació de Sants.'),
     'alquiler-integral-poblenou.html': ('poblenou', 'Poblenou', 'En Poblenou y 22@ publicamos con comparables de Sant Martí, no medias de toda Barcelona.'),
     'alquiler-integral-sarria.html': ('sarria', 'Sarrià', 'En Sarrià-Sant Gervasi captamos inquilinos solventes en Bonanova, Putxet y Sarrià centre.'),
-    'alquiler-integral-badalona.html': ('badalona', 'Badalona', 'En Badalona cubrimos Centre, Gorg, Montigalà y Pep Ventura con el pack 499 €.'),
+    'alquiler-integral-badalona.html': ('badalona', 'Badalona', 'En Badalona cubrimos Centre, Gorg, Montigalà y Pep Ventura con el pack 599 € IVA incluido.'),
     'alquiler-integral-horta.html': ('horta', 'Horta-Guinardó', 'En Horta-Guinardó ajustamos renta en Montbau, Vall d\'Hebron, La Clota y el Guinardó.'),
     'alquiler-integral-sant-andreu.html': ('santandreu', 'Sant Andreu', 'En Sant Andreu captamos en Congrés, La Sagrera, Bon Pastor y Gran de Sant Andreu.'),
     'alquiler-integral-nou-barris.html': ('noubarris', 'Nou Barris', 'En Nou Barris publicamos con comparables de Porta, Verdum, Roquetes y Trinitat Vella.'),

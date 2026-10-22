@@ -145,7 +145,7 @@ window.nhAuth = {
     const u = refreshed || user;
     await nhAuth.ensureClientRecord(u, { tipo: 'propietario' });
     const rowPatch = integral
-      ? { servicio: 'integral', cuota_mensual: 0, integral_tarifa: 499 }
+      ? { servicio: 'integral', cuota_mensual: 0, integral_tarifa: 599 }
       : { servicio: 'administracion', cuota_mensual: 60 };
     const { error: rowErr } = await window.nhSupabase.from('propietarios_alquiler')
       .update(rowPatch)
