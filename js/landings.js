@@ -131,14 +131,21 @@ window.NH_LANDING_ORDER = [
   "vender-como-particular-badalona-barcelona",
   "vender-como-particular-barcelona",
   "vender-como-particular-bon-pastor-barcelona",
+  "vender-como-particular-camp-den-grassot-barcelona",
   "vender-como-particular-ciutat-vella-barcelona",
   "vender-como-particular-cornella-barcelona",
+  "vender-como-particular-diagonal-mar-barcelona",
   "vender-como-particular-eixample-barcelona",
+  "vender-como-particular-el-clot-la-sagrera-barcelona",
   "vender-como-particular-esplugues-barcelona",
   "vender-como-particular-fort-pienc-barcelona",
   "vender-como-particular-gracia-barcelona",
+  "vender-como-particular-guinardo-barcelona",
   "vender-como-particular-horta-barcelona",
+  "vender-como-particular-hostafrancs-barcelona",
   "vender-como-particular-l-hospitalet-barcelona",
+  "vender-como-particular-la-bordeta-barcelona",
+  "vender-como-particular-la-marina-barcelona",
   "vender-como-particular-la-sagrera-barcelona",
   "vender-como-particular-les-corts-barcelona",
   "vender-como-particular-montjuic-barcelona",
@@ -147,6 +154,7 @@ window.NH_LANDING_ORDER = [
   "vender-como-particular-pedralbes-barcelona",
   "vender-como-particular-poble-sec-barcelona",
   "vender-como-particular-poblenou-barcelona",
+  "vender-como-particular-roquetes-barcelona",
   "vender-como-particular-sant-andreu-barcelona",
   "vender-como-particular-sant-antoni-barcelona",
   "vender-como-particular-sant-gervasi-barcelona",
@@ -157,6 +165,7 @@ window.NH_LANDING_ORDER = [
   "vender-como-particular-tetuan-barcelona",
   "vender-como-particular-trinitat-vella-barcelona",
   "vender-como-particular-vall-d-hebron-barcelona",
+  "vender-como-particular-verneda-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
   "nuevahabitat-vs-clikalia-barcelona",
   "nuevahabitat-vs-fotocasa-particular",
@@ -1819,6 +1828,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/sants2.jpg",
     "cardTeaser": "Guía particular Bon Pastor: 3.100 – 3.800 €/m² (Bon Pastor · Maquinista · Besòs)."
   },
+  "vender-como-particular-camp-den-grassot-barcelona": {
+    "slug": "vender-como-particular-camp-den-grassot-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Camp d'en Grassot",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular camp d'en grassot barcelona",
+    "badge": "Camp d'en Grassot · 08025 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/gracia4.jpg",
+    "cardTeaser": "Guía particular Camp d'en Grassot (08025): 4.200 – 5.400 €/m²."
+  },
   "vender-como-particular-ciutat-vella-barcelona": {
     "slug": "vender-como-particular-ciutat-vella-barcelona",
     "cluster": "particular",
@@ -1843,6 +1864,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/barcelona1.jpeg",
     "cardTeaser": "Guía particular Cornellà de Llobregat: 2.600 – 3.100 €/m² (Centre · Sant Ildefons · Almeda)."
   },
+  "vender-como-particular-diagonal-mar-barcelona": {
+    "slug": "vender-como-particular-diagonal-mar-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Diagonal Mar",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular diagonal mar barcelona",
+    "badge": "Diagonal Mar · 08019 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona7.webp",
+    "cardTeaser": "Guía particular Diagonal Mar (08019): 4.800 – 6.200 €/m²."
+  },
   "vender-como-particular-eixample-barcelona": {
     "slug": "vender-como-particular-eixample-barcelona",
     "cluster": "particular",
@@ -1854,6 +1887,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Guía particular Eixample: Dreta, Esquerra, Sant Antoni, Fort Pienc."
+  },
+  "vender-como-particular-el-clot-la-sagrera-barcelona": {
+    "slug": "vender-como-particular-el-clot-la-sagrera-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular El Clot - La Sagrera",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular el clot - la sagrera barcelona",
+    "badge": "El Clot - La Sagrera · 08018 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Guía particular El Clot - La Sagrera (08018): 3.400 – 4.300 €/m²."
   },
   "vender-como-particular-esplugues-barcelona": {
     "slug": "vender-como-particular-esplugues-barcelona",
@@ -1891,6 +1936,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Guía particular Gràcia: Vila, Camp d'en Grassot, Vallcarca."
   },
+  "vender-como-particular-guinardo-barcelona": {
+    "slug": "vender-como-particular-guinardo-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular El Guinardó",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular el guinardó barcelona",
+    "badge": "El Guinardó · 08041 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "Guía particular El Guinardó (08041): 3.900 – 5.100 €/m²."
+  },
   "vender-como-particular-horta-barcelona": {
     "slug": "vender-como-particular-horta-barcelona",
     "cluster": "particular",
@@ -1903,6 +1960,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/horta1.jpg",
     "cardTeaser": "Guía particular Horta-Guinardó: 3.900 – 4.300 €/m² (Horta · Montbau · Guinardó)."
   },
+  "vender-como-particular-hostafrancs-barcelona": {
+    "slug": "vender-como-particular-hostafrancs-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Hostafrancs",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular hostafrancs barcelona",
+    "badge": "Hostafrancs · 08014 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/sants2.jpg",
+    "cardTeaser": "Guía particular Hostafrancs (08014): 3.600 – 4.600 €/m², Creu Coberta y Plaça Espanya."
+  },
   "vender-como-particular-l-hospitalet-barcelona": {
     "slug": "vender-como-particular-l-hospitalet-barcelona",
     "cluster": "particular",
@@ -1914,6 +1983,30 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
     "cardTeaser": "Guía particular L'Hospitalet de Llobregat: 2.750 – 3.200 €/m² (Centre · Bellvitge · Pubilla)."
+  },
+  "vender-como-particular-la-bordeta-barcelona": {
+    "slug": "vender-como-particular-la-bordeta-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular La Bordeta",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular la bordeta barcelona",
+    "badge": "La Bordeta · 08014 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/sants1.jpg",
+    "cardTeaser": "Guía particular La Bordeta (08014): 3.500 – 4.500 €/m²."
+  },
+  "vender-como-particular-la-marina-barcelona": {
+    "slug": "vender-como-particular-la-marina-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular La Marina",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular la marina barcelona",
+    "badge": "La Marina · 08038 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Guía particular La Marina (08038): 3.200 – 4.100 €/m²."
   },
   "vender-como-particular-la-sagrera-barcelona": {
     "slug": "vender-como-particular-la-sagrera-barcelona",
@@ -2010,6 +2103,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Guía particular Poblenou: Rambla, 22@, lofts, Diagonal Mar."
+  },
+  "vender-como-particular-roquetes-barcelona": {
+    "slug": "vender-como-particular-roquetes-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Roquetes",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular roquetes barcelona",
+    "badge": "Roquetes · 08042 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "Guía particular Roquetes (08042): 3.000 – 3.900 €/m²."
   },
   "vender-como-particular-sant-andreu-barcelona": {
     "slug": "vender-como-particular-sant-andreu-barcelona",
@@ -2130,6 +2235,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/horta2.jpg",
     "cardTeaser": "Guía particular Vall d'Hebron: 3.900 – 5.100 €/m² (Vall d'Hebron · Montbau · Collserola)."
+  },
+  "vender-como-particular-verneda-barcelona": {
+    "slug": "vender-como-particular-verneda-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular La Verneda",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso particular la verneda barcelona",
+    "badge": "La Verneda · 08020 · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Guía particular La Verneda (08020): 3.400 – 4.300 €/m²."
   },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
     "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",

@@ -107,6 +107,11 @@ function validateLandings(all) {
   for (let i = 0; i < all.length; i++) {
     for (let j = i + 1; j < all.length; j++) {
       if (all[i].cluster === 'alquiler' || all[j].cluster === 'alquiler') continue;
+      // Barrio (servicio) vs particular (guía propietario): intención distinta, texto puede compartir datos locales
+      const barrioParticular =
+        (all[i].cluster === 'barrio' && all[j].cluster === 'particular') ||
+        (all[i].cluster === 'particular' && all[j].cluster === 'barrio');
+      if (barrioParticular) continue;
       const sim = jaccard(all[i].argumento_principal, all[j].argumento_principal);
       if (sim > SIMILARITY_THRESHOLD) {
         errors.push(`Similitud ${Math.round(sim * 100)}% entre ${all[i].slug} y ${all[j].slug}`);

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22T12:44:12.246Z",
+  "updated": "2026-10-23T13:09:14.111Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -788,6 +788,12 @@
       "priority": 0.89
     },
     {
+      "slug": "vender-como-particular-camp-den-grassot-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-ciutat-vella-barcelona",
       "cluster": "particular",
       "indexable": true,
@@ -800,10 +806,22 @@
       "priority": 0.9
     },
     {
+      "slug": "vender-como-particular-diagonal-mar-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-eixample-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-el-clot-la-sagrera-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "vender-como-particular-esplugues-barcelona",
@@ -824,16 +842,40 @@
       "priority": 0.9
     },
     {
+      "slug": "vender-como-particular-guinardo-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-horta-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
     },
     {
+      "slug": "vender-como-particular-hostafrancs-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-como-particular-l-hospitalet-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-la-bordeta-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-la-marina-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "vender-como-particular-la-sagrera-barcelona",
@@ -882,6 +924,12 @@
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-roquetes-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "vender-como-particular-sant-andreu-barcelona",
@@ -939,6 +987,12 @@
     },
     {
       "slug": "vender-como-particular-vall-d-hebron-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-verneda-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.89
