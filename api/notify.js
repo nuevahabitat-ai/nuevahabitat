@@ -17,6 +17,7 @@ import {
   propietarioAlquilerToLeadRow,
   updateLeadServer,
   deleteLeadServer,
+  createLeadAdminServer,
 } from '../lib/server/leads-api.js';
 import {
   listPropietariosAlquilerServer,
@@ -773,6 +774,8 @@ async function handleAdminPropietarioAlquilerUpdate(req, res, body) {
       estado_gestion: body.estado_gestion,
       activo: body.activo,
       notas_propietario: body.notas_propietario,
+      procedencia: body.procedencia,
+      ultimo_contacto_at: body.ultimo_contacto_at,
     });
     if (!result.ok) {
       const status = result.error?.includes('no encontrado') ? 404 : 400;
@@ -803,6 +806,27 @@ async function handleAdminPropietarioAlquilerDelete(req, res, body) {
   }
 }
 
+async function handleAdminLeadCreate(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const result = await createLeadAdminServer({
+      nombre: body?.nombre,
+      telefono: body?.telefono,
+      email: body?.email,
+      mensaje: body?.mensaje,
+      tipo: body?.tipo,
+      procedencia: body?.procedencia,
+    });
+    if (!result.ok) return res.status(400).json({ ok: false, error: result.error || 'No se pudo crear' });
+    const row = await getLeadByIdServer(result.id);
+    return res.status(200).json({ ok: true, id: result.id, row });
+  } catch (err) {
+    console.error('admin-lead-create', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminLeadUpdate(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -812,6 +836,8 @@ async function handleAdminLeadUpdate(req, res, body) {
     const result = await updateLeadServer(leadId, {
       estado: body.estado,
       notas: body.notas,
+      ultimo_contacto_at: body.ultimo_contacto_at,
+      procedencia: body.procedencia,
     });
     if (!result.ok) {
       const status = result.error?.includes('no encontrado') ? 404 : 400;
@@ -980,6 +1006,7 @@ export default async function handler(req, res) {
   const action = req.query?.__action || req.query?.action;
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
+  if (action === 'admin-lead-create') return handleAdminLeadCreate(req, res, body);
   if (action === 'admin-lead-update') return handleAdminLeadUpdate(req, res, body);
   if (action === 'admin-lead-delete') return handleAdminLeadDelete(req, res, body);
   if (action === 'admin-propietario-alquiler-update') return handleAdminPropietarioAlquilerUpdate(req, res, body);

@@ -570,6 +570,10 @@ input,select,textarea{font-family:'Inter',sans-serif}
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6l2 2h6a2 2 0 012 2z"/><path stroke-linecap="round" d="M9 22V12h6v10"/></svg>
         Integral
       </div>
+      <div class="adm-nav-item" data-sec="alquiler-seguimientos">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        Seguimientos
+      </div>
       <div class="adm-nav-group" style="margin-top:.5rem">Finanzas</div>
       <div class="adm-nav-item" data-sec="finanzas">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -719,7 +723,47 @@ input,select,textarea{font-family:'Inter',sans-serif}
             </div>
             <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem">
               <div id="leads-counts" class="text-muted" style="font-size:.78rem"></div>
-              <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="resendAllFormLeadEmails()">Reenviar todos los avisos → admin e info</button>
+              <div class="gap-row" style="justify-content:flex-end;flex-wrap:wrap">
+                <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="openLeadForm()">+ Nuevo lead</button>
+                <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendAllFormLeadEmails()">Reenviar avisos → admin e info</button>
+              </div>
+            </div>
+          </div>
+          <div id="lead-form-wrap" style="display:none;margin-bottom:1rem" class="adm-card">
+            <div class="adm-card-head">
+              <h3>Nuevo lead manual</h3>
+              <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeLeadForm()">✕ Cancelar</button>
+            </div>
+            <div class="adm-form-grid">
+              <div class="adm-field adm-form-col-full"><label>Nombre *</label><input type="text" id="lead-man-nombre" placeholder="Nombre del contacto"/></div>
+              <div class="adm-field"><label>Teléfono *</label><input type="tel" id="lead-man-tel" placeholder="+34 600 000 000"/></div>
+              <div class="adm-field"><label>Email</label><input type="email" id="lead-man-email" placeholder="email@ejemplo.com"/></div>
+              <div class="adm-field"><label>Tipo</label>
+                <select id="lead-man-tipo">
+                  <option value="valoracion">Valoración / venta</option>
+                  <option value="venta">Venta</option>
+                  <option value="compra">Compra</option>
+                  <option value="hipoteca">Hipoteca</option>
+                  <option value="alquiler_admin">Alquiler administración</option>
+                  <option value="alquiler_integral">Alquiler integral</option>
+                  <option value="info">Info / contacto</option>
+                </select>
+              </div>
+              <div class="adm-field"><label>Procedencia / plataforma</label>
+                <select id="lead-man-procedencia">
+                  <option value="">— Sin etiquetar —</option>
+                  <option value="nuevahabitat">NuevaHabitat (web / panel)</option>
+                  <option value="livendia">Livendia</option>
+                  <option value="gestor_hogar">Gestor Hogar</option>
+                  <option value="referido">Referido</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+              <div class="adm-field adm-form-col-full"><label>Notas iniciales / mensaje</label><textarea id="lead-man-mensaje" rows="3" placeholder="Referencia, dirección, origen de la llamada…"></textarea></div>
+            </div>
+            <div class="gap-row" style="margin-top:.75rem">
+              <button type="button" class="adm-btn adm-btn-gold" onclick="saveManualLead()">Guardar lead</button>
+              <button type="button" class="adm-btn adm-btn-ghost" onclick="closeLeadForm()">Cancelar</button>
             </div>
           </div>
           <div class="adm-subtabs" style="margin-bottom:.65rem;flex-wrap:wrap">
@@ -1560,8 +1604,16 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <section class="adm-section" id="sec-seguimientos">
         <div class="adm-section-hdr">
           <div class="adm-section-title">Seguimientos</div>
-          <button class="adm-btn adm-btn-gold" onclick="openPartForm()">+ Nuevo particular</button>
+          <button class="adm-btn adm-btn-gold" id="btn-seg-nuevo-particular" onclick="openPartForm()">+ Nuevo particular</button>
         </div>
+
+        <div class="adm-subtabs" id="seg-main-tabs" style="margin-bottom:1rem;flex-wrap:wrap">
+          <button type="button" class="adm-subtab active" data-seg-main="particulares" onclick="segMainTab('particulares')">Particulares captación</button>
+          <button type="button" class="adm-subtab" data-seg-main="alq_admin" onclick="segMainTab('alq_admin')">Alq. administración</button>
+          <button type="button" class="adm-subtab" data-seg-main="alq_integral" onclick="segMainTab('alq_integral')">Alq. integral</button>
+        </div>
+
+        <div id="seg-particulares-block">
 
         <div id="part-alarm-banner" class="adm-alarm-banner" style="display:none">
           <div><strong>⏰ Alarmas de contacto</strong> — <span id="part-alarm-text"></span></div>
@@ -1710,6 +1762,12 @@ input,select,textarea{font-family:'Inter',sans-serif}
 
         <div id="part-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
         </div><!-- part-particulares-wrap -->
+        </div><!-- seg-particulares-block -->
+
+        <div id="seg-alq-block" style="display:none">
+          <p class="text-muted" style="font-size:.82rem;margin:0 0 1rem;line-height:1.5">Expedientes de alquiler con el mismo historial de contacto que en <strong>Leads</strong> y en <strong>Alquileres → expediente</strong>. Clic en una tarjeta para abrir seguimiento.</p>
+          <div id="seg-alq-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
+        </div>
       </section>
 
       <!-- ══ ALQUILERES · ADMINISTRACIÓN (propietarios panel) ═════ -->
@@ -1797,6 +1855,19 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div>
       </section>
 
+      <section class="adm-section" id="sec-alquiler-seguimientos">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Seguimientos · alquileres</div>
+          <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadAlquilerSeguimientosSection()">↻ Actualizar</button>
+        </div>
+        <p class="text-muted" style="font-size:.82rem;margin:-.5rem 0 1rem;line-height:1.5">Historial unificado con <strong>Leads</strong> y la pestaña <strong>Seguimiento</strong> de cada expediente. Etiqueta <strong>Livendia</strong> / <strong>Gestor Hogar</strong> en procedencia del propietario o del lead manual.</p>
+        <div class="adm-subtabs" id="alq-seg-standalone-tabs" style="margin-bottom:1rem;flex-wrap:wrap">
+          <button type="button" class="adm-subtab active" data-alq-seg-mode="administracion" onclick="setAlqSegStandaloneMode('administracion')">Administración (59 €)</button>
+          <button type="button" class="adm-subtab" data-alq-seg-mode="integral" onclick="setAlqSegStandaloneMode('integral')">Integral (599 €)</button>
+        </div>
+        <div id="alq-seg-standalone-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
+      </section>
+
       <!-- Modal detalle propietario alquiler -->
       <div id="alq-admin-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="alq-modal-title" hidden>
         <div class="dash-modal-backdrop" onclick="closeAlqAdminModal()"></div>
@@ -1814,6 +1885,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button type="button" class="adm-subtab" data-alq-modal-tab="inmueble" onclick="alqAdminModalTab('inmueble')">Inmueble</button>
             <button type="button" class="adm-subtab" data-alq-modal-tab="inquilino" onclick="alqAdminModalTab('inquilino')">Inquilino</button>
             <button type="button" class="adm-subtab" data-alq-modal-tab="documentacion" onclick="alqAdminModalTab('documentacion')">Documentación</button>
+            <button type="button" class="adm-subtab" data-alq-modal-tab="seguimiento" onclick="alqAdminModalTab('seguimiento')">Seguimiento</button>
             <button type="button" class="adm-subtab" data-alq-modal-tab="gestion" onclick="alqAdminModalTab('gestion')">Gestión</button>
           </div>
           <div class="dash-modal-body" id="alq-modal-body"></div>
@@ -2669,7 +2741,7 @@ function switchSection(id){
   document.getElementById('sec-'+id).classList.add('active');
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos','alquiler-admin':'Administración de alquileres','alquiler-integral':'Alquiler integral',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
+  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos','alquiler-admin':'Administración de alquileres','alquiler-integral':'Alquiler integral','alquiler-seguimientos':'Seguimientos alquileres',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
   document.getElementById('adm-section-title').textContent = titles[id]||id;
   if(id==='dashboard')   loadDashboard();
   if(id==='leads')       loadLeads();
@@ -2679,9 +2751,10 @@ function switchSection(id){
   if(id==='colaboradores') loadColaboradores();
   if(id==='visitas')     loadVisitas();
   if(id==='documentos')  loadDocumentosAdmin();
-  if(id==='seguimientos') loadParticulares();
+  if(id==='seguimientos') { loadParticulares(); if (_segMainTab && _segMainTab !== 'particulares') segMainTab(_segMainTab); }
   if(id==='alquiler-admin') loadAlquilerAdmin();
   if(id==='alquiler-integral') loadAlquilerIntegral();
+  if(id==='alquiler-seguimientos') loadAlquilerSeguimientosSection();
   if(id==='finanzas')     loadFinSection();
   if(id==='blog')        loadBlog();
   if(id==='newsletter')  loadNewsletter();
@@ -4322,8 +4395,44 @@ function isAlquilerPropietarioLead(l) {
   return o === 'alquiler_integral' || o === 'alquiler_administracion';
 }
 
+function isManualAdminLead(l) {
+  const o = (l.origen || '').trim();
+  return o === 'manual_admin' || o === 'manual_alquiler_admin' || o === 'manual_alquiler_integral';
+}
+
+const NH_PROCEDENCIA_OPTS = [
+  { value: '', label: '— Sin etiquetar —' },
+  { value: 'nuevahabitat', label: 'NuevaHabitat (web / panel)' },
+  { value: 'livendia', label: 'Livendia' },
+  { value: 'gestor_hogar', label: 'Gestor Hogar' },
+  { value: 'referido', label: 'Referido' },
+  { value: 'otro', label: 'Otro' },
+];
+
+function procedenciaLabel(v) {
+  const hit = NH_PROCEDENCIA_OPTS.find((x) => x.value === (v || ''));
+  return hit ? hit.label : (v ? String(v).replace(/_/g, ' ') : '');
+}
+
+function procedenciaSelectOptions(selected) {
+  const sel = selected || '';
+  return NH_PROCEDENCIA_OPTS.map((o) =>
+    `<option value="${dashEsc(o.value)}"${o.value === sel ? ' selected' : ''}>${dashEsc(o.label)}</option>`
+  ).join('');
+}
+
+function procedenciaBadgeHtml(v) {
+  if (!v) return '';
+  return `<span class="lead-cat-badge" style="margin-top:.2rem;display:inline-block;font-size:.65rem">${dashEsc(procedenciaLabel(v))}</span>`;
+}
+
 function isAdminLeadsListRow(l) {
-  return isFormularioWebLead(l) || isAlquilerPropietarioLead(l);
+  return isFormularioWebLead(l) || isAlquilerPropietarioLead(l) || isManualAdminLead(l);
+}
+
+function isRealLeadUuid(id) {
+  const s = String(id || '');
+  return s.length > 10 && !s.startsWith('pa:');
 }
 
 function leadPropietarioAlquilerId(l) {
@@ -4383,8 +4492,8 @@ window.resendAllFormLeadEmails = resendAllFormLeadEmails;
 
 function leadSegment(l) {
   const o = (l.origen || '').trim();
-  if (o === 'alquiler_administracion') return 'alquiler_admin';
-  if (o === 'alquiler_integral') return 'alquiler_integral';
+  if (o === 'alquiler_administracion' || o === 'manual_alquiler_admin') return 'alquiler_admin';
+  if (o === 'alquiler_integral' || o === 'manual_alquiler_integral') return 'alquiler_integral';
   const t = l.tipo || '';
   if (t === 'compra') return 'comprador';
   if (t === 'venta' || t === 'valoracion') return 'vendedor';
@@ -4393,6 +4502,10 @@ function leadSegment(l) {
 }
 
 function leadCategoriaLabel(l) {
+  const o = (l.origen || '').trim();
+  if (o === 'manual_alquiler_admin') return 'Lead manual · alquiler administración';
+  if (o === 'manual_alquiler_integral') return 'Lead manual · alquiler integral';
+  if (isManualAdminLead(l)) return 'Lead manual · panel admin';
   const seg = leadSegment(l);
   const panel = leadEsRegistroPanel(l);
   if (seg === 'alquiler_admin') return 'Alquiler · administración (59 €/mes)';
@@ -4409,7 +4522,41 @@ function leadCategoriaLabel(l) {
 function leadCategoriaBadgeHtml(l) {
   const seg = leadSegment(l);
   const cls = seg === 'comprador' ? 'buy' : seg === 'vendedor' ? 'sell' : seg.startsWith('alquiler') ? 'sell' : '';
-  return `<span class="lead-cat-badge ${cls}">${dashEsc(leadCategoriaLabel(l))}</span>`;
+  return `<span class="lead-cat-badge ${cls}">${dashEsc(leadCategoriaLabel(l))}</span>${procedenciaBadgeHtml(l.procedencia)}`;
+}
+
+function leadSeguimientoEntityId(l) {
+  const propId = leadPropietarioAlquilerId(l);
+  if (propId) return { kind: 'alq', id: propId };
+  if (isRealLeadUuid(l?.id)) return { kind: 'lead', id: l.id };
+  return null;
+}
+
+async function saveLeadProcedencia(leadId, procedencia) {
+  const l = findLeadById(leadId);
+  const propId = leadPropietarioAlquilerId(l);
+  const val = procedencia || null;
+  try {
+    if (propId) {
+      await patchAlqPropietarioLocal(propId, { procedencia: val });
+      if (l) l.procedencia = val;
+      syncLeadRowProcedenciaFromProp(propId, val);
+    } else if (isRealLeadUuid(leadId)) {
+      await adminLeadApi('admin-lead-update', { leadId, procedencia: val });
+      if (l) l.procedencia = val;
+    }
+    nhToast('Procedencia actualizada.', 'success');
+    renderLeadsView();
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error', 6000);
+  }
+}
+window.saveLeadProcedencia = saveLeadProcedencia;
+
+function syncLeadRowProcedenciaFromProp(propId, procedencia) {
+  _leadsData.forEach((row) => {
+    if (leadPropietarioAlquilerId(row) === propId) row.procedencia = procedencia;
+  });
 }
 
 function leadOrigenLabel(origen) {
@@ -4418,8 +4565,208 @@ function leadOrigenLabel(origen) {
   if (origen === 'newsletter_blog') return 'Newsletter blog';
   if (origen === 'alquiler_administracion') return 'Panel propietario · administración alquiler';
   if (origen === 'alquiler_integral') return 'Panel propietario · alquiler integral';
+  if (origen === 'manual_admin') return 'Alta manual · panel admin';
+  if (origen === 'manual_alquiler_admin') return 'Alta manual · alquiler administración';
+  if (origen === 'manual_alquiler_integral') return 'Alta manual · alquiler integral';
   return origen.replace(/_/g, ' ');
 }
+
+function leadUltimoContactoHtml(l) {
+  if (!l?.ultimo_contacto_at) return '<span class="text-muted" style="font-size:.75rem">Sin seguimiento</span>';
+  const t = leadFmtDateTime(l.ultimo_contacto_at);
+  return `<span class="text-muted" style="font-size:.75rem">Último contacto:<br/>${dashEsc(t)}</span>`;
+}
+
+function openLeadForm() {
+  const w = document.getElementById('lead-form-wrap');
+  if (!w) return;
+  w.style.display = 'block';
+  document.getElementById('lead-man-nombre')?.focus();
+}
+window.openLeadForm = openLeadForm;
+
+function closeLeadForm() {
+  const w = document.getElementById('lead-form-wrap');
+  if (w) w.style.display = 'none';
+  ['lead-man-nombre', 'lead-man-tel', 'lead-man-email', 'lead-man-mensaje'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const tipo = document.getElementById('lead-man-tipo');
+  if (tipo) tipo.value = 'valoracion';
+  const proc = document.getElementById('lead-man-procedencia');
+  if (proc) proc.value = '';
+}
+window.closeLeadForm = closeLeadForm;
+
+async function saveManualLead() {
+  const nombre = document.getElementById('lead-man-nombre')?.value?.trim();
+  const telefono = document.getElementById('lead-man-tel')?.value?.trim();
+  const email = document.getElementById('lead-man-email')?.value?.trim();
+  const tipo = document.getElementById('lead-man-tipo')?.value || 'info';
+  const procedencia = document.getElementById('lead-man-procedencia')?.value || '';
+  const mensaje = document.getElementById('lead-man-mensaje')?.value?.trim();
+  if (!nombre || !telefono) {
+    nhToast('Nombre y teléfono son obligatorios.', 'info');
+    return;
+  }
+  try {
+    const json = await adminLeadApi('admin-lead-create', { nombre, telefono, email, tipo, mensaje, procedencia: procedencia || null });
+    if (json.id && mensaje && window.nhSupabase) {
+      const now = new Date().toISOString();
+      const { error: segErr } = await window.nhSupabase.from('leads_seguimientos').insert({
+        lead_id: json.id,
+        comentario: `Alta manual · ${mensaje}`,
+      });
+      if (!segErr) {
+        try {
+          await adminLeadApi('admin-lead-update', { leadId: json.id, ultimo_contacto_at: now });
+        } catch (_) { /* seguimiento ya guardado */ }
+      }
+    }
+    closeLeadForm();
+    await loadLeads();
+    nhToast('Lead creado.', 'success');
+    if (json.id) openLeadModal(json.id);
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error', 6000);
+  }
+}
+window.saveManualLead = saveManualLead;
+
+function renderSegTimelineHtml(data) {
+  if (!data?.length) return '<p class="text-muted">Sin entradas de seguimiento aún.</p>';
+  return data.map((s) => `
+    <div class="seg-item">
+      <time>${new Date(s.created_at).toLocaleString('es-ES')}</time>
+      <p>${String(s.comentario).replace(/</g, '&lt;')}</p>
+    </div>`).join('');
+}
+
+async function loadAlqPropSeguimientos(propId, boxEl) {
+  const box = boxEl || document.getElementById('alq-seg-timeline') || document.getElementById('lead-seg-timeline');
+  if (!box || !propId) return;
+  const { data, error } = await window.nhSupabase
+    .from('propietarios_alquiler_seguimientos')
+    .select('id,comentario,created_at')
+    .eq('propietario_id', propId)
+    .order('created_at', { ascending: false });
+  if (error) {
+    box.innerHTML = `<p class="text-muted">No se pudo cargar el historial (${dashEsc(error.message)}). ¿Migración 056 aplicada?</p>`;
+    return;
+  }
+  box.innerHTML = renderSegTimelineHtml(data);
+}
+
+async function loadLeadSeguimientos(leadId) {
+  const box = document.getElementById('lead-seg-timeline');
+  if (!box) return;
+  const l = findLeadById(leadId);
+  const ent = leadSeguimientoEntityId(l || { id: leadId });
+  if (!ent) {
+    box.innerHTML = '<p class="text-muted">Sin seguimiento disponible.</p>';
+    return;
+  }
+  if (ent.kind === 'alq') return loadAlqPropSeguimientos(ent.id, box);
+  const { data, error } = await window.nhSupabase
+    .from('leads_seguimientos')
+    .select('id,comentario,created_at')
+    .eq('lead_id', ent.id)
+    .order('created_at', { ascending: false });
+  if (error) {
+    box.innerHTML = `<p class="text-muted">No se pudo cargar el historial (${dashEsc(error.message)}). ¿Migración 055 aplicada?</p>`;
+    return;
+  }
+  box.innerHTML = renderSegTimelineHtml(data);
+}
+window.loadLeadSeguimientos = loadLeadSeguimientos;
+
+async function saveAlqPropSeguimiento(propId, opts = {}) {
+  const taId = opts.textareaId || 'lead-seg-comentario';
+  const ta = document.getElementById(taId) || document.getElementById('alq-seg-comentario');
+  const comentario = ta?.value?.trim();
+  if (!comentario) {
+    nhToast('Escribe un comentario de seguimiento.', 'info');
+    return;
+  }
+  const now = new Date().toISOString();
+  const { error: err1 } = await window.nhSupabase.from('propietarios_alquiler_seguimientos').insert({
+    propietario_id: propId,
+    comentario,
+  });
+  if (err1) {
+    nhToast('Error: ' + err1.message, 'error', 6000);
+    return;
+  }
+  try {
+    await patchAlqPropietarioLocal(propId, { ultimo_contacto_at: now });
+  } catch (err) {
+    nhToast('Seguimiento guardado pero error al actualizar expediente: ' + err.message, 'info', 6000);
+  }
+  const row = _alqPropData.find((x) => x.id === propId);
+  if (row) row.ultimo_contacto_at = now;
+  syncLeadUltimoContactoFromProp(propId, now);
+  if (ta) ta.value = '';
+  nhToast('Seguimiento registrado.', 'success');
+  const alqBox = document.getElementById('alq-seg-timeline');
+  if (alqBox) await loadAlqPropSeguimientos(propId, alqBox);
+  renderAlqSeguimientosGrid('seg-alq-grid');
+  renderAlqSeguimientosGrid('alq-seg-standalone-grid');
+  renderLeadsView();
+  renderDashLeads(_dashCache.leads);
+  if (opts.leadId) openLeadModal(opts.leadId);
+}
+window.saveAlqPropSeguimiento = saveAlqPropSeguimiento;
+
+function syncLeadUltimoContactoFromProp(propId, iso) {
+  _leadsData.forEach((row) => {
+    if (leadPropietarioAlquilerId(row) === propId) {
+      row.ultimo_contacto_at = iso;
+      if (row.estado === 'nuevo') row.estado = 'contactado';
+    }
+  });
+}
+
+async function saveLeadSeguimiento(leadId) {
+  const l = findLeadById(leadId);
+  const ent = leadSeguimientoEntityId(l || { id: leadId });
+  if (!ent) {
+    nhToast('No hay seguimiento para este registro.', 'info');
+    return;
+  }
+  if (ent.kind === 'alq') {
+    return saveAlqPropSeguimiento(ent.id, { leadId, textareaId: 'lead-seg-comentario' });
+  }
+  const ta = document.getElementById('lead-seg-comentario');
+  const comentario = ta?.value?.trim();
+  if (!comentario) {
+    nhToast('Escribe un comentario de seguimiento.', 'info');
+    return;
+  }
+  const now = new Date().toISOString();
+  const { error: err1 } = await window.nhSupabase.from('leads_seguimientos').insert({ lead_id: ent.id, comentario });
+  if (err1) {
+    nhToast('Error: ' + err1.message, 'error', 6000);
+    return;
+  }
+  const nuevoEstado = l?.estado === 'nuevo' ? 'contactado' : l?.estado;
+  try {
+    await adminLeadApi('admin-lead-update', { leadId: ent.id, estado: nuevoEstado, ultimo_contacto_at: now });
+  } catch (err) {
+    nhToast('Seguimiento guardado pero error al actualizar lead: ' + err.message, 'info', 6000);
+  }
+  if (l) {
+    l.ultimo_contacto_at = now;
+    if (nuevoEstado) l.estado = nuevoEstado;
+  }
+  if (ta) ta.value = '';
+  nhToast('Seguimiento registrado.', 'success');
+  await loadLeadSeguimientos(leadId);
+  renderLeadsView();
+  renderDashLeads(_dashCache.leads);
+  openLeadModal(leadId);
+}
+window.saveLeadSeguimiento = saveLeadSeguimiento;
 
 function leadFmtDateTime(iso) {
   if (!iso) return '–';
@@ -4465,9 +4812,18 @@ function buildLeadModalContent(l) {
       <dt>Fecha y hora</dt><dd>${dashEsc(leadFmtDateTime(l.created_at))}</dd>
       ${l.updated_at && l.updated_at !== l.created_at ? `<dt>Última actualización</dt><dd>${dashEsc(leadFmtDateTime(l.updated_at))}</dd>` : ''}
       ${utm ? `<dt>UTM</dt><dd>${dashEsc(utm)}</dd>` : ''}
+      ${l.procedencia ? `<dt>Procedencia</dt><dd>${dashEsc(procedenciaLabel(l.procedencia))}</dd>` : ''}
     </dl>
+    <div class="dash-modal-block">
+      <strong>Procedencia / plataforma</strong>
+      <select id="lead-procedencia-select" class="adm-field" style="margin-top:.35rem;max-width:340px;width:100%" onchange="saveLeadProcedencia('${l.id}', this.value)">
+        ${procedenciaSelectOptions(l.procedencia)}
+      </select>
+      <p class="text-muted" style="font-size:.72rem;margin-top:.35rem">Livendia, Gestor Hogar, etc. Visible también en expedientes de alquiler.</p>
+    </div>
     ${l.mensaje ? `<div class="dash-modal-block"><strong>Mensaje / datos enviados</strong><div style="white-space:pre-wrap;margin-top:.35rem">${dashEsc(l.mensaje)}</div></div>` : ''}
-    ${l.notas ? `<div class="dash-modal-block"><strong>Notas internas</strong>${dashEsc(l.notas)}</div>` : ''}
+    ${l.ultimo_contacto_at ? `<div class="dash-modal-block"><strong>Último contacto</strong>${dashEsc(leadFmtDateTime(l.ultimo_contacto_at))}</div>` : ''}
+    ${l.notas ? `<div class="dash-modal-block"><strong>Nota legacy</strong><p class="text-muted" style="font-size:.78rem;margin:.25rem 0 .35rem">Texto antiguo del campo notas — usa seguimientos abajo.</p>${dashEsc(l.notas)}</div>` : ''}
     <div class="dash-modal-block" style="margin-top:1rem">
       <strong>Cambiar estado</strong>
       <div class="gap-row" style="margin-top:.35rem;flex-wrap:wrap">
@@ -4476,11 +4832,15 @@ function buildLeadModalContent(l) {
         ).join('')}
       </div>
     </div>
+    ${leadSeguimientoEntityId(l) ? `
     <div class="dash-modal-block">
-      <strong>Notas</strong>
-      <input type="text" class="adm-field" style="width:100%;margin-top:.35rem" placeholder="Notas internas…" value="${dashEsc(l.notas || '')}"
-        onchange="saveLeadNotas('${l.id}', this.value); openLeadModal('${l.id}')"/>
-    </div>
+      <div class="wiz-section-label" style="margin:0 0 .5rem">Nuevo comentario de seguimiento</div>
+      <textarea id="lead-seg-comentario" class="adm-field" rows="3" placeholder="Llamada, WhatsApp, visita, negociación…" style="width:100%"></textarea>
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" style="margin-top:.5rem" onclick="saveLeadSeguimiento('${l.id}')">Guardar seguimiento</button>
+      <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">Mismo historial que en Alquileres → Seguimiento y Captación → Seguimientos alquiler.</p>
+      <div class="wiz-section-label" style="margin-top:1rem">Historial</div>
+      <div id="lead-seg-timeline" class="seg-timeline"><p class="text-muted">Cargando…</p></div>
+    </div>` : ''}
     <div class="dash-modal-block" style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem">
       <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="setLeadEstado('${l.id}','descartado'); closeDashModal();">Descartar lead</button>
       <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteLead('${l.id}', true)">Eliminar definitivamente</button>
@@ -4491,13 +4851,13 @@ function openLeadModal(id) {
   const l = findLeadById(id);
   if (!l) { nhToast('Lead no encontrado.', 'info'); return; }
   openDashModal('lead', id);
+  loadLeadSeguimientos(id);
 }
 
 function renderLeadsTable(list, full) {
   if (!list.length) return '<p class="text-muted">Sin leads.</p>';
   const rows = list.map(l => {
     const fecha = leadFmtDateTime(l.created_at);
-    const notasVal = (l.notas || '').replace(/"/g, '&quot;');
     return `<tr class="lead-row-click" onclick="openLeadModal('${l.id}')" title="Ver ficha completa">
       <td><strong>${dashEsc(l.nombre||'–')}</strong><br/>${leadCategoriaBadgeHtml(l)}</td>
       <td>${dashEsc(l.email||'–')}<br/><a href="tel:${l.telefono||''}" style="font-size:.8rem" onclick="event.stopPropagation()">${dashEsc(l.telefono||'–')}</a></td>
@@ -4505,13 +4865,12 @@ function renderLeadsTable(list, full) {
       <td>${leadEstadoBadge(l.estado)}</td>
       <td style="font-size:.78rem;white-space:nowrap">${dashEsc(fecha)}</td>
       ${full ? `<td onclick="event.stopPropagation()">
-        <input type="text" class="adm-field" style="padding:.35rem .5rem;font-size:.78rem;width:100%;min-width:100px" placeholder="Notas…" value="${notasVal}"
-          onchange="saveLeadNotas('${l.id}', this.value)"/>
+        ${leadUltimoContactoHtml(l)}
         ${leadActionBtns(l, true)}
       </td>` : ''}
     </tr>`;
   }).join('');
-  const headFull = full ? '<th>Notas / Acciones</th>' : '';
+  const headFull = full ? '<th>Seguimiento / Acciones</th>' : '';
   return `<div class="adm-table-wrap"><table class="adm-table"><thead><tr>
     <th>Contacto</th><th>Email / Tel</th><th>Mensaje</th><th>Estado</th><th>Fecha y hora</th>${headFull}
   </thead><tbody>${rows}</tbody></table></div>`;
@@ -4529,8 +4888,7 @@ function renderLeadsCards(list) {
       <div style="font-size:.82rem"><a href="tel:${l.telefono}" onclick="event.stopPropagation()">${dashEsc(l.telefono||'')}</a> · ${dashEsc(l.email||'')}</div>
       <p style="font-size:.8rem;margin:.5rem 0;color:var(--text-muted)">${dashEsc((l.mensaje||'').slice(0,100))}</p>
       <div onclick="event.stopPropagation()">
-        <input type="text" class="adm-field" style="padding:.4rem .6rem;font-size:.78rem;width:100%" placeholder="Notas internas…" value="${dashEsc(l.notas||'')}"
-          onchange="saveLeadNotas('${l.id}', this.value)"/>
+        ${leadUltimoContactoHtml(l)}
         ${leadActionBtns(l, false)}
       </div>
     </div>`;
@@ -4621,13 +4979,18 @@ async function setLeadEstado(id, estado) {
     return;
   }
   try {
-    await adminLeadApi('admin-lead-update', { leadId: id, estado });
+    const patch = { leadId: id, estado };
+    if (estado === 'contactado' || estado === 'cualificado') patch.ultimo_contacto_at = new Date().toISOString();
+    await adminLeadApi('admin-lead-update', patch);
   } catch (err) {
     window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
     return;
   }
   const leadRow = _leadsData.find(x => x.id === id);
-  if (leadRow) leadRow.estado = estado;
+  if (leadRow) {
+    leadRow.estado = estado;
+    if (estado === 'contactado' || estado === 'cualificado') leadRow.ultimo_contacto_at = new Date().toISOString();
+  }
   _dashCache.leads = _leadsData.slice(0, 6);
   updateNavLeadsBadge(_leadsData);
   renderLeadsView();
@@ -8944,6 +9307,93 @@ let _alqModalId = null;
 let _alqModalTab = 'resumen';
 let _alqModalDocs = [];
 let _alqListMode = 'administracion';
+let _segMainTab = 'particulares';
+let _alqSegStandaloneMode = 'administracion';
+
+function segMainTab(tab) {
+  _segMainTab = tab;
+  document.querySelectorAll('#seg-main-tabs .adm-subtab').forEach((b) => {
+    b.classList.toggle('active', b.dataset.segMain === tab);
+  });
+  const part = document.getElementById('seg-particulares-block');
+  const alq = document.getElementById('seg-alq-block');
+  const btnPart = document.getElementById('btn-seg-nuevo-particular');
+  const showPart = tab === 'particulares';
+  if (part) part.style.display = showPart ? '' : 'none';
+  if (alq) alq.style.display = showPart ? 'none' : 'block';
+  if (btnPart) btnPart.style.display = showPart ? '' : 'none';
+  if (!showPart) {
+    const mode = tab === 'alq_integral' ? 'integral' : 'administracion';
+    if (!_alqPropData.length) {
+      fetchAlquilerPropietarios().then(() => renderAlqSeguimientosGrid('seg-alq-grid', mode)).catch(() => {});
+    } else {
+      renderAlqSeguimientosGrid('seg-alq-grid', mode);
+    }
+  }
+}
+window.segMainTab = segMainTab;
+
+function setAlqSegStandaloneMode(mode, render = true) {
+  _alqSegStandaloneMode = mode;
+  document.querySelectorAll('#alq-seg-standalone-tabs .adm-subtab').forEach((b) => {
+    b.classList.toggle('active', b.dataset.alqSegMode === mode);
+  });
+  if (render) renderAlqSeguimientosGrid('alq-seg-standalone-grid', mode);
+}
+window.setAlqSegStandaloneMode = setAlqSegStandaloneMode;
+
+function renderAlqSeguimientosGrid(containerId, mode) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const m = mode || _alqSegStandaloneMode || 'administracion';
+  const list = filterAlqPropRows(_alqPropData || [], m);
+  if (!list.length) {
+    el.innerHTML = '<p class="text-muted">Sin expedientes que coincidan (revisa filtros en Administración / Integral).</p>';
+    return;
+  }
+  el.innerHTML = list.map((r) => {
+    const svc = m === 'integral' ? 'Integral' : 'Administración';
+    const ult = r.ultimo_contacto_at
+      ? new Date(r.ultimo_contacto_at).toLocaleString('es-ES')
+      : 'Sin contacto';
+    return `<article class="pub-card" role="button" tabindex="0" onclick="openAlqAdminModal('${r.id}','seguimiento')">
+      <div class="pub-card-head" style="display:flex;justify-content:space-between;gap:.5rem;align-items:flex-start">
+        <strong style="font-size:.88rem">${escAlq(r.nombre || r.email)}</strong>
+        <span class="badge badge-ok" style="font-size:.65rem">${escAlq(svc)}</span>
+      </div>
+      <p style="font-size:.78rem;margin:.4rem 0 0">${escAlq(r.inmueble_direccion || '—')}</p>
+      ${r.procedencia ? `<div style="margin-top:.35rem">${procedenciaBadgeHtml(r.procedencia)}</div>` : ''}
+      <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">Último contacto: ${escAlq(ult)}</p>
+    </article>`;
+  }).join('');
+}
+window.renderAlqSeguimientosGrid = renderAlqSeguimientosGrid;
+
+async function loadAlquilerSeguimientosSection() {
+  const grid = document.getElementById('alq-seg-standalone-grid');
+  if (grid) grid.innerHTML = '<p class="text-muted">Cargando…</p>';
+  try {
+    await fetchAlquilerPropietarios();
+    setAlqSegStandaloneMode(_alqSegStandaloneMode || 'administracion', true);
+  } catch (err) {
+    if (grid) grid.innerHTML = `<p class="alert-box alert-error">${escAlq(err.message)}</p>`;
+  }
+}
+window.loadAlquilerSeguimientosSection = loadAlquilerSeguimientosSection;
+
+async function saveAlqProcedenciaFromModal(propId, procedencia) {
+  try {
+    await patchAlqPropietarioLocal(propId, { procedencia: procedencia || null });
+    syncLeadRowProcedenciaFromProp(propId, procedencia || null);
+    nhToast('Procedencia actualizada.', 'success');
+    renderAlqSeguimientosGrid('seg-alq-grid');
+    renderAlqSeguimientosGrid('alq-seg-standalone-grid');
+    renderLeadsView();
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error', 6000);
+  }
+}
+window.saveAlqProcedenciaFromModal = saveAlqProcedenciaFromModal;
 
 function escAlq(s) {
   return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -9163,6 +9613,8 @@ function renderAlqAdminModalBody() {
       ${row.servicio === 'integral' ? '' : alqDlRow('Suscripción Stripe', row.suscripcion_activa ? 'Activa' : 'Pendiente')}
       ${alqDlRow('Registro', fmtAlqDate(row.created_at))}
       ${alqDlRow('Última actualización', fmtAlqDate(row.updated_at))}
+      ${row.procedencia ? alqDlRow('Procedencia', procedenciaLabel(row.procedencia)) : ''}
+      ${row.ultimo_contacto_at ? alqDlRow('Último contacto', new Date(row.ultimo_contacto_at).toLocaleString('es-ES')) : ''}
     </dl>
     <div class="adm-field" style="margin-top:1rem">
       <label for="alq-admin-estado">Cambiar estado gestión</label>
@@ -9211,6 +9663,21 @@ function renderAlqAdminModalBody() {
       </tbody></table>`;
       void hydrateAlqDocLinks();
     }
+  } else if (_alqModalTab === 'seguimiento') {
+    body.innerHTML = `
+      <div class="dash-modal-block">
+        <strong>Procedencia / plataforma</strong>
+        <select id="alq-procedencia-select" class="adm-field" style="margin-top:.35rem;max-width:340px;width:100%" onchange="saveAlqProcedenciaFromModal('${row.id}', this.value)">
+          ${procedenciaSelectOptions(row.procedencia)}
+        </select>
+      </div>
+      <div class="wiz-section-label" style="margin:1rem 0 .5rem">Nuevo comentario de seguimiento</div>
+      <textarea id="alq-seg-comentario" class="adm-field" rows="3" placeholder="Llamada, WhatsApp, visita…" style="width:100%"></textarea>
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" style="margin-top:.5rem" onclick="saveAlqPropSeguimiento('${row.id}', { textareaId: 'alq-seg-comentario', timelineId: 'alq-seg-timeline', skipModalRefresh: true })">Guardar seguimiento</button>
+      <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">Sincronizado con <strong>Leads</strong> y Captación → Seguimientos alquiler.</p>
+      <div class="wiz-section-label" style="margin-top:1rem">Historial</div>
+      <div id="alq-seg-timeline" class="seg-timeline"><p class="text-muted">Cargando…</p></div>`;
+    void loadAlqPropSeguimientos(row.id, document.getElementById('alq-seg-timeline'));
   } else if (_alqModalTab === 'gestion') {
     const arch = alqRowArchivado(row);
     body.innerHTML = `
@@ -9269,16 +9736,16 @@ function alqAdminModalTab(tab) {
   renderAlqAdminModalBody();
 }
 
-async function openAlqAdminModal(id) {
+async function openAlqAdminModal(id, tab) {
   _alqModalId = id;
-  _alqModalTab = 'resumen';
+  _alqModalTab = tab || 'resumen';
   const row = _alqPropData.find((x) => x.id === id);
   if (!row) { nhToast('Expediente no encontrado', 'error'); return; }
   document.getElementById('alq-modal-title').textContent = row.nombre || row.email || 'Propietario';
   const svcLabel = alqRowServicio(row) === 'integral' ? 'Alquiler integral' : 'Administración alquiler';
   document.getElementById('alq-modal-kicker').textContent = row.inmueble_direccion || row.email || svcLabel;
   document.querySelectorAll('#alq-admin-modal .vend-modal-tabs .adm-subtab').forEach((b) => {
-    b.classList.toggle('active', b.dataset.alqModalTab === 'resumen');
+    b.classList.toggle('active', b.dataset.alqModalTab === _alqModalTab);
   });
   await loadAlqModalDocs(row.email);
   renderAlqAdminModalBody();
