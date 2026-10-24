@@ -9510,13 +9510,15 @@ function renderAlquilerPropTable(mode) {
     return;
   }
   tbl.innerHTML = `<table class="adm-table"><thead><tr>
-    <th>Propietario</th><th>Inmueble</th><th>Estado</th><th>Pago</th><th>Alta</th>
+    <th>Propietario</th><th>Inmueble</th><th>Procedencia</th><th>Estado</th><th>Pago</th><th>Alta</th>
   </tr></thead><tbody>${filtered.map((r) => {
     const est = ALQ_ESTADO_LABEL[r.estado_gestion] || r.estado_gestion || '—';
     const pago = alqPagoBadgeHtml(r, mode);
+    const proc = r.procedencia ? escAlq(procedenciaLabel(r.procedencia)) : '—';
     return `<tr class="vend-row-click" onclick="openAlqAdminModal('${r.id}')">
       <td><strong>${escAlq(r.nombre || '—')}</strong><br><span style="font-size:.72rem;color:var(--muted)">${escAlq(r.email)}</span></td>
       <td style="font-size:.78rem">${escAlq(r.inmueble_direccion || '—')}</td>
+      <td style="font-size:.72rem">${proc}</td>
       <td><span class="badge badge-ok">${escAlq(est)}</span></td>
       <td>${pago}</td>
       <td style="font-size:.72rem;color:var(--muted);white-space:nowrap">${fmtAlqDate(r.created_at)}</td>
@@ -9550,6 +9552,7 @@ async function loadAlquilerAdmin() {
   const tbl = document.getElementById('alq-admin-table');
   if (tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
   try {
+    await fetchAdminLeads({ purge: false, limit: 200 }).catch(() => {});
     await fetchAlquilerPropietarios();
     renderAlquilerAdminTable();
     if (document.getElementById('sec-alquiler-integral')?.classList.contains('active')) {

@@ -18,6 +18,8 @@ import {
   updateLeadServer,
   deleteLeadServer,
   createLeadAdminServer,
+  syncManualAlquilerLeadsExpedientes,
+  normLeadTel,
 } from '../lib/server/leads-api.js';
 import {
   listPropietariosAlquilerServer,
@@ -34,16 +36,28 @@ function normLeadEmail(e) {
 
 function mergePropietariosIntoLeads(leads, propietarios) {
   const out = [...(leads || [])];
-  const seen = new Set(
-    out.filter(isAlquilerPropietarioLead).map((l) => normLeadEmail(l.email)).filter(Boolean)
-  );
+  const seenEmail = new Set();
+  const seenTel = new Set();
+  for (const l of out) {
+    const em = normLeadEmail(l.email);
+    const tel = normLeadTel(l.telefono);
+    if (em) seenEmail.add(em);
+    if (tel) seenTel.add(tel);
+    if (l.propietario_alquiler_id) {
+      seenEmail.add(`prop:${l.propietario_alquiler_id}`);
+    }
+  }
   for (const p of propietarios || []) {
     const em = normLeadEmail(p.email);
-    if (em && seen.has(em)) continue;
+    const tel = normLeadTel(p.telefono);
+    if (seenEmail.has(`prop:${p.id}`)) continue;
+    if (em && seenEmail.has(em)) continue;
+    if (tel && seenTel.has(tel)) continue;
     const row = propietarioAlquilerToLeadRow(p);
     if (row) {
       out.push(row);
-      if (em) seen.add(em);
+      if (em) seenEmail.add(em);
+      if (tel) seenTel.add(tel);
     }
   }
   out.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
@@ -667,7 +681,12 @@ async function handleAdminLeads(req, res, body) {
       purge = await purgeNonFormularioLeadsServer();
     }
     const limit = Math.min(Number(body?.limit) || 500, 1000);
-    const leads = await listLeadsServer({ limit, formularioOnly: true });
+    let leads = await listLeadsServer({ limit, formularioOnly: true });
+    try {
+      leads = await syncManualAlquilerLeadsExpedientes(leads);
+    } catch (syncErr) {
+      console.error('syncManualAlquilerLeadsExpedientes', syncErr);
+    }
     const propietarios = await listPropietariosAlquilerServer();
     const data = mergePropietariosIntoLeads(leads, propietarios);
     return res.status(200).json({ ok: true, data, purge });
