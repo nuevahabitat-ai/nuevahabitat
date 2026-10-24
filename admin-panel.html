@@ -1766,7 +1766,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
         </div><!-- seg-particulares-block -->
 
         <div id="seg-alq-block" style="display:none">
-          <p class="text-muted" style="font-size:.82rem;margin:0 0 1rem;line-height:1.5">Expedientes de alquiler con el mismo historial de contacto que en <strong>Leads</strong> y en <strong>Alquileres → expediente</strong>. Clic en una tarjeta para abrir seguimiento.</p>
+          <p class="text-muted" style="font-size:.82rem;margin:0 0 1rem;line-height:1.5">Leads de alquiler en captación (aún <strong>sin expediente</strong> en Administración/Integral). Los clientes ya dados de alta solo aparecen allí.</p>
           <div id="seg-alq-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
@@ -1859,12 +1859,47 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <section class="adm-section" id="sec-alquiler-seguimientos">
         <div class="adm-section-hdr">
           <div class="adm-section-title">Seguimientos · alquileres</div>
-          <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadAlquilerSeguimientosSection()">↻ Actualizar</button>
+          <div class="gap-row" style="flex-wrap:wrap">
+            <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="openAlqSegLeadForm()">+ Nuevo lead alquiler</button>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadAlquilerSeguimientosSection()">↻ Actualizar</button>
+          </div>
         </div>
-        <p class="text-muted" style="font-size:.82rem;margin:-.5rem 0 1rem;line-height:1.5">Historial unificado con <strong>Leads</strong> y la pestaña <strong>Seguimiento</strong> de cada expediente. Etiqueta <strong>Livendia</strong> / <strong>Gestor Hogar</strong> en procedencia del propietario o del lead manual.</p>
+        <p class="text-muted" style="font-size:.82rem;margin:-.5rem 0 1rem;line-height:1.5">Pipeline de captación: alta manual, seguimiento, resumen y procedencia (Livendia / Gestor Hogar). Cuando el cliente pasa a cartera, usa <strong>Registrar en Administración</strong> — dejará de listarse aquí y verás el expediente en <strong>Alquileres → Administración</strong> o <strong>Integral</strong>.</p>
         <div class="adm-subtabs" id="alq-seg-standalone-tabs" style="margin-bottom:1rem;flex-wrap:wrap">
           <button type="button" class="adm-subtab active" data-alq-seg-mode="administracion" onclick="setAlqSegStandaloneMode('administracion')">Administración (59 €)</button>
           <button type="button" class="adm-subtab" data-alq-seg-mode="integral" onclick="setAlqSegStandaloneMode('integral')">Integral (599 €)</button>
+        </div>
+        <div id="alq-seg-lead-form-wrap" style="display:none;margin-bottom:1rem" class="adm-card">
+          <div class="adm-card-head">
+            <h3>Nuevo lead alquiler</h3>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeAlqSegLeadForm()">✕ Cancelar</button>
+          </div>
+          <div class="adm-form-grid">
+            <div class="adm-field adm-form-col-full"><label>Nombre *</label><input type="text" id="alq-seg-lead-nombre" placeholder="Nombre del contacto"/></div>
+            <div class="adm-field"><label>Teléfono *</label><input type="tel" id="alq-seg-lead-tel" placeholder="+34 600 000 000"/></div>
+            <div class="adm-field"><label>Email</label><input type="email" id="alq-seg-lead-email" placeholder="email@ejemplo.com"/></div>
+            <div class="adm-field"><label>Tipo</label>
+              <select id="alq-seg-lead-tipo">
+                <option value="alquiler_admin">Alquiler administración</option>
+                <option value="alquiler_integral">Alquiler integral</option>
+              </select>
+            </div>
+            <div class="adm-field"><label>Procedencia</label>
+              <select id="alq-seg-lead-procedencia">
+                <option value="">— Sin etiquetar —</option>
+                <option value="nuevahabitat">NuevaHabitat</option>
+                <option value="livendia">Livendia</option>
+                <option value="gestor_hogar">Gestor Hogar</option>
+                <option value="referido">Referido</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="adm-field adm-form-col-full"><label>Inmueble / dirección</label><input type="text" id="alq-seg-lead-inmueble" placeholder="Calle, municipio…"/></div>
+            <div class="adm-field adm-form-col-full"><label>Notas / mensaje</label><textarea id="alq-seg-lead-mensaje" rows="3" placeholder="Detalle del encargo, renta, inquilino…"></textarea></div>
+          </div>
+          <div class="gap-row" style="margin-top:.75rem">
+            <button type="button" class="adm-btn adm-btn-gold" onclick="saveAlqSegManualLead()">Guardar y seguir</button>
+          </div>
         </div>
         <div id="alq-seg-standalone-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
       </section>
@@ -4718,8 +4753,7 @@ async function saveAlqPropSeguimiento(propId, opts = {}) {
   nhToast('Seguimiento registrado.', 'success');
   const alqBox = document.getElementById('alq-seg-timeline');
   if (alqBox) await loadAlqPropSeguimientos(propId, alqBox);
-  renderAlqSeguimientosGrid('seg-alq-grid');
-  renderAlqSeguimientosGrid('alq-seg-standalone-grid');
+  renderAlqSegGrids();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
   if (opts.leadId) openLeadModal(opts.leadId);
@@ -4849,6 +4883,11 @@ function buildLeadModalContent(l) {
       <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">Mismo historial que en Alquileres → Seguimiento y Captación → Seguimientos alquiler.</p>
       <div class="wiz-section-label" style="margin-top:1rem">Historial</div>
       <div id="lead-seg-timeline" class="seg-timeline"><p class="text-muted">Cargando…</p></div>
+    </div>` : ''}
+    ${isAlqSegPipelineLead(l, leadSegment(l) === 'alquiler_integral' ? 'integral' : 'administracion') ? `
+    <div class="dash-modal-block" style="margin-top:1rem">
+      <button type="button" class="adm-btn adm-btn-gold" onclick="promoteAlqLeadToExpediente('${l.id}')">Registrar en Administración / Integral</button>
+      <p class="text-muted" style="font-size:.72rem;margin-top:.35rem">Crea el expediente en cartera y quita este lead del pipeline de seguimientos.</p>
     </div>` : ''}
     <div class="dash-modal-block" style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem">
       <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="setLeadEstado('${l.id}','descartado'); closeDashModal();">Descartar lead</button>
@@ -9333,11 +9372,7 @@ function segMainTab(tab) {
   if (btnPart) btnPart.style.display = showPart ? '' : 'none';
   if (!showPart) {
     const mode = tab === 'alq_integral' ? 'integral' : 'administracion';
-    if (!_alqPropData.length) {
-      fetchAlquilerPropietarios().then(() => renderAlqSeguimientosGrid('seg-alq-grid', mode)).catch(() => {});
-    } else {
-      renderAlqSeguimientosGrid('seg-alq-grid', mode);
-    }
+    loadLeads().then(() => renderAlqSegLeadsGrid('seg-alq-grid', mode)).catch(() => {});
   }
 }
 window.segMainTab = segMainTab;
@@ -9347,42 +9382,145 @@ function setAlqSegStandaloneMode(mode, render = true) {
   document.querySelectorAll('#alq-seg-standalone-tabs .adm-subtab').forEach((b) => {
     b.classList.toggle('active', b.dataset.alqSegMode === mode);
   });
-  if (render) renderAlqSeguimientosGrid('alq-seg-standalone-grid', mode);
+  if (render) renderAlqSegLeadsGrid('alq-seg-standalone-grid', mode);
 }
 window.setAlqSegStandaloneMode = setAlqSegStandaloneMode;
 
-function renderAlqSeguimientosGrid(containerId, mode) {
+/** Lead alquiler en pipeline: aún sin expediente en propietarios_alquiler. */
+function isAlqSegPipelineLead(l, mode) {
+  if (!l || String(l.id).startsWith('pa:')) return false;
+  if (l.propietario_alquiler_id) return false;
+  const seg = leadSegment(l);
+  const want = mode === 'integral' ? 'alquiler_integral' : 'alquiler_admin';
+  return seg === want;
+}
+
+function filterAlqSegPipelineLeads(mode) {
+  return (_leadsData || []).filter((l) => isAlqSegPipelineLead(l, mode));
+}
+
+function renderAlqSegGrids() {
+  renderAlqSegLeadsGrid('alq-seg-standalone-grid', _alqSegStandaloneMode || 'administracion');
+  if (_segMainTab && _segMainTab !== 'particulares') {
+    const mode = _segMainTab === 'alq_integral' ? 'integral' : 'administracion';
+    renderAlqSegLeadsGrid('seg-alq-grid', mode);
+  }
+}
+window.renderAlqSegGrids = renderAlqSegGrids;
+
+function renderAlqSegLeadsGrid(containerId, mode) {
   const el = document.getElementById(containerId);
   if (!el) return;
   const m = mode || _alqSegStandaloneMode || 'administracion';
-  const list = filterAlqPropRows(_alqPropData || [], m);
+  const list = filterAlqSegPipelineLeads(m);
   if (!list.length) {
-    el.innerHTML = '<p class="text-muted">Sin expedientes que coincidan (revisa filtros en Administración / Integral).</p>';
+    el.innerHTML = '<p class="text-muted">Sin leads en captación. Usa <strong>+ Nuevo lead alquiler</strong> o revisa <strong>Alquileres → Administración</strong> para expedientes ya registrados.</p>';
     return;
   }
-  el.innerHTML = list.map((r) => {
+  el.innerHTML = list.map((l) => {
     const svc = m === 'integral' ? 'Integral' : 'Administración';
-    const ult = r.ultimo_contacto_at
-      ? new Date(r.ultimo_contacto_at).toLocaleString('es-ES')
-      : 'Sin contacto';
-    return `<article class="pub-card" role="button" tabindex="0" onclick="openAlqAdminModal('${r.id}','seguimiento')">
+    const ult = l.ultimo_contacto_at
+      ? new Date(l.ultimo_contacto_at).toLocaleString('es-ES')
+      : 'Sin seguimiento';
+    const inm = (l.zona || (l.mensaje || '').split('\n')[0] || '').slice(0, 120);
+    return `<article class="pub-card" role="button" tabindex="0" onclick="openAlqSegPipelineLead('${l.id}')">
       <div class="pub-card-head" style="display:flex;justify-content:space-between;gap:.5rem;align-items:flex-start">
-        <strong style="font-size:.88rem">${escAlq(r.nombre || r.email)}</strong>
+        <strong style="font-size:.88rem">${dashEsc(l.nombre || l.email || '—')}</strong>
         <span class="badge badge-ok" style="font-size:.65rem">${escAlq(svc)}</span>
       </div>
-      <p style="font-size:.78rem;margin:.4rem 0 0">${escAlq(r.inmueble_direccion || '—')}</p>
-      ${r.procedencia ? `<div style="margin-top:.35rem">${procedenciaBadgeHtml(r.procedencia)}</div>` : ''}
-      <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">Último contacto: ${escAlq(ult)}</p>
+      <p style="font-size:.78rem;margin:.4rem 0 0">${dashEsc(inm || '—')}</p>
+      ${l.procedencia ? `<div style="margin-top:.35rem">${procedenciaBadgeHtml(l.procedencia)}</div>` : ''}
+      <p class="text-muted" style="font-size:.72rem;margin-top:.5rem">${dashEsc(leadEstadoBadge(l.estado).replace(/<[^>]+>/g, '') || l.estado)} · Último contacto: ${dashEsc(ult)}</p>
     </article>`;
   }).join('');
 }
-window.renderAlqSeguimientosGrid = renderAlqSeguimientosGrid;
+window.renderAlqSegLeadsGrid = renderAlqSegLeadsGrid;
+
+function openAlqSegPipelineLead(id) {
+  openLeadModal(id);
+}
+window.openAlqSegPipelineLead = openAlqSegPipelineLead;
+
+function openAlqSegLeadForm() {
+  const w = document.getElementById('alq-seg-lead-form-wrap');
+  if (!w) return;
+  w.style.display = 'block';
+  const tipo = document.getElementById('alq-seg-lead-tipo');
+  if (tipo) {
+    tipo.value = _alqSegStandaloneMode === 'integral' ? 'alquiler_integral' : 'alquiler_admin';
+  }
+  document.getElementById('alq-seg-lead-nombre')?.focus();
+}
+window.openAlqSegLeadForm = openAlqSegLeadForm;
+
+function closeAlqSegLeadForm() {
+  const w = document.getElementById('alq-seg-lead-form-wrap');
+  if (w) w.style.display = 'none';
+  ['alq-seg-lead-nombre', 'alq-seg-lead-tel', 'alq-seg-lead-email', 'alq-seg-lead-inmueble', 'alq-seg-lead-mensaje'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const proc = document.getElementById('alq-seg-lead-procedencia');
+  if (proc) proc.value = '';
+}
+window.closeAlqSegLeadForm = closeAlqSegLeadForm;
+
+async function saveAlqSegManualLead() {
+  const nombre = document.getElementById('alq-seg-lead-nombre')?.value?.trim();
+  const telefono = document.getElementById('alq-seg-lead-tel')?.value?.trim();
+  const email = document.getElementById('alq-seg-lead-email')?.value?.trim();
+  const tipo = document.getElementById('alq-seg-lead-tipo')?.value || 'alquiler_admin';
+  const procedencia = document.getElementById('alq-seg-lead-procedencia')?.value || '';
+  const inmueble_direccion = document.getElementById('alq-seg-lead-inmueble')?.value?.trim();
+  const mensaje = document.getElementById('alq-seg-lead-mensaje')?.value?.trim();
+  if (!nombre || !telefono) {
+    nhToast('Nombre y teléfono son obligatorios.', 'info');
+    return;
+  }
+  try {
+    const json = await adminLeadApi('admin-lead-create', {
+      nombre, telefono, email, tipo, mensaje, procedencia: procedencia || null, inmueble_direccion: inmueble_direccion || null,
+    });
+    closeAlqSegLeadForm();
+    await loadLeads();
+    renderAlqSegLeadsGrid('alq-seg-standalone-grid', _alqSegStandaloneMode);
+    renderAlqSegLeadsGrid('seg-alq-grid', _segMainTab === 'alq_integral' ? 'integral' : 'administracion');
+    nhToast('Lead guardado. Haz seguimiento en la ficha; cuando toque, regístralo en Administración.', 'success');
+    if (json.id) openLeadModal(json.id);
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error', 6000);
+  }
+}
+window.saveAlqSegManualLead = saveAlqSegManualLead;
+
+/** Crea expediente en Administración/Integral y saca el lead del pipeline de seguimientos. */
+async function promoteAlqLeadToExpediente(leadId) {
+  try {
+    const json = await adminLeadApi('admin-alq-promote-lead', { leadId });
+    const propId = json.propietario_alquiler_id;
+    if (!propId) {
+      nhToast('No se pudo crear el expediente.', 'error', 6000);
+      return;
+    }
+    const l = findLeadById(leadId);
+    if (l) l.propietario_alquiler_id = propId;
+    await loadLeads();
+    await fetchAlquilerPropietarios();
+    nhToast('Expediente registrado. Ya no aparece en seguimientos pipeline.', 'success');
+    renderAlqSegGrids();
+    closeDashModal();
+    openAlqAdminModal(propId, 'resumen');
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error', 6000);
+  }
+}
+window.promoteAlqLeadToExpediente = promoteAlqLeadToExpediente;
 
 async function loadAlquilerSeguimientosSection() {
   const grid = document.getElementById('alq-seg-standalone-grid');
   if (grid) grid.innerHTML = '<p class="text-muted">Cargando…</p>';
   try {
-    await fetchAlquilerPropietarios();
+    await loadLeads();
     setAlqSegStandaloneMode(_alqSegStandaloneMode || 'administracion', true);
   } catch (err) {
     if (grid) grid.innerHTML = `<p class="alert-box alert-error">${escAlq(err.message)}</p>`;
@@ -9405,8 +9543,7 @@ async function saveAlqProcedenciaFromModal(propId, procedencia) {
       }
     }
     nhToast('Procedencia actualizada.', 'success');
-    renderAlqSeguimientosGrid('seg-alq-grid');
-    renderAlqSeguimientosGrid('alq-seg-standalone-grid');
+    renderAlqSegGrids();
     renderLeadsView();
     renderAlquilerPropTable(_alqListMode);
     if (_alqModalId === propId) renderAlqAdminModalBody();

@@ -19,6 +19,7 @@ import {
   deleteLeadServer,
   createLeadAdminServer,
   syncManualAlquilerLeadsExpedientes,
+  promoteManualAlquilerLeadToExpediente,
   normLeadTel,
 } from '../lib/server/leads-api.js';
 import {
@@ -829,6 +830,28 @@ async function handleAdminPropietarioAlquilerDelete(req, res, body) {
   }
 }
 
+async function handleAdminAlqPromoteLead(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const leadId = body?.leadId || body?.id;
+  if (!leadId) return res.status(400).json({ ok: false, error: 'leadId requerido' });
+  try {
+    const result = await promoteManualAlquilerLeadToExpediente(leadId);
+    if (!result.ok) {
+      const status = result.error?.includes('no encontrado') ? 404 : 400;
+      return res.status(status).json({ ok: false, error: result.error || 'No se pudo registrar' });
+    }
+    return res.status(200).json({
+      ok: true,
+      propietario_alquiler_id: result.propietario_alquiler_id,
+      row: result.lead,
+    });
+  } catch (err) {
+    console.error('admin-alq-promote-lead', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminLeadCreate(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -841,6 +864,7 @@ async function handleAdminLeadCreate(req, res, body) {
       tipo: body?.tipo,
       procedencia: body?.procedencia,
       inmueble_direccion: body?.inmueble_direccion,
+      crear_expediente: body?.crear_expediente === true,
     });
     if (!result.ok) return res.status(400).json({ ok: false, error: result.error || 'No se pudo crear' });
     const row = await getLeadByIdServer(result.id);
@@ -1031,6 +1055,7 @@ export default async function handler(req, res) {
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
   if (action === 'admin-lead-create') return handleAdminLeadCreate(req, res, body);
+  if (action === 'admin-alq-promote-lead') return handleAdminAlqPromoteLead(req, res, body);
   if (action === 'admin-lead-update') return handleAdminLeadUpdate(req, res, body);
   if (action === 'admin-lead-delete') return handleAdminLeadDelete(req, res, body);
   if (action === 'admin-propietario-alquiler-update') return handleAdminPropietarioAlquilerUpdate(req, res, body);
