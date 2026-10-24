@@ -9394,10 +9394,22 @@ async function saveAlqProcedenciaFromModal(propId, procedencia) {
   try {
     await patchAlqPropietarioLocal(propId, { procedencia: procedencia || null });
     syncLeadRowProcedenciaFromProp(propId, procedencia || null);
+    const val = procedencia || null;
+    for (const l of _leadsData) {
+      if (leadPropietarioAlquilerId(l) !== propId) continue;
+      l.procedencia = val;
+      if (isRealLeadUuid(l.id)) {
+        try {
+          await adminLeadApi('admin-lead-update', { leadId: l.id, procedencia: val });
+        } catch (_) { /* lead ya actualizado en memoria */ }
+      }
+    }
     nhToast('Procedencia actualizada.', 'success');
     renderAlqSeguimientosGrid('seg-alq-grid');
     renderAlqSeguimientosGrid('alq-seg-standalone-grid');
     renderLeadsView();
+    renderAlquilerPropTable(_alqListMode);
+    if (_alqModalId === propId) renderAlqAdminModalBody();
   } catch (err) {
     nhToast('Error: ' + err.message, 'error', 6000);
   }
@@ -9612,6 +9624,32 @@ async function loadAlqModalDocs(email) {
   _alqModalDocs = data || [];
 }
 
+function alqUsesNhOwnerPanel(procedencia) {
+  const p = (procedencia || '').trim();
+  return !p || p === 'nuevahabitat';
+}
+
+function alqPortalExternoHint(procedencia) {
+  if (procedencia === 'livendia') {
+    return 'Colaboración Livendia: el propietario gestiona su expediente en el panel de Livendia, no en Nueva Hábitat. Desde aquí editáis datos, seguimiento y documentación interna.';
+  }
+  if (procedencia === 'gestor_hogar') {
+    return 'Colaboración Gestor Hogar: el panel del propietario está en su plataforma. Desde este admin NH podéis completar datos y subir documentación manualmente.';
+  }
+  return '';
+}
+
+function alqExternoBannerHtml(row) {
+  if (alqUsesNhOwnerPanel(row?.procedencia)) return '';
+  const hint = alqPortalExternoHint(row.procedencia);
+  const label = procedenciaLabel(row.procedencia);
+  return `<div class="adm-alarm-banner" style="margin-bottom:1rem;display:block"><strong>Colaboración · ${escAlq(label)}</strong><p style="margin:.35rem 0 0;font-size:.78rem;font-weight:400;line-height:1.45">${escAlq(hint)}</p></div>`;
+}
+
+function alqInputVal(v) {
+  return escAlq(v ?? '');
+}
+
 function renderAlqAdminModalBody() {
   const body = document.getElementById('alq-modal-body');
   const foot = document.getElementById('alq-modal-foot');
@@ -9619,16 +9657,22 @@ function renderAlqAdminModalBody() {
   if (!body || !row) return;
 
   if (_alqModalTab === 'resumen') {
-    body.innerHTML = `<dl class="dash-dl">
+    body.innerHTML = `${alqExternoBannerHtml(row)}
+    <div class="adm-field" style="margin-bottom:1rem">
+      <label>Procedencia / plataforma</label>
+      <select id="alq-resumen-procedencia" class="adm-field" style="max-width:340px;width:100%" onchange="saveAlqProcedenciaFromModal('${row.id}', this.value)">
+        ${procedenciaSelectOptions(row.procedencia)}
+      </select>
+    </div>
+    <dl class="dash-dl">
       ${alqDlRow('Estado gestión', ALQ_ESTADO_LABEL[row.estado_gestion] || row.estado_gestion)}
       ${alqDlRow('Servicio', row.servicio === 'integral' ? 'Alquiler integral (599 € IVA incluido · pago único)' : 'Administración (59 €/mes)')}
       ${row.servicio === 'integral' ? alqDlRow('Pago integral 599 € IVA incluido', row.integral_pagado ? ('Pagado' + (row.integral_pagado_at ? ' · ' + fmtAlqDate(row.integral_pagado_at) : '')) : (row.integral_transferencia_pendiente ? 'Transferencia en revisión' : 'Pendiente')) : ''}
+      ${alqDlRow('Inmueble', row.inmueble_direccion || '—')}
       ${alqDlRow('Renta mensual', fmtAlqEur(row.renta_mensual))}
       ${row.servicio === 'integral' ? '' : alqDlRow('Cuota NH', fmtAlqEur(row.cuota_mensual))}
       ${row.servicio === 'integral' ? '' : alqDlRow('Suscripción Stripe', row.suscripcion_activa ? 'Activa' : 'Pendiente')}
       ${alqDlRow('Registro', fmtAlqDate(row.created_at))}
-      ${alqDlRow('Última actualización', fmtAlqDate(row.updated_at))}
-      ${row.procedencia ? alqDlRow('Procedencia', procedenciaLabel(row.procedencia)) : ''}
       ${row.ultimo_contacto_at ? alqDlRow('Último contacto', new Date(row.ultimo_contacto_at).toLocaleString('es-ES')) : ''}
     </dl>
     <div class="adm-field" style="margin-top:1rem">
@@ -9638,48 +9682,75 @@ function renderAlqAdminModalBody() {
       </select>
     </div>`;
   } else if (_alqModalTab === 'propietario') {
-    body.innerHTML = `<dl class="dash-dl">
-      ${alqDlRow('Nombre / razón social', row.nombre)}
-      ${alqDlRow('DNI / NIE / CIF', row.dni)}
-      ${alqDlRow('Teléfono', row.telefono)}
-      ${alqDlRow('Email', row.email)}
-      ${alqDlRow('Dirección postal', row.direccion_propietario)}
-      ${alqDlRow('IBAN cobro renta', row.iban_cobro)}
-    </dl>
-    ${row.notas_propietario ? `<div class="dash-modal-block"><strong>Notas del propietario</strong>${escAlq(row.notas_propietario)}</div>` : ''}`;
+    body.innerHTML = `${alqExternoBannerHtml(row)}
+    <p class="text-muted" style="font-size:.78rem;margin:0 0 1rem">Edición manual por el gestor (también para expedientes Livendia / Gestor Hogar).</p>
+    <div class="adm-form-grid">
+      <div class="adm-field adm-form-col-full"><label>Nombre / razón social</label><input type="text" id="alq-ed-nombre" value="${alqInputVal(row.nombre)}"/></div>
+      <div class="adm-field"><label>DNI / NIE / CIF</label><input type="text" id="alq-ed-dni" value="${alqInputVal(row.dni)}"/></div>
+      <div class="adm-field"><label>Teléfono</label><input type="tel" id="alq-ed-telefono" value="${alqInputVal(row.telefono)}"/></div>
+      <div class="adm-field adm-form-col-full"><label>Email</label><input type="email" id="alq-ed-email" value="${alqInputVal(row.email)}"/></div>
+      <div class="adm-field adm-form-col-full"><label>Dirección postal</label><input type="text" id="alq-ed-dir-postal" value="${alqInputVal(row.direccion_propietario)}"/></div>
+      <div class="adm-field adm-form-col-full"><label>IBAN cobro renta</label><input type="text" id="alq-ed-iban" value="${alqInputVal(row.iban_cobro)}"/></div>
+      <div class="adm-field adm-form-col-full"><label>Notas propietario</label><textarea id="alq-ed-notas-prop" rows="3">${alqInputVal(row.notas_propietario)}</textarea></div>
+    </div>`;
   } else if (_alqModalTab === 'inmueble') {
-    body.innerHTML = `<dl class="dash-dl">
-      ${alqDlRow('Dirección', row.inmueble_direccion)}
-      ${alqDlRow('Referencia interna', row.inmueble_ref)}
-      ${alqDlRow('Ref. catastral', row.inmueble_ref_catastral)}
-      ${alqDlRow('Renta mensual', fmtAlqEur(row.renta_mensual))}
-    </dl>
-    ${row.inmueble_notas ? `<div class="dash-modal-block"><strong>Notas inmueble</strong>${escAlq(row.inmueble_notas)}</div>` : ''}`;
+    body.innerHTML = `${alqExternoBannerHtml(row)}
+    <div class="adm-form-grid">
+      <div class="adm-field adm-form-col-full"><label>Dirección del inmueble</label><input type="text" id="alq-ed-inm-dir" value="${alqInputVal(row.inmueble_direccion)}"/></div>
+      <div class="adm-field"><label>Referencia interna</label><input type="text" id="alq-ed-inm-ref" value="${alqInputVal(row.inmueble_ref)}"/></div>
+      <div class="adm-field"><label>Ref. catastral</label><input type="text" id="alq-ed-inm-catastro" value="${alqInputVal(row.inmueble_ref_catastral)}"/></div>
+      <div class="adm-field"><label>Renta mensual (€)</label><input type="number" id="alq-ed-renta" min="0" step="1" value="${row.renta_mensual != null ? escAlq(row.renta_mensual) : ''}"/></div>
+      <div class="adm-field adm-form-col-full"><label>Notas inmueble</label><textarea id="alq-ed-inm-notas" rows="3">${alqInputVal(row.inmueble_notas)}</textarea></div>
+    </div>`;
   } else if (_alqModalTab === 'inquilino') {
-    body.innerHTML = `<dl class="dash-dl">
-      ${alqDlRow('Nombre', row.inquilino_nombre)}
-      ${alqDlRow('Teléfono', row.inquilino_telefono)}
-      ${alqDlRow('Email', row.inquilino_email)}
-      ${alqDlRow('Contrato inicio', fmtAlqDate(row.contrato_inicio))}
-      ${alqDlRow('Contrato fin', fmtAlqDate(row.contrato_fin))}
-    </dl>`;
+    body.innerHTML = `${alqExternoBannerHtml(row)}
+    <div class="adm-form-grid">
+      <div class="adm-field adm-form-col-full"><label>Nombre inquilino</label><input type="text" id="alq-ed-inq-nombre" value="${alqInputVal(row.inquilino_nombre)}"/></div>
+      <div class="adm-field"><label>Teléfono</label><input type="tel" id="alq-ed-inq-tel" value="${alqInputVal(row.inquilino_telefono)}"/></div>
+      <div class="adm-field"><label>Email</label><input type="email" id="alq-ed-inq-email" value="${alqInputVal(row.inquilino_email)}"/></div>
+      <div class="adm-field"><label>Contrato inicio</label><input type="date" id="alq-ed-contrato-ini" value="${row.contrato_inicio ? escAlq(String(row.contrato_inicio).slice(0, 10)) : ''}"/></div>
+      <div class="adm-field"><label>Contrato fin</label><input type="date" id="alq-ed-contrato-fin" value="${row.contrato_fin ? escAlq(String(row.contrato_fin).slice(0, 10)) : ''}"/></div>
+    </div>`;
   } else if (_alqModalTab === 'documentacion') {
-    if (!_alqModalDocs.length) {
-      body.innerHTML = '<p class="text-muted">Este propietario aún no ha subido documentos desde su panel.</p>';
-    } else {
-      body.innerHTML = `<table class="adm-table"><thead><tr><th>Documento</th><th>Tipo</th><th>Estado</th><th>Fecha</th><th></th></tr></thead><tbody id="alq-docs-tbody">
+    const docRows = _alqModalDocs.length
+      ? `<table class="adm-table"><thead><tr><th>Documento</th><th>Tipo</th><th>Estado</th><th>Fecha</th><th></th></tr></thead><tbody id="alq-docs-tbody">
         ${_alqModalDocs.map((d) => `<tr>
           <td>${escAlq(d.nombre)}</td>
           <td style="font-size:.72rem">${escAlq(d.tipo)}</td>
           <td>${escAlq(d.estado)}</td>
           <td style="font-size:.72rem;color:var(--muted)">${fmtAlqDate(d.created_at)}</td>
-          <td><span data-alq-doc-id="${d.id}" class="text-muted" style="font-size:.72rem">…</span></td>
+          <td><span data-alq-doc-id="${d.id}" class="text-muted" style="font-size:.72rem">…</span>
+          <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="deleteAlqExpedienteDoc('${d.id}')">🗑</button></td>
         </tr>`).join('')}
-      </tbody></table>`;
-      void hydrateAlqDocLinks();
-    }
+      </tbody></table>`
+      : '<p class="text-muted">Sin documentos aún.</p>';
+    body.innerHTML = `${alqExternoBannerHtml(row)}
+    <p class="text-muted" style="font-size:.78rem;margin:0 0 1rem;line-height:1.45">Subida manual por el gestor NH. ${alqUsesNhOwnerPanel(row.procedencia) ? 'El propietario también puede subir desde su panel Nueva Hábitat.' : 'El propietario usa el panel externo (Livendia / Gestor Hogar); aquí archiváis copia interna.'}</p>
+    <div class="adm-form-grid" style="margin-bottom:1rem">
+      <div class="adm-field adm-form-col-full"><label>Nombre documento</label><input type="text" id="alq-doc-nombre" placeholder="Contrato, DNI, recibo…"/></div>
+      <div class="adm-field"><label>Tipo</label>
+        <select id="alq-doc-tipo">
+          <option value="contrato">Contrato</option>
+          <option value="dni">DNI / identidad</option>
+          <option value="justificante">Justificante</option>
+          <option value="seguro">Seguro</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+      <div class="adm-field"><label>Estado</label>
+        <select id="alq-doc-estado">
+          <option value="recibido">Recibido</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="firmado">Firmado</option>
+          <option value="disponible">Disponible</option>
+        </select>
+      </div>
+      <div class="adm-field adm-form-col-full"><label>Archivo PDF / imagen</label><input type="file" id="alq-doc-file" accept=".pdf,.jpg,.jpeg,.png,.webp"/></div>
+    </div>
+    ${docRows}`;
+    if (_alqModalDocs.length) void hydrateAlqDocLinks();
   } else if (_alqModalTab === 'seguimiento') {
-    body.innerHTML = `
+    body.innerHTML = `${alqExternoBannerHtml(row)}
       <div class="dash-modal-block">
         <strong>Procedencia / plataforma</strong>
         <select id="alq-procedencia-select" class="adm-field" style="margin-top:.35rem;max-width:340px;width:100%" onchange="saveAlqProcedenciaFromModal('${row.id}', this.value)">
@@ -9721,16 +9792,140 @@ function renderAlqAdminModalBody() {
     const saveEstadoBtn = _alqModalTab === 'resumen'
       ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqAdminEstado()">Guardar estado</button>`
       : '';
+    const savePropBtn = _alqModalTab === 'propietario'
+      ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqModalPropietario()">Guardar propietario</button>`
+      : '';
+    const saveInmBtn = _alqModalTab === 'inmueble'
+      ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqModalInmueble()">Guardar inmueble</button>`
+      : '';
+    const saveInqBtn = _alqModalTab === 'inquilino'
+      ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqModalInquilino()">Guardar inquilino</button>`
+      : '';
+    const saveDocBtn = _alqModalTab === 'documentacion'
+      ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="uploadAlqExpedienteDoc()">Subir documento</button>`
+      : '';
     const saveNotasBtn = _alqModalTab === 'gestion'
       ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveAlqGestionNotas()">Guardar notas</button>`
       : '';
+    const panelBtn = alqUsesNhOwnerPanel(row.procedencia)
+      ? `<a class="adm-btn adm-btn-ghost adm-btn-sm" href="/panel-propietario" target="_blank" rel="noopener">Panel Nueva Hábitat</a>`
+      : `<span class="text-muted" style="font-size:.72rem;max-width:240px;line-height:1.35;text-align:left">Sin panel NH · ${escAlq(procedenciaLabel(row.procedencia))}</span>`;
     foot.innerHTML = `
       ${wa ? `<a class="adm-btn adm-btn-green adm-btn-sm" href="https://wa.me/${wa}" target="_blank" rel="noopener">WhatsApp</a>` : ''}
-      ${row.email ? `<a class="adm-btn adm-btn-ghost adm-btn-sm" href="mailto:${escAlq(row.email)}">Email</a>` : ''}
-      <a class="adm-btn adm-btn-ghost adm-btn-sm" href="/panel-propietario" target="_blank" rel="noopener">Ver panel propietario</a>
-      ${saveEstadoBtn}${saveNotasBtn}`;
+      ${row.email && !String(row.email).includes('@leads.nuevahabitat.local') ? `<a class="adm-btn adm-btn-ghost adm-btn-sm" href="mailto:${escAlq(row.email)}">Email</a>` : ''}
+      ${panelBtn}
+      ${saveEstadoBtn}${savePropBtn}${saveInmBtn}${saveInqBtn}${saveDocBtn}${saveNotasBtn}`;
   }
 }
+
+async function saveAlqModalPropietario() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  try {
+    await patchAlqPropietarioLocal(row.id, {
+      nombre: document.getElementById('alq-ed-nombre')?.value,
+      dni: document.getElementById('alq-ed-dni')?.value,
+      telefono: document.getElementById('alq-ed-telefono')?.value,
+      email: document.getElementById('alq-ed-email')?.value,
+      direccion_propietario: document.getElementById('alq-ed-dir-postal')?.value,
+      iban_cobro: document.getElementById('alq-ed-iban')?.value,
+      notas_propietario: document.getElementById('alq-ed-notas-prop')?.value,
+    });
+    nhToast('Datos del propietario guardados', 'success');
+    renderAlquilerPropTable(_alqListMode);
+    renderAlqAdminModalBody();
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error');
+  }
+}
+window.saveAlqModalPropietario = saveAlqModalPropietario;
+
+async function saveAlqModalInmueble() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  const renta = document.getElementById('alq-ed-renta')?.value;
+  try {
+    await patchAlqPropietarioLocal(row.id, {
+      inmueble_direccion: document.getElementById('alq-ed-inm-dir')?.value,
+      inmueble_ref: document.getElementById('alq-ed-inm-ref')?.value,
+      inmueble_ref_catastral: document.getElementById('alq-ed-inm-catastro')?.value,
+      renta_mensual: renta === '' ? null : renta,
+      inmueble_notas: document.getElementById('alq-ed-inm-notas')?.value,
+    });
+    nhToast('Inmueble guardado', 'success');
+    const idx = _alqPropData.findIndex((x) => x.id === row.id);
+    if (idx >= 0) document.getElementById('alq-modal-kicker').textContent = _alqPropData[idx].inmueble_direccion || _alqPropData[idx].email || '';
+    renderAlquilerPropTable(_alqListMode);
+    renderAlqAdminModalBody();
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error');
+  }
+}
+window.saveAlqModalInmueble = saveAlqModalInmueble;
+
+async function saveAlqModalInquilino() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row) return;
+  try {
+    await patchAlqPropietarioLocal(row.id, {
+      inquilino_nombre: document.getElementById('alq-ed-inq-nombre')?.value,
+      inquilino_telefono: document.getElementById('alq-ed-inq-tel')?.value,
+      inquilino_email: document.getElementById('alq-ed-inq-email')?.value,
+      contrato_inicio: document.getElementById('alq-ed-contrato-ini')?.value || null,
+      contrato_fin: document.getElementById('alq-ed-contrato-fin')?.value || null,
+    });
+    nhToast('Datos del inquilino guardados', 'success');
+    renderAlqAdminModalBody();
+  } catch (err) {
+    nhToast('Error: ' + err.message, 'error');
+  }
+}
+window.saveAlqModalInquilino = saveAlqModalInquilino;
+
+async function uploadAlqExpedienteDoc() {
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  if (!row?.email) { nhToast('El expediente necesita email para asociar documentos.', 'info'); return; }
+  const nombre = document.getElementById('alq-doc-nombre')?.value?.trim();
+  const file = document.getElementById('alq-doc-file')?.files?.[0];
+  if (!nombre || !file) {
+    nhToast('Indica nombre y archivo.', 'info');
+    return;
+  }
+  const email = row.email.trim();
+  const safe = email.toLowerCase().replace(/[^a-z0-9@._+-]/g, '_');
+  const path = `${safe}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+  const { error: upErr } = await window.nhSupabase.storage.from('documentos-clientes').upload(path, file, { upsert: false });
+  if (upErr) {
+    nhToast('Error al subir: ' + upErr.message, 'error');
+    return;
+  }
+  const { error } = await window.nhSupabase.from('cliente_documentos').insert({
+    cliente_email: email,
+    tipo: document.getElementById('alq-doc-tipo')?.value || 'otro',
+    nombre,
+    url: path,
+    estado: document.getElementById('alq-doc-estado')?.value || 'recibido',
+  });
+  if (error) {
+    nhToast('Error: ' + error.message, 'error');
+    return;
+  }
+  document.getElementById('alq-doc-nombre').value = '';
+  document.getElementById('alq-doc-file').value = '';
+  nhToast('Documento subido', 'success');
+  await loadAlqModalDocs(row.email);
+  renderAlqAdminModalBody();
+}
+window.uploadAlqExpedienteDoc = uploadAlqExpedienteDoc;
+
+async function deleteAlqExpedienteDoc(id) {
+  if (!confirm('¿Eliminar este documento?')) return;
+  const row = _alqPropData.find((x) => x.id === _alqModalId);
+  await window.nhSupabase.from('cliente_documentos').delete().eq('id', id);
+  if (row?.email) await loadAlqModalDocs(row.email);
+  renderAlqAdminModalBody();
+}
+window.deleteAlqExpedienteDoc = deleteAlqExpedienteDoc;
 
 async function hydrateAlqDocLinks() {
   for (const d of _alqModalDocs) {

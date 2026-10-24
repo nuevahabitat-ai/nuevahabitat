@@ -789,15 +789,17 @@ async function handleAdminPropietarioAlquilerUpdate(req, res, body) {
   const id = body?.id || body?.propietarioId;
   if (!id) return res.status(400).json({ ok: false, error: 'id requerido' });
   try {
-    const result = await patchPropietarioAlquilerAdmin(id, {
-      estado_gestion: body.estado_gestion,
-      activo: body.activo,
-      notas_propietario: body.notas_propietario,
-      procedencia: body.procedencia,
-      ultimo_contacto_at: body.ultimo_contacto_at,
-      inmueble_direccion: body.inmueble_direccion,
-      servicio: body.servicio,
-    });
+    const patchKeys = [
+      'estado_gestion', 'activo', 'notas_propietario', 'procedencia', 'ultimo_contacto_at',
+      'inmueble_direccion', 'servicio', 'nombre', 'dni', 'telefono', 'email', 'direccion_propietario',
+      'iban_cobro', 'inmueble_ref', 'inmueble_ref_catastral', 'inmueble_notas', 'renta_mensual',
+      'inquilino_nombre', 'inquilino_telefono', 'inquilino_email', 'contrato_inicio', 'contrato_fin',
+    ];
+    const patch = {};
+    for (const k of patchKeys) {
+      if (body[k] !== undefined) patch[k] = body[k];
+    }
+    const result = await patchPropietarioAlquilerAdmin(id, patch);
     if (!result.ok) {
       const status = result.error?.includes('no encontrado') ? 404 : 400;
       return res.status(status).json({ ok: false, error: result.error || 'No se pudo actualizar' });
