@@ -759,7 +759,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
                   <option value="otro">Otro</option>
                 </select>
               </div>
-              <div class="adm-field adm-form-col-full"><label>Notas iniciales / mensaje</label><textarea id="lead-man-mensaje" rows="3" placeholder="Referencia, dirección, origen de la llamada…"></textarea></div>
+              <div class="adm-field adm-form-col-full" id="lead-man-inmueble-wrap"><label>Inmueble / dirección</label><input type="text" id="lead-man-inmueble" placeholder="C/ Example 4, 08001 Barcelona"/></div>
+              <div class="adm-field adm-form-col-full"><label>Notas iniciales / mensaje</label><textarea id="lead-man-mensaje" rows="3" placeholder="Detalle del caso, origen de la llamada…"></textarea></div>
             </div>
             <div class="gap-row" style="margin-top:.75rem">
               <button type="button" class="adm-btn adm-btn-gold" onclick="saveManualLead()">Guardar lead</button>
@@ -4596,6 +4597,8 @@ function closeLeadForm() {
   if (tipo) tipo.value = 'valoracion';
   const proc = document.getElementById('lead-man-procedencia');
   if (proc) proc.value = '';
+  const inm = document.getElementById('lead-man-inmueble');
+  if (inm) inm.value = '';
 }
 window.closeLeadForm = closeLeadForm;
 
@@ -4605,13 +4608,18 @@ async function saveManualLead() {
   const email = document.getElementById('lead-man-email')?.value?.trim();
   const tipo = document.getElementById('lead-man-tipo')?.value || 'info';
   const procedencia = document.getElementById('lead-man-procedencia')?.value || '';
+  const inmueble_direccion = document.getElementById('lead-man-inmueble')?.value?.trim() || '';
   const mensaje = document.getElementById('lead-man-mensaje')?.value?.trim();
   if (!nombre || !telefono) {
     nhToast('Nombre y teléfono son obligatorios.', 'info');
     return;
   }
   try {
-    const json = await adminLeadApi('admin-lead-create', { nombre, telefono, email, tipo, mensaje, procedencia: procedencia || null });
+    const json = await adminLeadApi('admin-lead-create', {
+      nombre, telefono, email, tipo, mensaje,
+      procedencia: procedencia || null,
+      inmueble_direccion: inmueble_direccion || null,
+    });
     if (json.id && mensaje && window.nhSupabase) {
       const now = new Date().toISOString();
       const { error: segErr } = await window.nhSupabase.from('leads_seguimientos').insert({
@@ -4813,6 +4821,7 @@ function buildLeadModalContent(l) {
       ${l.updated_at && l.updated_at !== l.created_at ? `<dt>Última actualización</dt><dd>${dashEsc(leadFmtDateTime(l.updated_at))}</dd>` : ''}
       ${utm ? `<dt>UTM</dt><dd>${dashEsc(utm)}</dd>` : ''}
       ${l.procedencia ? `<dt>Procedencia</dt><dd>${dashEsc(procedenciaLabel(l.procedencia))}</dd>` : ''}
+      ${l.zona ? `<dt>Inmueble / dirección</dt><dd>${dashEsc(l.zona)}</dd>` : ''}
     </dl>
     <div class="dash-modal-block">
       <strong>Procedencia / plataforma</strong>
@@ -9570,12 +9579,15 @@ async function loadAlquilerAdmin() {
 
 async function loadAlquilerIntegral() {
   const tbl = document.getElementById('alq-integral-table');
-  if (tbl && !_alqPropData.length) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
-  if (!_alqPropData.length) {
-    await loadAlquilerAdmin();
-    return;
+  if (tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
+  try {
+    await fetchAdminLeads({ purge: false, limit: 200 }).catch(() => {});
+    await fetchAlquilerPropietarios();
+    renderAlquilerIntegralTable();
+  } catch (error) {
+    if (tbl) tbl.innerHTML = `<p class="alert-box alert-error">${escAlq(error.message)}</p>`;
+    nhToast('Error al cargar alquiler integral: ' + error.message, 'error');
   }
-  renderAlquilerIntegralTable();
 }
 
 function alqDlRow(label, val) {

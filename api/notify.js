@@ -795,6 +795,8 @@ async function handleAdminPropietarioAlquilerUpdate(req, res, body) {
       notas_propietario: body.notas_propietario,
       procedencia: body.procedencia,
       ultimo_contacto_at: body.ultimo_contacto_at,
+      inmueble_direccion: body.inmueble_direccion,
+      servicio: body.servicio,
     });
     if (!result.ok) {
       const status = result.error?.includes('no encontrado') ? 404 : 400;
@@ -836,6 +838,7 @@ async function handleAdminLeadCreate(req, res, body) {
       mensaje: body?.mensaje,
       tipo: body?.tipo,
       procedencia: body?.procedencia,
+      inmueble_direccion: body?.inmueble_direccion,
     });
     if (!result.ok) return res.status(400).json({ ok: false, error: result.error || 'No se pudo crear' });
     const row = await getLeadByIdServer(result.id);
