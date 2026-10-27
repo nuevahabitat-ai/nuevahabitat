@@ -90,6 +90,14 @@
       });
     });
   });
+
+  function nhGraciasGoogleAdsConversion() {
+    var pending = sessionStorage.getItem('nh_gads_lead_pending');
+    if (!pending) return;
+    window.nhTrackGoogleAdsLeadConversion?.({ leadId: pending });
+  }
+  document.addEventListener('nh:analytics-ready', nhGraciasGoogleAdsConversion);
+  if (window.__nhGaLoaded) nhGraciasGoogleAdsConversion();
 })();
 </script>
 </body>

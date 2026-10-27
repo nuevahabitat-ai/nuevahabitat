@@ -507,9 +507,16 @@ function faqHtml(faq) {
 function writeGaConfig() {
   const gaId = (process.env.GA_MEASUREMENT_ID || process.env.NH_GA_ID || '').trim() || 'G-XXXXXXXXXX';
   const contact = CONTACT_EMAIL;
+  const gadsId = (process.env.NH_GADS_ID || 'AW-18466330439').trim();
+  const gadsLeadSendTo =
+    (process.env.NH_GADS_LEAD_SEND_TO || 'AW-18466330439/tcMsCKb30asdEMeut-VE').trim();
   fs.writeFileSync(
     path.join(ROOT, 'js', 'ga-config.js'),
-    '/** Generado por scripts/build-landings.js — ID desde GA_MEASUREMENT_ID en Vercel */\nwindow.NH_GA_ID = ' + JSON.stringify(gaId) + ';\n'
+    '/** Generado por scripts/build-landings.js — ID desde GA_MEASUREMENT_ID en Vercel */\n'
+      + 'window.NH_GA_ID = ' + JSON.stringify(gaId) + ';\n'
+      + '/** Google Ads — seguimiento de conversiones (formulario leads) */\n'
+      + 'window.NH_GADS_ID = ' + JSON.stringify(gadsId) + ';\n'
+      + 'window.NH_GADS_LEAD_SEND_TO = ' + JSON.stringify(gadsLeadSendTo) + ';\n'
   );
   fs.writeFileSync(
     path.join(ROOT, 'js', 'site-config.js'),
