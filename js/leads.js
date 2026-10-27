@@ -148,6 +148,11 @@
       if (row.tipo === 'venta' && landingSlug) {
         window.nhSeo?.track('lead_valoracion', trackParams);
       }
+      if (opts.extra?.landing) {
+        sessionStorage.setItem('nh_gads_lead_pending', String(leadId));
+      } else {
+        window.nhTrackGoogleAdsLeadConversion?.({ leadId });
+      }
       return true;
     } catch (err) {
       console.error('nhSubmitLead', err);
