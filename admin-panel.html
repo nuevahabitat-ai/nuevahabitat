@@ -791,7 +791,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button class="adm-subtab" data-lf="estado" data-val="contactado">Contactados</button>
             <button class="adm-subtab" data-lf="estado" data-val="seguimiento" title="Pipeline en curso · mismos casos que Alquileres → Seguimientos">Seguimientos</button>
             <button class="adm-subtab" data-lf="estado" data-val="gestionado" title="En cartera activa (Administración / Integral) o estado gestionado">Gestionados</button>
-            <button class="adm-subtab" data-lf="estado" data-val="cualificado">Cualificados (compradores)</button>
+            <button type="button" class="adm-subtab" id="lead-tab-cualificado" data-lf="estado" data-val="cualificado" hidden>Cualificados (compradores)</button>
             <button class="adm-subtab" data-lf="estado" data-val="cerrado">Cerrados</button>
             <button class="adm-subtab" data-lf="estado" data-val="descartado">Descartados</button>
             <button class="adm-subtab" data-lf="alarm" data-val="1">⏰ Alarmas</button>
@@ -5384,6 +5384,23 @@ function renderLeadsCards(list) {
   }).join('')}</div>`;
 }
 
+function leadEstadoTabShowsCualificado() {
+  return _leadFilterSegment === 'comprador';
+}
+
+function updateLeadEstadoTabsVisibility() {
+  const cualTab = document.getElementById('lead-tab-cualificado');
+  if (cualTab) cualTab.hidden = !leadEstadoTabShowsCualificado();
+  if (!leadEstadoTabShowsCualificado() && _leadFilterEstado === 'cualificado') {
+    _leadFilterEstado = '';
+    document.querySelectorAll('[data-lf="estado"]').forEach((b) => {
+      b.classList.toggle('active', !(b.dataset.val || ''));
+    });
+    document.querySelectorAll('[data-lf="alarm"]').forEach((b) => b.classList.remove('active'));
+    _leadFilterAlarm = false;
+  }
+}
+
 function filterLeadsList() {
   return _leadsData.filter(l => {
     if (!isAdminLeadsListRow(l)) return false;
@@ -5415,6 +5432,7 @@ function renderLeadsCounts() {
 }
 
 function renderLeadsView() {
+  updateLeadEstadoTabsVisibility();
   const list = filterLeadsList();
   const tbl = document.getElementById('leads-table');
   if (!tbl) return;
@@ -5613,6 +5631,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('[data-lf="segment"]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       _leadFilterSegment = btn.dataset.val || '';
+      updateLeadEstadoTabsVisibility();
       renderLeadsView();
     });
   });
