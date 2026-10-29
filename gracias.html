@@ -55,6 +55,7 @@
 </div>
 <script src="js/site-config.js"></script>
 <script src="js/ga-config.js"></script>
+<script src="js/gtag-init.js"></script>
 <script src="js/seo.js"></script>
 <script src="js/main.js" defer></script>
 <script>
@@ -97,7 +98,7 @@
     window.nhTrackGoogleAdsLeadConversion?.({ leadId: pending });
   }
   document.addEventListener('nh:analytics-ready', nhGraciasGoogleAdsConversion);
-  if (window.__nhGaLoaded) nhGraciasGoogleAdsConversion();
+  if (window.__nhAnalyticsConsentGranted) nhGraciasGoogleAdsConversion();
 })();
 </script>
 </body>
