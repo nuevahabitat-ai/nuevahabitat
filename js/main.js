@@ -615,15 +615,12 @@
     banner.classList.add('hidden');
     banner.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('cookie-banner-open');
-    if (choice === 'all') window.nhLoadAnalytics && window.nhLoadAnalytics();
+    if (choice === 'all') window.nhGrantAnalyticsConsent && window.nhGrantAnalyticsConsent();
   }
 
   if (localStorage.getItem('nh_cookies')) {
     banner.classList.add('hidden');
     banner.setAttribute('aria-hidden', 'true');
-    if (localStorage.getItem('nh_cookies') === 'all') {
-      window.nhLoadAnalytics && window.nhLoadAnalytics();
-    }
     return;
   }
 
@@ -635,54 +632,6 @@
   document.getElementById('cookie-close')?.addEventListener('click', () => dismissBanner('necessary'));
 })();
 
-/* ── Google Analytics + Google Ads (solo con consentimiento) ── */
-window.nhTrackGoogleAdsLeadConversion = function (opts) {
-  const sendTo = window.NH_GADS_LEAD_SEND_TO;
-  if (!sendTo) return false;
-  const leadId = opts?.leadId != null ? String(opts.leadId) : '';
-  const dedupeKey = 'nh_gads_lead_' + (leadId || opts?.onceKey || '1');
-  if (sessionStorage.getItem(dedupeKey)) return true;
-
-  function fire() {
-    if (typeof window.gtag !== 'function') return false;
-    window.gtag('event', 'conversion', {
-      send_to: sendTo,
-      value: 1.0,
-      currency: 'EUR',
-    });
-    sessionStorage.setItem(dedupeKey, '1');
-    if (leadId && sessionStorage.getItem('nh_gads_lead_pending') === leadId) {
-      sessionStorage.removeItem('nh_gads_lead_pending');
-    }
-    return true;
-  }
-
-  if (fire()) return true;
-  document.addEventListener('nh:analytics-ready', () => fire(), { once: true });
-  return false;
-};
-
-window.nhLoadAnalytics = function () {
-  if (window.__nhGaLoaded) return;
-  const gaId = window.NH_GA_ID || 'G-XXXXXXXXXX';
-  const adsId = (window.NH_GADS_ID || '').trim();
-  const hasGa = gaId && gaId !== 'G-XXXXXXXXXX';
-  const hasAds = !!adsId;
-  if (!hasGa && !hasAds) return;
-  window.__nhGaLoaded = true;
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + (hasGa ? gaId : adsId);
-  document.head.appendChild(s);
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  window.gtag = gtag;
-  gtag('js', new Date());
-  if (hasGa) gtag('config', gaId, { anonymize_ip: true, send_page_view: true });
-  if (hasAds) gtag('config', adsId);
-  document.dispatchEvent(new CustomEvent('nh:analytics-ready'));
-};
-
 window.nhCookiePrefs = function (mode) {
   localStorage.setItem('nh_cookies', mode === 'all' ? 'all' : 'necessary');
   const banner = document.getElementById('cookie-banner');
@@ -691,7 +640,7 @@ window.nhCookiePrefs = function (mode) {
     banner.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('cookie-banner-open');
   }
-  if (mode === 'all') window.nhLoadAnalytics && window.nhLoadAnalytics();
+  if (mode === 'all') window.nhGrantAnalyticsConsent && window.nhGrantAnalyticsConsent();
   nhToast(mode === 'all'
     ? 'Preferencias guardadas: aceptadas todas las cookies.'
     : 'Preferencias guardadas: solo cookies necesarias.', 'success');

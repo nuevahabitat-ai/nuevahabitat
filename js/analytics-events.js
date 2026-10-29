@@ -60,6 +60,7 @@
           method: 'whatsapp',
           link_url: href,
         });
+        window.nhTrackGoogleAdsWhatsAppConversion?.({ onceKey: href });
         return;
       }
 

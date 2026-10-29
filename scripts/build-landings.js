@@ -510,6 +510,7 @@ function writeGaConfig() {
   const gadsId = (process.env.NH_GADS_ID || 'AW-18466330439').trim();
   const gadsLeadSendTo =
     (process.env.NH_GADS_LEAD_SEND_TO || 'AW-18466330439/tcMsCKb30asdEMeut-VE').trim();
+  const gadsWhatsAppSendTo = (process.env.NH_GADS_WHATSAPP_SEND_TO || '').trim();
   fs.writeFileSync(
     path.join(ROOT, 'js', 'ga-config.js'),
     '/** Generado por scripts/build-landings.js — ID desde GA_MEASUREMENT_ID en Vercel */\n'
@@ -517,6 +518,7 @@ function writeGaConfig() {
       + '/** Google Ads — seguimiento de conversiones (formulario leads) */\n'
       + 'window.NH_GADS_ID = ' + JSON.stringify(gadsId) + ';\n'
       + 'window.NH_GADS_LEAD_SEND_TO = ' + JSON.stringify(gadsLeadSendTo) + ';\n'
+      + 'window.NH_GADS_WHATSAPP_SEND_TO = ' + JSON.stringify(gadsWhatsAppSendTo) + ';\n'
   );
   fs.writeFileSync(
     path.join(ROOT, 'js', 'site-config.js'),
@@ -560,6 +562,7 @@ function footerAndScripts(L) {
 </div>
 <script src="js/site-config.js"></script>
 <script src="js/ga-config.js"></script>
+<script src="js/gtag-init.js"></script>
 <script src="js/landings.js"></script>
 <script src="js/landings-ui.js"></script>
 <script src="js/seo.js"></script>
