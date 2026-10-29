@@ -789,7 +789,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button class="adm-subtab active" data-lf="estado" data-val="">Todos</button>
             <button class="adm-subtab" data-lf="estado" data-val="nuevo">Nuevos</button>
             <button class="adm-subtab" data-lf="estado" data-val="contactado">Contactados</button>
-            <button class="adm-subtab" data-lf="estado" data-val="gestionado">Gestionados</button>
+            <button class="adm-subtab" data-lf="estado" data-val="seguimiento" title="Pipeline en curso · mismos casos que Alquileres → Seguimientos">Seguimientos</button>
+            <button class="adm-subtab" data-lf="estado" data-val="gestionado" title="En cartera activa (Administración / Integral) o estado gestionado">Gestionados</button>
             <button class="adm-subtab" data-lf="estado" data-val="cualificado">Cualificados (compradores)</button>
             <button class="adm-subtab" data-lf="estado" data-val="cerrado">Cerrados</button>
             <button class="adm-subtab" data-lf="estado" data-val="descartado">Descartados</button>
@@ -921,8 +922,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
 
         <!-- Filtros estado -->
         <div id="comp-alarm-banner" class="adm-alarm-banner" style="display:none;margin-bottom:.75rem">
-          <span>⏰</span>
-          <span id="comp-alarm-text"></span>
+          <div><strong>⏰ Alarmas de seguimiento</strong> — <span id="comp-alarm-text"></span></div>
+          <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="filterCompradores('alarmas')">Ver alarmas</button>
         </div>
 
         <div class="adm-subtabs" style="margin-bottom:.75rem">
@@ -1623,8 +1624,8 @@ input,select,textarea{font-family:'Inter',sans-serif}
 
         <div id="seg-particulares-block">
 
-        <div id="part-alarm-banner" class="adm-alarm-banner" style="display:none">
-          <div><strong>⏰ Alarmas de contacto</strong> — <span id="part-alarm-text"></span></div>
+        <div id="part-alarm-banner" class="adm-alarm-banner" style="display:none;margin-bottom:.75rem">
+          <div><strong>⏰ Alarmas de seguimiento</strong> — <span id="part-alarm-text"></span></div>
           <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="filterParticulares('alarmas')">Ver alarmas</button>
         </div>
 
@@ -1950,6 +1951,22 @@ input,select,textarea{font-family:'Inter',sans-serif}
           </div>
           <div class="dash-modal-body" id="captura-comp-body"></div>
           <div class="dash-modal-foot" id="captura-comp-foot"></div>
+        </div>
+      </div>
+
+      <!-- Modal plantillas email · Leads -->
+      <div id="lead-email-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="lead-email-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closeLeadEmailModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="lead-email-kicker">Email · Seguimiento</div>
+              <h3 id="lead-email-title">Plantillas email</h3>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closeLeadEmailModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body" id="lead-email-body"></div>
+          <div class="dash-modal-foot" id="lead-email-foot"></div>
         </div>
       </div>
 
@@ -4206,7 +4223,8 @@ function openDashModal(tipo, id){
     actions = `
       ${l.telefono ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="window.location.href='tel:${dashEsc(String(l.telefono).replace(/[^\d+]/g,''))}'">Llamar</button>
       <button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="dashWhatsAppLead('${l.id}')">WhatsApp</button>` : ''}
-      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}')">Reenviar email aviso</button>
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="openLeadEmailModal('${l.id}')">Email seguimiento</button>
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}')">Reenviar aviso interno</button>
       <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeDashModal(); switchSection('leads')">Editar en leads</button>
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeDashModal()">Cerrar</button>`;
   }
@@ -4477,6 +4495,59 @@ function isManualAdminLead(l) {
   return o === 'manual_admin' || o === 'manual_alquiler_admin' || o === 'manual_alquiler_integral';
 }
 
+function isManualAlquilerPipelineLead(l) {
+  const o = (l?.origen || '').trim();
+  return o === 'manual_alquiler_admin' || o === 'manual_alquiler_integral';
+}
+
+function isAlquilerLeadRow(l) {
+  const seg = leadSegment(l);
+  return seg === 'alquiler_admin' || seg === 'alquiler_integral';
+}
+
+function alqPropietarioByLead(l) {
+  const propId = leadPropietarioAlquilerId(l);
+  if (!propId) return null;
+  return (_alqPropData || []).find((x) => x.id === propId) || null;
+}
+
+/** Expediente en Administración / Integral con alta activa. */
+function alqPropietarioActivo(l) {
+  const propId = leadPropietarioAlquilerId(l);
+  if (!propId) return false;
+  const p = alqPropietarioByLead(l);
+  if (!p) return true;
+  return p.activo !== false && p.estado_gestion !== 'baja' && p.estado_gestion !== 'descartado';
+}
+
+/** Pipeline: seguimiento antes de cartera (Leads y Alquileres → Seguimientos). */
+function isLeadEnSeguimiento(l) {
+  if (!l || !isAdminLeadsListRow(l)) return false;
+  if (['descartado', 'cerrado'].includes(l.estado)) return false;
+  if (isAlquilerLeadRow(l)) {
+    if (alqPropietarioActivo(l)) return false;
+    if (isManualAlquilerPipelineLead(l) && !leadPropietarioAlquilerId(l)) return true;
+    if (isRealLeadUuid(l.id) && !leadPropietarioAlquilerId(l)) return true;
+    if (leadPropietarioAlquilerId(l) && !alqPropietarioActivo(l)) return true;
+    return false;
+  }
+  return l.estado === 'nuevo' || l.estado === 'contactado';
+}
+
+/** Cartera activa o venta/compra ya en fase gestionada. */
+function isLeadGestionadoActivo(l) {
+  if (!l || !isAdminLeadsListRow(l)) return false;
+  if (['descartado', 'cerrado'].includes(l.estado)) return false;
+  if (isAlquilerLeadRow(l)) return alqPropietarioActivo(l);
+  if (leadSegment(l) === 'comprador') return l.estado === 'cualificado';
+  return l.estado === 'gestionado';
+}
+
+function leadDisplayEstado(l) {
+  if (isAlquilerLeadRow(l) && alqPropietarioActivo(l)) return 'gestionado';
+  return l?.estado || 'nuevo';
+}
+
 const NH_PROCEDENCIA_OPTS = [
   { value: '', label: '— Sin etiquetar —' },
   { value: 'nuevahabitat', label: 'NuevaHabitat (web / panel)' },
@@ -4541,6 +4612,272 @@ async function resendLeadAdminEmail(leadId) {
   nhToast('Aviso reenviado a admin.nuevahabitat@gmail.com e info@nuevahabitat.com', 'success', 5000);
 }
 window.resendLeadAdminEmail = resendLeadAdminEmail;
+
+const LEAD_EMAIL_AGENT = 'Sebastián de Nueva Hábitat';
+
+const LEAD_EMAIL_TPL_BY_SEGMENT = {
+  vendedor: {
+    colaboracion_visitas: {
+      label: 'Comprador + visitas puntuales',
+      subject: 'Nueva Hábitat · Visita con un comprador interesado',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Hablamos hace un tiempo sobre el inmueble que tienes en venta y me gustaría saber si podemos hacer algunas visitas puntuales, ya que tengo un comprador al que le puede cuadrar muy bien. ¿Sería posible hacer una colaboración y llevarte a este cliente de manera puntual?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+    sigue_disponible: {
+      label: '¿Sigue disponible?',
+      subject: 'Nueva Hábitat · ¿Tu inmueble sigue en venta?',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Estuvimos comentando la situación de tu inmueble y me gustaría saber si aún sigue disponible, ya que tengo un cliente comprador que creo que le puede cuadrar muy bien y sería ideal poder hacer una visita puntual. ¿Sería posible?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+    valoracion_seguimiento: {
+      label: 'Retomar valoración / venta',
+      subject: 'Nueva Hábitat · Retomamos tu valoración',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Hace un tiempo solicitaste información sobre la venta o valoración de tu vivienda. Me gustaría retomar la conversación contigo y explicarte cómo trabajamos con precio fijo y compradores cualificados. ¿Te va bien una llamada breve esta semana?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+  },
+  comprador: {
+    seguimiento_busqueda: {
+      label: 'Seguimiento búsqueda',
+      subject: 'Nueva Hábitat · Tu búsqueda de vivienda',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Te escribo desde Nueva Hábitat para retomar tu búsqueda de vivienda y comentarte si tenemos inmuebles en cartera que encajen contigo. ¿Sigues buscando en la misma zona y presupuesto? Quedo atento a tu respuesta.
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+    propuesta_visita: {
+      label: 'Propuesta de visita',
+      subject: 'Nueva Hábitat · Visitas a inmuebles',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Me pongo en contacto contigo porque creemos que tenemos opciones que pueden encajar con lo que buscas. ¿Te gustaría que coordinemos algunas visitas puntuales esta semana?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+    hipoteca: {
+      label: 'Consulta hipoteca',
+      subject: 'Nueva Hábitat · Tu consulta de financiación',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Retomo tu consulta sobre financiación o hipoteca. Si quieres, revisamos juntos tu situación y las opciones para tu compra. ¿Cuándo te va bien que te llame?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+  },
+  alquiler_admin: {
+    seguimiento: {
+      label: 'Administración de alquiler',
+      subject: 'Nueva Hábitat · Administración de tu alquiler',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Te escribo respecto al servicio de administración de alquiler que comentamos. Si sigues interesado, te explico los siguientes pasos y resolvemos cualquier duda. ¿Te va bien que hablemos esta semana?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+    recordatorio: {
+      label: 'Recordatorio amable',
+      subject: 'Nueva Hábitat · Seguimiento alquiler',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Quería confirmar si deseas seguir adelante con la administración del alquiler de tu inmueble. Estoy a tu disposición para lo que necesites.
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+  },
+  alquiler_integral: {
+    seguimiento: {
+      label: 'Alquiler integral',
+      subject: 'Nueva Hábitat · Alquiler integral',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Retomo la conversación sobre el servicio de alquiler integral para tu vivienda. Podemos revisar condiciones y calendario cuando te venga bien. ¿Te encaja una llamada breve?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+    recordatorio: {
+      label: 'Recordatorio amable',
+      subject: 'Nueva Hábitat · Seguimiento alquiler integral',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Me gustaría saber si sigues interesado en el alquiler integral y resolver cualquier duda pendiente. Quedo atento a tu respuesta.
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+  },
+  otros: {
+    seguimiento: {
+      label: 'Seguimiento general',
+      subject: 'Nueva Hábitat · Seguimiento de tu consulta',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Te escribo para retomar la consulta que nos dejaste en la web. ¿En qué podemos ayudarte ahora?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+    consulta_recibida: {
+      label: 'Confirmación y próximos pasos',
+      subject: 'Nueva Hábitat · Hemos recibido tu mensaje',
+      body: `Hola, buenas, soy ${LEAD_EMAIL_AGENT}. Gracias por contactar con Nueva Hábitat. He revisado tu solicitud y me gustaría concretar contigo los siguientes pasos. ¿Te va bien que te llame en breve?
+
+Un saludo,
+${LEAD_EMAIL_AGENT}
+603 656 587 · info@nuevahabitat.com`,
+    },
+  },
+};
+
+let _leadEmailModalId = null;
+let _leadEmailSelectedKey = null;
+
+function leadHasRealEmail(l) {
+  const e = String(l?.email || '').trim();
+  return e.length > 3 && e.includes('@') && !e.toLowerCase().includes('@leads.nuevahabitat.local');
+}
+
+function leadEmailTemplateSegment(l) {
+  const seg = leadSegment(l);
+  if (LEAD_EMAIL_TPL_BY_SEGMENT[seg]) return seg;
+  return 'otros';
+}
+
+function getLeadEmailTemplatesForLead(l) {
+  return LEAD_EMAIL_TPL_BY_SEGMENT[leadEmailTemplateSegment(l)] || LEAD_EMAIL_TPL_BY_SEGMENT.otros;
+}
+
+function personalizeLeadEmailBody(body, l) {
+  let text = String(body || '');
+  const zona = String(l?.zona || '').trim();
+  const inmueblePhrase = zona ? `el inmueble en ${zona}` : 'el inmueble que tienes en venta';
+  text = text.replace(/\{\{inmueble\}\}/g, inmueblePhrase);
+  const first = String(l?.nombre || '').trim().split(/\s+/)[0];
+  if (first && !first.includes('@')) {
+    text = text.replace(/^Hola, buenas,/m, `Hola, buenas, ${first},`);
+  }
+  return text;
+}
+
+function previewLeadEmailTemplate(key, l) {
+  const set = getLeadEmailTemplatesForLead(l);
+  const tpl = set[key];
+  if (!tpl) return '';
+  return personalizeLeadEmailBody(tpl.body, l);
+}
+
+function renderLeadEmailModalBody() {
+  const l = findLeadById(_leadEmailModalId);
+  const body = document.getElementById('lead-email-body');
+  const foot = document.getElementById('lead-email-foot');
+  if (!l || !body || !foot) return;
+  const set = getLeadEmailTemplatesForLead(l);
+  const keys = Object.keys(set);
+  if (!_leadEmailSelectedKey || !set[_leadEmailSelectedKey]) _leadEmailSelectedKey = keys[0];
+  body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Elige una plantilla y envíala a <strong>${dashEsc(l.email || '')}</strong>. Remitente: Nueva Hábitat (noreply).</p><div class="part-tpl-pick-list">${keys.map((key) => {
+    const tpl = set[key];
+    const preview = previewLeadEmailTemplate(key, l);
+    const sel = _leadEmailSelectedKey === key;
+    return `<label class="part-tpl-pick-item${sel ? ' selected' : ''}" onclick="selectLeadEmailTemplateKey('${key}')"><div class="part-tpl-pick-head"><input type="radio" name="lead-email-pick" value="${key}" ${sel ? 'checked' : ''} onchange="selectLeadEmailTemplateKey('${key}')"/><strong>${dashEsc(tpl.label)}</strong></div><div class="part-tpl-pick-text">${dashEsc(preview)}</div></label>`;
+  }).join('')}</div>`;
+  foot.innerHTML = `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="sendSelectedLeadEmail()">Enviar email</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}'); nhToast('Aviso interno reenviado al equipo.', 'info', 4000);">Reenviar aviso interno</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeLeadEmailModal()">Cerrar</button>`;
+}
+
+function openLeadEmailModal(leadId) {
+  const l = findLeadById(leadId);
+  if (!l) { nhToast('Lead no encontrado', 'error'); return; }
+  if (!leadHasRealEmail(l)) {
+    nhToast('Este lead no tiene un email válido para enviar.', 'info', 5000);
+    return;
+  }
+  _leadEmailModalId = leadId;
+  const set = getLeadEmailTemplatesForLead(l);
+  const keys = Object.keys(set);
+  if (set.colaboracion_visitas) _leadEmailSelectedKey = 'colaboracion_visitas';
+  else if (l.tipo === 'hipoteca' && set.hipoteca) _leadEmailSelectedKey = 'hipoteca';
+  else _leadEmailSelectedKey = keys[0] || null;
+  document.getElementById('lead-email-kicker').textContent = leadCategoriaLabel(l);
+  document.getElementById('lead-email-title').textContent = l.nombre || 'Email de seguimiento';
+  renderLeadEmailModalBody();
+  const modal = document.getElementById('lead-email-modal');
+  modal.hidden = false;
+  modal.classList.add('open');
+}
+window.openLeadEmailModal = openLeadEmailModal;
+
+function closeLeadEmailModal() {
+  const modal = document.getElementById('lead-email-modal');
+  if (modal) { modal.classList.remove('open'); modal.hidden = true; }
+  _leadEmailModalId = null;
+}
+window.closeLeadEmailModal = closeLeadEmailModal;
+
+function selectLeadEmailTemplateKey(key) {
+  _leadEmailSelectedKey = key;
+  renderLeadEmailModalBody();
+}
+window.selectLeadEmailTemplateKey = selectLeadEmailTemplateKey;
+
+async function logLeadEmailSeguimiento(leadId, label) {
+  const l = findLeadById(leadId);
+  const ent = leadSeguimientoEntityId(l || { id: leadId });
+  if (!ent || ent.kind === 'alq') return;
+  const now = new Date().toISOString();
+  const comentario = `Email enviado: ${label}`;
+  await window.nhSupabase.from('leads_seguimientos').insert({ lead_id: ent.id, comentario });
+  const nuevoEstado = l?.estado === 'nuevo' ? 'contactado' : l?.estado;
+  try {
+    await adminLeadApi('admin-lead-update', { leadId: ent.id, estado: nuevoEstado, ultimo_contacto_at: now });
+  } catch (e) { console.warn('logLeadEmailSeguimiento', e); }
+  if (l) {
+    l.ultimo_contacto_at = now;
+    if (nuevoEstado) l.estado = nuevoEstado;
+  }
+  updateLeadAlarmUI();
+  renderLeadsView();
+  renderDashLeads(_dashCache.leads);
+}
+
+async function sendSelectedLeadEmail() {
+  const l = findLeadById(_leadEmailModalId);
+  if (!l || !_leadEmailSelectedKey) return;
+  const set = getLeadEmailTemplatesForLead(l);
+  const tpl = set[_leadEmailSelectedKey];
+  if (!tpl) return;
+  const subject = tpl.subject;
+  const bodyPlain = personalizeLeadEmailBody(tpl.body, l);
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (!session?.access_token) {
+    nhToast('Sesión no disponible', 'error');
+    return;
+  }
+  nhToast('Enviando email…', 'info', 2000);
+  const res = await fetch('/api/notify?__action=send-lead-followup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${session.access_token}`,
+    },
+    body: JSON.stringify({ leadId: l.id, subject, bodyPlain }),
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok || !json.ok) {
+    nhToast(json.error || 'No se pudo enviar el email', 'error', 7000);
+    return;
+  }
+  await logLeadEmailSeguimiento(l.id, tpl.label);
+  nhToast(`Email enviado a ${l.email}`, 'success', 5000);
+  closeLeadEmailModal();
+  if (document.getElementById('lead-seg-timeline')) loadLeadSeguimientos(l.id);
+}
+window.sendSelectedLeadEmail = sendSelectedLeadEmail;
 
 async function resendAllFormLeadEmails() {
   if (!confirm('¿Reenviar un email de aviso por cada lead de formulario a admin.nuevahabitat@gmail.com e info@nuevahabitat.com?')) return;
@@ -4648,17 +4985,64 @@ function leadOrigenLabel(origen) {
   return origen.replace(/_/g, ' ');
 }
 
-function leadUltimoContactoHtml(l) {
-  const alarm = typeof leadNeedsAlarm === 'function' && leadNeedsAlarm(l);
-  const days = typeof leadDaysWithoutFollowUp === 'function' ? leadDaysWithoutFollowUp(l) : null;
-  const daysLbl = days != null ? `${days} día${days === 1 ? '' : 's'} sin seguimiento` : 'Sin seguimiento registrado';
+function seguimientoDiasSinContacto(ultimoIso, createdIso) {
+  const anchor = ultimoIso ? new Date(ultimoIso) : (createdIso ? new Date(createdIso) : null);
+  if (!anchor || isNaN(anchor.getTime())) return null;
+  return Math.floor((Date.now() - anchor.getTime()) / 86400000);
+}
+
+function buildSeguimientoFollowUpHtml({ alarm, ultimoContactoAt, daysWithout, formatUltimo }) {
+  const daysLbl = daysWithout != null
+    ? `${daysWithout} día${daysWithout === 1 ? '' : 's'} sin seguimiento`
+    : 'Sin seguimiento registrado';
   const alarmHtml = alarm ? '<span class="adm-alarm-badge">⏰ Alarma</span><br/>' : '';
-  if (!l?.ultimo_contacto_at) {
+  if (!ultimoContactoAt) {
     return `${alarmHtml}<span class="text-muted" style="font-size:.75rem">${alarm ? `<span style="color:var(--orange)">${daysLbl}</span>` : 'Sin seguimiento'}</span>`;
   }
-  const t = leadFmtDateTime(l.ultimo_contacto_at);
+  const t = formatUltimo ? formatUltimo(ultimoContactoAt) : new Date(ultimoContactoAt).toLocaleString('es-ES');
   const extra = alarm ? `<br/><span style="color:var(--orange);font-size:.75rem">${daysLbl}</span>` : '';
-  return `${alarmHtml}<span class="text-muted" style="font-size:.75rem">Último contacto:<br/>${dashEsc(t)}${extra}</span>`;
+  return `${alarmHtml}<span class="text-muted" style="font-size:.75rem">Último contacto:<br/>${dashEsc(String(t))}${extra}</span>`;
+}
+
+function leadUltimoContactoHtml(l) {
+  const alarm = leadNeedsAlarm(l);
+  const days = leadDaysWithoutFollowUp(l);
+  return buildSeguimientoFollowUpHtml({
+    alarm,
+    ultimoContactoAt: l?.ultimo_contacto_at,
+    daysWithout: days,
+    formatUltimo: leadFmtDateTime,
+  });
+}
+
+function compDaysWithoutFollowUp(c) {
+  if (!c?.activo) return null;
+  return seguimientoDiasSinContacto(c.ultimo_contacto_at, c.created_at);
+}
+
+function partDaysWithoutFollowUp(p) {
+  if (!p?.activo || ['captado', 'descartado'].includes(p.estado)) return null;
+  return seguimientoDiasSinContacto(p.ultimo_contacto_at, p.created_at);
+}
+
+function compSeguimientoHtml(c) {
+  const alarm = compNeedsAlarm(c);
+  return buildSeguimientoFollowUpHtml({
+    alarm,
+    ultimoContactoAt: c?.ultimo_contacto_at,
+    daysWithout: compDaysWithoutFollowUp(c),
+    formatUltimo: (iso) => new Date(iso).toLocaleString('es-ES'),
+  });
+}
+
+function partSeguimientoHtml(p) {
+  const alarm = partNeedsAlarm(p);
+  return buildSeguimientoFollowUpHtml({
+    alarm,
+    ultimoContactoAt: p?.ultimo_contacto_at,
+    daysWithout: partDaysWithoutFollowUp(p),
+    formatUltimo: (iso) => new Date(iso).toLocaleString('es-ES'),
+  });
 }
 
 function openLeadForm() {
@@ -4865,10 +5249,11 @@ function leadFmtDateTime(iso) {
   return new Date(iso).toLocaleString('es-ES', { timeZone: 'Europe/Madrid', dateStyle: 'full', timeStyle: 'short' });
 }
 
-function leadEstadoBadge(est) {
+function leadEstadoBadge(est, l) {
+  const e = l ? leadDisplayEstado(l) : est;
   const colors = { nuevo:'badge-new', contactado:'', gestionado:'badge-new', cualificado:'badge-new', descartado:'', cerrado:'' };
   const labels = { gestionado:'gestionado', cualificado:'cualificado' };
-  return `<span class="badge ${colors[est]||''}">${labels[est] || est || 'nuevo'}</span>`;
+  return `<span class="badge ${colors[e]||''}">${labels[e] || e || 'nuevo'}</span>`;
 }
 
 function leadActionBtns(l, compact) {
@@ -4878,7 +5263,7 @@ function leadActionBtns(l, compact) {
   const propBtn = isPa
     ? `<button type="button" class="adm-btn adm-btn-gold${sm}" onclick="${stop}openAlqFromLead('${l.id}')" title="Abrir expediente alquiler">🏠</button>`
     : '';
-  const mailBtn = isPa ? '' : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}resendLeadAdminEmail('${l.id}')" title="Reenviar email aviso">✉</button>`;
+  const mailBtn = isPa || !leadHasRealEmail(l) ? '' : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadEmailModal('${l.id}')" title="Email de seguimiento">✉</button>`;
   return `<div class="gap-row lead-card-actions">
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadModal('${l.id}')" title="Ver ficha">👁</button>
     ${propBtn}
@@ -4965,7 +5350,7 @@ function renderLeadsTable(list, full) {
       <td><strong>${dashEsc(l.nombre||'–')}</strong><br/>${leadCategoriaBadgeHtml(l)}</td>
       <td>${dashEsc(l.email||'–')}<br/><a href="tel:${l.telefono||''}" style="font-size:.8rem" onclick="event.stopPropagation()">${dashEsc(l.telefono||'–')}</a></td>
       <td style="max-width:220px">${dashEsc((l.mensaje||'').slice(0, full ? 120 : 50))}</td>
-      <td>${leadEstadoBadge(l.estado)}</td>
+      <td>${leadEstadoBadge(l.estado, l)}</td>
       <td style="font-size:.78rem;white-space:nowrap">${dashEsc(fecha)}</td>
       ${full ? `<td onclick="event.stopPropagation()">
         ${leadUltimoContactoHtml(l)}
@@ -4987,7 +5372,7 @@ function renderLeadsCards(list) {
     return `<div class="lead-card${alarm ? ' vend-row-seguimiento' : ''}" role="button" tabindex="0" onclick="openLeadModal('${l.id}')">
       <div class="lead-card-head">
         <div><strong>${dashEsc(l.nombre||'–')}</strong><div style="margin-top:.25rem">${leadCategoriaBadgeHtml(l)}${alarm ? ' <span class="adm-alarm-badge">⏰</span>' : ''}</div><div class="text-muted" style="font-size:.75rem;margin-top:.25rem">${dashEsc(fecha)}</div></div>
-        ${leadEstadoBadge(l.estado)}
+        ${leadEstadoBadge(l.estado, l)}
       </div>
       <div style="font-size:.82rem"><a href="tel:${l.telefono}" onclick="event.stopPropagation()">${dashEsc(l.telefono||'')}</a> · ${dashEsc(l.email||'')}</div>
       <p style="font-size:.8rem;margin:.5rem 0;color:var(--text-muted)">${dashEsc((l.mensaje||'').slice(0,100))}</p>
@@ -5004,7 +5389,11 @@ function filterLeadsList() {
     if (!isAdminLeadsListRow(l)) return false;
     if (_leadFilterAlarm && !leadNeedsAlarm(l)) return false;
     if (!_leadFilterEstado && !_leadFilterAlarm && l.estado === 'descartado') return false;
-    if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
+    if (_leadFilterEstado === 'seguimiento') {
+      if (!isLeadEnSeguimiento(l)) return false;
+    } else if (_leadFilterEstado === 'gestionado') {
+      if (!isLeadGestionadoActivo(l)) return false;
+    } else if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
     if (_leadFilterTipo && l.tipo !== _leadFilterTipo) return false;
     if (_leadFilterSegment && leadSegment(l) !== _leadFilterSegment) return false;
     if (_leadFilterCanal === 'registro_panel' && !leadEsRegistroPanel(l)) return false;
@@ -5036,6 +5425,9 @@ function renderLeadsView() {
 
 async function loadLeads(){
   try {
+    if (!_alqPropData.length) {
+      try { await fetchAlquilerPropietarios(); } catch (_) { /* gestionados / seguimientos alquiler */ }
+    }
     const payload = await fetchAdminLeads({ purge: false, limit: 300 });
     _leadsData = payload.data || [];
   } catch (err) {
@@ -5048,6 +5440,7 @@ async function loadLeads(){
   updateLeadAlarmUI();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
+  renderAlqSegGrids();
 }
 
 async function setLeadEstado(id, estado) {
@@ -5076,11 +5469,19 @@ async function setLeadEstado(id, estado) {
     }
     try {
       await adminLeadApi('admin-propietario-alquiler-update', patch);
+      if (isRealLeadUuid(id)) {
+        const leadPatch = { leadId: id, estado };
+        if (leadEstadoUpdatesContact(estado)) leadPatch.ultimo_contacto_at = new Date().toISOString();
+        await adminLeadApi('admin-lead-update', leadPatch);
+      }
     } catch (err) {
       window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
       return;
     }
-    if (l) l.estado = estado;
+    if (l) {
+      l.estado = estado;
+      if (leadEstadoUpdatesContact(estado)) l.ultimo_contacto_at = new Date().toISOString();
+    }
     const idx = _alqPropData.findIndex((x) => x.id === propId);
     if (idx >= 0 && patch.estado_gestion) _alqPropData[idx].estado_gestion = patch.estado_gestion;
     if (idx >= 0 && patch.activo != null) _alqPropData[idx].activo = patch.activo;
@@ -5096,22 +5497,43 @@ async function setLeadEstado(id, estado) {
   try {
     const patch = { leadId: id, estado };
     if (leadEstadoUpdatesContact(estado)) patch.ultimo_contacto_at = new Date().toISOString();
-    await adminLeadApi('admin-lead-update', patch);
+    const json = await adminLeadApi('admin-lead-update', patch);
+    const apiRow = json?.row;
+    const leadRow = _leadsData.find(x => x.id === id);
+    if (leadRow) {
+      leadRow.estado = apiRow?.estado ?? estado;
+      if (leadEstadoUpdatesContact(estado)) {
+        leadRow.ultimo_contacto_at = apiRow?.ultimo_contacto_at || patch.ultimo_contacto_at;
+      }
+      if (apiRow?.propietario_alquiler_id) leadRow.propietario_alquiler_id = apiRow.propietario_alquiler_id;
+    }
+    if (estado === 'gestionado' && l && isManualAlquilerPipelineLead(l)) {
+      try {
+        await fetchAlquilerPropietarios();
+        renderAlqSegGrids();
+        if (typeof renderAlquilerPropTable === 'function') renderAlquilerPropTable(_alqListMode);
+      } catch (refreshErr) {
+        console.warn('setLeadEstado refresh alquiler', refreshErr);
+      }
+      window.nhToast && nhToast(
+        apiRow?.propietario_alquiler_id
+          ? 'Gestionado: expediente visible en Alquileres → Administración'
+          : 'Estado gestionado (revisa expediente en Administración)',
+        'success',
+        4500
+      );
+    } else {
+      window.nhToast && nhToast('Estado actualizado: ' + estado, 'success', 2500);
+    }
   } catch (err) {
     window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
     return;
-  }
-  const leadRow = _leadsData.find(x => x.id === id);
-  if (leadRow) {
-    leadRow.estado = estado;
-    if (leadEstadoUpdatesContact(estado)) leadRow.ultimo_contacto_at = new Date().toISOString();
   }
   _dashCache.leads = _leadsData.slice(0, 6);
   updateNavLeadsBadge(_leadsData);
   updateLeadAlarmUI();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
-  window.nhToast && nhToast('Estado actualizado: ' + estado, 'success', 2500);
 }
 window.setLeadEstado = setLeadEstado;
 
@@ -5880,10 +6302,9 @@ function renderCompradores(){
   grid.innerHTML = visible.map(c=>{
     const matchN = countMatchesForComprador(c);
     const alarm = compNeedsAlarm(c);
-    const contact = getCompradorContactState(c);
     const notasPreview = compNotasPreview(c.notas);
     return `
-    <div class="pub-card pub-card-clickable" onclick="openCompCardModal('${c.id}')">
+    <div class="pub-card pub-card-clickable${alarm ? ' vend-row-seguimiento' : ''}" onclick="openCompCardModal('${c.id}')">
       <div class="pub-body pub-body-clickzone" style="padding-top:.9rem">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem;flex-wrap:wrap;gap:.35rem">
           <div class="pub-ref">COMPRADOR</div>
@@ -5912,7 +6333,7 @@ function renderCompradores(){
           ${c.email?`<span>✉ ${dashEsc(c.email)}</span>`:''}
         </div>
         ${notasPreview || c.created_at ? `<div class="comp-notas-preview" title="Ver historial completo">${notasPreview ? dashEsc(notasPreview) : ''}${c.created_at ? `${notasPreview ? '<br>' : ''}${admAltaWhenHtml(c.created_at, { notas: c.notas })}` : ''}</div>` : ''}
-        ${contact.ultimo ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">Último contacto: ${contact.ultimo.toLocaleString('es-ES')}${contact.proxima ? ` · Alarma: ${contact.proxima.toLocaleDateString('es-ES')}` : ''}</div>` : `<div style="font-size:.68rem;color:var(--orange);margin-top:.35rem">Sin contacto registrado</div>`}
+        <div style="margin-top:.35rem">${compSeguimientoHtml(c)}</div>
         <div class="pub-quick-actions" onclick="event.stopPropagation()">
           ${c.telefono ? `<button type="button" class="pub-btn-wa" onclick="admWhatsAppComprador('${c.id}')">WhatsApp</button><button type="button" class="pub-btn-call" onclick="admCallComprador('${c.id}')">Llamar</button>` : ''}
           ${c.telefono && matchN ? `<button type="button" class="pub-btn-wa" style="background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4)" onclick="openCompMatchModal('${c.id}')">WhatsApp + inmuebles</button>` : ''}
@@ -7804,7 +8225,6 @@ function renderCompNotasTimeline(notas){
 
 function buildCompCardDetailHtml(c){
   const alarm = compNeedsAlarm(c);
-  const contact = getCompradorContactState(c);
   const matchN = countMatchesForComprador(c);
   const fields = [
     ['Presupuesto máx.', c.presupuesto_max != null ? Number(c.presupuesto_max).toLocaleString('es-ES') + ' €' : '—'],
@@ -7820,13 +8240,17 @@ function buildCompCardDetailHtml(c){
     ['Email', c.email || '—'],
     ['Estado', c.activo ? 'Activo' : 'Inactivo'],
   ];
+  const days = compDaysWithoutFollowUp(c);
   return `
     <div style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem">
-      ${alarm ? '<span class="adm-alarm-badge">⏰ Alarma contacto</span> · ' : ''}
-      ${matchN ? `${matchN} inmueble${matchN===1?'':'s'} compatible${matchN===1?'':'s'} · ` : ''}
-      ${contact.ultimo ? 'Último contacto: ' + contact.ultimo.toLocaleString('es-ES') : '<span style="color:var(--orange)">Sin contacto registrado</span>'}
-      ${contact.proxima ? ' · Próxima alarma: ' + contact.proxima.toLocaleString('es-ES') : ''}
-      ${c.created_at ? '<br>' + admAltaWhenText(c.created_at, { label: 'Alta' }) : ''}
+      ${buildSeguimientoFollowUpHtml({
+        alarm,
+        ultimoContactoAt: c.ultimo_contacto_at,
+        daysWithout: days,
+        formatUltimo: (iso) => new Date(iso).toLocaleString('es-ES'),
+      })}
+      ${matchN ? `<div style="margin-top:.35rem">${matchN} inmueble${matchN===1?'':'s'} compatible${matchN===1?'':'s'}</div>` : ''}
+      ${c.created_at ? '<div style="margin-top:.35rem">' + admAltaWhenText(c.created_at, { label: 'Alta' }) + '</div>' : ''}
     </div>
     <div class="part-card-detail-grid">${fields.map(([k,v]) => `<div><span>${k}</span><strong>${dashEsc(String(v))}</strong></div>`).join('')}</div>
     <div class="pub-quick-actions" style="margin:.75rem 0" onclick="event.stopPropagation()">
@@ -7918,7 +8342,7 @@ function updatePartAlarmUI(){
   if(banner && text){
     if(alarms.length && getPanelAlarmConfig().partAlarmsEnabled){
       banner.style.display = 'flex';
-      text.textContent = `${alarms.length} particular(es) sin contacto en los últimos ${days} días.`;
+      text.textContent = `${alarms.length} particular(es) con más de ${days} día(s) sin seguimiento registrado.`;
     } else {
       banner.style.display = 'none';
     }
@@ -7942,7 +8366,7 @@ function updateCompAlarmUI(){
   if(banner && text){
     if(alarms.length && getPanelAlarmConfig().compAlarmsEnabled){
       banner.style.display = 'flex';
-      text.textContent = `${alarms.length} comprador(es) sin contacto en los últimos ${days} días.`;
+      text.textContent = `${alarms.length} comprador(es) con más de ${days} día(s) sin seguimiento registrado.`;
     } else {
       banner.style.display = 'none';
     }
@@ -8418,14 +8842,11 @@ async function openPartDetail(id){
   document.getElementById('part-detail-wrap').style.display = 'block';
   document.getElementById('part-detail-id').value = id;
   document.getElementById('part-detail-title').textContent = p.titulo || p.direccion || 'Particular';
-  const alarm = partNeedsAlarm(p);
   document.getElementById('part-detail-summary').innerHTML = `
     ${PART_FUENTES[p.fuente]||p.fuente} · ${PART_ESTADOS[p.estado]||p.estado}
     ${p.precio ? ' · '+Number(p.precio).toLocaleString('es-ES')+' €' : ''}
-    ${alarm ? ' · <span class="adm-alarm-badge">⏰ Alarma contacto</span>' : ''}
     ${p.created_at ? '<br>'+admAltaWhenText(p.created_at, { label: 'Importado' }) : ''}
-    ${p.ultimo_contacto_at ? '<br>Último contacto: '+new Date(p.ultimo_contacto_at).toLocaleString('es-ES') : '<br>Sin contacto registrado'}
-    ${p.proxima_alarma_at ? ' · Próxima alarma: '+new Date(p.proxima_alarma_at).toLocaleString('es-ES') : ''}
+    <div style="margin-top:.35rem">${partSeguimientoHtml(p)}</div>
     ${p.url ? '<br><a href="'+p.url+'" target="_blank" rel="noopener" style="color:var(--gold)">Ver anuncio original</a>' : ''}`;
   document.getElementById('part-detail-actions').innerHTML = `
     ${partWaButtonsHtml(p)}
@@ -8460,10 +8881,8 @@ function buildPartCardDetailHtml(p){
   return `
     <div style="font-size:.82rem;color:var(--muted);margin-bottom:.75rem">
       ${PART_FUENTES[p.fuente]||p.fuente} · ${PART_ESTADOS[p.estado]||p.estado}
-      ${alarm ? ' · <span class="adm-alarm-badge">⏰ Alarma contacto</span>' : ''}
-      ${p.ultimo_contacto_at ? '<br>Último contacto: '+new Date(p.ultimo_contacto_at).toLocaleString('es-ES') : '<br>Sin contacto registrado'}
-      ${p.proxima_alarma_at ? ' · Próxima alarma: '+new Date(p.proxima_alarma_at).toLocaleString('es-ES') : ''}
-      ${p.url ? '<br><a href="'+dashEsc(p.url)+'" target="_blank" rel="noopener" style="color:var(--gold)">Ver anuncio original (Kelify/portal)</a>' : ''}
+      <div style="margin-top:.35rem">${partSeguimientoHtml(p)}</div>
+      ${p.url ? '<div style="margin-top:.35rem"><a href="'+dashEsc(p.url)+'" target="_blank" rel="noopener" style="color:var(--gold)">Ver anuncio original (Kelify/portal)</a></div>' : ''}
     </div>
     <div class="part-card-detail-grid">${fields.map(([k,v]) => `<div><span>${k}</span><strong>${dashEsc(String(v))}</strong></div>`).join('')}</div>
     ${p.descripcion ? `<div style="font-size:.78rem;color:var(--muted);margin:.5rem 0;padding:.65rem;background:var(--surface2);border-radius:6px;line-height:1.5">${dashEsc(p.descripcion)}</div>` : ''}
@@ -8616,7 +9035,7 @@ function renderParticulares(){
   grid.innerHTML = visible.map(p => {
     const alarm = partNeedsAlarm(p);
     return `
-    <div class="pub-card pub-card-clickable" onclick="openPartCardModal('${p.id}')">
+    <div class="pub-card pub-card-clickable${alarm ? ' vend-row-seguimiento' : ''}" onclick="openPartCardModal('${p.id}')">
       <div class="pub-body pub-body-clickzone" style="padding-top:.9rem">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.35rem;margin-bottom:.4rem">
           <div class="pub-ref">${PART_FUENTES[p.fuente]||p.fuente}</div>
@@ -8638,7 +9057,7 @@ function renderParticulares(){
           ${p.telefono ? `<span>📞 ${p.telefono}</span>` : ''}
         </div>
         ${p.created_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">${admAltaWhenHtml(p.created_at, { label: 'Importado' })}</div>` : ''}
-        ${p.ultimo_contacto_at ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.35rem">Último contacto: ${new Date(p.ultimo_contacto_at).toLocaleString('es-ES')}</div>` : `<div style="font-size:.68rem;color:var(--orange);margin-top:.35rem">Sin contacto registrado</div>`}
+        <div style="margin-top:.35rem">${partSeguimientoHtml(p)}</div>
         <div class="pub-quick-actions" onclick="event.stopPropagation()">
           ${partWaButtonsHtml(p)}
         </div>
@@ -9525,10 +9944,10 @@ function setAlqSegStandaloneMode(mode, render = true) {
 }
 window.setAlqSegStandaloneMode = setAlqSegStandaloneMode;
 
-/** Lead alquiler en pipeline: aún sin expediente en propietarios_alquiler. */
+/** Lead alquiler en pipeline (misma lógica que Leads → Seguimientos). */
 function isAlqSegPipelineLead(l, mode) {
   if (!l || String(l.id).startsWith('pa:')) return false;
-  if (l.propietario_alquiler_id) return false;
+  if (!isLeadEnSeguimiento(l)) return false;
   const seg = leadSegment(l);
   const want = mode === 'integral' ? 'alquiler_integral' : 'alquiler_admin';
   return seg === want;

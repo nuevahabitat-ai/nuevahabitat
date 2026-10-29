@@ -643,6 +643,36 @@ function tplHipoteca({ nombre, cuota, prestamo, anos, tasa }) {
   };
 }
 
+function escapeHtmlText(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function tplLeadFollowup({ subject, bodyPlain }) {
+  const paragraphs = String(bodyPlain || '')
+    .split(/\n\n+/)
+    .map((block) => {
+      const inner = escapeHtmlText(block).replace(/\n/g, '<br/>');
+      return `<p style="font-size:.9rem;color:#555;line-height:1.65;margin:0 0 14px">${inner}</p>`;
+    })
+    .join('');
+  return {
+    subject: String(subject || 'Nueva Hábitat · Seguimiento').slice(0, 200),
+    html: HEAD + `<div class="body">
+      <div class="tag">Seguimiento · Nueva Hábitat</div>
+      ${paragraphs}
+      <div class="btns">
+        <a href="https://wa.me/34603656587" class="btn btn-wa">WhatsApp</a>
+        <a href="mailto:${CONTACT_EMAIL}" class="btn btn-gold">Responder por email</a>
+      </div>
+    </div>` + FOOTER,
+    reply_to: CONTACT_EMAIL,
+  };
+}
+
 const PANEL_ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'admin.nuevahabitat@gmail.com').trim().toLowerCase();
 
 async function verifyPanelAdmin(req) {
@@ -946,6 +976,49 @@ async function handleResendLeadAdmin(req, res, body) {
   });
 }
 
+async function handleSendLeadFollowup(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const leadId = body?.leadId || body?.id;
+  if (!leadId) return res.status(400).json({ ok: false, error: 'leadId requerido' });
+  const lead = await getLeadByIdServer(leadId);
+  if (!lead) return res.status(404).json({ ok: false, error: 'Lead no encontrado' });
+  const to = String(lead.email || '').trim();
+  if (!to || !to.includes('@') || to.toLowerCase().includes('@leads.nuevahabitat.local')) {
+    return res.status(400).json({ ok: false, error: 'El lead no tiene un email válido' });
+  }
+  const subject = String(body?.subject || '').trim();
+  const bodyPlain = String(body?.bodyPlain || '').trim();
+  if (!subject || !bodyPlain) {
+    return res.status(400).json({ ok: false, error: 'Asunto y cuerpo son obligatorios' });
+  }
+  if (bodyPlain.length > 12000) {
+    return res.status(400).json({ ok: false, error: 'El mensaje es demasiado largo' });
+  }
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    return res.status(503).json({ ok: false, error: 'RESEND_API_KEY no configurada' });
+  }
+  const tpl = tplLeadFollowup({ subject, bodyPlain });
+  const r = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from: FROM_NOREPLY,
+      to: [to],
+      subject: tpl.subject,
+      html: tpl.html,
+      reply_to: tpl.reply_to,
+    }),
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    console.error('send-lead-followup', r.status, data);
+    return res.status(502).json({ ok: false, error: data?.message || data?.error || 'No se pudo enviar' });
+  }
+  return res.status(200).json({ ok: true, emailSent: true, resendId: data?.id, to });
+}
+
 async function handleResendAllFormLeadsAdmin(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1062,6 +1135,7 @@ export default async function handler(req, res) {
   if (action === 'admin-propietario-alquiler-delete') return handleAdminPropietarioAlquilerDelete(req, res, body);
   if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
+  if (action === 'send-lead-followup') return handleSendLeadFollowup(req, res, body);
   if (action === 'resend-all-form-leads') return handleResendAllFormLeadsAdmin(req, res, body);
   if (action === 'account') return handleAccount(req, res, body);
 
