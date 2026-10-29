@@ -528,6 +528,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3 3 0 11-6 0"/></svg>
         Nuevos leads
         <span class="nav-alarm-dot" id="nav-leads-badge" style="display:none">0</span>
+        <span class="nav-alarm-dot" id="nav-leads-alarm-badge" style="display:none;background:#f97316" title="Leads sin seguimiento">0</span>
       </div>
       <div class="adm-nav-item" data-sec="compradores">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6M17 13l1.5 6M9 19a1 1 0 100 2 1 1 0 000-2zm8 0a1 1 0 100 2 1 1 0 000-2z"/></svg>
@@ -780,13 +781,19 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button class="adm-subtab" data-lf="canal" data-val="formulario">Solo formulario web</button>
             <button class="adm-subtab" data-lf="canal" data-val="registro_panel">Solo registro panel</button>
           </div>
+          <div id="lead-alarm-banner" class="adm-alarm-banner" style="display:none;margin-bottom:.75rem">
+            <div><strong>⏰ Alarmas de seguimiento</strong> — <span id="lead-alarm-text"></span></div>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="filterLeadsAlarmas()">Ver alarmas</button>
+          </div>
           <div class="adm-subtabs" style="margin-bottom:1rem;flex-wrap:wrap">
             <button class="adm-subtab active" data-lf="estado" data-val="">Todos</button>
             <button class="adm-subtab" data-lf="estado" data-val="nuevo">Nuevos</button>
             <button class="adm-subtab" data-lf="estado" data-val="contactado">Contactados</button>
-            <button class="adm-subtab" data-lf="estado" data-val="cualificado">Cualificados</button>
+            <button class="adm-subtab" data-lf="estado" data-val="gestionado">Gestionados</button>
+            <button class="adm-subtab" data-lf="estado" data-val="cualificado">Cualificados (compradores)</button>
             <button class="adm-subtab" data-lf="estado" data-val="cerrado">Cerrados</button>
             <button class="adm-subtab" data-lf="estado" data-val="descartado">Descartados</button>
+            <button class="adm-subtab" data-lf="alarm" data-val="1">⏰ Alarmas</button>
           </div>
           <div class="gap-row" style="margin-bottom:1rem;flex-wrap:wrap">
             <select id="lead-filter-tipo" class="adm-field" style="padding:.5rem .75rem;max-width:180px">
@@ -2041,9 +2048,16 @@ input,select,textarea{font-family:'Inter',sans-serif}
         <div class="adm-card" style="max-width:560px">
           <div class="adm-card-head"><h3>Alarmas de contacto</h3></div>
           <div style="padding:0 1rem 1rem">
-            <p class="text-muted" style="font-size:.78rem;margin-bottom:1rem">Define cuántos días deben pasar sin contacto antes de que aparezca una alarma en Seguimientos y Compradores.</p>
+            <p class="text-muted" style="font-size:.78rem;margin-bottom:1rem">Define cuántos días deben pasar sin contacto antes de que aparezca una alarma en Leads, Seguimientos y Compradores.</p>
             <div class="adm-form-grid">
               <div class="adm-field adm-form-col-full">
+                <label class="adm-field-check"><input type="checkbox" id="cfg-lead-alarms-enabled" checked/> Alarmas en leads (Nuevos leads)</label>
+              </div>
+              <div class="adm-field">
+                <label for="cfg-lead-alarm-days">Días sin seguimiento · leads</label>
+                <input type="number" id="cfg-lead-alarm-days" min="1" max="90" value="7"/>
+              </div>
+              <div class="adm-field adm-form-col-full" style="margin-top:.5rem">
                 <label class="adm-field-check"><input type="checkbox" id="cfg-part-alarms-enabled" checked/> Alarmas en seguimientos (particulares)</label>
               </div>
               <div class="adm-field">
@@ -2621,7 +2635,15 @@ window._adminRefreshLeadsFromPoll = function (data) {
   if (document.querySelector('.adm-nav-item.active[data-sec="leads"]')) {
     renderLeadsView();
   }
+  updateLeadAlarmUI(_leadsData);
 };
+
+function filterLeadsAlarmas() {
+  switchSection('leads');
+  const btn = document.querySelector('[data-lf="alarm"]');
+  if (btn) btn.click();
+}
+window.filterLeadsAlarmas = filterLeadsAlarmas;
 
 async function initAdmin() {
   if (_adminReady) return;
@@ -4370,12 +4392,14 @@ async function loadDashboard(force){
     _dashCache.particulares = partsRes.data || [];
 
     const now = Date.now();
+    const leadAlarms = (leadsList || []).filter(l => leadNeedsAlarm(l)).length;
     const partAlarms = (_dashCache.particulares || []).filter(p => partNeedsAlarm(p)).length;
     const compAlarms = (_dashCache.compradores || []).filter(c => compNeedsAlarm(c)).length;
-    const alarmas = partAlarms + compAlarms;
+    const alarmas = leadAlarms + partAlarms + compAlarms;
     document.getElementById('st-alarmas').textContent = alarmas;
     const partHint = document.getElementById('st-part-hint');
-    if(partHint) partHint.textContent = alarmas ? `${partAlarms} seg. · ${compAlarms} comp.` : 'En captación';
+    if(partHint) partHint.textContent = alarmas ? `${leadAlarms} leads · ${partAlarms} seg. · ${compAlarms} comp.` : 'En captación';
+    updateLeadAlarmUI(leadsList);
 
     renderDashInmuebles(_dashCache.inmuebles);
     renderDashLeads(_dashCache.leads);
@@ -4401,12 +4425,29 @@ window.dashCallComprador = dashCallComprador;
 window.dashWhatsAppComprador = dashWhatsAppComprador;
 window.dashDeleteComprador = dashDeleteComprador;
 
-const LEAD_ESTADOS = ['nuevo','contactado','cualificado','descartado','cerrado'];
+const LEAD_ESTADOS = ['nuevo','contactado','gestionado','cualificado','descartado','cerrado'];
+
+function leadAllowsCualificado(l) {
+  return leadSegment(l) === 'comprador';
+}
+
+function leadEstadoOptions(l) {
+  const opts = ['nuevo', 'contactado'];
+  if (leadAllowsCualificado(l)) opts.push('cualificado');
+  else opts.push('gestionado');
+  opts.push('cerrado', 'descartado');
+  return opts;
+}
+
+function leadEstadoUpdatesContact(estado) {
+  return estado === 'contactado' || estado === 'cualificado' || estado === 'gestionado';
+}
 let _leadsData = [];
 let _leadFilterEstado = '';
 let _leadFilterTipo = '';
 let _leadFilterSegment = '';
 let _leadFilterCanal = '';
+let _leadFilterAlarm = false;
 
 function findLeadById(id) {
   return _leadsData.find(x => x.id === id) || _dashCache.leads.find(x => x.id === id);
@@ -4608,9 +4649,16 @@ function leadOrigenLabel(origen) {
 }
 
 function leadUltimoContactoHtml(l) {
-  if (!l?.ultimo_contacto_at) return '<span class="text-muted" style="font-size:.75rem">Sin seguimiento</span>';
+  const alarm = typeof leadNeedsAlarm === 'function' && leadNeedsAlarm(l);
+  const days = typeof leadDaysWithoutFollowUp === 'function' ? leadDaysWithoutFollowUp(l) : null;
+  const daysLbl = days != null ? `${days} día${days === 1 ? '' : 's'} sin seguimiento` : 'Sin seguimiento registrado';
+  const alarmHtml = alarm ? '<span class="adm-alarm-badge">⏰ Alarma</span><br/>' : '';
+  if (!l?.ultimo_contacto_at) {
+    return `${alarmHtml}<span class="text-muted" style="font-size:.75rem">${alarm ? `<span style="color:var(--orange)">${daysLbl}</span>` : 'Sin seguimiento'}</span>`;
+  }
   const t = leadFmtDateTime(l.ultimo_contacto_at);
-  return `<span class="text-muted" style="font-size:.75rem">Último contacto:<br/>${dashEsc(t)}</span>`;
+  const extra = alarm ? `<br/><span style="color:var(--orange);font-size:.75rem">${daysLbl}</span>` : '';
+  return `${alarmHtml}<span class="text-muted" style="font-size:.75rem">Último contacto:<br/>${dashEsc(t)}${extra}</span>`;
 }
 
 function openLeadForm() {
@@ -4754,6 +4802,7 @@ async function saveAlqPropSeguimiento(propId, opts = {}) {
   const alqBox = document.getElementById('alq-seg-timeline');
   if (alqBox) await loadAlqPropSeguimientos(propId, alqBox);
   renderAlqSegGrids();
+  updateLeadAlarmUI();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
   if (opts.leadId) openLeadModal(opts.leadId);
@@ -4804,6 +4853,7 @@ async function saveLeadSeguimiento(leadId) {
   if (ta) ta.value = '';
   nhToast('Seguimiento registrado.', 'success');
   await loadLeadSeguimientos(leadId);
+  updateLeadAlarmUI();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
   openLeadModal(leadId);
@@ -4816,8 +4866,9 @@ function leadFmtDateTime(iso) {
 }
 
 function leadEstadoBadge(est) {
-  const colors = { nuevo:'badge-new', contactado:'', cualificado:'badge-new', descartado:'', cerrado:'' };
-  return `<span class="badge ${colors[est]||''}">${est||'nuevo'}</span>`;
+  const colors = { nuevo:'badge-new', contactado:'', gestionado:'badge-new', cualificado:'badge-new', descartado:'', cerrado:'' };
+  const labels = { gestionado:'gestionado', cualificado:'cualificado' };
+  return `<span class="badge ${colors[est]||''}">${labels[est] || est || 'nuevo'}</span>`;
 }
 
 function leadActionBtns(l, compact) {
@@ -4833,7 +4884,9 @@ function leadActionBtns(l, compact) {
     ${propBtn}
     ${mailBtn}
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','contactado')" title="Contactado">📞</button>
-    <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','cualificado')" title="Cualificado">✓</button>
+    ${leadAllowsCualificado(l)
+      ? `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','cualificado')" title="Cualificado (comprador)">✓</button>`
+      : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','gestionado')" title="Gestionado">✓</button>`}
     <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}setLeadEstado('${l.id}','descartado')" title="Descartar (oculto del listado por defecto)">✕</button>
     <button type="button" class="adm-btn adm-btn-gold${sm}" onclick="${stop}setLeadEstado('${l.id}','cerrado')" title="Cerrado">🏁</button>
     <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}deleteLead('${l.id}')" title="Eliminar definitivamente">🗑</button>
@@ -4866,11 +4919,12 @@ function buildLeadModalContent(l) {
     </div>
     ${l.mensaje ? `<div class="dash-modal-block"><strong>Mensaje / datos enviados</strong><div style="white-space:pre-wrap;margin-top:.35rem">${dashEsc(l.mensaje)}</div></div>` : ''}
     ${l.ultimo_contacto_at ? `<div class="dash-modal-block"><strong>Último contacto</strong>${dashEsc(leadFmtDateTime(l.ultimo_contacto_at))}</div>` : ''}
+    ${leadNeedsAlarm(l) ? `<div class="dash-modal-block"><span class="adm-alarm-badge">⏰ Alarma</span> ${leadDaysWithoutFollowUp(l) ?? '—'} día(s) sin seguimiento (umbral ${getLeadAlarmDays()} días).</div>` : ''}
     ${l.notas ? `<div class="dash-modal-block"><strong>Nota legacy</strong><p class="text-muted" style="font-size:.78rem;margin:.25rem 0 .35rem">Texto antiguo del campo notas — usa seguimientos abajo.</p>${dashEsc(l.notas)}</div>` : ''}
     <div class="dash-modal-block" style="margin-top:1rem">
       <strong>Cambiar estado</strong>
       <div class="gap-row" style="margin-top:.35rem;flex-wrap:wrap">
-        ${['nuevo','contactado','cualificado','cerrado','descartado'].map(e =>
+        ${leadEstadoOptions(l).map(e =>
           `<button type="button" class="adm-btn ${l.estado===e?'adm-btn-gold':'adm-btn-ghost'} adm-btn-sm" onclick="dashSetLeadEstado('${l.id}','${e}')">${e}</button>`
         ).join('')}
       </div>
@@ -4906,7 +4960,8 @@ function renderLeadsTable(list, full) {
   if (!list.length) return '<p class="text-muted">Sin leads.</p>';
   const rows = list.map(l => {
     const fecha = leadFmtDateTime(l.created_at);
-    return `<tr class="lead-row-click" onclick="openLeadModal('${l.id}')" title="Ver ficha completa">
+    const alarmCls = leadNeedsAlarm(l) ? ' vend-row-seguimiento' : '';
+    return `<tr class="lead-row-click${alarmCls}" onclick="openLeadModal('${l.id}')" title="Ver ficha completa">
       <td><strong>${dashEsc(l.nombre||'–')}</strong><br/>${leadCategoriaBadgeHtml(l)}</td>
       <td>${dashEsc(l.email||'–')}<br/><a href="tel:${l.telefono||''}" style="font-size:.8rem" onclick="event.stopPropagation()">${dashEsc(l.telefono||'–')}</a></td>
       <td style="max-width:220px">${dashEsc((l.mensaje||'').slice(0, full ? 120 : 50))}</td>
@@ -4928,9 +4983,10 @@ function renderLeadsCards(list) {
   if (!list.length) return '';
   return `<div class="adm-leads-cards">${list.map(l => {
     const fecha = leadFmtDateTime(l.created_at);
-    return `<div class="lead-card" role="button" tabindex="0" onclick="openLeadModal('${l.id}')">
+    const alarm = leadNeedsAlarm(l);
+    return `<div class="lead-card${alarm ? ' vend-row-seguimiento' : ''}" role="button" tabindex="0" onclick="openLeadModal('${l.id}')">
       <div class="lead-card-head">
-        <div><strong>${dashEsc(l.nombre||'–')}</strong><div style="margin-top:.25rem">${leadCategoriaBadgeHtml(l)}</div><div class="text-muted" style="font-size:.75rem;margin-top:.25rem">${dashEsc(fecha)}</div></div>
+        <div><strong>${dashEsc(l.nombre||'–')}</strong><div style="margin-top:.25rem">${leadCategoriaBadgeHtml(l)}${alarm ? ' <span class="adm-alarm-badge">⏰</span>' : ''}</div><div class="text-muted" style="font-size:.75rem;margin-top:.25rem">${dashEsc(fecha)}</div></div>
         ${leadEstadoBadge(l.estado)}
       </div>
       <div style="font-size:.82rem"><a href="tel:${l.telefono}" onclick="event.stopPropagation()">${dashEsc(l.telefono||'')}</a> · ${dashEsc(l.email||'')}</div>
@@ -4946,7 +5002,8 @@ function renderLeadsCards(list) {
 function filterLeadsList() {
   return _leadsData.filter(l => {
     if (!isAdminLeadsListRow(l)) return false;
-    if (!_leadFilterEstado && l.estado === 'descartado') return false;
+    if (_leadFilterAlarm && !leadNeedsAlarm(l)) return false;
+    if (!_leadFilterEstado && !_leadFilterAlarm && l.estado === 'descartado') return false;
     if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
     if (_leadFilterTipo && l.tipo !== _leadFilterTipo) return false;
     if (_leadFilterSegment && leadSegment(l) !== _leadFilterSegment) return false;
@@ -4988,6 +5045,7 @@ async function loadLeads(){
   }
   _dashCache.leads = _leadsData.slice(0, 6);
   updateNavLeadsBadge(_leadsData);
+  updateLeadAlarmUI();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
 }
@@ -4995,6 +5053,14 @@ async function loadLeads(){
 async function setLeadEstado(id, estado) {
   if (!LEAD_ESTADOS.includes(estado)) return;
   const l = findLeadById(id);
+  if (estado === 'cualificado' && l && !leadAllowsCualificado(l)) {
+    window.nhToast && nhToast('«Cualificado» solo aplica a leads comprador. Usa «Gestionado».', 'info', 4500);
+    return;
+  }
+  if (estado === 'gestionado' && l && leadAllowsCualificado(l)) {
+    window.nhToast && nhToast('Para compradores usa «Cualificado».', 'info', 4500);
+    return;
+  }
   const propId = l && leadPropietarioAlquilerId(l);
   if (propId) {
     const patch = { id: propId };
@@ -5020,6 +5086,7 @@ async function setLeadEstado(id, estado) {
     if (idx >= 0 && patch.activo != null) _alqPropData[idx].activo = patch.activo;
     _dashCache.leads = _leadsData.slice(0, 6);
     updateNavLeadsBadge(_leadsData);
+    updateLeadAlarmUI();
     renderLeadsView();
     renderDashLeads(_dashCache.leads);
     renderAlquilerPropTable(_alqListMode);
@@ -5028,7 +5095,7 @@ async function setLeadEstado(id, estado) {
   }
   try {
     const patch = { leadId: id, estado };
-    if (estado === 'contactado' || estado === 'cualificado') patch.ultimo_contacto_at = new Date().toISOString();
+    if (leadEstadoUpdatesContact(estado)) patch.ultimo_contacto_at = new Date().toISOString();
     await adminLeadApi('admin-lead-update', patch);
   } catch (err) {
     window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
@@ -5037,10 +5104,11 @@ async function setLeadEstado(id, estado) {
   const leadRow = _leadsData.find(x => x.id === id);
   if (leadRow) {
     leadRow.estado = estado;
-    if (estado === 'contactado' || estado === 'cualificado') leadRow.ultimo_contacto_at = new Date().toISOString();
+    if (leadEstadoUpdatesContact(estado)) leadRow.ultimo_contacto_at = new Date().toISOString();
   }
   _dashCache.leads = _leadsData.slice(0, 6);
   updateNavLeadsBadge(_leadsData);
+  updateLeadAlarmUI();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
   window.nhToast && nhToast('Estado actualizado: ' + estado, 'success', 2500);
@@ -5078,6 +5146,7 @@ async function deleteLead(id, fromModal) {
   if (propId) _alqPropData = _alqPropData.filter(x => x.id !== propId);
   _dashCache.leads = _leadsData.slice(0, 6);
   updateNavLeadsBadge(_leadsData);
+  updateLeadAlarmUI();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
   if (propId) renderAlquilerPropTable(_alqListMode);
@@ -5100,8 +5169,20 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-lf="estado"]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-lf="estado"]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[data-lf="alarm"]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       _leadFilterEstado = btn.dataset.val || '';
+      _leadFilterAlarm = false;
+      renderLeadsView();
+    });
+  });
+  document.querySelectorAll('[data-lf="alarm"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-lf="estado"]').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[data-lf="alarm"]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      _leadFilterEstado = '';
+      _leadFilterAlarm = true;
       renderLeadsView();
     });
   });
@@ -6863,7 +6944,7 @@ window.admEmailColaborador = admEmailColaborador;
 const PART_ESTADOS = { nuevo:'Nuevo', contactado:'Contactado', visita:'Visita', negociacion:'Negociación', captado:'Captado', descartado:'Descartado' };
 const PART_FUENTES = { kelify:'Kelify', idealista:'Idealista', fotocasa:'Fotocasa', habitaclia:'Habitaclia', manual:'Manual', otro:'Otro' };
 const PANEL_ALARM_CONFIG_KEY = 'nh_panel_alarm_config';
-const PANEL_ALARM_DEFAULTS = { partAlarmDays: 7, compAlarmDays: 14, partAlarmsEnabled: true, compAlarmsEnabled: true };
+const PANEL_ALARM_DEFAULTS = { leadAlarmDays: 7, partAlarmDays: 7, compAlarmDays: 14, leadAlarmsEnabled: true, partAlarmsEnabled: true, compAlarmsEnabled: true };
 const PART_WA_TPL_STORAGE = 'nh_part_wa_templates';
 const COMP_WA_TPL_STORAGE = 'nh_comp_wa_templates';
 const PART_WA_TPL_LABELS = { primer_contacto:'1.er contacto', seguimiento:'Seguimiento', visita:'Propuesta visita' };
@@ -6905,12 +6986,65 @@ function getCompAlarmDays(){
   return cfg.compAlarmsEnabled ? Math.max(1, Number(cfg.compAlarmDays) || PANEL_ALARM_DEFAULTS.compAlarmDays) : 99999;
 }
 
+function getLeadAlarmDays(){
+  const cfg = getPanelAlarmConfig();
+  return cfg.leadAlarmsEnabled ? Math.max(1, Number(cfg.leadAlarmDays) || PANEL_ALARM_DEFAULTS.leadAlarmDays) : 99999;
+}
+
+function getLeadContactAnchor(l){
+  if(l?.ultimo_contacto_at) return new Date(l.ultimo_contacto_at);
+  if(l?.created_at) return new Date(l.created_at);
+  return null;
+}
+
+function leadDaysWithoutFollowUp(l){
+  const anchor = getLeadContactAnchor(l);
+  if(!anchor || isNaN(anchor.getTime())) return null;
+  return Math.floor((Date.now() - anchor.getTime()) / 86400000);
+}
+
+function leadNeedsAlarm(l){
+  if(!getPanelAlarmConfig().leadAlarmsEnabled) return false;
+  if(!l || !isAdminLeadsListRow(l)) return false;
+  if(['descartado', 'cerrado'].includes(l.estado)) return false;
+  const days = leadDaysWithoutFollowUp(l);
+  if(days == null) return true;
+  return days >= getLeadAlarmDays();
+}
+
+function updateLeadAlarmUI(leads){
+  const list = leads || _leadsData || [];
+  const alarms = list.filter(leadNeedsAlarm);
+  const days = getLeadAlarmDays();
+  const badge = document.getElementById('nav-leads-alarm-badge');
+  const banner = document.getElementById('lead-alarm-banner');
+  const text = document.getElementById('lead-alarm-text');
+  if(badge){
+    if(alarms.length && getPanelAlarmConfig().leadAlarmsEnabled){
+      badge.style.display = 'inline-flex';
+      badge.textContent = alarms.length > 99 ? '99+' : String(alarms.length);
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+  if(banner && text){
+    if(alarms.length && getPanelAlarmConfig().leadAlarmsEnabled){
+      banner.style.display = 'flex';
+      text.textContent = `${alarms.length} lead(s) con más de ${days} día(s) sin seguimiento registrado.`;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+}
+
 function loadPanelConfigForm(){
   const cfg = getPanelAlarmConfig();
   const set = (id, val) => { const el = document.getElementById(id); if(el) el.value = val; };
   const setChk = (id, val) => { const el = document.getElementById(id); if(el) el.checked = !!val; };
+  set('cfg-lead-alarm-days', cfg.leadAlarmDays);
   set('cfg-part-alarm-days', cfg.partAlarmDays);
   set('cfg-comp-alarm-days', cfg.compAlarmDays);
+  setChk('cfg-lead-alarms-enabled', cfg.leadAlarmsEnabled);
   setChk('cfg-part-alarms-enabled', cfg.partAlarmsEnabled);
   setChk('cfg-comp-alarms-enabled', cfg.compAlarmsEnabled);
   const pt = getPartWaTemplates();
@@ -6923,11 +7057,14 @@ function loadPanelConfigForm(){
 }
 
 function savePanelConfig(){
+  const leadDays = parseInt(document.getElementById('cfg-lead-alarm-days')?.value, 10);
   const partDays = parseInt(document.getElementById('cfg-part-alarm-days')?.value, 10);
   const compDays = parseInt(document.getElementById('cfg-comp-alarm-days')?.value, 10);
   const cfg = {
+    leadAlarmDays: Number.isFinite(leadDays) && leadDays > 0 ? leadDays : PANEL_ALARM_DEFAULTS.leadAlarmDays,
     partAlarmDays: Number.isFinite(partDays) && partDays > 0 ? partDays : PANEL_ALARM_DEFAULTS.partAlarmDays,
     compAlarmDays: Number.isFinite(compDays) && compDays > 0 ? compDays : PANEL_ALARM_DEFAULTS.compAlarmDays,
+    leadAlarmsEnabled: !!document.getElementById('cfg-lead-alarms-enabled')?.checked,
     partAlarmsEnabled: !!document.getElementById('cfg-part-alarms-enabled')?.checked,
     compAlarmsEnabled: !!document.getElementById('cfg-comp-alarms-enabled')?.checked,
   };
@@ -6942,8 +7079,10 @@ function savePanelConfig(){
     seguimiento: document.getElementById('cfg-tpl-comp-seguimiento')?.value.trim() || COMP_WA_TEMPLATES_DEFAULT.seguimiento,
   });
   nhToast('Configuración guardada.', 'success');
+  updateLeadAlarmUI();
   updatePartAlarmUI();
   updateCompAlarmUI();
+  if(currentSection === 'leads') renderLeadsView();
   if(currentSection === 'seguimientos') renderParticulares();
   if(currentSection === 'compradores') renderCompradores();
 }
@@ -7968,7 +8107,6 @@ function renderPartEstadoBar(id, estado){
 
 async function setParticularEstado(id, accion){
   if(accion === 'descartado'){
-    if(!confirm('¿Descartar y eliminar este particular de la base de datos?')) return;
     await deleteParticular(id, true);
     return;
   }
@@ -8268,6 +8406,7 @@ async function deleteParticular(id, skipConfirm){
   if(!skipConfirm && !confirm('¿Eliminar este particular y su historial?')) return;
   await window.nhSupabase.from('particulares').delete().eq('id', id);
   if(_partDetailId === id) closePartDetail();
+  if(_partCardModalId === id) closePartCardModal();
   loadParticulares();
 }
 
