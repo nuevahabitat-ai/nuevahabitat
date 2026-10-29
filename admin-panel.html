@@ -4226,7 +4226,7 @@ function openDashModal(tipo, id){
     body = buildLeadModalContent(l);
     actions = `
       ${l.telefono ? `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="window.location.href='tel:${dashEsc(String(l.telefono).replace(/[^\d+]/g,''))}'">Llamar</button>
-      <button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="dashWhatsAppLead('${l.id}')">WhatsApp</button>` : ''}
+      <button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="dashWhatsAppLead('${l.id}')">WhatsApp seguimiento</button>` : ''}
       <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="openLeadEmailModal('${l.id}')">Email seguimiento</button>
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}')">Reenviar aviso interno</button>
       <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeDashModal(); switchSection('leads')">Editar en leads</button>
@@ -4307,7 +4307,7 @@ async function dashSetLeadEstado(id, estado){
 }
 
 function dashWhatsAppLead(id) {
-  openLeadWhatsAppDirect(id);
+  openLeadWhatsAppModal(id);
 }
 
 async function dashEditParticular(id){
@@ -4760,6 +4760,7 @@ ${LEAD_EMAIL_AGENT}
 
 let _leadEmailModalId = null;
 let _leadEmailSelectedKey = null;
+let _leadFollowupChannel = 'email';
 const LEAD_EMAIL_TPL_STORAGE = 'nh_lead_email_templates';
 
 function leadHasRealEmail(l) {
@@ -4775,17 +4776,7 @@ function leadHasPhone(l) {
 }
 
 function openLeadWhatsAppDirect(leadId) {
-  const l = findLeadById(leadId);
-  if (!l?.telefono) {
-    nhToast('Este lead no tiene teléfono.', 'info');
-    return;
-  }
-  const phone = normalizePhoneWa(l.telefono);
-  if (!phone) {
-    nhToast('Teléfono no válido.', 'error');
-    return;
-  }
-  window.open(`https://wa.me/${phone}`, '_blank', 'noopener');
+  openLeadWhatsAppModal(leadId);
 }
 window.openLeadWhatsAppDirect = openLeadWhatsAppDirect;
 
@@ -4863,6 +4854,23 @@ function updateLeadEmailPickSelection() {
   });
 }
 
+function setLeadFollowupChannel(channel) {
+  const l = findLeadById(_leadEmailModalId);
+  if (!l) return;
+  const ch = channel === 'whatsapp' ? 'whatsapp' : 'email';
+  if (ch === 'email' && !leadHasRealEmail(l)) {
+    nhToast('Este lead no tiene email válido.', 'info', 4500);
+    return;
+  }
+  if (ch === 'whatsapp' && !leadHasPhone(l)) {
+    nhToast('Este lead no tiene teléfono válido.', 'info', 4500);
+    return;
+  }
+  _leadFollowupChannel = ch;
+  renderLeadEmailModalBody();
+}
+window.setLeadFollowupChannel = setLeadFollowupChannel;
+
 function renderLeadEmailModalBody() {
   const l = findLeadById(_leadEmailModalId);
   const body = document.getElementById('lead-email-body');
@@ -4871,10 +4879,17 @@ function renderLeadEmailModalBody() {
   const set = getLeadEmailTemplatesForLead(l);
   const keys = Object.keys(set);
   if (!_leadEmailSelectedKey || !set[_leadEmailSelectedKey]) _leadEmailSelectedKey = keys[0];
-  const waLine = leadHasPhone(l)
-    ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="openLeadWhatsAppDirect('${l.id}')">Abrir WhatsApp</button>`
-    : '';
-  body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Elige una plantilla, edítala si quieres y envía a <strong>${dashEsc(l.email || '')}</strong>. Remitente: Nueva Hábitat (noreply). ${waLine ? 'También puedes contactar por WhatsApp.' : ''}</p>
+  const isWa = _leadFollowupChannel === 'whatsapp';
+  const canEmail = leadHasRealEmail(l);
+  const canWa = leadHasPhone(l);
+  const intro = isWa
+    ? `Elige una plantilla (las mismas que el email), edítala y abre WhatsApp con el texto preparado para <strong>${dashEsc(l.telefono || '')}</strong>.`
+    : `Elige una plantilla, edítala si quieres y envía a <strong>${dashEsc(l.email || '')}</strong>. Remitente: Nueva Hábitat (noreply).`;
+  body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">${intro}</p>
+    ${canEmail && canWa ? `<div class="adm-subtabs" style="margin-bottom:.75rem;flex-wrap:wrap">
+      <button type="button" class="adm-subtab${!isWa ? ' active' : ''}" onclick="setLeadFollowupChannel('email')">Email</button>
+      <button type="button" class="adm-subtab${isWa ? ' active' : ''}" onclick="setLeadFollowupChannel('whatsapp')">WhatsApp</button>
+    </div>` : ''}
     <div id="lead-email-pick-list" class="part-tpl-pick-list">${keys.map((key) => {
     const tpl = set[key];
     const preview = previewLeadEmailTemplate(key, l);
@@ -4883,34 +4898,52 @@ function renderLeadEmailModalBody() {
     return `<label class="part-tpl-pick-item${sel ? ' selected' : ''}" data-key="${key}" onclick="selectLeadEmailTemplateKey('${key}')"><div class="part-tpl-pick-head"><input type="radio" name="lead-email-pick" value="${key}" ${sel ? 'checked' : ''} onchange="selectLeadEmailTemplateKey('${key}')"/><strong>${dashEsc(tpl.label)}</strong></div><div class="part-tpl-pick-text">${dashEsc(prevShort)}</div></label>`;
   }).join('')}</div>
     <div class="lead-email-compose" style="margin-top:1rem">
-      <div class="adm-field"><label for="lead-email-subject">Asunto</label><input type="text" id="lead-email-subject" class="adm-field" style="width:100%"/></div>
-      <div class="adm-field" style="margin-top:.65rem"><label for="lead-email-compose-body">Mensaje (editable antes de enviar)</label><textarea id="lead-email-compose-body" class="adm-field" rows="11" style="width:100%;font-size:.82rem;line-height:1.5"></textarea></div>
+      <div class="adm-field" id="lead-email-subject-wrap"${isWa ? ' style="display:none"' : ''}><label for="lead-email-subject">Asunto (solo email)</label><input type="text" id="lead-email-subject" class="adm-field" style="width:100%"/></div>
+      <div class="adm-field" style="margin-top:.65rem"><label for="lead-email-compose-body">${isWa ? 'Mensaje WhatsApp' : 'Mensaje (editable antes de enviar)'}</label><textarea id="lead-email-compose-body" class="adm-field" rows="11" style="width:100%;font-size:.82rem;line-height:1.5"></textarea></div>
     </div>`;
   fillLeadEmailComposeFromSelection();
-  foot.innerHTML = `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="sendSelectedLeadEmail()">Enviar email</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="saveLeadEmailTemplateCurrent()">Guardar plantilla</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resetLeadEmailTemplatesForLead()">Restaurar predeterminadas</button>${waLine}<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}'); nhToast('Aviso interno reenviado al equipo.', 'info', 4000);">Aviso interno</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeLeadEmailModal()">Cerrar</button>`;
+  const sendBtn = isWa
+    ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="sendSelectedLeadWhatsApp()">Enviar por WhatsApp</button>`
+    : `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="sendSelectedLeadEmail()">Enviar email</button>`;
+  foot.innerHTML = `${sendBtn}<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="saveLeadEmailTemplateCurrent()">Guardar plantilla</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resetLeadEmailTemplatesForLead()">Restaurar predeterminadas</button>${canEmail && !isWa ? `<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}'); nhToast('Aviso interno reenviado al equipo.', 'info', 4000);">Aviso interno</button>` : ''}<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeLeadEmailModal()">Cerrar</button>`;
 }
 
-function openLeadEmailModal(leadId) {
+function openLeadFollowupModal(leadId, channel) {
   const l = findLeadById(leadId);
   if (!l) { nhToast('Lead no encontrado', 'error'); return; }
-  if (!leadHasRealEmail(l)) {
+  const ch = channel === 'whatsapp' ? 'whatsapp' : 'email';
+  if (ch === 'email' && !leadHasRealEmail(l)) {
     nhToast('Este lead no tiene un email válido para enviar.', 'info', 5000);
     return;
   }
+  if (ch === 'whatsapp' && !leadHasPhone(l)) {
+    nhToast('Este lead no tiene teléfono válido para WhatsApp.', 'info', 5000);
+    return;
+  }
   _leadEmailModalId = leadId;
+  _leadFollowupChannel = ch;
   const set = getLeadEmailTemplatesForLead(l);
   const keys = Object.keys(set);
   if (set.colaboracion_visitas) _leadEmailSelectedKey = 'colaboracion_visitas';
   else if (l.tipo === 'hipoteca' && set.hipoteca) _leadEmailSelectedKey = 'hipoteca';
   else _leadEmailSelectedKey = keys[0] || null;
   document.getElementById('lead-email-kicker').textContent = leadCategoriaLabel(l);
-  document.getElementById('lead-email-title').textContent = l.nombre || 'Email de seguimiento';
+  document.getElementById('lead-email-title').textContent = l.nombre || (ch === 'whatsapp' ? 'WhatsApp seguimiento' : 'Email de seguimiento');
   renderLeadEmailModalBody();
   const modal = document.getElementById('lead-email-modal');
   modal.hidden = false;
   modal.classList.add('open');
 }
+
+function openLeadEmailModal(leadId) {
+  openLeadFollowupModal(leadId, 'email');
+}
 window.openLeadEmailModal = openLeadEmailModal;
+
+function openLeadWhatsAppModal(leadId) {
+  openLeadFollowupModal(leadId, 'whatsapp');
+}
+window.openLeadWhatsAppModal = openLeadWhatsAppModal;
 
 function closeLeadEmailModal() {
   const modal = document.getElementById('lead-email-modal');
@@ -4933,10 +4966,11 @@ window.selectLeadEmailTemplateKey = selectLeadEmailTemplateKey;
 function saveLeadEmailTemplateCurrent() {
   const l = findLeadById(_leadEmailModalId);
   if (!l || !_leadEmailSelectedKey) return;
-  const subject = document.getElementById('lead-email-subject')?.value?.trim();
+  const tplRef = getLeadEmailTemplatesForLead(l)[_leadEmailSelectedKey];
+  const subject = document.getElementById('lead-email-subject')?.value?.trim() || tplRef?.subject || 'Seguimiento Nueva Hábitat';
   const bodyText = document.getElementById('lead-email-compose-body')?.value?.trim();
-  if (!subject || !bodyText) {
-    nhToast('Asunto y mensaje no pueden estar vacíos.', 'info');
+  if (!bodyText) {
+    nhToast('El mensaje no puede estar vacío.', 'info');
     return;
   }
   const seg = leadEmailTemplateSegment(l);
@@ -4963,17 +4997,17 @@ function resetLeadEmailTemplatesForLead() {
 }
 window.resetLeadEmailTemplatesForLead = resetLeadEmailTemplatesForLead;
 
-async function logLeadEmailSeguimiento(leadId, label) {
+async function logLeadContactSeguimiento(leadId, label, channel) {
   const l = findLeadById(leadId);
   const ent = leadSeguimientoEntityId(l || { id: leadId });
   if (!ent || ent.kind === 'alq') return;
   const now = new Date().toISOString();
-  const comentario = `Email enviado: ${label}`;
+  const comentario = channel === 'whatsapp' ? `WhatsApp: ${label}` : `Email enviado: ${label}`;
   await window.nhSupabase.from('leads_seguimientos').insert({ lead_id: ent.id, comentario });
   const nuevoEstado = l?.estado === 'nuevo' ? 'contactado' : l?.estado;
   try {
     await adminLeadApi('admin-lead-update', { leadId: ent.id, estado: nuevoEstado, ultimo_contacto_at: now });
-  } catch (e) { console.warn('logLeadEmailSeguimiento', e); }
+  } catch (e) { console.warn('logLeadContactSeguimiento', e); }
   if (l) {
     l.ultimo_contacto_at = now;
     if (nuevoEstado) l.estado = nuevoEstado;
@@ -4981,6 +5015,10 @@ async function logLeadEmailSeguimiento(leadId, label) {
   updateLeadAlarmUI();
   renderLeadsView();
   renderDashLeads(_dashCache.leads);
+}
+
+async function logLeadEmailSeguimiento(leadId, label) {
+  return logLeadContactSeguimiento(leadId, label, 'email');
 }
 
 async function sendSelectedLeadEmail() {
@@ -5020,6 +5058,35 @@ async function sendSelectedLeadEmail() {
   if (document.getElementById('lead-seg-timeline')) loadLeadSeguimientos(l.id);
 }
 window.sendSelectedLeadEmail = sendSelectedLeadEmail;
+
+async function sendSelectedLeadWhatsApp() {
+  const l = findLeadById(_leadEmailModalId);
+  if (!l || !_leadEmailSelectedKey) return;
+  if (!leadHasPhone(l)) {
+    nhToast('Este lead no tiene teléfono válido.', 'info', 5000);
+    return;
+  }
+  const set = getLeadEmailTemplatesForLead(l);
+  const tpl = set[_leadEmailSelectedKey];
+  if (!tpl) return;
+  const bodyPlain = document.getElementById('lead-email-compose-body')?.value?.trim();
+  if (!bodyPlain) {
+    nhToast('Escribe o elige un mensaje antes de enviar.', 'info');
+    return;
+  }
+  const phone = normalizePhoneWa(l.telefono);
+  if (!phone) {
+    nhToast('Teléfono no válido.', 'error');
+    return;
+  }
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(bodyPlain)}`;
+  window.open(url, '_blank', 'noopener');
+  await logLeadContactSeguimiento(l.id, tpl.label, 'whatsapp');
+  nhToast('WhatsApp abierto con el mensaje preparado.', 'success', 5000);
+  closeLeadEmailModal();
+  if (document.getElementById('lead-seg-timeline')) loadLeadSeguimientos(l.id);
+}
+window.sendSelectedLeadWhatsApp = sendSelectedLeadWhatsApp;
 
 async function resendAllFormLeadEmails() {
   if (!confirm('¿Reenviar un email de aviso por cada lead de formulario a admin.nuevahabitat@gmail.com e info@nuevahabitat.com?')) return;
@@ -5406,7 +5473,7 @@ function leadActionBtns(l, compact) {
     ? `<button type="button" class="adm-btn adm-btn-gold${sm}" onclick="${stop}openAlqFromLead('${l.id}')" title="Abrir expediente alquiler">🏠</button>`
     : '';
   const mailBtn = !leadHasRealEmail(l) ? '' : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadEmailModal('${l.id}')" title="Email de seguimiento">✉</button>`;
-  const waBtn = leadHasPhone(l) ? `<button type="button" class="adm-btn adm-btn-green${sm}" onclick="${stop}openLeadWhatsAppDirect('${l.id}')" title="WhatsApp del cliente">💬</button>` : '';
+  const waBtn = leadHasPhone(l) ? `<button type="button" class="adm-btn adm-btn-green${sm}" onclick="${stop}openLeadWhatsAppModal('${l.id}')" title="WhatsApp seguimiento (plantillas)">💬</button>` : '';
   return `<div class="gap-row lead-card-actions">
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadModal('${l.id}')" title="Ver ficha">👁</button>
     ${propBtn}
