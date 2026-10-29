@@ -142,6 +142,9 @@ input,select,textarea{font-family:'Inter',sans-serif}
 
 /* ─── Section header / sub-tabs ──────────────────────────────── */
 .adm-section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.alq-admin-mrr{text-align:right;margin:0 1rem 0 auto;padding:.35rem .85rem;border-radius:10px;background:rgba(184,147,106,.08);border:1px solid rgba(184,147,106,.22)}
+.alq-admin-mrr strong{display:block;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:.15rem}
+.alq-admin-mrr-val{font-family:Georgia,serif;font-size:1.35rem;color:var(--gold,#b8936a);font-weight:700;line-height:1.2}
 .adm-section-title{font-size:1.1rem;font-weight:700;font-family:'Playfair Display',serif;color:var(--gold-light)}
 .adm-subtabs{display:flex;gap:.5rem;margin-bottom:1.25rem;border-bottom:1px solid var(--border);padding-bottom:.75rem}
 .adm-subtab{background:none;border:1px solid transparent;border-radius:6px;padding:.45rem .9rem;font-size:.8rem;color:var(--muted);transition:all .2s}
@@ -1783,6 +1786,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <section class="adm-section" id="sec-alquiler-admin">
         <div class="adm-section-hdr">
           <div class="adm-section-title">Administración de alquileres</div>
+          <div id="alq-admin-mrr" class="alq-admin-mrr" aria-live="polite"></div>
           <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadAlquilerAdmin()">↻ Actualizar</button>
         </div>
         <p class="text-muted" style="font-size:.8rem;margin:-.5rem 0 1rem;line-height:1.5">Propietarios con administración de alquiler (59 €/mes). Abre cada expediente para ver resumen, propietario, inmueble, inquilino y documentación.</p>
@@ -10289,9 +10293,33 @@ function fmtAlqDate(d) {
   return new Date(d).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
+const ALQ_ADMIN_CUOTA_MENSUAL_EUR = 59;
+
 function fmtAlqEur(n) {
   if (n == null || n === '') return '—';
   return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(n));
+}
+
+/** Expedientes administración en cartera (no baja/descartado). */
+function alqAdminIngresoMensualStats() {
+  const activos = (_alqPropData || []).filter(
+    (r) => alqRowServicio(r) === 'administracion' && !alqRowArchivado(r)
+  );
+  let totalEur = 0;
+  for (const r of activos) {
+    const c = Number(r.cuota_mensual);
+    totalEur += Number.isFinite(c) && c >= 0 ? c : ALQ_ADMIN_CUOTA_MENSUAL_EUR;
+  }
+  return { count: activos.length, totalEur };
+}
+
+function renderAlqAdminIngresoMensual() {
+  const el = document.getElementById('alq-admin-mrr');
+  if (!el) return;
+  const { count, totalEur } = alqAdminIngresoMensualStats();
+  el.innerHTML = `<strong>Ingreso mensual</strong>
+    <div class="alq-admin-mrr-val">${fmtAlqEur(totalEur)}</div>
+    <span class="text-muted" style="font-size:.72rem">${count} administración${count === 1 ? '' : 'es'} activa${count === 1 ? '' : 's'} × ${ALQ_ADMIN_CUOTA_MENSUAL_EUR} €/mes</span>`;
 }
 
 function alqRowServicio(r) {
@@ -10392,6 +10420,7 @@ function renderAlquilerPropTable(mode) {
       hint = `<p class="text-muted" style="font-size:.75rem;margin-top:.5rem;line-height:1.5">Hay ${total} expediente(s) en total, pero ninguno con <code>servicio=integral</code> en Supabase. Ejecuta la migración <strong>052</strong> o actualiza el campo <code>servicio</code> del propietario.</p>`;
     }
     tbl.innerHTML = `<p class="text-muted">${cfg.emptyMsg}</p>${hint}`;
+    if (mode === 'administracion') renderAlqAdminIngresoMensual();
     return;
   }
   tbl.innerHTML = `<table class="adm-table"><thead><tr>
@@ -10409,6 +10438,7 @@ function renderAlquilerPropTable(mode) {
       <td style="font-size:.72rem;color:var(--muted);white-space:nowrap">${fmtAlqDate(r.created_at)}</td>
     </tr>`;
   }).join('')}</tbody></table>`;
+  if (mode === 'administracion') renderAlqAdminIngresoMensual();
 }
 
 function renderAlquilerAdminTable() {
