@@ -127,6 +127,22 @@ select.adm-control{
 .stat-hint{font-size:.65rem;color:var(--muted);margin-top:.2rem;opacity:.85}
 
 /* ─── Dashboard panels ───────────────────────────────────────── */
+.hoy-toca-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:960px){.hoy-toca-grid{grid-template-columns:1fr}}
+.hoy-toca-col{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem 1rem;min-height:120px}
+.hoy-toca-col h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin:0 0 .65rem;font-weight:600}
+.hoy-toca-item{display:flex;align-items:flex-start;gap:.65rem;width:100%;text-align:left;padding:.55rem .5rem;border:none;border-bottom:1px solid var(--border);background:transparent;color:inherit;font:inherit;cursor:pointer;border-radius:4px;transition:background .15s}
+.hoy-toca-item:last-child{border-bottom:none}
+.hoy-toca-item:hover{background:rgba(184,147,106,.08)}
+.hoy-toca-item-main{flex:1;min-width:0}
+.hoy-toca-item-title{font-size:.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hoy-toca-item-meta{font-size:.7rem;color:var(--muted);margin-top:.2rem;line-height:1.35}
+.hoy-toca-tag{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.2rem .45rem;border-radius:4px;flex-shrink:0;white-space:nowrap}
+.hoy-toca-tag--alarm{background:rgba(249,115,22,.2);color:#fdba74}
+.hoy-toca-tag--seg{background:rgba(184,147,106,.18);color:var(--gold-light)}
+.hoy-toca-tag--pay{background:rgba(239,68,68,.15);color:#fca5a5}
+.hoy-toca-foot{margin-top:.65rem;padding-top:.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+.hoy-toca-empty{font-size:.78rem;color:var(--muted);padding:.35rem 0;line-height:1.45}
 .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 .dash-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-direction:column;min-height:280px;overflow:hidden}
 .dash-panel-head{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:1rem 1.15rem;border-bottom:1px solid var(--border)}
@@ -708,6 +724,45 @@ select.adm-control{
             <div class="stat-num" id="st-alarmas">–</div>
             <div class="stat-label">Alarmas contacto</div>
             <div class="stat-hint">Seguimientos pendientes</div>
+          </div>
+        </div>
+
+        <div class="adm-card" style="margin-bottom:1.25rem">
+          <div class="adm-card-head">
+            <div>
+              <h3>Hoy toca</h3>
+              <p class="text-muted" style="font-size:.75rem;margin:.35rem 0 0;font-weight:400">Leads con alarma o en seguimiento · cobros pendientes en administración e integral</p>
+            </div>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadDashboard(true)">↻ Actualizar</button>
+          </div>
+          <div class="hoy-toca-grid" id="hoy-toca-grid">
+            <div class="hoy-toca-col">
+              <h4>Leads</h4>
+              <div id="hoy-toca-leads"><p class="hoy-toca-empty">Cargando…</p></div>
+              <div class="hoy-toca-foot">
+                <span class="text-muted" style="font-size:.68rem" id="hoy-toca-leads-count"></span>
+                <span style="display:flex;gap:.65rem;flex-wrap:wrap">
+                  <button type="button" class="dash-panel-link" onclick="goHoyTocaLeads('alarmas')">Alarmas</button>
+                  <button type="button" class="dash-panel-link" onclick="goHoyTocaLeads('seguimiento')">Seguimientos</button>
+                </span>
+              </div>
+            </div>
+            <div class="hoy-toca-col">
+              <h4>Administración (59 €/mes)</h4>
+              <div id="hoy-toca-alq-admin"><p class="hoy-toca-empty">Cargando…</p></div>
+              <div class="hoy-toca-foot">
+                <span class="text-muted" style="font-size:.68rem" id="hoy-toca-alq-admin-count"></span>
+                <button type="button" class="dash-panel-link" onclick="switchSection('alquiler-admin')">Ver administración</button>
+              </div>
+            </div>
+            <div class="hoy-toca-col">
+              <h4>Alquiler integral</h4>
+              <div id="hoy-toca-alq-integral"><p class="hoy-toca-empty">Cargando…</p></div>
+              <div class="hoy-toca-foot">
+                <span class="text-muted" style="font-size:.68rem" id="hoy-toca-integral-count"></span>
+                <button type="button" class="dash-panel-link" onclick="switchSection('alquiler-integral')">Ver integral</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2716,6 +2771,24 @@ function filterLeadsAlarmas() {
 }
 window.filterLeadsAlarmas = filterLeadsAlarmas;
 
+function goHoyTocaLeads(mode) {
+  switchSection('leads');
+  setTimeout(() => {
+    if (mode === 'alarmas') {
+      filterLeadsAlarmas();
+      return;
+    }
+    document.querySelectorAll('[data-lf="estado"]').forEach((b) => b.classList.remove('active'));
+    document.querySelectorAll('[data-lf="alarm"]').forEach((b) => b.classList.remove('active'));
+    const segBtn = document.querySelector('[data-lf="estado"][data-val="seguimiento"]');
+    if (segBtn) segBtn.classList.add('active');
+    _leadFilterEstado = 'seguimiento';
+    _leadFilterAlarm = false;
+    renderLeadsView();
+  }, 80);
+}
+window.goHoyTocaLeads = goHoyTocaLeads;
+
 async function initAdmin() {
   if (_adminReady) return;
   showAdminView('loading');
@@ -4407,6 +4480,132 @@ async function dashDeleteComprador(id){
   loadDashboard();
 }
 
+const HOY_TOCA_MAX = 10;
+
+function collectHoyTocaLeadItems() {
+  const rows = (_leadsData || []).filter(isAdminLeadsListRow);
+  const items = [];
+  for (const l of rows) {
+    if (isLeadOcultoEnLeadsGeneral(l)) continue;
+    const days = leadDaysWithoutFollowUp(l);
+    if (leadNeedsAlarm(l)) {
+      items.push({ l, reason: 'alarma', priority: 0, days });
+    } else if (isLeadEnSeguimiento(l)) {
+      items.push({ l, reason: 'seguimiento', priority: 1, days: days ?? 0 });
+    }
+  }
+  items.sort((a, b) => a.priority - b.priority || (b.days ?? 0) - (a.days ?? 0));
+  return items;
+}
+
+function collectHoyTocaAlqAdminItems() {
+  return (_alqPropData || []).filter((r) => {
+    if (alqRowServicio(r) !== 'administracion') return false;
+    if (alqRowArchivado(r)) return false;
+    return !r.suscripcion_activa;
+  });
+}
+
+function collectHoyTocaAlqIntegralItems() {
+  return (_alqPropData || []).filter((r) => {
+    if (alqRowServicio(r) !== 'integral') return false;
+    if (alqRowArchivado(r)) return false;
+    if (r.integral_pagado) return false;
+    return true;
+  });
+}
+
+function hoyTocaLeadTag(reason) {
+  if (reason === 'alarma') return '<span class="hoy-toca-tag hoy-toca-tag--alarm">Alarma</span>';
+  return '<span class="hoy-toca-tag hoy-toca-tag--seg">Seguimiento</span>';
+}
+
+function hoyTocaIntegralTag(r) {
+  if (r.integral_transferencia_pendiente) {
+    return '<span class="hoy-toca-tag hoy-toca-tag--seg">Transferencia</span>';
+  }
+  return '<span class="hoy-toca-tag hoy-toca-tag--pay">599 € pend.</span>';
+}
+
+function renderHoyTocaListHtml(items, renderRow, emptyMsg) {
+  if (!items.length) return `<p class="hoy-toca-empty">${dashEsc(emptyMsg)}</p>`;
+  const slice = items.slice(0, HOY_TOCA_MAX);
+  const more = items.length > HOY_TOCA_MAX
+    ? `<p class="hoy-toca-empty" style="margin-top:.35rem">+ ${items.length - HOY_TOCA_MAX} más en la sección completa.</p>`
+    : '';
+  return slice.map(renderRow).join('') + more;
+}
+
+function renderHoyToca() {
+  const leadEl = document.getElementById('hoy-toca-leads');
+  const adminEl = document.getElementById('hoy-toca-alq-admin');
+  const intEl = document.getElementById('hoy-toca-alq-integral');
+  if (!leadEl || !adminEl || !intEl) return;
+
+  const leadItems = collectHoyTocaLeadItems();
+  leadEl.innerHTML = renderHoyTocaListHtml(
+    leadItems,
+    (it) => {
+      const daysTxt = it.days != null ? `${it.days} d sin seguimiento` : 'Sin contacto registrado';
+      return `<button type="button" class="hoy-toca-item" onclick="openLeadModal('${it.l.id}')">
+        ${hoyTocaLeadTag(it.reason)}
+        <div class="hoy-toca-item-main">
+          <div class="hoy-toca-item-title">${dashEsc(it.l.nombre || 'Lead')}</div>
+          <div class="hoy-toca-item-meta">${dashEsc(leadCategoriaLabel(it.l))} · ${dashEsc(daysTxt)}</div>
+        </div>
+      </button>`;
+    },
+    'Nada pendiente en leads (sin alarmas ni pipeline de seguimiento).'
+  );
+  const leadCount = document.getElementById('hoy-toca-leads-count');
+  if (leadCount) {
+    const al = leadItems.filter((x) => x.reason === 'alarma').length;
+    const sg = leadItems.filter((x) => x.reason === 'seguimiento').length;
+    leadCount.textContent = leadItems.length
+      ? `${leadItems.length} pendiente${leadItems.length === 1 ? '' : 's'} · ${al} alarma${al === 1 ? '' : 's'} · ${sg} seguimiento`
+      : 'Al día';
+  }
+
+  const adminItems = collectHoyTocaAlqAdminItems();
+  adminEl.innerHTML = renderHoyTocaListHtml(
+    adminItems,
+    (r) => `<button type="button" class="hoy-toca-item" onclick="switchSection('alquiler-admin'); setTimeout(function(){ openAlqAdminModal('${r.id}'); }, 120);">
+      <span class="hoy-toca-tag hoy-toca-tag--pay">Cuota pend.</span>
+      <div class="hoy-toca-item-main">
+        <div class="hoy-toca-item-title">${dashEsc(r.nombre || 'Propietario')}</div>
+        <div class="hoy-toca-item-meta">${dashEsc((r.inmueble_direccion || r.email || '').slice(0, 80))}</div>
+      </div>
+    </button>`,
+    'Todas las administraciones activas tienen cuota domiciliada o no hay expedientes.'
+  );
+  const adminCount = document.getElementById('hoy-toca-alq-admin-count');
+  if (adminCount) {
+    adminCount.textContent = adminItems.length
+      ? `${adminItems.length} sin domiciliar (59 €/mes)`
+      : 'Cobros al día';
+  }
+
+  const intItems = collectHoyTocaAlqIntegralItems();
+  intEl.innerHTML = renderHoyTocaListHtml(
+    intItems,
+    (r) => `<button type="button" class="hoy-toca-item" onclick="switchSection('alquiler-integral'); setTimeout(function(){ openAlqAdminModal('${r.id}'); }, 120);">
+      ${hoyTocaIntegralTag(r)}
+      <div class="hoy-toca-item-main">
+        <div class="hoy-toca-item-title">${dashEsc(r.nombre || 'Propietario')}</div>
+        <div class="hoy-toca-item-meta">${dashEsc((r.inmueble_direccion || r.email || '').slice(0, 80))}</div>
+      </div>
+    </button>`,
+    'No hay integrales activos con pago pendiente.'
+  );
+  const intCount = document.getElementById('hoy-toca-integral-count');
+  if (intCount) {
+    intCount.textContent = intItems.length
+      ? `${intItems.length} pago${intItems.length === 1 ? '' : 's'} por cerrar`
+      : 'Pagos al día';
+  }
+}
+window.renderHoyToca = renderHoyToca;
+
 async function loadDashboard(force){
   if(!force && shouldSkipPanelReload('dashboard') && _dashCache.compradores){
     renderDashInmuebles(_dashCache.inmuebles || []);
@@ -4414,6 +4613,7 @@ async function loadDashboard(force){
     renderDashSeguimientos(_dashCache.seguimientos || []);
     renderDashCompradores(_dashCache.compradores || []);
     renderMatchAlerts();
+    renderHoyToca();
     return;
   }
   const sb = window.nhSupabase;
@@ -4441,6 +4641,7 @@ async function loadDashboard(force){
       sb.from('compradores').select('id,nombre,email,telefono,activo,presupuesto_max,habitaciones_min,ascensor,zona_buscada,proxima_alarma_at,ultimo_contacto_at,created_at').order('created_at',{ascending:false}).limit(6),
       sb.from('particulares').select('id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,proxima_alarma_at,ultimo_contacto_at,activo').eq('activo',true).order('updated_at',{ascending:false}).limit(12),
       leadsPromise,
+      fetchAlquilerPropietarios().catch((e) => { console.warn('loadDashboard alquiler', e); }),
     ]);
 
     const leadsList = leadsPayload.data || [];
@@ -4477,6 +4678,7 @@ async function loadDashboard(force){
     renderDashSeguimientos(_dashCache.seguimientos);
     renderDashCompradores(_dashCache.compradores);
     renderMatchAlerts();
+    renderHoyToca();
     markPanelLoaded('dashboard');
   } catch (err) {
     console.error('loadDashboard:', err);
