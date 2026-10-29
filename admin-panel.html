@@ -790,7 +790,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
             <button class="adm-subtab" data-lf="estado" data-val="nuevo">Nuevos</button>
             <button class="adm-subtab" data-lf="estado" data-val="contactado">Contactados</button>
             <button class="adm-subtab" data-lf="estado" data-val="seguimiento" title="Pipeline en curso · mismos casos que Alquileres → Seguimientos">Seguimientos</button>
-            <button class="adm-subtab" data-lf="estado" data-val="gestionado" title="En cartera activa (Administración / Integral) o estado gestionado">Gestionados</button>
+            <button class="adm-subtab" data-lf="estado" data-val="activos" title="Alquileres en cartera activa (Administración / Integral) y ventas gestionadas">Activos</button>
             <button type="button" class="adm-subtab" id="lead-tab-cualificado" data-lf="estado" data-val="cualificado" hidden>Cualificados (compradores)</button>
             <button class="adm-subtab" data-lf="estado" data-val="cerrado">Cerrados</button>
             <button class="adm-subtab" data-lf="estado" data-val="descartado">Descartados</button>
@@ -1957,7 +1957,7 @@ input,select,textarea{font-family:'Inter',sans-serif}
       <!-- Modal plantillas email · Leads -->
       <div id="lead-email-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="lead-email-title" hidden>
         <div class="dash-modal-backdrop" onclick="closeLeadEmailModal()"></div>
-        <div class="dash-modal-panel comp-match-modal-panel">
+        <div class="dash-modal-panel comp-match-modal-panel" style="max-width:min(680px,100%)">
           <div class="dash-modal-head">
             <div>
               <div class="dash-modal-kicker" id="lead-email-kicker">Email · Seguimiento</div>
@@ -4292,19 +4292,18 @@ function openDashModal(tipo, id){
 async function dashSetLeadEstado(id, estado){
   await setLeadEstado(id, estado);
   const l = findLeadById(id);
-  if(l) l.estado = estado;
+  if (l && isLeadOcultoEnLeadsGeneral(l)) {
+    renderDashLeads(_dashCache.leads);
+    renderLeadsView();
+    return;
+  }
+  if (l) l.estado = estado;
   renderDashLeads(_dashCache.leads);
   openLeadModal(id);
 }
 
-function dashWhatsAppLead(id){
-  const l = findLeadById(id);
-  if(!l?.telefono){ nhToast('Sin teléfono.', 'info'); return; }
-  const phone = (typeof normalizePhoneWa === 'function') ? normalizePhoneWa(l.telefono) : String(l.telefono).replace(/\D/g,'');
-  if(!phone){ nhToast('Teléfono no válido.', 'error'); return; }
-  const nombre = (l.nombre || 'cliente').trim().split(/\s+/)[0];
-  const msg = `Hola ${nombre}, soy de NuevaHabitat. He recibido tu solicitud${l.tipo ? ' de '+l.tipo : ''}. ¿Tienes un momento?`;
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+function dashWhatsAppLead(id) {
+  openLeadWhatsAppDirect(id);
 }
 
 async function dashEditParticular(id){
@@ -4443,22 +4442,34 @@ window.dashCallComprador = dashCallComprador;
 window.dashWhatsAppComprador = dashWhatsAppComprador;
 window.dashDeleteComprador = dashDeleteComprador;
 
-const LEAD_ESTADOS = ['nuevo','contactado','gestionado','cualificado','descartado','cerrado'];
+const LEAD_ESTADOS = ['nuevo','contactado','gestionado','activo','cualificado','descartado','cerrado'];
 
 function leadAllowsCualificado(l) {
   return leadSegment(l) === 'comprador';
 }
 
+function leadEstadoCartera(l) {
+  if (leadAllowsCualificado(l)) return 'cualificado';
+  if (isAlquilerLeadRow(l)) return 'activo';
+  return 'gestionado';
+}
+
 function leadEstadoOptions(l) {
   const opts = ['nuevo', 'contactado'];
-  if (leadAllowsCualificado(l)) opts.push('cualificado');
-  else opts.push('gestionado');
+  opts.push(leadEstadoCartera(l));
   opts.push('cerrado', 'descartado');
   return opts;
 }
 
+function leadEstadoLabel(estado) {
+  if (estado === 'gestionado') return 'gestionado';
+  if (estado === 'activo') return 'activo';
+  if (estado === 'cualificado') return 'cualificado';
+  return estado;
+}
+
 function leadEstadoUpdatesContact(estado) {
-  return estado === 'contactado' || estado === 'cualificado' || estado === 'gestionado';
+  return estado === 'contactado' || estado === 'cualificado' || estado === 'gestionado' || estado === 'activo';
 }
 let _leadsData = [];
 let _leadFilterEstado = '';
@@ -4538,13 +4549,20 @@ function isLeadEnSeguimiento(l) {
 function isLeadGestionadoActivo(l) {
   if (!l || !isAdminLeadsListRow(l)) return false;
   if (['descartado', 'cerrado'].includes(l.estado)) return false;
-  if (isAlquilerLeadRow(l)) return alqPropietarioActivo(l);
+  if (isAlquilerLeadRow(l)) {
+    return alqPropietarioActivo(l) || l.estado === 'activo' || l.estado === 'gestionado';
+  }
   if (leadSegment(l) === 'comprador') return l.estado === 'cualificado';
   return l.estado === 'gestionado';
 }
 
+/** Alquiler en cartera activa: oculto en Leads → Todos (solo Activos o Administración). */
+function isLeadOcultoEnLeadsGeneral(l) {
+  return isAlquilerLeadRow(l) && isLeadGestionadoActivo(l);
+}
+
 function leadDisplayEstado(l) {
-  if (isAlquilerLeadRow(l) && alqPropietarioActivo(l)) return 'gestionado';
+  if (isAlquilerLeadRow(l) && isLeadGestionadoActivo(l)) return 'activo';
   return l?.estado || 'nuevo';
 }
 
@@ -4738,11 +4756,34 @@ ${LEAD_EMAIL_AGENT}
 
 let _leadEmailModalId = null;
 let _leadEmailSelectedKey = null;
+const LEAD_EMAIL_TPL_STORAGE = 'nh_lead_email_templates';
 
 function leadHasRealEmail(l) {
   const e = String(l?.email || '').trim();
   return e.length > 3 && e.includes('@') && !e.toLowerCase().includes('@leads.nuevahabitat.local');
 }
+
+function leadHasPhone(l) {
+  const raw = String(l?.telefono || '').trim();
+  if (!raw) return false;
+  const digits = raw.replace(/\D/g, '');
+  return digits.length >= 9;
+}
+
+function openLeadWhatsAppDirect(leadId) {
+  const l = findLeadById(leadId);
+  if (!l?.telefono) {
+    nhToast('Este lead no tiene teléfono.', 'info');
+    return;
+  }
+  const phone = normalizePhoneWa(l.telefono);
+  if (!phone) {
+    nhToast('Teléfono no válido.', 'error');
+    return;
+  }
+  window.open(`https://wa.me/${phone}`, '_blank', 'noopener');
+}
+window.openLeadWhatsAppDirect = openLeadWhatsAppDirect;
 
 function leadEmailTemplateSegment(l) {
   const seg = leadSegment(l);
@@ -4750,8 +4791,24 @@ function leadEmailTemplateSegment(l) {
   return 'otros';
 }
 
+function loadLeadEmailStorageAll() {
+  try {
+    const raw = localStorage.getItem(LEAD_EMAIL_TPL_STORAGE);
+    return raw ? JSON.parse(raw) : {};
+  } catch (_) {
+    return {};
+  }
+}
+
 function getLeadEmailTemplatesForLead(l) {
-  return LEAD_EMAIL_TPL_BY_SEGMENT[leadEmailTemplateSegment(l)] || LEAD_EMAIL_TPL_BY_SEGMENT.otros;
+  const seg = leadEmailTemplateSegment(l);
+  const defaults = LEAD_EMAIL_TPL_BY_SEGMENT[seg] || LEAD_EMAIL_TPL_BY_SEGMENT.otros;
+  const storedSeg = loadLeadEmailStorageAll()[seg] || {};
+  const out = {};
+  for (const key of Object.keys(defaults)) {
+    out[key] = { ...defaults[key], ...(storedSeg[key] || {}) };
+  }
+  return out;
 }
 
 function personalizeLeadEmailBody(body, l) {
@@ -4760,7 +4817,7 @@ function personalizeLeadEmailBody(body, l) {
   const inmueblePhrase = zona ? `el inmueble en ${zona}` : 'el inmueble que tienes en venta';
   text = text.replace(/\{\{inmueble\}\}/g, inmueblePhrase);
   const first = String(l?.nombre || '').trim().split(/\s+/)[0];
-  if (first && !first.includes('@')) {
+  if (first && !first.includes('@') && !/^Hola, buenas,\s+\S+/m.test(text)) {
     text = text.replace(/^Hola, buenas,/m, `Hola, buenas, ${first},`);
   }
   return text;
@@ -4770,7 +4827,36 @@ function previewLeadEmailTemplate(key, l) {
   const set = getLeadEmailTemplatesForLead(l);
   const tpl = set[key];
   if (!tpl) return '';
+  const seg = leadEmailTemplateSegment(l);
+  const stored = loadLeadEmailStorageAll()[seg]?.[key];
+  if (stored?.body) {
+    const zona = String(l?.zona || '').trim();
+    const inmueblePhrase = zona ? `el inmueble en ${zona}` : 'el inmueble que tienes en venta';
+    return String(stored.body).replace(/\{\{inmueble\}\}/g, inmueblePhrase);
+  }
   return personalizeLeadEmailBody(tpl.body, l);
+}
+
+function fillLeadEmailComposeFromSelection() {
+  const l = findLeadById(_leadEmailModalId);
+  if (!l || !_leadEmailSelectedKey) return;
+  const set = getLeadEmailTemplatesForLead(l);
+  const tpl = set[_leadEmailSelectedKey];
+  if (!tpl) return;
+  const sub = document.getElementById('lead-email-subject');
+  const bod = document.getElementById('lead-email-compose-body');
+  if (sub) sub.value = tpl.subject || '';
+  if (bod) bod.value = previewLeadEmailTemplate(_leadEmailSelectedKey, l);
+}
+
+function updateLeadEmailPickSelection() {
+  document.querySelectorAll('#lead-email-pick-list .part-tpl-pick-item').forEach((el) => {
+    const key = el.getAttribute('data-key');
+    const sel = key === _leadEmailSelectedKey;
+    el.classList.toggle('selected', sel);
+    const inp = el.querySelector('input[type=radio]');
+    if (inp) inp.checked = sel;
+  });
 }
 
 function renderLeadEmailModalBody() {
@@ -4781,13 +4867,23 @@ function renderLeadEmailModalBody() {
   const set = getLeadEmailTemplatesForLead(l);
   const keys = Object.keys(set);
   if (!_leadEmailSelectedKey || !set[_leadEmailSelectedKey]) _leadEmailSelectedKey = keys[0];
-  body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Elige una plantilla y envíala a <strong>${dashEsc(l.email || '')}</strong>. Remitente: Nueva Hábitat (noreply).</p><div class="part-tpl-pick-list">${keys.map((key) => {
+  const waLine = leadHasPhone(l)
+    ? `<button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="openLeadWhatsAppDirect('${l.id}')">Abrir WhatsApp</button>`
+    : '';
+  body.innerHTML = `<p class="text-muted" style="font-size:.78rem;margin-bottom:.75rem">Elige una plantilla, edítala si quieres y envía a <strong>${dashEsc(l.email || '')}</strong>. Remitente: Nueva Hábitat (noreply). ${waLine ? 'También puedes contactar por WhatsApp.' : ''}</p>
+    <div id="lead-email-pick-list" class="part-tpl-pick-list">${keys.map((key) => {
     const tpl = set[key];
     const preview = previewLeadEmailTemplate(key, l);
     const sel = _leadEmailSelectedKey === key;
-    return `<label class="part-tpl-pick-item${sel ? ' selected' : ''}" onclick="selectLeadEmailTemplateKey('${key}')"><div class="part-tpl-pick-head"><input type="radio" name="lead-email-pick" value="${key}" ${sel ? 'checked' : ''} onchange="selectLeadEmailTemplateKey('${key}')"/><strong>${dashEsc(tpl.label)}</strong></div><div class="part-tpl-pick-text">${dashEsc(preview)}</div></label>`;
-  }).join('')}</div>`;
-  foot.innerHTML = `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="sendSelectedLeadEmail()">Enviar email</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}'); nhToast('Aviso interno reenviado al equipo.', 'info', 4000);">Reenviar aviso interno</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeLeadEmailModal()">Cerrar</button>`;
+    const prevShort = preview.length > 220 ? preview.slice(0, 217) + '…' : preview;
+    return `<label class="part-tpl-pick-item${sel ? ' selected' : ''}" data-key="${key}" onclick="selectLeadEmailTemplateKey('${key}')"><div class="part-tpl-pick-head"><input type="radio" name="lead-email-pick" value="${key}" ${sel ? 'checked' : ''} onchange="selectLeadEmailTemplateKey('${key}')"/><strong>${dashEsc(tpl.label)}</strong></div><div class="part-tpl-pick-text">${dashEsc(prevShort)}</div></label>`;
+  }).join('')}</div>
+    <div class="lead-email-compose" style="margin-top:1rem">
+      <div class="adm-field"><label for="lead-email-subject">Asunto</label><input type="text" id="lead-email-subject" class="adm-field" style="width:100%"/></div>
+      <div class="adm-field" style="margin-top:.65rem"><label for="lead-email-compose-body">Mensaje (editable antes de enviar)</label><textarea id="lead-email-compose-body" class="adm-field" rows="11" style="width:100%;font-size:.82rem;line-height:1.5"></textarea></div>
+    </div>`;
+  fillLeadEmailComposeFromSelection();
+  foot.innerHTML = `<button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="sendSelectedLeadEmail()">Enviar email</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="saveLeadEmailTemplateCurrent()">Guardar plantilla</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resetLeadEmailTemplatesForLead()">Restaurar predeterminadas</button>${waLine}<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendLeadAdminEmail('${l.id}'); nhToast('Aviso interno reenviado al equipo.', 'info', 4000);">Aviso interno</button><button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeLeadEmailModal()">Cerrar</button>`;
 }
 
 function openLeadEmailModal(leadId) {
@@ -4821,9 +4917,47 @@ window.closeLeadEmailModal = closeLeadEmailModal;
 
 function selectLeadEmailTemplateKey(key) {
   _leadEmailSelectedKey = key;
-  renderLeadEmailModalBody();
+  if (document.getElementById('lead-email-compose-body')) {
+    updateLeadEmailPickSelection();
+    fillLeadEmailComposeFromSelection();
+  } else {
+    renderLeadEmailModalBody();
+  }
 }
 window.selectLeadEmailTemplateKey = selectLeadEmailTemplateKey;
+
+function saveLeadEmailTemplateCurrent() {
+  const l = findLeadById(_leadEmailModalId);
+  if (!l || !_leadEmailSelectedKey) return;
+  const subject = document.getElementById('lead-email-subject')?.value?.trim();
+  const bodyText = document.getElementById('lead-email-compose-body')?.value?.trim();
+  if (!subject || !bodyText) {
+    nhToast('Asunto y mensaje no pueden estar vacíos.', 'info');
+    return;
+  }
+  const seg = leadEmailTemplateSegment(l);
+  const all = loadLeadEmailStorageAll();
+  if (!all[seg]) all[seg] = {};
+  const label = getLeadEmailTemplatesForLead(l)[_leadEmailSelectedKey]?.label || _leadEmailSelectedKey;
+  all[seg][_leadEmailSelectedKey] = { label, subject, body: bodyText };
+  localStorage.setItem(LEAD_EMAIL_TPL_STORAGE, JSON.stringify(all));
+  nhToast('Plantilla guardada en este navegador.', 'success');
+  renderLeadEmailModalBody();
+}
+window.saveLeadEmailTemplateCurrent = saveLeadEmailTemplateCurrent;
+
+function resetLeadEmailTemplatesForLead() {
+  const l = findLeadById(_leadEmailModalId);
+  if (!l) return;
+  if (!confirm('¿Restaurar las plantillas predeterminadas de este tipo de lead?')) return;
+  const seg = leadEmailTemplateSegment(l);
+  const all = loadLeadEmailStorageAll();
+  delete all[seg];
+  localStorage.setItem(LEAD_EMAIL_TPL_STORAGE, JSON.stringify(all));
+  nhToast('Plantillas restauradas.', 'success');
+  renderLeadEmailModalBody();
+}
+window.resetLeadEmailTemplatesForLead = resetLeadEmailTemplatesForLead;
 
 async function logLeadEmailSeguimiento(leadId, label) {
   const l = findLeadById(leadId);
@@ -4851,8 +4985,12 @@ async function sendSelectedLeadEmail() {
   const set = getLeadEmailTemplatesForLead(l);
   const tpl = set[_leadEmailSelectedKey];
   if (!tpl) return;
-  const subject = tpl.subject;
-  const bodyPlain = personalizeLeadEmailBody(tpl.body, l);
+  const subject = document.getElementById('lead-email-subject')?.value?.trim() || tpl.subject;
+  const bodyPlain = document.getElementById('lead-email-compose-body')?.value?.trim();
+  if (!subject || !bodyPlain) {
+    nhToast('Completa asunto y mensaje antes de enviar.', 'info');
+    return;
+  }
   const { data: { session } } = await window.nhSupabase.auth.getSession();
   if (!session?.access_token) {
     nhToast('Sesión no disponible', 'error');
@@ -5251,8 +5389,8 @@ function leadFmtDateTime(iso) {
 
 function leadEstadoBadge(est, l) {
   const e = l ? leadDisplayEstado(l) : est;
-  const colors = { nuevo:'badge-new', contactado:'', gestionado:'badge-new', cualificado:'badge-new', descartado:'', cerrado:'' };
-  const labels = { gestionado:'gestionado', cualificado:'cualificado' };
+  const colors = { nuevo:'badge-new', contactado:'', gestionado:'badge-new', activo:'badge-new', cualificado:'badge-new', descartado:'', cerrado:'' };
+  const labels = { gestionado:'gestionado', activo:'activo', cualificado:'cualificado' };
   return `<span class="badge ${colors[e]||''}">${labels[e] || e || 'nuevo'}</span>`;
 }
 
@@ -5263,15 +5401,18 @@ function leadActionBtns(l, compact) {
   const propBtn = isPa
     ? `<button type="button" class="adm-btn adm-btn-gold${sm}" onclick="${stop}openAlqFromLead('${l.id}')" title="Abrir expediente alquiler">🏠</button>`
     : '';
-  const mailBtn = isPa || !leadHasRealEmail(l) ? '' : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadEmailModal('${l.id}')" title="Email de seguimiento">✉</button>`;
+  const mailBtn = !leadHasRealEmail(l) ? '' : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadEmailModal('${l.id}')" title="Email de seguimiento">✉</button>`;
+  const waBtn = leadHasPhone(l) ? `<button type="button" class="adm-btn adm-btn-green${sm}" onclick="${stop}openLeadWhatsAppDirect('${l.id}')" title="WhatsApp del cliente">💬</button>` : '';
   return `<div class="gap-row lead-card-actions">
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}openLeadModal('${l.id}')" title="Ver ficha">👁</button>
     ${propBtn}
-    ${mailBtn}
+    ${mailBtn}${waBtn}
     <button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','contactado')" title="Contactado">📞</button>
     ${leadAllowsCualificado(l)
       ? `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','cualificado')" title="Cualificado (comprador)">✓</button>`
-      : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','gestionado')" title="Gestionado">✓</button>`}
+      : isAlquilerLeadRow(l)
+        ? `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','activo')" title="Activo en Administración / Integral">✓</button>`
+        : `<button type="button" class="adm-btn adm-btn-ghost${sm}" onclick="${stop}setLeadEstado('${l.id}','gestionado')" title="Gestionado">✓</button>`}
     <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}setLeadEstado('${l.id}','descartado')" title="Descartar (oculto del listado por defecto)">✕</button>
     <button type="button" class="adm-btn adm-btn-gold${sm}" onclick="${stop}setLeadEstado('${l.id}','cerrado')" title="Cerrado">🏁</button>
     <button type="button" class="adm-btn adm-btn-red${sm}" onclick="${stop}deleteLead('${l.id}')" title="Eliminar definitivamente">🗑</button>
@@ -5310,7 +5451,7 @@ function buildLeadModalContent(l) {
       <strong>Cambiar estado</strong>
       <div class="gap-row" style="margin-top:.35rem;flex-wrap:wrap">
         ${leadEstadoOptions(l).map(e =>
-          `<button type="button" class="adm-btn ${l.estado===e?'adm-btn-gold':'adm-btn-ghost'} adm-btn-sm" onclick="dashSetLeadEstado('${l.id}','${e}')">${e}</button>`
+          `<button type="button" class="adm-btn ${leadDisplayEstado(l)===e?'adm-btn-gold':'adm-btn-ghost'} adm-btn-sm" onclick="dashSetLeadEstado('${l.id}','${e}')">${leadEstadoLabel(e)}</button>`
         ).join('')}
       </div>
     </div>
@@ -5406,9 +5547,10 @@ function filterLeadsList() {
     if (!isAdminLeadsListRow(l)) return false;
     if (_leadFilterAlarm && !leadNeedsAlarm(l)) return false;
     if (!_leadFilterEstado && !_leadFilterAlarm && l.estado === 'descartado') return false;
+    if (!_leadFilterEstado && !_leadFilterAlarm && isLeadOcultoEnLeadsGeneral(l)) return false;
     if (_leadFilterEstado === 'seguimiento') {
       if (!isLeadEnSeguimiento(l)) return false;
-    } else if (_leadFilterEstado === 'gestionado') {
+    } else if (_leadFilterEstado === 'activos' || _leadFilterEstado === 'gestionado') {
       if (!isLeadGestionadoActivo(l)) return false;
     } else if (_leadFilterEstado && l.estado !== _leadFilterEstado) return false;
     if (_leadFilterTipo && l.tipo !== _leadFilterTipo) return false;
@@ -5472,6 +5614,13 @@ async function setLeadEstado(id, estado) {
     window.nhToast && nhToast('Para compradores usa «Cualificado».', 'info', 4500);
     return;
   }
+  if (estado === 'gestionado' && l && isAlquilerLeadRow(l)) {
+    estado = 'activo';
+  }
+  if (estado === 'activo' && l && !isAlquilerLeadRow(l)) {
+    window.nhToast && nhToast('«Activo» es para alquiler en cartera. Usa «Gestionado».', 'info', 4500);
+    return;
+  }
   const propId = l && leadPropietarioAlquilerId(l);
   if (propId) {
     const patch = { id: propId };
@@ -5525,7 +5674,7 @@ async function setLeadEstado(id, estado) {
       }
       if (apiRow?.propietario_alquiler_id) leadRow.propietario_alquiler_id = apiRow.propietario_alquiler_id;
     }
-    if (estado === 'gestionado' && l && isManualAlquilerPipelineLead(l)) {
+    if (estado === 'activo' && l && isAlquilerLeadRow(l)) {
       try {
         await fetchAlquilerPropietarios();
         renderAlqSegGrids();
@@ -5535,13 +5684,14 @@ async function setLeadEstado(id, estado) {
       }
       window.nhToast && nhToast(
         apiRow?.propietario_alquiler_id
-          ? 'Gestionado: expediente visible en Alquileres → Administración'
-          : 'Estado gestionado (revisa expediente en Administración)',
+          ? 'Activo: visible en Alquileres → Administración (oculto en Leads → Todos)'
+          : 'Marcado activo (revisa expediente en Administración)',
         'success',
-        4500
+        5000
       );
+      closeDashModal();
     } else {
-      window.nhToast && nhToast('Estado actualizado: ' + estado, 'success', 2500);
+      window.nhToast && nhToast('Estado actualizado: ' + leadEstadoLabel(estado), 'success', 2500);
     }
   } catch (err) {
     window.nhToast && nhToast('Error: ' + err.message, 'error', 6000);
