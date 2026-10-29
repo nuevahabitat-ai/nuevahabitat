@@ -921,7 +921,7 @@ async function handleAdminLeadUpdate(req, res, body) {
       const status = result.error?.includes('no encontrado') ? 404 : 400;
       return res.status(status).json({ ok: false, error: result.error || 'No se pudo actualizar' });
     }
-    return res.status(200).json({ ok: true, row: result.row });
+    return res.status(200).json({ ok: true, row: result.row, onboarding: result.onboarding || null });
   } catch (err) {
     console.error('admin-lead-update', err);
     return res.status(500).json({ ok: false, error: err.message });

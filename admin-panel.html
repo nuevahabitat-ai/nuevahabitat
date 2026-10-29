@@ -4836,6 +4836,30 @@ function procedenciaLabel(v) {
   return hit ? hit.label : (v ? String(v).replace(/_/g, ' ') : '');
 }
 
+function isPartnerAlquilerProcedencia(v) {
+  const p = String(v || '').trim().toLowerCase();
+  return p === 'livendia' || p === 'gestor_hogar';
+}
+
+function toastActivoAlquilerOnboarding(json, l) {
+  const ob = json?.onboarding;
+  const base = 'Activo en Administración (oculto en Leads → Todos).';
+  if (ob?.mode === 'partner') {
+    return `${base} ${procedenciaLabel(ob.procedencia || l?.procedencia)}: sin checklist ni email automático NH.`;
+  }
+  if (ob?.mode === 'nuevahabitat') {
+    const mail = ob.welcomeEmail ? ' Email de bienvenida enviado.' : ' Checklist añadido al expediente.';
+    return `${base} Cliente Nueva Hábitat:${mail}`;
+  }
+  if (ob?.mode === 'skipped') {
+    return `${base} Sin onboarding automático: usa procedencia «NuevaHabitat» o alta desde formulario web NH.`;
+  }
+  if (isPartnerAlquilerProcedencia(l?.procedencia)) {
+    return `${base} Partner externo — gestionar según acuerdo Livendia/Gestor Hogar.`;
+  }
+  return base;
+}
+
 function procedenciaSelectOptions(selected) {
   const sel = selected || '';
   return NH_PROCEDENCIA_OPTS.map((o) =>
@@ -6005,13 +6029,7 @@ async function setLeadEstado(id, estado) {
       } catch (refreshErr) {
         console.warn('setLeadEstado refresh alquiler', refreshErr);
       }
-      window.nhToast && nhToast(
-        apiRow?.propietario_alquiler_id
-          ? 'Activo: visible en Alquileres → Administración (oculto en Leads → Todos)'
-          : 'Marcado activo (revisa expediente en Administración)',
-        'success',
-        5000
-      );
+      window.nhToast && nhToast(toastActivoAlquilerOnboarding(json, l), 'success', 6500);
       closeDashModal();
     } else {
       window.nhToast && nhToast('Estado actualizado: ' + leadEstadoLabel(estado), 'success', 2500);
