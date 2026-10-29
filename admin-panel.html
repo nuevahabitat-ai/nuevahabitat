@@ -164,6 +164,15 @@ select.adm-control{
 .dash-item-date{font-size:.65rem;color:var(--muted);white-space:nowrap}
 
 /* ─── Dashboard modal ────────────────────────────────────────── */
+.lead-alarm-popup{position:fixed;inset:0;z-index:9500;display:none;align-items:center;justify-content:center;padding:1.25rem}
+.lead-alarm-popup.open{display:flex}
+.lead-alarm-popup-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.78)}
+.lead-alarm-popup-panel{position:relative;width:min(520px,100%);max-height:min(88vh,640px);background:var(--surface);border:2px solid rgba(249,115,22,.55);border-radius:12px;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.55);overflow:hidden}
+.lead-alarm-popup-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:1.15rem 1.25rem;border-bottom:1px solid var(--border);background:rgba(249,115,22,.1)}
+.lead-alarm-popup-head h3{font-family:'Playfair Display',serif;font-size:1.12rem;color:#fdba74;font-weight:600;line-height:1.3}
+.lead-alarm-popup-sub{font-size:.75rem;color:var(--muted);margin-top:.35rem;line-height:1.45}
+.lead-alarm-popup-body{padding:1rem 1.25rem;overflow-y:auto;flex:1}
+.lead-alarm-popup-foot{padding:1rem 1.25rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:.5rem;justify-content:flex-end;background:rgba(0,0,0,.12)}
 .dash-modal{position:fixed;inset:0;z-index:8000;display:none;align-items:center;justify-content:center;padding:1.25rem}
 .dash-modal.open{display:flex}
 .dash-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.65)}
@@ -2499,6 +2508,26 @@ select.adm-control{
 
     </div><!-- adm-content -->
   </main>
+
+  <!-- Pop-up obligatorio: leads con alarma (solo se cierra con ×; vuelve al recargar si siguen pendientes) -->
+  <div id="lead-alarm-popup" class="lead-alarm-popup" role="alertdialog" aria-modal="true" aria-labelledby="lead-alarm-popup-title" hidden>
+    <div class="lead-alarm-popup-backdrop" aria-hidden="true"></div>
+    <div class="lead-alarm-popup-panel">
+      <div class="lead-alarm-popup-head">
+        <div>
+          <div class="dash-modal-kicker" style="color:#fdba74">⏰ Leads por contactar</div>
+          <h3 id="lead-alarm-popup-title">Hay leads con alarma de seguimiento</h3>
+          <p class="lead-alarm-popup-sub" id="lead-alarm-popup-sub"></p>
+        </div>
+        <button type="button" class="dash-modal-close" onclick="closeLeadAlarmPopup()" aria-label="Cerrar aviso">×</button>
+      </div>
+      <div class="lead-alarm-popup-body" id="lead-alarm-popup-list"></div>
+      <div class="lead-alarm-popup-foot">
+        <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="filterLeadsAlarmas(); closeLeadAlarmPopup()">Ver en Leads</button>
+        <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closeLeadAlarmPopup()">Cerrar (×)</button>
+      </div>
+    </div>
+  </div>
 </div><!-- admin-app -->
 
 <!-- ══ Media Overlay ══════════════════════════════════════════ -->
@@ -7943,6 +7972,91 @@ function leadNeedsAlarm(l){
   return days >= getLeadAlarmDays();
 }
 
+let _leadAlarmPopupDismissedSig = null;
+
+/** Leads que deben salir en el pop-up: alarma de seguimiento o estado nuevo sin gestionar. */
+function getLeadPopupRows() {
+  return (_leadsData || []).filter((l) => {
+    if (!isAdminLeadsListRow(l)) return false;
+    if (['descartado', 'cerrado'].includes(l.estado)) return false;
+    if (isLeadOcultoEnLeadsGeneral(l)) return false;
+    if (leadNeedsAlarm(l)) return true;
+    return l.estado === 'nuevo';
+  });
+}
+
+function getLeadAlarmRows() {
+  return getLeadPopupRows();
+}
+
+function leadAlarmPopupSignature(rows) {
+  return (rows || []).map((l) => String(l.id)).sort().join('|');
+}
+
+function renderLeadAlarmPopupContent(alarms) {
+  const sub = document.getElementById('lead-alarm-popup-sub');
+  const listEl = document.getElementById('lead-alarm-popup-list');
+  const days = getLeadAlarmDays();
+  if (sub) {
+    sub.textContent = `${alarms.length} lead(s) pendientes (nuevos o con alarma de más de ${days} día(s) sin seguimiento). Registra contacto antes de cerrar este aviso.`;
+  }
+  if (!listEl) return;
+  listEl.innerHTML = alarms.map((l) => {
+    const d = leadDaysWithoutFollowUp(l);
+    const isNew = l.estado === 'nuevo';
+    const tag = leadNeedsAlarm(l)
+      ? '<span class="hoy-toca-tag hoy-toca-tag--alarm">Alarma</span>'
+      : '<span class="hoy-toca-tag hoy-toca-tag--seg">Nuevo</span>';
+    const daysTxt = isNew && !leadNeedsAlarm(l)
+      ? 'Sin contactar'
+      : (d != null ? `${d} d sin seguimiento` : 'Sin contacto registrado');
+    return `<button type="button" class="hoy-toca-item" style="width:100%;border-bottom:1px solid var(--border)" onclick="openLeadModal('${l.id}')">
+      ${tag}
+      <div class="hoy-toca-item-main">
+        <div class="hoy-toca-item-title">${dashEsc(l.nombre || 'Lead')}</div>
+        <div class="hoy-toca-item-meta">${dashEsc(leadCategoriaLabel(l))} · ${dashEsc(daysTxt)}</div>
+      </div>
+    </button>`;
+  }).join('');
+}
+
+function maybeShowLeadAlarmPopup() {
+  const modal = document.getElementById('lead-alarm-popup');
+  if (!modal || !document.getElementById('admin-app')?.classList.contains('visible')) return;
+  if (!getPanelAlarmConfig().leadAlarmsEnabled) {
+    modal.setAttribute('hidden', '');
+    modal.classList.remove('open');
+    return;
+  }
+  const alarms = getLeadAlarmRows();
+  if (!alarms.length) {
+    _leadAlarmPopupDismissedSig = null;
+    modal.setAttribute('hidden', '');
+    modal.classList.remove('open');
+    return;
+  }
+  const sig = leadAlarmPopupSignature(alarms);
+  if (_leadAlarmPopupDismissedSig === sig) {
+    modal.setAttribute('hidden', '');
+    modal.classList.remove('open');
+    return;
+  }
+  renderLeadAlarmPopupContent(alarms);
+  modal.removeAttribute('hidden');
+  modal.classList.add('open');
+}
+
+function closeLeadAlarmPopup() {
+  const alarms = getLeadAlarmRows();
+  if (alarms.length) _leadAlarmPopupDismissedSig = leadAlarmPopupSignature(alarms);
+  const modal = document.getElementById('lead-alarm-popup');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.setAttribute('hidden', '');
+  }
+}
+window.closeLeadAlarmPopup = closeLeadAlarmPopup;
+
 function updateLeadAlarmUI(leads){
   const list = leads || _leadsData || [];
   const alarms = list.filter(leadNeedsAlarm);
@@ -7966,6 +8080,7 @@ function updateLeadAlarmUI(leads){
       banner.style.display = 'none';
     }
   }
+  maybeShowLeadAlarmPopup();
 }
 
 function loadPanelConfigForm(){
