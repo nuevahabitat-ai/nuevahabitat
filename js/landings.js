@@ -81,26 +81,55 @@ window.NH_LANDING_ORDER = [
   "vender-piso-separacion-divorcio-barcelona",
   "vender-piso-traslado-barcelona",
   "vender-segunda-residencia-barcelona",
+  "inmobiliaria-para-particulares-badalona-barcelona",
   "inmobiliaria-para-particulares-barcelona",
+  "inmobiliaria-para-particulares-ciutat-vella-barcelona",
+  "inmobiliaria-para-particulares-cornella-barcelona",
+  "inmobiliaria-para-particulares-eixample-barcelona",
+  "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona",
+  "inmobiliaria-para-particulares-esplugues-barcelona",
+  "inmobiliaria-para-particulares-gracia-barcelona",
+  "inmobiliaria-para-particulares-horta-barcelona",
+  "inmobiliaria-para-particulares-l-hospitalet-barcelona",
+  "inmobiliaria-para-particulares-les-corts-barcelona",
+  "inmobiliaria-para-particulares-nou-barris-barcelona",
+  "inmobiliaria-para-particulares-poble-sec-barcelona",
+  "inmobiliaria-para-particulares-poblenou-barcelona",
+  "inmobiliaria-para-particulares-sant-andreu-barcelona",
+  "inmobiliaria-para-particulares-sant-antoni-barcelona",
+  "inmobiliaria-para-particulares-sant-gervasi-barcelona",
+  "inmobiliaria-para-particulares-sant-marti-barcelona",
+  "inmobiliaria-para-particulares-sants-barcelona",
+  "inmobiliaria-para-particulares-sarria-barcelona",
   "inmobiliaria-precio-fijo-badalona-barcelona",
   "inmobiliaria-precio-fijo-barcelona",
   "inmobiliaria-precio-fijo-ciutat-vella-barcelona",
   "inmobiliaria-precio-fijo-cornella-barcelona",
+  "inmobiliaria-precio-fijo-diagonal-mar-barcelona",
   "inmobiliaria-precio-fijo-eixample-barcelona",
   "inmobiliaria-precio-fijo-el-clot-barcelona",
   "inmobiliaria-precio-fijo-esplugues-barcelona",
+  "inmobiliaria-precio-fijo-fort-pienc-barcelona",
   "inmobiliaria-precio-fijo-gracia-barcelona",
+  "inmobiliaria-precio-fijo-guinardo-barcelona",
   "inmobiliaria-precio-fijo-horta-barcelona",
+  "inmobiliaria-precio-fijo-hostafrancs-barcelona",
   "inmobiliaria-precio-fijo-l-hospitalet-barcelona",
+  "inmobiliaria-precio-fijo-la-sagrera-barcelona",
   "inmobiliaria-precio-fijo-les-corts-barcelona",
+  "inmobiliaria-precio-fijo-montjuic-barcelona",
   "inmobiliaria-precio-fijo-nou-barris-barcelona",
+  "inmobiliaria-precio-fijo-pedralbes-barcelona",
   "inmobiliaria-precio-fijo-poble-sec-barcelona",
   "inmobiliaria-precio-fijo-poblenou-barcelona",
+  "inmobiliaria-precio-fijo-sagrada-familia-barcelona",
   "inmobiliaria-precio-fijo-sant-andreu-barcelona",
   "inmobiliaria-precio-fijo-sant-antoni-barcelona",
   "inmobiliaria-precio-fijo-sant-gervasi-barcelona",
+  "inmobiliaria-precio-fijo-sant-marti-barcelona",
   "inmobiliaria-precio-fijo-sants-barcelona",
   "inmobiliaria-precio-fijo-sarria-barcelona",
+  "inmobiliaria-precio-fijo-vila-olimpica-barcelona",
   "particular-vendo-piso-urgente-barcelona",
   "vender-mi-piso-barcelona",
   "vender-piso-cornella-barcelona",
@@ -108,13 +137,17 @@ window.NH_LANDING_ORDER = [
   "vender-piso-sin-exclusividad-barcelona",
   "vender-piso-sin-portales-barcelona",
   "vender-piso-sin-portales-eixample-barcelona",
+  "vender-piso-sin-portales-gracia-barcelona",
   "vender-piso-sin-portales-les-corts-barcelona",
+  "vender-piso-sin-portales-poblenou-barcelona",
+  "vender-piso-sin-portales-sarria-barcelona",
   "vender-vivienda-honorarios-fijos-barcelona",
   "venta-piso-economica-badalona-barcelona",
   "venta-piso-economica-barcelona",
   "venta-piso-economica-ciutat-vella-barcelona",
   "venta-piso-economica-cornella-barcelona",
   "venta-piso-economica-eixample-barcelona",
+  "venta-piso-economica-el-clot-la-sagrera-barcelona",
   "venta-piso-economica-esplugues-barcelona",
   "venta-piso-economica-gracia-barcelona",
   "venta-piso-economica-horta-barcelona",
@@ -131,15 +164,20 @@ window.NH_LANDING_ORDER = [
   "venta-piso-economica-sarria-barcelona",
   "vender-como-particular-badalona-barcelona",
   "vender-como-particular-barcelona",
+  "vender-como-particular-barceloneta-barcelona",
   "vender-como-particular-bon-pastor-barcelona",
+  "vender-como-particular-born-barcelona",
+  "vender-como-particular-camp-de-larpa-barcelona",
   "vender-como-particular-camp-den-grassot-barcelona",
   "vender-como-particular-ciutat-vella-barcelona",
   "vender-como-particular-cornella-barcelona",
   "vender-como-particular-diagonal-mar-barcelona",
   "vender-como-particular-eixample-barcelona",
+  "vender-como-particular-el-besos-barcelona",
   "vender-como-particular-el-clot-la-sagrera-barcelona",
   "vender-como-particular-esplugues-barcelona",
   "vender-como-particular-fort-pienc-barcelona",
+  "vender-como-particular-gotic-barcelona",
   "vender-como-particular-gracia-barcelona",
   "vender-como-particular-guinardo-barcelona",
   "vender-como-particular-horta-barcelona",
@@ -155,10 +193,14 @@ window.NH_LANDING_ORDER = [
   "vender-como-particular-pedralbes-barcelona",
   "vender-como-particular-poble-sec-barcelona",
   "vender-como-particular-poblenou-barcelona",
+  "vender-como-particular-provencals-del-poblenou-barcelona",
+  "vender-como-particular-raval-barcelona",
   "vender-como-particular-roquetes-barcelona",
+  "vender-como-particular-sagrada-familia-barcelona",
   "vender-como-particular-sant-andreu-barcelona",
   "vender-como-particular-sant-antoni-barcelona",
   "vender-como-particular-sant-gervasi-barcelona",
+  "vender-como-particular-sant-just-sant-joan-despi-barcelona",
   "vender-como-particular-sant-marti-barcelona",
   "vender-como-particular-sant-pere-santa-caterina-barcelona",
   "vender-como-particular-sants-barcelona",
@@ -167,9 +209,11 @@ window.NH_LANDING_ORDER = [
   "vender-como-particular-trinitat-vella-barcelona",
   "vender-como-particular-vall-d-hebron-barcelona",
   "vender-como-particular-verneda-barcelona",
+  "vender-como-particular-vila-olimpica-barcelona",
   "nuevahabitat-vs-agencia-tradicional-barcelona",
   "nuevahabitat-vs-clikalia-barcelona",
   "nuevahabitat-vs-fotocasa-particular",
+  "nuevahabitat-vs-habitaclia-particular",
   "nuevahabitat-vs-housfy-barcelona",
   "nuevahabitat-vs-idealista-particular",
   "vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
@@ -330,7 +374,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/sants2.jpg",
-    "cardTeaser": "¿Vendes en Bon Pastor? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Bon Pastor? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h…"
   },
   "vender-camp-de-larpa-barcelona": {
     "slug": "vender-camp-de-larpa-barcelona",
@@ -347,7 +391,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
-    "cardTeaser": "¿Vendes en Camp de l'Arpa? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Camp de l'Arpa? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en …"
   },
   "vender-camp-den-grassot-barcelona": {
     "slug": "vender-camp-den-grassot-barcelona",
@@ -364,7 +408,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/gracia4.jpg",
-    "cardTeaser": "¿Vendes en Camp d'en Grassot? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Camp d'en Grassot? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración …"
   },
   "vender-cornella": {
     "slug": "vender-cornella",
@@ -399,7 +443,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/barcelona7.webp",
-    "cardTeaser": "¿Vendes en Diagonal Mar? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Diagonal Mar? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24…"
   },
   "vender-eixample": {
     "slug": "vender-eixample",
@@ -435,7 +479,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/noubarris2.jpg",
-    "cardTeaser": "¿Vendes en El Besòs? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en El Besòs? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h d…"
   },
   "vender-el-clot-la-sagrera-barcelona": {
     "slug": "vender-el-clot-la-sagrera-barcelona",
@@ -452,7 +496,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
-    "cardTeaser": "¿Vendes tu piso en El Clot, La Sagrera o Sant Martí de Provençals? NuevaHabitat: honorarios fijos de 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en El Clot, La Sagrera o Sant Martí de Provençals? NuevaHabitat: honorarios fijos de 3.000 …"
   },
   "vender-esplugues": {
     "slug": "vender-esplugues",
@@ -487,7 +531,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
-    "cardTeaser": "¿Vendes en Fort Pienc? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Fort Pienc? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h…"
   },
   "vender-gracia": {
     "slug": "vender-gracia",
@@ -521,7 +565,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/horta2.jpg",
-    "cardTeaser": "¿Vendes en El Guinardó? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en El Guinardó? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 …"
   },
   "vender-horta": {
     "slug": "vender-horta",
@@ -556,7 +600,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/sants2.jpg",
-    "cardTeaser": "¿Vendes en Hostafrancs? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Hostafrancs? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 …"
   },
   "vender-l-hospitalet": {
     "slug": "vender-l-hospitalet",
@@ -591,7 +635,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
-    "cardTeaser": "¿Vendes en La Bordeta? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en La Bordeta? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h…"
   },
   "vender-la-marina-barcelona": {
     "slug": "vender-la-marina-barcelona",
@@ -608,7 +652,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
-    "cardTeaser": "¿Vendes en La Marina? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en La Marina? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h …"
   },
   "vender-la-sagrera-barcelona": {
     "slug": "vender-la-sagrera-barcelona",
@@ -625,7 +669,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/hospitalet5.jpg",
-    "cardTeaser": "¿Vendes en La Sagrera? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en La Sagrera? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h…"
   },
   "vender-les-corts": {
     "slug": "vender-les-corts",
@@ -659,7 +703,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
-    "cardTeaser": "¿Vendes en Montjuïc? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Montjuïc? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h d…"
   },
   "vender-navas-barcelona": {
     "slug": "vender-navas-barcelona",
@@ -676,7 +720,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/hospitalet4.jpg",
-    "cardTeaser": "¿Vendes en Navas? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Navas? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-nou-barris": {
     "slug": "vender-nou-barris",
@@ -694,7 +738,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
-    "cardTeaser": "¿Vendes tu piso en Nou Barris, Roquetes o Verdum? Honorarios fijos 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en Nou Barris, Roquetes o Verdum? Honorarios fijos 3.000 € + IVA (3.630 €)."
   },
   "vender-pedralbes-barcelona": {
     "slug": "vender-pedralbes-barcelona",
@@ -711,7 +755,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/lescorts4.jpg",
-    "cardTeaser": "¿Vendes en Pedralbes? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Pedralbes? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h …"
   },
   "vender-piso-barceloneta": {
     "slug": "vender-piso-barceloneta",
@@ -813,7 +857,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
-    "cardTeaser": "¿Vendes tu piso en Poble Sec? NuevaHabitat: honorarios fijos de 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en Poble Sec? NuevaHabitat: honorarios fijos de 3.000 € + IVA (3.630 €)."
   },
   "vender-poblenou": {
     "slug": "vender-poblenou",
@@ -831,7 +875,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
-    "cardTeaser": "¿Vendes tu piso en Poblenou o Vila Olímpica? NuevaHabitat: honorarios fijos de 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en Poblenou o Vila Olímpica? NuevaHabitat: honorarios fijos de 3.000 € + IVA (3.630 €)."
   },
   "vender-provencals-del-poblenou-barcelona": {
     "slug": "vender-provencals-del-poblenou-barcelona",
@@ -848,7 +892,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
-    "cardTeaser": "¿Vendes en Provençals del Poblenou? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24…"
+    "cardTeaser": "¿Vendes en Provençals del Poblenou? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valor…"
   },
   "vender-roquetes-barcelona": {
     "slug": "vender-roquetes-barcelona",
@@ -865,7 +909,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
-    "cardTeaser": "¿Vendes en Roquetes? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Roquetes? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h d…"
   },
   "vender-sagrada-familia-barcelona": {
     "slug": "vender-sagrada-familia-barcelona",
@@ -882,7 +926,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
-    "cardTeaser": "¿Vendes en Sagrada Família? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Sagrada Família? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en…"
   },
   "vender-sant-andreu": {
     "slug": "vender-sant-andreu",
@@ -900,7 +944,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/barcelona5.jpg",
-    "cardTeaser": "¿Vendes tu piso en Sant Andreu de Palomar? NuevaHabitat: honorarios fijos de 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en Sant Andreu de Palomar? NuevaHabitat: honorarios fijos de 3.000 € + IVA (3.630 €)."
   },
   "vender-sant-antoni": {
     "slug": "vender-sant-antoni",
@@ -917,7 +961,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
-    "cardTeaser": "¿Vendes tu piso en Sant Antoni? NuevaHabitat: honorarios fijos de 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en Sant Antoni? NuevaHabitat: honorarios fijos de 3.000 € + IVA (3.630 €)."
   },
   "vender-sant-gervasi": {
     "slug": "vender-sant-gervasi",
@@ -934,7 +978,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/eixample4.jpg",
-    "cardTeaser": "¿Vendes tu piso en Sant Gervasi (El Putxet, El Farró, Via Augusta)? NuevaHabitat: honorarios fijos de 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en Sant Gervasi (El Putxet, El Farró, Via Augusta)? NuevaHabitat: honorarios fijos de 3.000…"
   },
   "vender-sant-just-sant-joan-despi": {
     "slug": "vender-sant-just-sant-joan-despi",
@@ -952,7 +996,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/santjust1.webp",
-    "cardTeaser": "¿Vendes en Sant Just Desvern o Sant Joan Despí? Honorarios fijos 3.500€ + IVA desde nuestra oficina en Les Corts."
+    "cardTeaser": "¿Vendes en Sant Just Desvern o Sant Joan Despí? Honorarios fijos 3.000 € + IVA (3.630 €) desde nuestra ofic…"
   },
   "vender-sant-marti": {
     "slug": "vender-sant-marti",
@@ -988,7 +1032,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/born1.jpg",
-    "cardTeaser": "¿Vendes en Sant Pere / Santa Caterina? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en…"
+    "cardTeaser": "¿Vendes en Sant Pere / Santa Caterina? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y va…"
   },
   "vender-sants": {
     "slug": "vender-sants",
@@ -1005,7 +1049,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
-    "cardTeaser": "¿Vendes tu piso en Sants? NuevaHabitat: honorarios fijos de 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en Sants? NuevaHabitat: honorarios fijos de 3.000 € + IVA (3.630 €)."
   },
   "vender-sarria": {
     "slug": "vender-sarria",
@@ -1023,7 +1067,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
-    "cardTeaser": "¿Vendes tu piso en Sarrià? NuevaHabitat: honorarios fijos de 3.500€ + IVA."
+    "cardTeaser": "¿Vendes tu piso en Sarrià? NuevaHabitat: honorarios fijos de 3.000 € + IVA (3.630 €)."
   },
   "vender-tetuan-barcelona": {
     "slug": "vender-tetuan-barcelona",
@@ -1040,7 +1084,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
-    "cardTeaser": "¿Vendes en Tetuan? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Tetuan? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h desde Les Corts."
   },
   "vender-trinitat-vella-barcelona": {
     "slug": "vender-trinitat-vella-barcelona",
@@ -1057,7 +1101,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/noubarris2.jpg",
-    "cardTeaser": "¿Vendes en Trinitat Vella? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Trinitat Vella? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en …"
   },
   "vender-vall-d-hebron-barcelona": {
     "slug": "vender-vall-d-hebron-barcelona",
@@ -1074,7 +1118,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/horta2.jpg",
-    "cardTeaser": "¿Vendes en Vall d'Hebron? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Vall d'Hebron? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 2…"
   },
   "vender-verneda-barcelona": {
     "slug": "vender-verneda-barcelona",
@@ -1090,7 +1134,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
-    "cardTeaser": "¿Vendes en La Verneda? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en La Verneda? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 24 h…"
   },
   "vender-vila-olimpica-barcelona": {
     "slug": "vender-vila-olimpica-barcelona",
@@ -1107,7 +1151,7 @@ window.NH_LANDINGS = {
     "indexable": true,
     "testimonials": true,
     "cardImage": "imagenes/barcelona2.jpg",
-    "cardTeaser": "¿Vendes en Vila Olímpica? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts."
+    "cardTeaser": "¿Vendes en Vila Olímpica? Honorarios fijos 3.000 € + IVA (3.630 €), compradores filtrados y valoración en 2…"
   },
   "cuanto-vale-mi-piso-barcelona": {
     "slug": "cuanto-vale-mi-piso-barcelona",
@@ -1229,6 +1273,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/interior12.webp",
     "cardTeaser": "¿Vendes un piso vacío o segunda residencia en Barcelona? Fiscalidad distinta, visitas flexibles y comprador…"
   },
+  "inmobiliaria-para-particulares-badalona-barcelona": {
+    "slug": "inmobiliaria-para-particulares-badalona-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Badalona",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares badalona barcelona",
+    "badge": "Badalona · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Badalona: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
   "inmobiliaria-para-particulares-barcelona": {
     "slug": "inmobiliaria-para-particulares-barcelona",
     "cluster": "intencion",
@@ -1239,7 +1295,223 @@ window.NH_LANDINGS = {
     "badge": "Barcelona · Propietario particular",
     "testimonials": true,
     "cardImage": "imagenes/comercial2.jpg",
-    "cardTeaser": "Agencia en Barcelona pensada para el propietario particular: 3.500 € + IVA solo en escritura, sin 6% ni exclusiva abusiva, panel vendedor y compradores filtrados."
+    "cardTeaser": "Agencia en Barcelona pensada para el propietario particular: 3.000 € + IVA (3.630 €) solo en escritura, sin 6% ni exclusiva abusiva, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-ciutat-vella-barcelona": {
+    "slug": "inmobiliaria-para-particulares-ciutat-vella-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Ciutat Vella",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares ciutat vella barcelona",
+    "badge": "Ciutat Vella · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/ciutatvella2.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Ciutat Vella: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-cornella-barcelona": {
+    "slug": "inmobiliaria-para-particulares-cornella-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Cornellà de Llobregat",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares cornellà de llobregat barcelona",
+    "badge": "Cornellà de Llobregat · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona1.jpeg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Cornellà de Llobregat: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-eixample-barcelona": {
+    "slug": "inmobiliaria-para-particulares-eixample-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Eixample",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares eixample barcelona",
+    "badge": "Eixample · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Eixample: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona": {
+    "slug": "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares El Clot - La Sagrera",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares el clot - la sagrera barcelona",
+    "badge": "El Clot - La Sagrera · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en El Clot - La Sagrera: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-esplugues-barcelona": {
+    "slug": "inmobiliaria-para-particulares-esplugues-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Esplugues de Llobregat",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares esplugues de llobregat barcelona",
+    "badge": "Esplugues de Llobregat · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/esplugues1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Esplugues de Llobregat: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-gracia-barcelona": {
+    "slug": "inmobiliaria-para-particulares-gracia-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Gràcia",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares gràcia barcelona",
+    "badge": "Gràcia · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/gracia1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Gràcia: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-horta-barcelona": {
+    "slug": "inmobiliaria-para-particulares-horta-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Horta-Guinardó",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares horta-guinardó barcelona",
+    "badge": "Horta-Guinardó · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/horta1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Horta-Guinardó: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-l-hospitalet-barcelona": {
+    "slug": "inmobiliaria-para-particulares-l-hospitalet-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares L'Hospitalet",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares l'hospitalet barcelona",
+    "badge": "L'Hospitalet · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en L'Hospitalet: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-les-corts-barcelona": {
+    "slug": "inmobiliaria-para-particulares-les-corts-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Les Corts",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares les corts barcelona",
+    "badge": "Les Corts · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/lescorts1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Les Corts: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-nou-barris-barcelona": {
+    "slug": "inmobiliaria-para-particulares-nou-barris-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Nou Barris",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares nou barris barcelona",
+    "badge": "Nou Barris · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Nou Barris: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-poble-sec-barcelona": {
+    "slug": "inmobiliaria-para-particulares-poble-sec-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Poble Sec",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares poble sec barcelona",
+    "badge": "Poble Sec · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Poble Sec: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-poblenou-barcelona": {
+    "slug": "inmobiliaria-para-particulares-poblenou-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Poblenou",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares poblenou barcelona",
+    "badge": "Poblenou · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/poblenou1.jpeg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Poblenou: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-sant-andreu-barcelona": {
+    "slug": "inmobiliaria-para-particulares-sant-andreu-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Sant Andreu",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares sant andreu barcelona",
+    "badge": "Sant Andreu · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona5.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Sant Andreu: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-sant-antoni-barcelona": {
+    "slug": "inmobiliaria-para-particulares-sant-antoni-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Sant Antoni",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares sant antoni barcelona",
+    "badge": "Sant Antoni · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Sant Antoni: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-sant-gervasi-barcelona": {
+    "slug": "inmobiliaria-para-particulares-sant-gervasi-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Sant Gervasi",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares sant gervasi barcelona",
+    "badge": "Sant Gervasi · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample4.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Sant Gervasi: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-sant-marti-barcelona": {
+    "slug": "inmobiliaria-para-particulares-sant-marti-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Sant Martí",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares sant martí barcelona",
+    "badge": "Sant Martí · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Sant Martí: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-sants-barcelona": {
+    "slug": "inmobiliaria-para-particulares-sants-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Sants",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares sants barcelona",
+    "badge": "Sants · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/sants1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Sants: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-sarria-barcelona": {
+    "slug": "inmobiliaria-para-particulares-sarria-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Sarrià",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares sarrià barcelona",
+    "badge": "Sarrià · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample5.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Sarrià: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
   "inmobiliaria-precio-fijo-badalona-barcelona": {
     "slug": "inmobiliaria-precio-fijo-badalona-barcelona",
@@ -1251,7 +1523,7 @@ window.NH_LANDINGS = {
     "badge": "Badalona · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
-    "cardTeaser": "Inmobiliaria con precio fijo en Badalona: 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Inmobiliaria con precio fijo en Badalona: 3.000 € + IVA (3.630 €) solo en escritura."
   },
   "inmobiliaria-precio-fijo-barcelona": {
     "slug": "inmobiliaria-precio-fijo-barcelona",
@@ -1263,7 +1535,7 @@ window.NH_LANDINGS = {
     "badge": "Barcelona · Precio fijo · Panel vendedor",
     "testimonials": true,
     "cardImage": "imagenes/comercial2.jpg",
-    "cardTeaser": "Agencia en Barcelona con honorarios fijos 3.500€ + IVA solo al vender."
+    "cardTeaser": "Agencia en Barcelona con honorarios fijos 3.000 € + IVA (3.630 €) solo al vender."
   },
   "inmobiliaria-precio-fijo-ciutat-vella-barcelona": {
     "slug": "inmobiliaria-precio-fijo-ciutat-vella-barcelona",
@@ -1287,7 +1559,19 @@ window.NH_LANDINGS = {
     "badge": "Cornellà · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/barcelona1.jpeg",
-    "cardTeaser": "Inmobiliaria con precio fijo en Cornellà: 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Inmobiliaria con precio fijo en Cornellà: 3.000 € + IVA (3.630 €) solo en escritura."
+  },
+  "inmobiliaria-precio-fijo-diagonal-mar-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-diagonal-mar-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Diagonal Mar",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo diagonal mar barcelona",
+    "badge": "Diagonal Mar · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona7.webp",
+    "cardTeaser": "Agencia honorarios fijos en Diagonal Mar."
   },
   "inmobiliaria-precio-fijo-eixample-barcelona": {
     "slug": "inmobiliaria-precio-fijo-eixample-barcelona",
@@ -1299,7 +1583,7 @@ window.NH_LANDINGS = {
     "badge": "Eixample · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
-    "cardTeaser": "Inmobiliaria con precio fijo en Eixample: 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Inmobiliaria con precio fijo en Eixample: 3.000 € + IVA (3.630 €) solo en escritura."
   },
   "inmobiliaria-precio-fijo-el-clot-barcelona": {
     "slug": "inmobiliaria-precio-fijo-el-clot-barcelona",
@@ -1325,6 +1609,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/esplugues1.jpg",
     "cardTeaser": "Agencia precio fijo Esplugues de Llobregat (08950)."
   },
+  "inmobiliaria-precio-fijo-fort-pienc-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-fort-pienc-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Fort Pienc",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo fort pienc barcelona",
+    "badge": "Fort Pienc · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "Agencia honorarios fijos en Fort Pienc."
+  },
   "inmobiliaria-precio-fijo-gracia-barcelona": {
     "slug": "inmobiliaria-precio-fijo-gracia-barcelona",
     "cluster": "intencion",
@@ -1335,7 +1631,19 @@ window.NH_LANDINGS = {
     "badge": "Gràcia · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
-    "cardTeaser": "Inmobiliaria con precio fijo en Gràcia: 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Inmobiliaria con precio fijo en Gràcia: 3.000 € + IVA (3.630 €) solo en escritura."
+  },
+  "inmobiliaria-precio-fijo-guinardo-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-guinardo-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo El Guinardó",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo el guinardó barcelona",
+    "badge": "El Guinardó · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "Agencia honorarios fijos en El Guinardó."
   },
   "inmobiliaria-precio-fijo-horta-barcelona": {
     "slug": "inmobiliaria-precio-fijo-horta-barcelona",
@@ -1347,7 +1655,19 @@ window.NH_LANDINGS = {
     "badge": "Horta-Guinardó · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/horta1.jpg",
-    "cardTeaser": "Inmobiliaria con precio fijo en Horta-Guinardó: 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Inmobiliaria con precio fijo en Horta-Guinardó: 3.000 € + IVA (3.630 €) solo en escritura."
+  },
+  "inmobiliaria-precio-fijo-hostafrancs-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-hostafrancs-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Hostafrancs",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo hostafrancs barcelona",
+    "badge": "Hostafrancs · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/sants2.jpg",
+    "cardTeaser": "Agencia honorarios fijos en Hostafrancs."
   },
   "inmobiliaria-precio-fijo-l-hospitalet-barcelona": {
     "slug": "inmobiliaria-precio-fijo-l-hospitalet-barcelona",
@@ -1359,7 +1679,19 @@ window.NH_LANDINGS = {
     "badge": "L'Hospitalet · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
-    "cardTeaser": "Inmobiliaria con precio fijo en L'Hospitalet: 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Inmobiliaria con precio fijo en L'Hospitalet: 3.000 € + IVA (3.630 €) solo en escritura."
+  },
+  "inmobiliaria-precio-fijo-la-sagrera-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-la-sagrera-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo La Sagrera",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo la sagrera barcelona",
+    "badge": "La Sagrera · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet5.jpg",
+    "cardTeaser": "Agencia honorarios fijos en La Sagrera."
   },
   "inmobiliaria-precio-fijo-les-corts-barcelona": {
     "slug": "inmobiliaria-precio-fijo-les-corts-barcelona",
@@ -1371,7 +1703,19 @@ window.NH_LANDINGS = {
     "badge": "Les Corts · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/lescorts1.jpg",
-    "cardTeaser": "Inmobiliaria con precio fijo en Les Corts: 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Inmobiliaria con precio fijo en Les Corts: 3.000 € + IVA (3.630 €) solo en escritura."
+  },
+  "inmobiliaria-precio-fijo-montjuic-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-montjuic-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Montjuïc",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo montjuïc barcelona",
+    "badge": "Montjuïc · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Agencia honorarios fijos en Montjuïc."
   },
   "inmobiliaria-precio-fijo-nou-barris-barcelona": {
     "slug": "inmobiliaria-precio-fijo-nou-barris-barcelona",
@@ -1384,6 +1728,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Agencia honorarios fijos Nou Barris (2.900–3.400 €/m²)."
+  },
+  "inmobiliaria-precio-fijo-pedralbes-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-pedralbes-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Pedralbes",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo pedralbes barcelona",
+    "badge": "Pedralbes · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/lescorts4.jpg",
+    "cardTeaser": "Agencia honorarios fijos en Pedralbes."
   },
   "inmobiliaria-precio-fijo-poble-sec-barcelona": {
     "slug": "inmobiliaria-precio-fijo-poble-sec-barcelona",
@@ -1409,6 +1765,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Agencia precio fijo Poblenou, Vila Olímpica, Rambla, 22@."
   },
+  "inmobiliaria-precio-fijo-sagrada-familia-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-sagrada-familia-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Sagrada Família",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo sagrada família barcelona",
+    "badge": "Sagrada Família · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "Agencia honorarios fijos en Sagrada Família."
+  },
   "inmobiliaria-precio-fijo-sant-andreu-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sant-andreu-barcelona",
     "cluster": "intencion",
@@ -1419,7 +1787,7 @@ window.NH_LANDINGS = {
     "badge": "Sant Andreu · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/barcelona5.jpg",
-    "cardTeaser": "Inmobiliaria con precio fijo en Sant Andreu: 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Inmobiliaria con precio fijo en Sant Andreu: 3.000 € + IVA (3.630 €) solo en escritura."
   },
   "inmobiliaria-precio-fijo-sant-antoni-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sant-antoni-barcelona",
@@ -1431,7 +1799,7 @@ window.NH_LANDINGS = {
     "badge": "Sant Antoni · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
-    "cardTeaser": "Honorarios fijos en Sant Antoni: 3.500€ + IVA solo al vender, no 6%."
+    "cardTeaser": "Honorarios fijos en Sant Antoni: 3.000 € + IVA (3.630 €) solo al vender, no 6%."
   },
   "inmobiliaria-precio-fijo-sant-gervasi-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sant-gervasi-barcelona",
@@ -1445,6 +1813,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample4.jpg",
     "cardTeaser": "Agencia honorarios fijos Sant Gervasi (Putxet, Farró, Via Augusta)."
   },
+  "inmobiliaria-precio-fijo-sant-marti-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-sant-marti-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Sant Martí",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo sant martí barcelona",
+    "badge": "Sant Martí · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/interior11.jpg",
+    "cardTeaser": "Agencia honorarios fijos en Sant Martí."
+  },
   "inmobiliaria-precio-fijo-sants-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sants-barcelona",
     "cluster": "intencion",
@@ -1455,7 +1835,7 @@ window.NH_LANDINGS = {
     "badge": "Sants · Precio fijo · Panel vendedor",
     "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
-    "cardTeaser": "Agencia con honorarios fijos en Sants: 3.500€ + IVA solo al vender, no un 6%."
+    "cardTeaser": "Agencia con honorarios fijos en Sants: 3.000 € + IVA (3.630 €) solo al vender, no un 6%."
   },
   "inmobiliaria-precio-fijo-sarria-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sarria-barcelona",
@@ -1467,7 +1847,19 @@ window.NH_LANDINGS = {
     "badge": "Sarrià · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
-    "cardTeaser": "Vender en Sarrià, Bonanova o Tres Torres con honorarios fijos 3.500€ + IVA solo en escritura."
+    "cardTeaser": "Vender en Sarrià, Bonanova o Tres Torres con honorarios fijos 3.000 € + IVA (3.630 €) solo en escritura."
+  },
+  "inmobiliaria-precio-fijo-vila-olimpica-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-vila-olimpica-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Vila Olímpica",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo vila olímpica barcelona",
+    "badge": "Vila Olímpica · Precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona2.jpg",
+    "cardTeaser": "Agencia honorarios fijos en Vila Olímpica."
   },
   "particular-vendo-piso-urgente-barcelona": {
     "slug": "particular-vendo-piso-urgente-barcelona",
@@ -1479,7 +1871,7 @@ window.NH_LANDINGS = {
     "badge": "Particular · Urgencia",
     "testimonials": true,
     "cardImage": "imagenes/comercial2.jpg",
-    "cardTeaser": "Particular con prisa: compradores con hipoteca, plan 30-60 días y 3.500 € + IVA solo en escritura."
+    "cardTeaser": "Particular con prisa: compradores con hipoteca, plan 30-60 días y 3.000 € + IVA (3.630 €) solo en escritura."
   },
   "vender-mi-piso-barcelona": {
     "slug": "vender-mi-piso-barcelona",
@@ -1503,7 +1895,7 @@ window.NH_LANDINGS = {
     "badge": "Cornellà · Vendedor",
     "testimonials": true,
     "cardImage": "imagenes/barcelona1.jpeg",
-    "cardTeaser": "Vender piso en Cornellà: L5, Sant Ildefons o Centre — compradores filtrados y 3.500 € + IVA en escritura."
+    "cardTeaser": "Vender piso en Cornellà: L5, Sant Ildefons o Centre — compradores filtrados y 3.000 € + IVA (3.630 €) en escritura."
   },
   "vender-piso-rapido-barcelona": {
     "slug": "vender-piso-rapido-barcelona",
@@ -1539,7 +1931,7 @@ window.NH_LANDINGS = {
     "badge": "Sin portales · Cartera compradores",
     "testimonials": true,
     "cardImage": "imagenes/comercial2.jpg",
-    "cardTeaser": "¿Vender sin Idealista ni Fotocasa? Cartera de compradores cualificados, visitas filtradas y honorarios fijos 3.500 € + IVA solo en escritura."
+    "cardTeaser": "¿Vender sin Idealista ni Fotocasa? Cartera de compradores cualificados, visitas filtradas y honorarios fijos 3.000 € + IVA (3.630 €) solo en escritura."
   },
   "vender-piso-sin-portales-eixample-barcelona": {
     "slug": "vender-piso-sin-portales-eixample-barcelona",
@@ -1553,6 +1945,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Eixample sin Idealista: finca modernista o Sant Antoni con compradores filtrados por perfil."
   },
+  "vender-piso-sin-portales-gracia-barcelona": {
+    "slug": "vender-piso-sin-portales-gracia-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Sin portales Gràcia",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso sin portales gracia barcelona",
+    "badge": "Gràcia · Discreción",
+    "testimonials": true,
+    "cardImage": "imagenes/gracia1.jpg",
+    "cardTeaser": "¿Vender en Gràcia sin que todo el barrio vea tu piso en Idealista. Cartera NH, visitas filtradas, 3.000 € + IVA (3.630 €) en escritura."
+  },
   "vender-piso-sin-portales-les-corts-barcelona": {
     "slug": "vender-piso-sin-portales-les-corts-barcelona",
     "cluster": "intencion",
@@ -1565,6 +1969,30 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Les Corts sin portales: matching por Numància, Pedralbes o universidad — precio fijo en escritura."
   },
+  "vender-piso-sin-portales-poblenou-barcelona": {
+    "slug": "vender-piso-sin-portales-poblenou-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Sin portales Poblenou",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso sin portales poblenou barcelona",
+    "badge": "Poblenou · Off-market",
+    "testimonials": true,
+    "cardImage": "imagenes/poblenou1.jpg",
+    "cardTeaser": "¿22@ o Rambla del Poblenou: vender off-market con compradores cualificados. Cartera NH, visitas filtradas, 3.000 € + IVA (3.630 €) en escritura."
+  },
+  "vender-piso-sin-portales-sarria-barcelona": {
+    "slug": "vender-piso-sin-portales-sarria-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Sin portales Sarrià",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso sin portales sarria barcelona",
+    "badge": "Sarrià · Cartera privada",
+    "testimonials": true,
+    "cardImage": "imagenes/sarria1.jpg",
+    "cardTeaser": "¿Vender en Sarrià con discreción, sin exponer tu dirección en un portal masivo. Cartera NH, visitas filtradas, 3.000 € + IVA (3.630 €) en escritura."
+  },
   "vender-vivienda-honorarios-fijos-barcelona": {
     "slug": "vender-vivienda-honorarios-fijos-barcelona",
     "cluster": "intencion",
@@ -1575,7 +2003,7 @@ window.NH_LANDINGS = {
     "badge": "Barcelona · Honorarios fijos",
     "testimonials": true,
     "cardImage": "imagenes/agente inmobiliario2.jpg",
-    "cardTeaser": "¿Vender en Barcelona sin comisiones desorbitadas? 3.500 € + IVA fijos solo en escritura, compradores cualificados y panel vendedor."
+    "cardTeaser": "¿Vender en Barcelona sin comisiones desorbitadas? 3.000 € + IVA (3.630 €) fijos solo en escritura, compradores cualificados y panel vendedor."
   },
   "venta-piso-economica-badalona-barcelona": {
     "slug": "venta-piso-economica-badalona-barcelona",
@@ -1587,7 +2015,7 @@ window.NH_LANDINGS = {
     "badge": "Badalona · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
-    "cardTeaser": "Vende tu piso en Badalona con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Badalona con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-barcelona": {
     "slug": "venta-piso-economica-barcelona",
@@ -1599,7 +2027,7 @@ window.NH_LANDINGS = {
     "badge": "Barcelona · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/familia10.jpg",
-    "cardTeaser": "Vende tu piso en Barcelona con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Barcelona con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-ciutat-vella-barcelona": {
     "slug": "venta-piso-economica-ciutat-vella-barcelona",
@@ -1611,7 +2039,7 @@ window.NH_LANDINGS = {
     "badge": "Ciutat Vella · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/ciutatvella2.jpg",
-    "cardTeaser": "Vende tu piso en Ciutat Vella con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Ciutat Vella con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-cornella-barcelona": {
     "slug": "venta-piso-economica-cornella-barcelona",
@@ -1623,7 +2051,7 @@ window.NH_LANDINGS = {
     "badge": "Cornellà de Llobregat · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/barcelona1.jpeg",
-    "cardTeaser": "Vende tu piso en Cornellà de Llobregat con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Cornellà de Llobregat con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-eixample-barcelona": {
     "slug": "venta-piso-economica-eixample-barcelona",
@@ -1635,7 +2063,19 @@ window.NH_LANDINGS = {
     "badge": "Eixample · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
-    "cardTeaser": "Vende tu piso en Eixample con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Eixample con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
+  },
+  "venta-piso-economica-el-clot-la-sagrera-barcelona": {
+    "slug": "venta-piso-economica-el-clot-la-sagrera-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Venta económica El Clot - La Sagrera",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "venta de piso economica el clot - la sagrera barcelona",
+    "badge": "El Clot - La Sagrera · Venta económica",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Venta económica en honorarios en El Clot - La Sagrera: 3.000 € + IVA (3.630 €) solo en escritura."
   },
   "venta-piso-economica-esplugues-barcelona": {
     "slug": "venta-piso-economica-esplugues-barcelona",
@@ -1647,7 +2087,7 @@ window.NH_LANDINGS = {
     "badge": "Esplugues de Llobregat · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/esplugues1.jpg",
-    "cardTeaser": "Vende tu piso en Esplugues de Llobregat con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Esplugues de Llobregat con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-gracia-barcelona": {
     "slug": "venta-piso-economica-gracia-barcelona",
@@ -1659,7 +2099,7 @@ window.NH_LANDINGS = {
     "badge": "Gràcia · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
-    "cardTeaser": "Vende tu piso en Gràcia con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Gràcia con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-horta-barcelona": {
     "slug": "venta-piso-economica-horta-barcelona",
@@ -1671,7 +2111,7 @@ window.NH_LANDINGS = {
     "badge": "Horta-Guinardó · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/horta1.jpg",
-    "cardTeaser": "Vende tu piso en Horta-Guinardó con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Horta-Guinardó con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-l-hospitalet-barcelona": {
     "slug": "venta-piso-economica-l-hospitalet-barcelona",
@@ -1683,7 +2123,7 @@ window.NH_LANDINGS = {
     "badge": "L'Hospitalet · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
-    "cardTeaser": "Vende tu piso en L'Hospitalet con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en L'Hospitalet con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-les-corts-barcelona": {
     "slug": "venta-piso-economica-les-corts-barcelona",
@@ -1695,7 +2135,7 @@ window.NH_LANDINGS = {
     "badge": "Les Corts · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/lescorts1.jpg",
-    "cardTeaser": "Vende tu piso en Les Corts con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Les Corts con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-nou-barris-barcelona": {
     "slug": "venta-piso-economica-nou-barris-barcelona",
@@ -1707,7 +2147,7 @@ window.NH_LANDINGS = {
     "badge": "Nou Barris · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
-    "cardTeaser": "Vende tu piso en Nou Barris con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Nou Barris con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-poble-sec-barcelona": {
     "slug": "venta-piso-economica-poble-sec-barcelona",
@@ -1719,7 +2159,7 @@ window.NH_LANDINGS = {
     "badge": "Poble Sec · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
-    "cardTeaser": "Vende tu piso en Poble Sec con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Poble Sec con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-poblenou-barcelona": {
     "slug": "venta-piso-economica-poblenou-barcelona",
@@ -1731,7 +2171,7 @@ window.NH_LANDINGS = {
     "badge": "Poblenou · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
-    "cardTeaser": "Vende tu piso en Poblenou con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Poblenou con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-sant-andreu-barcelona": {
     "slug": "venta-piso-economica-sant-andreu-barcelona",
@@ -1743,7 +2183,7 @@ window.NH_LANDINGS = {
     "badge": "Sant Andreu · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/barcelona5.jpg",
-    "cardTeaser": "Vende tu piso en Sant Andreu con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Sant Andreu con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-sant-antoni-barcelona": {
     "slug": "venta-piso-economica-sant-antoni-barcelona",
@@ -1755,7 +2195,7 @@ window.NH_LANDINGS = {
     "badge": "Sant Antoni · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
-    "cardTeaser": "Vende tu piso en Sant Antoni con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Sant Antoni con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-sant-gervasi-barcelona": {
     "slug": "venta-piso-economica-sant-gervasi-barcelona",
@@ -1767,7 +2207,7 @@ window.NH_LANDINGS = {
     "badge": "Sant Gervasi · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/eixample4.jpg",
-    "cardTeaser": "Vende tu piso en Sant Gervasi con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Sant Gervasi con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-sant-marti-barcelona": {
     "slug": "venta-piso-economica-sant-marti-barcelona",
@@ -1779,7 +2219,7 @@ window.NH_LANDINGS = {
     "badge": "Sant Martí · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/interior11.jpg",
-    "cardTeaser": "Vende tu piso en Sant Martí con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Sant Martí con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-sants-barcelona": {
     "slug": "venta-piso-economica-sants-barcelona",
@@ -1791,7 +2231,7 @@ window.NH_LANDINGS = {
     "badge": "Sants · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
-    "cardTeaser": "Vende tu piso en Sants con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Sants con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "venta-piso-economica-sarria-barcelona": {
     "slug": "venta-piso-economica-sarria-barcelona",
@@ -1803,7 +2243,7 @@ window.NH_LANDINGS = {
     "badge": "Sarrià · Venta económica · Precio fijo",
     "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
-    "cardTeaser": "Vende tu piso en Sarrià con honorarios fijos 3.500 € + IVA (solo en escritura)."
+    "cardTeaser": "Vende tu piso en Sarrià con honorarios fijos 3.000 € + IVA (3.630 €) (solo en escritura)."
   },
   "vender-como-particular-badalona-barcelona": {
     "slug": "vender-como-particular-badalona-barcelona",
@@ -1829,6 +2269,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/comercial2.jpg",
     "cardTeaser": "Guía para propietarios que venden por su cuenta en Barcelona: documentos, errores típicos, visitas con crit…"
   },
+  "vender-como-particular-barceloneta-barcelona": {
+    "slug": "vender-como-particular-barceloneta-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Barceloneta",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular barceloneta barcelona",
+    "badge": "Barceloneta · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona2.jpg",
+    "cardTeaser": "Guía para vender como particular en Barceloneta."
+  },
   "vender-como-particular-bon-pastor-barcelona": {
     "slug": "vender-como-particular-bon-pastor-barcelona",
     "cluster": "particular",
@@ -1840,6 +2292,30 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/sants2.jpg",
     "cardTeaser": "Guía particular Bon Pastor: 3.100 – 3.800 €/m² (Bon Pastor · Maquinista · Besòs)."
+  },
+  "vender-como-particular-born-barcelona": {
+    "slug": "vender-como-particular-born-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Born",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular born barcelona",
+    "badge": "Born · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/born1.jpg",
+    "cardTeaser": "Guía para vender como particular en Born."
+  },
+  "vender-como-particular-camp-de-larpa-barcelona": {
+    "slug": "vender-como-particular-camp-de-larpa-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Camp de l'Arpa",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular camp de l'arpa barcelona",
+    "badge": "Camp de l'Arpa · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Guía para vender como particular en Camp de l'Arpa."
   },
   "vender-como-particular-camp-den-grassot-barcelona": {
     "slug": "vender-como-particular-camp-den-grassot-barcelona",
@@ -1901,6 +2377,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Guía particular Eixample: Dreta, Esquerra, Sant Antoni, Fort Pienc."
   },
+  "vender-como-particular-el-besos-barcelona": {
+    "slug": "vender-como-particular-el-besos-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular El Besòs",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular el besòs barcelona",
+    "badge": "El Besòs · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris2.jpg",
+    "cardTeaser": "Guía para vender como particular en El Besòs."
+  },
   "vender-como-particular-el-clot-la-sagrera-barcelona": {
     "slug": "vender-como-particular-el-clot-la-sagrera-barcelona",
     "cluster": "particular",
@@ -1936,6 +2424,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Guía particular Fort Pienc: 4.500 – 5.800 €/m² (Fort Pienc · Arc Triomf · Estació Nord)."
+  },
+  "vender-como-particular-gotic-barcelona": {
+    "slug": "vender-como-particular-gotic-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Gòtic",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular gòtic barcelona",
+    "badge": "Gòtic · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/gotic1.jpg",
+    "cardTeaser": "Guía para vender como particular en Gòtic."
   },
   "vender-como-particular-gracia-barcelona": {
     "slug": "vender-como-particular-gracia-barcelona",
@@ -2117,6 +2617,30 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Guía particular Poblenou: Rambla, 22@, lofts, Diagonal Mar."
   },
+  "vender-como-particular-provencals-del-poblenou-barcelona": {
+    "slug": "vender-como-particular-provencals-del-poblenou-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Provençals del Poblenou",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular provençals del poblenou barcelona",
+    "badge": "Provençals del Poblenou · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/poblenou1.jpeg",
+    "cardTeaser": "Guía para vender como particular en Provençals del Poblenou."
+  },
+  "vender-como-particular-raval-barcelona": {
+    "slug": "vender-como-particular-raval-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Raval",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular raval barcelona",
+    "badge": "Raval · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/raval1.jpg",
+    "cardTeaser": "Guía para vender como particular en Raval."
+  },
   "vender-como-particular-roquetes-barcelona": {
     "slug": "vender-como-particular-roquetes-barcelona",
     "cluster": "particular",
@@ -2128,6 +2652,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Guía particular Roquetes (08042): 3.000 – 3.900 €/m²."
+  },
+  "vender-como-particular-sagrada-familia-barcelona": {
+    "slug": "vender-como-particular-sagrada-familia-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sagrada Família",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sagrada família barcelona",
+    "badge": "Sagrada Família · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "Guía para vender como particular en Sagrada Família."
   },
   "vender-como-particular-sant-andreu-barcelona": {
     "slug": "vender-como-particular-sant-andreu-barcelona",
@@ -2164,6 +2700,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/eixample4.jpg",
     "cardTeaser": "Guía particular Sant Gervasi: 5.000 – 6.500 €/m² (Putxet · Farró · Via Augusta)."
+  },
+  "vender-como-particular-sant-just-sant-joan-despi-barcelona": {
+    "slug": "vender-como-particular-sant-just-sant-joan-despi-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Sant Just Desvern y Sant Joan Despí",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular sant just desvern y sant joan despí barcelona",
+    "badge": "Sant Just Desvern y Sant Joan Despí · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/santjust1.webp",
+    "cardTeaser": "Guía para vender como particular en Sant Just Desvern y Sant Joan Despí."
   },
   "vender-como-particular-sant-marti-barcelona": {
     "slug": "vender-como-particular-sant-marti-barcelona",
@@ -2261,6 +2809,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/santmarti1.webp",
     "cardTeaser": "Guía particular La Verneda (08020): 3.400 – 4.300 €/m²."
   },
+  "vender-como-particular-vila-olimpica-barcelona": {
+    "slug": "vender-como-particular-vila-olimpica-barcelona",
+    "cluster": "particular",
+    "footerLabel": "Particular Vila Olímpica",
+    "priority": 0.86,
+    "indexable": true,
+    "keyword_principal": "vender piso particular vila olímpica barcelona",
+    "badge": "Vila Olímpica · Particular",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona2.jpg",
+    "cardTeaser": "Guía para vender como particular en Vila Olímpica."
+  },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
     "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
     "cluster": "comparativa",
@@ -2268,10 +2828,10 @@ window.NH_LANDINGS = {
     "priority": 0.91,
     "indexable": true,
     "keyword_principal": "comision inmobiliaria barcelona vs precio fijo",
-    "badge": "Comparativa · 6% vs 3.500€ + IVA fijos",
+    "badge": "Comparativa · 6% vs 3.000 € + IVA (3.630 €) fijos",
     "testimonials": true,
     "cardImage": "imagenes/equipo1.jpg",
-    "cardTeaser": "¿Cuánto cobra una inmobiliaria en Barcelona? Compara comisión del 6% + IVA vs precio fijo 3.500€ + IVA de NuevaHabitat."
+    "cardTeaser": "¿Cuánto cobra una inmobiliaria en Barcelona? Compara comisión del 6% + IVA vs precio fijo 3.000 € + IVA (3.…"
   },
   "nuevahabitat-vs-clikalia-barcelona": {
     "slug": "nuevahabitat-vs-clikalia-barcelona",
@@ -2296,6 +2856,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/interior5.jpg",
     "cardTeaser": "¿Vender en Fotocasa como particular o con NuevaHabitat en Barcelona? Coste del anuncio, filtro de comprador…"
+  },
+  "nuevahabitat-vs-habitaclia-particular": {
+    "slug": "nuevahabitat-vs-habitaclia-particular",
+    "cluster": "comparativa",
+    "footerLabel": "NH vs Habitaclia",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "nuevahabitat vs habitaclia particular",
+    "badge": "Comparativa · Habitaclia vs precio fijo",
+    "testimonials": true,
+    "cardImage": "imagenes/interior5.jpg",
+    "cardTeaser": "¿Vender en Habitaclia como particular o con NuevaHabitat en Barcelona? Coste del anuncio, filtro de comprad…"
   },
   "nuevahabitat-vs-housfy-barcelona": {
     "slug": "nuevahabitat-vs-housfy-barcelona",

@@ -11,13 +11,13 @@
   "origen_lead": "vender-piso-rapido-barcelona",
   "meta": {
     "title": "Vender piso rápido en Barcelona · Urgente · Precio fijo · NuevaHabitat",
-    "description": "¿Necesitas vender tu piso rápido en Barcelona? Calcula tu ahorro, compara modelos (agencia, particular, portal) y vende con precio fijo 3.500€ + IVA. Valoración gratuita.",
+    "description": "¿Necesitas vender tu piso rápido en Barcelona? Calcula tu ahorro, compara modelos (agencia, particular, portal) y vende con precio fijo 3.000 € + IVA (3.630 €). Valoración gratuita.",
     "keywords": "vender piso rapido barcelona, vender piso urgente barcelona, vender casa rapido barcelona, vender piso prisa barcelona, inmobiliaria venta rapida barcelona"
   },
   "hero": {
     "badge": "Urgencia · Venta ágil",
     "h1": "¿Necesitas vender tu piso rápido en Barcelona?",
-    "lead": "Ya sea por liquidez, herencia, traslado o divorcio: vender con prisa no significa regalar el piso. NuevaHabitat combina pricing agresivo basado en datos, compradores preaprobados y honorarios fijos de 3.500 € + IVA — sin comisión del 6% que reduce lo que recibes en una venta urgente.",
+    "lead": "Ya sea por liquidez, herencia, traslado o divorcio: vender con prisa no significa regalar el piso. NuevaHabitat combina pricing agresivo basado en datos, compradores preaprobados y honorarios fijos de 3.000 € + IVA (3.630 €) — sin comisión del 6% que reduce lo que recibes en una venta urgente.",
     "image": "imagenes/comercial2.jpg",
     "imageAlt": "Venta rápida de piso en Barcelona con agente inmobiliario"
   },
@@ -38,7 +38,7 @@
   "calculadora": {
     "precioDefault": 420000,
     "titulo": "Calcula cuánto te ahorras vendiendo con precio fijo",
-    "subtitulo": "Introduce el precio estimado de venta. Comparamos comisión tradicional (~6%) vs NuevaHabitat (3.500 € + IVA)."
+    "subtitulo": "Introduce el precio estimado de venta. Comparamos comisión tradicional (~6%) vs NuevaHabitat (3.000 € + IVA (3.630 €))."
   },
   "comparativa_modelos": {
     "title": "Cuatro formas de vender en Barcelona — ¿cuál encaja con tu urgencia?",
@@ -67,7 +67,7 @@
       {
         "modelo": "NuevaHabitat precio fijo",
         "tiempo": "Plan 30-90 días",
-        "coste": "3.500 € + IVA en escritura",
+        "coste": "3.000 € + IVA (3.630 €) en escritura",
         "riesgo": "Sin venta, sin factura. Compradores filtrados",
         "tipo": "win"
       }
@@ -105,7 +105,7 @@
     },
     {
       "q": "¿Cuánto cuesta vender rápido con NuevaHabitat?",
-      "a": "3.500 € + IVA, precio fijo solo en escritura. En un piso de 420.000 € te ahorras más de 22.000 € frente a una comisión del 6%."
+      "a": "3.000 € + IVA (3.630 €), precio fijo solo en escritura. En un piso de 420.000 € te ahorras más de 22.000 € frente a una comisión del 6%."
     },
     {
       "q": "¿Podéis priorizar mi venta si tengo fecha límite?",

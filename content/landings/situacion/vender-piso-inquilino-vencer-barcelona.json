@@ -12,13 +12,13 @@
   "origen_lead": "vender-piso-inquilino-vencer-barcelona",
   "meta": {
     "title": "Vender piso en Barcelona cuando vence el contrato del inquilino · NuevaHabitat",
-    "description": "¿Vendes en Barcelona y el contrato de alquiler vence pronto? Planifica entrega de llaves, visitas, precio y compradores. Precio fijo 3.500€ + IVA. Valoración gratuita.",
+    "description": "¿Vendes en Barcelona y el contrato de alquiler vence pronto? Planifica entrega de llaves, visitas, precio y compradores. Precio fijo 3.000 € + IVA (3.630 €). Valoración gratuita.",
     "keywords": "vender piso inquilino contrato vencer barcelona, vender piso cuando acaba alquiler barcelona, vender piso libre inquilino barcelona, fin contrato arrendamiento venta piso barcelona"
   },
   "hero": {
     "badge": "Situación · Contrato por vencer",
     "h1": "¿Vendes tu piso en Barcelona cuando el inquilino se va?",
-    "lead": "El contrato de alquiler termina en semanas o meses y quieres <strong>vender en Barcelona</strong> con el piso libre — o negociar entrega antes de escritura. NuevaHabitat planifica calendario, visitas y pricing con precio fijo de <strong>3.500 € + IVA</strong>, sin comisión del 6%.",
+    "lead": "El contrato de alquiler termina en semanas o meses y quieres <strong>vender en Barcelona</strong> con el piso libre — o negociar entrega antes de escritura. NuevaHabitat planifica calendario, visitas y pricing con precio fijo de <strong>3.000 € + IVA (3.630 €)</strong>, sin comisión del 6%.",
     "image": "imagenes/interior9.jpg",
     "imageAlt": "Piso en Barcelona con contrato de alquiler por vencer"
   },
@@ -74,7 +74,7 @@
       },
       {
         "title": "Cierre con precio fijo",
-        "body": "3.500 € + IVA solo en escritura. Sin comisión del 6% sobre el precio."
+        "body": "3.000 € + IVA (3.630 €) solo en escritura. Sin comisión del 6% sobre el precio."
       }
     ]
   },
@@ -97,7 +97,7 @@
     },
     {
       "q": "¿Cuánto cobra NuevaHabitat?",
-      "a": "3.500 € + IVA, precio fijo solo en escritura. Mismo modelo que en venta estándar en Barcelona."
+      "a": "3.000 € + IVA (3.630 €), precio fijo solo en escritura. Mismo modelo que en venta estándar en Barcelona."
     },
     {
       "q": "¿Qué pasa si el inquilino no entrega en la fecha?",

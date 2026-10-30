@@ -112,6 +112,60 @@ function validateLandings(all) {
         (all[i].cluster === 'barrio' && all[j].cluster === 'particular') ||
         (all[i].cluster === 'particular' && all[j].cluster === 'barrio');
       if (barrioParticular) continue;
+
+      const si = all[i].slug || '';
+      const sj = all[j].slug || '';
+      const INTENCION_FAMILIES = [
+        'inmobiliaria-para-particulares-',
+        'inmobiliaria-precio-fijo-',
+        'venta-piso-economica-',
+        'vender-piso-sin-portales-',
+      ];
+      const family = (s) => INTENCION_FAMILIES.find((f) => s.startsWith(f));
+      const fi = family(si);
+      const fj = family(sj);
+      if (fi && fj === fi && si !== sj) continue;
+
+      function zoneFromIntencionSlug(s) {
+        for (const f of INTENCION_FAMILIES) {
+          if (!s.startsWith(f)) continue;
+          return s.slice(f.length).replace(/-barcelona$/, '');
+        }
+        return null;
+      }
+      const zi = zoneFromIntencionSlug(si);
+      const zj = zoneFromIntencionSlug(sj);
+      if (zi && zj === zi && fi && fj && si !== sj) continue;
+
+      const barrioIntencion =
+        (all[i].cluster === 'barrio' && all[j].cluster === 'intencion') ||
+        (all[j].cluster === 'barrio' && all[i].cluster === 'intencion');
+      if (barrioIntencion) continue;
+
+      const zoneParticular = (s) => {
+        const m = (s || '').match(/^vender-como-particular-(.+)-barcelona$/);
+        return m ? m[1] : null;
+      };
+      const zp = zoneParticular(si) || zoneParticular(sj);
+      const zInt = zi || zj;
+      const intencionParticular =
+        zp &&
+        zInt &&
+        zp === zInt &&
+        ((all[i].cluster === 'particular' && all[j].cluster === 'intencion') ||
+          (all[j].cluster === 'particular' && all[i].cluster === 'intencion'));
+      if (intencionParticular) continue;
+
+      if (
+        all[i].cluster === 'particular' &&
+        all[j].cluster === 'particular' &&
+        si.startsWith('vender-como-particular-') &&
+        sj.startsWith('vender-como-particular-') &&
+        si !== sj
+      ) {
+        continue;
+      }
+
       const sim = jaccard(all[i].argumento_principal, all[j].argumento_principal);
       if (sim > SIMILARITY_THRESHOLD) {
         errors.push(`Similitud ${Math.round(sim * 100)}% entre ${all[i].slug} y ${all[j].slug}`);

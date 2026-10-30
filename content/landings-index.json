@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T13:22:29.704Z",
+  "updated": "2026-10-30T14:11:16.705Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -488,10 +488,124 @@
       "priority": 0.86
     },
     {
+      "slug": "inmobiliaria-para-particulares-badalona-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
       "slug": "inmobiliaria-para-particulares-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-ciutat-vella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-cornella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-eixample-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-esplugues-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-gracia-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-horta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-l-hospitalet-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-les-corts-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-nou-barris-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-poble-sec-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-sant-andreu-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-sant-antoni-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-sant-gervasi-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-sant-marti-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-sants-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-sarria-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
     },
     {
       "slug": "inmobiliaria-precio-fijo-badalona-barcelona",
@@ -518,6 +632,12 @@
       "priority": 0.88
     },
     {
+      "slug": "inmobiliaria-precio-fijo-diagonal-mar-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-eixample-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -536,13 +656,31 @@
       "priority": 0.88
     },
     {
+      "slug": "inmobiliaria-precio-fijo-fort-pienc-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-gracia-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.9
     },
     {
+      "slug": "inmobiliaria-precio-fijo-guinardo-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-horta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-hostafrancs-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
@@ -554,13 +692,31 @@
       "priority": 0.88
     },
     {
+      "slug": "inmobiliaria-precio-fijo-la-sagrera-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-les-corts-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.9
     },
     {
+      "slug": "inmobiliaria-precio-fijo-montjuic-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-nou-barris-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-pedralbes-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
@@ -576,6 +732,12 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-sagrada-familia-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "inmobiliaria-precio-fijo-sant-andreu-barcelona",
@@ -596,6 +758,12 @@
       "priority": 0.9
     },
     {
+      "slug": "inmobiliaria-precio-fijo-sant-marti-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-sants-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -606,6 +774,12 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-vila-olimpica-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "particular-vendo-piso-urgente-barcelona",
@@ -650,7 +824,25 @@
       "priority": 0.89
     },
     {
+      "slug": "vender-piso-sin-portales-gracia-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "vender-piso-sin-portales-les-corts-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-piso-sin-portales-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-piso-sin-portales-sarria-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
@@ -690,6 +882,12 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-el-clot-la-sagrera-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
     },
     {
       "slug": "venta-piso-economica-esplugues-barcelona",
@@ -788,10 +986,28 @@
       "priority": 0.93
     },
     {
+      "slug": "vender-como-particular-barceloneta-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "vender-como-particular-bon-pastor-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-born-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-como-particular-camp-de-larpa-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "vender-como-particular-camp-den-grassot-barcelona",
@@ -824,6 +1040,12 @@
       "priority": 0.9
     },
     {
+      "slug": "vender-como-particular-el-besos-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "vender-como-particular-el-clot-la-sagrera-barcelona",
       "cluster": "particular",
       "indexable": true,
@@ -840,6 +1062,12 @@
       "cluster": "particular",
       "indexable": true,
       "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-gotic-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "vender-como-particular-gracia-barcelona",
@@ -932,10 +1160,28 @@
       "priority": 0.9
     },
     {
+      "slug": "vender-como-particular-provencals-del-poblenou-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "vender-como-particular-raval-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "vender-como-particular-roquetes-barcelona",
       "cluster": "particular",
       "indexable": true,
       "priority": 0.89
+    },
+    {
+      "slug": "vender-como-particular-sagrada-familia-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "vender-como-particular-sant-andreu-barcelona",
@@ -954,6 +1200,12 @@
       "cluster": "particular",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "vender-como-particular-sant-just-sant-joan-despi-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
     },
     {
       "slug": "vender-como-particular-sant-marti-barcelona",
@@ -1004,6 +1256,12 @@
       "priority": 0.89
     },
     {
+      "slug": "vender-como-particular-vila-olimpica-barcelona",
+      "cluster": "particular",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
       "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",
       "cluster": "comparativa",
       "indexable": true,
@@ -1017,6 +1275,12 @@
     },
     {
       "slug": "nuevahabitat-vs-fotocasa-particular",
+      "cluster": "comparativa",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "nuevahabitat-vs-habitaclia-particular",
       "cluster": "comparativa",
       "indexable": true,
       "priority": 0.89
