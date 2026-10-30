@@ -790,7 +790,7 @@
       faq: [
         { q: '¿Cuánto cuesta vender un piso en Barcelona con NuevaHabitat?', a: '3.500 € + IVA, cobrados únicamente en el momento de la escritura. Si no vendes, no pagas. Sin comisiones porcentuales ni exclusivas abusivas.' },
         { q: '¿Qué incluye el servicio de venta a precio fijo?', a: 'Valoración de mercado, reportaje fotográfico profesional, publicación en portales, filtrado de compradores cualificados, visitas, negociación, revisión documental (nota simple, ITE, certificado energético) y acompañamiento hasta escritura.' },
-        { q: '¿Cuánto ahorro respecto a una agencia tradicional al 5%?', a: 'En un piso de 400.000 €, una agencia al 5% + IVA cobra unos 24.200 €. NuevaHabitat: 3.500 € + IVA (3.000 + IVA). Ahorro superior a 20.000 € independientemente del tiempo de venta.' },
+        { q: '¿Cuánto ahorro respecto a una agencia tradicional al 5%?', a: 'En un piso de 400.000 €, una agencia al 5% + IVA cobra unos 24.200 €. NuevaHabitat: 3.500 € + IVA. Ahorro superior a 20.000 € independientemente del tiempo de venta.' },
         { q: '¿Hay permanencia o exclusiva obligatoria?', a: 'No aplicamos exclusivas abusivas ni permanencias. Trabajamos con transparencia: precio fijo acordado desde el inicio, cobro solo si cierras la venta en escritura.' },
         { q: '¿Funciona el precio fijo en todos los distritos de Barcelona?', a: 'Sí. Operamos en Eixample, Gràcia, Les Corts, Poblenou, Sarrià, Nou Barris, Sant Andreu, L\'Hospitalet, Badalona, Sant Cugat y resto del área metropolitana.' },
       ],
@@ -847,7 +847,7 @@
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto cuesta vender un piso en Barcelona con NuevaHabitat?</summary><p>3.500 € + IVA, cobrados únicamente en el momento de la escritura. Si no vendes, no pagas. Sin comisiones porcentuales ni exclusivas abusivas.</p></details>
         <details class="blog-faq-item"><summary>¿Qué incluye el servicio de venta a precio fijo?</summary><p>Valoración de mercado, reportaje fotográfico profesional, publicación en portales, filtrado de compradores cualificados, visitas, negociación, revisión documental (nota simple, ITE, certificado energético) y acompañamiento hasta escritura.</p></details>
-        <details class="blog-faq-item"><summary>¿Cuánto ahorro respecto a una agencia tradicional al 5%?</summary><p>En un piso de 400.000 €, una agencia al 5% + IVA cobra unos 24.200 €. NuevaHabitat: 3.500 € + IVA (3.000 + IVA). Ahorro superior a 20.000 € independientemente del tiempo de venta.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto ahorro respecto a una agencia tradicional al 5%?</summary><p>En un piso de 400.000 €, una agencia al 5% + IVA cobra unos 24.200 €. NuevaHabitat: 3.500 € + IVA. Ahorro superior a 20.000 € independientemente del tiempo de venta.</p></details>
         <details class="blog-faq-item"><summary>¿Hay permanencia o exclusiva obligatoria?</summary><p>No aplicamos exclusivas abusivas ni permanencias. Trabajamos con transparencia: precio fijo acordado desde el inicio, cobro solo si cierras la venta en escritura.</p></details>
         <details class="blog-faq-item"><summary>¿Funciona el precio fijo en todos los distritos de Barcelona?</summary><p>Sí. Operamos en Eixample, Gràcia, Les Corts, Poblenou, Sarrià, Nou Barris, Sant Andreu, L'Hospitalet, Badalona, Sant Cugat y resto del área metropolitana.</p></details>
       </section>

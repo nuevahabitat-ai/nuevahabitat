@@ -70,6 +70,15 @@ const REPLACEMENTS = [
   [/3\.500 € \+ IVA \+ IVA/g, '3.500 € + IVA'],
   [/3\.500€ \+ IVA \+ IVA/g, '3.500€ + IVA'],
   [/3\.500&nbsp;€&nbsp;\+&nbsp;IVA&nbsp;\+&nbsp;IVA/g, '3.500&nbsp;€&nbsp;+&nbsp;IVA'],
+  [/3\.500 € \+ IVA total \(3\.000 \+ IVA\)/g, '3.500 € + IVA'],
+  [/3\.500 € \+ IVA \(3\.000 \+ IVA\)/g, '3.500 € + IVA'],
+  [/3\.500 € \+ IVA \(3\.500 € \+ IVA total\)/g, '3.500 € + IVA'],
+  [/3\.000€ fijos/gi, '3.500€ + IVA fijos'],
+  [/6% vs 3\.000€ fijos/g, '6% vs 3.500€ + IVA fijos'],
+  [/NuevaHabitat 3\.000€/g, 'NuevaHabitat 3.500€ + IVA'],
+  [/honorarios fijos 3000 euros/gi, 'honorarios fijos 3500 euros mas IVA'],
+  [/Honorarios fijos 3\.000 euros/gi, 'Honorarios fijos 3.500 euros más IVA'],
+  [/Estándar: 3\.000 € \+ 21% IVA = 3\.500 € \+ IVA/g, 'Estándar: 3.500 € + 21% IVA = 4.235 € total en operación'],
 ];
 
 function shouldProcess(file) {

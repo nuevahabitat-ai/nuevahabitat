@@ -2268,7 +2268,7 @@ window.NH_LANDINGS = {
     "priority": 0.91,
     "indexable": true,
     "keyword_principal": "comision inmobiliaria barcelona vs precio fijo",
-    "badge": "Comparativa · 6% vs 3.000€ fijos",
+    "badge": "Comparativa · 6% vs 3.500€ + IVA fijos",
     "testimonials": true,
     "cardImage": "imagenes/equipo1.jpg",
     "cardTeaser": "¿Cuánto cobra una inmobiliaria en Barcelona? Compara comisión del 6% + IVA vs precio fijo 3.500€ + IVA de NuevaHabitat."

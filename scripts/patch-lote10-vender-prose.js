@@ -92,7 +92,7 @@ const COMMON = `
 <p>WhatsApp directo con Daniel o Sebastián desde la oficina de Les Corts: Mejía Lequerica 42. Respuesta en horario comercial, sin call center anónimo.</p>
 <h2>Panel vendedor y trazabilidad</h2>
 <p>Ofertas, documentos, calendario y estado del expediente en panel digital. Útil si sois varios herederos o si quieres comparar postores con datos, no con memoria de conversaciones sueltas.</p>
-<p>Honorarios fijos 3.000 euros más IVA únicamente en escritura si vendes. Sin cierre, sin factura de agencia. Calculadora de ahorro frente al seis por ciento incluida en la landing.</p>`;
+<p>Honorarios fijos 3.500 euros más IVA únicamente en escritura si vendes. Sin cierre, sin factura de agencia. Calculadora de ahorro frente al seis por ciento incluida en la landing.</p>`;
 
 const TAIL = {
   'content/landings/barrio/vender-camp-den-grassot-barcelona.json':

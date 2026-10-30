@@ -12,12 +12,12 @@
   "priority": 0.91,
   "origen_lead": "nuevahabitat-vs-agencia-tradicional-barcelona",
   "meta": {
-    "title": "Agencia tradicional 6% vs NuevaHabitat 3.000€ en Barcelona · Comparativa",
+    "title": "Agencia tradicional 6% vs NuevaHabitat 3.500€ + IVA en Barcelona · Comparativa",
     "description": "¿Cuánto cobra una inmobiliaria en Barcelona? Compara comisión del 6% + IVA vs precio fijo 3.500€ + IVA de NuevaHabitat. Calculadora con tu precio de venta. Barcelona.",
     "keywords": "comision inmobiliaria barcelona, cuanto cobra inmobiliaria barcelona, agencia 6 por ciento barcelona, inmobiliaria precio fijo barcelona, nueva habitat vs agencia tradicional, vender piso sin comision barcelona"
   },
   "hero": {
-    "badge": "Comparativa · 6% vs 3.000€ fijos",
+    "badge": "Comparativa · 6% vs 3.500€ + IVA fijos",
     "h1": "¿Agencia tradicional al 6% o NuevaHabitat con precio fijo en Barcelona?",
     "lead": "En un piso de <strong>500.000 €</strong>, una agencia al 6% puede facturar más de <strong>30.000 € + IVA</strong>. NuevaHabitat cobra <strong>3.500 € + IVA solo en escritura</strong> — mismo acompañamiento profesional, sin exclusiva abusiva ni sorpresas en la factura final.",
     "image": "imagenes/equipo1.jpg",
@@ -69,7 +69,7 @@
       {
         "modelo": "NuevaHabitat precio fijo",
         "tiempo": "Plan 60–90 días",
-        "coste": "3.500 € + IVA total (3.000 + IVA)",
+        "coste": "3.500 € + IVA",
         "riesgo": "Sin venta, sin factura. Coste conocido desde día 1",
         "tipo": "win"
       }
