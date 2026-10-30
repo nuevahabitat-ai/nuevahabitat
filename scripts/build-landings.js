@@ -4,6 +4,7 @@ const { renderBarrio } = require('./render-barrio');
 const { renderComprador } = require('./render-comprador');
 const { renderPilar } = require('./render-pilar');
 const { savingsCalcMarkup } = require('./savings-calc-markup');
+const { NH_FEE_EUR, NH_FEE_LABEL_ESCRITURA, NH_FEE_LABEL_COMPACT } = require('./fee-config');
 const { PHONES, displayBoth, telLinksInline, footerPhonesLi, schemaTelephones, WA_FLOAT, waMeUrl } = require('./phone-config');
 const { nhPlatformBundle, nhPlatformStyles, zoneLabel } = require('./landing-nh-blocks');
 const { argumentoStoryMarkup, argumentoProseMarkup, storyLayoutStyles } = require('./landing-story-layout');
@@ -293,8 +294,6 @@ function robotsMeta(L) {
     : 'noindex, follow';
 }
 
-const NH_FEE_EUR = 3500;
-
 function calcInitial(precio) {
   const p = Number(precio) || 420000;
   const tradVal = Math.round(p * 0.06 * 1.21);
@@ -519,7 +518,7 @@ function calcBlock(L) {
   const barrio = L.barrio || 'Barcelona';
   return savingsCalcMarkup({
     titulo: L.calculadora?.titulo || `¿Cuánto te ahorras vendiendo en ${barrio}?`,
-    subtitulo: L.calculadora?.subtitulo || 'Compara la comisión habitual de una agencia inmobiliaria en Barcelona con el precio fijo de NuevaHabitat: 3.500 € + IVA, cobrados solo en escritura.',
+    subtitulo: L.calculadora?.subtitulo || `Compara la comisión habitual de una agencia inmobiliaria en Barcelona con el precio fijo de NuevaHabitat: ${NH_FEE_LABEL_ESCRITURA}, cobrados solo en escritura.`,
     precio: L.ejemploPrecio || L.calculadora?.precioDefault || 420000,
     dark: true,
   });
@@ -585,11 +584,133 @@ function writeGaConfig() {
   );
 }
 
+function writeSavingsCalcJs() {
+  const { NH_FEE_EUR, NH_FEE_LABEL } = require('./fee-config');
+  const src = `/** Generado por scripts/build-landings.js — no editar a mano */
+(function () {
+  const NH_FEE = ${NH_FEE_EUR};
+  const NH_FEE_LABEL = ${JSON.stringify(NH_FEE_LABEL)};
+  const DEFAULT_PCT = 6;
+
+  function formatEuro(n) {
+    return Math.round(n).toLocaleString('es-ES') + ' €';
+  }
+
+  function calc(precio, pct) {
+    const p = Number(precio) || 420000;
+    const rate = Number(pct) || DEFAULT_PCT;
+    const tradVal = Math.round(p * (rate / 100) * 1.21);
+    const saveVal = Math.max(0, tradVal - NH_FEE);
+    const total = tradVal + NH_FEE;
+    const tradPct = Math.min(100, Math.round((tradVal / total) * 100)) || 50;
+    return { p, rate, tradVal, saveVal, tradPct, nhPct: Math.max(8, 100 - tradPct) };
+  }
+
+  function track(eventName, params) {
+    window.nhSeo?.track(eventName, params);
+    window.nhAnalytics?.track?.(eventName, params);
+  }
+
+  function bindRoot(root) {
+    const range = root.querySelector('#nh-sc-precio, #lc-precio, [data-lc-precio]');
+    if (!range) return;
+
+    const label = root.querySelector('#nh-sc-precio-label, #lc-precio-label');
+    const saveEl = root.querySelector('#nh-sc-save, #lc-save');
+    const tradEl = root.querySelector('#nh-sc-trad, #lc-trad');
+    const tradInline = root.querySelector('#nh-sc-trad-inline');
+    const barAgency = root.querySelector('#nh-sc-bar-agency');
+    const barNh = root.querySelector('#nh-sc-bar-nh');
+    const barNhAmt = root.querySelector('.nh-sc-bar-amount--gold');
+    const nhBreakdown = root.querySelector('.nh-sc-breakdown-item--nh strong');
+    const hint = root.querySelector('.nh-sc-save-hint');
+    const pctBtns = root.querySelectorAll('.nh-sc-pct');
+    let pct = DEFAULT_PCT;
+    let tracked = false;
+
+    if (pctBtns.length) {
+      const active = root.querySelector('.nh-sc-pct.is-active');
+      if (active) pct = Number(active.dataset.pct) || DEFAULT_PCT;
+    }
+
+    function setPct(next) {
+      pct = next;
+      pctBtns.forEach((btn) => {
+        const on = Number(btn.dataset.pct) === pct;
+        btn.classList.toggle('is-active', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      upd();
+    }
+
+    function upd() {
+      const { p, rate, tradVal, saveVal, tradPct, nhPct } = calc(range.value, pct);
+      if (label) label.textContent = formatEuro(p);
+      if (tradEl) tradEl.textContent = formatEuro(tradVal);
+      if (tradInline) tradInline.textContent = formatEuro(tradVal);
+      if (saveEl) {
+        saveEl.textContent = formatEuro(saveVal);
+        saveEl.dataset.value = String(saveVal);
+      }
+      if (barAgency) barAgency.style.width = tradPct + '%';
+      if (barNh) barNh.style.width = nhPct + '%';
+      if (barNhAmt) barNhAmt.textContent = NH_FEE_LABEL;
+      if (nhBreakdown) nhBreakdown.textContent = NH_FEE_LABEL;
+      if (hint) hint.textContent = 'respecto a agencia al ' + rate + '% + IVA';
+      range.setAttribute('aria-valuenow', String(p));
+    }
+
+    range.addEventListener('input', () => {
+      upd();
+      if (!tracked) {
+        tracked = true;
+        track('calculator_interaction', {
+          event_category: 'conversion',
+          calculator_type: 'savings_vs_agency',
+          precio: Number(range.value),
+          comision_pct: pct,
+        });
+      }
+    });
+
+    pctBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        setPct(Number(btn.dataset.pct) || DEFAULT_PCT);
+        track('calculator_commission_change', {
+          event_category: 'engagement',
+          comision_pct: pct,
+          precio: Number(range.value),
+        });
+      });
+    });
+
+    upd();
+  }
+
+  function init() {
+    document.querySelectorAll('[data-nh-savings-calc], [data-lc-calc], .nh-savings-calc').forEach(bindRoot);
+    if (document.getElementById('nh-sc-precio') && !document.querySelector('[data-nh-savings-calc]')) {
+      bindRoot(document);
+    }
+  }
+
+  window.nhSavingsCalc = { init, calc, NH_FEE };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+`;
+  fs.writeFileSync(path.join(ROOT, 'js', 'savings-calculator.js'), src);
+}
+
 function footerAndScripts(L) {
   return `<footer>
   <div class="container">
     <div class="footer-top" style="grid-template-columns:1.5fr 2.5fr 1fr">
-      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo 3.500€ + IVA, cobro solo en escritura.</p></div>
+      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo ${NH_FEE_LABEL_COMPACT} (3.630 € en escritura), cobro solo en escritura.</p></div>
       <div class="footer-col footer-col--servicios"><h4>Servicios</h4><div data-nh-landing-footer${L.footerExtra ? ` data-nh-footer-extra="${L.footerExtra}"` : ''}></div></div>
       <div class="footer-col"><h4>Contacto</h4><ul><li>${footerPhonesLi()}</li><li><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></li></ul></div>
     </div>
@@ -967,7 +1088,7 @@ function main() {
         indexable: L.indexable !== false,
         testimonials: true,
         cardImage: L.heroImage,
-        cardTeaser: cardTeaserFrom(L) || ('Vender en ' + L.barrio + ' con precio fijo 3.500€ + IVA.'),
+        cardTeaser: cardTeaserFrom(L) || ('Vender en ' + L.barrio + ' con precio fijo ' + NH_FEE_LABEL_COMPACT + ' (3.630 € en escritura).'),
       };
       return;
     }
@@ -1045,6 +1166,7 @@ function main() {
   };
   fs.writeFileSync(path.join(ROOT, 'content', 'landings-index.json'), JSON.stringify(index, null, 2));
   writeGaConfig();
+  writeSavingsCalcJs();
   syncVenderHub();
   syncComprarHub();
   syncIndexHub();

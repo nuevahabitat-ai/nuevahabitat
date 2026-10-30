@@ -16,7 +16,7 @@ function nhServicioBlock(L) {
           <li><strong>Cartera activa de compradores</strong> — difundimos tu inmueble entre clientes que ya están buscando en ${zona} y alrededores.</li>
           <li><strong>Solo visitas con solvencia</strong> — filtramos antes de agendar; no pierdes fines de semana con curiosos sin financiación.</li>
           <li><strong>Daniel y Sebastián, tus gestores</strong> — respuesta humana en Les Corts: visitas, ofertas y documentación en el panel.</li>
-          <li><strong>3.500 € + IVA solo en escritura</strong> — si no vendes, no pagas. Sin comisión del 6%.</li>
+          <li><strong>3.000 € + IVA (3.630 € en escritura)</strong> — si no vendes, no pagas. Sin comisión del 6%.</li>
         </ul>
       </div>
       <div class="lc-nh-servicio-cards">
@@ -176,7 +176,7 @@ function nhPanelDemoBlock(L) {
           <div class="lc-pm-tl done"><span>✓</span><div><strong>Registro y valoración</strong><small>Completado</small></div></div>
           <div class="lc-pm-tl done"><span>✓</span><div><strong>Reportaje y publicación</strong><small>1 inmueble activo</small></div></div>
           <div class="lc-pm-tl active"><span>5</span><div><strong>Visitas y ofertas</strong><small>12 visitas · 2 ofertas</small></div></div>
-          <div class="lc-pm-tl"><span>6</span><div><strong>Escritura y cobro</strong><small>3.500 € + IVA al cerrar</small></div></div>
+          <div class="lc-pm-tl"><span>6</span><div><strong>Escritura y cobro</strong><small>3.000 € + IVA (3.630 €) al cerrar</small></div></div>
         </div>
       </div>
       <div class="lc-pm-screen">
