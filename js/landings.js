@@ -2656,14 +2656,14 @@ window.NH_LANDINGS = {
   "vender-como-particular-sagrada-familia-barcelona": {
     "slug": "vender-como-particular-sagrada-familia-barcelona",
     "cluster": "particular",
-    "footerLabel": "Particular Sagrada Família",
+    "footerLabel": "Particular Sagrada Fam├¡lia",
     "priority": 0.86,
     "indexable": true,
-    "keyword_principal": "vender piso particular sagrada família barcelona",
-    "badge": "Sagrada Família · Particular",
+    "keyword_principal": "vender piso particular sagrada fam├¡lia barcelona",
+    "badge": "Sagrada Fam├¡lia ┬À Particular",
     "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
-    "cardTeaser": "Guía para vender como particular en Sagrada Família."
+    "cardTeaser": "Gu├¡a para vender como particular en Sagrada Fam├¡lia."
   },
   "vender-como-particular-sant-andreu-barcelona": {
     "slug": "vender-como-particular-sant-andreu-barcelona",
@@ -2704,14 +2704,14 @@ window.NH_LANDINGS = {
   "vender-como-particular-sant-just-sant-joan-despi-barcelona": {
     "slug": "vender-como-particular-sant-just-sant-joan-despi-barcelona",
     "cluster": "particular",
-    "footerLabel": "Particular Sant Just Desvern y Sant Joan Despí",
+    "footerLabel": "Particular Sant Just Desvern y Sant Joan Desp├¡",
     "priority": 0.86,
     "indexable": true,
-    "keyword_principal": "vender piso particular sant just desvern y sant joan despí barcelona",
-    "badge": "Sant Just Desvern y Sant Joan Despí · Particular",
+    "keyword_principal": "vender piso particular sant just desvern y sant joan desp├¡ barcelona",
+    "badge": "Sant Just Desvern y Sant Joan Desp├¡ ┬À Particular",
     "testimonials": true,
     "cardImage": "imagenes/santjust1.webp",
-    "cardTeaser": "Guía para vender como particular en Sant Just Desvern y Sant Joan Despí."
+    "cardTeaser": "Gu├¡a para vender como particular en Sant Just Desvern y Sant Joan Desp├¡."
   },
   "vender-como-particular-sant-marti-barcelona": {
     "slug": "vender-como-particular-sant-marti-barcelona",
@@ -2812,14 +2812,14 @@ window.NH_LANDINGS = {
   "vender-como-particular-vila-olimpica-barcelona": {
     "slug": "vender-como-particular-vila-olimpica-barcelona",
     "cluster": "particular",
-    "footerLabel": "Particular Vila Olímpica",
+    "footerLabel": "Particular Vila Ol├¡mpica",
     "priority": 0.86,
     "indexable": true,
-    "keyword_principal": "vender piso particular vila olímpica barcelona",
-    "badge": "Vila Olímpica · Particular",
+    "keyword_principal": "vender piso particular vila ol├¡mpica barcelona",
+    "badge": "Vila Ol├¡mpica ┬À Particular",
     "testimonials": true,
     "cardImage": "imagenes/barcelona2.jpg",
-    "cardTeaser": "Guía para vender como particular en Vila Olímpica."
+    "cardTeaser": "Gu├¡a para vender como particular en Vila Ol├¡mpica."
   },
   "nuevahabitat-vs-agencia-tradicional-barcelona": {
     "slug": "nuevahabitat-vs-agencia-tradicional-barcelona",

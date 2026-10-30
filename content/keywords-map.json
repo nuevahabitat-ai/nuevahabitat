@@ -1,59 +1,330 @@
 {
-  "vender-piso-alquilado-barcelona": {
-    "keyword": "vender piso alquilado barcelona",
-    "cluster": "situacion",
-    "canonical": "/vender-piso-alquilado-barcelona"
-  },
-  "vender-piso-inquilino-vencer-barcelona": {
-    "keyword": "vender piso inquilino contrato vencer barcelona",
-    "cluster": "situacion",
-    "canonical": "/vender-piso-inquilino-vencer-barcelona",
-    "aliases": [
-      "vender piso alquiler termina barcelona",
-      "vender piso cuando acaba contrato inquilino barcelona"
-    ]
-  },
-  "vender-piso-antes-comprar-otro-barcelona": {
-    "keyword": "vender piso antes de comprar otro barcelona",
-    "cluster": "situacion",
-    "canonical": "/vender-piso-antes-comprar-otro-barcelona",
-    "aliases": [
-      "vender para comprar otra vivienda barcelona",
-      "cadena compraventa piso barcelona"
-    ]
-  },
-  "vender-segunda-residencia-barcelona": {
-    "keyword": "vender segunda residencia barcelona",
-    "cluster": "situacion",
-    "canonical": "/vender-segunda-residencia-barcelona",
-    "aliases": [
-      "vender piso vacio barcelona",
-      "vender piso no habitual barcelona"
-    ]
-  },
-  "vender-piso-traslado-barcelona": {
-    "keyword": "vender piso traslado trabajo barcelona",
-    "cluster": "situacion",
-    "canonical": "/vender-piso-traslado-barcelona",
-    "aliases": [
-      "vender piso cambio ciudad barcelona",
-      "vender piso mudanza barcelona"
-    ]
-  },
-  "vender-piso-rapido-barcelona": {
-    "keyword": "vender piso rapido barcelona",
+  "inmobiliaria-para-particulares-badalona-barcelona": {
+    "keyword": "inmobiliaria para particulares badalona barcelona",
     "cluster": "intencion",
-    "canonical": "/vender-piso-rapido-barcelona",
-    "aliases": ["vender piso urgente barcelona"]
-  },
-  "vender-piso-sin-exclusividad-barcelona": {
-    "keyword": "vender piso sin exclusividad barcelona",
-    "cluster": "intencion",
-    "canonical": "/vender-piso-sin-exclusividad-barcelona",
+    "canonical": "/inmobiliaria-para-particulares-badalona-barcelona",
     "aliases": [
-      "vender piso sin exclusiva barcelona",
-      "vender piso particular barcelona",
-      "vender casa particular barcelona"
+      "agencia inmobiliaria para vender piso badalona",
+      "inmobiliaria vendedores particulares badalona",
+      "vender piso particular con agencia badalona"
+    ]
+  },
+  "inmobiliaria-para-particulares-barcelona": {
+    "keyword": "inmobiliaria para particulares barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso barcelona",
+      "inmobiliaria vendedores particulares barcelona",
+      "inmobiliaria propietarios barcelona"
+    ]
+  },
+  "inmobiliaria-para-particulares-ciutat-vella-barcelona": {
+    "keyword": "inmobiliaria para particulares ciutat vella barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-ciutat-vella-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso ciutat vella",
+      "inmobiliaria vendedores particulares ciutat vella",
+      "vender piso particular con agencia ciutat vella"
+    ]
+  },
+  "inmobiliaria-para-particulares-cornella-barcelona": {
+    "keyword": "inmobiliaria para particulares cornellà de llobregat barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-cornella-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso cornellà de llobregat",
+      "inmobiliaria vendedores particulares cornellà de llobregat",
+      "vender piso particular con agencia cornellà de llobregat"
+    ]
+  },
+  "inmobiliaria-para-particulares-eixample-barcelona": {
+    "keyword": "inmobiliaria para particulares eixample barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-eixample-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso eixample",
+      "inmobiliaria vendedores particulares eixample",
+      "vender piso particular con agencia eixample"
+    ]
+  },
+  "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona": {
+    "keyword": "inmobiliaria para particulares el clot - la sagrera barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso el clot - la sagrera",
+      "inmobiliaria vendedores particulares el clot - la sagrera",
+      "vender piso particular con agencia el clot - la sagrera"
+    ]
+  },
+  "inmobiliaria-para-particulares-esplugues-barcelona": {
+    "keyword": "inmobiliaria para particulares esplugues de llobregat barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-esplugues-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso esplugues de llobregat",
+      "inmobiliaria vendedores particulares esplugues de llobregat",
+      "vender piso particular con agencia esplugues de llobregat"
+    ]
+  },
+  "inmobiliaria-para-particulares-gracia-barcelona": {
+    "keyword": "inmobiliaria para particulares gràcia barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-gracia-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso gràcia",
+      "inmobiliaria vendedores particulares gràcia",
+      "vender piso particular con agencia gràcia"
+    ]
+  },
+  "inmobiliaria-para-particulares-horta-barcelona": {
+    "keyword": "inmobiliaria para particulares horta-guinardó barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-horta-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso horta-guinardó",
+      "inmobiliaria vendedores particulares horta-guinardó",
+      "vender piso particular con agencia horta-guinardó"
+    ]
+  },
+  "inmobiliaria-para-particulares-l-hospitalet-barcelona": {
+    "keyword": "inmobiliaria para particulares l'hospitalet barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-l-hospitalet-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso l'hospitalet",
+      "inmobiliaria vendedores particulares l'hospitalet",
+      "vender piso particular con agencia l'hospitalet"
+    ]
+  },
+  "inmobiliaria-para-particulares-les-corts-barcelona": {
+    "keyword": "inmobiliaria para particulares les corts barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-les-corts-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso les corts",
+      "inmobiliaria vendedores particulares les corts",
+      "vender piso particular con agencia les corts"
+    ]
+  },
+  "inmobiliaria-para-particulares-nou-barris-barcelona": {
+    "keyword": "inmobiliaria para particulares nou barris barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-nou-barris-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso nou barris",
+      "inmobiliaria vendedores particulares nou barris",
+      "vender piso particular con agencia nou barris"
+    ]
+  },
+  "inmobiliaria-para-particulares-poble-sec-barcelona": {
+    "keyword": "inmobiliaria para particulares poble sec barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-poble-sec-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso poble sec",
+      "inmobiliaria vendedores particulares poble sec",
+      "vender piso particular con agencia poble sec"
+    ]
+  },
+  "inmobiliaria-para-particulares-poblenou-barcelona": {
+    "keyword": "inmobiliaria para particulares poblenou barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-poblenou-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso poblenou",
+      "inmobiliaria vendedores particulares poblenou",
+      "vender piso particular con agencia poblenou"
+    ]
+  },
+  "inmobiliaria-para-particulares-sant-andreu-barcelona": {
+    "keyword": "inmobiliaria para particulares sant andreu barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-sant-andreu-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso sant andreu",
+      "inmobiliaria vendedores particulares sant andreu",
+      "vender piso particular con agencia sant andreu"
+    ]
+  },
+  "inmobiliaria-para-particulares-sant-antoni-barcelona": {
+    "keyword": "inmobiliaria para particulares sant antoni barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-sant-antoni-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso sant antoni",
+      "inmobiliaria vendedores particulares sant antoni",
+      "vender piso particular con agencia sant antoni"
+    ]
+  },
+  "inmobiliaria-para-particulares-sant-gervasi-barcelona": {
+    "keyword": "inmobiliaria para particulares sant gervasi barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-sant-gervasi-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso sant gervasi",
+      "inmobiliaria vendedores particulares sant gervasi",
+      "vender piso particular con agencia sant gervasi"
+    ]
+  },
+  "inmobiliaria-para-particulares-sant-marti-barcelona": {
+    "keyword": "inmobiliaria para particulares sant martí barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-sant-marti-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso sant martí",
+      "inmobiliaria vendedores particulares sant martí",
+      "vender piso particular con agencia sant martí"
+    ]
+  },
+  "inmobiliaria-para-particulares-sants-barcelona": {
+    "keyword": "inmobiliaria para particulares sants barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-sants-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso sants",
+      "inmobiliaria vendedores particulares sants",
+      "vender piso particular con agencia sants"
+    ]
+  },
+  "inmobiliaria-para-particulares-sarria-barcelona": {
+    "keyword": "inmobiliaria para particulares sarrià barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-sarria-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso sarrià",
+      "inmobiliaria vendedores particulares sarrià",
+      "vender piso particular con agencia sarrià"
+    ]
+  },
+  "inmobiliaria-precio-fijo-diagonal-mar-barcelona": {
+    "keyword": "inmobiliaria precio fijo diagonal mar barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-diagonal-mar-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos diagonal mar",
+      "vender piso particular diagonal mar",
+      "agencia inmobiliaria diagonal mar precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-fort-pienc-barcelona": {
+    "keyword": "inmobiliaria precio fijo fort pienc barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-fort-pienc-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos fort pienc",
+      "vender piso particular fort pienc",
+      "agencia inmobiliaria fort pienc precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-guinardo-barcelona": {
+    "keyword": "inmobiliaria precio fijo el guinardó barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-guinardo-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos el guinardó",
+      "vender piso particular el guinardó",
+      "agencia inmobiliaria el guinardó precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-hostafrancs-barcelona": {
+    "keyword": "inmobiliaria precio fijo hostafrancs barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-hostafrancs-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos hostafrancs",
+      "vender piso particular hostafrancs",
+      "agencia inmobiliaria hostafrancs precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-la-sagrera-barcelona": {
+    "keyword": "inmobiliaria precio fijo la sagrera barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-la-sagrera-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos la sagrera",
+      "vender piso particular la sagrera",
+      "agencia inmobiliaria la sagrera precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-montjuic-barcelona": {
+    "keyword": "inmobiliaria precio fijo montjuïc barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-montjuic-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos montjuïc",
+      "vender piso particular montjuïc",
+      "agencia inmobiliaria montjuïc precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-pedralbes-barcelona": {
+    "keyword": "inmobiliaria precio fijo pedralbes barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-pedralbes-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos pedralbes",
+      "vender piso particular pedralbes",
+      "agencia inmobiliaria pedralbes precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-sagrada-familia-barcelona": {
+    "keyword": "inmobiliaria precio fijo sagrada família barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sagrada-familia-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos sagrada família",
+      "vender piso particular sagrada família",
+      "agencia inmobiliaria sagrada família precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-sant-marti-barcelona": {
+    "keyword": "inmobiliaria precio fijo sant martí barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sant-marti-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos sant martí",
+      "vender piso particular sant martí",
+      "agencia inmobiliaria sant martí precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-vila-olimpica-barcelona": {
+    "keyword": "inmobiliaria precio fijo vila olímpica barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-vila-olimpica-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos vila olímpica",
+      "vender piso particular vila olímpica",
+      "agencia inmobiliaria vila olímpica precio fijo"
+    ]
+  },
+  "nuevahabitat-vs-agencia-tradicional-barcelona": {
+    "keyword": "comision inmobiliaria barcelona vs precio fijo",
+    "cluster": "comparativa",
+    "canonical": "/nuevahabitat-vs-agencia-tradicional-barcelona",
+    "aliases": [
+      "cuanto cobra inmobiliaria barcelona",
+      "agencia inmobiliaria 6 por ciento barcelona"
+    ]
+  },
+  "nuevahabitat-vs-fotocasa-particular": {
+    "keyword": "nuevahabitat vs fotocasa particular",
+    "cluster": "comparativa",
+    "canonical": "/nuevahabitat-vs-fotocasa-particular",
+    "aliases": [
+      "vender piso fotocasa particular barcelona",
+      "fotocasa vs inmobiliaria barcelona"
+    ]
+  },
+  "nuevahabitat-vs-habitaclia-particular": {
+    "keyword": "nuevahabitat vs habitaclia particular",
+    "cluster": "comparativa",
+    "canonical": "/nuevahabitat-vs-habitaclia-particular",
+    "aliases": [
+      "habitaclia particulares barcelona",
+      "vender piso habitaclia particular barcelona",
+      "habitaclia vs inmobiliaria barcelona"
     ]
   },
   "nuevahabitat-vs-idealista-particular": {
@@ -66,22 +337,177 @@
       "vender en idealista o agencia barcelona"
     ]
   },
-  "nuevahabitat-vs-fotocasa-particular": {
-    "keyword": "nuevahabitat vs fotocasa particular",
-    "cluster": "comparativa",
-    "canonical": "/nuevahabitat-vs-fotocasa-particular",
+  "vender-como-particular-barceloneta-barcelona": {
+    "keyword": "vender piso particular barceloneta barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-barceloneta-barcelona",
     "aliases": [
-      "vender piso fotocasa particular barcelona",
-      "fotocasa vs inmobiliaria barcelona"
+      "vender mi piso barceloneta yo mismo",
+      "vender casa particular barceloneta"
     ]
   },
-  "nuevahabitat-vs-agencia-tradicional-barcelona": {
-    "keyword": "comision inmobiliaria barcelona vs precio fijo",
-    "cluster": "comparativa",
-    "canonical": "/nuevahabitat-vs-agencia-tradicional-barcelona",
+  "vender-como-particular-born-barcelona": {
+    "keyword": "vender piso particular born barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-born-barcelona",
     "aliases": [
-      "cuanto cobra inmobiliaria barcelona",
-      "agencia inmobiliaria 6 por ciento barcelona"
+      "vender mi piso born yo mismo",
+      "vender casa particular born"
+    ]
+  },
+  "vender-como-particular-camp-de-larpa-barcelona": {
+    "keyword": "vender piso particular camp de l'arpa barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-camp-de-larpa-barcelona",
+    "aliases": [
+      "vender mi piso camp de l'arpa yo mismo",
+      "vender casa particular camp de l'arpa"
+    ]
+  },
+  "vender-como-particular-el-besos-barcelona": {
+    "keyword": "vender piso particular el besòs barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-el-besos-barcelona",
+    "aliases": [
+      "vender mi piso el besòs yo mismo",
+      "vender casa particular el besòs"
+    ]
+  },
+  "vender-como-particular-gotic-barcelona": {
+    "keyword": "vender piso particular gòtic barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-gotic-barcelona",
+    "aliases": [
+      "vender mi piso gòtic yo mismo",
+      "vender casa particular gòtic"
+    ]
+  },
+  "vender-como-particular-provencals-del-poblenou-barcelona": {
+    "keyword": "vender piso particular provençals del poblenou barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-provencals-del-poblenou-barcelona",
+    "aliases": [
+      "vender mi piso provençals del poblenou yo mismo",
+      "vender casa particular provençals del poblenou"
+    ]
+  },
+  "vender-como-particular-raval-barcelona": {
+    "keyword": "vender piso particular raval barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-raval-barcelona",
+    "aliases": [
+      "vender mi piso raval yo mismo",
+      "vender casa particular raval"
+    ]
+  },
+  "vender-como-particular-sagrada-familia-barcelona": {
+    "keyword": "vender piso particular sagrada família barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sagrada-familia-barcelona",
+    "aliases": [
+      "vender mi piso sagrada família yo mismo",
+      "vender casa particular sagrada família"
+    ]
+  },
+  "vender-como-particular-sant-just-sant-joan-despi-barcelona": {
+    "keyword": "vender piso particular sant just desvern y sant joan despí barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sant-just-sant-joan-despi-barcelona",
+    "aliases": [
+      "vender mi piso sant just desvern y sant joan despí yo mismo",
+      "vender casa particular sant just desvern y sant joan despí"
+    ]
+  },
+  "vender-como-particular-vila-olimpica-barcelona": {
+    "keyword": "vender piso particular vila olímpica barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-vila-olimpica-barcelona",
+    "aliases": [
+      "vender mi piso vila olímpica yo mismo",
+      "vender casa particular vila olímpica"
+    ]
+  },
+  "vender-piso-alquilado-barcelona": {
+    "keyword": "vender piso alquilado barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-alquilado-barcelona"
+  },
+  "vender-piso-antes-comprar-otro-barcelona": {
+    "keyword": "vender piso antes de comprar otro barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-antes-comprar-otro-barcelona",
+    "aliases": [
+      "vender para comprar otra vivienda barcelona",
+      "cadena compraventa piso barcelona"
+    ]
+  },
+  "vender-piso-inquilino-vencer-barcelona": {
+    "keyword": "vender piso inquilino contrato vencer barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-inquilino-vencer-barcelona",
+    "aliases": [
+      "vender piso alquiler termina barcelona",
+      "vender piso cuando acaba contrato inquilino barcelona"
+    ]
+  },
+  "vender-piso-rapido-barcelona": {
+    "keyword": "vender piso rapido barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-rapido-barcelona",
+    "aliases": [
+      "vender piso urgente barcelona"
+    ]
+  },
+  "vender-piso-sin-exclusividad-barcelona": {
+    "keyword": "vender piso sin exclusividad barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-exclusividad-barcelona",
+    "aliases": [
+      "vender piso sin exclusiva barcelona",
+      "vender piso particular barcelona",
+      "vender casa particular barcelona"
+    ]
+  },
+  "vender-piso-sin-portales-gracia-barcelona": {
+    "keyword": "vender piso sin portales gracia barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-portales-gracia-barcelona",
+    "aliases": [
+      "vender sin idealista gràcia",
+      "vender sin fotocasa gràcia",
+      "vender piso off market gràcia",
+      "cartera compradores barcelona"
+    ]
+  },
+  "vender-piso-sin-portales-poblenou-barcelona": {
+    "keyword": "vender piso sin portales poblenou barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-portales-poblenou-barcelona",
+    "aliases": [
+      "vender sin idealista poblenou",
+      "vender sin fotocasa poblenou",
+      "vender piso off market poblenou",
+      "cartera compradores barcelona"
+    ]
+  },
+  "vender-piso-sin-portales-sarria-barcelona": {
+    "keyword": "vender piso sin portales sarria barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-portales-sarria-barcelona",
+    "aliases": [
+      "vender sin idealista sarrià",
+      "vender sin fotocasa sarrià",
+      "vender piso off market sarrià",
+      "cartera compradores barcelona"
+    ]
+  },
+  "vender-piso-traslado-barcelona": {
+    "keyword": "vender piso traslado trabajo barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-traslado-barcelona",
+    "aliases": [
+      "vender piso cambio ciudad barcelona",
+      "vender piso mudanza barcelona"
     ]
   },
   "vender-por-tu-cuenta-vs-nuevahabitat-barcelona": {
@@ -93,14 +519,22 @@
       "vender sin inmobiliaria barcelona"
     ]
   },
-  "inmobiliaria-para-particulares-barcelona": {
-    "keyword": "inmobiliaria para particulares barcelona",
-    "cluster": "intencion",
-    "canonical": "/inmobiliaria-para-particulares-barcelona",
+  "vender-segunda-residencia-barcelona": {
+    "keyword": "vender segunda residencia barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-segunda-residencia-barcelona",
     "aliases": [
-      "agencia inmobiliaria para vender piso barcelona",
-      "inmobiliaria vendedores particulares barcelona",
-      "inmobiliaria propietarios barcelona"
+      "vender piso vacio barcelona",
+      "vender piso no habitual barcelona"
+    ]
+  },
+  "venta-piso-economica-el-clot-la-sagrera-barcelona": {
+    "keyword": "venta de piso economica el clot - la sagrera barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-el-clot-la-sagrera-barcelona",
+    "aliases": [
+      "vender piso el clot - la sagrera honorarios bajos",
+      "inmobiliaria economica el clot - la sagrera"
     ]
   }
 }
