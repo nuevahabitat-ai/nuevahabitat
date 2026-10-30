@@ -18,7 +18,7 @@ const FINAL = {
   'content/landings/barrio/vender-trinitat-vella-barcelona.json': `
 <h2>Fotos portal i ascensor</h2>
 <p>Primera foto debe ser portal limpio y ascensor funcionando si existe. Comprador de Trinitat Vella asocia estado de entrada con estado de vecindad. Planta alta sin lift: precio publicado ya descontado.</p>
-<p>Neto vendedor: restar hipoteca, plusvalía, comunidad pendiente y comisión. Sobre 245.000 €, 3.630 € fijos vs 14.700 € al 6% ordena expectativas desde primera llamada.</p>`,
+<p>Neto vendedor: restar hipoteca, plusvalía, comunidad pendiente y comisión. Sobre 245.000 €, 3.500 € + IVA fijos vs 14.700 € al 6% ordena expectativas desde primera llamada.</p>`,
   'content/landings/barrio/vender-vall-d-hebron-barcelona.json': `
 <h2>Estudiants, lloguer i rotació</h2>
 <p>Algún piso rota con estancias cortas de estudiantes de medicina: contrato vigente explicado. Cuatro habitaciones pequeñas vs tres grandes define target familia vs inversor. Distancia a facultad caminando en ficha cuando aplica.</p>

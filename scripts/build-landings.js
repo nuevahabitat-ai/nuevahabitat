@@ -239,7 +239,7 @@ function robotsMeta(L) {
     : 'noindex, follow';
 }
 
-const NH_FEE_EUR = 3630;
+const NH_FEE_EUR = 3500;
 
 function calcInitial(precio) {
   const p = Number(precio) || 420000;
@@ -465,7 +465,7 @@ function calcBlock(L) {
   const barrio = L.barrio || 'Barcelona';
   return savingsCalcMarkup({
     titulo: L.calculadora?.titulo || `¿Cuánto te ahorras vendiendo en ${barrio}?`,
-    subtitulo: L.calculadora?.subtitulo || 'Compara la comisión habitual de una agencia inmobiliaria en Barcelona con el precio fijo de NuevaHabitat: 3.000 € + IVA, cobrados solo en escritura.',
+    subtitulo: L.calculadora?.subtitulo || 'Compara la comisión habitual de una agencia inmobiliaria en Barcelona con el precio fijo de NuevaHabitat: 3.500 € + IVA, cobrados solo en escritura.',
     precio: L.ejemploPrecio || L.calculadora?.precioDefault || 420000,
     dark: true,
   });
@@ -535,7 +535,7 @@ function footerAndScripts(L) {
   return `<footer>
   <div class="container">
     <div class="footer-top" style="grid-template-columns:1.5fr 2.5fr 1fr">
-      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo 3.000€ + IVA, cobro solo en escritura.</p></div>
+      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Inmobiliaria tecnológica en Barcelona. Precio fijo 3.500€ + IVA, cobro solo en escritura.</p></div>
       <div class="footer-col footer-col--servicios"><h4>Servicios</h4><div data-nh-landing-footer${L.footerExtra ? ` data-nh-footer-extra="${L.footerExtra}"` : ''}></div></div>
       <div class="footer-col"><h4>Contacto</h4><ul><li>${footerPhonesLi()}</li><li><a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></li></ul></div>
     </div>
@@ -907,7 +907,7 @@ function main() {
         indexable: L.indexable !== false,
         testimonials: true,
         cardImage: L.heroImage,
-        cardTeaser: cardTeaserFrom(L) || ('Vender en ' + L.barrio + ' con precio fijo 3.000€ + IVA.'),
+        cardTeaser: cardTeaserFrom(L) || ('Vender en ' + L.barrio + ' con precio fijo 3.500€ + IVA.'),
       };
       return;
     }

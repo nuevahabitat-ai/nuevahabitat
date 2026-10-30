@@ -24,9 +24,16 @@ import {
 } from '../lib/server/supabase-server.js';
 import { notifyTransferenciaPendiente } from '../lib/server/payment-notify.js';
 import { handlePanelPropietarioApi } from '../lib/server/panel-propietario-api.js';
-import { ALQUILER_INTEGRAL_EUR } from '../lib/server/pricing.js';
+import {
+  ALQUILER_INTEGRAL_EUR,
+  COMPRADOR_HONORARIOS_TOTAL_IVA_EUR,
+  VENTA_HONORARIOS_TOTAL_IVA_EUR,
+} from '../lib/server/pricing.js';
 
-const DEFAULT_HONORARIOS = { comprador: 6050, vendedor: 3630 };
+const DEFAULT_HONORARIOS = {
+  comprador: COMPRADOR_HONORARIOS_TOTAL_IVA_EUR,
+  vendedor: VENTA_HONORARIOS_TOTAL_IVA_EUR,
+};
 const DEFAULT_CUOTA_ALQUILER_EUR = 60;
 const DEFAULT_INTEGRAL_ALQUILER_EUR = ALQUILER_INTEGRAL_EUR;
 

@@ -8,13 +8,13 @@
   "origen_lead": "vender-piso-alquilado-barcelona",
   "meta": {
     "title": "Vender piso alquilado en Barcelona · Inquilino dentro · NuevaHabitat",
-    "description": "¿Vendes un piso con inquilino en Barcelona? Te explicamos contrato en vigor, derecho de tanteo, visitas y precio fijo 3.000€ + IVA. Valoración gratuita.",
+    "description": "¿Vendes un piso con inquilino en Barcelona? Te explicamos contrato en vigor, derecho de tanteo, visitas y precio fijo 3.500€ + IVA. Valoración gratuita.",
     "keywords": "vender piso alquilado barcelona, vender piso con inquilino, vender vivienda alquilada cataluña, contrato alquiler venta piso, derecho tanteo inquilino barcelona"
   },
   "hero": {
     "badge": "Situación · Piso con inquilino",
     "h1": "¿Vendes un piso alquilado en Barcelona?",
-    "lead": "Vender con inquilino dentro no es igual que vender una vivienda vacía. Hay un contrato de arrendamiento en vigor, plazos legales y compradores que valoran (o descartan) la renta existente. En NuevaHabitat te acompañamos con precio fijo de 3.000 € + IVA y experiencia en operaciones con inquilino en Cataluña.",
+    "lead": "Vender con inquilino dentro no es igual que vender una vivienda vacía. Hay un contrato de arrendamiento en vigor, plazos legales y compradores que valoran (o descartan) la renta existente. En NuevaHabitat te acompañamos con precio fijo de 3.500 € + IVA y experiencia en operaciones con inquilino en Cataluña.",
     "image": "imagenes/interior4.jpg",
     "imageAlt": "Piso alquilado en Barcelona"
   },
@@ -70,7 +70,7 @@
       },
       {
         "title": "Escritura con precio fijo",
-        "body": "3.000 € + IVA solo al cerrar. Si no vendes, no pagas honorarios."
+        "body": "3.500 € + IVA solo al cerrar. Si no vendes, no pagas honorarios."
       }
     ]
   },
@@ -93,7 +93,7 @@
     },
     {
       "q": "¿Cuánto cobra NuevaHabitat por vender un piso alquilado?",
-      "a": "3.000 € + IVA, precio fijo cobrado únicamente en escritura. Mismo modelo que en una venta estándar: sin comisión del 6% sobre el precio."
+      "a": "3.500 € + IVA, precio fijo cobrado únicamente en escritura. Mismo modelo que en una venta estándar: sin comisión del 6% sobre el precio."
     },
     {
       "q": "¿Podéis ayudarme si el contrato es antiguo o sin actualizar?",

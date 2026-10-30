@@ -51,14 +51,14 @@ function buildArgumento(b, barrioSlug) {
   const barrioLink = `/${barrioSlug}`;
   const body = b.argumento_principal || '';
 
-  const intro = `<p>Esta guía es para el <strong>propietario particular</strong> que vende en <strong>${n}</strong> (${cp}): ${zonas}. Si ya publicaste en Idealista o Fotocasa y las visitas no traen hipoteca, aquí va el mapa local (${m2}) más la opción NuevaHabitat — <strong>3.630 €</strong> solo en escritura, panel vendedor y filtro de compradores. General: <a href="/vender-como-particular-barcelona">particular Barcelona</a>. Agencia precio fijo: <a href="${barrioLink}">vender en ${n}</a>.</p>`;
+  const intro = `<p>Esta guía es para el <strong>propietario particular</strong> que vende en <strong>${n}</strong> (${cp}): ${zonas}. Si ya publicaste en Idealista o Fotocasa y las visitas no traen hipoteca, aquí va el mapa local (${m2}) más la opción NuevaHabitat — <strong>3.500 € + IVA</strong> solo en escritura, panel vendedor y filtro de compradores. General: <a href="/vender-como-particular-barcelona">particular Barcelona</a>. Agencia precio fijo: <a href="${barrioLink}">vender en ${n}</a>.</p>`;
 
   const faqBlock = (b.faq || [])
     .slice(0, 4)
     .map((f) => `<h3>${f.q}</h3><p>${f.a} En ${n}, aplicado a propietarios que publican solos.</p>`)
     .join('');
 
-  const outro = `<h2>Particular en ${n}: calculadora y honorarios</h2><p>Sobre ${precioFmt} € orientativos, comisión 6% + IVA ≈ <strong>${com6.toLocaleString('es-ES')} €</strong> frente a <strong>3.630 €</strong> fijos si cierras con nosotros. <a href="#calc">Calculadora</a> · <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona">comparativa</a>.</p><h2>Panel, visitas y arras en ${n}</h2><p>Sube comunidad, energético y nota simple; abre visitas solo con cita y solvencia contrastada. Arras con plazo realista (60–75 días) y condiciones suspensivas claras. Herencia: <a href="/vender-piso-herencia-barcelona">guía herencia</a>. Alquilado: <a href="/vender-piso-alquilado-barcelona">piso alquilado</a>.</p><h2>Preguntas frecuentes del particular en ${n}</h2>${faqBlock}<h2>Próximo paso</h2><p>Formulario con m² y calle en ${n}. Valoración orientativa en 24 h laborables desde Les Corts — sin exclusiva abusiva.</p>`;
+  const outro = `<h2>Particular en ${n}: calculadora y honorarios</h2><p>Sobre ${precioFmt} € orientativos, comisión 6% + IVA ≈ <strong>${com6.toLocaleString('es-ES')} €</strong> frente a <strong>3.500 € + IVA</strong> fijos si cierras con nosotros. <a href="#calc">Calculadora</a> · <a href="/vender-por-tu-cuenta-vs-nuevahabitat-barcelona">comparativa</a>.</p><h2>Panel, visitas y arras en ${n}</h2><p>Sube comunidad, energético y nota simple; abre visitas solo con cita y solvencia contrastada. Arras con plazo realista (60–75 días) y condiciones suspensivas claras. Herencia: <a href="/vender-piso-herencia-barcelona">guía herencia</a>. Alquilado: <a href="/vender-piso-alquilado-barcelona">piso alquilado</a>.</p><h2>Preguntas frecuentes del particular en ${n}</h2>${faqBlock}<h2>Próximo paso</h2><p>Formulario con m² y calle en ${n}. Valoración orientativa en 24 h laborables desde Les Corts — sin exclusiva abusiva.</p>`;
 
   return intro + body + outro;
 }
@@ -90,14 +90,14 @@ function buildParticular(barrioSlug) {
     perfilComprador: b.perfilComprador,
     tipologiaEdificios: b.tipologiaEdificios,
     meta: {
-      title: `Vender tu piso en ${n} siendo particular · 3.630 € · NuevaHabitat`,
+      title: `Vender tu piso en ${n} siendo particular · 3.500 € + IVA · NuevaHabitat`,
       description: `Guía particular ${n} (${cp}): ${dm.precioM2 || 'valoración local'}. Errores en portal, panel vendedor y precio fijo solo en escritura.`,
       keywords: buildAliases(b).join(', '),
     },
     hero: {
       badge: `${n} · ${cp} · Particular`,
-      h1: `Vender tu piso en ${n} siendo particular: 3.630 € en escritura, panel del vendedor y visitas con criterio`,
-      lead: `Publicaste en ${n} (${zonasShort(b)}) y las visitas no cuadran con el precio. <strong>NuevaHabitat</strong> acompaña al propietario con <strong>3.630 €</strong> solo en escritura, panel vendedor y compradores con solvencia contrastada.`,
+      h1: `Vender tu piso en ${n} siendo particular: 3.500 € + IVA en escritura, panel del vendedor y visitas con criterio`,
+      lead: `Publicaste en ${n} (${zonasShort(b)}) y las visitas no cuadran con el precio. <strong>NuevaHabitat</strong> acompaña al propietario con <strong>3.500 € + IVA</strong> solo en escritura, panel vendedor y compradores con solvencia contrastada.`,
       image: b.heroImage || 'imagenes/interior3.jpg',
       imageAlt: b.heroImageAlt || `Particular vendiendo piso en ${n} Barcelona`,
       objectPosition: 'center 40%',
@@ -118,7 +118,7 @@ function buildParticular(barrioSlug) {
         { title: 'Panel vendedor', body: 'Documentos y visitas con cita.' },
         { title: 'Solo solvencia', body: 'Hipoteca o liquidez antes de abrir la puerta.' },
         { title: 'Arras', body: 'Plazos realistas con banco del comprador.' },
-        { title: '3.630 € en escritura', body: 'Sin venta, sin factura de agencia.' },
+        { title: '3.500 € + IVA en escritura', body: 'Sin venta, sin factura de agencia.' },
       ],
     },
     comparativa_modelos: {
@@ -127,7 +127,7 @@ function buildParticular(barrioSlug) {
         { modelo: 'Particular en portal', tiempo: dm.tiempoVenta || 'Variable', coste: 'Anuncio + sábados', riesgo: 'Curiosos sin hipoteca', tipo: 'neutral' },
         { modelo: 'Agencia ~6%', tiempo: '4–8 meses', coste: `>${Math.round(precio * 0.06 * 1.21 / 1000)}k €`, riesgo: 'Exclusiva', tipo: 'lose' },
         { modelo: 'Low-cost online', tiempo: 'Variable', coste: 'Cuota', riesgo: 'Poco seguimiento arras', tipo: 'neutral' },
-        { modelo: `NuevaHabitat ${n}`, tiempo: dm.tiempoVenta || 'Plan 60–90 días', coste: '3.630 € escritura', riesgo: 'Sin venta, sin factura', tipo: 'win' },
+        { modelo: `NuevaHabitat ${n}`, tiempo: dm.tiempoVenta || 'Plan 60–90 días', coste: '3.500 € + IVA escritura', riesgo: 'Sin venta, sin factura', tipo: 'win' },
       ],
     },
     mitos: {
@@ -135,7 +135,7 @@ function buildParticular(barrioSlug) {
       items: [
         { mito: `En ${n} vende cualquiera rápido`, realidad: 'Sin pricing fino y filtro, el tiempo en mercado se alarga.' },
         { mito: 'Más visitas = más cerca de vender', realidad: 'Visitas sin hipoteca desgastan al particular.' },
-        { mito: 'El 6% es inevitable', realidad: 'Precio fijo 3.630 € es alternativa real.' },
+        { mito: 'El 6% es inevitable', realidad: 'Precio fijo 3.500 € + IVA es alternativa real.' },
         { mito: 'Publicar alto y bajar no penaliza', realidad: 'Días en portal sin oferta erosionan negociación final.' },
         { mito: 'Panel vendedor es solo para agencias', realidad: 'Útil cuando saturaste WhatsApp.' },
       ],
@@ -148,12 +148,12 @@ function buildParticular(barrioSlug) {
         '¿Precio coherente con calle y planta?',
         '¿Energético y comunidad listos?',
         '¿Filtras hipoteca?',
-        '¿Calculaste 6% vs 3.630 €?',
+        '¿Calculaste 6% vs 3.500 € + IVA?',
         '¿Micro-zona clara en portal?',
       ],
     },
     faq: [
-      { q: `¿Cuánto pago como particular con NuevaHabitat en ${n}?`, a: '3.630 € total solo en escritura. Sin venta, no hay honorarios.' },
+      { q: `¿Cuánto pago como particular con NuevaHabitat en ${n}?`, a: '3.500 € + IVA total solo en escritura. Sin venta, no hay honorarios.' },
       { q: '¿Precio orientativo piso medio?', a: `Orientativamente ${precioFmt(precio)} € según estado. Valoración en 24 h.` },
       { q: '¿Piso alquilado?', a: 'Sí, con transparencia; comprador puede ser inversor o familia según plazo.' },
       { q: '¿Panel del vendedor?', a: 'Visitas, calendario, documentos y ofertas en un expediente.' },
@@ -168,7 +168,7 @@ function buildParticular(barrioSlug) {
     keywords_footer: `vender piso particular ${n.toLowerCase()} · ${cp} · sin agencia 6%`,
     whatsappText: `Hola%2C%20soy%20particular%20y%20quiero%20vender%20en%20${encodeURIComponent(n)}`,
     formPlaceholder: `${n} — calle aproximada y m²`,
-    form_side_text: `Indica micro-zona en ${n}. Rango €/m² y plan particular — 3.630 € solo en escritura.`,
+    form_side_text: `Indica micro-zona en ${n}. Rango €/m² y plan particular — 3.500 € + IVA solo en escritura.`,
   };
 }
 

@@ -18,7 +18,7 @@ const MORE = {
 <p>Navas vive con la Meridiana de fondo en muchas fincas. Comprador informado pregunta por ventanas y doble acristalamiento; vendedor que oculta ruido pierde arras cuando el comprador trae decibelímetro o simplemente visita a las ocho de la tarde un martes laborable. Precio honesto desde publicación evita regateo de 15.000 € en notaría.</p>
 <p>Distribución 3 habitaciones reales (dormitorios con ventana y armario empotrado) compite mejor que “dos más estudio” en Navas: familia joven con hijo pequeño no negocia eternamente si el plano es claro. Fotos de pasillos y cocina con medidas orientativas ayudan.</p>
 <h2>Comparables Fabra i Puig</h2>
-<p>Idealista etiqueta “Sant Andreu” y mezcla Navas con Bon Pastor. Usamos cierres y visitas cualificadas en calles paralelas a Fabra i Puig, no con anuncios del Clot a 4.800 €/m². Calculadora 6% vs 3.630 € fijos sobre 310.000 €: argumento que muchos vendedores no ven hasta comparar tres agencias.</p>
+<p>Idealista etiqueta “Sant Andreu” y mezcla Navas con Bon Pastor. Usamos cierres y visitas cualificadas en calles paralelas a Fabra i Puig, no con anuncios del Clot a 4.800 €/m². Calculadora 6% vs 3.500 € + IVA fijos sobre 310.000 €: argumento que muchos vendedores no ven hasta comparar tres agencias.</p>
 <p>Coordinación con <a href="/inmobiliaria-precio-fijo-barcelona">precio fijo Barcelona</a> para entender honorarios antes de firmar mandato.</p>`,
   'content/landings/barrio/vender-montjuic-barcelona.json': `
 <h2>Accessibilitat i gent gran</h2>
@@ -68,7 +68,7 @@ const MORE = {
 <p>Sagrera alta vs calles más próximas a Navas: dos tickets en código postal 08027. Comparables por manzana, no media Sant Andreu. Enlace <a href="/vender-navas-barcelona">Navas</a> cuando comprador compara el domingo.</p>
 <h2>Clot, Camp de l'Arpa i urbanisme</h2>
 <p>Obra urbana delante del edificio: indicar en ficha antes de arras. Límite Camp de l'Arpa: comparables cruzados solo si finca lo exige. Guía combo: <a href="/vender-el-clot-la-sagrera-barcelona">El Clot</a> como referencia, landing Sagrera para buscador explícito “La Sagrera”.</p>
-<p>Calculadora honorarios sobre 335.000 €: 6% supera 20.000 €; precio fijo 3.630 € total protege neto si comprador negocia bien.</p>`,
+<p>Calculadora honorarios sobre 335.000 €: 6% supera 20.000 €; precio fijo 3.500 € + IVA total protege neto si comprador negocia bien.</p>`,
 };
 
 function main() {

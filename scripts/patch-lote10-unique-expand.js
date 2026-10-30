@@ -14,7 +14,7 @@ const U = {
 <p>Proximidad a recintos feriales condiciona algunas calles en fechas concretas: lo indicamos sin dramatizar. Comprador que trabaja en logística o servicios valora acceso rodado a Gran Via.</p>
 <p>Piso con patio interior en manzana del Ensanche secundario: argumento de luz y ventilación frente a pisos solo a calle ruidosa.</p>
 <h2>Neto després de comissió</h2>
-<p>Sobre 340.000 €, calcular neto tras hipoteca, plusvalía y 3.000 € + IVA fijos evita sorpresas el día de firma. Te ayudamos a ordenar números antes de publicar.</p>`,
+<p>Sobre 340.000 €, calcular neto tras hipoteca, plusvalía y 3.500 € + IVA fijos evita sorpresas el día de firma. Te ayudamos a ordenar números antes de publicar.</p>`,
   'content/landings/barrio/vender-provencals-del-poblenou-barcelona.json': `
 <h2>Industrial reconvertit al límit</h2>
 <p>En el límite con Poblenou antiguo, algunos edificios mezclan uso y alturas. Comprador pide claridad sobre actividad en planta baja y ventilación. Visitas con checklist acústico cuando hace falta.</p>

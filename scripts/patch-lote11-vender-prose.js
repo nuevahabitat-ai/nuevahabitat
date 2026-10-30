@@ -11,7 +11,7 @@ const EXTRA = {
 <p>El casal de barrio y las fiestas locales anclan identidad que Idealista no captura. Comprador que viene de alquiler en Sant Adrià valora sentir “Barcelona ciudad” sin ticket de la Verneda alta. Si tu piso tiene patio compartido o acceso a plaza pequeña, conviene medirlo en la visita.</p>
 <p>Venta entre hermanos tras herencia de los padres en el mismo bloque: centralizamos ofertas para evitar malentendidos. Plazo de arras alineado con hipoteca al 85% es habitual en este ticket.</p>
 <h2>Neto després de comissió variable</h2>
-<p>Sobre 285.000 €, restar plusvalía municipal, hipoteca pendiente y más de 17.000 € de comisión al 6% deja un neto que muchos vendedores no calculan hasta tarde. El precio fijo 3.000 € + IVA solo en escritura ordena la conversación desde el primer café en Les Corts.</p>`,
+<p>Sobre 285.000 €, restar plusvalía municipal, hipoteca pendiente y más de 17.000 € de comisión al 6% deja un neto que muchos vendedores no calculan hasta tarde. El precio fijo 3.500 € + IVA solo en escritura ordena la conversación desde el primer café en Les Corts.</p>`,
   'content/landings/barrio/vender-navas-barcelona.json': `
 <h2>Congrés i Fabra i Puig</h2>
 <p>Comprador que trabaja en Congrés o en polígonos de la Meridiana mide bus 19 y metro en hora punta. Si tu piso está a siete minutos de Fabra i Puig, dilo; si está a quince, no uses “metro al lado”.</p>

@@ -92,5 +92,15 @@
       "vender piso solo vs agencia barcelona",
       "vender sin inmobiliaria barcelona"
     ]
+  },
+  "inmobiliaria-para-particulares-barcelona": {
+    "keyword": "inmobiliaria para particulares barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso barcelona",
+      "inmobiliaria vendedores particulares barcelona",
+      "inmobiliaria propietarios barcelona"
+    ]
   }
 }

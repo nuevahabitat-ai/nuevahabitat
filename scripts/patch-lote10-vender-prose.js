@@ -27,7 +27,7 @@ const EXTRA = {
 <p>Piso alquilado con contrato estable: visitas solo inversor solvente. Piso vacío para familia: pintura y entrega rápida pueden cerrar arras en la misma semana.</p>
 <p>Filtramos curiosos sin preaprobación hipotecaria para no perder sábados.</p>
 <h2>Calculadora 6% vs precio fijo</h2>
-<p>En tickets de 340.000 € la diferencia entre comisión variable y 3.000 € + IVA es argumento que muchos vendedores no calculan hasta tarde. Lo mostramos en la primera conversación.</p>
+<p>En tickets de 340.000 € la diferencia entre comisión variable y 3.500 € + IVA es argumento que muchos vendedores no calculan hasta tarde. Lo mostramos en la primera conversación.</p>
 <p>Panel digital: visitas, ofertas y documentos en un solo lugar. WhatsApp con Daniel o Sebastián desde Les Corts.</p>
 <h2>Encadenar venda i compra</h2>
 <p>Si compras después en otro barrio de Barcelona o en área metropolitana, revisamos plazos para no pagar doble alquiler meses extra. <a href="/vender-piso-traslado-barcelona">Traslado</a> cuando el destino ya está elegido.</p>`,
@@ -42,7 +42,7 @@ const EXTRA = {
 <p>Compradores cualificados: hipoteca preaprobada o liquidez acreditada antes de la primera visita.</p>
 <h2>Documentació abans de publicar</h2>
 <p>Certificado energético, nota simple, cédula, actas. Subida al panel vendedor para comprador financiado.</p>
-<p>Honorarios 3.000 € + IVA solo en escritura. Sin venta, sin factura de agencia.</p>`,
+<p>Honorarios 3.500 € + IVA solo en escritura. Sin venta, sin factura de agencia.</p>`,
   'content/landings/barrio/vender-el-besos-barcelona.json': `
 <h2>Primera vivenda i hipoteca</h2>
 <p>El Besòs vive de comprador primerizo con hipoteca al 80–90%. Si el precio está por encima de tasación bancaria, la operación cae aunque el vendedor acepte. Alineamos salida con cierres reales del barrio.</p>
@@ -65,7 +65,7 @@ const EXTRA = {
 <h2>Comunitat i ITE</h2>
 <p>Bloques de los 60–70: portal, ascensor y derramas. Documentación antes de visitas con banco.</p>
 <h2>Preu fix i estalvi</h2>
-<p>3.000 € + IVA solo en escritura. Sobre 265.000 € el 6% supera 15.000 € solo en comisión.</p>
+<p>3.500 € + IVA solo en escritura. Sobre 265.000 € el 6% supera 15.000 € solo en comisión.</p>
 <h2>Següent pas</h2>
 <p>Formulario con dirección aproximada y estado interior. Respuesta en 24 h con plan realista para Roquetes.</p>`,
   'content/landings/barrio/vender-sagrada-familia-barcelona.json': `
@@ -79,7 +79,7 @@ const EXTRA = {
 <h2>Comunitat en finca gran</h2>
 <p>Derramas de fachada o ascensor antiguo: actas antes de arras. Comprador financiado agradece paquete documental completo.</p>
 <h2>Honoraris fixos des de Les Corts</h2>
-<p>3.000 € + IVA solo en escritura. Sobre 485.000 € ahorras más de 26.000 € frente al 6% tradicional.</p>
+<p>3.500 € + IVA solo en escritura. Sobre 485.000 € ahorras más de 26.000 € frente al 6% tradicional.</p>
 <p>Valoración gratuita, visitas en tus franjas y compradores filtrados por solvencia.</p>`,
 };
 

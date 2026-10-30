@@ -3,5 +3,4 @@ window.NH_GA_ID = "G-XXXXXXXXXX";
 /** Google Ads — seguimiento de conversiones (formulario leads) */
 window.NH_GADS_ID = "AW-18466330439";
 window.NH_GADS_LEAD_SEND_TO = "AW-18466330439/tcMsCKb30asdEMeut-VE";
-/** Fragmento WhatsApp — NH_GADS_WHATSAPP_SEND_TO en Vercel (Objetivos > Conversiones) */
 window.NH_GADS_WHATSAPP_SEND_TO = "";

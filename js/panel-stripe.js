@@ -2,7 +2,7 @@
  * Pagos honorarios — tarjeta (Stripe) y transferencia bancaria
  */
 (function () {
-  const DEFAULTS = { comprador: 6050, vendedor: 3630 };
+  const DEFAULTS = { comprador: 6050, vendedor: 4235 };
   let paymentState = null;
   let bankInfo = null;
   let paying = false;

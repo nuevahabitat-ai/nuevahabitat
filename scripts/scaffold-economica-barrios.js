@@ -52,18 +52,18 @@ function buildArgumento(B, econSlug) {
   const venderSlug = B.slug;
   const precio = B.ejemploPrecio || 400000;
   const com6 = Math.round(precio * 0.06 * 1.21);
-  const ahorro = Math.max(com6 - 3630, 12000);
+  const ahorro = Math.max(com6 - 3500, 12000);
   const m2 = (B.datosMercado && B.datosMercado.precioM2) || '—';
   const zonasTxt = (B.zonas || []).slice(0, 4).join(', ');
   const pfSlug = intencionPrecioFijoSlug(barrio);
   const barrioCore = B.argumento_principal || '';
 
   return (
-    `<p>¿Buscas <strong>venta de piso económica en ${barrio}</strong>? No vendemos por debajo de mercado — evitas pagar <strong>${fmtEuro(com6)} €</strong> de comisión (6% + IVA sobre ${fmtEuro(precio)} €). <strong>NuevaHabitat</strong> cobra <strong>3.630 €</strong> solo en escritura en ${zonasTxt || barrio}: honorarios fijos, panel vendedor y cartera de compradores cualificados.</p>` +
+    `<p>¿Buscas <strong>venta de piso económica en ${barrio}</strong>? No vendemos por debajo de mercado — evitas pagar <strong>${fmtEuro(com6)} €</strong> de comisión (6% + IVA sobre ${fmtEuro(precio)} €). <strong>NuevaHabitat</strong> cobra <strong>3.500 € + IVA</strong> solo en escritura en ${zonasTxt || barrio}: honorarios fijos, panel vendedor y cartera de compradores cualificados.</p>` +
     `<p><a href="/venta-piso-economica-barcelona">Venta económica Barcelona</a> · <a href="/${venderSlug}">Vender piso ${barrio}</a> · <a href="/${pfSlug}">Precio fijo ${barrio}</a></p>` +
-    `<h2>Honorarios en ${barrio}: ${fmtEuro(com6)} € vs 3.630 €</h2><p>Rango local ${m2}. Ahorro orientativo <strong>${fmtEuro(ahorro)} €</strong>. <a href="#calc">Calculadora</a> con tu precio estimado.</p>` +
+    `<h2>Honorarios en ${barrio}: ${fmtEuro(com6)} € vs 3.500 € + IVA</h2><p>Rango local ${m2}. Ahorro orientativo <strong>${fmtEuro(ahorro)} €</strong>. <a href="#calc">Calculadora</a> con tu precio estimado.</p>` +
     barrioCore +
-    `<h2>Panel vendedor y venta económica en ${barrio}</h2><p>Visitas registradas, documentación centralizada, compradores con solvencia verificada antes de entrar a tu casa. Cobro 3.630 € únicamente si hay escritura — sin venta, 0 € de honorarios. Compara <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a> y <a href="/nuevahabitat-vs-idealista-particular">Idealista particular</a>.</p>` +
+    `<h2>Panel vendedor y venta económica en ${barrio}</h2><p>Visitas registradas, documentación centralizada, compradores con solvencia verificada antes de entrar a tu casa. Cobro 3.500 € + IVA únicamente si hay escritura — sin venta, 0 € de honorarios. Compara <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a> y <a href="/nuevahabitat-vs-idealista-particular">Idealista particular</a>.</p>` +
     `<h2>Próximo paso · ${econSlug}</h2><p>Calculadora, bloques «Qué hace NuevaHabitat» y formulario de valoración. Respuesta en 24 h laborables con condiciones por escrito.</p>`
   );
 }
@@ -88,7 +88,7 @@ function buildLanding(barrioSlug) {
   const precio = B.ejemploPrecio || 400000;
   const tiempoVenta = (B.datosMercado && B.datosMercado.tiempoVenta) || '4–8 meses';
   const com6 = Math.round(precio * 0.06 * 1.21);
-  const ahorro = Math.max(com6 - 3630, 12000);
+  const ahorro = Math.max(com6 - 3500, 12000);
   const kw = `venta de piso economica ${barrio.toLowerCase()} barcelona`;
   const heroImg = B.heroImage || 'imagenes/familia10.jpg';
   const heroAlt = B.heroImageAlt || `Venta económica piso ${barrio} Barcelona`;
@@ -115,19 +115,19 @@ function buildLanding(barrioSlug) {
     postalCodes: B.postalCodes,
     zonas: B.zonas,
     meta: {
-      title: `Venta de piso económica en ${barrio} · 3.630 € honorarios · NuevaHabitat`,
-      description: `Vende tu piso en ${barrio} con honorarios fijos 3.630 € (solo en escritura). Comparativa vs 6%, compradores cualificados y panel vendedor. ${(B.zonas || []).slice(0, 2).join(', ')}.`,
+      title: `Venta de piso económica en ${barrio} · 3.500 € + IVA honorarios · NuevaHabitat`,
+      description: `Vende tu piso en ${barrio} con honorarios fijos 3.500 € + IVA (solo en escritura). Comparativa vs 6%, compradores cualificados y panel vendedor. ${(B.zonas || []).slice(0, 2).join(', ')}.`,
       keywords: kw,
     },
     hero: {
       badge: `${barrio} · Venta económica · Precio fijo`,
-      h1: `Venta de piso económica en ${barrio}: 3.630 € en escritura, no un 6% sobre tu venta`,
+      h1: `Venta de piso económica en ${barrio}: 3.500 € + IVA en escritura, no un 6% sobre tu venta`,
       lead: `¿Vendes en ${zonasLead || barrio} sin regalar <strong>${fmtEuro(Math.round(com6 * 0.85))}–${fmtEuro(com6)} €</strong> en comisión? <strong>NuevaHabitat</strong>: <strong>honorarios fijos</strong>, <strong>cartera de compradores</strong> y <strong>panel vendedor</strong> — cobro <strong>solo en escritura</strong>. Guía: <a href="/${B.slug}">vender en ${barrio}</a>.`,
       image: heroImg,
       imageAlt: heroAlt,
     },
     heroStats: [
-      { label: 'NuevaHabitat', value: '3.630 €', note: 'Honorarios fijos · solo en escritura', highlight: true },
+      { label: 'NuevaHabitat', value: '3.500 € + IVA', note: 'Honorarios fijos · solo en escritura', highlight: true },
       { label: 'Agencia tradicional ~6%', value: `~${fmtEuro(com6)} €`, note: `En venta de ${fmtEuro(precio)} € + IVA` },
       { label: 'Ahorro orientativo', value: `>${fmtEuro(ahorro)} €`, note: 'Dinero que conservas en notaría', highlight: true },
     ],
@@ -135,18 +135,18 @@ function buildLanding(barrioSlug) {
     calculadora: {
       precioDefault: precio,
       titulo: `Calculadora ${barrio}: venta económica vs comisión 6%`,
-      subtitulo: `Precio orientativo ${fmtEuro(precio)} € (${(B.datosMercado && B.datosMercado.precioM2) || 'mercado local'}). Compara 3%–6% + IVA con 3.630 € fijos solo en escritura.`,
+      subtitulo: `Precio orientativo ${fmtEuro(precio)} € (${(B.datosMercado && B.datosMercado.precioM2) || 'mercado local'}). Compara 3%–6% + IVA con 3.500 € + IVA fijos solo en escritura.`,
     },
     como_ayudamos: {
       title: `Venta económica con acompañamiento en ${barrio}`,
       description: `Honorarios fijos, compradores cualificados y panel vendedor en ${barrio}.`,
       steps: [
-        { title: 'Valoración local', body: `Comparables ${barrio}; 3.630 € solo en escritura por escrito.` },
+        { title: 'Valoración local', body: `Comparables ${barrio}; 3.500 € + IVA solo en escritura por escrito.` },
         { title: 'Cartera activa', body: 'Difusión a compradores con hipoteca o liquidez verificada.' },
         { title: 'Panel vendedor', body: 'Visitas, documentos y ofertas centralizados.' },
         { title: 'Visitas filtradas', body: 'Solo solvencia contrastada entra a tu casa.' },
         { title: 'Negociación hasta arras', body: 'Acompañamiento legal y documentación del comprador.' },
-        { title: 'Escritura: cobro fijo', body: '3.630 € solo si vendes. Sin venta, 0 € de honorarios.' },
+        { title: 'Escritura: cobro fijo', body: '3.500 € + IVA solo si vendes. Sin venta, 0 € de honorarios.' },
       ],
     },
     comparativa_modelos: {
@@ -155,7 +155,7 @@ function buildLanding(barrioSlug) {
         { modelo: 'Particular en Idealista / Fotocasa', tiempo: 'Impredecible (3–12+ meses)', coste: 'Anuncio + horas tuyas', riesgo: 'Curiosos, precio mal fijado', tipo: 'neutral' },
         { modelo: 'Agencia tradicional ~6% + IVA', tiempo: tiempoVenta, coste: `>${fmtEuro(Math.round(precio * 0.06 * 1.21))} € en piso ${fmtEuro(precio)}`, riesgo: 'Exclusiva; pagas aunque vendas tú', tipo: 'lose' },
         { modelo: 'Low-cost online', tiempo: 'Variable', coste: 'Cuota o % reducido', riesgo: 'Poco filtro de compradores', tipo: 'neutral' },
-        { modelo: `NuevaHabitat venta económica ${barrio}`, tiempo: '60–90 días habitual', coste: '3.630 € solo en escritura', riesgo: 'Sin venta, sin factura', tipo: 'win' },
+        { modelo: `NuevaHabitat venta económica ${barrio}`, tiempo: '60–90 días habitual', coste: '3.500 € + IVA solo en escritura', riesgo: 'Sin venta, sin factura', tipo: 'win' },
       ],
     },
     mitos: {
@@ -165,7 +165,7 @@ function buildLanding(barrioSlug) {
         { mito: 'Sin comisión 6% no hay servicio profesional', realidad: 'Incluye valoración, fotos, cartera, visitas, negociación y escritura.' },
         { mito: 'En ' + barrio + ' los portales traen mejores compradores', realidad: 'Traen volumen; filtramos solvencia antes de la visita.' },
         { mito: 'Todas las inmobiliarias económicas son iguales', realidad: 'Compara: ¿cobro solo en escritura? ¿Panel? ¿Cartera propia?' },
-        { mito: `El 6% es inevitable en ${barrio}`, realidad: `Precio fijo 3.630 € — ahorro >${fmtEuro(ahorro)} € en muchos tickets locales.` },
+        { mito: `El 6% es inevitable en ${barrio}`, realidad: `Precio fijo 3.500 € + IVA — ahorro >${fmtEuro(ahorro)} € en muchos tickets locales.` },
       ],
     },
     checklist: {
@@ -181,7 +181,7 @@ function buildLanding(barrioSlug) {
       ],
     },
     faq: [
-      { q: `¿Qué es venta de piso económica en ${barrio}?`, a: 'Vender con coste de intermediación contenido: 3.630 € fijos en NuevaHabitat, solo en escritura, frente a comisiones del 3%–6% + IVA.' },
+      { q: `¿Qué es venta de piso económica en ${barrio}?`, a: 'Vender con coste de intermediación contenido: 3.500 € + IVA fijos en NuevaHabitat, solo en escritura, frente a comisiones del 3%–6% + IVA.' },
       { q: `¿Cuánto ahorro vs agencia al 6% en ${barrio}?`, a: `En ${fmtEuro(precio)} €, orientativamente más de ${fmtEuro(ahorro)} €. Usa la calculadora de esta página.` },
       { q: '¿Cómo funciona NuevaHabitat?', a: 'Valoración → panel vendedor → compradores cualificados → visitas filtradas → arras → escritura. Cobro solo al cerrar.' },
       { q: '¿El comprador viene de Idealista?', a: 'No necesariamente. Priorizamos cartera activa con solvencia verificada en Barcelona y área metropolitana.' },
@@ -201,7 +201,7 @@ function buildLanding(barrioSlug) {
     keywords_footer: `${kw} · honorarios fijos · vender sin 6% · panel vendedor · ${(B.zonas || []).slice(0, 2).join(' · ')}`,
     whatsappText: 'Hola%2C%20busco%20venta%20economica%20de%20mi%20piso%20en%20' + encodeURIComponent(barrio),
     formPlaceholder: `Zona en ${barrio}, m², precio orientativo`,
-    form_side_text: `Cuéntanos barrio y situación en ${barrio} (particular, herencia, urgencia…). Te explicamos venta económica con 3.630 € solo en escritura, cartera de compradores y panel vendedor — respuesta en 24 h.`,
+    form_side_text: `Cuéntanos barrio y situación en ${barrio} (particular, herencia, urgencia…). Te explicamos venta económica con 3.500 € + IVA solo en escritura, cartera de compradores y panel vendedor — respuesta en 24 h.`,
   };
 
   fs.writeFileSync(outPath, JSON.stringify(L, null, 2) + '\n', 'utf8');

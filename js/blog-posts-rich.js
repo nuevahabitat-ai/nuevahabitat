@@ -62,7 +62,7 @@
       </table>
       <h2 id="valoracion-real">Cómo calcular el valor real de tu vivienda</h2>
       <p>Los estimadores online sirven como primera aproximación, pero no contemplan el estado de tu edificio, las operaciones cerradas en tu portal ni la demanda actual de compradores filtrados. Una valoración profesional combina comparables reales (no solo anuncios activos), visita presencial y conocimiento del micro-mercado.</p>
-      <p>En NuevaHabitat la valoración es gratuita y sin compromiso. Si decides vender, el servicio cuesta <strong>3.000 € + IVA</strong>, cobrados únicamente en escritura. Incluye reportaje fotográfico, publicación, filtrado de compradores y negociación. <a href="/vender">Solicita tu valoración</a> o explora <a href="/inmuebles">inmuebles de referencia</a> en tu zona.</p>
+      <p>En NuevaHabitat la valoración es gratuita y sin compromiso. Si decides vender, el servicio cuesta <strong>3.500 € + IVA</strong>, cobrados únicamente en escritura. Incluye reportaje fotográfico, publicación, filtrado de compradores y negociación. <a href="/vender">Solicita tu valoración</a> o explora <a href="/inmuebles">inmuebles de referencia</a> en tu zona.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto vale un piso de 80 m² en Eixample en 2026?</summary><p>En Eixample Derecho o Esquerra, un piso de 80 m² reformado suele cotizar entre 440.000 y 560.000 € (5.500–7.000 €/m²). Sin reforma o en planta baja, el rango baja a 400.000–480.000 €. La valoración exacta depende de orientación, ITE de la finca y comparables cerrados en los últimos seis meses.</p></details>
@@ -143,7 +143,7 @@
       </table>
       <h2 id="barcelona-practica">Práctica habitual en Barcelona</h2>
       <p>En operaciones de 300.000–500.000 € — habituales en distritos como Les Corts, Poblenou o Sant Andreu — las arras suelen situarse en 25.000–40.000 €. Compradores con financiación incluyen casi siempre cláusula suspensiva de hipoteca a 30–45 días. Vendedores que aún tienen hipoteca pendiente deben coordinar la cancelación registral antes o simultáneamente a la escritura.</p>
-      <p>En NuevaHabitat acompañamos a compradores y vendedores en todo el proceso: revisión documental, redacción de condiciones y coordinación hasta la firma en notaría. Servicio de compra desde <strong>5.000 € + IVA</strong>; venta desde <strong>3.000 € + IVA</strong>, cobrados solo en escritura. <a href="/comprar">Comprar con asesoramiento</a> · <a href="/vender">Vender con precio fijo</a>.</p>
+      <p>En NuevaHabitat acompañamos a compradores y vendedores en todo el proceso: revisión documental, redacción de condiciones y coordinación hasta la firma en notaría. Servicio de compra desde <strong>5.000 € + IVA</strong>; venta desde <strong>3.500 € + IVA</strong>, cobrados solo en escritura. <a href="/comprar">Comprar con asesoramiento</a> · <a href="/vender">Vender con precio fijo</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto suelen pedir de arras en Barcelona?</summary><p>Lo habitual es entre el 5% y el 10% del precio de compraventa. En un piso de 400.000 €, las arras suelen oscilar entre 20.000 y 40.000 €. El importe exacto se negocia y debe quedar reflejado en el contrato con el tipo de arras elegido.</p></details>
@@ -249,7 +249,7 @@
         { q: '¿Qué es lo primero que debo hacer para vender rápido?', a: 'Solicita una valoración profesional con comparables reales, no estimadores online. Fija un precio de salida alineado con operaciones cerradas en tu edificio y barrio. Es el factor que más impacta en el tiempo de venta.' },
         { q: '¿Merece la pena hacer home staging antes de vender?', a: 'Sí. Despersonalizar, pintar en tonos neutros y mejorar la luz puede reducir el tiempo de venta un 30–50% y mejorar ofertas un 5–10%. No hace falta reformar: presentar bien cuesta poco y rinde mucho en mercados competitivos como Gràcia o Poblenou.' },
         { q: '¿Debo aceptar todas las visitas que me pidan?', a: 'No. Filtra compradores con capacidad financiera verificada antes de abrir tu casa. Visitas sin perfil financiero consumen tiempo y generan falsas expectativas. Un agente profesional pre-califica antes de agendar.' },
-        { q: '¿Cuánto cuesta vender con NuevaHabitat?', a: '3.000 € + IVA, cobrados únicamente en escritura. Incluye valoración, fotografía profesional, publicación, filtrado de compradores, visitas, negociación y acompañamiento legal. Sin exclusivas abusivas ni comisiones porcentuales.' },
+        { q: '¿Cuánto cuesta vender con NuevaHabitat?', a: '3.500 € + IVA, cobrados únicamente en escritura. Incluye valoración, fotografía profesional, publicación, filtrado de compradores, visitas, negociación y acompañamiento legal. Sin exclusivas abusivas ni comisiones porcentuales.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -259,7 +259,7 @@
           <li>Fotografía profesional, home staging básico y documentación transparente aceleran cierres en Eixample, Les Corts o Sant Andreu.</li>
           <li>Filtra compradores con financiación verificada antes de abrir tu piso a visitas.</li>
           <li>Disponibilidad amplia para visitas (incluidos fines de semana) multiplica las oportunidades de oferta.</li>
-          <li>NuevaHabitat vende por 3.000 € + IVA, solo en escritura, con estrategia activa desde la valoración.</li>
+          <li>NuevaHabitat vende por 3.500 € + IVA, solo en escritura, con estrategia activa desde la valoración.</li>
         </ul>
       </aside>
       <nav class="blog-toc">
@@ -277,7 +277,7 @@
       <p>Vender un piso en Barcelona en menos de 60 días es posible, pero no con la estrategia por defecto: publicar a ojo en un portal y esperar. En 2026 el comprador está informado, compara decenas de anuncios y descarta en segundos lo que no encaja en precio, fotos o documentación. Estas siete claves — aplicadas en cada operación que gestionamos en Eixample, Nou Barris, L'Hospitalet y área metropolitana — marcan la diferencia entre cerrar en semanas o arrastrar un anuncio seis meses.</p>
       <h2 id="precio-realista">Precio realista: el factor decisivo</h2>
       <p>La valoración basada en comparables cerrados — no en anuncios activos de Idealista — es el primer paso. Un piso de 80 m² en Les Corts publicado a 450.000 € cuando el mercado cierra a 410.000–420.000 € recibirá visitas, pero no ofertas serias. Tras 90 días de exclusiva con una agencia tradicional, acabarás bajando el precio por debajo del valor inicial realista.</p>
-      <p>En NuevaHabitat la valoración gratuita incluye rango de precio, tiempo estimado de venta y plan de acción. Si decides vender, el servicio cuesta <strong>3.000 € + IVA</strong>, cobrado solo en escritura. Sin porcentajes sobre el precio final.</p>
+      <p>En NuevaHabitat la valoración gratuita incluye rango de precio, tiempo estimado de venta y plan de acción. Si decides vender, el servicio cuesta <strong>3.500 € + IVA</strong>, cobrado solo en escritura. Sin porcentajes sobre el precio final.</p>
       <h2 id="presentacion">Presentación y home staging</h2>
       <p>La primera impresión se decide en tres segundos online. Reportaje fotográfico profesional, luz natural maximizada, espacios despersonalizados y superficies despejadas. Pintar paredes en blanco roto o gris claro, ordenar armarios y retirar muebles que estrechen estancias cuesta poco y rinde mucho en distritos competitivos como Gràcia o Poblenou.</p>
       <p>El certificado energético favorable (clase C o superior) también acelera: compradores con hipoteca preaprobada prefieren inmuebles sin sorpresas energéticas que impliquen reformas a corto plazo.</p>
@@ -308,7 +308,7 @@
         <details class="blog-faq-item"><summary>¿Qué es lo primero que debo hacer para vender rápido?</summary><p>Solicita una valoración profesional con comparables reales, no estimadores online. Fija un precio de salida alineado con operaciones cerradas en tu edificio y barrio. Es el factor que más impacta en el tiempo de venta.</p></details>
         <details class="blog-faq-item"><summary>¿Merece la pena hacer home staging antes de vender?</summary><p>Sí. Despersonalizar, pintar en tonos neutros y mejorar la luz puede reducir el tiempo de venta un 30–50% y mejorar ofertas un 5–10%. No hace falta reformar: presentar bien cuesta poco y rinde mucho en mercados competitivos como Gràcia o Poblenou.</p></details>
         <details class="blog-faq-item"><summary>¿Debo aceptar todas las visitas que me pidan?</summary><p>No. Filtra compradores con capacidad financiera verificada antes de abrir tu casa. Visitas sin perfil financiero consumen tiempo y generan falsas expectativas. Un agente profesional pre-califica antes de agendar.</p></details>
-        <details class="blog-faq-item"><summary>¿Cuánto cuesta vender con NuevaHabitat?</summary><p>3.000 € + IVA, cobrados únicamente en escritura. Incluye valoración, fotografía profesional, publicación, filtrado de compradores, visitas, negociación y acompañamiento legal. Sin exclusivas abusivas ni comisiones porcentuales.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto cuesta vender con NuevaHabitat?</summary><p>3.500 € + IVA, cobrados únicamente en escritura. Incluye valoración, fotografía profesional, publicación, filtrado de compradores, visitas, negociación y acompañamiento legal. Sin exclusivas abusivas ni comisiones porcentuales.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Quieres vender tu piso en Barcelona en menos de 60 días?</p>
@@ -329,7 +329,7 @@
         { q: '¿Cuánto cuesta el home staging en Barcelona?', a: 'Un staging básico (pintura, despersonalización, pequeños retoques) puede costar 500–2.000 €. Staging profesional con mobiliario temporal sube a 3.000–8.000 € según metros. En pisos de Eixample o Sarrià, el retorno suele superar la inversión.' },
         { q: '¿Puedo hacer home staging yo mismo?', a: 'Sí, para staging básico: retira objetos personales, ordena armarios, pinta en tonos neutros, maximiza luz natural y despeja superficies. Para pisos vacíos o de alto valor, un profesional aporta mobiliario y composición que marcan diferencia en fotos.' },
         { q: '¿El home staging funciona en pisos antiguos de Barcelona?', a: 'Especialmente. En edificios del Eixample o Gràcia con estancias irregulares, el staging enfatiza puntos fuertes (techos altos, balcones) y minimiza debilidades (cocinas pequeñas, patios internos). La presentación compensa limitaciones que no justifican reforma integral.' },
-        { q: '¿NuevaHabitat incluye home staging en el servicio de venta?', a: 'Incluimos reportaje fotográfico profesional y orientación de staging básico. Te indicamos qué merece invertir y qué no antes de publicar. Servicio completo de venta: 3.000 € + IVA, solo en escritura.' },
+        { q: '¿NuevaHabitat incluye home staging en el servicio de venta?', a: 'Incluimos reportaje fotográfico profesional y orientación de staging básico. Te indicamos qué merece invertir y qué no antes de publicar. Servicio completo de venta: 3.500 € + IVA, solo en escritura.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -339,7 +339,7 @@
           <li>Cambios simples — despersonalizar, pintar neutro, mejorar luz — pueden acelerar la venta un 30–50%.</li>
           <li>No es reformar: es optimizar lo que ya tienes con inversión mínima (500–2.000 € en staging básico).</li>
           <li>Las fotos profesionales amplifican el efecto del staging; juntos definen la primera impresión online.</li>
-          <li>NuevaHabitat incluye fotografía y orientación de staging en el servicio de venta (3.000 € + IVA).</li>
+          <li>NuevaHabitat incluye fotografía y orientación de staging en el servicio de venta (3.500 € + IVA).</li>
         </ul>
       </aside>
       <nav class="blog-toc">
@@ -380,14 +380,14 @@
       </table>
       <h2 id="errores">Errores que restan valor</h2>
       <p>Reformar la cocina entera semanas antes de vender (retorno incierto). Perfumes intensos o ambientadores (generan desconfianza). Fotos con móvil y poca luz. Ocultar defectos que saldrán en la visita. Muebles de más en estancias pequeñas. Personalizar el staging con un estilo demasiado marcado que no conecte con el comprador medio.</p>
-      <p>En NuevaHabitat incluimos reportaje fotográfico y orientación de staging en el servicio de venta por <strong>3.000 € + IVA</strong>, cobrado solo en escritura. <a href="/vender">Solicita valoración gratuita</a> · <a href="/inmuebles">Ver ejemplos de presentación</a>.</p>
+      <p>En NuevaHabitat incluimos reportaje fotográfico y orientación de staging en el servicio de venta por <strong>3.500 € + IVA</strong>, cobrado solo en escritura. <a href="/vender">Solicita valoración gratuita</a> · <a href="/inmuebles">Ver ejemplos de presentación</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Qué es el home staging y en qué se diferencia de una reforma?</summary><p>El home staging prepara la vivienda para la venta sin obras estructurales: despersonaliza, ordena, pinta y optimiza la luz. Una reforma cambia instalaciones o distribución. El staging cuesta una fracción y puede acelerar la venta un 30–50%.</p></details>
         <details class="blog-faq-item"><summary>¿Cuánto cuesta el home staging en Barcelona?</summary><p>Un staging básico (pintura, despersonalización, pequeños retoques) puede costar 500–2.000 €. Staging profesional con mobiliario temporal sube a 3.000–8.000 € según metros. En pisos de Eixample o Sarrià, el retorno suele superar la inversión.</p></details>
         <details class="blog-faq-item"><summary>¿Puedo hacer home staging yo mismo?</summary><p>Sí, para staging básico: retira objetos personales, ordena armarios, pinta en tonos neutros, maximiza luz natural y despeja superficies. Para pisos vacíos o de alto valor, un profesional aporta mobiliario y composición que marcan diferencia en fotos.</p></details>
         <details class="blog-faq-item"><summary>¿El home staging funciona en pisos antiguos de Barcelona?</summary><p>Especialmente. En edificios del Eixample o Gràcia con estancias irregulares, el staging enfatiza puntos fuertes (techos altos, balcones) y minimiza debilidades (cocinas pequeñas, patios internos). La presentación compensa limitaciones que no justifican reforma integral.</p></details>
-        <details class="blog-faq-item"><summary>¿NuevaHabitat incluye home staging en el servicio de venta?</summary><p>Incluimos reportaje fotográfico profesional y orientación de staging básico. Te indicamos qué merece invertir y qué no antes de publicar. Servicio completo de venta: 3.000 € + IVA, solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿NuevaHabitat incluye home staging en el servicio de venta?</summary><p>Incluimos reportaje fotográfico profesional y orientación de staging básico. Te indicamos qué merece invertir y qué no antes de publicar. Servicio completo de venta: 3.500 € + IVA, solo en escritura.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Quieres presentar tu piso para venderlo más rápido y mejor?</p>
@@ -520,7 +520,7 @@
       <p><strong>Oferta amplia, negociación posible</strong>: Nou Barris, tramos de Horta, L'Hospitalet centro, Badalona playa. Compradores sensibles al precio/m² tienen ventaja si presentan financiación clara. <strong>Área premium metropolitana</strong>: Sant Cugat mantiene demanda familiar con precios de 4.500–6.000 €/m².</p>
       <h2 id="compradores-vendedores">Momento comprador vs momento vendedor</h2>
       <p><strong>Compradores</strong>: euríbor estabilizado (2,5–3%) mejora previsibilidad de cuotas. Preaprobación hipotecaria antes de buscar es imprescindible. Negocia con comparables reales, no solo con precio de anuncio. Revisa nota simple, ITE y comunidad antes de ofertar. ITP Cataluña 10–11% sigue siendo el mayor gasto post-compra.</p>
-      <p><strong>Vendedores</strong>: precio realista desde el día uno es la clave. Documentación completa (nota simple, certificado energético, ITE) acelera cierres. Home staging básico y fotografía profesional marcan diferencia. NuevaHabitat vende por 3.000 € + IVA, solo en escritura. <a href="/vender">Valoración gratuita</a>.</p>
+      <p><strong>Vendedores</strong>: precio realista desde el día uno es la clave. Documentación completa (nota simple, certificado energético, ITE) acelera cierres. Home staging básico y fotografía profesional marcan diferencia. NuevaHabitat vende por 3.500 € + IVA, solo en escritura. <a href="/vender">Valoración gratuita</a>.</p>
       <h2 id="factores-clave">Factores que mueven el mercado en 2026</h2>
       <p>Certificado energético e ITE pesan más que en ciclos anteriores: edificios con intervenciones pendientes pierden compradores financiados. Tipos de interés estables favorecen operaciones con hipoteca frente al pico de 2023–2024. Regulación de alquiler y licencias turísticas redistribuyen demanda hacia compra en algunos barrios. Teletrabajo híbrido mantiene interés en zonas con espacio exterior (Gràcia, Sarrià, Sant Cugat).</p>
       <h2 id="tabla-distritos">Tabla resumen por distritos (S1 2026)</h2>
@@ -562,9 +562,9 @@
       faq: [
         { q: '¿Cuánto es el ITP en Cataluña en 2026?', a: 'El Impuesto de Transmisiones Patrimoniales en Cataluña se sitúa entre el 10% y el 11% del precio de compra en vivienda usada, según tramo. Es el gasto más importante del comprador y debe calcularse antes de hacer ofertas.' },
         { q: '¿Quién paga la notaría y el registro en una compraventa?', a: 'En la práctica, el comprador paga notaría (300–800 €), registro (400–650 €) y gestoría (300–500 €). Es negociable en contrato de arras, pero lo habitual en Barcelona es que los asuma el comprador.' },
-        { q: '¿Qué gastos tiene el vendedor al vender un piso?', a: 'Plusvalía municipal (si aplica), certificado energético, posibles deudas de comunidad, cancelación de hipoteca si existe y comisión de agencia si la hay. NuevaHabitat cobra 3.000 € + IVA fijos, solo en escritura.' },
+        { q: '¿Qué gastos tiene el vendedor al vender un piso?', a: 'Plusvalía municipal (si aplica), certificado energético, posibles deudas de comunidad, cancelación de hipoteca si existe y comisión de agencia si la hay. NuevaHabitat cobra 3.500 € + IVA fijos, solo en escritura.' },
         { q: '¿Hay diferencia de gastos entre Barcelona ciudad y área metropolitana?', a: 'El ITP es el mismo en Cataluña (10–11%). Notaría y registro varían poco. La plusvalía depende del municipio: Barcelona, L\'Hospitalet, Badalona y Sant Cugat tienen ordenanzas distintas.' },
-        { q: '¿NuevaHabitat desglosa los gastos antes de firmar?', a: 'Sí. Tanto en compra (5.000 € + IVA) como en venta (3.000 € + IVA) preparamos un desglose completo de impuestos y gastos antes de arras, sin sorpresas en escritura.' },
+        { q: '¿NuevaHabitat desglosa los gastos antes de firmar?', a: 'Sí. Tanto en compra (5.000 € + IVA) como en venta (3.500 € + IVA) preparamos un desglose completo de impuestos y gastos antes de arras, sin sorpresas en escritura.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -598,7 +598,7 @@
       <p>En operaciones en Eixample o Sarrià de 500.000 €, el desembolso adicional del comprador supera fácilmente los 65.000 € entre ITP y gastos. Planifica antes de buscar inmuebles.</p>
       <h2 id="gastos-vendedor">Gastos del vendedor en detalle</h2>
       <p><strong>Plusvalía municipal</strong> (IIVTNU): grava el incremento del valor del suelo. Varía según municipio (Barcelona, L'Hospitalet, Badalona tienen ordenanzas distintas) y tiempo de propiedad. <strong>Certificado energético</strong>: obligatorio, 100–200 €. <strong>Comunidad</strong>: debe estar al corriente; deudas se descuentan o se abonan antes de escritura. <strong>Cancelación hipoteca</strong>: si existe, coste de cancelación registral.</p>
-      <p>Comisión de agencia: en modelo tradicional, 3–5% del precio. NuevaHabitat cobra <strong>3.000 € + IVA</strong> fijos, solo en escritura, sin porcentaje sobre venta.</p>
+      <p>Comisión de agencia: en modelo tradicional, 3–5% del precio. NuevaHabitat cobra <strong>3.500 € + IVA</strong> fijos, solo en escritura, sin porcentaje sobre venta.</p>
       <h2 id="hipoteca-gastos">Gastos adicionales si hay hipoteca</h2>
       <p>Tasación oficial (300–500 €), comisión de apertura (negociable, 0–1%), seguros vinculados (hogar, vida), posibles gastos de cancelación de hipoteca previa del vendedor si se acuerda así en arras. Compara TAE de varias entidades; la diferencia en coste total puede superar los 10.000 € en 25 años. <a href="/hipotecas">Calculadora hipotecaria</a>.</p>
       <h2 id="tabla-desglose">Tabla desglose por precio de compra (Cataluña)</h2>
@@ -612,14 +612,14 @@
         </tbody>
       </table>
       <h2 id="negociar-arras">Negociar gastos en el contrato de arras</h2>
-      <p>En Barcelona es habitual que el comprador asuma ITP y gastos de formalización. Pero plusvalía, estado de la comunidad o costes de cancelación hipotecaria son negociables. Refleja en arras quién paga qué y qué ocurre si aparece una derrama o ITE desfavorable entre firma de arras y escritura. NuevaHabitat prepara desglose completo en compra (<strong>5.000 € + IVA</strong>) y venta (<strong>3.000 € + IVA</strong>), cobrados solo en escritura. <a href="/comprar">Comprar</a> · <a href="/vender">Vender</a>.</p>
+      <p>En Barcelona es habitual que el comprador asuma ITP y gastos de formalización. Pero plusvalía, estado de la comunidad o costes de cancelación hipotecaria son negociables. Refleja en arras quién paga qué y qué ocurre si aparece una derrama o ITE desfavorable entre firma de arras y escritura. NuevaHabitat prepara desglose completo en compra (<strong>5.000 € + IVA</strong>) y venta (<strong>3.500 € + IVA</strong>), cobrados solo en escritura. <a href="/comprar">Comprar</a> · <a href="/vender">Vender</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto es el ITP en Cataluña en 2026?</summary><p>El Impuesto de Transmisiones Patrimoniales en Cataluña se sitúa entre el 10% y el 11% del precio de compra en vivienda usada, según tramo. Es el gasto más importante del comprador y debe calcularse antes de hacer ofertas.</p></details>
         <details class="blog-faq-item"><summary>¿Quién paga la notaría y el registro en una compraventa?</summary><p>En la práctica, el comprador paga notaría (300–800 €), registro (400–650 €) y gestoría (300–500 €). Es negociable en contrato de arras, pero lo habitual en Barcelona es que los asuma el comprador.</p></details>
-        <details class="blog-faq-item"><summary>¿Qué gastos tiene el vendedor al vender un piso?</summary><p>Plusvalía municipal (si aplica), certificado energético, posibles deudas de comunidad, cancelación de hipoteca si existe y comisión de agencia si la hay. NuevaHabitat cobra 3.000 € + IVA fijos, solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué gastos tiene el vendedor al vender un piso?</summary><p>Plusvalía municipal (si aplica), certificado energético, posibles deudas de comunidad, cancelación de hipoteca si existe y comisión de agencia si la hay. NuevaHabitat cobra 3.500 € + IVA fijos, solo en escritura.</p></details>
         <details class="blog-faq-item"><summary>¿Hay diferencia de gastos entre Barcelona ciudad y área metropolitana?</summary><p>El ITP es el mismo en Cataluña (10–11%). Notaría y registro varían poco. La plusvalía depende del municipio: Barcelona, L'Hospitalet, Badalona y Sant Cugat tienen ordenanzas distintas.</p></details>
-        <details class="blog-faq-item"><summary>¿NuevaHabitat desglosa los gastos antes de firmar?</summary><p>Sí. Tanto en compra (5.000 € + IVA) como en venta (3.000 € + IVA) preparamos un desglose completo de impuestos y gastos antes de arras, sin sorpresas en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿NuevaHabitat desglosa los gastos antes de firmar?</summary><p>Sí. Tanto en compra (5.000 € + IVA) como en venta (3.500 € + IVA) preparamos un desglose completo de impuestos y gastos antes de arras, sin sorpresas en escritura.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Quieres un desglose exacto de gastos para tu operación en Barcelona?</p>
@@ -788,9 +788,9 @@
     'vender-piso-barcelona-precio-fijo': {
       readMin: 10,
       faq: [
-        { q: '¿Cuánto cuesta vender un piso en Barcelona con NuevaHabitat?', a: '3.000 € + IVA, cobrados únicamente en el momento de la escritura. Si no vendes, no pagas. Sin comisiones porcentuales ni exclusivas abusivas.' },
+        { q: '¿Cuánto cuesta vender un piso en Barcelona con NuevaHabitat?', a: '3.500 € + IVA, cobrados únicamente en el momento de la escritura. Si no vendes, no pagas. Sin comisiones porcentuales ni exclusivas abusivas.' },
         { q: '¿Qué incluye el servicio de venta a precio fijo?', a: 'Valoración de mercado, reportaje fotográfico profesional, publicación en portales, filtrado de compradores cualificados, visitas, negociación, revisión documental (nota simple, ITE, certificado energético) y acompañamiento hasta escritura.' },
-        { q: '¿Cuánto ahorro respecto a una agencia tradicional al 5%?', a: 'En un piso de 400.000 €, una agencia al 5% + IVA cobra unos 24.200 €. NuevaHabitat: 3.630 € (3.000 + IVA). Ahorro superior a 20.000 € independientemente del tiempo de venta.' },
+        { q: '¿Cuánto ahorro respecto a una agencia tradicional al 5%?', a: 'En un piso de 400.000 €, una agencia al 5% + IVA cobra unos 24.200 €. NuevaHabitat: 3.500 € + IVA (3.000 + IVA). Ahorro superior a 20.000 € independientemente del tiempo de venta.' },
         { q: '¿Hay permanencia o exclusiva obligatoria?', a: 'No aplicamos exclusivas abusivas ni permanencias. Trabajamos con transparencia: precio fijo acordado desde el inicio, cobro solo si cierras la venta en escritura.' },
         { q: '¿Funciona el precio fijo en todos los distritos de Barcelona?', a: 'Sí. Operamos en Eixample, Gràcia, Les Corts, Poblenou, Sarrià, Nou Barris, Sant Andreu, L\'Hospitalet, Badalona, Sant Cugat y resto del área metropolitana.' },
       ],
@@ -799,7 +799,7 @@
         <strong>Lo esencial</strong>
         <ul>
           <li>Modelo tradicional: 3–5% del precio de venta (hasta 20.000 €+ en pisos de 400.000 €).</li>
-          <li>NuevaHabitat: 3.000 € + IVA fijos, cobrados solo en escritura. Si no vendes, no pagas.</li>
+          <li>NuevaHabitat: 3.500 € + IVA fijos, cobrados solo en escritura. Si no vendes, no pagas.</li>
           <li>Todo incluido: valoración, fotos, publicación, filtrado, visitas, negociación y acompañamiento legal.</li>
           <li>Sin exclusivas abusivas ni comisiones ocultas.</li>
           <li>Ahorro de más de 20.000 € en operaciones habituales de Barcelona.</li>
@@ -817,13 +817,13 @@
           <li><a href="#faq">Preguntas frecuentes</a></li>
         </ol>
       </nav>
-      <p>Si buscas vender piso en Barcelona, la primera pregunta es cuánto te costará la inmobiliaria. En el modelo tradicional, las comisiones oscilan entre el 3% y el 5% del precio de venta más IVA — en un piso de 400.000 €, eso supone hasta 24.200 € independientemente de si tarda tres meses o doce. NuevaHabitat cambia las reglas con un precio fijo de 3.000 € + IVA, cobrado únicamente en escritura. Esta guía desglosa costes, servicios incluidos y ahorro real.</p>
+      <p>Si buscas vender piso en Barcelona, la primera pregunta es cuánto te costará la inmobiliaria. En el modelo tradicional, las comisiones oscilan entre el 3% y el 5% del precio de venta más IVA — en un piso de 400.000 €, eso supone hasta 24.200 € independientemente de si tarda tres meses o doce. NuevaHabitat cambia las reglas con un precio fijo de 3.500 € + IVA, cobrado únicamente en escritura. Esta guía desglosa costes, servicios incluidos y ahorro real.</p>
       <h2 id="modelo-tradicional">El modelo tradicional y sus costes ocultos</h2>
       <p>Agencias al 3–5% cobran proporcionalmente al precio, no al servicio. ¿Publicación en portales? A menudo extra. ¿Fotografía profesional? Extra. ¿Negociación y arras? A veces extra. Exclusivas de 6–12 meses te atan aunque no vendan. Y si no cierras, has pagado meses de exclusiva sin resultado.</p>
       <p>En Les Corts, Eixample o Sarrià, donde los precios medios superan 400.000 €, la comisión tradicional al 5% supera fácilmente los 20.000 €.</p>
       <p>Además, el incentivo del agente tradicional no siempre está alineado contigo: cobra más si subes el precio de anuncio, aunque eso alargue la venta seis meses. Con precio fijo, el interés compartido es vender bien y rápido, no inflar el precio para aumentar comisión porcentual.</p>
       <h2 id="precio-fijo-nh">Precio fijo NuevaHabitat: cómo funciona</h2>
-      <p><strong>3.000 € + IVA</strong> (3.630 € total). Cobrados solo en escritura, cuando la venta se ha cerrado. Si no vendes, no pagas nada. Sin porcentaje sobre precio final. Sin sorpresas. Transparencia desde la valoración inicial.</p>
+      <p><strong>3.500 € + IVA</strong> (3.500 € + IVA total). Cobrados solo en escritura, cuando la venta se ha cerrado. Si no vendes, no pagas nada. Sin porcentaje sobre precio final. Sin sorpresas. Transparencia desde la valoración inicial.</p>
       <p>Comparamos con agencias tradicionales en nuestra landing de <a href="/vender-les-corts">venta en Les Corts</a>: un piso de 400.000 € supone ahorro de más de 21.000 € frente a agencia al 6%.</p>
       <h2 id="que-incluye">Qué incluye el servicio completo</h2>
       <p>Valoración gratuita con comparables de mercado. Reportaje fotográfico profesional y orientación de home staging. Publicación en principales portales. Filtrado de compradores con capacidad financiera verificada. Gestión de visitas. Negociación profesional. Revisión documental: nota simple, certificado energético, ITE, comunidad. Coordinación de arras y escritura.</p>
@@ -832,10 +832,10 @@
       <table class="blog-table">
         <thead><tr><th>Precio venta</th><th>Agencia 3% + IVA</th><th>Agencia 5% + IVA</th><th>NuevaHabitat</th><th>Ahorro vs 5%</th></tr></thead>
         <tbody>
-          <tr><td>300.000 €</td><td>10.890 €</td><td>18.150 €</td><td>3.630 €</td><td>14.520 €</td></tr>
-          <tr><td>400.000 €</td><td>14.520 €</td><td>24.200 €</td><td>3.630 €</td><td>20.570 €</td></tr>
-          <tr><td>500.000 €</td><td>18.150 €</td><td>30.250 €</td><td>3.630 €</td><td>26.620 €</td></tr>
-          <tr><td>600.000 €</td><td>21.780 €</td><td>36.300 €</td><td>3.630 €</td><td>32.670 €</td></tr>
+          <tr><td>300.000 €</td><td>10.890 €</td><td>18.150 €</td><td>3.500 € + IVA</td><td>14.520 €</td></tr>
+          <tr><td>400.000 €</td><td>14.520 €</td><td>24.200 €</td><td>3.500 € + IVA</td><td>20.570 €</td></tr>
+          <tr><td>500.000 €</td><td>18.150 €</td><td>30.250 €</td><td>3.500 € + IVA</td><td>26.620 €</td></tr>
+          <tr><td>600.000 €</td><td>21.780 €</td><td>36.300 €</td><td>3.500 € + IVA</td><td>32.670 €</td></tr>
         </tbody>
       </table>
       <h2 id="distritos">Operamos en todos los distritos de Barcelona</h2>
@@ -845,9 +845,9 @@
       <p>En distritos como Nou Barris o Sant Andreu, donde el precio medio ronda 300.000–350.000 €, el ahorro frente a agencia al 4% sigue superando los 10.000 €. En Sarrià o Eixample, con operaciones de 500.000–600.000 €, la diferencia puede superar los 30.000 € — dinero que permanece en tu bolsillo, no en comisión inmobiliaria.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
-        <details class="blog-faq-item"><summary>¿Cuánto cuesta vender un piso en Barcelona con NuevaHabitat?</summary><p>3.000 € + IVA, cobrados únicamente en el momento de la escritura. Si no vendes, no pagas. Sin comisiones porcentuales ni exclusivas abusivas.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto cuesta vender un piso en Barcelona con NuevaHabitat?</summary><p>3.500 € + IVA, cobrados únicamente en el momento de la escritura. Si no vendes, no pagas. Sin comisiones porcentuales ni exclusivas abusivas.</p></details>
         <details class="blog-faq-item"><summary>¿Qué incluye el servicio de venta a precio fijo?</summary><p>Valoración de mercado, reportaje fotográfico profesional, publicación en portales, filtrado de compradores cualificados, visitas, negociación, revisión documental (nota simple, ITE, certificado energético) y acompañamiento hasta escritura.</p></details>
-        <details class="blog-faq-item"><summary>¿Cuánto ahorro respecto a una agencia tradicional al 5%?</summary><p>En un piso de 400.000 €, una agencia al 5% + IVA cobra unos 24.200 €. NuevaHabitat: 3.630 € (3.000 + IVA). Ahorro superior a 20.000 € independientemente del tiempo de venta.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto ahorro respecto a una agencia tradicional al 5%?</summary><p>En un piso de 400.000 €, una agencia al 5% + IVA cobra unos 24.200 €. NuevaHabitat: 3.500 € + IVA (3.000 + IVA). Ahorro superior a 20.000 € independientemente del tiempo de venta.</p></details>
         <details class="blog-faq-item"><summary>¿Hay permanencia o exclusiva obligatoria?</summary><p>No aplicamos exclusivas abusivas ni permanencias. Trabajamos con transparencia: precio fijo acordado desde el inicio, cobro solo si cierras la venta en escritura.</p></details>
         <details class="blog-faq-item"><summary>¿Funciona el precio fijo en todos los distritos de Barcelona?</summary><p>Sí. Operamos en Eixample, Gràcia, Les Corts, Poblenou, Sarrià, Nou Barris, Sant Andreu, L'Hospitalet, Badalona, Sant Cugat y resto del área metropolitana.</p></details>
       </section>
@@ -858,7 +858,7 @@
       <aside class="blog-author">
         <div>
           <strong>Equipo NuevaHabitat</strong>
-          <p>Pioneros del modelo precio fijo en Barcelona desde 2026. Hemos vendido en Eixample, Gràcia, Les Corts, Poblenou, Nou Barris y área metropolitana con transparencia total: 3.000 € + IVA, solo en escritura.</p>
+          <p>Pioneros del modelo precio fijo en Barcelona desde 2026. Hemos vendido en Eixample, Gràcia, Les Corts, Poblenou, Nou Barris y área metropolitana con transparencia total: 3.500 € + IVA, solo en escritura.</p>
         </div>
       </aside>
       `,
@@ -870,7 +870,7 @@
         { q: '¿En qué se diferencia de los estimadores online?', a: 'Los estimadores online no visitan el inmueble ni conocen el micro-mercado. No contemplan ITE, certificado energético, orientación, planta ni operaciones cerradas en tu edificio. Nuestra valoración combina visita presencial y datos reales.' },
         { q: '¿Cuánto tarda la valoración?', a: 'Tras solicitarla en /vender, concertamos visita en 24–48 horas. El informe se entrega en 24–72 horas tras la visita, según complejidad del inmueble y disponibilidad de comparables.' },
         { q: '¿Hacéis valoraciones en toda el área metropolitana?', a: 'Sí. Barcelona ciudad, L\'Hospitalet, Badalona, Sant Cugat, Sant Adrià y resto del área metropolitana. Conocemos las particularidades de cada distrito y municipio.' },
-        { q: '¿Qué pasa si decido vender con NuevaHabitat?', a: 'El servicio cuesta 3.000 € + IVA, cobrados solo en escritura. Incluye todo: fotografía, publicación, filtrado, visitas, negociación y acompañamiento legal.' },
+        { q: '¿Qué pasa si decido vender con NuevaHabitat?', a: 'El servicio cuesta 3.500 € + IVA, cobrados solo en escritura. Incluye todo: fotografía, publicación, filtrado, visitas, negociación y acompañamiento legal.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -904,7 +904,7 @@
       <h2 id="micro-mercado">Micro-mercado por distrito en Barcelona</h2>
       <p><strong>Eixample / Sarrià</strong>: 5.500–7.500 €/m² según estado y planta. <strong>Gràcia / Poblenou / Les Corts</strong>: 4.200–5.800 €/m². <strong>Sant Andreu / Horta</strong>: 3.800–4.500 €/m². <strong>Nou Barris</strong>: 3.200–4.000 €/m². <strong>L'Hospitalet / Badalona</strong>: 2.800–3.800 €/m². <strong>Sant Cugat</strong>: 4.500–6.000 €/m². Un estimador que devuelve "4.500 €/m²" para todo Barcelona es inútil para fijar precio.</p>
       <h2 id="proceso-valoracion">Proceso de valoración NuevaHabitat</h2>
-      <p>Solicitas en <a href="/vender">/vender</a> sin compromiso. Concertamos visita presencial en 24–48 horas. Analizamos estado, orientación, finca (ITE, certificado energético), comparables cerrados en edificio y barrio. Entregamos informe con rango de precio recomendado, tiempo estimado de venta y acciones sugeridas (staging, documentación pendiente). Si decides vender: 3.000 € + IVA, solo en escritura. Si tu piso está en Les Corts: <a href="/vender-les-corts">guía específica del distrito</a>.</p>
+      <p>Solicitas en <a href="/vender">/vender</a> sin compromiso. Concertamos visita presencial en 24–48 horas. Analizamos estado, orientación, finca (ITE, certificado energético), comparables cerrados en edificio y barrio. Entregamos informe con rango de precio recomendado, tiempo estimado de venta y acciones sugeridas (staging, documentación pendiente). Si decides vender: 3.500 € + IVA, solo en escritura. Si tu piso está en Les Corts: <a href="/vender-les-corts">guía específica del distrito</a>.</p>
       <h2 id="tabla-diferencias">Estimador online vs valoración profesional</h2>
       <table class="blog-table">
         <thead><tr><th>Criterio</th><th>Estimador online</th><th>Valoración NuevaHabitat</th></tr></thead>
@@ -918,7 +918,7 @@
         </tbody>
       </table>
       <h2 id="despues-valoracion">Qué hacer después de valorar</h2>
-      <p>Si el rango encaja con tus expectativas, prepara documentación (nota simple, certificado energético, ITE) y decide si vendes por tu cuenta o con agente. Si NuevaHabitat gestiona la venta: precio fijo 3.000 € + IVA, fotografía, publicación, filtrado y negociación incluidos. <a href="/vender">Solicitar valoración</a> · <a href="/inmuebles">Ver comparables en tu zona</a>.</p>
+      <p>Si el rango encaja con tus expectativas, prepara documentación (nota simple, certificado energético, ITE) y decide si vendes por tu cuenta o con agente. Si NuevaHabitat gestiona la venta: precio fijo 3.500 € + IVA, fotografía, publicación, filtrado y negociación incluidos. <a href="/vender">Solicitar valoración</a> · <a href="/inmuebles">Ver comparables en tu zona</a>.</p>
       <p>Si el rango está por debajo de lo esperado, analiza si conviene invertir en mejoras puntuales (pintura, certificado energético actualizado) antes de publicar o ajustar expectativas al mercado actual. En Nou Barris y Sant Andreu, una rebaja de 5% bien justificada puede generar múltiples ofertas en dos semanas; en Eixample, el margen de maniobra es menor pero la demanda de pisos bien presentados sigue siendo sólida en 2026.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
@@ -926,7 +926,7 @@
         <details class="blog-faq-item"><summary>¿En qué se diferencia de los estimadores online?</summary><p>Los estimadores online no visitan el inmueble ni conocen el micro-mercado. No contemplan ITE, certificado energético, orientación, planta ni operaciones cerradas en tu edificio. Nuestra valoración combina visita presencial y datos reales.</p></details>
         <details class="blog-faq-item"><summary>¿Cuánto tarda la valoración?</summary><p>Tras solicitarla en /vender, concertamos visita en 24–48 horas. El informe se entrega en 24–72 horas tras la visita, según complejidad del inmueble y disponibilidad de comparables.</p></details>
         <details class="blog-faq-item"><summary>¿Hacéis valoraciones en toda el área metropolitana?</summary><p>Sí. Barcelona ciudad, L'Hospitalet, Badalona, Sant Cugat, Sant Adrià y resto del área metropolitana. Conocemos las particularidades de cada distrito y municipio.</p></details>
-        <details class="blog-faq-item"><summary>¿Qué pasa si decido vender con NuevaHabitat?</summary><p>El servicio cuesta 3.000 € + IVA, cobrados solo en escritura. Incluye todo: fotografía, publicación, filtrado, visitas, negociación y acompañamiento legal.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué pasa si decido vender con NuevaHabitat?</summary><p>El servicio cuesta 3.500 € + IVA, cobrados solo en escritura. Incluye todo: fotografía, publicación, filtrado, visitas, negociación y acompañamiento legal.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Quieres saber cuánto vale tu piso con datos reales de mercado?</p>
@@ -943,11 +943,11 @@
     'comision-inmobiliaria-barcelona': {
       readMin: 8,
       faq: [
-        { q: '¿Cuánto cobra una inmobiliaria en Barcelona por vender?', a: 'La comisión media oscila entre el 3% y el 5% del precio de venta más IVA. En un piso de 400.000 €, eso supone 14.520–24.200 €. NuevaHabitat cobra 3.000 € + IVA fijos, solo en escritura.' },
+        { q: '¿Cuánto cobra una inmobiliaria en Barcelona por vender?', a: 'La comisión media oscila entre el 3% y el 5% del precio de venta más IVA. En un piso de 400.000 €, eso supone 14.520–24.200 €. NuevaHabitat cobra 3.500 € + IVA fijos, solo en escritura.' },
         { q: '¿Qué debe incluir la comisión de una agencia?', a: 'Valoración, fotografía profesional, publicación en portales, filtrado de compradores, visitas, negociación y acompañamiento hasta escritura. Muchas agencias cobran extras por cada servicio; pregunta antes de firmar exclusiva.' },
         { q: '¿Es obligatorio firmar exclusiva con una inmobiliaria?', a: 'No es legalmente obligatorio, pero muchas agencias lo exigen. Revisa duración (6–12 meses habitual), condiciones de rescisión y qué pasa si no venden en plazo. NuevaHabitat no aplica exclusivas abusivas.' },
-        { q: '¿Puedo negociar la comisión inmobiliaria?', a: 'A veces, especialmente en pisos de alto valor o en mercados con poca rotación. Pero negociar del 5% al 4% sigue siendo mucho más caro que un precio fijo de 3.000 € + IVA en operaciones de 300.000 €+.' },
-        { q: '¿Cuánto ahorro con el modelo precio fijo de NuevaHabitat?', a: 'En un piso de 400.000 € vendido al 5% tradicional pagarías 24.200 €. Con NuevaHabitat: 3.630 €. Ahorro superior a 20.000 € con servicio completo incluido.' },
+        { q: '¿Puedo negociar la comisión inmobiliaria?', a: 'A veces, especialmente en pisos de alto valor o en mercados con poca rotación. Pero negociar del 5% al 4% sigue siendo mucho más caro que un precio fijo de 3.500 € + IVA en operaciones de 300.000 €+.' },
+        { q: '¿Cuánto ahorro con el modelo precio fijo de NuevaHabitat?', a: 'En un piso de 400.000 € vendido al 5% tradicional pagarías 24.200 €. Con NuevaHabitat: 3.500 € + IVA. Ahorro superior a 20.000 € con servicio completo incluido.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -956,7 +956,7 @@
           <li>Comisión tradicional en Barcelona: 3–5% del precio de venta + IVA (hasta 24.000 €+ en pisos de 400.000 €).</li>
           <li>Verifica qué incluye: fotos, portales, negociación y arras suelen ser extras en muchas agencias.</li>
           <li>Exclusivas de 6–12 meses te atan aunque no vendan.</li>
-          <li>NuevaHabitat: 3.000 € + IVA fijos, todo incluido, cobro solo en escritura.</li>
+          <li>NuevaHabitat: 3.500 € + IVA fijos, todo incluido, cobro solo en escritura.</li>
           <li>En Les Corts, un piso de 400.000 € ahorra más de 21.000 € vs agencia al 6%.</li>
         </ul>
       </aside>
@@ -977,30 +977,30 @@
       <p>El rango habitual es 3–5% del precio de venta + IVA (21%). En operaciones de 300.000–500.000 € — frecuentes en Les Corts, Poblenou, Sant Andreu o Gràcia — el coste para el vendedor oscila entre 10.890 € y 30.250 €. La comisión se paga al cierre, pero te atas con exclusiva meses antes, a veces sin garantía de resultado.</p>
       <h2 id="que-incluye">Qué debe incluir la comisión (y qué suele ser extra)</h2>
       <p><strong>Debe incluir</strong>: valoración, reportaje fotográfico, publicación en portales principales, gestión de visitas, filtrado de compradores, negociación, coordinación de arras y acompañamiento a escritura. <strong>Suele ser extra</strong>: fotografía "profesional" (200–500 €), publicación destacada en portales, home staging, revisión legal de contratos, gestión de certificado energético o nota simple.</p>
-      <p>Pregunta por escrito qué incluye antes de firmar. Una comisión al 4% sin servicios completos puede salir más cara que 3.000 € + IVA con todo incluido.</p>
+      <p>Pregunta por escrito qué incluye antes de firmar. Una comisión al 4% sin servicios completos puede salir más cara que 3.500 € + IVA con todo incluido.</p>
       <h2 id="exclusivas">Exclusivas y permanencias: letra pequeña</h2>
       <p>La exclusiva obliga a vender solo con esa agencia durante 6–12 meses. Si no venden, has perdido tiempo y posiblemente debes pagar penalización o renovar. Algunas exclusivas incluyen cláusulas de comisión doble si vendes por tu cuenta a alguien que visitó con la agencia. Lee el contrato completo antes de firmar.</p>
       <h2 id="tabla-costes">Tabla de costes por precio de venta</h2>
       <table class="blog-table">
         <thead><tr><th>Precio venta</th><th>3% + IVA</th><th>4% + IVA</th><th>5% + IVA</th><th>NuevaHabitat (fijo)</th></tr></thead>
         <tbody>
-          <tr><td>250.000 €</td><td>9.075 €</td><td>12.100 €</td><td>15.125 €</td><td>3.630 €</td></tr>
-          <tr><td>350.000 €</td><td>12.705 €</td><td>16.940 €</td><td>21.175 €</td><td>3.630 €</td></tr>
-          <tr><td>450.000 €</td><td>16.335 €</td><td>21.780 €</td><td>27.225 €</td><td>3.630 €</td></tr>
-          <tr><td>550.000 €</td><td>19.965 €</td><td>26.620 €</td><td>33.275 €</td><td>3.630 €</td></tr>
+          <tr><td>250.000 €</td><td>9.075 €</td><td>12.100 €</td><td>15.125 €</td><td>3.500 € + IVA</td></tr>
+          <tr><td>350.000 €</td><td>12.705 €</td><td>16.940 €</td><td>21.175 €</td><td>3.500 € + IVA</td></tr>
+          <tr><td>450.000 €</td><td>16.335 €</td><td>21.780 €</td><td>27.225 €</td><td>3.500 € + IVA</td></tr>
+          <tr><td>550.000 €</td><td>19.965 €</td><td>26.620 €</td><td>33.275 €</td><td>3.500 € + IVA</td></tr>
         </tbody>
       </table>
       <h2 id="modelo-fijo">Alternativa: precio fijo NuevaHabitat</h2>
-      <p><strong>3.000 € + IVA</strong>, cobrados solo en escritura. Todo incluido: valoración, fotografía, publicación, filtrado, visitas, negociación, revisión documental (nota simple, ITE, certificado energético) y acompañamiento legal. Sin exclusivas abusivas. Si no vendes, no pagas. Compara <a href="/blog/idealista-fotocasa-vs-inmobiliaria-barcelona">Idealista/Fotocasa vs inmobiliaria</a>, <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">vs agencia tradicional</a> y <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>. En <a href="/vender-les-corts">Les Corts</a>: ahorro de más de 21.000 € en piso de 400.000 € vs agencia al 6%.</p>
+      <p><strong>3.500 € + IVA</strong>, cobrados solo en escritura. Todo incluido: valoración, fotografía, publicación, filtrado, visitas, negociación, revisión documental (nota simple, ITE, certificado energético) y acompañamiento legal. Sin exclusivas abusivas. Si no vendes, no pagas. Compara <a href="/blog/idealista-fotocasa-vs-inmobiliaria-barcelona">Idealista/Fotocasa vs inmobiliaria</a>, <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">vs agencia tradicional</a> y <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>. En <a href="/vender-les-corts">Les Corts</a>: ahorro de más de 21.000 € en piso de 400.000 € vs agencia al 6%.</p>
       <h2 id="preguntas-agencia">Preguntas antes de firmar con cualquier agencia</h2>
       <p>¿Qué incluye la comisión exactamente? ¿Duración de exclusiva y condiciones de rescisión? ¿Qué pasa si no venden en plazo? ¿Publicación en qué portales? ¿Quién paga fotografía y certificado energético? ¿Cómo filtran compradores? ¿Acompañan arras y escritura? <a href="/vender">Consulta condiciones NuevaHabitat</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
-        <details class="blog-faq-item"><summary>¿Cuánto cobra una inmobiliaria en Barcelona por vender?</summary><p>La comisión media oscila entre el 3% y el 5% del precio de venta más IVA. En un piso de 400.000 €, eso supone 14.520–24.200 €. NuevaHabitat cobra 3.000 € + IVA fijos, solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto cobra una inmobiliaria en Barcelona por vender?</summary><p>La comisión media oscila entre el 3% y el 5% del precio de venta más IVA. En un piso de 400.000 €, eso supone 14.520–24.200 €. NuevaHabitat cobra 3.500 € + IVA fijos, solo en escritura.</p></details>
         <details class="blog-faq-item"><summary>¿Qué debe incluir la comisión de una agencia?</summary><p>Valoración, fotografía profesional, publicación en portales, filtrado de compradores, visitas, negociación y acompañamiento hasta escritura. Muchas agencias cobran extras por cada servicio; pregunta antes de firmar exclusiva.</p></details>
         <details class="blog-faq-item"><summary>¿Es obligatorio firmar exclusiva con una inmobiliaria?</summary><p>No es legalmente obligatorio, pero muchas agencias lo exigen. Revisa duración (6–12 meses habitual), condiciones de rescisión y qué pasa si no venden en plazo. NuevaHabitat no aplica exclusivas abusivas.</p></details>
-        <details class="blog-faq-item"><summary>¿Puedo negociar la comisión inmobiliaria?</summary><p>A veces, especialmente en pisos de alto valor o en mercados con poca rotación. Pero negociar del 5% al 4% sigue siendo mucho más caro que un precio fijo de 3.000 € + IVA en operaciones de 300.000 €+.</p></details>
-        <details class="blog-faq-item"><summary>¿Cuánto ahorro con el modelo precio fijo de NuevaHabitat?</summary><p>En un piso de 400.000 € vendido al 5% tradicional pagarías 24.200 €. Con NuevaHabitat: 3.630 €. Ahorro superior a 20.000 € con servicio completo incluido.</p></details>
+        <details class="blog-faq-item"><summary>¿Puedo negociar la comisión inmobiliaria?</summary><p>A veces, especialmente en pisos de alto valor o en mercados con poca rotación. Pero negociar del 5% al 4% sigue siendo mucho más caro que un precio fijo de 3.500 € + IVA en operaciones de 300.000 €+.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto ahorro con el modelo precio fijo de NuevaHabitat?</summary><p>En un piso de 400.000 € vendido al 5% tradicional pagarías 24.200 €. Con NuevaHabitat: 3.500 € + IVA. Ahorro superior a 20.000 € con servicio completo incluido.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Quieres vender sin comisiones porcentuales? Precio fijo transparente.</p>
@@ -1009,7 +1009,7 @@
       <aside class="blog-author">
         <div>
           <strong>Equipo NuevaHabitat</strong>
-          <p>Desde 2026 ofrecemos en Barcelona el modelo precio fijo que elimina comisiones porcentuales: 3.000 € + IVA, solo en escritura. Operamos en Eixample, Gràcia, Les Corts, Poblenou y área metropolitana.</p>
+          <p>Desde 2026 ofrecemos en Barcelona el modelo precio fijo que elimina comisiones porcentuales: 3.500 € + IVA, solo en escritura. Operamos en Eixample, Gràcia, Les Corts, Poblenou y área metropolitana.</p>
         </div>
       </aside>
       `,
@@ -1175,7 +1175,7 @@
         { q: '¿Cuánto cuesta el certificado energético?', a: 'Entre 100 y 200 € según metros y tipología. Es obligatorio para vender; sin él no puedes formalizar la operación. Tiene validez de 10 años si no hay reformas que cambien la calificación.' },
         { q: '¿Qué es la nota simple y dónde se solicita?', a: 'Documento del Registro de la Propiedad que acredita titularidad, cargas y descripción del inmueble. Se solicita online en sede electrónica del Registro o presencialmente. Imprescindible antes de arras.' },
         { q: '¿La ITE es obligatoria para vender?', a: 'La ITE es obligatoria para el edificio, no para el piso individual. Pero el comprador la pedirá: si es desfavorable, puede negociar descuento o condicionar la operación. Informa desde el inicio.' },
-        { q: '¿NuevaHabitat ayuda a preparar la documentación?', a: 'Sí. Te guiamos en la recopilación documental antes de publicar para acelerar la venta. Servicio de venta: 3.000 € + IVA, solo en escritura.' },
+        { q: '¿NuevaHabitat ayuda a preparar la documentación?', a: 'Sí. Te guiamos en la recopilación documental antes de publicar para acelerar la venta. Servicio de venta: 3.500 € + IVA, solo en escritura.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -1224,14 +1224,14 @@
       </table>
       <h2 id="comunidad-ibi">Comunidad, IBI y situación de alquiler</h2>
       <p>Certificado de la comunidad de propietarios acreditando que estás al corriente de pagos. Deudas se descuentan en escritura o se abonan antes. Revisa actas: derramas aprobadas, obras pendientes. Último recibo de IBI para verificar referencia catastral. Si hay inquilino, facilita contrato de alquiler vigente: afecta a posession y precio (vender ocupado vs vacío).</p>
-      <p>NuevaHabitat te guía en la preparación documental antes de publicar. Servicio de venta: <strong>3.000 € + IVA</strong>, solo en escritura. <a href="/vender">Solicita valoración gratuita</a> · <a href="/vender-les-corts">Vender en Les Corts</a>.</p>
+      <p>NuevaHabitat te guía en la preparación documental antes de publicar. Servicio de venta: <strong>3.500 € + IVA</strong>, solo en escritura. <a href="/vender">Solicita valoración gratuita</a> · <a href="/vender-les-corts">Vender en Les Corts</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Qué documentos necesito para vender un piso en Cataluña?</summary><p>Nota simple del Registro, certificado de eficiencia energético (obligatorio), ITE si el edificio lo exige, certificado de comunidad al corriente, último recibo de IBI, plano si existe, y contrato de alquiler si hay inquilino.</p></details>
         <details class="blog-faq-item"><summary>¿Cuánto cuesta el certificado energético?</summary><p>Entre 100 y 200 € según metros y tipología. Es obligatorio para vender; sin él no puedes formalizar la operación. Tiene validez de 10 años si no hay reformas que cambien la calificación.</p></details>
         <details class="blog-faq-item"><summary>¿Qué es la nota simple y dónde se solicita?</summary><p>Documento del Registro de la Propiedad que acredita titularidad, cargas y descripción del inmueble. Se solicita online en sede electrónica del Registro o presencialmente. Imprescindible antes de arras.</p></details>
         <details class="blog-faq-item"><summary>¿La ITE es obligatoria para vender?</summary><p>La ITE es obligatoria para el edificio, no para el piso individual. Pero el comprador la pedirá: si es desfavorable, puede negociar descuento o condicionar la operación. Informa desde el inicio.</p></details>
-        <details class="blog-faq-item"><summary>¿NuevaHabitat ayuda a preparar la documentación?</summary><p>Sí. Te guiamos en la recopilación documental antes de publicar para acelerar la venta. Servicio de venta: 3.000 € + IVA, solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿NuevaHabitat ayuda a preparar la documentación?</summary><p>Sí. Te guiamos en la recopilación documental antes de publicar para acelerar la venta. Servicio de venta: 3.500 € + IVA, solo en escritura.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Preparas la documentación para vender tu piso en Barcelona?</p>
@@ -1328,7 +1328,7 @@
         { q: '¿Cuánto tarda el proceso de herencia antes de poder vender?', a: 'Entre 3 y 9 meses según complejidad: número de herederos, testamentos, bienes en varios registros, deudas del causante. Planifica antes de publicar el piso.' },
         { q: '¿Hay que pagar plusvalía al vender un piso heredado?', a: 'Sí, si ha habido incremento del valor catastral del suelo desde la adquisición (herencia) hasta la venta. El sujeto pasivo suele ser el vendedor (heredero). Varía según municipio: Barcelona, L\'Hospitalet y Badalona tienen ordenanzas distintas.' },
         { q: '¿Puedo vender si hay varios herederos?', a: 'Sí, pero todos deben estar de acuerdo en la venta y firmar. Si hay desacuerdo, puede requerirse partición judicial. Acuerda precio mínimo y reparto de proventos antes de publicar.' },
-        { q: '¿NuevaHabitat gestiona ventas por herencia?', a: 'Sí, con discreción y precio fijo de 3.000 € + IVA, cobrado solo en escritura. Coordinamos valoración, documentación y venta cuando la herencia esté inscrita registralmente.' },
+        { q: '¿NuevaHabitat gestiona ventas por herencia?', a: 'Sí, con discreción y precio fijo de 3.500 € + IVA, cobrado solo en escritura. Coordinamos valoración, documentación y venta cuando la herencia esté inscrita registralmente.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -1338,7 +1338,7 @@
           <li>Plazo habitual: 3–9 meses según complejidad y número de herederos.</li>
           <li>Plusvalía municipal aplica si subió el valor catastral del suelo desde la herencia.</li>
           <li>Varios herederos requieren acuerdo unánime antes de publicar o firmar arras.</li>
-          <li>NuevaHabitat acompaña ventas por herencia: 3.000 € + IVA, solo en escritura.</li>
+          <li>NuevaHabitat acompaña ventas por herencia: 3.500 € + IVA, solo en escritura.</li>
         </ul>
       </aside>
       <nav class="blog-toc">
@@ -1376,14 +1376,14 @@
           <tr><td>Venta (post-inscripción)</td><td>45 – 90 días</td><td>Precio, documentación, mercado</td></tr>
         </tbody>
       </table>
-      <p>Cuando la herencia esté inscrita, NuevaHabitat gestiona valoración, documentación (nota simple, certificado energético, ITE) y venta por <strong>3.000 € + IVA</strong>, solo en escritura. Operamos en Eixample, Gràcia, Les Corts, Nou Barris, Sant Andreu, L'Hospitalet y área metropolitana. <a href="/vender">Solicita valoración</a> · <a href="/contacto">Consulta tu caso</a>.</p>
+      <p>Cuando la herencia esté inscrita, NuevaHabitat gestiona valoración, documentación (nota simple, certificado energético, ITE) y venta por <strong>3.500 € + IVA</strong>, solo en escritura. Operamos en Eixample, Gràcia, Les Corts, Nou Barris, Sant Andreu, L'Hospitalet y área metropolitana. <a href="/vender">Solicita valoración</a> · <a href="/contacto">Consulta tu caso</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Qué pasos legales hay antes de vender un piso heredado?</summary><p>Aceptación de herencia (ante notario), pago del Impuesto de Sucesiones, inscripción registral a nombre del heredero y acuerdo entre coherederos sobre precio mínimo y reparto si hay varios titulares. Sin inscripción registral no puedes vender formalmente.</p></details>
         <details class="blog-faq-item"><summary>¿Cuánto tarda el proceso de herencia antes de poder vender?</summary><p>Entre 3 y 9 meses según complejidad: número de herederos, testamentos, bienes en varios registros, deudas del causante. Planifica antes de publicar el piso.</p></details>
         <details class="blog-faq-item"><summary>¿Hay que pagar plusvalía al vender un piso heredado?</summary><p>Sí, si ha habido incremento del valor catastral del suelo desde la adquisición (herencia) hasta la venta. El sujeto pasivo suele ser el vendedor (heredero). Varía según municipio: Barcelona, L'Hospitalet y Badalona tienen ordenanzas distintas.</p></details>
         <details class="blog-faq-item"><summary>¿Puedo vender si hay varios herederos?</summary><p>Sí, pero todos deben estar de acuerdo en la venta y firmar. Si hay desacuerdo, puede requerirse partición judicial. Acuerda precio mínimo y reparto de proventos antes de publicar.</p></details>
-        <details class="blog-faq-item"><summary>¿NuevaHabitat gestiona ventas por herencia?</summary><p>Sí, con discreción y precio fijo de 3.000 € + IVA, cobrado solo en escritura. Coordinamos valoración, documentación y venta cuando la herencia esté inscrita registralmente.</p></details>
+        <details class="blog-faq-item"><summary>¿NuevaHabitat gestiona ventas por herencia?</summary><p>Sí, con discreción y precio fijo de 3.500 € + IVA, cobrado solo en escritura. Coordinamos valoración, documentación y venta cuando la herencia esté inscrita registralmente.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Vendes un piso heredado en Barcelona? Te acompañamos con discreción.</p>
@@ -1454,7 +1454,7 @@
       readMin: 8,
       faq: [
         { q: '¿Housfy cobra comisión al vendedor en Barcelona?', a: 'Housfy trabaja con modelo de comisión porcentual sobre el precio de venta, con tramos variables según servicios. Conviene calcular el coste total en tu precio concreto, no solo el porcentaje publicitado.' },
-        { q: '¿Qué ventaja tiene el precio fijo de NuevaHabitat?', a: 'Sabes desde el primer día que pagarás 3.000 € + IVA en escritura, con servicios incluidos. En ventas de 350.000 € o más, el ahorro frente a comisiones del 3–6% es muy significativo.' },
+        { q: '¿Qué ventaja tiene el precio fijo de NuevaHabitat?', a: 'Sabes desde el primer día que pagarás 3.500 € + IVA en escritura, con servicios incluidos. En ventas de 350.000 € o más, el ahorro frente a comisiones del 3–6% es muy significativo.' },
         { q: '¿Puedo vender sin exclusiva con NuevaHabitat?', a: 'Sí. No exigimos exclusividad abusiva. Puedes comparar modelos y decidir con información completa.' },
       ],
       body: `
@@ -1470,21 +1470,21 @@
       <p>Al comparar <strong>Housfy vs NuevaHabitat</strong> en Barcelona, la pregunta no es quién publica más rápido, sino <em>cuánto pagas al cerrar</em> y qué servicios recibes de verdad: valoración, fotografía, filtrado de compradores, negociación y acompañamiento hasta escritura.</p>
       <h2>Comisión variable vs precio fijo</h2>
       <p>Las plataformas porcentuales encajan cuando el precio de venta es bajo o el vendedor prioriza pagar solo si cierra. En viviendas de 350.000–600.000 € — el rango habitual en Eixample, Gràcia, Les Corts o Sarrià — el coste porcentual crece linealmente con el precio, aunque el esfuerzo operativo sea similar.</p>
-      <p>NuevaHabitat cobra <strong>3.000 € + IVA</strong>, únicamente en escritura. Si no vendes, no pagas. Incluye reportaje fotográfico, panel vendedor, gestor dedicado y acceso a compradores cualificados de cartera.</p>
+      <p>NuevaHabitat cobra <strong>3.500 € + IVA</strong>, únicamente en escritura. Si no vendes, no pagas. Incluye reportaje fotográfico, panel vendedor, gestor dedicado y acceso a compradores cualificados de cartera.</p>
       <h2>Tabla orientativa de coste total</h2>
       <table class="blog-table">
         <thead><tr><th>Precio venta</th><th>Comisión ~5% + IVA</th><th>NuevaHabitat</th><th>Ahorro orientativo</th></tr></thead>
         <tbody>
-          <tr><td>300.000 €</td><td>~18.150 €</td><td>3.630 €</td><td>~14.500 €</td></tr>
-          <tr><td>450.000 €</td><td>~27.225 €</td><td>3.630 €</td><td>~23.600 €</td></tr>
-          <tr><td>600.000 €</td><td>~36.300 €</td><td>3.630 €</td><td>~32.700 €</td></tr>
+          <tr><td>300.000 €</td><td>~18.150 €</td><td>3.500 € + IVA</td><td>~14.500 €</td></tr>
+          <tr><td>450.000 €</td><td>~27.225 €</td><td>3.500 € + IVA</td><td>~23.600 €</td></tr>
+          <tr><td>600.000 €</td><td>~36.300 €</td><td>3.500 € + IVA</td><td>~32.700 €</td></tr>
         </tbody>
       </table>
       <p>Usa la <a href="/vender#calc">calculadora de ahorro</a> con tu precio estimado. Para el comparativo completo de servicios, visita <a href="/nuevahabitat-vs-housfy-barcelona">NuevaHabitat vs Housfy</a> o <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">vs agencia tradicional</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Housfy cobra comisión al vendedor en Barcelona?</summary><p>Housfy trabaja con modelo de comisión porcentual sobre el precio de venta, con tramos variables según servicios. Conviene calcular el coste total en tu precio concreto.</p></details>
-        <details class="blog-faq-item"><summary>¿Qué ventaja tiene el precio fijo de NuevaHabitat?</summary><p>Sabes desde el primer día que pagarás 3.000 € + IVA en escritura. En ventas de 350.000 € o más, el ahorro frente a comisiones del 3–6% es muy significativo.</p></details>
+        <details class="blog-faq-item"><summary>¿Qué ventaja tiene el precio fijo de NuevaHabitat?</summary><p>Sabes desde el primer día que pagarás 3.500 € + IVA en escritura. En ventas de 350.000 € o más, el ahorro frente a comisiones del 3–6% es muy significativo.</p></details>
         <details class="blog-faq-item"><summary>¿Puedo vender sin exclusiva con NuevaHabitat?</summary><p>Sí. No exigimos exclusividad abusiva. Puedes comparar modelos y decidir con información completa.</p></details>
       </section>
       <aside class="blog-cta">
@@ -1517,7 +1517,7 @@
       <h2>Cómo preparar la venta en Horta</h2>
       <p>Revisa ITE de la finca, certificado energético y estado de terrazas comunitarias. En edificios de los 60–70, los compradores preguntan por ascensor, fachada y derramas. Un reportaje fotográfico que muestre luminosidad y vistas — cuando las hay — compensa la distancia al centro frente a compradores que comparan con Eixample.</p>
       <h2>Vender con precio fijo en el distrito</h2>
-      <p>NuevaHabitat trabaja Horta-Guinardó desde nuestras oficinas en Les Corts, con metro directo. Honorarios: <strong>3.000 € + IVA</strong>, solo en escritura. Consulta la landing <a href="/vender-horta">vender piso en Horta</a> o pide <a href="/vender">valoración gratuita</a>.</p>
+      <p>NuevaHabitat trabaja Horta-Guinardó desde nuestras oficinas en Les Corts, con metro directo. Honorarios: <strong>3.500 € + IVA</strong>, solo en escritura. Consulta la landing <a href="/vender-horta">vender piso en Horta</a> o pide <a href="/vender">valoración gratuita</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto tarda vender un piso en Horta-Guinardó?</summary><p>Con precio ajustado y documentación al día, entre 45 y 90 días es habitual.</p></details>
@@ -1555,7 +1555,7 @@
       <p>En el contrato de arras, incluye cláusula sobre cancelación hipotecaria, plazo hasta escritura y consecuencias si el banco retrasa la operación. El notario, en escritura, retiene del precio lo necesario para cancelar la carga y entrega el resto al vendedor.</p>
       <h2>Cuando la deuda supera el valor de venta</h2>
       <p>Si el precio de mercado no cubre la hipoteca, valora aportación adicional, negociación con la entidad o venta asistida. Ocultar la deuda al comprador solo genera fallos en due diligence y pérdida de arras.</p>
-      <p>NuevaHabitat coordina valoración, compradores filtrados y documentación bancaria por <strong>3.000 € + IVA</strong>, solo en escritura. Más detalle en <a href="/vender-piso-hipoteca-pendiente-barcelona">vender piso con hipoteca pendiente</a>.</p>
+      <p>NuevaHabitat coordina valoración, compradores filtrados y documentación bancaria por <strong>3.500 € + IVA</strong>, solo en escritura. Más detalle en <a href="/vender-piso-hipoteca-pendiente-barcelona">vender piso con hipoteca pendiente</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Se cancela la hipoteca en la misma escritura de venta?</summary><p>Sí, es lo habitual. El notario destina parte del precio a cancelar la hipoteca pendiente.</p></details>
@@ -1597,7 +1597,7 @@
       <p>Acuerda con el inquilino franjas fijas (por ejemplo martes y jueves 18:00–20:00). Comunica por escrito cada visita con 48 h de antelación cuando la ley lo exija. Un agente que filtra compradores antes de llamar al timbre reduce fricción y protege la relación contractual.</p>
       <h2>Precio y comprador objetivo</h2>
       <p>Un piso alquilado a 1.200 €/mes en zona consolidada atrae inversores que capitalizan renta. Un piso en Eixample o Les Corts con inquilino solvente puede venderse con prima si la renta está por debajo de mercado (contrato antiguo). Ajusta el precio y el discurso comercial al perfil real, no al comprador genérico.</p>
-      <p>NuevaHabitat gestiona ventas con inquilino por <strong>3.000 € + IVA</strong>, solo en escritura. Más detalle en <a href="/vender-piso-alquilado-barcelona">vender piso alquilado</a> o en la guía de <a href="/blog/vender-hipoteca-pendiente-guia">hipoteca pendiente</a> si hay préstamo asociado.</p>
+      <p>NuevaHabitat gestiona ventas con inquilino por <strong>3.500 € + IVA</strong>, solo en escritura. Más detalle en <a href="/vender-piso-alquilado-barcelona">vender piso alquilado</a> o en la guía de <a href="/blog/vender-hipoteca-pendiente-guia">hipoteca pendiente</a> si hay préstamo asociado.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Puedo vender un piso con inquilino en Barcelona?</summary><p>Sí. El contrato se transmite al comprador si sigue vigente. Informa en anuncio y coordina visitas respetando la LAU.</p></details>
@@ -1638,7 +1638,7 @@
       <p>Filtra compradores con financiación verificada: una operación emocionalmente cargada no aguanta tres meses de comprador que no cierra. Las visitas conviene centralizarlas con un interlocutor único. En distritos prime — Sarrià, Eixample, Gràcia — la demanda es alta, pero la exigencia documental también.</p>
       <h2>Fiscalidad y plusvalía</h2>
       <p>Cada titular tributa según su parte en la ganancia patrimonial y plusvalía municipal si aplica. Planifica con asesor fiscal antes de aceptar ofertas por debajo del mínimo acordado solo para "terminar ya". A veces el coste fiscal y emocional supera el ahorro aparente.</p>
-      <p>NuevaHabitat acompaña ventas por separación con discreción y <strong>3.000 € + IVA</strong>, solo en escritura. Casos con herencia previa: <a href="/blog/vender-piso-herencia-barcelona">vender piso heredado</a>. Guía específica: <a href="/vender-piso-separacion-divorcio-barcelona">vender por divorcio</a>.</p>
+      <p>NuevaHabitat acompaña ventas por separación con discreción y <strong>3.500 € + IVA</strong>, solo en escritura. Casos con herencia previa: <a href="/blog/vender-piso-herencia-barcelona">vender piso heredado</a>. Guía específica: <a href="/vender-piso-separacion-divorcio-barcelona">vender por divorcio</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Hace falta el consentimiento de ambos cónyuges para vender?</summary><p>Si ambos son titulares registrales, sí, salvo autorización judicial para que uno actúe solo.</p></details>
@@ -1657,7 +1657,7 @@
       faq: [
         { q: '¿Cuánto cuesta publicar en Idealista como particular?', a: 'Idealista y Fotocasa cobran packs de anuncio al particular (desde decenas de euros a varios cientos según visibilidad y duración). Es solo el coste de publicación, no incluye filtrado, negociación ni revisión legal.' },
         { q: '¿Qué riesgos tiene vender por tu cuenta en Barcelona?', a: 'Compradores sin financiación, arras mal redactadas, ocultar cargas o ITE desfavorable, y meses de visitas improductivas. El coste "ahorrado" en comisión suele ir a tiempo perdido y descuentos finales.' },
-        { q: '¿NuevaHabitat exige exclusiva como una agencia tradicional?', a: 'No aplicamos exclusivas abusivas. Cobramos 3.000 € + IVA solo en escritura, con servicios completos incluidos.' },
+        { q: '¿NuevaHabitat exige exclusiva como una agencia tradicional?', a: 'No aplicamos exclusivas abusivas. Cobramos 3.500 € + IVA solo en escritura, con servicios completos incluidos.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -1677,7 +1677,7 @@
       <p>Lee el análisis completo en <a href="/nuevahabitat-vs-idealista-particular">NuevaHabitat vs Idealista particular</a> y <a href="/nuevahabitat-vs-fotocasa-particular">vs Fotocasa particular</a>.</p>
       <h2>Cuándo tiene sentido cada modelo</h2>
       <p>Vender solo encaja si dominas precio de mercado, tienes comprador conocido o el inmueble es muy líquido (piso estándar en zona demandada, libre, documentado). En operaciones de 350.000 €+ en Eixample, Poblenou o Sarrià, el coste de equivocar el precio de salida supera con creces cualquier honorario fijo.</p>
-      <p>Compara también con <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a> (comisión 3–5%) y <a href="/blog/housfy-vs-precio-fijo-barcelona">Housfy vs precio fijo</a>. NuevaHabitat: <strong>3.000 € + IVA</strong>, todo incluido, solo en escritura. Sin exclusiva abusiva: <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>.</p>
+      <p>Compara también con <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a> (comisión 3–5%) y <a href="/blog/housfy-vs-precio-fijo-barcelona">Housfy vs precio fijo</a>. NuevaHabitat: <strong>3.500 € + IVA</strong>, todo incluido, solo en escritura. Sin exclusiva abusiva: <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>.</p>
       <h2>Tabla orientativa: particular vs NuevaHabitat</h2>
       <table class="blog-table">
         <thead><tr><th>Concepto</th><th>Particular (Idealista/Fotocasa)</th><th>NuevaHabitat</th></tr></thead>
@@ -1685,14 +1685,14 @@
           <tr><td>Coste publicación portal</td><td>50–300 € (pack)</td><td>Incluido</td></tr>
           <tr><td>Valoración con comparables</td><td>Manual / estimador</td><td>Visita + informe</td></tr>
           <tr><td>Filtrado compradores</td><td>No</td><td>Pre-calificación</td></tr>
-          <tr><td>Honorarios al cerrar (piso 400k)</td><td>0 € (pero riesgo descuento)</td><td>3.630 € fijo</td></tr>
+          <tr><td>Honorarios al cerrar (piso 400k)</td><td>0 € (pero riesgo descuento)</td><td>3.500 € + IVA fijo</td></tr>
         </tbody>
       </table>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto cuesta publicar en Idealista como particular?</summary><p>Packs desde decenas a cientos de euros según visibilidad. Solo cubre publicación, no gestión de la venta.</p></details>
         <details class="blog-faq-item"><summary>¿Qué riesgos tiene vender por tu cuenta en Barcelona?</summary><p>Visitas sin financiación, arras mal redactadas y descuentos finales suelen costar más que una comisión bien ejecutada.</p></details>
-        <details class="blog-faq-item"><summary>¿NuevaHabitat exige exclusiva como una agencia tradicional?</summary><p>No aplicamos exclusivas abusivas. 3.000 € + IVA solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿NuevaHabitat exige exclusiva como una agencia tradicional?</summary><p>No aplicamos exclusivas abusivas. 3.500 € + IVA solo en escritura.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Comparas vender solo vs precio fijo?</p>
@@ -1726,7 +1726,7 @@
       <h2>Estrategia de precio y tiempos</h2>
       <p>Cruza comparables cerrados en tu calle, no anuncios activos. Un 8% de sobreprecio puede triplicar el tiempo en mercado. Si necesitas velocidad, alinea precio de salida con el percentil 40–50 del barrio y documentación lista desde el día uno. Más tácticas en <a href="/blog/como-vender-rapido">cómo vender rápido en Barcelona</a> y en <a href="/vender-piso-rapido-barcelona">vender piso rápido</a>.</p>
       <h2>Vender con NuevaHabitat en Poblenou</h2>
-      <p>Honorarios <strong>3.000 € + IVA</strong>, solo en escritura. Incluye valoración con comparables del distrito, reportaje, filtrado de compradores de cartera y negociación. Sin exclusiva abusiva: <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>. Guía completa del barrio: <a href="/vender-poblenou">vender en Poblenou</a>. Comparativa barrios: <a href="/blog/vender-piso-horta-guia">Horta-Guinardó</a>.</p>
+      <p>Honorarios <strong>3.500 € + IVA</strong>, solo en escritura. Incluye valoración con comparables del distrito, reportaje, filtrado de compradores de cartera y negociación. Sin exclusiva abusiva: <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad</a>. Guía completa del barrio: <a href="/vender-poblenou">vender en Poblenou</a>. Comparativa barrios: <a href="/blog/vender-piso-horta-guia">Horta-Guinardó</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto vale un piso en Poblenou en 2026?</summary><p>Entre 4.500 y 6.200 €/m² según sub-zona y estado. Terraza y reforma marcan premium.</p></details>
@@ -1744,7 +1744,7 @@
       readMin: 11,
       faq: [
         { q: '¿Por qué importa el micro-barrio al vender en Barcelona?', a: 'Idealista y los buscadores mezclan distritos enteros. Un comprador compara Bon Pastor con Verneda, no con “Sant Andreu” genérico. El precio de salida debe usar comparables de la misma manzana; si no, la operación se alarga semanas o meses.' },
-        { q: '¿Cuánto cuesta vender con inmobiliaria en estos barrios?', a: 'La comisión tradicional del 3–6% puede superar 15.000–40.000 € según ticket. NuevaHabitat cobra 3.000 € + IVA fijos al vendedor, solo en escritura.' },
+        { q: '¿Cuánto cuesta vender con inmobiliaria en estos barrios?', a: 'La comisión tradicional del 3–6% puede superar 15.000–40.000 € según ticket. NuevaHabitat cobra 3.500 € + IVA fijos al vendedor, solo en escritura.' },
         { q: '¿Qué barrios trata esta guía?', a: 'Bon Pastor, Navas, Montjuïc, Pedralbes, Trinitat Vella, Vall d\'Hebron, Tetuan, Sant Pere/Santa Caterina y La Sagrera — cada uno con landing específica y rangos de precio orientativos 2026.' },
         { q: '¿Puedo vender sin exclusiva larga?', a: 'Sí. Mandatos flexibles: puedes mantener anuncio en portal y activamos compradores de cartera cuando el precio encaja con su preaprobación.' },
         { q: '¿Cómo pido valoración gratuita?', a: 'Desde /vender o la landing de tu barrio (por ejemplo /vender-navas-barcelona). Visita presencial en 24 h laborables desde Les Corts.' },
@@ -1755,7 +1755,7 @@
         <ul>
           <li>Barcelona no es un solo mercado: la diferencia entre Pedralbes y Trinitat Vella supera 4.000 €/m².</li>
           <li>Publicar “distrito” sin micro-zona es el error más caro en Bon Pastor, Navas, La Sagrera y Tetuan.</li>
-          <li>Cada barrio de esta guía tiene página de venta con pricing local y honorarios fijos 3.000 € + IVA.</li>
+          <li>Cada barrio de esta guía tiene página de venta con pricing local y honorarios fijos 3.500 € + IVA.</li>
           <li>Documentación (ITE, comunidad, certificado energético) pesa igual en ticket bajo y en prime.</li>
           <li>Enlaces directos a landings indexables para vendedores y para Google Search Console.</li>
         </ul>
@@ -1785,7 +1785,7 @@
       <p><strong>Montjuïc</strong> vende verde, pendiente y calidad de vida distinta a <a href="/vender-poble-sec">Poble-sec</a> céntrico. Ascensor, aparcamiento y verano sin lift en calles empinadas definen visitas filtradas. Guía: <a href="/vender-montjuic-barcelona">vender piso en Montjuïc</a>.</p>
       <p><strong>Sant Pere y Santa Caterina</strong> son Ciutat Vella residencial: mercado, fincas estrechas, ITE y humedades pesan más que en Eixample. No competir en precio con <a href="/vender-piso-born-barcelona">El Born</a> turístico si tu piso es interior. Guía: <a href="/vender-sant-pere-santa-caterina-barcelona">vender en Sant Pere / Santa Caterina</a>.</p>
       <h2 id="prime-zona-alta">Pedralbes y zona alta</h2>
-      <p><strong>Pedralbes</strong> (6.200–8.500 €/m² en rangos prime) exige reportaje discreto, parking trazado en nota simple y comparativa con <a href="/vender-sarria">Sarrià</a> el mismo día de visitas. Sobre 720.000 €, el ahorro entre comisión variable 6% y <strong>3.000 € + IVA</strong> fijos supera 40.000 €. Guía: <a href="/vender-pedralbes-barcelona">vender piso en Pedralbes</a>.</p>
+      <p><strong>Pedralbes</strong> (6.200–8.500 €/m² en rangos prime) exige reportaje discreto, parking trazado en nota simple y comparativa con <a href="/vender-sarria">Sarrià</a> el mismo día de visitas. Sobre 720.000 €, el ahorro entre comisión variable 6% y <strong>3.500 € + IVA</strong> fijos supera 40.000 €. Guía: <a href="/vender-pedralbes-barcelona">vender piso en Pedralbes</a>.</p>
       <h2 id="nou-barris-entrada">Nou Barris y ticket de entrada</h2>
       <p><strong>Trinitat Vella</strong> concentra pisos amplios y comprador muy sensible a cuota hipotecaria (2.900–3.600 €/m²). Separar comparables de <a href="/vender-roquetes-barcelona">Roquetes</a> y portal “Nou Barris” genérico. Guía: <a href="/vender-trinitat-vella-barcelona">vender piso en Trinitat Vella</a>. Más contexto: <a href="/vender-nou-barris">vender en Nou Barris</a>.</p>
       <h2 id="horta-tetuan">Vall d'Hebron, Horta y Tetuan</h2>
@@ -1810,7 +1810,7 @@
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Por qué importa el micro-barrio al vender en Barcelona?</summary><p>Porque comprador y banco comparan manzana, no distrito. Pricing distinto evita meses de anuncio estancado.</p></details>
-        <details class="blog-faq-item"><summary>¿Cuánto cuesta vender con inmobiliaria en estos barrios?</summary><p>Comisión variable 3–6% vs 3.000 € + IVA fijos NuevaHabitat solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿Cuánto cuesta vender con inmobiliaria en estos barrios?</summary><p>Comisión variable 3–6% vs 3.500 € + IVA fijos NuevaHabitat solo en escritura.</p></details>
         <details class="blog-faq-item"><summary>¿Qué barrios incluye la guía?</summary><p>Bon Pastor, Navas, Montjuïc, Pedralbes, Trinitat Vella, Vall d'Hebron, Tetuan, Sant Pere/Santa Caterina y La Sagrera.</p></details>
         <details class="blog-faq-item"><summary>¿Puedo vender sin exclusiva larga?</summary><p>Sí, mandatos flexibles con compradores de cartera cuando el precio encaja.</p></details>
         <details class="blog-faq-item"><summary>¿Cómo pido valoración gratuita?</summary><p>En <a href="/vender">/vender</a> o en la landing de tu barrio desde la tabla superior.</p></details>
@@ -1833,7 +1833,7 @@
       faq: [
         { q: '¿Cuánto tarda de media un particular en vender en Idealista en Barcelona?', a: 'Con precio y documentación correctos, muchos pisos líquidos cierran en 45–75 días. Si llevas más de 90 días con visitas pero sin oferta seria, el cuello de botella suele ser precio de salida, filtro de compradores o cargas/ITE no explicadas en el anuncio.' },
         { q: '¿Renovar el anuncio en Idealista arregla la venta?', a: 'Renovar visibilidad ayuda si el problema era alcance. No corrige un precio 8–12% por encima del mercado, fotos pobres o compradores sin hipoteca preaprobada. Primero diagnostica la señal (visitas vs ofertas), luego inviertes en portal.' },
-        { q: '¿Puedo seguir en Idealista y usar NuevaHabitat a la vez?', a: 'Sí. No exigimos exclusivas abusivas: puedes mantener tu anuncio particular mientras activamos compradores de cartera, panel vendedor y visitas filtradas. Honorarios 3.630 € (3.000 € + IVA) solo en escritura.' },
+        { q: '¿Puedo seguir en Idealista y usar NuevaHabitat a la vez?', a: 'Sí. No exigimos exclusivas abusivas: puedes mantener tu anuncio particular mientras activamos compradores de cartera, panel vendedor y visitas filtradas. Honorarios 3.500 € + IVA (3.500 € + IVA) solo en escritura.' },
         { q: '¿Qué es el panel vendedor de NuevaHabitat?', a: 'Es el espacio digital donde ves visitas programadas, interesados cualificados, documentación compartida y estado de la operación — sin depender de llamadas sueltas o chats de portal sin filtrar.' },
         { q: '¿Cuándo tiene sentido seguir como particular en Barcelona?', a: 'Si dominas comparables de tu micro-barrio, tienes comprador conocido o el piso es muy estándar, libre de cargas y bien documentado. En tickets de 350.000 €+ en Eixample, Gràcia o Sarrià, un error de pricing suele costar más que cualquier honorario fijo.' },
       ],
@@ -1844,7 +1844,7 @@
           <li>Idealista y Fotocasa venden visibilidad, no filtrado ni cierre: a los 90 días el diagnóstico suele ser precio, comprador o documentos.</li>
           <li>Marco 30 / 60 / 90 días para decidir si renueva el pack, ajusta precio o cambia de estrategia.</li>
           <li>Siete señales concretas (tabla) distinguen “poco tráfico” de “tráfico inútil”.</li>
-          <li>Plataforma particular NuevaHabitat: <strong>panel vendedor</strong>, visitas con criterio y <strong>3.630 €</strong> solo en escritura.</li>
+          <li>Plataforma particular NuevaHabitat: <strong>panel vendedor</strong>, visitas con criterio y <strong>3.500 € + IVA</strong> solo en escritura.</li>
           <li>Guías por barrio: <a href="/vender-como-particular-barcelona">vender como particular en Barcelona</a>.</li>
         </ul>
       </aside>
@@ -1886,7 +1886,7 @@
       <p>Compradores informados en 2026 piden antes de arras: nota simple actualizada, certificado energético, estado de cargas, ITE de la finca cuando aplica, certificado de estar al corriente de comunidad y claridad sobre <a href="/blog/vender-hipoteca-pendiente-guia">hipoteca pendiente</a> o <a href="/blog/vender-piso-alquilado-guia-barcelona">piso alquilado</a>. Si eso sale tarde, la oferta cae o se renegocia a la baja — parece “que el comprador se echó atrás”, pero es ejecución documental.</p>
       <p>En Ciutat Vella y fincas antiguas, la ITE pesa tanto como la reforma interior. Si vendes allí como particular, usa la guía <a href="/vender-como-particular-ciutat-vella-barcelona">particular Ciutat Vella</a> para no mezclar comparables del Gòtic con Sant Pere.</p>
       <h2 id="alternativa">Cuándo cambiar de estrategia: precio fijo, panel vendedor y particulares NuevaHabitat</h2>
-      <p>No hace falta firmar un 6% de comisión para dejar de estar solo. <strong>NuevaHabitat</strong> está pensada para el <strong>propietario particular</strong> que quiere transparencia de coste y herramientas de agencia: valoración con visita, reportaje, difusión a compradores cualificados, negociación y acompañamiento hasta notaría por <strong>3.630 € totales</strong> (3.000 € + IVA), <strong>solo en escritura</strong>. Si no vendes, no pagas honorarios de cierre.</p>
+      <p>No hace falta firmar un 6% de comisión para dejar de estar solo. <strong>NuevaHabitat</strong> está pensada para el <strong>propietario particular</strong> que quiere transparencia de coste y herramientas de agencia: valoración con visita, reportaje, difusión a compradores cualificados, negociación y acompañamiento hasta notaría por <strong>3.500 € + IVA totales</strong> (3.500 € + IVA), <strong>solo en escritura</strong>. Si no vendes, no pagas honorarios de cierre.</p>
       <p>El <strong>panel vendedor</strong> concentra en un solo sitio visitas, interesados filtrados y estado de la operación — evitas perseguir leads dispersos en apps de mensajería. Puedes <a href="/registro">registrarte en la plataforma</a>, solicitar <a href="/vender">valoración gratuita</a> o contrastar con la <a href="/vender#calc">calculadora de ahorro</a> frente a comisión variable. Comparativas: <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">vs agencia tradicional</a>, <a href="/blog/housfy-vs-precio-fijo-barcelona">Housfy vs precio fijo</a>, <a href="/vender-piso-sin-exclusividad-barcelona">vender sin exclusividad abusiva</a>.</p>
       <h2 id="barrios">Particular por barrio: no publiques “Barcelona” genérico</h2>
       <p>Google y los compradores buscan micro-zona. Si tu piso está en Sants, Gràcia, Poblenou, Les Corts o Sarrià, alinea precio y discurso con la guía local — el particular que copia el €/m² del distrito vecino alarga los 90 días:</p>
@@ -1902,7 +1902,7 @@
         <h2>Preguntas frecuentes</h2>
         <details class="blog-faq-item"><summary>¿Cuánto tarda de media un particular en vender en Idealista en Barcelona?</summary><p>Con precio y documentos correctos, 45–75 días en pisos líquidos. Más de 90 días con visitas pero sin oferta apunta a precio, filtro o documentación.</p></details>
         <details class="blog-faq-item"><summary>¿Renovar el anuncio en Idealista arregla la venta?</summary><p>Solo si el problema era alcance. No corrige sobreprecio ni compradores sin financiación.</p></details>
-        <details class="blog-faq-item"><summary>¿Puedo seguir en Idealista y usar NuevaHabitat?</summary><p>Sí, sin exclusiva abusiva. Honorarios 3.630 € solo en escritura.</p></details>
+        <details class="blog-faq-item"><summary>¿Puedo seguir en Idealista y usar NuevaHabitat?</summary><p>Sí, sin exclusiva abusiva. Honorarios 3.500 € + IVA solo en escritura.</p></details>
         <details class="blog-faq-item"><summary>¿Qué es el panel vendedor?</summary><p>Panel digital con visitas, interesados cualificados y seguimiento de la operación.</p></details>
         <details class="blog-faq-item"><summary>¿Cuándo seguir como particular?</summary><p>Comprador conocido, dominio de comparables y piso documentado. En tickets altos, un error de pricing cuesta más que un honorario fijo.</p></details>
       </section>
@@ -1926,7 +1926,7 @@
         { q: '¿Cuánto tarda el banco en tasar una vivienda en 2026?', a: 'Suele oscilar entre 1 y 3 semanas desde la solicitud hasta el informe, según banco, carga de trabajo y acceso al piso. En verano o con tasadores saturados puede alargarse más — conviene encadenar plazos en arras con margen.' },
         { q: '¿Qué pasa si la tasación sale por debajo del precio de compra?', a: 'El banco financia sobre tasación (con topes legales). Debes aportar más capital propio o renegociar precio con el vendedor. En cadena, esto puede obligarte a replantear la venta de tu piso si contabas con un neto concreto.' },
         { q: '¿Puedo comprar antes de vender mi piso en Barcelona?', a: 'Sí, con puente hipotecario, reserva doble bien planificada o alquiler temporal — cada opción tiene coste y riesgo. Muchas familias prefieren vender primero con plazos cortos en arras; guía en /vender-piso-antes-comprar-otro-barcelona.' },
-        { q: '¿Cómo ayuda NuevaHabitat en una cadena venta-compra?', a: 'En la venta: precio fijo 3.630 €, filtrado y cierre ágil para liberar neto. En la compra: acompañamiento 5.000 € + IVA solo en escritura. Coordinamos plazos para que no pierdas el piso destino por un cuello de botella evitable.' },
+        { q: '¿Cómo ayuda NuevaHabitat en una cadena venta-compra?', a: 'En la venta: precio fijo 3.500 € + IVA, filtrado y cierre ágil para liberar neto. En la compra: acompañamiento 5.000 € + IVA solo en escritura. Coordinamos plazos para que no pierdas el piso destino por un cuello de botella evitable.' },
       ],
       body: `
       <aside class="blog-summary">
@@ -1936,7 +1936,7 @@
           <li>Timeline orientativo 2026: oferta → arras → tasación (1–3 sem) → aprobación → FEIN → escritura (60–90 días típicos).</li>
           <li>Cláusulas de arras y condiciones suspensivas mal calibradas hacen perder el piso de destino.</li>
           <li>Vender con acompañamiento acelera el tramo que tú controlas: <a href="/vender-piso-antes-comprar-otro-barcelona">vender antes de comprar otro</a>.</li>
-          <li>NuevaHabitat: venta particular <strong>3.630 €</strong> en escritura · compra <strong>5.000 € + IVA</strong> solo si cierras.</li>
+          <li>NuevaHabitat: venta particular <strong>3.500 € + IVA</strong> en escritura · compra <strong>5.000 € + IVA</strong> solo si cierras.</li>
         </ul>
       </aside>
       <nav class="blog-toc">
@@ -1982,14 +1982,14 @@
         <li><strong>Penalizaciones proporcionadas</strong>: arras penitenciales simétricas evitan bloqueos cuando un eslabón externo falla.</li>
         <li><strong>Transparencia de cargas</strong> en A: hipoteca pendiente, usufructo, alquiler — evita sorpresas que retrasan cancelación registral.</li>
       </ul>
-      <p>En la venta de A, un comprador con preaprobación visible cierra antes que uno “que está mirando bancos”. Si vendes como particular, ese filtro es tu responsabilidad; en NuevaHabitat forma parte del servicio de venta con <strong>precio fijo 3.630 €</strong> en escritura.</p>
+      <p>En la venta de A, un comprador con preaprobación visible cierra antes que uno “que está mirando bancos”. Si vendes como particular, ese filtro es tu responsabilidad; en NuevaHabitat forma parte del servicio de venta con <strong>precio fijo 3.500 € + IVA</strong> en escritura.</p>
       <h2 id="vender-primero">Vender primero, reserva B o puente: opciones en Barcelona</h2>
       <p><strong>Vender A primero</strong> con arras cortas y comprador financiado reduce riesgo de doble hipoteca. Necesitas alquiler temporal o acuerdo con familia si B aún no está cerrado — planifica 2–4 meses de transición. Guía detallada: <a href="/vender-piso-antes-comprar-otro-barcelona">vender piso antes de comprar otro en Barcelona</a>.</p>
       <p><strong>Reservar B con arras</strong> mientras vendes A es viable si negocias plazos largos en B y cortos en A, y si tu banco confirma viabilidad con el neto esperado de la venta. <strong>Puente hipotecario</strong> (doble carga temporal) tiene coste de intereses y no todos los perfiles lo aprueban en 2026.</p>
       <p>Para la compra, calcula el coste total con <a href="/blog/gastos-compraventa">gastos de compraventa en Cataluña</a> e <a href="/blog/guia-hipotecas">guía de hipotecas 2026</a>. Simula cuota en <a href="/hipotecas">hipotecas NuevaHabitat</a>.</p>
       <h2 id="vendedor-particular">El tramo venta: acelerar A sin regalar precio</h2>
       <p>En una cadena, tú controlas mejor la venta de A que la velocidad del tasador del banco de B. Un anuncio particular estancado 90 días en portal puede hundir toda la cadena — señales y soluciones en <a href="/blog/particular-idealista-90-dias-barcelona-2026">90 días como particular en Idealista</a>.</p>
-      <p><strong>NuevaHabitat</strong> combina enfoque <a href="/vender-como-particular-barcelona">particular con herramientas de profesional</a>: valoración, reportaje, compradores de cartera, <strong>panel vendedor</strong>, negociación y cierre. Honorarios de venta: <strong>3.630 €</strong> totales, solo en escritura. Puedes <a href="/registro">activar la plataforma</a> y coordinar plazos con el equipo para encajar escritura de A con la compra de B. Si también necesitas acompañamiento en la compra, consulta <a href="/comprar">servicio comprador</a> (5.000 € + IVA solo si firmas).</p>
+      <p><strong>NuevaHabitat</strong> combina enfoque <a href="/vender-como-particular-barcelona">particular con herramientas de profesional</a>: valoración, reportaje, compradores de cartera, <strong>panel vendedor</strong>, negociación y cierre. Honorarios de venta: <strong>3.500 € + IVA</strong> totales, solo en escritura. Puedes <a href="/registro">activar la plataforma</a> y coordinar plazos con el equipo para encajar escritura de A con la compra de B. Si también necesitas acompañamiento en la compra, consulta <a href="/comprar">servicio comprador</a> (5.000 € + IVA solo si firmas).</p>
       <p>Enlaces útiles por situación: <a href="/vender-como-particular-sants-barcelona">particular Sants</a> · <a href="/vender-como-particular-eixample-barcelona">particular Eixample</a> · <a href="/blog/negociar-precio">negociar precio</a> · <a href="/blog/primera-vivienda">primera vivienda Barcelona</a>.</p>
       <section class="blog-faq" id="faq">
         <h2>Preguntas frecuentes</h2>
@@ -1997,7 +1997,7 @@
         <details class="blog-faq-item"><summary>¿Cuánto tarda el banco en tasar?</summary><p>Habitualmente 1–3 semanas; puede alargarse en verano o con acceso difícil al piso.</p></details>
         <details class="blog-faq-item"><summary>¿Qué pasa si la tasación es baja?</summary><p>Más entrada, renegociar precio o cambiar condiciones bancarias — avisa en cadena de inmediato.</p></details>
         <details class="blog-faq-item"><summary>¿Comprar antes de vender?</summary><p>Posible con puente o reservas bien planificadas; riesgo y coste variables. Ver guía vender antes de comprar.</p></details>
-        <details class="blog-faq-item"><summary>¿Cómo ayuda NuevaHabitat?</summary><p>Venta 3.630 € en escritura con filtrado y panel; compra 5.000 € + IVA solo si cierras. Coordinación de plazos.</p></details>
+        <details class="blog-faq-item"><summary>¿Cómo ayuda NuevaHabitat?</summary><p>Venta 3.500 € + IVA en escritura con filtrado y panel; compra 5.000 € + IVA solo si cierras. Coordinación de plazos.</p></details>
       </section>
       <aside class="blog-cta">
         <p>¿Vendes y compras a la vez en Barcelona?</p>

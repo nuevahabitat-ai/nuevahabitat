@@ -1,6 +1,7 @@
 /** Calculadora ahorro agencia vs NuevaHabitat — init en landings y /vender */
 (function () {
-  const NH_FEE = 3630;
+  const NH_FEE = 3500;
+  const NH_FEE_LABEL = '3.500 € + IVA';
   const DEFAULT_PCT = 6;
 
   function formatEuro(n) {
@@ -32,6 +33,8 @@
     const tradInline = root.querySelector('#nh-sc-trad-inline');
     const barAgency = root.querySelector('#nh-sc-bar-agency');
     const barNh = root.querySelector('#nh-sc-bar-nh');
+    const barNhAmt = root.querySelector('.nh-sc-bar-amount--gold');
+    const nhBreakdown = root.querySelector('.nh-sc-breakdown-item--nh strong');
     const hint = root.querySelector('.nh-sc-save-hint');
     const pctBtns = root.querySelectorAll('.nh-sc-pct');
     let pct = DEFAULT_PCT;
@@ -63,6 +66,8 @@
       }
       if (barAgency) barAgency.style.width = tradPct + '%';
       if (barNh) barNh.style.width = nhPct + '%';
+      if (barNhAmt) barNhAmt.textContent = NH_FEE_LABEL;
+      if (nhBreakdown) nhBreakdown.textContent = NH_FEE_LABEL;
       if (hint) hint.textContent = 'respecto a agencia al ' + rate + '% + IVA';
       range.setAttribute('aria-valuenow', String(p));
     }

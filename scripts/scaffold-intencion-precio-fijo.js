@@ -33,7 +33,7 @@ function buildArgumento(B, slugIntencion) {
   const venderSlug = B.slug;
   const precio = B.ejemploPrecio || 400000;
   const com6 = Math.round(precio * 0.06 * 1.21);
-  const ahorro = Math.max(com6 - 3630, 15000);
+  const ahorro = Math.max(com6 - 3500, 15000);
   const m2 = (B.datosMercado && B.datosMercado.precioM2) || '—';
   const tiempo = (B.datosMercado && B.datosMercado.tiempoVenta) || '55 – 90 días';
   const zonas = (B.zonas || []).slice(0, 4).join(', ');
@@ -43,16 +43,16 @@ function buildArgumento(B, slugIntencion) {
   const tendencia = (B.datosMercado && B.datosMercado.tendencia) || '';
 
   return (
-    `<p>Esta es una <strong>landing nueva</strong> para captar propietarios que buscan <strong>inmobiliaria con precio fijo en ${barrio}</strong> — distinta de la guía <a href="/${venderSlug}">vender piso en ${barrio}</a>. Si tu piso ronda <strong>${fmtEuro(precio)} €</strong>, una agencia al 6% + IVA puede cobrarte más de <strong>${fmtEuro(com6)} €</strong>; <strong>NuevaHabitat</strong> cobra <strong>3.630 €</strong> solo en escritura, con <strong>panel vendedor</strong> (visitas, documentación, comprador) y sin especular con tu precio de anuncio.</p>` +
+    `<p>Esta es una <strong>landing nueva</strong> para captar propietarios que buscan <strong>inmobiliaria con precio fijo en ${barrio}</strong> — distinta de la guía <a href="/${venderSlug}">vender piso en ${barrio}</a>. Si tu piso ronda <strong>${fmtEuro(precio)} €</strong>, una agencia al 6% + IVA puede cobrarte más de <strong>${fmtEuro(com6)} €</strong>; <strong>NuevaHabitat</strong> cobra <strong>3.500 € + IVA</strong> solo en escritura, con <strong>panel vendedor</strong> (visitas, documentación, comprador) y sin especular con tu precio de anuncio.</p>` +
     `<p>Pilar Barcelona: <a href="/inmobiliaria-precio-fijo-barcelona">inmobiliaria precio fijo Barcelona</a>.</p>` +
     `<h2>${barrio}: mercado local (${m2})</h2><p>Rango orientativo ${m2}; plazos habituales ${tiempo}. ${tendencia}</p>` +
     `<p>${perfil}</p>` +
     `<h2>Tipología de edificios en ${barrio}</h2><p>${tipologia}</p>` +
     (zonas ? `<h2>Micro-zonas: ${zonas}</h2><p>Valorar con comparables de ${cps || 'tu CP'}, no con la media de Barcelona. Cada calle compite con anuncios a pocos minutos a pie; copiar el precio del portal vecino sin mirar planta, ascensor y reforma es el error más repetido entre particulares.</p>` : '') +
-    `<h2>Precio fijo: 3.630 € en escritura, no porcentaje</h2><p>Honorarios cerrados, cobro únicamente si hay venta. Ahorro orientativo frente al 6%: más de <strong>${fmtEuro(ahorro)} €</strong> en un piso de ${fmtEuro(precio)} €. Usa la <a href="#calc">calculadora</a> con tu precio estimado.</p>` +
+    `<h2>Precio fijo: 3.500 € + IVA en escritura, no porcentaje</h2><p>Honorarios cerrados, cobro únicamente si hay venta. Ahorro orientativo frente al 6%: más de <strong>${fmtEuro(ahorro)} €</strong> en un piso de ${fmtEuro(precio)} €. Usa la <a href="#calc">calculadora</a> con tu precio estimado.</p>` +
     `<h2>Panel vendedor: plataforma del propietario</h2><p>Registro de visitas, control de franjas, documentación que subes tú, expediente del comprador, ofertas y arras visibles. Buena intermediación sin presión para inflar captación — porque no cobramos % sobre tu venta.</p><ul><li>Visitas con ficha y feedback.</li><li>Calendario en tus horarios.</li><li>PDF de comunidad, energético, nota simple.</li><li>Docs del comprador antes de arras.</li></ul>` +
     `<h2>Particular vs <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a></h2><p>Portal ahorra comisión pero genera curiosos; el 6% escala con el ticket. Precio fijo + compradores filtrados + acompañamiento legal hasta notaría encaja cuando quieres servicio profesional sin regalar un porcentaje.</p>` +
-    `<h2>Calculadora en esta landing</h2><p>Compara 3%–6% + IVA con 3.630 € fijos. No vinculante; sirve para decidir antes de la valoración gratuita.</p>` +
+    `<h2>Calculadora en esta landing</h2><p>Compara 3%–6% + IVA con 3.500 € + IVA fijos. No vinculante; sirve para decidir antes de la valoración gratuita.</p>` +
     `<h2>Proceso en ${barrio}</h2><ol><li>Valoración con comparables locales.</li><li>Alta en panel vendedor.</li><li>Difusión a compradores con hipoteca o liquidez verificada.</li><li>Visitas registradas en tus franjas.</li><li>Arras y documentación centralizada.</li><li>Escritura: cobro precio fijo solo si cierras.</li></ol>` +
     `<h2>Documentación y transparencia</h2><p>Nota simple, certificado energético, ITE si aplica, actas de comunidad y plusvalía: anticipar sorpresas evita caídas tras arras — especialmente con compradores exigentes en ${barrio}.</p>` +
     `<h2>Cuándo tiene sentido contratar</h2><p>Si llevas semanas en portal sin oferta financiada, si quieres evitar exclusiva larga, si necesitas panel y registro de visitas, o si el coste del 6% sobre ${fmtEuro(precio)} € no te cuadra. Si solo quieres probar anuncio sin filtro, puedes empezar solo y reevaluar.</p>` +
@@ -94,14 +94,14 @@ function buildLanding(barrioSlug) {
     priority: 0.89,
     origen_lead: intSlug,
     meta: {
-      title: `Inmobiliaria precio fijo ${barrio} · 3.630 € en escritura · NuevaHabitat`,
-      description: `Nueva landing: agencia honorarios fijos en ${barrio}. 3.000€ + IVA solo al vender. Panel vendedor, calculadora vs 6%. ${(B.zonas || []).slice(0, 2).join(', ')}.`,
+      title: `Inmobiliaria precio fijo ${barrio} · 3.500 € + IVA en escritura · NuevaHabitat`,
+      description: `Nueva landing: agencia honorarios fijos en ${barrio}. 3.500€ + IVA solo al vender. Panel vendedor, calculadora vs 6%. ${(B.zonas || []).slice(0, 2).join(', ')}.`,
       keywords: kw,
     },
     hero: {
       badge: `${barrio} · Precio fijo · Panel`,
-      h1: `Inmobiliaria con precio fijo en ${barrio}: 3.630 € en escritura, no 6%`,
-      lead: `¿Buscas agencia en ${zonasLead || barrio} como <strong>particular</strong>? <strong>NuevaHabitat</strong>: <strong>3.000 € + IVA</strong> solo en escritura, <strong>panel vendedor</strong>, calculadora de ahorro. Guía barrio: <a href="/${B.slug}">vender en ${barrio}</a>.`,
+      h1: `Inmobiliaria con precio fijo en ${barrio}: 3.500 € + IVA en escritura, no 6%`,
+      lead: `¿Buscas agencia en ${zonasLead || barrio} como <strong>particular</strong>? <strong>NuevaHabitat</strong>: <strong>3.500 € + IVA</strong> solo en escritura, <strong>panel vendedor</strong>, calculadora de ahorro. Guía barrio: <a href="/${B.slug}">vender en ${barrio}</a>.`,
       image: heroImg,
       imageAlt: heroAlt,
     },
@@ -110,13 +110,13 @@ function buildLanding(barrioSlug) {
     calculadora: {
       precioDefault: precio,
       titulo: `Calculadora ${barrio}: tradicional vs precio fijo`,
-      subtitulo: `Precio orientativo ${fmtEuro(precio)} €. Compara 3%–6% + IVA con 3.630 € en escritura.`,
+      subtitulo: `Precio orientativo ${fmtEuro(precio)} €. Compara 3%–6% + IVA con 3.500 € + IVA en escritura.`,
     },
     como_ayudamos: {
       title: `Precio fijo y panel en ${barrio}`,
       description: `Proceso NuevaHabitat — landing intención ${barrio}.`,
       steps: [
-        { title: 'Valoración local', body: `Comparables ${barrio}; 3.630 € solo en escritura por escrito.` },
+        { title: 'Valoración local', body: `Comparables ${barrio}; 3.500 € + IVA solo en escritura por escrito.` },
         { title: 'Panel vendedor', body: 'Visitas, docs y ofertas centralizados.' },
         { title: 'Compradores filtrados', body: 'Hipoteca o liquidez antes de visitas.' },
         { title: 'Visitas controladas', body: 'Registro por cita en tus franjas.' },
@@ -130,7 +130,7 @@ function buildLanding(barrioSlug) {
         { modelo: 'Particular portal', tiempo: 'Variable', coste: 'Anuncio + tiempo', riesgo: 'Curiosos', tipo: 'neutral' },
         { modelo: 'Agencia ~6% + IVA', tiempo: '4–8 meses', coste: `>${fmtEuro(Math.round(precio * 0.06 * 1.21))} €`, riesgo: 'Exclusiva', tipo: 'lose' },
         { modelo: 'Agencia online', tiempo: 'Variable', coste: 'Cuota/%', riesgo: 'Poco arras', tipo: 'neutral' },
-        { modelo: `NuevaHabitat ${barrio}`, tiempo: '60–90 días', coste: '3.630 € escritura', riesgo: 'Sin venta, sin factura', tipo: 'win' },
+        { modelo: `NuevaHabitat ${barrio}`, tiempo: '60–90 días', coste: '3.500 € + IVA escritura', riesgo: 'Sin venta, sin factura', tipo: 'win' },
       ],
     },
     mitos: {
@@ -156,7 +156,7 @@ function buildLanding(barrioSlug) {
       ],
     },
     faq: [
-      { q: `¿Cuánto cuesta precio fijo en ${barrio}?`, a: '3.630 € total en escritura; ahorro grande vs 6% según ticket.' },
+      { q: `¿Cuánto cuesta precio fijo en ${barrio}?`, a: '3.500 € + IVA total en escritura; ahorro grande vs 6% según ticket.' },
       { q: '¿Qué es el panel vendedor?', a: 'Visitas, docs propios y del comprador, ofertas y calendario.' },
       { q: `¿Diferencia con /${B.slug}?`, a: 'Esta landing es intención «inmobiliaria precio fijo»; la otra es guía «vender piso».' },
       { q: '¿Y si no vendo?', a: 'No pagas honorarios de agencia.' },
@@ -169,7 +169,7 @@ function buildLanding(barrioSlug) {
     keywords_footer: kw + ' · panel vendedor · calculadora ahorro',
     whatsappText: 'Hola%2C%20quiero%20precio%20fijo%20en%20' + encodeURIComponent(barrio),
     formPlaceholder: `Zona en ${barrio}, m², precio orientativo`,
-    form_side_text: `Cuéntanos tu piso en ${barrio}: panel, 3.630 € en escritura, calculadora vs 6%.`,
+    form_side_text: `Cuéntanos tu piso en ${barrio}: panel, 3.500 € + IVA en escritura, calculadora vs 6%.`,
   };
 
   fs.writeFileSync(outPath, JSON.stringify(L, null, 2) + '\n', 'utf8');

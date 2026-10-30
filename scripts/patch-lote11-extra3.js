@@ -8,7 +8,7 @@ const E3 = {
   'content/landings/barrio/vender-trinitat-vella-barcelona.json': `<p>Oficina Les Corts en Mejía Lequerica 42: valoración gratuita veinticuatro horas laborables. WhatsApp horario comercial para dudas de comunidad o timing de arras con hipoteca compradora al ochenta por ciento.</p>`,
   'content/landings/barrio/vender-vall-d-hebron-barcelona.json': `<p>Collserola en terraza: fotos hora dorada. Interior húmedo: descuento publicado. Cartera compradora Horta-Guinardó activada si precio encaja preaprobación bancaria típica del barrio.</p>`,
   'content/landings/barrio/vender-tetuan-barcelona.json': `<p>Marina y Bogatell en cronómetro: honestidad en ficha. Encants lunes: transparencia si afecta balcón. Precio fijo solo escritura; valoración gratuita desde Les Corts sin compromiso de exclusiva larga.</p>`,
-  'content/landings/barrio/vender-sant-pere-santa-caterina-barcelona.json': `<p>Ciutat Vella residencial: mercado Santa Caterina a pie, escalera estrecha, visitas pequeñas. ITE y humedad resueltas antes de banco comprador. Neto con 3.630 € fijos vs comisión variable sobre ticket medio cuatrocientos cincuenta mil.</p>`,
+  'content/landings/barrio/vender-sant-pere-santa-caterina-barcelona.json': `<p>Ciutat Vella residencial: mercado Santa Caterina a pie, escalera estrecha, visitas pequeñas. ITE y humedad resueltas antes de banco comprador. Neto con 3.500 € + IVA fijos vs comisión variable sobre ticket medio cuatrocientos cincuenta mil.</p>`,
   'content/landings/barrio/vender-la-sagrera-barcelona.json': `<p>Parc de la Sagrera y estación: minutos caminando honestos. Navas límite: comparables separados. Plusvalía e hipoteca en calculadora neto antes de publicar. Valoración 24 h Les Corts.</p>`,
 };
 

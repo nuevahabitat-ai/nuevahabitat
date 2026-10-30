@@ -104,7 +104,7 @@ ${calcBlock(L)}
     <div class="lc-compare-wrap fade-up"><table class="lc-compare">
       <thead><tr><th>Concepto</th><th>Agencia tradicional (~6%)</th><th>NuevaHabitat (precio fijo)</th></tr></thead>
       <tbody>
-        <tr><td><strong>Honorarios al vendedor</strong></td><td class="lc-lose">${comision6} € + IVA (6% de ${precioFmt} €)</td><td class="lc-win"><strong>3.000 € + IVA</strong> — solo en escritura</td></tr>
+        <tr><td><strong>Honorarios al vendedor</strong></td><td class="lc-lose">${comision6} € + IVA (6% de ${precioFmt} €)</td><td class="lc-win"><strong>3.500 € + IVA</strong> — solo en escritura</td></tr>
         <tr><td>Cuándo pagas</td><td class="lc-lose">Al firmar, aunque lleves meses en exclusiva</td><td class="lc-win">Solo si vendes. Sin venta, sin factura</td></tr>
         <tr><td>Conocimiento del centro</td><td class="lc-lose">Precio medio genérico del distrito</td><td class="lc-win">Valoración por barrio (Gòtic, Born, Raval, Barceloneta)</td></tr>
         <tr><td>Compradores</td><td>Cualquiera que llame</td><td class="lc-win">Cartera con hipoteca preaprobada</td></tr>

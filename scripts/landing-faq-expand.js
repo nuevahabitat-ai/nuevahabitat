@@ -11,7 +11,7 @@ function venderExtras(barrio) {
   return [
     {
       q: `¿Cuánto cuesta vender en ${b} con NuevaHabitat?`,
-      a: '3.000 € + IVA de honorarios fijos al vendedor, pagados solo en escritura. Sin venta, no facturamos comisión de agencia.',
+      a: '3.500 € + IVA de honorarios fijos al vendedor, pagados solo en escritura. Sin venta, no facturamos comisión de agencia.',
     },
     {
       q: '¿Puedo vender sin exclusiva de doce meses?',

@@ -65,7 +65,7 @@ const VENDER = [
       },
       {
         title: 'Honorarios fijos desde Les Corts',
-        body: '<p>3.000 € + IVA solo en escritura. Sobre 495.000 €, un 6% tradicional supera 29.000 € en comisión; el importe fijo protege tu neto si el comprador negocia bien. Valoración gratuita en 24 h, visitas en tus franjas y compradores filtrados por solvencia.</p>',
+        body: '<p>3.500 € + IVA solo en escritura. Sobre 495.000 €, un 6% tradicional supera 29.000 € en comisión; el importe fijo protege tu neto si el comprador negocia bien. Valoración gratuita en 24 h, visitas en tus franjas y compradores filtrados por solvencia.</p>',
       },
       {
         title: 'Panel y visitas sin ruido comercial',
@@ -98,7 +98,7 @@ const VENDER = [
       { q: '¿Diagonal Mar es lo mismo que Poblenou?', a: 'No en precio ni en tipología. Diagonal Mar es stock más reciente con servicios; Poblenou mezcla finca obrero e industrial. Valoramos con comparables del mismo entorno.' },
       { q: '¿Cuánto tarda una venta bien de precio?', a: 'Entre 50 y 85 días es habitual si el ticket encaja con financiación del comprador tipo y la documentación está lista.' },
       { q: '¿Trabajáis desde Les Corts?', a: 'Sí. Mejía Lequerica 42. Atendemos todo Sant Martí y área metropolitana.' },
-      { q: '¿Cuánto cuesta vender?', a: '3.000 € + IVA en escritura. Sin venta, no pagas honorarios de agencia.' },
+      { q: '¿Cuánto cuesta vender?', a: '3.500 € + IVA en escritura. Sin venta, no pagas honorarios de agencia.' },
     ],
   },
   {
@@ -149,7 +149,7 @@ const VENDER = [
       },
       {
         title: 'Precio fijo NuevaHabitat',
-        body: '<p>3.630 € en escritura vs más de 27.000 € en comisión del 6% sobre 465.000 €. Cartera de compradores con hipoteca preaprobada, panel vendedor y valoración en 24 h desde Les Corts.</p>',
+        body: '<p>3.500 € + IVA en escritura vs más de 27.000 € en comisión del 6% sobre 465.000 €. Cartera de compradores con hipoteca preaprobada, panel vendedor y valoración en 24 h desde Les Corts.</p>',
       },
       {
         title: 'Próximo paso',
@@ -169,7 +169,7 @@ const VENDER = [
       },
       {
         title: 'Comparar honorarios antes de firmar exclusiva',
-        body: '<p>Sobre 465.000 €, un 6% tradicional supera 27.000 € en comisión; nuestros 3.630 € fijos en escritura protegen tu neto si el comprador negocia bien. Calcula con nuestra herramienta en la landing y contrasta con lo que te proponga cualquier otra agencia antes de comprometerte doce meses.</p>',
+        body: '<p>Sobre 465.000 €, un 6% tradicional supera 27.000 € en comisión; nuestros 3.500 € + IVA fijos en escritura protegen tu neto si el comprador negocia bien. Calcula con nuestra herramienta en la landing y contrasta con lo que te proponga cualquier otra agencia antes de comprometerte doce meses.</p>',
       },
       {
         title: 'Sant Martí limítrofe y compradores cruzados',
@@ -186,7 +186,7 @@ const VENDER = [
       { q: '¿Fort Pienc entra en el Eixample?', a: 'Urbanísticamente sí, pero el mercado lo trata como micro-zona con precio y comprador propios. Valoramos con comparables locales.' },
       { q: '¿Atendéis desde Les Corts?', a: 'Sí. Visitas concertadas en tu horario.' },
       { q: '¿Puedo vender si ya estoy en portal?', a: 'Sí. Revisamos precio y activamos compradores filtrados sin obligarte a exclusiva larga.' },
-      { q: '¿Honorarios?', a: '3.000 € + IVA solo al cerrar en notaría.' },
+      { q: '¿Honorarios?', a: '3.500 € + IVA solo al cerrar en notaría.' },
     ],
   },
   {
@@ -216,7 +216,7 @@ const VENDER = [
     intro: [
       '<strong>La Marina</strong> (Marina del Port y Marina de Port) ofrece uno de los tickets más accesibles para vender piso en Barcelona ciudad, con rangos orientativos de <strong>3.200–4.100 €/m²</strong> según finca y estado. El comprador compara con <a href="/vender-l-hospitalet">L’Hospitalet</a> y <a href="/vender-poble-sec">Poble-sec</a>: busca metros y precio, no postal premium.',
       'Vender bien aquí explica entorno real — transporte, equipamientos, mejoras urbanísticas — y filtra visitas sin hipoteca. Muchos anuncios se estancan por fotos pobres o precio copiado de un piso reformado en otra cuadra.',
-      'Honorarios fijos 3.000 € + IVA en escritura, visitas en tus franjas y compradores cualificados desde Les Corts. Si ya tienes anuncio publicado, revisamos pricing y activamos demanda sin obligarte a retirar otras vías el primer mes. Valoración sin compromiso.',
+      'Honorarios fijos 3.500 € + IVA en escritura, visitas en tus franjas y compradores cualificados desde Les Corts. Si ya tienes anuncio publicado, revisamos pricing y activamos demanda sin obligarte a retirar otras vías el primer mes. Valoración sin compromiso.',
     ],
     sections: [
       {
@@ -237,7 +237,7 @@ const VENDER = [
       },
       {
         title: 'Honorarios fijos',
-        body: '<p>3.000 € + IVA en escritura. En 285.000 € ahorras más de 13.000 € frente al 6% tradicional. Sin venta, no facturamos honorarios de agencia.</p>',
+        body: '<p>3.500 € + IVA en escritura. En 285.000 € ahorras más de 13.000 € frente al 6% tradicional. Sin venta, no facturamos honorarios de agencia.</p>',
       },
       {
         title: 'Gestores en Les Corts',
@@ -276,7 +276,7 @@ const VENDER = [
     ],
     faq: [
       { q: '¿La Marina es barrio de moda?', a: 'Es sobre todo mercado de primera vivienda y precio contenido. La estrategia es realismo en pricing y filtro de solvencia.' },
-      { q: '¿Cuánto cuesta vender?', a: '3.000 € + IVA solo en escritura si cierras.' },
+      { q: '¿Cuánto cuesta vender?', a: '3.500 € + IVA solo en escritura si cierras.' },
       { q: '¿Visitas los fines de semana?', a: 'Tú defines franjas; solo agendamos compradores contrastados.' },
     ],
   },
@@ -328,7 +328,7 @@ const VENDER = [
       },
       {
         title: 'Precio fijo y panel',
-        body: '<p>3.000 € + IVA en escritura, panel con visitas filtradas y documentación centralizada. Sobre 310.000 €, el 6% tradicional supera 18.000 € solo en comisión.</p>',
+        body: '<p>3.500 € + IVA en escritura, panel con visitas filtradas y documentación centralizada. Sobre 310.000 €, el 6% tradicional supera 18.000 € solo en comisión.</p>',
       },
       {
         title: 'Valoración en 24 h',
@@ -368,7 +368,7 @@ const VENDER = [
     faq: [
       { q: '¿La Verneda es Sant Martí?', a: 'Sí, pero el mercado no es el de Poblenou. Valoramos con comparables de Verneda y Pau.' },
       { q: '¿Tiempo de venta?', a: 'Con precio alineado, 50–90 días es habitual.' },
-      { q: '¿Honorarios?', a: 'Precio fijo 3.000 € + IVA solo en escritura.' },
+      { q: '¿Honorarios?', a: 'Precio fijo 3.500 € + IVA solo en escritura.' },
     ],
   },
 ];
@@ -401,12 +401,12 @@ function buildVender(cfg) {
     heroImageAlt: cfg.heroImageAlt,
     meta: {
       title: `Vender piso en ${cfg.barrio}, Barcelona · Precio fijo · NuevaHabitat`,
-      description: `¿Vendes en ${cfg.barrio}? Honorarios fijos 3.000€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts. ${cfg.precioM2}.`,
+      description: `¿Vendes en ${cfg.barrio}? Honorarios fijos 3.500€ + IVA, compradores filtrados y valoración en 24 h desde Les Corts. ${cfg.precioM2}.`,
       keywords: cfg.keywords,
     },
     hero: {
       h1: `¿Vendes tu piso en ${cfg.barrio}?`,
-      lead: `Vende en ${cfg.barrio} con <strong>honorarios fijos de 3.000€ + IVA</strong>, valoración por micro-zona (${cfg.precioM2}) y compradores con solvencia contrastada — desde Les Corts.`,
+      lead: `Vende en ${cfg.barrio} con <strong>honorarios fijos de 3.500€ + IVA</strong>, valoración por micro-zona (${cfg.precioM2}) y compradores con solvencia contrastada — desde Les Corts.`,
     },
     argumento_principal,
     checklist: {
@@ -418,7 +418,7 @@ function buildVender(cfg) {
         'Nota simple y estado de comunidad',
         'Fotos que muestren distribución real',
         'Hipoteca del comprador verificada antes de visitas',
-        'Calcular 6% vs 3.630 € fijos',
+        'Calcular 6% vs 3.500 € + IVA fijos',
       ],
     },
     faq: cfg.faq,

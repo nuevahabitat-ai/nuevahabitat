@@ -1,5 +1,6 @@
 /** Markup compartido calculadora ahorro — build landings + vender.html */
-const NH_FEE_EUR = 3630;
+const NH_FEE_EUR = 3500;
+const NH_FEE_LABEL = '3.500 € + IVA';
 const DEFAULT_PCT = 6;
 
 function calcValues(precio, pct = DEFAULT_PCT) {
@@ -16,7 +17,7 @@ function calcValues(precio, pct = DEFAULT_PCT) {
     saveFmt: save.toLocaleString('es-ES') + ' €',
     tradVal,
     saveVal: save,
-    nhFmt: NH_FEE_EUR.toLocaleString('es-ES') + ' €',
+    nhFmt: NH_FEE_LABEL,
     tradPct: Math.min(100, Math.round((tradVal / (tradVal + NH_FEE_EUR)) * 100)) || 50,
     nhPct: Math.max(8, 100 - Math.min(100, Math.round((tradVal / (tradVal + NH_FEE_EUR)) * 100))),
   };
@@ -25,7 +26,7 @@ function calcValues(precio, pct = DEFAULT_PCT) {
 function savingsCalcMarkup(opts = {}) {
   const c = calcValues(opts.precio || opts.precioDefault || 420000, opts.pct || DEFAULT_PCT);
   const titulo = opts.titulo || 'Compara honorarios de agencia vs precio fijo';
-  const subtitulo = opts.subtitulo || 'Introduce el precio de venta estimado y el porcentaje de comisión habitual en Barcelona. NuevaHabitat cobra 3.000 € + IVA, solo en escritura.';
+  const subtitulo = opts.subtitulo || 'Introduce el precio de venta estimado y el porcentaje de comisión habitual en Barcelona. NuevaHabitat cobra 3.500 € + IVA, solo en escritura.';
   const dark = opts.dark !== false;
   const sectionCls = dark ? 'nh-savings-calc-section nh-savings-calc-section--dark' : 'nh-savings-calc-section';
   const cta = opts.ctaHref || '#valorar';
@@ -59,7 +60,7 @@ function savingsCalcMarkup(opts = {}) {
             ${pctBtn(3)}${pctBtn(4)}${pctBtn(5)}${pctBtn(6)}
           </div>
         </div>
-        <p class="nh-sc-note">Cálculo orientativo: comisión + IVA (21%) frente a 3.000 € + IVA de NuevaHabitat, cobrados únicamente en escritura.</p>
+        <p class="nh-sc-note">Cálculo orientativo: comisión + IVA (21%) frente a 3.500 € + IVA de NuevaHabitat (honorarios base en barra; IVA aparte en factura).</p>
       </div>
       <div class="nh-sc-panel nh-sc-panel--viz">
         <div class="nh-sc-save-block">

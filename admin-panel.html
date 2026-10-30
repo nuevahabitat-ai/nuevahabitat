@@ -1221,7 +1221,7 @@ select.adm-control{
           <div class="vend-tab-pane" id="vend-pane-honorarios">
             <div class="wiz-section-label">¿Quién paga los honorarios?</div>
             <div class="vend-hon-pills" id="v-hon-pills">
-              <button type="button" class="vend-hon-pill vendedor" data-pago="vendedor" onclick="vendSetPagoPor('vendedor')">Solo vendedor · 3.630 €</button>
+              <button type="button" class="vend-hon-pill vendedor" data-pago="vendedor" onclick="vendSetPagoPor('vendedor')">Solo vendedor · 3.500 € + IVA</button>
               <button type="button" class="vend-hon-pill comprador" data-pago="comprador" onclick="vendSetPagoPor('comprador')">Solo comprador · 6.050 €</button>
               <button type="button" class="vend-hon-pill ambos" data-pago="ambos" onclick="vendSetPagoPor('ambos')">Ambos pagan</button>
               <button type="button" class="vend-hon-pill exento" data-pago="exento" onclick="vendSetPagoPor('exento')">Exento · 0 €</button>
@@ -1232,8 +1232,8 @@ select.adm-control{
             <div class="adm-form-grid">
               <div class="adm-field">
                 <label>Honorarios vendedor (€, IVA incl.)</label>
-                <input type="number" id="v-honorarios" min="0" step="1" value="3630" oninput="vendUpdateHonSummary('form')"/>
-                <small class="text-muted" style="font-size:.68rem">Estándar: 3.000 € + 21% IVA = 3.630 €</small>
+                <input type="number" id="v-honorarios" min="0" step="1" value="4235" oninput="vendUpdateHonSummary('form')"/>
+                <small class="text-muted" style="font-size:.68rem">Estándar: 3.000 € + 21% IVA = 3.500 € + IVA</small>
               </div>
               <div class="adm-field">
                 <label>Honorarios comprador (€)</label>
@@ -7034,10 +7034,10 @@ async function toggleActivoComp(id, nuevoValor){
 /* ═══════════════════════════════════════════════════════════════
    VENDEDORES
    ══════════════════════════════════════════════════════════════ */
-const HONORARIOS_VENDEDOR_IVA = 3630;
+const HONORARIOS_VENDEDOR_IVA = 4235;
 const HONORARIOS_COMPRADOR_IVA = 6050;
 const HONORARIOS_PAGO_LABELS = {
-  vendedor: 'Solo vendedor paga (3.630 € IVA incl.)',
+  vendedor: 'Solo vendedor paga (3.500 € + IVA)',
   comprador: 'Solo comprador paga (6.050 € IVA incl.)',
   ambos: 'Vendedor y comprador pagan cada uno sus honorarios',
   exento: 'Operación exenta — honorarios a 0 €',
@@ -7604,7 +7604,7 @@ function renderVendModalBody(v){
   if(_vendModalTab === 'honorarios'){
     body.innerHTML = `
       <div class="vend-hon-pills" id="vend-modal-hon-pills">
-        <button type="button" class="vend-hon-pill vendedor${modo==='vendedor'?' active':''}" data-pago="vendedor" onclick="vendModalSetPago('vendedor')">Solo vendedor · 3.630 €</button>
+        <button type="button" class="vend-hon-pill vendedor${modo==='vendedor'?' active':''}" data-pago="vendedor" onclick="vendModalSetPago('vendedor')">Solo vendedor · 3.500 € + IVA</button>
         <button type="button" class="vend-hon-pill comprador${modo==='comprador'?' active':''}" data-pago="comprador" onclick="vendModalSetPago('comprador')">Solo comprador · 6.050 €</button>
         <button type="button" class="vend-hon-pill ambos${modo==='ambos'?' active':''}" data-pago="ambos" onclick="vendModalSetPago('ambos')">Ambos pagan</button>
         <button type="button" class="vend-hon-pill exento${modo==='exento'?' active':''}" data-pago="exento" onclick="vendModalSetPago('exento')">Exento · 0 €</button>
