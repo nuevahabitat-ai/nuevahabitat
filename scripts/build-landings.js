@@ -924,6 +924,12 @@ function main() {
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'comprador')))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'alquiler')));
 
+  try {
+    require('./sync-keywords-map').main();
+  } catch (e) {
+    console.warn('sync-keywords-map:', e.message);
+  }
+
   const errors = validateLandings(generated);
   if (errors.length) {
     console.error('validate-landings FAILED:\n' + errors.map((e) => '  - ' + e).join('\n'));

@@ -1,4 +1,805 @@
 {
+  "administracion-alquiler-barcelona": {
+    "keyword": "administracion alquiler barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-barcelona",
+    "aliases": [
+      "administracion alquiler barcelona gestion",
+      "barcelona alquiler propietarios",
+      "gestionar alquiler 080xx",
+      "administrar renta barcelona"
+    ]
+  },
+  "administracion-alquiler-barceloneta-barcelona": {
+    "keyword": "administracion alquiler barceloneta barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-barceloneta-barcelona",
+    "aliases": [
+      "administracion alquiler barceloneta barcelona gestion",
+      "la barceloneta alquiler propietarios",
+      "gestionar alquiler 08003",
+      "administrar renta Barceloneta"
+    ]
+  },
+  "administracion-alquiler-baro-de-viver-barcelona": {
+    "keyword": "administracion alquiler baro de viver barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-baro-de-viver-barcelona",
+    "aliases": [
+      "administracion alquiler baro de viver barcelona gestion",
+      "baró de viver alquiler propietarios",
+      "gestionar alquiler 08020",
+      "administrar renta Baró de Viver"
+    ]
+  },
+  "administracion-alquiler-bon-pastor-barcelona": {
+    "keyword": "administracion alquiler bon pastor barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-bon-pastor-barcelona",
+    "aliases": [
+      "administracion alquiler bon pastor barcelona gestion",
+      "bon pastor alquiler propietarios",
+      "gestionar alquiler 08030",
+      "administrar renta Bon Pastor"
+    ]
+  },
+  "administracion-alquiler-ciutat-meridiana-barcelona": {
+    "keyword": "administracion alquiler ciutat meridiana barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-ciutat-meridiana-barcelona",
+    "aliases": [
+      "administracion alquiler ciutat meridiana barcelona gestion",
+      "ciutat meridiana alquiler propietarios",
+      "gestionar alquiler 08033",
+      "administrar renta ciutat meridiana"
+    ]
+  },
+  "administracion-alquiler-cornella-de-llobregat": {
+    "keyword": "administracion alquiler cornella de llobregat",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-cornella-de-llobregat",
+    "aliases": [
+      "administracion alquiler cornella de llobregat gestion",
+      "cornellà de llobregat alquiler propietarios",
+      "gestionar alquiler 08940",
+      "administrar renta Cornellà"
+    ]
+  },
+  "administracion-alquiler-el-carmel-barcelona": {
+    "keyword": "administracion alquiler el carmel barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-el-carmel-barcelona",
+    "aliases": [
+      "administracion alquiler el carmel barcelona gestion",
+      "el carmel alquiler propietarios",
+      "gestionar alquiler 08032",
+      "administrar renta El Carmel"
+    ]
+  },
+  "administracion-alquiler-esplugues-de-llobregat": {
+    "keyword": "administracion alquiler esplugues de llobregat",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-esplugues-de-llobregat",
+    "aliases": [
+      "administracion alquiler esplugues de llobregat gestion",
+      "esplugues de llobregat alquiler propietarios",
+      "gestionar alquiler 08950",
+      "administrar renta Esplugues"
+    ]
+  },
+  "administracion-alquiler-fort-pienc-barcelona": {
+    "keyword": "administracion alquiler fort pienc barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-fort-pienc-barcelona",
+    "aliases": [
+      "administracion alquiler fort pienc barcelona gestion",
+      "fort pienc alquiler propietarios",
+      "gestionar alquiler 08018",
+      "administrar renta Fort Pienc"
+    ]
+  },
+  "administracion-alquiler-guinardo-barcelona": {
+    "keyword": "administracion alquiler guinardo barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-guinardo-barcelona",
+    "aliases": [
+      "administracion alquiler guinardo barcelona gestion",
+      "el guinardó alquiler propietarios",
+      "gestionar alquiler 08041",
+      "administrar renta Guinardó"
+    ]
+  },
+  "administracion-alquiler-la-sagrera-barcelona": {
+    "keyword": "administracion alquiler la sagrera barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-la-sagrera-barcelona",
+    "aliases": [
+      "administracion alquiler la sagrera barcelona gestion",
+      "la sagrera alquiler propietarios",
+      "gestionar alquiler 08027",
+      "administrar renta La Sagrera"
+    ]
+  },
+  "administracion-alquiler-montjuic-barcelona": {
+    "keyword": "administracion alquiler montjuic barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-montjuic-barcelona",
+    "aliases": [
+      "administracion alquiler montjuic barcelona gestion",
+      "montjuïc alquiler propietarios",
+      "gestionar alquiler 08004",
+      "administrar renta Montjuïc"
+    ]
+  },
+  "administracion-alquiler-navas-barcelona": {
+    "keyword": "administracion alquiler navas barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-navas-barcelona",
+    "aliases": [
+      "administracion alquiler navas barcelona gestion",
+      "navas alquiler propietarios",
+      "gestionar alquiler 08027",
+      "administrar renta Navas"
+    ]
+  },
+  "administracion-alquiler-poble-sec-barcelona": {
+    "keyword": "administracion alquiler poble sec barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-poble-sec-barcelona",
+    "aliases": [
+      "administracion alquiler poble sec barcelona gestion",
+      "poble-sec alquiler propietarios",
+      "gestionar alquiler 08004",
+      "administrar renta Poble-sec"
+    ]
+  },
+  "administracion-alquiler-porta-barcelona": {
+    "keyword": "administracion alquiler porta barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-porta-barcelona",
+    "aliases": [
+      "administracion alquiler porta barcelona gestion",
+      "porta alquiler propietarios",
+      "gestionar alquiler 08016",
+      "administrar renta porta"
+    ]
+  },
+  "administracion-alquiler-provencals-del-poblenou-barcelona": {
+    "keyword": "administracion alquiler provencals del poblenou barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-provencals-del-poblenou-barcelona",
+    "aliases": [
+      "administracion alquiler provencals del poblenou barcelona gestion",
+      "provençals del poblenou alquiler propietarios",
+      "gestionar alquiler 08005",
+      "administrar renta Provençals"
+    ]
+  },
+  "administracion-alquiler-putxet-farro-barcelona": {
+    "keyword": "administracion alquiler putxet farro barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-putxet-farro-barcelona",
+    "aliases": [
+      "administracion alquiler putxet farro barcelona gestion",
+      "el putxet i el farró alquiler propietarios",
+      "gestionar alquiler 08017",
+      "administrar renta Putxet"
+    ]
+  },
+  "administracion-alquiler-raval-barcelona": {
+    "keyword": "administracion alquiler raval barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-raval-barcelona",
+    "aliases": [
+      "administracion alquiler raval barcelona gestion",
+      "el raval alquiler propietarios",
+      "gestionar alquiler 08001",
+      "administrar renta Raval"
+    ]
+  },
+  "administracion-alquiler-roquetes-barcelona": {
+    "keyword": "administracion alquiler roquetes barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-roquetes-barcelona",
+    "aliases": [
+      "administracion alquiler roquetes barcelona gestion",
+      "roquetes alquiler propietarios",
+      "gestionar alquiler 08042",
+      "administrar renta Roquetes"
+    ]
+  },
+  "administracion-alquiler-sant-antoni-barcelona": {
+    "keyword": "administracion alquiler sant antoni barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-sant-antoni-barcelona",
+    "aliases": [
+      "administracion alquiler sant antoni barcelona gestion",
+      "sant antoni alquiler propietarios",
+      "gestionar alquiler 08015",
+      "administrar renta Sant Antoni"
+    ]
+  },
+  "administracion-alquiler-sant-boi-de-llobregat": {
+    "keyword": "administracion alquiler sant boi de llobregat",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-sant-boi-de-llobregat",
+    "aliases": [
+      "administracion alquiler sant boi de llobregat gestion",
+      "sant boi de llobregat alquiler propietarios",
+      "gestionar alquiler 08830",
+      "administrar renta Sant Boi"
+    ]
+  },
+  "administracion-alquiler-sant-joan-despi": {
+    "keyword": "administracion alquiler sant joan despi",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-sant-joan-despi",
+    "aliases": [
+      "administracion alquiler sant joan despi gestion",
+      "sant joan despí alquiler propietarios",
+      "gestionar alquiler 08970",
+      "administrar renta Sant Joan Despí"
+    ]
+  },
+  "administracion-alquiler-tetuan-barcelona": {
+    "keyword": "administracion alquiler tetuan barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-tetuan-barcelona",
+    "aliases": [
+      "administracion alquiler tetuan barcelona gestion",
+      "tetuan alquiler propietarios",
+      "gestionar alquiler 08018",
+      "administrar renta Tetuan"
+    ]
+  },
+  "administracion-alquiler-torre-baro-barcelona": {
+    "keyword": "administracion alquiler torre baro barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-torre-baro-barcelona",
+    "aliases": [
+      "administracion alquiler torre baro barcelona gestion",
+      "torre baró alquiler propietarios",
+      "gestionar alquiler 08031",
+      "administrar renta Torre Baró"
+    ]
+  },
+  "administracion-alquiler-trinitat-nova-barcelona": {
+    "keyword": "administracion alquiler trinitat nova barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-trinitat-nova-barcelona",
+    "aliases": [
+      "administracion alquiler trinitat nova barcelona gestion",
+      "la trinitat nova alquiler propietarios",
+      "gestionar alquiler 08033",
+      "administrar renta la trinitat nova"
+    ]
+  },
+  "administracion-alquiler-trinitat-vella-barcelona": {
+    "keyword": "administracion alquiler trinitat vella barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-trinitat-vella-barcelona",
+    "aliases": [
+      "administracion alquiler trinitat vella barcelona gestion",
+      "trinitat vella alquiler propietarios",
+      "gestionar alquiler 08020",
+      "administrar renta Trinitat Vella"
+    ]
+  },
+  "administracion-alquiler-turo-peira-barcelona": {
+    "keyword": "administracion alquiler turo de la peira barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-turo-peira-barcelona",
+    "aliases": [
+      "administracion alquiler turo de la peira barcelona gestion",
+      "turó de la peira alquiler propietarios",
+      "gestionar alquiler 08031",
+      "administrar renta turó de la peira"
+    ]
+  },
+  "administracion-alquiler-vallcarca-barcelona": {
+    "keyword": "administracion alquiler vallcarca barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-vallcarca-barcelona",
+    "aliases": [
+      "administracion alquiler vallcarca barcelona gestion",
+      "vallcarca i els penitents alquiler propietarios",
+      "gestionar alquiler 08023",
+      "administrar renta vallcarca i els penitents"
+    ]
+  },
+  "administracion-alquiler-verdum-barcelona": {
+    "keyword": "administracion alquiler verdum barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-verdum-barcelona",
+    "aliases": [
+      "administracion alquiler verdum barcelona gestion",
+      "verdum alquiler propietarios",
+      "gestionar alquiler 08042",
+      "administrar renta Verdum"
+    ]
+  },
+  "administracion-alquiler-verneda-barcelona": {
+    "keyword": "administracion alquiler verneda barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-verneda-barcelona",
+    "aliases": [
+      "administracion alquiler verneda barcelona gestion",
+      "la verneda i la pau alquiler propietarios",
+      "gestionar alquiler 08020",
+      "administrar renta La Verneda"
+    ]
+  },
+  "administracion-alquiler-zona-universitaria-barcelona": {
+    "keyword": "administracion alquiler zona universitaria barcelona",
+    "cluster": "alquiler",
+    "canonical": "/administracion-alquiler-zona-universitaria-barcelona",
+    "aliases": [
+      "administracion alquiler zona universitaria barcelona gestion",
+      "zona universitaria alquiler propietarios",
+      "gestionar alquiler 08028",
+      "administrar renta Zona Univ."
+    ]
+  },
+  "alquiler-integral-barcelona": {
+    "keyword": "alquiler integral barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-barcelona",
+    "aliases": [
+      "alquiler integral barcelona gestion",
+      "barcelona alquiler propietarios",
+      "gestionar alquiler 080xx",
+      "alquilar piso barcelona"
+    ]
+  },
+  "alquiler-integral-bon-pastor-barcelona": {
+    "keyword": "alquiler integral bon pastor barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-bon-pastor-barcelona",
+    "aliases": [
+      "alquiler integral bon pastor barcelona gestion",
+      "bon pastor alquiler propietarios",
+      "alquilar piso Bon Pastor",
+      "alquiler integral 08030"
+    ]
+  },
+  "alquiler-integral-camp-de-larpa-barcelona": {
+    "keyword": "alquiler integral camp de larpa barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-camp-de-larpa-barcelona",
+    "aliases": [
+      "alquiler integral camp de larpa barcelona gestion",
+      "camp de l'arpa del clot alquiler propietarios",
+      "alquilar piso Camp de l'Arpa",
+      "alquiler integral 08018"
+    ]
+  },
+  "alquiler-integral-camp-den-grassot-barcelona": {
+    "keyword": "alquiler integral camp den grassot barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-camp-den-grassot-barcelona",
+    "aliases": [
+      "alquiler integral camp den grassot barcelona gestion",
+      "camp d'en grassot i gràcia nova alquiler propietarios",
+      "alquilar piso Camp d'en Grassot",
+      "alquiler integral 08025"
+    ]
+  },
+  "alquiler-integral-can-baro-barcelona": {
+    "keyword": "alquiler integral can baro barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-can-baro-barcelona",
+    "aliases": [
+      "alquiler integral can baro barcelona gestion",
+      "can baró alquiler propietarios",
+      "gestionar alquiler 08032",
+      "alquilar piso can baró"
+    ]
+  },
+  "alquiler-integral-ciutat-meridiana-barcelona": {
+    "keyword": "alquiler integral ciutat meridiana barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-ciutat-meridiana-barcelona",
+    "aliases": [
+      "alquiler integral ciutat meridiana barcelona gestion",
+      "ciutat meridiana alquiler propietarios",
+      "alquilar piso Ciutat Meridiana",
+      "alquiler integral 08033"
+    ]
+  },
+  "alquiler-integral-congres-indians-barcelona": {
+    "keyword": "alquiler integral congres indians barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-congres-indians-barcelona",
+    "aliases": [
+      "alquiler integral congres indians barcelona gestion",
+      "congrés i els indians alquiler propietarios",
+      "gestionar alquiler 08027",
+      "alquilar piso congrés i els indians"
+    ]
+  },
+  "alquiler-integral-el-besos-barcelona": {
+    "keyword": "alquiler integral el besos barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-el-besos-barcelona",
+    "aliases": [
+      "alquiler integral el besos barcelona gestion",
+      "el besos i el maresme alquiler propietarios",
+      "alquilar piso El Besos",
+      "alquiler integral 08019"
+    ]
+  },
+  "alquiler-integral-el-carmel-barcelona": {
+    "keyword": "alquiler integral el carmel barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-el-carmel-barcelona",
+    "aliases": [
+      "alquiler integral el carmel barcelona gestion",
+      "el carmel alquiler propietarios",
+      "gestionar alquiler 08032",
+      "alquilar piso el carmel"
+    ]
+  },
+  "alquiler-integral-esplugues-de-llobregat": {
+    "keyword": "alquiler integral esplugues de llobregat",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-esplugues-de-llobregat",
+    "aliases": [
+      "alquiler integral esplugues de llobregat gestion",
+      "esplugues de llobregat alquiler propietarios",
+      "alquilar piso Esplugues",
+      "alquiler integral 08950"
+    ]
+  },
+  "alquiler-integral-guinardo-barcelona": {
+    "keyword": "alquiler integral guinardo barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-guinardo-barcelona",
+    "aliases": [
+      "alquiler integral guinardo barcelona gestion",
+      "el guinardo alquiler propietarios",
+      "alquilar piso Guinardo",
+      "alquiler integral 08041"
+    ]
+  },
+  "alquiler-integral-hostafrancs-barcelona": {
+    "keyword": "alquiler integral hostafrancs barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-hostafrancs-barcelona",
+    "aliases": [
+      "alquiler integral hostafrancs barcelona gestion",
+      "hostafrancs alquiler propietarios",
+      "alquilar piso Hostafrancs",
+      "alquiler integral 08014"
+    ]
+  },
+  "alquiler-integral-l-hospitalet-de-llobregat": {
+    "keyword": "alquiler integral l hospitalet de llobregat",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-l-hospitalet-de-llobregat",
+    "aliases": [
+      "alquiler integral l hospitalet de llobregat gestion",
+      "l'hospitalet de llobregat alquiler propietarios",
+      "alquilar piso L'Hospitalet",
+      "alquiler integral 08901"
+    ]
+  },
+  "alquiler-integral-la-bordeta-barcelona": {
+    "keyword": "alquiler integral la bordeta barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-la-bordeta-barcelona",
+    "aliases": [
+      "alquiler integral la bordeta barcelona gestion",
+      "la bordeta alquiler propietarios",
+      "alquilar piso La Bordeta",
+      "alquiler integral 08014"
+    ]
+  },
+  "alquiler-integral-la-marina-barcelona": {
+    "keyword": "alquiler integral la marina barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-la-marina-barcelona",
+    "aliases": [
+      "alquiler integral la marina barcelona gestion",
+      "la marina alquiler propietarios",
+      "alquilar piso La Marina",
+      "alquiler integral 08038"
+    ]
+  },
+  "alquiler-integral-la-sagrera-barcelona": {
+    "keyword": "alquiler integral la sagrera barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-la-sagrera-barcelona",
+    "aliases": [
+      "alquiler integral la sagrera barcelona gestion",
+      "la sagrera alquiler propietarios",
+      "alquilar piso La Sagrera",
+      "alquiler integral 08027"
+    ]
+  },
+  "alquiler-integral-montjuic-barcelona": {
+    "keyword": "alquiler integral montjuic barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-montjuic-barcelona",
+    "aliases": [
+      "alquiler integral montjuic barcelona gestion",
+      "montjuïc alquiler propietarios",
+      "alquilar piso Montjuïc",
+      "alquiler integral 08004"
+    ]
+  },
+  "alquiler-integral-navas-barcelona": {
+    "keyword": "alquiler integral navas barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-navas-barcelona",
+    "aliases": [
+      "alquiler integral navas barcelona gestion",
+      "navas alquiler propietarios",
+      "alquilar piso Navas",
+      "alquiler integral 08030"
+    ]
+  },
+  "alquiler-integral-porta-barcelona": {
+    "keyword": "alquiler integral porta barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-porta-barcelona",
+    "aliases": [
+      "alquiler integral porta barcelona gestion",
+      "porta alquiler propietarios",
+      "alquilar piso Porta",
+      "alquiler integral 08016"
+    ]
+  },
+  "alquiler-integral-putxet-farro-barcelona": {
+    "keyword": "alquiler integral putxet farro barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-putxet-farro-barcelona",
+    "aliases": [
+      "alquiler integral putxet farro barcelona gestion",
+      "el putxet i el farró alquiler propietarios",
+      "gestionar alquiler 08017",
+      "alquilar piso el putxet i el farró"
+    ]
+  },
+  "alquiler-integral-raval-barcelona": {
+    "keyword": "alquiler integral raval barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-raval-barcelona",
+    "aliases": [
+      "alquiler integral raval barcelona gestion",
+      "el raval alquiler propietarios",
+      "alquilar piso Raval",
+      "alquiler integral 08001"
+    ]
+  },
+  "alquiler-integral-roquetes-barcelona": {
+    "keyword": "alquiler integral roquetes barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-roquetes-barcelona",
+    "aliases": [
+      "alquiler integral roquetes barcelona gestion",
+      "roquetes alquiler propietarios",
+      "alquilar piso Roquetes",
+      "alquiler integral 08020"
+    ]
+  },
+  "alquiler-integral-sant-boi-de-llobregat": {
+    "keyword": "alquiler integral sant boi de llobregat",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-sant-boi-de-llobregat",
+    "aliases": [
+      "alquiler integral sant boi de llobregat gestion",
+      "sant boi de llobregat alquiler propietarios",
+      "alquilar piso Sant Boi",
+      "alquiler integral 08830"
+    ]
+  },
+  "alquiler-integral-sant-joan-despi": {
+    "keyword": "alquiler integral sant joan despi",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-sant-joan-despi",
+    "aliases": [
+      "alquiler integral sant joan despi gestion",
+      "sant joan despí alquiler propietarios",
+      "alquilar piso Sant Joan Despí",
+      "alquiler integral 08970"
+    ]
+  },
+  "alquiler-integral-tetuan-barcelona": {
+    "keyword": "alquiler integral tetuan barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-tetuan-barcelona",
+    "aliases": [
+      "alquiler integral tetuan barcelona gestion",
+      "tetuan alquiler propietarios",
+      "alquilar piso Tetuan",
+      "alquiler integral 08018"
+    ]
+  },
+  "alquiler-integral-trinitat-nova-barcelona": {
+    "keyword": "alquiler integral trinitat nova barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-trinitat-nova-barcelona",
+    "aliases": [
+      "alquiler integral trinitat nova barcelona gestion",
+      "la trinitat nova alquiler propietarios",
+      "alquilar piso Trinitat Nova",
+      "alquiler integral 08033"
+    ]
+  },
+  "alquiler-integral-vallcarca-barcelona": {
+    "keyword": "alquiler integral vallcarca barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-vallcarca-barcelona",
+    "aliases": [
+      "alquiler integral vallcarca barcelona gestion",
+      "vallcarca i els penitents alquiler propietarios",
+      "alquilar piso Vallcarca",
+      "alquiler integral 08023"
+    ]
+  },
+  "alquiler-integral-verdum-barcelona": {
+    "keyword": "alquiler integral verdum barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-verdum-barcelona",
+    "aliases": [
+      "alquiler integral verdum barcelona gestion",
+      "verdum alquiler propietarios",
+      "alquilar piso Verdum",
+      "alquiler integral 08042"
+    ]
+  },
+  "alquiler-integral-verneda-barcelona": {
+    "keyword": "alquiler integral verneda barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-verneda-barcelona",
+    "aliases": [
+      "alquiler integral verneda barcelona gestion",
+      "la verneda i la pau alquiler propietarios",
+      "alquilar piso La Verneda",
+      "alquiler integral 08020"
+    ]
+  },
+  "alquiler-integral-zona-universitaria-barcelona": {
+    "keyword": "alquiler integral zona universitaria barcelona",
+    "cluster": "alquiler",
+    "canonical": "/alquiler-integral-zona-universitaria-barcelona",
+    "aliases": [
+      "alquiler integral zona universitaria barcelona gestion",
+      "zona universitària alquiler propietarios",
+      "gestionar alquiler 08028",
+      "alquilar piso zona universitària"
+    ]
+  },
+  "comprar-piso-badalona-barcelona": {
+    "keyword": "comprar piso badalona barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-badalona-barcelona"
+  },
+  "comprar-piso-barcelona": {
+    "keyword": "comprar piso barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-barcelona"
+  },
+  "comprar-piso-ciutat-vella-barcelona": {
+    "keyword": "comprar piso ciutat vella barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-ciutat-vella-barcelona"
+  },
+  "comprar-piso-cornella-barcelona": {
+    "keyword": "comprar piso cornella barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-cornella-barcelona"
+  },
+  "comprar-piso-diagonal-mar-barcelona": {
+    "keyword": "comprar piso diagonal mar barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-diagonal-mar-barcelona"
+  },
+  "comprar-piso-eixample-barcelona": {
+    "keyword": "comprar piso eixample barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-eixample-barcelona"
+  },
+  "comprar-piso-el-clot-barcelona": {
+    "keyword": "comprar piso el clot barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-el-clot-barcelona"
+  },
+  "comprar-piso-esplugues-barcelona": {
+    "keyword": "comprar piso esplugues barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-esplugues-barcelona"
+  },
+  "comprar-piso-fort-pienc-barcelona": {
+    "keyword": "comprar piso fort pienc barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-fort-pienc-barcelona"
+  },
+  "comprar-piso-gracia-barcelona": {
+    "keyword": "comprar piso gracia barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-gracia-barcelona"
+  },
+  "comprar-piso-guinardo-barcelona": {
+    "keyword": "comprar piso guinardo barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-guinardo-barcelona"
+  },
+  "comprar-piso-horta-barcelona": {
+    "keyword": "comprar piso horta barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-horta-barcelona"
+  },
+  "comprar-piso-l-hospitalet-barcelona": {
+    "keyword": "comprar piso l hospitalet barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-l-hospitalet-barcelona"
+  },
+  "comprar-piso-les-corts-barcelona": {
+    "keyword": "comprar piso les corts barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-les-corts-barcelona"
+  },
+  "comprar-piso-nou-barris-barcelona": {
+    "keyword": "comprar piso nou barris barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-nou-barris-barcelona"
+  },
+  "comprar-piso-poble-sec-barcelona": {
+    "keyword": "comprar piso poble sec barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-poble-sec-barcelona"
+  },
+  "comprar-piso-poblenou-barcelona": {
+    "keyword": "comprar piso poblenou barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-poblenou-barcelona"
+  },
+  "comprar-piso-raval-barcelona": {
+    "keyword": "comprar piso raval barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-raval-barcelona"
+  },
+  "comprar-piso-sant-andreu-barcelona": {
+    "keyword": "comprar piso sant andreu barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-sant-andreu-barcelona"
+  },
+  "comprar-piso-sant-antoni-barcelona": {
+    "keyword": "comprar piso sant antoni barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-sant-antoni-barcelona"
+  },
+  "comprar-piso-sant-gervasi-barcelona": {
+    "keyword": "comprar piso sant gervasi barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-sant-gervasi-barcelona"
+  },
+  "comprar-piso-sant-marti-barcelona": {
+    "keyword": "comprar piso sant marti barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-sant-marti-barcelona"
+  },
+  "comprar-piso-sants-barcelona": {
+    "keyword": "comprar piso sants barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-sants-barcelona"
+  },
+  "comprar-piso-sarria-barcelona": {
+    "keyword": "comprar piso sarria barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-sarria-barcelona"
+  },
+  "comprar-piso-vila-olimpica-barcelona": {
+    "keyword": "comprar piso vila olimpica barcelona",
+    "cluster": "comprador",
+    "canonical": "/comprar-piso-vila-olimpica-barcelona"
+  },
+  "cuanto-vale-mi-piso-barcelona": {
+    "keyword": "cuanto vale mi piso barcelona",
+    "cluster": "situacion",
+    "canonical": "/cuanto-vale-mi-piso-barcelona"
+  },
   "inmobiliaria-para-particulares-badalona-barcelona": {
     "keyword": "inmobiliaria para particulares badalona barcelona",
     "cluster": "intencion",
@@ -14,8 +815,10 @@
     "cluster": "intencion",
     "canonical": "/inmobiliaria-para-particulares-barcelona",
     "aliases": [
-      "agencia inmobiliaria para vender piso barcelona",
       "inmobiliaria vendedores particulares barcelona",
+      "agencia inmobiliaria para vender piso barcelona",
+      "inmobiliaria que trabaja con particulares barcelona",
+      "mejor inmobiliaria para vender piso barcelona",
       "inmobiliaria propietarios barcelona"
     ]
   },
@@ -199,6 +1002,54 @@
       "vender piso particular con agencia sarrià"
     ]
   },
+  "inmobiliaria-precio-fijo-badalona-barcelona": {
+    "keyword": "inmobiliaria precio fijo badalona barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-badalona-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos badalona",
+      "vender piso particular badalona",
+      "agencia inmobiliaria gorg precio fijo",
+      "inmobiliaria badalona area metropolitana",
+      "vender piso 08911 precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-barcelona": {
+    "keyword": "inmobiliaria precio fijo barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos barcelona",
+      "vender piso particular barcelona",
+      "vender casa particular barcelona",
+      "inmobiliaria sin comision barcelona",
+      "agencia inmobiliaria precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-ciutat-vella-barcelona": {
+    "keyword": "inmobiliaria precio fijo ciutat vella barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-ciutat-vella-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos gothic barcelona",
+      "agencia inmobiliaria born precio fijo",
+      "vender piso particular raval agencia",
+      "inmobiliaria barceloneta honorarios fijos",
+      "inmobiliaria centro historico barcelona precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-cornella-barcelona": {
+    "keyword": "inmobiliaria precio fijo cornella barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-cornella-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos cornella",
+      "vender piso particular cornella",
+      "agencia inmobiliaria sant ildefons",
+      "inmobiliaria cornella centre",
+      "vender piso almeda cornella"
+    ]
+  },
   "inmobiliaria-precio-fijo-diagonal-mar-barcelona": {
     "keyword": "inmobiliaria precio fijo diagonal mar barcelona",
     "cluster": "intencion",
@@ -207,6 +1058,42 @@
       "inmobiliaria honorarios fijos diagonal mar",
       "vender piso particular diagonal mar",
       "agencia inmobiliaria diagonal mar precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-eixample-barcelona": {
+    "keyword": "inmobiliaria precio fijo eixample barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-eixample-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos eixample",
+      "vender piso particular eixample",
+      "agencia inmobiliaria sagrada familia",
+      "inmobiliaria passeig de gracia",
+      "vender piso sant antoni barcelona"
+    ]
+  },
+  "inmobiliaria-precio-fijo-el-clot-barcelona": {
+    "keyword": "inmobiliaria precio fijo el clot barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-el-clot-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos la sagrera",
+      "agencia inmobiliaria el clot",
+      "vender piso particular la sagrera agencia",
+      "inmobiliaria sant marti de provencals precio fijo",
+      "honorarios fijos 08018 08027"
+    ]
+  },
+  "inmobiliaria-precio-fijo-esplugues-barcelona": {
+    "keyword": "inmobiliaria precio fijo esplugues barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-esplugues-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos esplugues de llobregat",
+      "vender piso particular esplugues",
+      "agencia inmobiliaria can vidalet",
+      "inmobiliaria finestrelles precio fijo",
+      "honorarios fijos area metropolitana barcelona"
     ]
   },
   "inmobiliaria-precio-fijo-fort-pienc-barcelona": {
@@ -219,6 +1106,18 @@
       "agencia inmobiliaria fort pienc precio fijo"
     ]
   },
+  "inmobiliaria-precio-fijo-gracia-barcelona": {
+    "keyword": "inmobiliaria precio fijo gracia barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-gracia-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos gracia",
+      "vender piso particular gracia",
+      "agencia inmobiliaria vila de gracia",
+      "inmobiliaria camp grassot",
+      "vender piso vallcarca barcelona"
+    ]
+  },
   "inmobiliaria-precio-fijo-guinardo-barcelona": {
     "keyword": "inmobiliaria precio fijo el guinardó barcelona",
     "cluster": "intencion",
@@ -227,6 +1126,18 @@
       "inmobiliaria honorarios fijos el guinardó",
       "vender piso particular el guinardó",
       "agencia inmobiliaria el guinardó precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-horta-barcelona": {
+    "keyword": "inmobiliaria precio fijo horta barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-horta-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos horta guinardo",
+      "vender piso particular horta",
+      "agencia inmobiliaria montbau",
+      "inmobiliaria vall d hebron",
+      "vender piso la teixonera barcelona"
     ]
   },
   "inmobiliaria-precio-fijo-hostafrancs-barcelona": {
@@ -239,6 +1150,18 @@
       "agencia inmobiliaria hostafrancs precio fijo"
     ]
   },
+  "inmobiliaria-precio-fijo-l-hospitalet-barcelona": {
+    "keyword": "inmobiliaria precio fijo l hospitalet barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-l-hospitalet-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos hospitalet",
+      "vender piso particular l hospitalet",
+      "agencia inmobiliaria bellvitge precio fijo",
+      "inmobiliaria hospitalet de llobregat",
+      "vender piso area metropolitana barcelona"
+    ]
+  },
   "inmobiliaria-precio-fijo-la-sagrera-barcelona": {
     "keyword": "inmobiliaria precio fijo la sagrera barcelona",
     "cluster": "intencion",
@@ -247,6 +1170,18 @@
       "inmobiliaria honorarios fijos la sagrera",
       "vender piso particular la sagrera",
       "agencia inmobiliaria la sagrera precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-les-corts-barcelona": {
+    "keyword": "inmobiliaria precio fijo les corts barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-les-corts-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos les corts",
+      "vender piso particular les corts",
+      "agencia inmobiliaria les corts precio fijo",
+      "inmobiliaria numancia barcelona",
+      "vender piso zona universitaria barcelona"
     ]
   },
   "inmobiliaria-precio-fijo-montjuic-barcelona": {
@@ -259,6 +1194,18 @@
       "agencia inmobiliaria montjuïc precio fijo"
     ]
   },
+  "inmobiliaria-precio-fijo-nou-barris-barcelona": {
+    "keyword": "inmobiliaria precio fijo nou barris barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-nou-barris-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos nou barris",
+      "vender piso particular roquetes",
+      "agencia inmobiliaria verdum",
+      "inmobiliaria trinitat vella precio fijo",
+      "comision inmobiliaria nou barris"
+    ]
+  },
   "inmobiliaria-precio-fijo-pedralbes-barcelona": {
     "keyword": "inmobiliaria precio fijo pedralbes barcelona",
     "cluster": "intencion",
@@ -267,6 +1214,30 @@
       "inmobiliaria honorarios fijos pedralbes",
       "vender piso particular pedralbes",
       "agencia inmobiliaria pedralbes precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-poble-sec-barcelona": {
+    "keyword": "inmobiliaria precio fijo poble sec barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-poble-sec-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos poble sec",
+      "vender piso particular poble sec",
+      "agencia inmobiliaria parallel barcelona",
+      "inmobiliaria montjuic precio fijo",
+      "comision inmobiliaria poble sec"
+    ]
+  },
+  "inmobiliaria-precio-fijo-poblenou-barcelona": {
+    "keyword": "inmobiliaria precio fijo poblenou barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-poblenou-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos poblenou",
+      "agencia inmobiliaria 22 barcelona",
+      "vender piso particular vila olimpica",
+      "inmobiliaria rambla poblenou precio fijo",
+      "honorarios fijos 08005"
     ]
   },
   "inmobiliaria-precio-fijo-sagrada-familia-barcelona": {
@@ -279,6 +1250,42 @@
       "agencia inmobiliaria sagrada família precio fijo"
     ]
   },
+  "inmobiliaria-precio-fijo-sant-andreu-barcelona": {
+    "keyword": "inmobiliaria precio fijo sant andreu barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sant-andreu-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos sant andreu",
+      "vender piso particular sant andreu",
+      "agencia inmobiliaria sant andreu de palomar",
+      "inmobiliaria fabra i coats",
+      "vender piso congres indians barcelona"
+    ]
+  },
+  "inmobiliaria-precio-fijo-sant-antoni-barcelona": {
+    "keyword": "inmobiliaria precio fijo sant antoni barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sant-antoni-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos sant antoni",
+      "vender piso particular sant antoni",
+      "agencia inmobiliaria mercat sant antoni",
+      "vender piso superilla sant antoni",
+      "inmobiliaria comte borrell"
+    ]
+  },
+  "inmobiliaria-precio-fijo-sant-gervasi-barcelona": {
+    "keyword": "inmobiliaria precio fijo sant gervasi barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sant-gervasi-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos el putxet",
+      "vender piso particular el farro",
+      "agencia inmobiliaria via augusta",
+      "inmobiliaria sant gervasi sin comision 6",
+      "honorarios fijos 08021"
+    ]
+  },
   "inmobiliaria-precio-fijo-sant-marti-barcelona": {
     "keyword": "inmobiliaria precio fijo sant martí barcelona",
     "cluster": "intencion",
@@ -287,6 +1294,30 @@
       "inmobiliaria honorarios fijos sant martí",
       "vender piso particular sant martí",
       "agencia inmobiliaria sant martí precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-sants-barcelona": {
+    "keyword": "inmobiliaria precio fijo sants barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sants-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos sants",
+      "vender piso particular sants",
+      "agencia inmobiliaria hostafrancs",
+      "vender piso la bordeta",
+      "inmobiliaria estacio sants"
+    ]
+  },
+  "inmobiliaria-precio-fijo-sarria-barcelona": {
+    "keyword": "inmobiliaria precio fijo sarria barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sarria-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos sarria",
+      "vender piso particular sarria",
+      "agencia inmobiliaria bonanova",
+      "vender piso tres torres",
+      "inmobiliaria galvany precio fijo"
     ]
   },
   "inmobiliaria-precio-fijo-vila-olimpica-barcelona": {
@@ -305,7 +1336,18 @@
     "canonical": "/nuevahabitat-vs-agencia-tradicional-barcelona",
     "aliases": [
       "cuanto cobra inmobiliaria barcelona",
-      "agencia inmobiliaria 6 por ciento barcelona"
+      "agencia inmobiliaria 6 por ciento barcelona",
+      "inmobiliaria precio fijo barcelona"
+    ]
+  },
+  "nuevahabitat-vs-clikalia-barcelona": {
+    "keyword": "nuevahabitat vs clikalia barcelona",
+    "cluster": "comparativa",
+    "canonical": "/nuevahabitat-vs-clikalia-barcelona",
+    "aliases": [
+      "clikalia barcelona opiniones",
+      "vender piso rapido al instante barcelona",
+      "comprador instantaneo vivienda barcelona"
     ]
   },
   "nuevahabitat-vs-fotocasa-particular": {
@@ -314,7 +1356,9 @@
     "canonical": "/nuevahabitat-vs-fotocasa-particular",
     "aliases": [
       "vender piso fotocasa particular barcelona",
-      "fotocasa vs inmobiliaria barcelona"
+      "fotocasa vs inmobiliaria barcelona",
+      "vender en fotocasa o agencia barcelona",
+      "fotocasa particulares barcelona"
     ]
   },
   "nuevahabitat-vs-habitaclia-particular": {
@@ -327,6 +1371,16 @@
       "habitaclia vs inmobiliaria barcelona"
     ]
   },
+  "nuevahabitat-vs-housfy-barcelona": {
+    "keyword": "nuevahabitat vs housfy barcelona",
+    "cluster": "comparativa",
+    "canonical": "/nuevahabitat-vs-housfy-barcelona",
+    "aliases": [
+      "housfy barcelona opiniones",
+      "inmobiliarias de precio fijo barcelona",
+      "housfy vs inmobiliaria tradicional"
+    ]
+  },
   "nuevahabitat-vs-idealista-particular": {
     "keyword": "nuevahabitat vs idealista particular",
     "cluster": "comparativa",
@@ -334,7 +1388,41 @@
     "aliases": [
       "vender piso idealista particular barcelona",
       "idealista vs inmobiliaria barcelona",
-      "vender en idealista o agencia barcelona"
+      "vender en idealista o agencia barcelona",
+      "idealista particulares barcelona"
+    ]
+  },
+  "particular-vendo-piso-urgente-barcelona": {
+    "keyword": "particular vendo piso urgente barcelona",
+    "cluster": "intencion",
+    "canonical": "/particular-vendo-piso-urgente-barcelona",
+    "aliases": [
+      "vendo piso urgente barcelona",
+      "particular vende piso urgente barcelona",
+      "vender piso urgente particular barcelona"
+    ]
+  },
+  "vender-como-particular-badalona-barcelona": {
+    "keyword": "vender piso particular badalona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-badalona-barcelona",
+    "aliases": [
+      "vender mi piso badalona yo mismo",
+      "vender piso gorg particular",
+      "vender piso montigala sin agencia",
+      "vender piso 08911 particular"
+    ]
+  },
+  "vender-como-particular-barcelona": {
+    "keyword": "vender piso particular barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-barcelona",
+    "aliases": [
+      "vender mi piso yo mismo barcelona",
+      "vender casa particular barcelona",
+      "vender piso sin agencia barcelona",
+      "como vender piso siendo particular barcelona",
+      "vender piso por mi cuenta barcelona"
     ]
   },
   "vender-como-particular-barceloneta-barcelona": {
@@ -344,6 +1432,17 @@
     "aliases": [
       "vender mi piso barceloneta yo mismo",
       "vender casa particular barceloneta"
+    ]
+  },
+  "vender-como-particular-bon-pastor-barcelona": {
+    "keyword": "vender piso particular bon pastor barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-bon-pastor-barcelona",
+    "aliases": [
+      "vender mi piso bon pastor yo mismo",
+      "vender piso maquinista particular",
+      "vender piso 08030 particular",
+      "vender piso sant andreu bon pastor sin agencia"
     ]
   },
   "vender-como-particular-born-barcelona": {
@@ -364,6 +1463,62 @@
       "vender casa particular camp de l'arpa"
     ]
   },
+  "vender-como-particular-camp-den-grassot-barcelona": {
+    "keyword": "vender piso particular camp d'en grassot barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-camp-den-grassot-barcelona",
+    "aliases": [
+      "vender mi piso camp d'en grassot yo mismo",
+      "vender piso 08025 sin agencia",
+      "vender piso particular camp d'en grassot barcelona",
+      "vender vivienda camp d'en grassot particular"
+    ]
+  },
+  "vender-como-particular-ciutat-vella-barcelona": {
+    "keyword": "vender piso particular ciutat vella barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-ciutat-vella-barcelona",
+    "aliases": [
+      "vender piso yo mismo gothic barcelona",
+      "vender piso born particular",
+      "vender piso raval sin agencia",
+      "vender piso barceloneta particular",
+      "vender piso centro historico particular"
+    ]
+  },
+  "vender-como-particular-cornella-barcelona": {
+    "keyword": "vender piso particular cornella",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-cornella-barcelona",
+    "aliases": [
+      "vender mi piso cornella yo mismo",
+      "vender piso sant ildefons particular",
+      "vender piso cornella de llobregat sin agencia",
+      "vender piso 08940 particular"
+    ]
+  },
+  "vender-como-particular-diagonal-mar-barcelona": {
+    "keyword": "vender piso particular diagonal mar barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-diagonal-mar-barcelona",
+    "aliases": [
+      "vender mi piso diagonal mar yo mismo",
+      "vender piso 08019 sin agencia",
+      "vender piso particular diagonal mar barcelona",
+      "vender vivienda diagonal mar particular"
+    ]
+  },
+  "vender-como-particular-eixample-barcelona": {
+    "keyword": "vender piso particular eixample barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-eixample-barcelona",
+    "aliases": [
+      "vender mi piso eixample yo mismo",
+      "vender piso fort pienc particular",
+      "vender piso sant antoni eixample particular",
+      "vender finca eixample sin agencia"
+    ]
+  },
   "vender-como-particular-el-besos-barcelona": {
     "keyword": "vender piso particular el besòs barcelona",
     "cluster": "particular",
@@ -373,6 +1528,39 @@
       "vender casa particular el besòs"
     ]
   },
+  "vender-como-particular-el-clot-la-sagrera-barcelona": {
+    "keyword": "vender piso particular el clot - la sagrera barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-el-clot-la-sagrera-barcelona",
+    "aliases": [
+      "vender mi piso el clot - la sagrera yo mismo",
+      "vender piso 08018 sin agencia",
+      "vender piso particular el clot - la sagrera barcelona",
+      "vender vivienda el clot - la sagrera particular"
+    ]
+  },
+  "vender-como-particular-esplugues-barcelona": {
+    "keyword": "vender piso particular esplugues",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-esplugues-barcelona",
+    "aliases": [
+      "vender mi piso esplugues yo mismo",
+      "vender piso can vidalet particular",
+      "vender piso finestrelles sin agencia",
+      "vender piso 08950 particular"
+    ]
+  },
+  "vender-como-particular-fort-pienc-barcelona": {
+    "keyword": "vender piso particular fort pienc barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-fort-pienc-barcelona",
+    "aliases": [
+      "vender mi piso fort pienc yo mismo",
+      "vender piso arc triomf particular",
+      "vender piso estacio nord sin agencia",
+      "vender piso 08013 particular"
+    ]
+  },
   "vender-como-particular-gotic-barcelona": {
     "keyword": "vender piso particular gòtic barcelona",
     "cluster": "particular",
@@ -380,6 +1568,172 @@
     "aliases": [
       "vender mi piso gòtic yo mismo",
       "vender casa particular gòtic"
+    ]
+  },
+  "vender-como-particular-gracia-barcelona": {
+    "keyword": "vender piso particular gracia barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-gracia-barcelona",
+    "aliases": [
+      "vender mi piso gracia yo mismo",
+      "vender piso vila de gracia particular",
+      "vender piso vallcarca sin agencia",
+      "vender piso camp d en grassot particular"
+    ]
+  },
+  "vender-como-particular-guinardo-barcelona": {
+    "keyword": "vender piso particular el guinardó barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-guinardo-barcelona",
+    "aliases": [
+      "vender mi piso el guinardó yo mismo",
+      "vender piso 08041 sin agencia",
+      "vender piso particular el guinardó barcelona",
+      "vender vivienda el guinardó particular"
+    ]
+  },
+  "vender-como-particular-horta-barcelona": {
+    "keyword": "vender piso particular horta barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-horta-barcelona",
+    "aliases": [
+      "vender mi piso horta yo mismo",
+      "vender piso montbau particular",
+      "vender piso guinardo sin agencia",
+      "vender piso 08031 particular"
+    ]
+  },
+  "vender-como-particular-hostafrancs-barcelona": {
+    "keyword": "vender piso particular hostafrancs barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-hostafrancs-barcelona",
+    "aliases": [
+      "vender mi piso hostafrancs yo mismo",
+      "vender piso creu coberta particular",
+      "vender piso 08014 sin agencia",
+      "vender piso plaça espanya particular"
+    ]
+  },
+  "vender-como-particular-l-hospitalet-barcelona": {
+    "keyword": "vender piso particular l hospitalet",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-l-hospitalet-barcelona",
+    "aliases": [
+      "vender mi piso hospitalet yo mismo",
+      "vender piso bellvitge particular",
+      "vender piso pubilla cases sin agencia",
+      "vender piso 08901 particular"
+    ]
+  },
+  "vender-como-particular-la-bordeta-barcelona": {
+    "keyword": "vender piso particular la bordeta barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-la-bordeta-barcelona",
+    "aliases": [
+      "vender mi piso la bordeta yo mismo",
+      "vender piso 08014 sin agencia",
+      "vender piso particular la bordeta barcelona",
+      "vender vivienda la bordeta particular"
+    ]
+  },
+  "vender-como-particular-la-marina-barcelona": {
+    "keyword": "vender piso particular la marina barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-la-marina-barcelona",
+    "aliases": [
+      "vender mi piso la marina yo mismo",
+      "vender piso 08038 sin agencia",
+      "vender piso particular la marina barcelona",
+      "vender vivienda la marina particular"
+    ]
+  },
+  "vender-como-particular-la-sagrera-barcelona": {
+    "keyword": "vender piso particular la sagrera barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-la-sagrera-barcelona",
+    "aliases": [
+      "vender mi piso la sagrera yo mismo",
+      "vender piso parc sagrera particular",
+      "vender piso 08027 particular",
+      "vender piso estacion sagrera sin agencia"
+    ]
+  },
+  "vender-como-particular-les-corts-barcelona": {
+    "keyword": "vender piso particular les corts barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-les-corts-barcelona",
+    "aliases": [
+      "vender mi piso yo mismo les corts",
+      "vender piso numancia particular",
+      "vender piso zona universitaria particular",
+      "vender piso pedralbes particular",
+      "vender piso 08028 sin agencia"
+    ]
+  },
+  "vender-como-particular-montjuic-barcelona": {
+    "keyword": "vender piso particular montjuic barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-montjuic-barcelona",
+    "aliases": [
+      "vender mi piso montjuic yo mismo",
+      "vender piso font guatlla particular",
+      "vender piso 08038 particular",
+      "vender piso montjuic sin agencia"
+    ]
+  },
+  "vender-como-particular-navas-barcelona": {
+    "keyword": "vender piso particular navas barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-navas-barcelona",
+    "aliases": [
+      "vender mi piso navas yo mismo",
+      "vender piso fabra i puig particular",
+      "vender piso 08030 navas sin agencia",
+      "vender piso meridiana particular"
+    ]
+  },
+  "vender-como-particular-nou-barris-barcelona": {
+    "keyword": "vender piso particular nou barris barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-nou-barris-barcelona",
+    "aliases": [
+      "vender mi piso nou barris yo mismo",
+      "vender piso roquetes particular",
+      "vender piso verdum sin agencia",
+      "vender piso 08016 particular"
+    ]
+  },
+  "vender-como-particular-pedralbes-barcelona": {
+    "keyword": "vender piso particular pedralbes barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-pedralbes-barcelona",
+    "aliases": [
+      "vender mi piso pedralbes yo mismo",
+      "vender piso monestir pedralbes particular",
+      "vender piso 08034 sin agencia",
+      "vender atico pedralbes particular"
+    ]
+  },
+  "vender-como-particular-poble-sec-barcelona": {
+    "keyword": "vender piso particular poble sec barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-poble-sec-barcelona",
+    "aliases": [
+      "vender mi piso poble sec yo mismo",
+      "vender piso parallel particular",
+      "vender piso montjuic sin agencia",
+      "vender piso 08004 particular"
+    ]
+  },
+  "vender-como-particular-poblenou-barcelona": {
+    "keyword": "vender piso particular poblenou barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-poblenou-barcelona",
+    "aliases": [
+      "vender mi piso poblenou yo mismo",
+      "vender loft poblenou particular",
+      "vender piso rambla poblenou sin agencia",
+      "vender piso 22 ar particular"
     ]
   },
   "vender-como-particular-provencals-del-poblenou-barcelona": {
@@ -400,31 +1754,189 @@
       "vender casa particular raval"
     ]
   },
+  "vender-como-particular-roquetes-barcelona": {
+    "keyword": "vender piso particular roquetes barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-roquetes-barcelona",
+    "aliases": [
+      "vender mi piso roquetes yo mismo",
+      "vender piso 08042 sin agencia",
+      "vender piso particular roquetes barcelona",
+      "vender vivienda roquetes particular"
+    ]
+  },
   "vender-como-particular-sagrada-familia-barcelona": {
-    "keyword": "vender piso particular sagrada família barcelona",
+    "keyword": "vender piso particular sagrada fam├¡lia barcelona",
     "cluster": "particular",
     "canonical": "/vender-como-particular-sagrada-familia-barcelona",
     "aliases": [
-      "vender mi piso sagrada família yo mismo",
-      "vender casa particular sagrada família"
+      "vender mi piso sagrada fam├¡lia yo mismo",
+      "vender casa particular sagrada fam├¡lia"
+    ]
+  },
+  "vender-como-particular-sant-andreu-barcelona": {
+    "keyword": "vender piso particular sant andreu barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sant-andreu-barcelona",
+    "aliases": [
+      "vender mi piso sant andreu yo mismo",
+      "vender piso fabra i coats particular",
+      "vender piso bon pastor sin agencia",
+      "vender piso 08030 particular"
+    ]
+  },
+  "vender-como-particular-sant-antoni-barcelona": {
+    "keyword": "vender piso particular sant antoni barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sant-antoni-barcelona",
+    "aliases": [
+      "vender mi piso sant antoni yo mismo",
+      "vender piso superilla sant antoni particular",
+      "vender piso mercat sant antoni sin agencia",
+      "vender piso 08015 particular"
+    ]
+  },
+  "vender-como-particular-sant-gervasi-barcelona": {
+    "keyword": "vender piso particular sant gervasi barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sant-gervasi-barcelona",
+    "aliases": [
+      "vender mi piso sant gervasi yo mismo",
+      "vender piso el putxet particular",
+      "vender piso el farro sin agencia",
+      "vender piso 08021 particular"
     ]
   },
   "vender-como-particular-sant-just-sant-joan-despi-barcelona": {
-    "keyword": "vender piso particular sant just desvern y sant joan despí barcelona",
+    "keyword": "vender piso particular sant just desvern y sant joan desp├¡ barcelona",
     "cluster": "particular",
     "canonical": "/vender-como-particular-sant-just-sant-joan-despi-barcelona",
     "aliases": [
-      "vender mi piso sant just desvern y sant joan despí yo mismo",
-      "vender casa particular sant just desvern y sant joan despí"
+      "vender mi piso sant just desvern y sant joan desp├¡ yo mismo",
+      "vender casa particular sant just desvern y sant joan desp├¡"
+    ]
+  },
+  "vender-como-particular-sant-marti-barcelona": {
+    "keyword": "vender piso particular sant marti barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sant-marti-barcelona",
+    "aliases": [
+      "vender mi piso poblenou yo mismo",
+      "vender piso el clot particular",
+      "vender piso 22@ sin agencia",
+      "vender piso 08005 particular"
+    ]
+  },
+  "vender-como-particular-sant-pere-santa-caterina-barcelona": {
+    "keyword": "vender piso particular sant pere barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sant-pere-santa-caterina-barcelona",
+    "aliases": [
+      "vender mi piso sant pere yo mismo",
+      "vender piso santa caterina particular",
+      "vender piso mercat caterina sin agencia",
+      "vender piso ciutat vella particular sant pere"
+    ]
+  },
+  "vender-como-particular-sants-barcelona": {
+    "keyword": "vender piso particular sants barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sants-barcelona",
+    "aliases": [
+      "vender mi piso sants yo mismo",
+      "vender piso hostafrancs particular",
+      "vender piso la bordeta sin agencia",
+      "vender piso 08014 particular"
+    ]
+  },
+  "vender-como-particular-sarria-barcelona": {
+    "keyword": "vender piso particular sarria barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-sarria-barcelona",
+    "aliases": [
+      "vender mi piso sarria yo mismo",
+      "vender piso bonanova particular",
+      "vender casa tres torres sin agencia",
+      "vender piso galvany particular"
+    ]
+  },
+  "vender-como-particular-tetuan-barcelona": {
+    "keyword": "vender piso particular tetuan barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-tetuan-barcelona",
+    "aliases": [
+      "vender mi piso tetuan yo mismo",
+      "vender piso gran via particular",
+      "vender piso 08025 tetuan sin agencia",
+      "vender piso glories particular"
+    ]
+  },
+  "vender-como-particular-trinitat-vella-barcelona": {
+    "keyword": "vender piso particular trinitat vella barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-trinitat-vella-barcelona",
+    "aliases": [
+      "vender mi piso trinitat vella yo mismo",
+      "vender piso 08033 particular",
+      "vender piso nou barris trinitat sin agencia",
+      "vender piso via barcino particular"
+    ]
+  },
+  "vender-como-particular-vall-d-hebron-barcelona": {
+    "keyword": "vender piso particular vall d hebron barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-vall-d-hebron-barcelona",
+    "aliases": [
+      "vender mi piso vall hebron yo mismo",
+      "vender piso montbau particular",
+      "vender piso 08035 particular",
+      "vender piso hospital hebron sin agencia"
+    ]
+  },
+  "vender-como-particular-verneda-barcelona": {
+    "keyword": "vender piso particular la verneda barcelona",
+    "cluster": "particular",
+    "canonical": "/vender-como-particular-verneda-barcelona",
+    "aliases": [
+      "vender mi piso la verneda yo mismo",
+      "vender piso 08020 sin agencia",
+      "vender piso particular la verneda barcelona",
+      "vender vivienda la verneda particular"
     ]
   },
   "vender-como-particular-vila-olimpica-barcelona": {
-    "keyword": "vender piso particular vila olímpica barcelona",
+    "keyword": "vender piso particular vila ol├¡mpica barcelona",
     "cluster": "particular",
     "canonical": "/vender-como-particular-vila-olimpica-barcelona",
     "aliases": [
-      "vender mi piso vila olímpica yo mismo",
-      "vender casa particular vila olímpica"
+      "vender mi piso vila ol├¡mpica yo mismo",
+      "vender casa particular vila ol├¡mpica"
+    ]
+  },
+  "vender-eixample": {
+    "keyword": "vender piso eixample barcelona",
+    "cluster": "barrio",
+    "canonical": "/vender-eixample"
+  },
+  "vender-gracia": {
+    "keyword": "vender piso gràcia barcelona",
+    "cluster": "barrio",
+    "canonical": "/vender-gracia"
+  },
+  "vender-les-corts": {
+    "keyword": "vender piso les corts barcelona",
+    "cluster": "barrio",
+    "canonical": "/vender-les-corts"
+  },
+  "vender-mi-piso-barcelona": {
+    "keyword": "vender mi piso en barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-mi-piso-barcelona",
+    "aliases": [
+      "vender mi piso barcelona",
+      "quiero vender mi piso en barcelona",
+      "vender mi vivienda barcelona",
+      "agencia inmobiliaria barcelona vender piso"
     ]
   },
   "vender-piso-alquilado-barcelona": {
@@ -441,6 +1953,46 @@
       "cadena compraventa piso barcelona"
     ]
   },
+  "vender-piso-barceloneta": {
+    "keyword": "vender piso barceloneta barcelona",
+    "cluster": "barrio",
+    "canonical": "/vender-piso-barceloneta"
+  },
+  "vender-piso-born-barcelona": {
+    "keyword": "vender piso born barcelona",
+    "cluster": "barrio",
+    "canonical": "/vender-piso-born-barcelona"
+  },
+  "vender-piso-ciutat-vella-barcelona": {
+    "keyword": "vender piso ciutat vella barcelona",
+    "cluster": "barrio",
+    "canonical": "/vender-piso-ciutat-vella-barcelona"
+  },
+  "vender-piso-cornella-barcelona": {
+    "keyword": "venta piso cornella",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-cornella-barcelona",
+    "aliases": [
+      "vender piso cornella",
+      "vender piso cornella de llobregat",
+      "vender piso en cornella"
+    ]
+  },
+  "vender-piso-gotic-barcelona": {
+    "keyword": "vender piso gòtic barcelona",
+    "cluster": "barrio",
+    "canonical": "/vender-piso-gotic-barcelona"
+  },
+  "vender-piso-herencia-barcelona": {
+    "keyword": "vender piso herencia barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-herencia-barcelona"
+  },
+  "vender-piso-hipoteca-pendiente-barcelona": {
+    "keyword": "vender piso con hipoteca pendiente barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-hipoteca-pendiente-barcelona"
+  },
   "vender-piso-inquilino-vencer-barcelona": {
     "keyword": "vender piso inquilino contrato vencer barcelona",
     "cluster": "situacion",
@@ -450,6 +2002,11 @@
       "vender piso cuando acaba contrato inquilino barcelona"
     ]
   },
+  "vender-piso-okupado-barcelona": {
+    "keyword": "vender piso okupado barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-okupado-barcelona"
+  },
   "vender-piso-rapido-barcelona": {
     "keyword": "vender piso rapido barcelona",
     "cluster": "intencion",
@@ -458,6 +2015,16 @@
       "vender piso urgente barcelona"
     ]
   },
+  "vender-piso-raval-barcelona": {
+    "keyword": "vender piso raval barcelona",
+    "cluster": "barrio",
+    "canonical": "/vender-piso-raval-barcelona"
+  },
+  "vender-piso-separacion-divorcio-barcelona": {
+    "keyword": "vender piso separacion divorcio barcelona",
+    "cluster": "situacion",
+    "canonical": "/vender-piso-separacion-divorcio-barcelona"
+  },
   "vender-piso-sin-exclusividad-barcelona": {
     "keyword": "vender piso sin exclusividad barcelona",
     "cluster": "intencion",
@@ -465,7 +2032,30 @@
     "aliases": [
       "vender piso sin exclusiva barcelona",
       "vender piso particular barcelona",
-      "vender casa particular barcelona"
+      "vender casa particular barcelona",
+      "vender piso sin agencia exclusiva"
+    ]
+  },
+  "vender-piso-sin-portales-barcelona": {
+    "keyword": "vender piso sin portales barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-portales-barcelona",
+    "aliases": [
+      "vender sin idealista barcelona",
+      "vender sin fotocasa barcelona",
+      "vender piso sin publicar en portales",
+      "vender piso cartera compradores barcelona",
+      "vender piso off market barcelona"
+    ]
+  },
+  "vender-piso-sin-portales-eixample-barcelona": {
+    "keyword": "vender piso eixample sin portales",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-portales-eixample-barcelona",
+    "aliases": [
+      "vender sin idealista eixample",
+      "vender piso eixample cartera",
+      "vender eixample sin portales"
     ]
   },
   "vender-piso-sin-portales-gracia-barcelona": {
@@ -479,6 +2069,16 @@
       "cartera compradores barcelona"
     ]
   },
+  "vender-piso-sin-portales-les-corts-barcelona": {
+    "keyword": "vender piso les corts sin portales",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-portales-les-corts-barcelona",
+    "aliases": [
+      "vender sin idealista les corts",
+      "vender piso les corts cartera compradores",
+      "vender les corts sin portales"
+    ]
+  },
   "vender-piso-sin-portales-poblenou-barcelona": {
     "keyword": "vender piso sin portales poblenou barcelona",
     "cluster": "intencion",
@@ -488,6 +2088,15 @@
       "vender sin fotocasa poblenou",
       "vender piso off market poblenou",
       "cartera compradores barcelona"
+    ]
+  },
+  "vender-piso-sin-portales-sant-gervasi-barcelona": {
+    "keyword": "vender piso sin portales sant gervasi barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-piso-sin-portales-sant-gervasi-barcelona",
+    "aliases": [
+      "vender sin idealista sant gervasi",
+      "off market sant gervasi barcelona"
     ]
   },
   "vender-piso-sin-portales-sarria-barcelona": {
@@ -507,7 +2116,8 @@
     "canonical": "/vender-piso-traslado-barcelona",
     "aliases": [
       "vender piso cambio ciudad barcelona",
-      "vender piso mudanza barcelona"
+      "vender piso mudanza extranjero barcelona",
+      "vender piso me mudo barcelona"
     ]
   },
   "vender-por-tu-cuenta-vs-nuevahabitat-barcelona": {
@@ -516,6 +2126,7 @@
     "canonical": "/vender-por-tu-cuenta-vs-nuevahabitat-barcelona",
     "aliases": [
       "vender piso solo vs agencia barcelona",
+      "vender casa por mi cuenta barcelona",
       "vender sin inmobiliaria barcelona"
     ]
   },
@@ -525,7 +2136,76 @@
     "canonical": "/vender-segunda-residencia-barcelona",
     "aliases": [
       "vender piso vacio barcelona",
-      "vender piso no habitual barcelona"
+      "vender piso no habitual barcelona",
+      "vender apartamento segunda vivienda barcelona"
+    ]
+  },
+  "vender-vivienda-honorarios-fijos-barcelona": {
+    "keyword": "vender vivienda honorarios fijos barcelona",
+    "cluster": "intencion",
+    "canonical": "/vender-vivienda-honorarios-fijos-barcelona",
+    "aliases": [
+      "vender piso honorarios fijos barcelona",
+      "vender casa barcelona sin comision",
+      "inmobiliaria honorarios fijos barcelona",
+      "vender vivienda precio reducido barcelona",
+      "agencia precio fijo barcelona"
+    ]
+  },
+  "venta-piso-economica-badalona-barcelona": {
+    "keyword": "venta de piso economica badalona barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-badalona-barcelona",
+    "aliases": [
+      "vender piso badalona honorarios bajos",
+      "venta piso economica badalona",
+      "inmobiliaria economica badalona barcelona",
+      "vender sin pagar 6 por ciento badalona"
+    ]
+  },
+  "venta-piso-economica-barcelona": {
+    "keyword": "venta de piso economica barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-barcelona",
+    "aliases": [
+      "vender piso barcelona barato comision",
+      "vender piso barcelona honorarios bajos",
+      "venta piso economica barcelona",
+      "vender piso sin pagar 6 por ciento barcelona",
+      "inmobiliaria economica barcelona"
+    ]
+  },
+  "venta-piso-economica-ciutat-vella-barcelona": {
+    "keyword": "venta de piso economica ciutat vella barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-ciutat-vella-barcelona",
+    "aliases": [
+      "vender piso ciutat vella honorarios bajos",
+      "venta piso economica ciutat vella",
+      "inmobiliaria economica ciutat vella barcelona",
+      "vender sin pagar 6 por ciento ciutat vella"
+    ]
+  },
+  "venta-piso-economica-cornella-barcelona": {
+    "keyword": "venta de piso economica cornellà de llobregat barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-cornella-barcelona",
+    "aliases": [
+      "vender piso cornellà de llobregat honorarios bajos",
+      "venta piso economica cornellà de llobregat",
+      "inmobiliaria economica cornellà de llobregat barcelona",
+      "vender sin pagar 6 por ciento cornellà de llobregat"
+    ]
+  },
+  "venta-piso-economica-eixample-barcelona": {
+    "keyword": "venta de piso economica eixample barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-eixample-barcelona",
+    "aliases": [
+      "vender piso eixample honorarios bajos",
+      "venta piso economica eixample",
+      "inmobiliaria economica eixample barcelona",
+      "vender sin pagar 6 por ciento eixample"
     ]
   },
   "venta-piso-economica-el-clot-la-sagrera-barcelona": {
@@ -535,6 +2215,160 @@
     "aliases": [
       "vender piso el clot - la sagrera honorarios bajos",
       "inmobiliaria economica el clot - la sagrera"
+    ]
+  },
+  "venta-piso-economica-esplugues-barcelona": {
+    "keyword": "venta de piso economica esplugues de llobregat barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-esplugues-barcelona",
+    "aliases": [
+      "vender piso esplugues de llobregat honorarios bajos",
+      "venta piso economica esplugues de llobregat",
+      "inmobiliaria economica esplugues de llobregat barcelona",
+      "vender sin pagar 6 por ciento esplugues de llobregat"
+    ]
+  },
+  "venta-piso-economica-gracia-barcelona": {
+    "keyword": "venta de piso economica gràcia barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-gracia-barcelona",
+    "aliases": [
+      "vender piso gràcia honorarios bajos",
+      "venta piso economica gràcia",
+      "inmobiliaria economica gràcia barcelona",
+      "vender sin pagar 6 por ciento gràcia"
+    ]
+  },
+  "venta-piso-economica-horta-barcelona": {
+    "keyword": "venta de piso economica horta-guinardó barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-horta-barcelona",
+    "aliases": [
+      "vender piso horta-guinardó honorarios bajos",
+      "venta piso economica horta-guinardó",
+      "inmobiliaria economica horta-guinardó barcelona",
+      "vender sin pagar 6 por ciento horta-guinardó"
+    ]
+  },
+  "venta-piso-economica-l-hospitalet-barcelona": {
+    "keyword": "venta de piso economica l'hospitalet barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-l-hospitalet-barcelona",
+    "aliases": [
+      "vender piso l'hospitalet honorarios bajos",
+      "venta piso economica l'hospitalet",
+      "inmobiliaria economica l'hospitalet barcelona",
+      "vender sin pagar 6 por ciento l'hospitalet"
+    ]
+  },
+  "venta-piso-economica-les-corts-barcelona": {
+    "keyword": "venta de piso economica les corts barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-les-corts-barcelona",
+    "aliases": [
+      "vender piso les corts honorarios bajos",
+      "venta piso economica les corts",
+      "inmobiliaria economica les corts barcelona",
+      "vender sin pagar 6 por ciento les corts"
+    ]
+  },
+  "venta-piso-economica-nou-barris-barcelona": {
+    "keyword": "venta de piso economica nou barris barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-nou-barris-barcelona",
+    "aliases": [
+      "vender piso nou barris honorarios bajos",
+      "venta piso economica nou barris",
+      "inmobiliaria economica nou barris barcelona",
+      "vender sin pagar 6 por ciento nou barris"
+    ]
+  },
+  "venta-piso-economica-poble-sec-barcelona": {
+    "keyword": "venta de piso economica poble sec barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-poble-sec-barcelona",
+    "aliases": [
+      "vender piso poble sec honorarios bajos",
+      "venta piso economica poble sec",
+      "inmobiliaria economica poble sec barcelona",
+      "vender sin pagar 6 por ciento poble sec"
+    ]
+  },
+  "venta-piso-economica-poblenou-barcelona": {
+    "keyword": "venta de piso economica poblenou barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-poblenou-barcelona",
+    "aliases": [
+      "vender piso poblenou honorarios bajos",
+      "venta piso economica poblenou",
+      "inmobiliaria economica poblenou barcelona",
+      "vender sin pagar 6 por ciento poblenou"
+    ]
+  },
+  "venta-piso-economica-sant-andreu-barcelona": {
+    "keyword": "venta de piso economica sant andreu barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sant-andreu-barcelona",
+    "aliases": [
+      "vender piso sant andreu honorarios bajos",
+      "venta piso economica sant andreu",
+      "inmobiliaria economica sant andreu barcelona",
+      "vender sin pagar 6 por ciento sant andreu"
+    ]
+  },
+  "venta-piso-economica-sant-antoni-barcelona": {
+    "keyword": "venta de piso economica sant antoni barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sant-antoni-barcelona",
+    "aliases": [
+      "vender piso sant antoni honorarios bajos",
+      "venta piso economica sant antoni",
+      "inmobiliaria economica sant antoni barcelona",
+      "vender sin pagar 6 por ciento sant antoni"
+    ]
+  },
+  "venta-piso-economica-sant-gervasi-barcelona": {
+    "keyword": "venta de piso economica sant gervasi barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sant-gervasi-barcelona",
+    "aliases": [
+      "vender piso sant gervasi honorarios bajos",
+      "venta piso economica sant gervasi",
+      "inmobiliaria economica sant gervasi barcelona",
+      "vender sin pagar 6 por ciento sant gervasi"
+    ]
+  },
+  "venta-piso-economica-sant-marti-barcelona": {
+    "keyword": "venta de piso economica sant martí barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sant-marti-barcelona",
+    "aliases": [
+      "vender piso sant martí honorarios bajos",
+      "venta piso economica sant martí",
+      "inmobiliaria economica sant martí barcelona",
+      "vender sin pagar 6 por ciento sant martí"
+    ]
+  },
+  "venta-piso-economica-sants-barcelona": {
+    "keyword": "venta de piso economica sants barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sants-barcelona",
+    "aliases": [
+      "vender piso sants honorarios bajos",
+      "venta piso economica sants",
+      "inmobiliaria economica sants barcelona",
+      "vender sin pagar 6 por ciento sants"
+    ]
+  },
+  "venta-piso-economica-sarria-barcelona": {
+    "keyword": "venta de piso economica sarrià barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sarria-barcelona",
+    "aliases": [
+      "vender piso sarrià honorarios bajos",
+      "venta piso economica sarrià",
+      "inmobiliaria economica sarrià barcelona",
+      "vender sin pagar 6 por ciento sarrià"
     ]
   }
 }

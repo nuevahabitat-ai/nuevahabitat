@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T14:15:02.960Z",
+  "updated": "2026-10-30T14:16:34.308Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -837,6 +837,12 @@
     },
     {
       "slug": "vender-piso-sin-portales-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "vender-piso-sin-portales-sant-gervasi-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89

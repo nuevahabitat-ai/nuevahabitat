@@ -27,3 +27,8 @@ imagenes/*.docx
 *.msi
 CursorUserSetup*
 *.pyc
+build-out.txt
+build-err.txt
+tmp-*.txt
+tmp-*.html
+js/main.js.bak_from_git

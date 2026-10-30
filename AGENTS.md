@@ -23,7 +23,7 @@ Traducir lenguaje natural del operador a JSON y hacer POST. Consultar `GET /api/
 
 ## Deploy
 
-- Push: cuenta `nuevahabitat-ai`, remote `origin`
+- Push: cuenta `nuevahabitat-ai`, remote `origin`. Antes de `git push`: `gh auth switch -u nuevahabitat-ai` (o `powershell -File scripts/push-nuevahabitat.ps1`) — si no, GitHub devuelve 403 con otra cuenta activa.
 - **Solo producción:** Vercel está configurado para **no construir Preview** en ramas distintas de `main` (`ignoreCommand` + `git.deploymentEnabled` en `vercel.json`). Un push a `cursor/*` **no** publica en `www.nuevahabitat.com`.
 - **Producción (`www.nuevahabitat.com`)**: commit en **`main`** + deployment **Production** en Vercel (dominio custom).
 - Tras abrir PR y CI verde: **el agente mergea a `main` solo** (`scripts/ship-to-production.sh` o merge git + `git push origin main`). No pedir al usuario que pulse Merge en GitHub salvo fallo persistente de auth.

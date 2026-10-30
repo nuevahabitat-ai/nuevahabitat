@@ -216,6 +216,26 @@
     {
       "slug": "cuanto-vale-mi-piso-barcelona",
       "label": "Cuánto vale mi piso"
+    },
+    {
+      "slug": "venta-piso-economica-eixample-barcelona",
+      "label": "Venta económica Eixample"
+    },
+    {
+      "slug": "venta-piso-economica-gracia-barcelona",
+      "label": "Venta económica Gràcia"
+    },
+    {
+      "slug": "venta-piso-economica-sant-marti-barcelona",
+      "label": "Venta económica Sant Martí"
+    },
+    {
+      "slug": "venta-piso-economica-sarria-barcelona",
+      "label": "Venta económica Sarrià"
+    },
+    {
+      "slug": "venta-piso-economica-el-clot-la-sagrera-barcelona",
+      "label": "Venta económica El Clot / La Sagrera"
     }
   ],
   "keywords_footer": "venta de piso economica barcelona · honorarios fijos · vender sin 6% · panel vendedor · compradores cualificados",

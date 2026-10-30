@@ -140,6 +140,7 @@ window.NH_LANDING_ORDER = [
   "vender-piso-sin-portales-gracia-barcelona",
   "vender-piso-sin-portales-les-corts-barcelona",
   "vender-piso-sin-portales-poblenou-barcelona",
+  "vender-piso-sin-portales-sant-gervasi-barcelona",
   "vender-piso-sin-portales-sarria-barcelona",
   "vender-vivienda-honorarios-fijos-barcelona",
   "venta-piso-economica-badalona-barcelona",
@@ -1980,6 +1981,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpg",
     "cardTeaser": "¿22@ o Rambla del Poblenou: vender off-market con compradores cualificados. Cartera NH, visitas filtradas, 3.000 € + IVA (3.630 €) en escritura."
+  },
+  "vender-piso-sin-portales-sant-gervasi-barcelona": {
+    "slug": "vender-piso-sin-portales-sant-gervasi-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Sin portales Sant Gervasi",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "vender piso sin portales sant gervasi barcelona",
+    "badge": "Sant Gervasi · Sin portales",
+    "testimonials": true,
+    "cardImage": "imagenes/santgervasi1.jpg",
+    "cardTeaser": "¿Vender en Sant Gervasi con compradores solventes, sin portal. Cartera NH, 3.630 € en escritura."
   },
   "vender-piso-sin-portales-sarria-barcelona": {
     "slug": "vender-piso-sin-portales-sarria-barcelona",
