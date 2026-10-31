@@ -1,3 +1,5 @@
+const { NH_FEE_LABEL_ESCRITURA } = require('./fee-config');
+
 function normQ(q) {
   return String(q || '')
     .toLowerCase()
@@ -11,7 +13,7 @@ function venderExtras(barrio) {
   return [
     {
       q: `¿Cuánto cuesta vender en ${b} con NuevaHabitat?`,
-      a: '3.500 € + IVA de honorarios fijos al vendedor, pagados solo en escritura. Sin venta, no facturamos comisión de agencia.',
+      a: `${NH_FEE_LABEL_ESCRITURA} de honorarios fijos al vendedor, pagados solo en escritura. Sin venta, no facturamos comisión de agencia.`,
     },
     {
       q: '¿Puedo vender sin exclusiva de doce meses?',

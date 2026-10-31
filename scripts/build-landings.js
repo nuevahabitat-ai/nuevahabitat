@@ -16,7 +16,12 @@ const { nhPanelDemoBlock } = require('./landing-nh-blocks');
 const { renderEconomicaHub } = require('./render-economica-hub');
 const { renderAlquiler } = require('./render-alquiler');
 const { nhBuyerPlatformBundle, nhBuyerPlatformStyles } = require('./landing-nh-buyer-blocks');
-const { nhHomeEcosystemBundle, nhHomeEcosystemStyles } = require('./landing-nh-hub-blocks');
+const {
+  nhHomeEcosystemBundle,
+  nhHomeEcosystemStyles,
+  nhParticularesDistritosBlock,
+  nhParticularesDistritosStyles,
+} = require('./landing-nh-hub-blocks');
 
 const ROOT = path.join(__dirname, '..');
 const CONTENT_DIR = path.join(ROOT, 'content', 'landings');
@@ -1029,9 +1034,18 @@ function syncComprarHub() {
 function syncVenderHub() {
   const p = path.join(ROOT, 'vender.html');
   let html = fs.readFileSync(p, 'utf8');
+  html = replaceBetween(
+    html,
+    '<!-- NH_PARTICULARES_DISTRITOS_START -->',
+    '<!-- NH_PARTICULARES_DISTRITOS_END -->',
+    nhParticularesDistritosBlock()
+  );
+  const platformStyles = nhParticularesDistritosStyles().trim()
+    + '\n'
+    + nhPlatformStyles().trim();
+  html = replaceBetween(html, '/* NH_PLATFORM_STYLES_START */', '/* NH_PLATFORM_STYLES_END */', platformStyles);
   const bundle = nhPlatformBundle({ footerLabel: 'Barcelona' });
   html = replaceBetween(html, '<!-- NH_PLATFORM_HUB_START -->', '<!-- NH_PLATFORM_HUB_END -->', bundle);
-  html = replaceBetween(html, '/* NH_PLATFORM_STYLES_START */', '/* NH_PLATFORM_STYLES_END */', nhPlatformStyles().trim());
   fs.writeFileSync(p, html, 'utf8');
   console.log('Updated vender.html hub blocks');
 }

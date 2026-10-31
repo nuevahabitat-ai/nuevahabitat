@@ -1,8 +1,18 @@
 /**
- * Honorarios venta: 3.500 € + IVA (base 3500; comparativas sin sumar IVA al gasto NH).
+ * DEPRECATED — no ejecutar. Sustituido por scripts/fee-config.js (3.000 € + IVA / 3.630 € en escritura).
+ * Solo con --force-legacy para revertir datos antiguos bajo tu responsabilidad.
  * node scripts/apply-venta-price-3500.js
  */
 const fs = require('fs');
+
+if (!process.argv.includes('--force-legacy')) {
+  console.error(
+    'apply-venta-price-3500.js está obsoleto: bajaba honorarios a 3.500 €. '
+      + 'Usa fee-config y node scripts/build-landings.js. '
+      + 'Si necesitas el script antiguo: node scripts/apply-venta-price-3500.js --force-legacy'
+  );
+  process.exit(1);
+}
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');

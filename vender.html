@@ -216,6 +216,13 @@
       .lc-pilar-grid { grid-template-columns: 1fr; }
     }
     /* NH_PLATFORM_STYLES_START */
+.lc-nh-part-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
+    .lc-nh-part-card{display:flex;flex-direction:column;justify-content:space-between;min-height:88px;padding:1rem 1.1rem;background:var(--crema);border:1px solid var(--crema-dark);border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s}
+    .lc-nh-part-card:hover{border-color:var(--oro);box-shadow:var(--shadow-sm)}
+    .lc-nh-part-card__label{font-weight:600;font-size:.9375rem;color:var(--negro);line-height:1.35}
+    .lc-nh-part-card__link{font-size:.8125rem;font-weight:600;color:var(--oro);margin-top:.5rem}
+    @media(max-width:900px){.lc-nh-part-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.lc-nh-part-grid{grid-template-columns:1fr}}
 .lc-nh-servicio-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:start}
     .lc-nh-lead{font-size:1.0625rem;line-height:1.75;color:rgba(255,255,255,.82);margin-bottom:1.25rem}
     .lc-nh-features{list-style:none;margin:0;padding:0;display:grid;gap:.85rem}
@@ -717,6 +724,20 @@
     </div>
   </div>
 </section>
+
+<!-- NH_PARTICULARES_DISTRITOS_START -->
+<section class="lc-section lc-nh-particulares-hub" style="background:var(--blanco);padding:4rem 0">
+  <div class="container">
+    <div class="text-center fade-up" style="max-width:760px;margin:0 auto 2rem">
+      <span class="overline">Propietario particular</span>
+      <h2 class="section-title">Inmobiliaria para particulares por distrito y municipio</h2>
+      <p style="color:var(--gris-texto);line-height:1.7;margin:0">Honorarios <strong>3.000 € + IVA (3.630 € en escritura)</strong>, panel vendedor y compradores filtrados. Elige tu zona o empieza por la <a href="/inmobiliaria-para-particulares-barcelona">guía Barcelona</a>.</p>
+    </div>
+    <div class="lc-nh-part-grid fade-up"><a href="/inmobiliaria-para-particulares-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Barcelona (hub)</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-eixample-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Eixample</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-gracia-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Gràcia</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-sants-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Sants</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-les-corts-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Les Corts</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-sarria-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Sarrià</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-sant-gervasi-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Sant Gervasi</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-sant-marti-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Sant Martí</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-sant-andreu-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Sant Andreu</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-horta-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Horta</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-nou-barris-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Nou Barris</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-ciutat-vella-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Ciutat Vella</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-sant-antoni-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Sant Antoni</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-poble-sec-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Poble-sec</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-poblenou-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Poblenou</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">El Clot · La Sagrera</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-badalona-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Badalona</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-l-hospitalet-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">L'Hospitalet</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-cornella-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Cornellà</span><span class="lc-nh-part-card__link">Guía particular →</span></a><a href="/inmobiliaria-para-particulares-esplugues-barcelona" class="lc-nh-part-card"><span class="lc-nh-part-card__label">Esplugues</span><span class="lc-nh-part-card__link">Guía particular →</span></a></div>
+    <p class="text-center fade-up" style="margin-top:1.75rem;font-size:.9375rem;color:var(--gris-texto)">También: <a href="/vender-como-particular-barcelona">vender como particular</a> · <a href="/inmobiliaria-precio-fijo-barcelona">precio fijo</a> · <a href="/venta-piso-economica-barcelona">venta económica en honorarios</a></p>
+  </div>
+</section>
+<!-- NH_PARTICULARES_DISTRITOS_END -->
 
 <!-- NH_PLATFORM_HUB_START -->
 <section class="lc-section lc-nh-servicio" style="background:var(--negro);color:#fff">

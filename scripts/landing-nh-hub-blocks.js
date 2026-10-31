@@ -70,4 +70,62 @@ function nhHomeEcosystemStyles() {
   `;
 }
 
-module.exports = { nhHomeEcosystemBundle, nhHomeEcosystemStyles };
+/** Landings inmobiliaria-para-particulares-* (SEO vendedor particular) */
+const PARTICULARES_DISTRITOS = [
+  { slug: 'inmobiliaria-para-particulares-barcelona', label: 'Barcelona (hub)' },
+  { slug: 'inmobiliaria-para-particulares-eixample-barcelona', label: 'Eixample' },
+  { slug: 'inmobiliaria-para-particulares-gracia-barcelona', label: 'Gràcia' },
+  { slug: 'inmobiliaria-para-particulares-sants-barcelona', label: 'Sants' },
+  { slug: 'inmobiliaria-para-particulares-les-corts-barcelona', label: 'Les Corts' },
+  { slug: 'inmobiliaria-para-particulares-sarria-barcelona', label: 'Sarrià' },
+  { slug: 'inmobiliaria-para-particulares-sant-gervasi-barcelona', label: 'Sant Gervasi' },
+  { slug: 'inmobiliaria-para-particulares-sant-marti-barcelona', label: 'Sant Martí' },
+  { slug: 'inmobiliaria-para-particulares-sant-andreu-barcelona', label: 'Sant Andreu' },
+  { slug: 'inmobiliaria-para-particulares-horta-barcelona', label: 'Horta' },
+  { slug: 'inmobiliaria-para-particulares-nou-barris-barcelona', label: 'Nou Barris' },
+  { slug: 'inmobiliaria-para-particulares-ciutat-vella-barcelona', label: 'Ciutat Vella' },
+  { slug: 'inmobiliaria-para-particulares-sant-antoni-barcelona', label: 'Sant Antoni' },
+  { slug: 'inmobiliaria-para-particulares-poble-sec-barcelona', label: 'Poble-sec' },
+  { slug: 'inmobiliaria-para-particulares-poblenou-barcelona', label: 'Poblenou' },
+  { slug: 'inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona', label: 'El Clot · La Sagrera' },
+  { slug: 'inmobiliaria-para-particulares-badalona-barcelona', label: 'Badalona' },
+  { slug: 'inmobiliaria-para-particulares-l-hospitalet-barcelona', label: "L'Hospitalet" },
+  { slug: 'inmobiliaria-para-particulares-cornella-barcelona', label: 'Cornellà' },
+  { slug: 'inmobiliaria-para-particulares-esplugues-barcelona', label: 'Esplugues' },
+];
+
+function nhParticularesDistritosBlock() {
+  const cards = PARTICULARES_DISTRITOS.map(
+    (d) => `<a href="/${d.slug}" class="lc-nh-part-card"><span class="lc-nh-part-card__label">${d.label}</span><span class="lc-nh-part-card__link">Guía particular →</span></a>`
+  ).join('');
+  return `<section class="lc-section lc-nh-particulares-hub" style="background:var(--blanco);padding:4rem 0">
+  <div class="container">
+    <div class="text-center fade-up" style="max-width:760px;margin:0 auto 2rem">
+      <span class="overline">Propietario particular</span>
+      <h2 class="section-title">Inmobiliaria para particulares por distrito y municipio</h2>
+      <p style="color:var(--gris-texto);line-height:1.7;margin:0">Honorarios <strong>3.000 € + IVA (3.630 € en escritura)</strong>, panel vendedor y compradores filtrados. Elige tu zona o empieza por la <a href="/inmobiliaria-para-particulares-barcelona">guía Barcelona</a>.</p>
+    </div>
+    <div class="lc-nh-part-grid fade-up">${cards}</div>
+    <p class="text-center fade-up" style="margin-top:1.75rem;font-size:.9375rem;color:var(--gris-texto)">También: <a href="/vender-como-particular-barcelona">vender como particular</a> · <a href="/inmobiliaria-precio-fijo-barcelona">precio fijo</a> · <a href="/venta-piso-economica-barcelona">venta económica en honorarios</a></p>
+  </div>
+</section>`;
+}
+
+function nhParticularesDistritosStyles() {
+  return `
+    .lc-nh-part-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}
+    .lc-nh-part-card{display:flex;flex-direction:column;justify-content:space-between;min-height:88px;padding:1rem 1.1rem;background:var(--crema);border:1px solid var(--crema-dark);border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s}
+    .lc-nh-part-card:hover{border-color:var(--oro);box-shadow:var(--shadow-sm)}
+    .lc-nh-part-card__label{font-weight:600;font-size:.9375rem;color:var(--negro);line-height:1.35}
+    .lc-nh-part-card__link{font-size:.8125rem;font-weight:600;color:var(--oro);margin-top:.5rem}
+    @media(max-width:900px){.lc-nh-part-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.lc-nh-part-grid{grid-template-columns:1fr}}
+  `;
+}
+
+module.exports = {
+  nhHomeEcosystemBundle,
+  nhHomeEcosystemStyles,
+  nhParticularesDistritosBlock,
+  nhParticularesDistritosStyles,
+};
