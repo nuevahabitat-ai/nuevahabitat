@@ -34,7 +34,7 @@ const VENDER = [
     intro: [
       '<strong>Vila Olímpica</strong> concentra uno de los pocos barrios de Barcelona donde la playa es argumento comercial real, no metáfora de marketing. En 2026 el rango orientativo ronda <strong>5.000–6.800 €/m²</strong> según orientación, parking y estado interior — por encima de La Verneda y por debajo de las torres más premium de Diagonal Mar.',
       'Vender aquí implica competir con anuncios que mezclan Nova Icària, Poblenou industrial y promociones con piscina. El comprador compara terraza, gastos de comunidad y ruido nocturno del Port Olímpic. Un precio medio del distrito de Sant Martí suele fallar en la primera quincena de visitas.',
-      'Honorarios fijos <strong>3.500 € + IVA</strong> solo en escritura, valoración en 24 h desde Les Corts y visitas solo con solvencia contrastada. Daniel o Sebastián te responden por WhatsApp en horario comercial.',
+      'Honorarios fijos <strong>3.000 € + IVA (3.630 € en escritura)</strong> solo en escritura, valoración en 24 h desde Les Corts y visitas solo con solvencia contrastada. Daniel o Sebastián te responden por WhatsApp en horario comercial.',
     ],
     sections: [
       {
@@ -63,7 +63,7 @@ const VENDER = [
       },
       {
         title: 'Honorarios fijos desde Les Corts',
-        body: '<p>3.500 € + IVA solo en escritura. Sobre 520.000 €, un 6% tradicional supera 31.000 € en comisión; el importe fijo protege tu neto si el comprador negocia bien.</p><p>Sin venta, no pagas honorarios de agencia.</p>',
+        body: '<p>3.000 € + IVA (3.630 € en escritura) solo en escritura. Sobre 520.000 €, un 6% tradicional supera 31.000 € en comisión; el importe fijo protege tu neto si el comprador negocia bien.</p><p>Sin venta, no pagas honorarios de agencia.</p>',
       },
       {
         title: 'Panel, ofertas y arras',
@@ -87,7 +87,7 @@ const VENDER = [
     faq: [
       { q: '¿Vila Olímpica es lo mismo que Barceloneta?', a: 'No en tipología ni en precio. La Vila Olímpica es sobre todo vivienda de los 90 con piscina comunitaria; Barceloneta mezcla finca más antigua y turismo intenso.' },
       { q: '¿Cuánto tarda una venta bien de precio?', a: 'Entre 45 y 80 días es habitual si el ticket encaja con financiación del comprador tipo.' },
-      { q: '¿Cuánto cuesta vender?', a: '3.500 € + IVA en escritura. Sin venta, no pagas honorarios de agencia.' },
+      { q: '¿Cuánto cuesta vender?', a: '3.000 € + IVA (3.630 € en escritura) en escritura. Sin venta, no pagas honorarios de agencia.' },
     ],
   },
   {
@@ -117,7 +117,7 @@ const VENDER = [
     intro: [
       "<strong>Camp de l'Arpa</strong> es el barrio residencial que muchos compradores descubren cuando Poblenou y el Clot se les quedan cortos en metros o largos en precio. Rangos orientativos de <strong>3.800–4.900 €/m²</strong> en 2026 para pisos de tres habitaciones en buen estado.",
       'Quien vende aquí compite con <a href="/vender-el-clot-la-sagrera-barcelona">El Clot</a> y <a href="/vender-verneda-barcelona">La Verneda</a> en la misma búsqueda de portal. Hay que explicar metro L2/L5, escuelas y distribución real, no solo “Sant Martí”.',
-      'Precio fijo 3.500 € + IVA en escritura, panel con visitas filtradas y valoración en 24 h desde Les Corts.',
+      'Precio fijo 3.000 € + IVA (3.630 € en escritura) en escritura, panel con visitas filtradas y valoración en 24 h desde Les Corts.',
     ],
     sections: [
       {
@@ -146,7 +146,7 @@ const VENDER = [
       },
       {
         title: 'Honorarios y ahorro frente al 6%',
-        body: '<p>Sobre 385.000 €, el 6% tradicional supera 23.500 € + IVA solo en comisión. Precio fijo 3.500 € + IVA solo si cierras.</p>',
+        body: '<p>Sobre 385.000 €, el 6% tradicional supera 23.000 € + IVA (3.630 € en escritura) solo en comisión. Precio fijo 3.000 € + IVA (3.630 € en escritura) solo si cierras.</p>',
       },
       {
         title: 'Visitas en tus franjas',
@@ -170,7 +170,7 @@ const VENDER = [
     faq: [
       { q: "¿Camp de l'Arpa es Sant Martí?", a: 'Sí, pero el mercado no es el de Diagonal Mar. Valoramos con comparables del propio barrio.' },
       { q: '¿Tiempo de venta?', a: 'Con precio alineado, 50–90 días es habitual.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura si cierras.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura si cierras.' },
     ],
   },
   {
@@ -237,7 +237,7 @@ const VENDER = [
       },
       {
         title: 'Precio fijo',
-        body: '<p>3.500 € + IVA en escritura. Sobre 355.000 € ahorras más de 18.000 € frente al 6% tradicional.</p>',
+        body: '<p>3.000 € + IVA (3.630 € en escritura) en escritura. Sobre 355.000 € ahorras más de 18.000 € frente al 6% tradicional.</p>',
       },
       {
         title: 'Enlaces',
@@ -252,7 +252,7 @@ const VENDER = [
     ],
     faq: [
       { q: '¿Hostafrancs es Sants?', a: 'Es barrio del distrito Sants-Montjuïc con mercado propio. Valoramos con comparables de Hostafrancs, no solo “Sants” genérico.' },
-      { q: '¿Cuánto cuesta vender?', a: '3.500 € + IVA solo en escritura si cierras.' },
+      { q: '¿Cuánto cuesta vender?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura si cierras.' },
       { q: '¿Visitas fines de semana?', a: 'Tú defines franjas; solo entran compradores contrastados.' },
     ],
   },
@@ -283,7 +283,7 @@ const VENDER = [
     intro: [
       '<strong>El Guinardó</strong> mezcla pendiente, vistas y vivienda familiar a minutos de <a href="/vender-horta">Horta</a> y del modernismo del Hospital de Sant Pau. Rangos orientativos de <strong>3.900–5.100 €/m²</strong> según planta, ascensor y calidad de terraza.',
       'Vender aquí no es lo mismo que vender en Gràcia: el comprador evalúa escaleras, aparcamiento en calle y tiempo real hasta metro. Un precio copiado de un piso plano en el Eixample estanca la venta.',
-      'Valoración gratuita, precio fijo 3.500 € + IVA en escritura y compradores filtrados desde Les Corts.',
+      'Valoración gratuita, precio fijo 3.000 € + IVA (3.630 € en escritura) en escritura y compradores filtrados desde Les Corts.',
     ],
     sections: [
       {
@@ -316,7 +316,7 @@ const VENDER = [
       },
       {
         title: 'Honorarios fijos',
-        body: '<p>3.500 € + IVA solo en escritura. Sobre 395.000 € el ahorro frente al 6% supera 20.000 €.</p>',
+        body: '<p>3.000 € + IVA (3.630 € en escritura) solo en escritura. Sobre 395.000 € el ahorro frente al 6% supera 20.000 €.</p>',
       },
       {
         title: 'Panel y visitas',
@@ -336,7 +336,7 @@ const VENDER = [
     faq: [
       { q: '¿Guinardó es Horta-Guinardó?', a: 'Sí, es uno de los barrios del distrito. El pricing es distinto al de la Vila de Gràcia.' },
       { q: '¿Vender sin ascensor?', a: 'Sí, con precio alineado desde el inicio y comprador que acepte planta.' },
-      { q: '¿Honorarios?', a: 'Precio fijo 3.500 € + IVA solo en escritura.' },
+      { q: '¿Honorarios?', a: 'Precio fijo 3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
 ];

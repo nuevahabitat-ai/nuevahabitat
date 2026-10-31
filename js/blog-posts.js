@@ -61,7 +61,7 @@ window.NH_BLOG_POSTS = {
         <li><strong>Transparencia documental</strong> desde el primer día (ITE, comunidad, cargas).</li>
         <li><strong>Negociación profesional</strong> para cerrar sin regateos interminables.</li>
       </ol>
-      <p>Con NuevaHabitat pagas <strong>3.500 € + IVA</strong>, solo en escritura. <a href="/vender">Empieza aquí</a>.</p>
+      <p>Con NuevaHabitat pagas <strong>3.000 € + IVA (3.630 € en escritura)</strong>, solo en escritura. <a href="/vender">Empieza aquí</a>.</p>
     `
   },
   'home-staging': {
@@ -153,12 +153,12 @@ window.NH_BLOG_POSTS = {
     date: '12 jul 2026',
     readMin: 6,
     image: 'imagenes/inmobiliario1.jpg',
-    excerpt: 'Comisiones ocultas, exclusivas y permanencias: por qué el precio fijo de 3.500 € + IVA cambia las reglas.',
+    excerpt: 'Comisiones ocultas, exclusivas y permanencias: por qué el precio fijo de 3.000 € + IVA (3.630 € en escritura) cambia las reglas.',
     keywords: ['vender piso Barcelona precio fijo', 'inmobiliaria precio fijo Barcelona', 'comisión inmobiliaria Barcelona', 'vender casa sin sorpresas'],
-    metaDescription: 'Vender piso en Barcelona con precio fijo de 3.500€ + IVA. Sin comisiones ocultas ni exclusivas. Cobro solo en escritura. NuevaHabitat.',
+    metaDescription: 'Vender piso en Barcelona con precio fijo de 3.000€ + IVA (3.630 € en escritura). Sin comisiones ocultas ni exclusivas. Cobro solo en escritura. NuevaHabitat.',
     body: `
       <p>Si buscas <strong>vender piso en Barcelona</strong>, lo primero que te preguntarás es cuánto te costará la inmobiliaria. En el modelo tradicional, las comisiones suelen oscilar entre el 3% y el 5% del precio de venta — en un piso de 350.000 €, eso supone hasta 17.500 €.</p>
-      <p>En <strong>NuevaHabitat</strong> aplicamos un modelo de <strong>precio fijo: 3.500 € + IVA</strong>, cobrados únicamente en el momento de la escritura. Sin permanencias, sin exclusivas abusivas y sin comisiones ocultas. Si no vendes, no pagas.</p>
+      <p>En <strong>NuevaHabitat</strong> aplicamos un modelo de <strong>precio fijo: 3.000 € + IVA (3.630 € en escritura)</strong>, cobrados únicamente en el momento de la escritura. Sin permanencias, sin exclusivas abusivas y sin comisiones ocultas. Si no vendes, no pagas.</p>
       <p>El servicio incluye valoración de mercado, reportaje fotográfico, publicación en portales, filtrado de compradores cualificados, visitas, negociación y acompañamiento hasta la firma.</p>
       <p>¿Quieres saber cuánto vale tu vivienda antes de decidir? <a href="/vender">Solicita una valoración gratuita</a> sin compromiso. Si vives en Les Corts, también puedes ver el detalle del servicio en nuestra <a href="/vender-les-corts">landing de venta en Les Corts</a>.</p>
     `
@@ -192,7 +192,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p>La <strong>comisión inmobiliaria Barcelona</strong> media ronda el 3%–5% del precio de venta más IVA. En operaciones de 300.000–500.000 €, el coste para el vendedor puede superar los 15.000 €, independientemente del tiempo que tarde la venta.</p>
       <p>Antes de firmar una exclusiva, pregunta qué incluye: ¿fotografía profesional? ¿publicación en portales? ¿filtrado de compradores? ¿negociación? ¿gestión de arras y escritura? Muchas agencias cobran extras por cada servicio.</p>
-      <p>NuevaHabitat cobra <strong>3.500 € + IVA solo en escritura</strong>, con todo incluido. Transparencia total desde el primer día. <a href="/vender">Consulta condiciones</a> o compara con tu presupuesto actual. En Les Corts, un piso de 400.000 € supone un ahorro de más de 21.000 € frente a una agencia al 6% — <a href="/vender-les-corts">ver comparativa en Les Corts</a>.</p>
+      <p>NuevaHabitat cobra <strong>3.000 € + IVA (3.630 € en escritura) solo en escritura</strong>, con todo incluido. Transparencia total desde el primer día. <a href="/vender">Consulta condiciones</a> o compara con tu presupuesto actual. En Les Corts, un piso de 400.000 € supone un ahorro de más de 21.000 € frente a una agencia al 6% — <a href="/vender-les-corts">ver comparativa en Les Corts</a>.</p>
     `
   },
 
@@ -289,7 +289,7 @@ window.NH_BLOG_POSTS = {
     body: `
       <p><strong>Vender piso herencia Barcelona</strong> implica pasos previos: aceptación de herencia, pago del Impuesto de Sucesiones, inscripción registral a tu nombre y, en muchos casos, acuerdo entre herederos sobre el precio mínimo de venta.</p>
       <p>La fiscalidad incluye posible plusvalía municipal si ha habido incremento del valor catastral del suelo. Planifica el timing: vender antes o después de completar trámites puede afectar a compradores y al precio final.</p>
-      <p>NuevaHabitat acompaña a familias en ventas por herencia con discreción y precio fijo de 3.500 € + IVA. <a href="/contacto">Consulta tu caso</a> o <a href="/vender-piso-herencia-barcelona">guía completa vender piso heredado</a>.</p>
+      <p>NuevaHabitat acompaña a familias en ventas por herencia con discreción y precio fijo de 3.000 € + IVA (3.630 € en escritura). <a href="/contacto">Consulta tu caso</a> o <a href="/vender-piso-herencia-barcelona">guía completa vender piso heredado</a>.</p>
     `
   },
 
@@ -312,7 +312,7 @@ window.NH_BLOG_POSTS = {
     image: 'imagenes/inmobiliario2.jpg',
     excerpt: 'Comisión variable, servicios incluidos y coste total en una venta de 400.000 €: comparativa honesta.',
     keywords: ['Housfy Barcelona', 'NuevaHabitat vs Housfy', 'comisión vender piso Barcelona', 'precio fijo inmobiliaria'],
-    metaDescription: 'Comparativa Housfy vs NuevaHabitat en Barcelona: comisión, servicios y coste total al vender. Precio fijo 3.500 € + IVA solo en escritura.'
+    metaDescription: 'Comparativa Housfy vs NuevaHabitat en Barcelona: comisión, servicios y coste total al vender. Precio fijo 3.000 € + IVA (3.630 € en escritura) solo en escritura.'
   },
 
   'vender-piso-horta-guia': {
@@ -345,7 +345,7 @@ window.NH_BLOG_POSTS = {
     image: 'imagenes/interior8.jpg',
     excerpt: 'Contrato vigente, derecho de tanteo, visitas con inquilino y cómo no perder compradores por mala planificación.',
     keywords: ['vender piso alquilado Barcelona', 'vender con inquilino Barcelona', 'contrato alquiler venta piso', 'derecho tanteo inquilino'],
-    metaDescription: 'Guía para vender piso alquilado en Barcelona: contrato vigente, visitas, derecho de tanteo y plazos. NuevaHabitat precio fijo 3.500 € + IVA.'
+    metaDescription: 'Guía para vender piso alquilado en Barcelona: contrato vigente, visitas, derecho de tanteo y plazos. NuevaHabitat precio fijo 3.000 € + IVA (3.630 € en escritura).'
   },
 
   'vender-piso-divorcio-guia-barcelona': {
@@ -404,7 +404,7 @@ window.NH_BLOG_POSTS = {
       'anuncio particular sin vender', 'vender por tu cuenta Barcelona', 'panel vendedor Barcelona',
       'precio fijo vender piso Barcelona', 'NuevaHabitat particular', 'Fotocasa particular Barcelona'
     ],
-    metaDescription: '¿Llevas meses en Idealista como particular en Barcelona? 7 señales de que falla precio, filtro o documentos — y alternativa precio fijo 3.500 € + IVA con panel vendedor NuevaHabitat.'
+    metaDescription: '¿Llevas meses en Idealista como particular en Barcelona? 7 señales de que falla precio, filtro o documentos — y alternativa precio fijo 3.000 € + IVA (3.630 € en escritura) con panel vendedor NuevaHabitat.'
   },
 
   'cadena-compraventa-tasacion-hipoteca-barcelona-2026': {

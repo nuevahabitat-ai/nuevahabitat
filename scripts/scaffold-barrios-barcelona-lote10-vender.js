@@ -34,7 +34,7 @@ const VENDER = [
     intro: [
       "<strong>Camp d'en Grassot</strong> es la puerta de entrada a Gràcia para compradores con presupuesto ajustado: mismas calles de terrazas y vida de barrio, pero rangos orientativos de <strong>4.200–5.400 €/m²</strong> en 2026, por debajo de la Vila en muchas fincas.",
       'Vender aquí exige no mezclar comparables con <a href="/vender-gracia">Gràcia centro</a> ni con <a href="/vender-horta">Horta</a>. El comprador conoce la diferencia entre Joanic y plaza del Sol; el precio debe reflejar calle, ascensor y estado interior.',
-      'Honorarios fijos <strong>3.500 € + IVA</strong> en escritura, valoración en 24 h desde Les Corts y visitas solo con hipoteca preaprobada o liquidez contrastada.',
+      'Honorarios fijos <strong>3.000 € + IVA (3.630 € en escritura)</strong> en escritura, valoración en 24 h desde Les Corts y visitas solo con hipoteca preaprobada o liquidez contrastada.',
     ],
     sections: [
       { title: 'Gràcia nord vs Vila de Gràcia en pricing', body: '<p>Un piso en Grassot no compite en precio con un piso en plaza del Sol. Valoramos con cierres de la misma calle y antigüedad de finca. Idealista mezcla etiquetas “Gràcia” y distorsiona expectativas del vendedor.</p><p>Si tu vivienda tiene terraza amplia y orientación sur, puede acercarse al ticket de la Vila; si es interior en pendiente, hay que anclar comparables honestos desde el día uno.</p>' },
@@ -43,7 +43,7 @@ const VENDER = [
       { title: 'Reforma interior y certificado energético', body: '<p>Muchas cocinas y baños son originales de reformas parciales años 90. Documentar obra reciente acorta arras. Certificado energético bajo: anticipamos coste orientativo de mejora.</p>' },
       { title: 'Comunidad y derramas', body: '<p>Actas, ITE y deuda de comunidad antes de visitas con banco al 80–90%. Subimos documentos al panel vendedor para evitar sorpresas.</p>' },
       { title: 'Piso alquilado o herencia', body: '<p>Si vendes <a href="/vender-piso-alquilado-barcelona">con inquilino</a> o entre herederos, separamos perfiles de visita y centralizamos ofertas trazables.</p>' },
-      { title: 'Honorarios fijos y ahorro', body: '<p>Sobre 420.000 €, el 6% tradicional supera 25.000 € en comisión. Precio fijo 3.500 € + IVA solo si cierras en notaría.</p>' },
+      { title: 'Honorarios fijos y ahorro', body: '<p>Sobre 420.000 €, el 6% tradicional supera 25.000 € en comisión. Precio fijo 3.000 € + IVA (3.630 € en escritura) solo si cierras en notaría.</p>' },
       { title: 'Panel y gestores', body: '<p>Daniel o Sebastián en Les Corts: WhatsApp en horario comercial, calendario de visitas en tus franjas.</p>' },
       { title: 'Compradores de cartera', body: '<p>Activamos demanda cualificada en cartera propia además de revisar pricing si ya publicas en portal.</p>' },
       { title: 'Enlaces útiles', body: '<p><a href="/vender-gracia">Vender en Gràcia</a>, <a href="/comprar-piso-gracia-barcelona">compradores en Gràcia</a>, <a href="/inmobiliaria-precio-fijo-gracia-barcelona">precio fijo Gràcia</a>.</p>' },
@@ -57,7 +57,7 @@ const VENDER = [
     faq: [
       { q: "¿Grassot es Gràcia?", a: 'Es barrio del distrito de Gràcia con mercado propio. Valoramos con comparables de Grassot, no solo de la Vila.' },
       { q: '¿Cuánto tarda la venta?', a: 'Con precio alineado, 50–90 días es habitual.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura si vendes.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura si vendes.' },
     ],
   },
   {
@@ -87,7 +87,7 @@ const VENDER = [
     intro: [
       '<strong>La Bordeta</strong> concentra vivienda familiar a precio más contenido que <a href="/vender-sants">Sants centro</a> o <a href="/vender-les-corts">Les Corts</a>. Rangos orientativos de <strong>3.500–4.500 €/m²</strong> según planta, ascensor y distancia a ruido viario.',
       'Quien vende debe separar La Bordeta de <a href="/vender-hostafrancs-barcelona">Hostafrancs</a> en la ficha: el comprador de portal suele confundir barrios del mismo distrito. Pricing por micro-zona evita semanas sin visitas serias.',
-      'Valoración gratuita en 24 h, precio fijo 3.500 € + IVA en escritura y compradores filtrados desde Les Corts.',
+      'Valoración gratuita en 24 h, precio fijo 3.000 € + IVA (3.630 € en escritura) en escritura y compradores filtrados desde Les Corts.',
     ],
     sections: [
       { title: 'Magòria y eje de Gran Via', body: '<p>Primera línea viaria vs calle residencial: dos mercados. Visitamos con atención acústica cuando hace falta. Comprador teletrabaja: transparencia sobre ruido entre semana.</p>' },
@@ -97,7 +97,7 @@ const VENDER = [
       { title: 'Documentación y comunidad', body: '<p>Certificado energético, nota simple, actas. Comprador financiado no perdona derrama sorpresa.</p>' },
       { title: 'Piso para reformar', body: '<p>Precio debe reflejar obra. Compradores que reforman piden margen: alineamos salida con tasaciones recientes.</p>' },
       { title: 'Venta encadenada', body: '<p><a href="/vender-piso-antes-comprar-otro-barcelona">Vender antes de comprar otro</a>: plazos de arras coordinados.</p>' },
-      { title: 'Honorarios fijos', body: '<p>3.500 € + IVA solo en escritura. Sobre 340.000 € ahorras más de 17.000 € frente al 6%.</p>' },
+      { title: 'Honorarios fijos', body: '<p>3.000 € + IVA (3.630 € en escritura) solo en escritura. Sobre 340.000 € ahorras más de 17.000 € frente al 6%.</p>' },
       { title: 'Sin exclusiva larga', body: '<p>Revisión de pricing y cartera sin obligarte a doce meses de exclusiva si ya estás en otra agencia.</p>' },
       { title: 'Enlaces', body: '<p><a href="/vender-sants">Sants</a>, <a href="/vender-hostafrancs-barcelona">Hostafrancs</a>, <a href="/venta-piso-economica-sants-barcelona">venta económica Sants</a>.</p>' },
     ],
@@ -109,7 +109,7 @@ const VENDER = [
     ],
     faq: [
       { q: '¿La Bordeta es Sants?', a: 'Es barrio del distrito Sants-Montjuïc. Valoramos con comparables de Bordeta, no media genérica de Sants.' },
-      { q: '¿Cuánto cuesta vender?', a: '3.500 € + IVA solo en escritura si cierras.' },
+      { q: '¿Cuánto cuesta vender?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura si cierras.' },
       { q: '¿Visitas cualificadas?', a: 'Sí, solo compradores con solvencia contrastada.' },
     ],
   },
@@ -140,7 +140,7 @@ const VENDER = [
     intro: [
       '<strong>Provençals del Poblenou</strong> es el tramo donde muchos compradores equilibran precio y cercanía al mar sin pagar Diagonal Mar. Orientativamente <strong>4.000–5.200 €/m²</strong> en 2026 para pisos de tres habitaciones en buen estado.',
       'Error frecuente: pedir precio de <a href="/vender-poblenou">Poblenou</a> industrial reformado estando en bloque de los 70. Valoración por finca concreta desde Les Corts.',
-      'Precio fijo 3.500 € + IVA, panel vendedor y visitas en tus franjas.',
+      'Precio fijo 3.000 € + IVA (3.630 € en escritura), panel vendedor y visitas en tus franjas.',
     ],
     sections: [
       { title: 'Límite con Poblenou y Verneda', body: '<p>Provençals no es La Verneda ni el Poblenou de oficinas reformadas. Comparables cruzados sin criterio estancan la venta. Micro-zona en cada valoración.</p>' },
@@ -163,7 +163,7 @@ const VENDER = [
     faq: [
       { q: '¿Provençals es Poblenou?', a: 'Es barrio oficial de Sant Martí con mercado distinto al Poblenou industrial premium.' },
       { q: '¿Tiempo de venta?', a: '50–85 días con precio alineado es habitual.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
   {
@@ -193,7 +193,7 @@ const VENDER = [
     intro: [
       '<strong>El Besòs</strong> (Besòs i el Maresme) es mercado de primera vivienda y familias que buscan metros en Barcelona ciudad sin ticket de Poblenou. Rangos de <strong>3.300–4.200 €/m²</strong> según finca y orientación.',
       'Vender bien implica honestidad sobre entorno, transporte y comparación con <a href="/vender-badalona">Badalona</a> limítrofe. Pricing por manzana, no “Sant Martí” genérico.',
-      'Honorarios fijos 3.500 € + IVA, valoración en 24 h y visitas cualificadas.',
+      'Honorarios fijos 3.000 € + IVA (3.630 € en escritura), valoración en 24 h y visitas cualificadas.',
     ],
     sections: [
       { title: 'Besòs Mar y metro L4', body: '<p>Comprador primerizo pregunta por conexión al centro. Cuantificamos minutos reales hasta tu estación de referencia.</p>' },
@@ -215,7 +215,7 @@ const VENDER = [
     ],
     faq: [
       { q: '¿El Besòs es barrio de moda?', a: 'Es sobre todo mercado de precio contenido y familias. Estrategia realista en pricing y solvencia.' },
-      { q: '¿Cuánto cuesta vender?', a: '3.500 € + IVA solo en escritura si cierras.' },
+      { q: '¿Cuánto cuesta vender?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura si cierras.' },
       { q: '¿Valoración gratuita?', a: 'Sí, en 24 h laborables desde Les Corts.' },
     ],
   },
@@ -246,7 +246,7 @@ const VENDER = [
     intro: [
       '<strong>Roquetes</strong> es uno de los barrios de <a href="/vender-nou-barris">Nou Barris</a> con mayor stock familiar a ticket contenido: orientativamente <strong>3.000–3.900 €/m²</strong> en 2026.',
       'Vender aquí compite con percepción de “barrio lejano” si la ficha es pobre. Hay que explicar metro L3 Roquetes, equipamientos y metros reales del piso.',
-      'Precio fijo 3.500 € + IVA en escritura, visitas filtradas y valoración gratuita.',
+      'Precio fijo 3.000 € + IVA (3.630 € en escritura) en escritura, visitas filtradas y valoración gratuita.',
     ],
     sections: [
       { title: 'Metro Roquetes y bus a hospital', body: '<p>Comprador primerizo valora conexión. Minutos caminando y líneas de bus hacia centro sanitario o trabajo: datos concretos en la presentación.</p>' },
@@ -256,7 +256,7 @@ const VENDER = [
       { title: 'Financiación al 80–90%', body: '<p>Precio alineado con tasación bancaria. Evitamos meses de “probamos a ver” con curiosos sin capacidad.</p>' },
       { title: 'Comunidad y derramas', body: '<p>Actas antes de arras. Comprador financiado agradece transparencia.</p>' },
       { title: 'Venta por herencia', body: '<p>Varios titulares: panel con ofertas visibles. Enlace <a href="/vender-piso-herencia-barcelona">herencia</a> si aplica.</p>' },
-      { title: 'Honorarios fijos', body: '<p>Sobre 265.000 €, 6% supera 15.000 €; precio fijo 3.500 € + IVA total con IVA orientativo.</p>' },
+      { title: 'Honorarios fijos', body: '<p>Sobre 265.000 €, 6% supera 15.000 €; precio fijo 3.000 € + IVA (3.630 € en escritura) total con IVA orientativo.</p>' },
       { title: 'Gestores Les Corts', body: '<p>Daniel o Sebastián, WhatsApp y visitas en tus franjas.</p>' },
       { title: 'Enlaces', body: '<p><a href="/vender-nou-barris">Nou Barris</a>, <a href="/venta-piso-economica-nou-barris-barcelona">venta económica Nou Barris</a>, <a href="/vender-l-hospitalet">L’Hospitalet</a>.</p>' },
     ],
@@ -269,7 +269,7 @@ const VENDER = [
     faq: [
       { q: '¿Roquetes es Nou Barris?', a: 'Sí. Valoramos con comparables de Roquetes, no solo etiqueta distrito.' },
       { q: '¿Tiempo de venta?', a: '60–100 días con precio realista es habitual.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura si cierras.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura si cierras.' },
     ],
   },
   {
@@ -299,7 +299,7 @@ const VENDER = [
     intro: [
       'Vender piso cerca de la <strong>Sagrada Família</strong> es vender centralidad e icono mundial, pero también ruido turístico y fincas exigentes en comunidad. Rangos de <strong>4.800–6.000 €/m²</strong> según planta, ascensor y reforma.',
       'No mezclar comparables con <a href="/vender-eixample">Eixample</a> genérico ni con <a href="/vender-fort-pienc-barcelona">Fort Pienc</a>: calle concreta y orientación mandan.',
-      'Honorarios fijos 3.500 € + IVA, valoración micro-zona y compradores cualificados desde Les Corts.',
+      'Honorarios fijos 3.000 € + IVA (3.630 € en escritura), valoración micro-zona y compradores cualificados desde Les Corts.',
     ],
     sections: [
       { title: 'Turismo de paso y vida diaria', body: '<p>Comprador residente pregunta por ruido y colas. Visitas en distintos horarios cuando hace falta. Transparencia evita arras rotas.</p>' },
@@ -322,7 +322,7 @@ const VENDER = [
     faq: [
       { q: '¿Vender junto a la Sagrada Família encarece siempre?', a: 'Depende de calle, planta y ruido. Valoramos finca concreta, no solo el icono.' },
       { q: '¿Cuánto tarda la venta?', a: '45–80 días con precio alineado es habitual.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura si cierras.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura si cierras.' },
     ],
   },
 ];

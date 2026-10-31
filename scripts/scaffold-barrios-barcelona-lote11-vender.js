@@ -34,7 +34,7 @@ const VENDER = [
     intro: [
       '<strong>Bon Pastor</strong> es uno de los barrios más singulares de Sant Andreu: casas bajas históricas conviven con bloques junto al río Besòs y el pulso comercial de la Maquinista. En 2026 los rangos orientativos rondan <strong>3.100–3.800 €/m²</strong>, muy lejos del Eixample pero con demanda estable de quien quiere municipio Barcelona con hipoteca asequible.',
       'Vender aquí no es publicar “Sant Andreu genérico”: el comprador distingue Bon Pastor de <a href="/vender-verneda-barcelona">La Verneda</a> y de <a href="/vender-sant-andreu">Sant Andreu centro</a>. Pricing con comparables de la misma manzana evita meses de visitas sin oferta seria.',
-      'Honorarios fijos <strong>3.500 € + IVA</strong> solo en escritura, valoración en 24 h desde Les Corts y visitas con solvencia contrastada.',
+      'Honorarios fijos <strong>3.000 € + IVA (3.630 € en escritura)</strong> solo en escritura, valoración en 24 h desde Les Corts y visitas con solvencia contrastada.',
     ],
     sections: [
       { title: 'Bon Pastor frente a Verneda y Navas', body: '<p>Mismo distrito, tickets distintos. Si tu piso está en el núcleo de casas bajas, el comprador busca patio y silencio relativo; si estás en bloque junto a ronda, valora acceso rodado. No mezclamos comparables con anuncios de la Verneda alta.</p>' },
@@ -44,7 +44,7 @@ const VENDER = [
       { title: 'Comunidad y documentación', body: '<p>Actas, ITE y deuda antes de visitas con banco al 80–90%. Panel vendedor centraliza ofertas entre hermanos o parejas en separación.</p>' },
       { title: 'Piso alquilado o herencia', body: '<p>Enlaces con <a href="/vender-piso-alquilado-barcelona">venta con inquilino</a> y <a href="/vender-piso-herencia-barcelona">herencia</a> cuando el calendario es sensible.</p>' },
       { title: 'Fotografía y honestidad en la ficha', body: '<p>Fotos de distribución real, patio si existe y orientación. Evitamos etiquetas de portal que mezclan barrios del distrito.</p>' },
-      { title: 'Honorarios fijos y neto', body: '<p>Sobre 285.000 €, el 6% tradicional supera 17.000 € en comisión. Precio fijo 3.500 € + IVA solo si cierras.</p>' },
+      { title: 'Honorarios fijos y neto', body: '<p>Sobre 285.000 €, el 6% tradicional supera 17.000 € en comisión. Precio fijo 3.000 € + IVA (3.630 € en escritura) solo si cierras.</p>' },
       { title: 'Panel y gestores', body: '<p>Daniel o Sebastián en Les Corts: WhatsApp en horario comercial y calendario en tus franjas.</p>' },
       { title: 'Enlaces útiles', body: '<p><a href="/vender-sant-andreu">Sant Andreu</a>, <a href="/vender-verneda-barcelona">Verneda</a>, <a href="/venta-piso-economica-sant-andreu-barcelona">venta económica Sant Andreu</a>.</p>' },
     ],
@@ -57,7 +57,7 @@ const VENDER = [
     faq: [
       { q: '¿Bon Pastor es buen sitio para vender piso en 2026?', a: 'Hay demanda de primera vivienda con ticket contenido. El precio debe ser de Bon Pastor, no de Eixample.' },
       { q: '¿Cuánto tarda la venta?', a: '65–105 días con pricing honesto y documentación lista es habitual.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura si cierras con NuevaHabitat.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura si cierras con NuevaHabitat.' },
     ],
   },
   {
@@ -87,7 +87,7 @@ const VENDER = [
     intro: [
       '<strong>Navas</strong> conecta Sant Andreu con la Meridiana y el Clot: metro L1, comercio de proximidad y pisos familiares con rangos de <strong>3.300–4.100 €/m²</strong> en 2026. No es el Eixample, pero tampoco compite con Roquetes en ticket: el comprador lo sabe y negocia fino.',
       'Error habitual: publicar como “Sant Andreu” sin micro-zona. Valoramos con cierres en Navas y calles paralelas, no con anuncios de <a href="/vender-el-clot-la-sagrera-barcelona">El Clot</a> mezclados.',
-      'Precio fijo 3.500 € + IVA en escritura, valoración gratuita y compradores filtrados desde Les Corts.',
+      'Precio fijo 3.000 € + IVA (3.630 € en escritura) en escritura, valoración gratuita y compradores filtrados desde Les Corts.',
     ],
     sections: [
       { title: 'Metro L1 y minutos reales', body: '<p>Fabra i Puig y Navas anclan el mapa mental del comprador. Medimos caminando hasta estación y si el piso compensa ruido de Meridiana con metros extra o terraza.</p>' },
@@ -110,7 +110,7 @@ const VENDER = [
     faq: [
       { q: '¿Navas sube de precio como El Clot?', a: 'Comparten demanda pero no mismo ticket. Valoramos finca en Navas, no media del Clot.' },
       { q: '¿Cuánto tarda vender?', a: '60–95 días con precio alineado es habitual.' },
-      { q: '¿Comisión?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Comisión?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
   {
@@ -140,7 +140,7 @@ const VENDER = [
     intro: [
       '<strong>Montjuïc</strong> vende parque, miradores y calles con personalidad distinta a la trama del Eixample. Rangos de <strong>3.600–4.600 €/m²</strong> según pendiente, vistas y minutos a <a href="/vender-poble-sec">Poble-sec</a> o <a href="/vender-sants">Sants</a>.',
       'No confundir con pisos turísticos de la falda: el comprador residente pregunta por transporte, aparcamiento y verano sin ascensor en calles empinadas.',
-      'Honorarios 3.500 € + IVA, valoración micro-zona y visitas cualificadas.',
+      'Honorarios 3.000 € + IVA (3.630 € en escritura), valoración micro-zona y visitas cualificadas.',
     ],
     sections: [
       { title: 'Pendiente, aparcamiento y verano', body: '<p>Calles empinadas: comprador con coche pregunta por plaza. Sin ascensor en planta alta, filtramos visitas. Transparencia sobre calor en verano en orientación oeste.</p>' },
@@ -163,7 +163,7 @@ const VENDER = [
     faq: [
       { q: '¿Montjuïc es caro como Poble-sec centro?', a: 'Depende de calle y vistas. Muchas fincas cotizan por debajo del Poble-sec más céntrico.' },
       { q: '¿Plazo de venta?', a: '55–90 días con precio correcto.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
   {
@@ -193,7 +193,7 @@ const VENDER = [
     intro: [
       '<strong>Pedralbes</strong> es uno de los micro-mercados más exigentes de Barcelona: colegios internacionales, jardines y ticket de <strong>6.200–8.500 €/m²</strong> en 2026 para pisos y áticos bien posicionados. Vender aquí con pricing de Les Corts medio es un error caro.',
       'El comprador llega con abogado, tasador propio y comparativa con <a href="/vender-sarria">Sarrià</a> el mismo día. Documentación impecable y reportaje de calidad son el mínimo.',
-      '3.500 € + IVA en escritura — sobre 720.000 € el ahorro frente al 6% supera 40.000 € en comisión.',
+      '3.000 € + IVA (3.630 € en escritura) en escritura — sobre 720.000 € el ahorro frente al 6% supera 40.000 € en comisión.',
     ],
     sections: [
       { title: 'Comprador patrimonial y tiempos', body: '<p>Operaciones pueden incluir NIE, trust o sociedad: coordinamos calendario sin prometer plazos imposibles al banco.</p>' },
@@ -216,7 +216,7 @@ const VENDER = [
     faq: [
       { q: '¿Pedralbes siempre supera un millón?', a: 'No. Hay pisos en segunda línea por debajo de 600.000 €; la valoración es finca a finca.' },
       { q: '¿Cuánto tarda vender en prime?', a: '50–85 días con precio alineado a tasación bancaria.' },
-      { q: '¿Comisión?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Comisión?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
   {
@@ -256,7 +256,7 @@ const VENDER = [
       { title: 'Inversor vs usuario final', body: '<p>Alquiler existente: visitas filtradas. Piso vacío para familia: pintura ligera puede acelerar arras.</p>' },
       { title: 'Documentación comunidad', body: '<p>Deuda y obras: transparencia antes de oferta con banco.</p>' },
       { title: 'Hipoteca pendiente vendedor', body: '<p><a href="/vender-piso-hipoteca-pendiente-barcelona">Hipoteca pendiente</a>: timing con entidad compradora.</p>' },
-      { title: 'Honorarios fijos', body: '<p>Sobre 245.000 €, 6% supera 14.000 €; fijo 3.500 € + IVA total honorarios.</p>' },
+      { title: 'Honorarios fijos', body: '<p>Sobre 245.000 €, 6% supera 14.000 €; fijo 3.000 € + IVA (3.630 € en escritura) total honorarios.</p>' },
       { title: 'Panel', body: '<p>Ofertas centralizadas, calendario en tus horas.</p>' },
       { title: 'Enlaces', body: '<p><a href="/vender-roquetes-barcelona">Roquetes</a>, <a href="/vender-nou-barris">Nou Barris</a>, <a href="/venta-piso-economica-nou-barris-barcelona">venta económica</a>.</p>' },
     ],
@@ -269,7 +269,7 @@ const VENDER = [
     faq: [
       { q: '¿Trinitat Vella es difícil de vender?', a: 'Hay demanda de entrada; el reto es pricing realista y documentación de comunidad.' },
       { q: '¿Plazo habitual?', a: '70–110 días según estado y precio.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
   {
@@ -299,7 +299,7 @@ const VENDER = [
     intro: [
       "<strong>Vall d'Hebron</strong> mezcla hospital, universidad y barrio residencial en la falda de Collserola. Rangos de <strong>3.900–5.100 €/m²</strong> según calle, vistas y minutos a <a href=\"/vender-horta\">Horta</a>. Comprador sanitario pregunta por turnos y aparcamiento.",
       'No publicar como “Horta genérico”: Montbau y Vall d’Hebron tienen comparables propios. Enlazamos con <a href="/vender-guinardo-barcelona">Guinardó</a> solo cuando la finca lo exige.',
-      'Precio fijo 3.500 € + IVA, valoración 24 h y compradores filtrados.',
+      'Precio fijo 3.000 € + IVA (3.630 € en escritura), valoración 24 h y compradores filtrados.',
     ],
     sections: [
       { title: 'Campus sanitario y demanda estable', body: '<p>Médicos y investigadores buscan proximidad y distribución práctica. Horarios de visita flexibles cuando hay guardias.</p>' },
@@ -322,7 +322,7 @@ const VENDER = [
     faq: [
       { q: "¿Vall d'Hebron es lo mismo que Horta?", a: 'Comparten distrito pero micro-mercado distinto. Valoramos dirección concreta.' },
       { q: '¿Tiempo de venta?', a: '55–90 días con precio alineado.' },
-      { q: '¿Comisión?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Comisión?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
   {
@@ -375,7 +375,7 @@ const VENDER = [
     faq: [
       { q: '¿Tetuan es Eixample o Sant Martí?', a: 'Administrativamente Sant Martí; el mercado mezcla comparables de ambos lados. Valoramos finca concreta.' },
       { q: '¿Plazo de venta?', a: '50–85 días con precio correcto.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
   {
@@ -405,7 +405,7 @@ const VENDER = [
     intro: [
       '<strong>Sant Pere</strong> y <strong>Santa Caterina</strong> son la Ciutat Vella que aún vive de barrio: mercado, plazas pequeñas y fincas estrechas con <strong>4.800–6.200 €/m²</strong> según planta, luz y estado de finca.',
       'No competir en precio con <a href="/vender-piso-born-barcelona">El Born</a> turístico si tu piso es interior oscuro. Due diligence de humedad e ITE antes de prometer plazo corto.',
-      '3.500 € + IVA en escritura, compradores filtrados y valoración micro-zona.',
+      '3.000 € + IVA (3.630 € en escritura) en escritura, compradores filtrados y valoración micro-zona.',
     ],
     sections: [
       { title: 'Mercat de Santa Caterina como ancla', body: '<p>Comprador residente valora compra diaria a pie. Distancia real al mercado en la ficha comercial.</p>' },
@@ -428,7 +428,7 @@ const VENDER = [
     faq: [
       { q: '¿Sant Pere es turístico como el Born?', a: 'Menos presión turística; más perfil residente. El precio depende de calle y luz.' },
       { q: '¿Cuánto tarda la venta?', a: '50–85 días con documentación de finca al día.' },
-      { q: '¿Honorarios?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Honorarios?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
   {
@@ -458,7 +458,7 @@ const VENDER = [
     intro: [
       '<strong>La Sagrera</strong> ha ganado protagonismo con el parque, la estación y familias que no alcanzan ticket del <a href="/vender-el-clot-la-sagrera-barcelona">Clot</a> más céntrico. Rangos de <strong>3.500–4.400 €/m²</strong> en 2026 según distancia a vías y estado interior.',
       'Landing distinta al combo Clot-Sagrera: aquí el comprador busca “Sagrera” en mapa. Comparables de la misma calle, no media de Sant Andreu entero.',
-      'Honorarios fijos 3.500 € + IVA, valoración 24 h desde Les Corts.',
+      'Honorarios fijos 3.000 € + IVA (3.630 € en escritura), valoración 24 h desde Les Corts.',
     ],
     sections: [
       { title: 'Estación, Rodalies y AVE', body: '<p>Comprador pendular pregunta por frecuencia y ruido. Visitas en horario punta si la calle lo requiere.</p>' },
@@ -481,7 +481,7 @@ const VENDER = [
     faq: [
       { q: '¿La Sagrera subió por el parque y la estación?', a: 'Hay más interés, pero el precio sigue siendo de micro-zona. No usar comparables del Eixample.' },
       { q: '¿Plazo de venta?', a: '55–95 días según finca y pricing.' },
-      { q: '¿Comisión?', a: '3.500 € + IVA solo en escritura.' },
+      { q: '¿Comisión?', a: '3.000 € + IVA (3.630 € en escritura) solo en escritura.' },
     ],
   },
 ];

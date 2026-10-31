@@ -273,7 +273,7 @@
     index: () => [orgSchema(), webSiteSchema()],
     'vender': () => [
       orgSchema(),
-      webPageSchema('Vender piso en Barcelona sin comisión del 6%', 'Vende tu piso en Barcelona por 3.500€ + IVA, sin comisión del 6% ni riesgo de vender solo. Precio fijo, cobro solo en escritura.', 'vender'),
+      webPageSchema('Vender piso en Barcelona sin comisión del 6%', 'Vende tu piso en Barcelona por 3.000€ + IVA (3.630 € en escritura), sin comisión del 6% ni riesgo de vender solo. Precio fijo, cobro solo en escritura.', 'vender'),
       breadcrumbSchema([{ name: 'Inicio', url: '/' }, { name: 'Vender', url: 'vender' }]),
     ],
     // Nota: las landings generadas por scripts/build-landings.js (barrio, situacion,
