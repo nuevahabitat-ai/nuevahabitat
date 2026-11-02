@@ -9005,8 +9005,9 @@ function rebajaContactKey(v){
   const em = (v.email || '').trim().toLowerCase();
   if(v.comprador_id) return `c:${v.comprador_id}`;
   if(em) return `e:${em}`;
-  const tel = normalizePhoneWa(v.telefono);
-  if(tel) return `t:${tel}`;
+  const digits = String(v.telefono || '').replace(/\D/g, '');
+  const tel9 = digits.length >= 9 ? digits.slice(-9) : digits;
+  if(tel9) return `t:${tel9}`;
   return `v:${v.visita_id}`;
 }
 
