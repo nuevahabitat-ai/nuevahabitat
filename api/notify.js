@@ -11,6 +11,7 @@ import {
 import { insertVisitaFromDisponibilidad, listVisitasAdminServer } from '../lib/server/visitas-api.js';
 import {
   saveGoogleCalendarIntegration,
+  clearGoogleCalendarIntegration,
   defaultGoogleClientId,
 } from '../lib/server/integration-secrets.js';
 import { verifyPanelApiKey } from '../lib/server/panel-api-auth.js';
@@ -760,6 +761,22 @@ async function handleAdminVisitas(req, res, body) {
   }
 }
 
+async function handleAdminGoogleCalendarClear(req, res) {
+  const admin = await verifyPanelAdminOrApiKey(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const cleared = await clearGoogleCalendarIntegration();
+    if (!cleared.ok) {
+      return res.status(500).json({ ok: false, error: cleared.error || 'No se pudo borrar' });
+    }
+    const auth = await verifyGoogleCalendarConnection();
+    return res.status(200).json({ ok: true, cleared: true, auth });
+  } catch (err) {
+    console.error('admin-google-calendar-clear', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminGoogleCalendarSave(req, res, body) {
   const admin = await verifyPanelAdminOrApiKey(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1317,6 +1334,7 @@ export default async function handler(req, res) {
   if (action === 'admin-propietario-alquiler-delete') return handleAdminPropietarioAlquilerDelete(req, res, body);
   if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
   if (action === 'admin-google-calendar-save') return handleAdminGoogleCalendarSave(req, res, body);
+  if (action === 'admin-google-calendar-clear') return handleAdminGoogleCalendarClear(req, res);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);
   if (action === 'inmueble-rebaja-email') return handleInmuebleRebajaEmail(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
