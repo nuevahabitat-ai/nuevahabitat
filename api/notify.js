@@ -767,6 +767,7 @@ async function handleAdminGoogleCalendarSave(req, res, body) {
   const clientSecret = String(body?.clientSecret || body?.client_secret || '').trim();
   const refreshToken = String(body?.refreshToken || body?.refresh_token || '').trim();
   const calendarId = String(body?.calendarId || body?.calendar_id || 'admin.nuevahabitat@gmail.com').trim();
+  const clientId = String(body?.clientId || body?.client_id || defaultGoogleClientId()).trim();
 
   if (!clientSecret || !refreshToken) {
     return res.status(400).json({
@@ -777,7 +778,7 @@ async function handleAdminGoogleCalendarSave(req, res, body) {
 
   try {
     const saved = await saveGoogleCalendarIntegration({
-      clientId: defaultGoogleClientId(),
+      clientId,
       clientSecret,
       refreshToken,
       calendarId,
