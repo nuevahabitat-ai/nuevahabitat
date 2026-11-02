@@ -373,6 +373,9 @@ select.adm-control{
 .pub-ref{font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
 .pub-title{font-size:.9rem;font-weight:600;margin:.2rem 0 .4rem;line-height:1.3;color:var(--text)}
 .pub-price{font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:.4rem}
+.pub-price-row{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;margin:.3rem 0 .5rem}
+.pub-price-old{font-size:.95rem;font-weight:600;color:var(--muted);text-decoration:line-through}
+.pub-price-drop{font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .55rem;border-radius:20px;background:rgba(34,197,94,.18);color:#4ade80;border:1px solid rgba(34,197,94,.35)}
 .pub-meta{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--muted);flex-wrap:wrap;margin-bottom:.6rem}
 .pub-meta span{display:flex;align-items:center;gap:.2rem}
 .pub-actions{display:flex;gap:.4rem;border-top:1px solid var(--border);padding-top:.7rem;margin-top:.2rem;flex-wrap:wrap}
@@ -1468,6 +1471,11 @@ select.adm-control{
                   <div class="adm-field">
                     <label>Precio (€) *</label>
                     <input type="number" id="w-precio" placeholder="350000"/>
+                    <p class="text-muted" style="font-size:.72rem;margin-top:.35rem;line-height:1.4">Si bajas el precio ≥500 €, se guarda el anterior para mostrar la rebaja en web y panel.</p>
+                  </div>
+                  <div class="adm-field" id="w-precio-anterior-wrap" style="display:none">
+                    <label>Precio anterior en web</label>
+                    <input type="text" id="w-precio-anterior-display" readonly tabindex="-1" style="opacity:.85"/>
                   </div>
                   <div class="adm-field">
                     <label>Estado</label>
@@ -1697,7 +1705,19 @@ select.adm-control{
       <!-- ── Visitas ───────────────────────────────────────────── -->
       <section class="adm-section" id="sec-visitas">
         <div class="adm-card">
-          <div class="adm-card-head"><h3>Visitas programadas</h3></div>
+          <div class="adm-card-head" style="flex-wrap:wrap;gap:.75rem">
+            <h3>Visitas programadas</h3>
+            <div class="gap-row" style="margin-left:auto;flex-wrap:wrap">
+              <div class="adm-subtabs" id="visitas-range-tabs" style="margin:0">
+                <button type="button" class="adm-subtab active" data-visitas-range="hoy" onclick="setVisitasRange('hoy')">Hoy</button>
+                <button type="button" class="adm-subtab" data-visitas-range="semana" onclick="setVisitasRange('semana')">Esta semana</button>
+                <button type="button" class="adm-subtab" data-visitas-range="meses" onclick="setVisitasRange('meses')">Últimos meses</button>
+                <button type="button" class="adm-subtab" data-visitas-range="todas" onclick="setVisitasRange('todas')">Todas</button>
+              </div>
+              <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" id="btn-visitas-sync" onclick="loadVisitas(true)">Sincronizar calendario</button>
+            </div>
+          </div>
+          <div id="visitas-sync-banner" style="display:none;margin-bottom:.75rem"></div>
           <div id="visitas-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
@@ -2085,6 +2105,23 @@ select.adm-control{
         </div>
       </div>
 
+      <!-- Modal: avisar rebaja a visitantes del inmueble -->
+      <div id="rebaja-vis-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="rebaja-vis-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closeRebajaVisitantesModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="rebaja-vis-kicker">Rebaja de precio</div>
+              <h3 id="rebaja-vis-title">Avisar a visitantes</h3>
+              <div class="comp-match-criteria" id="rebaja-vis-sub"></div>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closeRebajaVisitantesModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body" id="rebaja-vis-body"></div>
+          <div class="dash-modal-foot" id="rebaja-vis-foot"></div>
+        </div>
+      </div>
+
       <!-- Modal plantillas email · Leads -->
       <div id="lead-email-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="lead-email-title" hidden>
         <div class="dash-modal-backdrop" onclick="closeLeadEmailModal()"></div>
@@ -2237,10 +2274,11 @@ select.adm-control{
         <div class="adm-card" style="max-width:720px;margin-top:1rem">
           <div class="adm-card-head"><h3>Plantillas WhatsApp · Compradores</h3></div>
           <div style="padding:0 1rem 1rem">
-            <p class="text-muted" style="font-size:.78rem;margin-bottom:.85rem">Usadas al avisar compradores de inmuebles compatibles. Variables: <code>{{saludo}}</code> <code>{{nombre}}</code> <code>{{inmuebles_intro}}</code> <code>{{inmuebles_lista}}</code> <code>{{zona}}</code></p>
+            <p class="text-muted" style="font-size:.78rem;margin-bottom:.85rem">Compatibles: <code>{{saludo}}</code> <code>{{nombre}}</code> <code>{{inmuebles_intro}}</code> <code>{{inmuebles_lista}}</code> <code>{{zona}}</code>. Rebaja: <code>{{saludo}}</code> <code>{{nombre}}</code> <code>{{titulo}}</code> <code>{{precio_anterior}}</code> <code>{{precio_nuevo}}</code> <code>{{ahorro}}</code> <code>{{url}}</code></p>
             <div class="part-tpl-edit-grid">
               <div class="part-wa-tpl-item"><label>Aviso inmueble compatible</label><textarea id="cfg-tpl-comp-aviso" rows="5"></textarea></div>
               <div class="part-wa-tpl-item"><label>Seguimiento búsqueda</label><textarea id="cfg-tpl-comp-seguimiento" rows="4"></textarea></div>
+              <div class="part-wa-tpl-item adm-form-col-full"><label>Aviso rebaja (visitantes)</label><textarea id="cfg-tpl-comp-rebaja" rows="5"></textarea></div>
             </div>
             <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" style="margin-top:.65rem" onclick="resetCompTemplatesFromConfig()">Restaurar predeterminadas</button>
           </div>
@@ -2646,6 +2684,11 @@ let videoUrl  = '';
 let planoFile = null;
 let currentPropertyId = null;
 let editingPropertyId = null;
+let editingPropertyOldPrecio = null;
+let editingPropertyPrecioAnterior = null;
+let _pendingRebajaNotify = null;
+let _rebajaVisState = null;
+const REBAJA_MIN_EUR = 500;
 let existingVideoUrl = '';
 let existingPlanoUrl = '';
 
@@ -3085,6 +3128,10 @@ function clearWizardForm(){
   document.getElementById('w-estado').value='disponible';
   document.getElementById('mo-video-file').value='';
   document.getElementById('mo-plano-file').value='';
+  editingPropertyOldPrecio = null;
+  editingPropertyPrecioAnterior = null;
+  const antWrap = document.getElementById('w-precio-anterior-wrap');
+  if(antWrap) antWrap.style.display = 'none';
 }
 
 function autoGenerateRef(){
@@ -3318,9 +3365,15 @@ async function publishProperty(){
       updated_at:       new Date().toISOString(),
     };
 
+    const rebajaNotify = enrichPayloadRebaja(payload, num('w-precio'));
+
     if(isEdit){
       const { error } = await window.nhSupabase.from('inmuebles').update(payload).eq('id', editingPropertyId);
       if(error) throw error;
+      if(rebajaNotify){
+        editingPropertyOldPrecio = rebajaNotify.precioNuevo;
+        editingPropertyPrecioAnterior = rebajaNotify.precioAnterior;
+      }
       const refVal = txt('w-ref') || payload.ref;
       let vendWarn = '';
       try {
@@ -3337,6 +3390,11 @@ async function publishProperty(){
       }
       document.getElementById('wiz-ok').textContent = '✅ Inmueble actualizado correctamente.' + vendWarn;
       loadVendedores();
+      if(rebajaNotify){
+        const ahorro = rebajaNotify.precioAnterior - rebajaNotify.precioNuevo;
+        const msg = `Precio rebajado ${rebajaNotify.precioAnterior.toLocaleString('es-ES')} → ${rebajaNotify.precioNuevo.toLocaleString('es-ES')} € (−${ahorro.toLocaleString('es-ES')} €).\n\n¿Avisar por email y/o WhatsApp a quienes visitaron este inmueble?`;
+        if(confirm(msg)) openRebajaVisitantesModal(rebajaNotify.inmuebleId, rebajaNotify.precioAnterior, rebajaNotify.precioNuevo);
+      }
     } else {
       const refVal  = txt('w-ref') || `NH-${Date.now()}`;
       const slugVal = refVal.toLowerCase().replace(/[^a-z0-9]+/g,'-') + '-' + Date.now();
@@ -3614,6 +3672,52 @@ function countMatchesForInmueble(inmueble){
 function getMatchesForComprador(comprador){
   if (!window.nhMatching) return (_pubData || []).filter(p => matchCompradorInmueble(comprador, p));
   return nhMatching.rankMatches(comprador, _pubData || [], { limit: 50 }).map(r => r.inmueble);
+}
+
+function inmuebleIsRebajado(p){
+  const cur = p?.precio != null ? Number(p.precio) : null;
+  const prev = p?.precio_anterior != null ? Number(p.precio_anterior) : null;
+  return !!(prev && cur && cur < prev);
+}
+
+function inmuebleRebajaPct(p){
+  if(!inmuebleIsRebajado(p)) return null;
+  const cur = Number(p.precio);
+  const prev = Number(p.precio_anterior);
+  return Math.round((1 - cur / prev) * 100);
+}
+
+function formatInmueblePriceHtml(p, opts = {}){
+  const cur = p?.precio != null ? Number(p.precio) : null;
+  const prev = p?.precio_anterior != null ? Number(p.precio_anterior) : null;
+  const onSale = inmuebleIsRebajado(p);
+  const curStr = cur != null ? cur.toLocaleString('es-ES') + ' €' : '–';
+  if(!onSale) return `<div class="pub-price" style="margin:0">${curStr}</div>`;
+  const pct = inmuebleRebajaPct(p);
+  const cls = opts.compact ? 'pub-price-row' : 'pub-price-row';
+  return `<div class="${cls}">
+    <span class="pub-price-old">${prev.toLocaleString('es-ES')} €</span>
+    <span class="pub-price" style="margin:0">${curStr}</span>
+    ${pct ? `<span class="pub-price-drop">−${pct}%</span>` : '<span class="pub-price-drop">Rebajado</span>'}
+  </div>`;
+}
+
+function enrichPayloadRebaja(payload, newPrecio){
+  if(editingPropertyId == null) return null;
+  const oldCur = editingPropertyOldPrecio;
+  const oldAnt = editingPropertyPrecioAnterior;
+  let notify = null;
+  if(newPrecio && oldCur && newPrecio < oldCur - REBAJA_MIN_EUR){
+    payload.precio_anterior = oldCur;
+    payload.precio_rebajado_at = new Date().toISOString();
+    notify = { inmuebleId: editingPropertyId, precioAnterior: oldCur, precioNuevo: newPrecio };
+  } else if(newPrecio && oldAnt && newPrecio >= oldAnt){
+    payload.precio_anterior = null;
+    payload.precio_rebajado_at = null;
+  } else if(oldAnt && newPrecio && newPrecio < oldAnt){
+    payload.precio_anterior = oldAnt;
+  }
+  return notify;
 }
 
 function inmueblePublicUrl(id){
@@ -3908,7 +4012,7 @@ let _pubData = [];
 async function fetchPubData(){
   const { data, error } = await window.nhSupabase
     .from('inmuebles')
-    .select('id,ref,titulo,precio,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,cartera_privada,created_at')
+    .select('id,ref,titulo,precio,precio_anterior,precio_rebajado_at,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,cartera_privada,created_at')
     .order('created_at', { ascending:false });
   if(error){
     console.error('fetchPubData:', error);
@@ -4071,7 +4175,8 @@ function renderPublications(){
   const badgeLabel = {disponible:'Disponible',reservado:'Reservado',vendido:'Vendido',retirado:'No disponible'};
   grid.innerHTML = visible.map(p=>{
     const img = p.imagen_principal || 'imagenes/interior1.jpg';
-    const price = p.precio?Number(p.precio).toLocaleString('es-ES')+' €':'–';
+    const priceHtml = formatInmueblePriceHtml(p);
+    const rebajado = inmuebleIsRebajado(p);
     const badge = p.estado||'disponible';
     const zona  = p.barrio ? `${p.municipio||''} · ${p.barrio}` : (p.municipio||'');
     const badgeColors = {disponible:'#b8936a',reservado:'#f97316',vendido:'#ef4444',retirado:'#888'};
@@ -4087,7 +4192,7 @@ function renderPublications(){
           <div class="pub-ref">${p.ref||'NH'} · ${(p.tipo||'piso').toUpperCase()}</div>
           <div class="pub-title">${p.titulo||'Sin título'}</div>
           <div style="display:flex;align-items:center;gap:.6rem;margin:.3rem 0 .5rem;flex-wrap:wrap">
-            <div class="pub-price" style="margin:0">${price}</div>
+            ${priceHtml}
             <span style="background:${badgeColor};color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px">${badgeLabel[badge]||badge}</span>
             ${matchCount ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver compradores y enviar WhatsApp" onclick="openInmuebleCompradoresModal('${p.id}')">🎯 ${matchCount} comprador${matchCount===1?'':'es'}</button>` : ''}
           </div>
@@ -4101,6 +4206,7 @@ function renderPublications(){
           </div>
           <div class="pub-actions">
             <button type="button" class="pub-btn-edit" data-action="edit-inmueble" data-id="${p.id}">Editar</button>
+            ${rebajado ? `<button type="button" class="pub-btn-edit" onclick="openRebajaVisitantesModal('${p.id}')">📢 Rebaja</button>` : ''}
             <button type="button" class="pub-btn-del" data-action="delete-inmueble" data-id="${p.id}">Eliminar</button>
             <button type="button" class="pub-btn-web" onclick="window.open('/inmueble-detalle?id=${p.id}','_blank')">Web</button>
           </div>
@@ -4161,6 +4267,19 @@ async function loadPropertyForEdit(id){
   document.getElementById('w-ref').value = p.ref || '';
   document.getElementById('w-titulo').value = p.titulo || '';
   document.getElementById('w-precio').value = p.precio || '';
+  editingPropertyOldPrecio = parseFloat(p.precio) || 0;
+  editingPropertyPrecioAnterior = p.precio_anterior != null ? parseFloat(p.precio_anterior) : null;
+  const antWrap = document.getElementById('w-precio-anterior-wrap');
+  const antDisp = document.getElementById('w-precio-anterior-display');
+  if(antWrap && antDisp){
+    if(inmuebleIsRebajado(p)){
+      antWrap.style.display = '';
+      antDisp.value = Number(p.precio_anterior).toLocaleString('es-ES') + ' €';
+    } else {
+      antWrap.style.display = 'none';
+      antDisp.value = '';
+    }
+  }
   document.getElementById('w-tipo').value = tipoRev[p.tipo] || p.tipo || 'piso';
   document.getElementById('w-estado').value = estadoRev[p.estado] || 'disponible';
   document.getElementById('w-municipio').value = p.municipio || '';
@@ -6245,22 +6364,89 @@ function visitaCalendarioLink(v) {
   return m ? m[0] : null;
 }
 
-async function loadVisitas(){
-  const tbl=document.getElementById('visitas-table');
-  if (!tbl) return;
-  tbl.innerHTML = '<p class="text-muted">Cargando visitas (panel + calendarios equipo)…</p>';
-  let data = [];
-  try {
-    const payload = await fetchAdminVisitas();
-    data = payload.data || [];
-  } catch (err) {
-    console.error('loadVisitas', err);
-    tbl.innerHTML = '<p class="text-muted">No se pudieron cargar visitas: ' + dashEsc(err.message) + '</p>';
+let visitasAdminCache = [];
+let visitasRangeFilter = 'hoy';
+
+function visitaMatchesRange(v, range) {
+  if (!v.fecha_hora || range === 'todas') return true;
+  const t = new Date(v.fecha_hora).getTime();
+  if (Number.isNaN(t)) return false;
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const endOfToday = new Date(startOfToday);
+  endOfToday.setDate(endOfToday.getDate() + 1);
+  if (range === 'hoy') return t >= startOfToday.getTime() && t < endOfToday.getTime();
+  if (range === 'semana') {
+    const startWeek = new Date(startOfToday);
+    const dow = startWeek.getDay();
+    const toMon = dow === 0 ? -6 : 1 - dow;
+    startWeek.setDate(startWeek.getDate() + toMon);
+    const endWeek = new Date(startWeek);
+    endWeek.setDate(endWeek.getDate() + 7);
+    return t >= startWeek.getTime() && t < endWeek.getTime();
+  }
+  if (range === 'meses') {
+    const min = new Date(now);
+    min.setMonth(min.getMonth() - 6);
+    const max = new Date(now);
+    max.setDate(max.getDate() + getVisitasSyncDaysAhead());
+    return t >= min.getTime() && t <= max.getTime();
+  }
+  return true;
+}
+
+function getVisitasSyncDaysAhead() {
+  return 120;
+}
+
+function setVisitasRange(range) {
+  visitasRangeFilter = range || 'hoy';
+  document.querySelectorAll('#visitas-range-tabs [data-visitas-range]').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.visitasRange === visitasRangeFilter);
+  });
+  renderVisitasTable(visitasAdminCache, visitasRangeFilter);
+}
+
+function renderVisitasSyncBanner(sync) {
+  const el = document.getElementById('visitas-sync-banner');
+  if (!el) return;
+  if (!sync) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  if (sync.error) {
+    el.className = 'adm-alarm-banner';
+    el.innerHTML = '<strong>Calendario Google</strong> — ' + dashEsc(sync.error) +
+      '. Añade GOOGLE_REFRESH_TOKEN en Vercel y redeploy.';
     return;
   }
+  if (!sync.configured) {
+    el.className = 'adm-alarm-banner';
+    el.innerHTML = '<strong>Calendario Google</strong> — Sin credenciales en el servidor. Las visitas del panel no se publicarán en Calendar hasta configurar OAuth.';
+    return;
+  }
+  const parts = [
+    `Ventana: ${sync.daysBack} días atrás · ${sync.daysAhead} adelante`,
+    `${sync.eventsFromGoogle || 0} eventos leídos`,
+    `${sync.insertedFromGoogle || 0} nuevas en panel`,
+    `${sync.exportedToGoogle || 0} enviadas al calendario`,
+  ];
+  if (sync.pendingExport > 0) parts.push(`${sync.pendingExport} pendientes (vuelve a sincronizar)`);
+  el.className = 'adm-card';
+  el.style.cssText = 'display:block;margin-bottom:.75rem;padding:.65rem .85rem;font-size:.78rem;line-height:1.5;background:var(--adm-surface-2,#f6f4ef)';
+  el.innerHTML = '<strong>Sincronización</strong> — ' + dashEsc(parts.join(' · '));
+}
+
+function renderVisitasTable(allData, range) {
+  const tbl = document.getElementById('visitas-table');
+  if (!tbl) return;
+  const data = (allData || []).filter((v) => visitaMatchesRange(v, range));
   const st = document.getElementById('st-visitas');
   if (st) st.textContent = data.length;
-  if(!data.length){ tbl.innerHTML='<p class="text-muted">Sin visitas programadas. Las citas en los calendarios admin, info, Daniel y Juan aparecerán aquí al sincronizar.</p>'; return; }
+  const rangeHint = { hoy: 'hoy', semana: 'esta semana', meses: 'últimos meses', todas: 'la ventana de sync' }[range] || '';
+  if (!data.length) {
+    tbl.innerHTML = '<p class="text-muted">Sin visitas para ' + dashEsc(rangeHint) +
+      '. Pulsa «Sincronizar calendario» para importar citas de Google y publicar visitas del panel (hoy, semana y meses).</p>';
+    return;
+  }
   const tipoLabel = { visita:'Visita', disponibilidad_vendedor:'Disp. vendedor', disponibilidad_comprador:'Disp. comprador' };
   tbl.innerHTML=`<table class="adm-table"><thead><tr><th>Tipo</th><th>Inmueble</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th></th></tr></thead><tbody>${
     data.map(v=>{
@@ -6278,6 +6464,25 @@ async function loadVisitas(){
         </div></td></tr>`;
     }).join('')
   }</tbody></table>`;
+}
+
+async function loadVisitas(forceSync){
+  const tbl=document.getElementById('visitas-table');
+  if (!tbl) return;
+  const btn = document.getElementById('btn-visitas-sync');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sincronizando…'; }
+  tbl.innerHTML = '<p class="text-muted">Cargando visitas (panel ↔ calendarios equipo)…</p>';
+  try {
+    const payload = await fetchAdminVisitas({ syncCalendar: forceSync !== false });
+    visitasAdminCache = payload.data || [];
+    renderVisitasSyncBanner(payload.sync);
+    renderVisitasTable(visitasAdminCache, visitasRangeFilter);
+  } catch (err) {
+    console.error('loadVisitas', err);
+    tbl.innerHTML = '<p class="text-muted">No se pudieron cargar visitas: ' + dashEsc(err.message) + '</p>';
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Sincronizar calendario'; }
+  }
 }
 
 async function setVisitaEstado(id, estado) {
@@ -7934,6 +8139,7 @@ const PART_WA_TEMPLATES_DEFAULT = {
 const COMP_WA_TEMPLATES_DEFAULT = {
   aviso_inmueble: `{{saludo}} soy de NuevaHabitat. Queremos saber si sigues buscando piso, ya que nos ha llegado {{inmuebles_intro}} que creemos que te podría cuadrar:\n\n{{inmuebles_lista}}\n\n¿Te interesa?`,
   seguimiento: `{{saludo}} soy de NuevaHabitat. Te escribo para saber cómo va tu búsqueda{{zona}}. ¿Seguimos buscando piso para ti?`,
+  rebaja_inmueble: `{{saludo}} soy de NuevaHabitat. Visitaste {{titulo}} y acaba de bajar de precio: antes {{precio_anterior}}, ahora {{precio_nuevo}} (ahorro {{ahorro}}).\n\n{{url}}\n\n¿Te interesa una segunda visita o hacer oferta?`,
 };
 let _partData = [];
 let _partFilter = 'todos';
@@ -8169,6 +8375,7 @@ function loadPanelConfigForm(){
   const ct = getCompWaTemplates();
   set('cfg-tpl-comp-aviso', ct.aviso_inmueble || '');
   set('cfg-tpl-comp-seguimiento', ct.seguimiento || '');
+  set('cfg-tpl-comp-rebaja', ct.rebaja_inmueble || '');
 }
 
 function savePanelConfig(){
@@ -8192,6 +8399,7 @@ function savePanelConfig(){
   saveCompWaTemplates({
     aviso_inmueble: document.getElementById('cfg-tpl-comp-aviso')?.value.trim() || COMP_WA_TEMPLATES_DEFAULT.aviso_inmueble,
     seguimiento: document.getElementById('cfg-tpl-comp-seguimiento')?.value.trim() || COMP_WA_TEMPLATES_DEFAULT.seguimiento,
+    rebaja_inmueble: document.getElementById('cfg-tpl-comp-rebaja')?.value.trim() || COMP_WA_TEMPLATES_DEFAULT.rebaja_inmueble,
   });
   nhToast('Configuración guardada.', 'success');
   updateLeadAlarmUI();
@@ -8734,6 +8942,264 @@ async function sendCapturaCompradoresWhatsApp(){
 }
 window.sendCapturaCompradoresWhatsApp = sendCapturaCompradoresWhatsApp;
 window.sendCapturaWaOne = sendCapturaWaOne;
+
+function rebajaContactKey(v){
+  const em = (v.email || '').trim().toLowerCase();
+  if(v.comprador_id) return `c:${v.comprador_id}`;
+  if(em) return `e:${em}`;
+  const tel = normalizePhoneWa(v.telefono);
+  if(tel) return `t:${tel}`;
+  return `v:${v.visita_id}`;
+}
+
+function matchCompradorIdForVisitor(v){
+  if(v.comprador_id) return v.comprador_id;
+  const em = (v.email || '').trim().toLowerCase();
+  if(!em) return null;
+  const c = (_compData || []).find(x => (x.email || '').trim().toLowerCase() === em);
+  return c?.id || null;
+}
+
+function buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo){
+  const nombre = (v.nombre || '').trim().split(/\s+/)[0] || '';
+  const saludo = nombre ? `Hola buenas, ${nombre},` : 'Hola buenas,';
+  const tpl = getCompWaTemplates().rebaja_inmueble || COMP_WA_TEMPLATES_DEFAULT.rebaja_inmueble;
+  const ahorro = precioAnterior && precioNuevo ? precioAnterior - precioNuevo : 0;
+  const vars = {
+    saludo,
+    nombre: nombre ? ` ${nombre}` : '',
+    titulo: inm.titulo || inm.ref || 'el inmueble',
+    precio_anterior: precioAnterior != null ? Number(precioAnterior).toLocaleString('es-ES') + ' €' : '',
+    precio_nuevo: precioNuevo != null ? Number(precioNuevo).toLocaleString('es-ES') + ' €' : '',
+    ahorro: ahorro > 0 ? ahorro.toLocaleString('es-ES') + ' €' : '',
+    url: inm.id ? inmueblePublicUrl(inm.id) : 'https://www.nuevahabitat.com/inmuebles',
+  };
+  return tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? '').trim();
+}
+
+async function fetchRebajaVisitantesApi(inmuebleId, precioNuevo){
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if(!session?.access_token) throw new Error('Sesión no disponible');
+  const res = await fetch('/api/notify?__action=inmueble-rebaja-visitantes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+    body: JSON.stringify({ inmuebleId, precio_nuevo: precioNuevo }),
+  });
+  const json = await res.json().catch(() => ({}));
+  if(!res.ok || !json.ok) throw new Error(json.error || `Error ${res.status}`);
+  return json;
+}
+
+function renderRebajaVisitantesList(state){
+  const { visitantes, alreadySent, inm, precioAnterior, precioNuevo } = state;
+  const emailSent = new Set(alreadySent?.email || []);
+  const waSent = new Set(alreadySent?.whatsapp || []);
+  if(!visitantes.length){
+    return `<p class="text-muted">No hay visitantes registrados para este inmueble (visitas confirmadas, realizadas o pendientes).</p>`;
+  }
+  const rows = visitantes.map(v => {
+    const key = rebajaContactKey(v);
+    const emOk = !!(v.email || '').trim();
+    const waOk = !!normalizePhoneWa(v.telefono);
+    const emDone = emailSent.has(key);
+    const waDone = waSent.has(key);
+    const sub = [v.email, v.telefono].filter(Boolean).join(' · ') || 'Sin contacto';
+    return `<div class="comp-match-row" style="align-items:flex-start">
+      <label style="display:flex;gap:.6rem;flex:1;cursor:pointer">
+        <input type="checkbox" class="rebaja-vis-cb" data-key="${key.replace(/"/g,'')}" ${(emOk || waOk) ? 'checked' : ''} ${(!emOk && !waOk) ? 'disabled' : ''}/>
+        <span><strong>${(v.nombre || 'Visitante').replace(/</g,'')}</strong><br><span class="text-muted" style="font-size:.72rem">${sub}</span>
+        ${emDone ? '<br><span class="text-muted" style="font-size:.68rem">✓ Email enviado en esta rebaja</span>' : ''}
+        ${waDone ? '<br><span class="text-muted" style="font-size:.68rem">✓ WhatsApp registrado en esta rebaja</span>' : ''}
+        </span>
+      </label>
+      ${waOk ? `<button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="sendRebajaWaOne('${v.visita_id}')">WA</button>` : ''}
+    </div>`;
+  }).join('');
+  return `
+    <p class="text-muted" style="font-size:.8rem;margin-bottom:.75rem">${visitantes.length} visitante(s) · Rebaja ${Number(precioAnterior).toLocaleString('es-ES')} → ${Number(precioNuevo).toLocaleString('es-ES')} €</p>
+    <div class="comp-match-toolbar" style="margin-bottom:.65rem">
+      <label><input type="checkbox" id="rebaja-ch-email" checked/> Enviar email (Resend)</label>
+      <label style="margin-left:1rem"><input type="checkbox" id="rebaja-ch-wa" checked/> Abrir WhatsApp</label>
+    </div>
+    <div class="comp-match-list">${rows}</div>`;
+}
+
+async function refreshRebajaVisitantesModal(){
+  if(!_rebajaVisState) return;
+  const body = document.getElementById('rebaja-vis-body');
+  if(body) body.innerHTML = '<p class="text-muted">Cargando visitantes…</p>';
+  try {
+    const json = await fetchRebajaVisitantesApi(_rebajaVisState.inm.id, _rebajaVisState.precioNuevo);
+    _rebajaVisState.visitantes = (json.visitantes || []).map(v => ({
+      ...v,
+      comprador_id: matchCompradorIdForVisitor(v),
+    }));
+    _rebajaVisState.alreadySent = {
+      email: new Set(json.alreadySent?.email || []),
+      whatsapp: new Set(json.alreadySent?.whatsapp || []),
+    };
+    if(body) body.innerHTML = renderRebajaVisitantesList(_rebajaVisState);
+    const foot = document.getElementById('rebaja-vis-foot');
+    if(foot){
+      foot.innerHTML = `<button type="button" class="adm-btn adm-btn-ghost" onclick="closeRebajaVisitantesModal()">Cerrar</button>
+        <button type="button" class="adm-btn adm-btn-gold" onclick="sendRebajaVisitantesBatch()">Enviar avisos</button>`;
+    }
+  } catch(e){
+    if(body) body.innerHTML = `<p class="text-muted">Error: ${e.message}</p>`;
+  }
+}
+
+async function openRebajaVisitantesModal(inmuebleId, precioAnterior, precioNuevo){
+  if(!window.nhSupabase) return;
+  await fetchPubData();
+  const inm = _pubData.find(x => x.id === inmuebleId);
+  if(!inm){ nhToast('Inmueble no encontrado.', 'error'); return; }
+  const prev = precioAnterior != null ? Number(precioAnterior) : Number(inm.precio_anterior);
+  const nuevo = precioNuevo != null ? Number(precioNuevo) : Number(inm.precio);
+  if(!prev || !nuevo || nuevo >= prev){
+    nhToast('Este inmueble no tiene rebaja activa (precio anterior > precio actual).', 'info');
+    return;
+  }
+  _rebajaVisState = { inm, precioAnterior: prev, precioNuevo: nuevo, visitantes: [], alreadySent: { email: new Set(), whatsapp: new Set() } };
+  document.getElementById('rebaja-vis-kicker').textContent = inm.ref || 'Inmueble';
+  document.getElementById('rebaja-vis-title').textContent = 'Avisar rebaja a visitantes';
+  document.getElementById('rebaja-vis-sub').textContent = [
+    inm.titulo,
+    `${prev.toLocaleString('es-ES')} → ${nuevo.toLocaleString('es-ES')} €`,
+    [inm.barrio, inm.municipio].filter(Boolean).join(', '),
+  ].filter(Boolean).join(' · ');
+  const m = document.getElementById('rebaja-vis-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+  await refreshRebajaVisitantesModal();
+}
+window.openRebajaVisitantesModal = openRebajaVisitantesModal;
+
+function closeRebajaVisitantesModal(){
+  const m = document.getElementById('rebaja-vis-modal');
+  if(m){ m.classList.remove('open'); m.hidden = true; }
+  document.body.style.overflow = '';
+  _rebajaVisState = null;
+}
+window.closeRebajaVisitantesModal = closeRebajaVisitantesModal;
+
+function getSelectedRebajaVisitantes(){
+  if(!_rebajaVisState) return [];
+  const keys = new Set([...document.querySelectorAll('.rebaja-vis-cb:checked')].map(cb => cb.dataset.key));
+  return _rebajaVisState.visitantes.filter(v => keys.has(rebajaContactKey(v)));
+}
+
+async function recordRebajaWaAviso(v, inm, precioNuevo){
+  const compradorId = matchCompradorIdForVisitor(v);
+  if(compradorId && window.nhSupabase){
+    try {
+      await window.nhSupabase.from('comprador_inmueble_wa_avisos').insert({
+        comprador_id: compradorId,
+        inmueble_id: inm.id,
+        inmueble_ref: inm.ref || null,
+        motivo: 'rebaja',
+        precio_notificado: precioNuevo,
+      });
+    } catch(e){
+      const { error } = await window.nhSupabase.from('comprador_inmueble_wa_avisos').insert({
+        comprador_id: compradorId,
+        inmueble_id: inm.id,
+        inmueble_ref: inm.ref || null,
+        motivo: 'rebaja',
+        precio_notificado: precioNuevo,
+      });
+      if(error && !/duplicate|unique|23505/i.test(error.message)) console.warn('recordRebajaWaAviso', error.message);
+    }
+    const c = (_compData || []).find(x => x.id === compradorId);
+    if(c) await appendCompradorNotaPanel(compradorId, `WhatsApp rebaja ${inm.ref || inm.titulo} · ${Number(precioNuevo).toLocaleString('es-ES')} €`);
+  }
+  if(window.nhSupabase){
+    await window.nhSupabase.from('inmueble_rebaja_avisos').insert({
+      inmueble_id: inm.id,
+      visita_id: v.visita_id,
+      comprador_id: compradorId,
+      nombre: v.nombre,
+      email: v.email || null,
+      telefono: v.telefono || null,
+      canal: 'whatsapp',
+      precio_anterior: _rebajaVisState.precioAnterior,
+      precio_nuevo: precioNuevo,
+    });
+  }
+}
+
+async function sendRebajaWaOne(visitaId){
+  if(!_rebajaVisState) return;
+  const v = _rebajaVisState.visitantes.find(x => x.visita_id === visitaId);
+  if(!v) return;
+  const phone = normalizePhoneWa(v.telefono);
+  if(!phone){ nhToast('Sin teléfono válido.', 'info'); return; }
+  const { inm, precioAnterior, precioNuevo } = _rebajaVisState;
+  const msg = buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo);
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  await recordRebajaWaAviso(v, inm, precioNuevo);
+  await refreshRebajaVisitantesModal();
+}
+window.sendRebajaWaOne = sendRebajaWaOne;
+
+async function sendRebajaVisitantesBatch(){
+  if(!_rebajaVisState) return;
+  const doEmail = document.getElementById('rebaja-ch-email')?.checked;
+  const doWa = document.getElementById('rebaja-ch-wa')?.checked;
+  if(!doEmail && !doWa){ nhToast('Marca email y/o WhatsApp.', 'info'); return; }
+  const selected = getSelectedRebajaVisitantes();
+  if(!selected.length){ nhToast('No hay visitantes seleccionados.', 'info'); return; }
+  const { inm, precioAnterior, precioNuevo } = _rebajaVisState;
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if(!session?.access_token){ nhToast('Sesión no disponible', 'error'); return; }
+
+  if(doEmail){
+    const recipients = selected.filter(v => (v.email || '').trim()).map(v => ({
+      visita_id: v.visita_id,
+      comprador_id: matchCompradorIdForVisitor(v),
+      nombre: v.nombre,
+      email: v.email,
+      telefono: v.telefono,
+    }));
+    if(recipients.length){
+      const res = await fetch('/api/notify?__action=inmueble-rebaja-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({
+          inmuebleId: inm.id,
+          precio_anterior: precioAnterior,
+          precio_nuevo: precioNuevo,
+          titulo: inm.titulo,
+          ref: inm.ref,
+          url: inmueblePublicUrl(inm.id),
+          recipients,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if(!res.ok || !json.ok) nhToast(json.error || 'Error enviando emails', 'error');
+      else nhToast(`Email enviado a ${json.sent || 0} visitante(s).`, 'success', 6000);
+    }
+  }
+
+  if(doWa){
+    const waList = selected.filter(v => normalizePhoneWa(v.telefono));
+    if(waList.length && !confirm(`Se abrirá WhatsApp para ${waList.length} visitante(s). ¿Continuar?`)) return;
+    for(let i = 0; i < waList.length; i++){
+      if(i) await new Promise(r => setTimeout(r, 600));
+      const v = waList[i];
+      const phone = normalizePhoneWa(v.telefono);
+      const msg = buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo);
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+      await recordRebajaWaAviso(v, inm, precioNuevo);
+    }
+    nhToast(`WhatsApp preparado para ${waList.length} visitante(s).`, 'success', 6000);
+  }
+
+  await refreshRebajaVisitantesModal();
+  loadPublications(true);
+}
+window.sendRebajaVisitantesBatch = sendRebajaVisitantesBatch;
 
 function partAlarmDate(fromDate){
   const d = fromDate ? new Date(fromDate) : new Date();

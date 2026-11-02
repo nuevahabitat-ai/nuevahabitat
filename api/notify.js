@@ -30,6 +30,11 @@ import {
 import { getUserFromJwt } from '../lib/server/supabase-server.js';
 import { purgeClientAccount } from '../lib/server/account-delete.js';
 import { getPropietarioAlquilerById } from '../lib/server/propietarios-alquiler-admin-api.js';
+import {
+  listVisitantesInmuebleServer,
+  fetchRebajaAvisosSent,
+  insertRebajaAviso,
+} from '../lib/server/inmueble-rebaja-api.js';
 
 function normLeadEmail(e) {
   return String(e || '').trim().toLowerCase();
@@ -383,6 +388,41 @@ function tplVisitaConfirmada({ nombre, inmueble, mensaje }) {
   };
 }
 
+function fmtEuro(n) {
+  if (n == null || Number.isNaN(Number(n))) return '–';
+  return `${Math.round(Number(n)).toLocaleString('es-ES')} €`;
+}
+
+function tplInmuebleRebajado({ nombre, titulo, ref, precio_anterior, precio_nuevo, url, ahorro }) {
+  const pct =
+    precio_anterior && precio_nuevo && precio_anterior > precio_nuevo
+      ? Math.round((1 - precio_nuevo / precio_anterior) * 100)
+      : null;
+  return {
+    subject: `Precio rebajado · ${titulo || ref || 'Inmueble'} · NuevaHabitat`,
+    html:
+      HEAD +
+      `<div class="body">
+      <div class="tag">Oportunidad</div>
+      <h1>Ha bajado de precio</h1>
+      <p class="intro">Hola <strong>${nombre || 'cliente'}</strong>, visitaste <strong>${titulo || ref || 'un inmueble'}</strong> con nosotros y acaba de <strong>rebajarse</strong>.</p>
+      <div class="card">
+        <div class="card-title">Precios</div>
+        <table>
+          <tr><td>Antes</td><td style="text-decoration:line-through;color:#888">${fmtEuro(precio_anterior)}</td></tr>
+          <tr><td>Ahora</td><td><strong style="color:#b8936a;font-size:1.1rem">${fmtEuro(precio_nuevo)}</strong>${pct ? ` <span style="color:#16a34a">(−${pct}%)</span>` : ''}</td></tr>
+          ${ahorro ? `<tr><td>Ahorro</td><td>${fmtEuro(ahorro)}</td></tr>` : ''}
+        </table>
+      </div>
+      <div class="btns">
+        <a href="${url || 'https://www.nuevahabitat.com/inmuebles'}" class="btn btn-gold">Ver ficha del inmueble</a>
+        <a href="https://wa.me/34603656587?text=${encodeURIComponent(`Hola, me interesa el inmueble rebajado ${titulo || ref || ''}`)}" class="btn btn-wa">WhatsApp</a>
+      </div>
+    </div>` +
+      FOOTER,
+  };
+}
+
 function tplVisitaCancelada({ nombre, inmueble, mensaje }) {
   return {
     subject: `Visita cancelada · NuevaHabitat`,
@@ -695,11 +735,97 @@ async function handleAdminVisitas(req, res, body) {
       ok: true,
       data: result.data || [],
       schemaFallback: !!result.schemaFallback,
+      sync: result.sync || null,
     });
   } catch (err) {
     console.error('admin-visitas', err);
     return res.status(500).json({ ok: false, error: err.message });
   }
+}
+
+async function handleInmuebleRebajaVisitantes(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const inmuebleId = body?.inmuebleId || body?.inmueble_id;
+  const precioNuevo = body?.precio_nuevo != null ? Number(body.precio_nuevo) : null;
+  if (!inmuebleId) return res.status(400).json({ ok: false, error: 'inmuebleId requerido' });
+  try {
+    const visitantes = await listVisitantesInmuebleServer(inmuebleId);
+    let sent = { email: [], whatsapp: [] };
+    if (precioNuevo != null && !Number.isNaN(precioNuevo)) {
+      sent = await fetchRebajaAvisosSent(inmuebleId, precioNuevo);
+    }
+    return res.status(200).json({ ok: true, visitantes, alreadySent: { email: [...sent.email], whatsapp: [...sent.whatsapp] } });
+  } catch (err) {
+    console.error('inmueble-rebaja-visitantes', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
+async function handleInmuebleRebajaEmail(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return res.status(503).json({ ok: false, error: 'RESEND_API_KEY no configurada' });
+
+  const inmuebleId = body?.inmuebleId || body?.inmueble_id;
+  const precio_anterior = body?.precio_anterior != null ? Number(body.precio_anterior) : null;
+  const precio_nuevo = body?.precio_nuevo != null ? Number(body.precio_nuevo) : null;
+  const titulo = body?.titulo || '';
+  const ref = body?.ref || '';
+  const url = body?.url || (inmuebleId ? `https://www.nuevahabitat.com/inmueble-detalle?id=${inmuebleId}` : 'https://www.nuevahabitat.com/inmuebles');
+  const recipients = Array.isArray(body?.recipients) ? body.recipients : [];
+  if (!inmuebleId || precio_nuevo == null || !recipients.length) {
+    return res.status(400).json({ ok: false, error: 'inmuebleId, precio_nuevo y recipients requeridos' });
+  }
+
+  const ahorro = precio_anterior && precio_nuevo ? precio_anterior - precio_nuevo : null;
+  let sent = 0;
+  const errors = [];
+
+  async function sendOne(to, tpl) {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from: FROM_NOREPLY, to: [to], ...tpl }),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(j.message || `Resend ${r.status}`);
+    return j;
+  }
+
+  for (const rec of recipients) {
+    const email = String(rec.email || '').trim();
+    if (!email) continue;
+    try {
+      const tpl = tplInmuebleRebajado({
+        nombre: rec.nombre,
+        titulo,
+        ref,
+        precio_anterior,
+        precio_nuevo,
+        url,
+        ahorro,
+      });
+      await sendOne(email, tpl);
+      await insertRebajaAviso({
+        inmueble_id: inmuebleId,
+        visita_id: rec.visita_id || null,
+        comprador_id: rec.comprador_id || null,
+        nombre: rec.nombre || null,
+        email,
+        telefono: rec.telefono || null,
+        canal: 'email',
+        precio_anterior,
+        precio_nuevo,
+      });
+      sent++;
+    } catch (e) {
+      errors.push({ email, error: e.message });
+    }
+  }
+
+  return res.status(200).json({ ok: true, sent, errors });
 }
 
 async function handleAdminLeads(req, res, body) {
@@ -1134,6 +1260,8 @@ export default async function handler(req, res) {
   if (action === 'admin-propietario-alquiler-update') return handleAdminPropietarioAlquilerUpdate(req, res, body);
   if (action === 'admin-propietario-alquiler-delete') return handleAdminPropietarioAlquilerDelete(req, res, body);
   if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
+  if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);
+  if (action === 'inmueble-rebaja-email') return handleInmuebleRebajaEmail(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
   if (action === 'send-lead-followup') return handleSendLeadFollowup(req, res, body);
   if (action === 'resend-all-form-leads') return handleResendAllFormLeadsAdmin(req, res, body);

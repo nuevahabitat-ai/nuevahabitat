@@ -301,9 +301,23 @@ const SVG_HEART= `<svg width="16" height="16" fill="none" viewBox="0 0 24 24" st
 function badgeClass(est){ return est==='reservado'?'reservada':est==='vendido'?'reservada':'disponible'; }
 function badgeLabel(est){ return est==='reservado'?'Reservado':est==='vendido'?'Vendido':'Disponible'; }
 
+function propPriceHtml(p){
+  const cur = p.precio != null ? Number(p.precio) : null;
+  const prev = p.precio_anterior != null ? Number(p.precio_anterior) : null;
+  const onSale = prev && cur && cur < prev;
+  const curStr = cur != null ? cur.toLocaleString('es-ES')+' €' : '';
+  if(!onSale) return `<div class="prop-price">${curStr}</div>`;
+  const pct = Math.round((1 - cur / prev) * 100);
+  return `<div class="prop-price" style="display:flex;align-items:baseline;gap:.45rem;flex-wrap:wrap">
+    <span style="text-decoration:line-through;color:var(--gris-medio);font-size:.92em;font-weight:600">${prev.toLocaleString('es-ES')} €</span>
+    <span>${curStr}</span>
+    <span style="font-size:.65rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.15rem .45rem;border-radius:999px;background:rgba(34,197,94,.15);color:#15803d">−${pct}%</span>
+  </div>`;
+}
+
 function buildCard(p){
   const img  = p.imagen_principal || (Array.isArray(p.imagenes)?p.imagenes[0]:null) || 'imagenes/interior1.jpg';
-  const pr   = p.precio ? Number(p.precio).toLocaleString('es-ES')+' €' : '';
+  const pr   = propPriceHtml(p);
   const loc  = [p.barrio, p.municipio].filter(Boolean).join(', ') || 'Barcelona';
   const hab  = p.habitaciones;
   const ban  = p.banos;
@@ -318,7 +332,7 @@ function buildCard(p){
       <button class="prop-favorite" aria-label="Guardar" data-fav-id="${p.id}" onclick="nhFavoritos.toggle(event,'${p.id}')">${SVG_HEART}</button>
     </div>
     <div class="prop-card-body">
-      <div class="prop-price">${pr}</div>
+      ${pr}
       <div class="prop-title">${p.titulo||'Inmueble'}</div>
       <div class="prop-location">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -406,7 +420,7 @@ async function loadSupabaseProps(){
   }
   try {
     const { data, error } = await nhAuth.fetchInmuebles(
-      'id,titulo,precio,barrio,municipio,imagen_principal,imagenes,habitaciones,banos,m2_utiles,m2_construidos,estado,tipo,ref,cartera_privada',
+      'id,titulo,precio,precio_anterior,barrio,municipio,imagen_principal,imagenes,habitaciones,banos,m2_utiles,m2_construidos,estado,tipo,ref,cartera_privada',
       { column: 'created_at', ascending: false }
     );
 

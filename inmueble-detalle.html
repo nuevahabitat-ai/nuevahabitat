@@ -645,7 +645,14 @@ function renderProperty(p){
   const loc = locEarly;
   document.getElementById('det-breadcrumb-loc').textContent = loc;
   const precio = parseFloat(p.precio)||0;
-  document.getElementById('det-header-price').textContent = precio ? precio.toLocaleString('es-ES')+' EUR' : '';
+  const precioAnt = parseFloat(p.precio_anterior)||0;
+  const headerPriceEl = document.getElementById('det-header-price');
+  if(precioAnt && precio && precio < precioAnt){
+    const pct = Math.round((1 - precio / precioAnt) * 100);
+    headerPriceEl.innerHTML = `<span style="text-decoration:line-through;color:var(--gris-medio);font-size:.55em;margin-right:.35em">${precioAnt.toLocaleString('es-ES')} EUR</span>${precio.toLocaleString('es-ES')} EUR <span style="font-size:.45em;font-weight:700;color:#15803d">−${pct}%</span>`;
+  } else {
+    headerPriceEl.textContent = precio ? precio.toLocaleString('es-ES')+' EUR' : '';
+  }
   // WhatsApp del header con el título del inmueble
   const titulo = p.titulo||'Inmueble';
   const waMsg  = buildWaShareMsg(p, titulo, precio, loc);
@@ -699,7 +706,13 @@ function renderProperty(p){
   /* ── Título y precio ── */
   document.getElementById('det-title').textContent = p.titulo || 'Sin título';
   document.getElementById('det-loc-text').textContent = loc;
-  document.getElementById('det-price-main').textContent = precio ? precio.toLocaleString('es-ES')+' EUR' : '';
+  const priceMainEl = document.getElementById('det-price-main');
+  if(precioAnt && precio && precio < precioAnt){
+    const pct = Math.round((1 - precio / precioAnt) * 100);
+    priceMainEl.innerHTML = `<span style="display:block;font-size:.55em;text-decoration:line-through;color:var(--gris-medio);font-weight:600">${precioAnt.toLocaleString('es-ES')} EUR</span><span>${precio.toLocaleString('es-ES')} EUR</span> <span style="font-size:.42em;font-weight:700;color:#15803d;vertical-align:middle">Rebajado −${pct}%</span>`;
+  } else {
+    priceMainEl.textContent = precio ? precio.toLocaleString('es-ES')+' EUR' : '';
+  }
   const m2 = p.m2_utiles||p.m2_construidos;
   if(precio && m2){
     document.getElementById('det-price-m2').textContent = Math.round(precio/m2).toLocaleString('es-ES')+' EUR / m²';
