@@ -1352,10 +1352,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares barceloneta barcelona",
-    "badge": "Barceloneta · Propietario particular",
+    "badge": "Barceloneta · Particular · Passeig Marítim",
     "testimonials": true,
     "cardImage": "imagenes/barcelona2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Barceloneta: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Barceloneta, Passeig Marítim: agencia 3.630 €, panel y compradores filtrados (4.300 – 5.700 €/m²)."
   },
   "inmobiliaria-para-particulares-bon-pastor-barcelona": {
     "slug": "inmobiliaria-para-particulares-bon-pastor-barcelona",
@@ -1364,10 +1364,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares bon pastor barcelona",
-    "badge": "Bon Pastor · Propietario particular",
+    "badge": "Bon Pastor · Particular · Bon Pastor",
     "testimonials": true,
     "cardImage": "imagenes/sants2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Bon Pastor: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Bon Pastor, Bon Pastor: agencia 3.630 €, panel y compradores filtrados (3.100 – 3.800 €/m²)."
   },
   "inmobiliaria-para-particulares-born-barcelona": {
     "slug": "inmobiliaria-para-particulares-born-barcelona",
@@ -1376,10 +1376,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares born barcelona",
-    "badge": "Born · Propietario particular",
+    "badge": "Born · Particular · Passeig del Born",
     "testimonials": true,
     "cardImage": "imagenes/born1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Born: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Born, Passeig del Born: agencia 3.630 €, panel y compradores filtrados (5.100 – 6.900 €/m²)."
   },
   "inmobiliaria-para-particulares-camp-de-larpa-barcelona": {
     "slug": "inmobiliaria-para-particulares-camp-de-larpa-barcelona",
@@ -1388,10 +1388,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares camp de l'arpa barcelona",
-    "badge": "Camp de l'Arpa · Propietario particular",
+    "badge": "Camp de l'Arpa · Particular · Camp de l'Arpa",
     "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Camp de l'Arpa: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Camp de l'Arpa, Camp de l'Arpa: agencia 3.630 €, panel y compradores filtrados (3.800 – 4.900 €/m²)."
   },
   "inmobiliaria-para-particulares-camp-den-grassot-barcelona": {
     "slug": "inmobiliaria-para-particulares-camp-den-grassot-barcelona",
@@ -1400,10 +1400,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares camp d'en grassot barcelona",
-    "badge": "Camp d'en Grassot · Propietario particular",
+    "badge": "Camp d'en Grassot · Particular · Camp d'en Grassot",
     "testimonials": true,
     "cardImage": "imagenes/gracia4.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Camp d'en Grassot: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Camp d'en Grassot, Camp d'en Grassot: agencia 3.630 €, panel y compradores filtrados (4.200 – 5.400 €/m²)."
   },
   "inmobiliaria-para-particulares-ciutat-vella-barcelona": {
     "slug": "inmobiliaria-para-particulares-ciutat-vella-barcelona",
@@ -1436,10 +1436,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares diagonal mar barcelona",
-    "badge": "Diagonal Mar · Propietario particular",
+    "badge": "Diagonal Mar · Particular · Diagonal Mar",
     "testimonials": true,
     "cardImage": "imagenes/barcelona7.webp",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Diagonal Mar: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Diagonal Mar, Diagonal Mar: agencia 3.630 €, panel y compradores filtrados (4.800 – 6.200 €/m²)."
   },
   "inmobiliaria-para-particulares-eixample-barcelona": {
     "slug": "inmobiliaria-para-particulares-eixample-barcelona",
@@ -1460,10 +1460,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares el besòs barcelona",
-    "badge": "El Besòs · Propietario particular",
+    "badge": "El Besòs · Particular · El Besòs i el Maresme",
     "testimonials": true,
     "cardImage": "imagenes/noubarris2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en El Besòs: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular El Besòs, El Besòs i el Maresme: agencia 3.630 €, panel y compradores filtrados (3.300 – 4.200 €/m²)."
   },
   "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona": {
     "slug": "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona",
@@ -1496,10 +1496,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares fort pienc barcelona",
-    "badge": "Fort Pienc · Propietario particular",
+    "badge": "Fort Pienc · Particular · Fort Pienc",
     "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Fort Pienc: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Fort Pienc, Fort Pienc: agencia 3.630 €, panel y compradores filtrados (4.500 – 5.800 €/m²)."
   },
   "inmobiliaria-para-particulares-gotic-barcelona": {
     "slug": "inmobiliaria-para-particulares-gotic-barcelona",
@@ -1508,10 +1508,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares gòtic barcelona",
-    "badge": "Gòtic · Propietario particular",
+    "badge": "Gòtic · Particular · Plaça Sant Jaume",
     "testimonials": true,
     "cardImage": "imagenes/gotic1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Gòtic: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Gòtic, Plaça Sant Jaume: agencia 3.630 €, panel y compradores filtrados (4.700 – 6.300 €/m²)."
   },
   "inmobiliaria-para-particulares-gracia-barcelona": {
     "slug": "inmobiliaria-para-particulares-gracia-barcelona",
@@ -1532,10 +1532,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares el guinardó barcelona",
-    "badge": "El Guinardó · Propietario particular",
+    "badge": "El Guinardó · Particular · El Guinardó",
     "testimonials": true,
     "cardImage": "imagenes/horta2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en El Guinardó: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular El Guinardó, El Guinardó: agencia 3.630 €, panel y compradores filtrados (3.900 – 5.100 €/m²)."
   },
   "inmobiliaria-para-particulares-horta-barcelona": {
     "slug": "inmobiliaria-para-particulares-horta-barcelona",
@@ -1556,10 +1556,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares hostafrancs barcelona",
-    "badge": "Hostafrancs · Propietario particular",
+    "badge": "Hostafrancs · Particular · Hostafrancs",
     "testimonials": true,
     "cardImage": "imagenes/sants2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Hostafrancs: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Hostafrancs, Hostafrancs: agencia 3.630 €, panel y compradores filtrados (3.600 – 4.600 €/m²)."
   },
   "inmobiliaria-para-particulares-l-hospitalet-barcelona": {
     "slug": "inmobiliaria-para-particulares-l-hospitalet-barcelona",
@@ -1580,10 +1580,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares la bordeta barcelona",
-    "badge": "La Bordeta · Propietario particular",
+    "badge": "La Bordeta · Particular · La Bordeta",
     "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en La Bordeta: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular La Bordeta, La Bordeta: agencia 3.630 €, panel y compradores filtrados (3.500 – 4.500 €/m²)."
   },
   "inmobiliaria-para-particulares-la-marina-barcelona": {
     "slug": "inmobiliaria-para-particulares-la-marina-barcelona",
@@ -1592,10 +1592,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares la marina barcelona",
-    "badge": "La Marina · Propietario particular",
+    "badge": "La Marina · Particular · La Marina del Port",
     "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en La Marina: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular La Marina, La Marina del Port: agencia 3.630 €, panel y compradores filtrados (3.200 – 4.100 €/m²)."
   },
   "inmobiliaria-para-particulares-la-sagrera-barcelona": {
     "slug": "inmobiliaria-para-particulares-la-sagrera-barcelona",
@@ -1604,10 +1604,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares la sagrera barcelona",
-    "badge": "La Sagrera · Propietario particular",
+    "badge": "La Sagrera · Particular · La Sagrera",
     "testimonials": true,
     "cardImage": "imagenes/hospitalet5.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en La Sagrera: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular La Sagrera, La Sagrera: agencia 3.630 €, panel y compradores filtrados (3.500 – 4.400 €/m²)."
   },
   "inmobiliaria-para-particulares-les-corts-barcelona": {
     "slug": "inmobiliaria-para-particulares-les-corts-barcelona",
@@ -1628,10 +1628,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares montjuïc barcelona",
-    "badge": "Montjuïc · Propietario particular",
+    "badge": "Montjuïc · Particular · Montjuïc",
     "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Montjuïc: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Montjuïc, Montjuïc: agencia 3.630 €, panel y compradores filtrados (3.600 – 4.600 €/m²)."
   },
   "inmobiliaria-para-particulares-navas-barcelona": {
     "slug": "inmobiliaria-para-particulares-navas-barcelona",
@@ -1640,10 +1640,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares navas barcelona",
-    "badge": "Navas · Propietario particular",
+    "badge": "Navas · Particular · Navas",
     "testimonials": true,
     "cardImage": "imagenes/hospitalet4.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Navas: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Navas, Navas: agencia 3.630 €, panel y compradores filtrados (3.300 – 4.100 €/m²)."
   },
   "inmobiliaria-para-particulares-nou-barris-barcelona": {
     "slug": "inmobiliaria-para-particulares-nou-barris-barcelona",
@@ -1664,10 +1664,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares pedralbes barcelona",
-    "badge": "Pedralbes · Propietario particular",
+    "badge": "Pedralbes · Particular · Pedralbes",
     "testimonials": true,
     "cardImage": "imagenes/lescorts4.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Pedralbes: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Pedralbes, Pedralbes: agencia 3.630 €, panel y compradores filtrados (6.200 – 8.500 €/m²)."
   },
   "inmobiliaria-para-particulares-poble-sec-barcelona": {
     "slug": "inmobiliaria-para-particulares-poble-sec-barcelona",
@@ -1700,10 +1700,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares provençals del poblenou barcelona",
-    "badge": "Provençals del Poblenou · Propietario particular",
+    "badge": "Provençals del Poblenou · Particular · Provençals del Poblenou",
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Provençals del Poblenou: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Provençals del Poblenou, Provençals del Poblenou: agencia 3.630 €, panel y compradores filtrados (4.000 – 5.200 €/m²)."
   },
   "inmobiliaria-para-particulares-raval-barcelona": {
     "slug": "inmobiliaria-para-particulares-raval-barcelona",
@@ -1712,10 +1712,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares raval barcelona",
-    "badge": "Raval · Propietario particular",
+    "badge": "Raval · Particular · Rambla del Raval",
     "testimonials": true,
     "cardImage": "imagenes/raval1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Raval: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Raval, Rambla del Raval: agencia 3.630 €, panel y compradores filtrados (3.000 – 4.400 €/m²)."
   },
   "inmobiliaria-para-particulares-roquetes-barcelona": {
     "slug": "inmobiliaria-para-particulares-roquetes-barcelona",
@@ -1724,10 +1724,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares roquetes barcelona",
-    "badge": "Roquetes · Propietario particular",
+    "badge": "Roquetes · Particular · Roquetes",
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Roquetes: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Roquetes, Roquetes: agencia 3.630 €, panel y compradores filtrados (3.000 – 3.900 €/m²)."
   },
   "inmobiliaria-para-particulares-sagrada-familia-barcelona": {
     "slug": "inmobiliaria-para-particulares-sagrada-familia-barcelona",
@@ -1736,10 +1736,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares sagrada família barcelona",
-    "badge": "Sagrada Família · Propietario particular",
+    "badge": "Sagrada Família · Particular · Sagrada Família",
     "testimonials": true,
     "cardImage": "imagenes/eixample1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Sagrada Família: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Sagrada Família, Sagrada Família: agencia 3.630 €, panel y compradores filtrados (4.800 – 6.000 €/m²)."
   },
   "inmobiliaria-para-particulares-sant-andreu-barcelona": {
     "slug": "inmobiliaria-para-particulares-sant-andreu-barcelona",
@@ -1784,10 +1784,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares sant just desvern y sant joan despí barcelona",
-    "badge": "Sant Just Desvern y Sant Joan Despí · Propietario particular",
+    "badge": "Sant Just Desvern y Sant Joan Despí · Particular · Sant Just Centre",
     "testimonials": true,
     "cardImage": "imagenes/santjust1.webp",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Sant Just Desvern y Sant Joan Despí: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Sant Just Desvern y Sant Joan Despí, Sant Just Centre: agencia 3.630 €, panel y compradores filtrados (3.600 – 4.800 €/m²)."
   },
   "inmobiliaria-para-particulares-sant-marti-barcelona": {
     "slug": "inmobiliaria-para-particulares-sant-marti-barcelona",
@@ -1808,10 +1808,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares sant pere / santa caterina barcelona",
-    "badge": "Sant Pere / Santa Caterina · Propietario particular",
+    "badge": "Sant Pere / Santa Caterina · Particular · Sant Pere",
     "testimonials": true,
     "cardImage": "imagenes/born1.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Sant Pere / Santa Caterina: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Sant Pere / Santa Caterina, Sant Pere: agencia 3.630 €, panel y compradores filtrados (4.800 – 6.200 €/m²)."
   },
   "inmobiliaria-para-particulares-sants-barcelona": {
     "slug": "inmobiliaria-para-particulares-sants-barcelona",
@@ -1844,10 +1844,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares tetuan barcelona",
-    "badge": "Tetuan · Propietario particular",
+    "badge": "Tetuan · Particular · Tetuan",
     "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Tetuan: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Tetuan, Tetuan: agencia 3.630 €, panel y compradores filtrados (4.200 – 5.400 €/m²)."
   },
   "inmobiliaria-para-particulares-trinitat-vella-barcelona": {
     "slug": "inmobiliaria-para-particulares-trinitat-vella-barcelona",
@@ -1856,10 +1856,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares trinitat vella barcelona",
-    "badge": "Trinitat Vella · Propietario particular",
+    "badge": "Trinitat Vella · Particular · Trinitat Vella",
     "testimonials": true,
     "cardImage": "imagenes/noubarris2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Trinitat Vella: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Trinitat Vella, Trinitat Vella: agencia 3.630 €, panel y compradores filtrados (2.900 – 3.600 €/m²)."
   },
   "inmobiliaria-para-particulares-vall-d-hebron-barcelona": {
     "slug": "inmobiliaria-para-particulares-vall-d-hebron-barcelona",
@@ -1868,10 +1868,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares vall d'hebron barcelona",
-    "badge": "Vall d'Hebron · Propietario particular",
+    "badge": "Vall d'Hebron · Particular · Vall d'Hebron",
     "testimonials": true,
     "cardImage": "imagenes/horta2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Vall d'Hebron: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Vall d'Hebron, Vall d'Hebron: agencia 3.630 €, panel y compradores filtrados (3.900 – 5.100 €/m²)."
   },
   "inmobiliaria-para-particulares-verneda-barcelona": {
     "slug": "inmobiliaria-para-particulares-verneda-barcelona",
@@ -1880,10 +1880,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares la verneda barcelona",
-    "badge": "La Verneda · Propietario particular",
+    "badge": "La Verneda · Particular · La Verneda i la Pau",
     "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en La Verneda: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular La Verneda, La Verneda i la Pau: agencia 3.630 €, panel y compradores filtrados (3.400 – 4.300 €/m²)."
   },
   "inmobiliaria-para-particulares-vila-olimpica-barcelona": {
     "slug": "inmobiliaria-para-particulares-vila-olimpica-barcelona",
@@ -1892,10 +1892,10 @@ window.NH_LANDINGS = {
     "priority": 0.88,
     "indexable": true,
     "keyword_principal": "inmobiliaria para particulares vila olímpica barcelona",
-    "badge": "Vila Olímpica · Propietario particular",
+    "badge": "Vila Olímpica · Particular · Vila Olímpica",
     "testimonials": true,
     "cardImage": "imagenes/barcelona2.jpg",
-    "cardTeaser": "Inmobiliaria para propietarios particulares en Vila Olímpica: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+    "cardTeaser": "Particular Vila Olímpica, Vila Olímpica: agencia 3.630 €, panel y compradores filtrados (5.000 – 6.800 €/m²)."
   },
   "inmobiliaria-precio-fijo-badalona-barcelona": {
     "slug": "inmobiliaria-precio-fijo-badalona-barcelona",
@@ -1928,10 +1928,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo barceloneta barcelona",
-    "badge": "Barceloneta · Precio fijo · Panel",
+    "badge": "Passeig Marítim · 08003 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/barcelona2.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Barceloneta."
+    "cardTeaser": "Agencia honorarios fijos en Barceloneta, Passeig Marítim: 4.300 – 5.700 €/m²."
   },
   "inmobiliaria-precio-fijo-bon-pastor-barcelona": {
     "slug": "inmobiliaria-precio-fijo-bon-pastor-barcelona",
@@ -1940,10 +1940,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo bon pastor barcelona",
-    "badge": "Bon Pastor · Precio fijo · Panel",
+    "badge": "Bon Pastor · 08030 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/sants2.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Bon Pastor."
+    "cardTeaser": "Agencia honorarios fijos en Bon Pastor, Bon Pastor: 3.100 – 3.800 €/m²."
   },
   "inmobiliaria-precio-fijo-born-barcelona": {
     "slug": "inmobiliaria-precio-fijo-born-barcelona",
@@ -1952,10 +1952,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo born barcelona",
-    "badge": "Born · Precio fijo · Panel",
+    "badge": "Passeig del Born · 08003 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/born1.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Born."
+    "cardTeaser": "Agencia honorarios fijos en Born, Passeig del Born: 5.100 – 6.900 €/m²."
   },
   "inmobiliaria-precio-fijo-camp-de-larpa-barcelona": {
     "slug": "inmobiliaria-precio-fijo-camp-de-larpa-barcelona",
@@ -1964,10 +1964,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo camp de l'arpa barcelona",
-    "badge": "Camp de l'Arpa · Precio fijo · Panel",
+    "badge": "Camp de l'Arpa · 08041 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Camp de l'Arpa."
+    "cardTeaser": "Agencia honorarios fijos en Camp de l'Arpa, Camp de l'Arpa: 3.800 – 4.900 €/m²."
   },
   "inmobiliaria-precio-fijo-camp-den-grassot-barcelona": {
     "slug": "inmobiliaria-precio-fijo-camp-den-grassot-barcelona",
@@ -1976,10 +1976,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo camp d'en grassot barcelona",
-    "badge": "Camp d'en Grassot · Precio fijo · Panel",
+    "badge": "Camp d'en Grassot · 08025 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/gracia4.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Camp d'en Grassot."
+    "cardTeaser": "Agencia honorarios fijos en Camp d'en Grassot, Camp d'en Grassot: 4.200 – 5.400 €/m²."
   },
   "inmobiliaria-precio-fijo-ciutat-vella-barcelona": {
     "slug": "inmobiliaria-precio-fijo-ciutat-vella-barcelona",
@@ -2036,10 +2036,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo el besòs barcelona",
-    "badge": "El Besòs · Precio fijo · Panel",
+    "badge": "El Besòs i el Maresme · 08020 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/noubarris2.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en El Besòs."
+    "cardTeaser": "Agencia honorarios fijos en El Besòs, El Besòs i el Maresme: 3.300 – 4.200 €/m²."
   },
   "inmobiliaria-precio-fijo-el-clot-barcelona": {
     "slug": "inmobiliaria-precio-fijo-el-clot-barcelona",
@@ -2084,10 +2084,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo gòtic barcelona",
-    "badge": "Gòtic · Precio fijo · Panel",
+    "badge": "Plaça Sant Jaume · 08002 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/gotic1.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Gòtic."
+    "cardTeaser": "Agencia honorarios fijos en Gòtic, Plaça Sant Jaume: 4.700 – 6.300 €/m²."
   },
   "inmobiliaria-precio-fijo-gracia-barcelona": {
     "slug": "inmobiliaria-precio-fijo-gracia-barcelona",
@@ -2156,10 +2156,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo la bordeta barcelona",
-    "badge": "La Bordeta · Precio fijo · Panel",
+    "badge": "La Bordeta · 08014 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/sants1.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en La Bordeta."
+    "cardTeaser": "Agencia honorarios fijos en La Bordeta, La Bordeta: 3.500 – 4.500 €/m²."
   },
   "inmobiliaria-precio-fijo-la-marina-barcelona": {
     "slug": "inmobiliaria-precio-fijo-la-marina-barcelona",
@@ -2168,10 +2168,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo la marina barcelona",
-    "badge": "La Marina · Precio fijo · Panel",
+    "badge": "La Marina del Port · 08038 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/poblesec1.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en La Marina."
+    "cardTeaser": "Agencia honorarios fijos en La Marina, La Marina del Port: 3.200 – 4.100 €/m²."
   },
   "inmobiliaria-precio-fijo-la-sagrera-barcelona": {
     "slug": "inmobiliaria-precio-fijo-la-sagrera-barcelona",
@@ -2216,10 +2216,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo navas barcelona",
-    "badge": "Navas · Precio fijo · Panel",
+    "badge": "Navas · 08030 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/hospitalet4.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Navas."
+    "cardTeaser": "Agencia honorarios fijos en Navas, Navas: 3.300 – 4.100 €/m²."
   },
   "inmobiliaria-precio-fijo-nou-barris-barcelona": {
     "slug": "inmobiliaria-precio-fijo-nou-barris-barcelona",
@@ -2276,10 +2276,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo provençals del poblenou barcelona",
-    "badge": "Provençals del Poblenou · Precio fijo · Panel",
+    "badge": "Provençals del Poblenou · 08005 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Provençals del Poblenou."
+    "cardTeaser": "Agencia honorarios fijos en Provençals del Poblenou, Provençals del Poblenou: 4.000 – 5.200 €/m²."
   },
   "inmobiliaria-precio-fijo-raval-barcelona": {
     "slug": "inmobiliaria-precio-fijo-raval-barcelona",
@@ -2288,10 +2288,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo raval barcelona",
-    "badge": "Raval · Precio fijo · Panel",
+    "badge": "Rambla del Raval · 08001 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/raval1.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Raval."
+    "cardTeaser": "Agencia honorarios fijos en Raval, Rambla del Raval: 3.000 – 4.400 €/m²."
   },
   "inmobiliaria-precio-fijo-roquetes-barcelona": {
     "slug": "inmobiliaria-precio-fijo-roquetes-barcelona",
@@ -2300,10 +2300,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo roquetes barcelona",
-    "badge": "Roquetes · Precio fijo · Panel",
+    "badge": "Roquetes · 08042 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Roquetes."
+    "cardTeaser": "Agencia honorarios fijos en Roquetes, Roquetes: 3.000 – 3.900 €/m²."
   },
   "inmobiliaria-precio-fijo-sagrada-familia-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sagrada-familia-barcelona",
@@ -2360,10 +2360,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo sant just desvern y sant joan despí barcelona",
-    "badge": "Sant Just Desvern y Sant Joan Despí · Precio fijo · Panel",
+    "badge": "Sant Just Centre · 08960 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/santjust1.webp",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Sant Just Desvern y Sant Joan Despí."
+    "cardTeaser": "Agencia honorarios fijos en Sant Just Desvern y Sant Joan Despí, Sant Just Centre: 3.600 – 4.800 €/m²."
   },
   "inmobiliaria-precio-fijo-sant-marti-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sant-marti-barcelona",
@@ -2384,10 +2384,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo sant pere / santa caterina barcelona",
-    "badge": "Sant Pere / Santa Caterina · Precio fijo · Panel",
+    "badge": "Sant Pere · 08003 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/born1.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Sant Pere / Santa Caterina."
+    "cardTeaser": "Agencia honorarios fijos en Sant Pere / Santa Caterina, Sant Pere: 4.800 – 6.200 €/m²."
   },
   "inmobiliaria-precio-fijo-sants-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sants-barcelona",
@@ -2420,10 +2420,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo tetuan barcelona",
-    "badge": "Tetuan · Precio fijo · Panel",
+    "badge": "Tetuan · 08018 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Tetuan."
+    "cardTeaser": "Agencia honorarios fijos en Tetuan, Tetuan: 4.200 – 5.400 €/m²."
   },
   "inmobiliaria-precio-fijo-trinitat-vella-barcelona": {
     "slug": "inmobiliaria-precio-fijo-trinitat-vella-barcelona",
@@ -2432,10 +2432,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo trinitat vella barcelona",
-    "badge": "Trinitat Vella · Precio fijo · Panel",
+    "badge": "Trinitat Vella · 08033 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/noubarris2.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Trinitat Vella."
+    "cardTeaser": "Agencia honorarios fijos en Trinitat Vella, Trinitat Vella: 2.900 – 3.600 €/m²."
   },
   "inmobiliaria-precio-fijo-vall-d-hebron-barcelona": {
     "slug": "inmobiliaria-precio-fijo-vall-d-hebron-barcelona",
@@ -2444,10 +2444,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo vall d'hebron barcelona",
-    "badge": "Vall d'Hebron · Precio fijo · Panel",
+    "badge": "Vall d'Hebron · 08035 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/horta2.jpg",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en Vall d'Hebron."
+    "cardTeaser": "Agencia honorarios fijos en Vall d'Hebron, Vall d'Hebron: 3.900 – 5.100 €/m²."
   },
   "inmobiliaria-precio-fijo-verneda-barcelona": {
     "slug": "inmobiliaria-precio-fijo-verneda-barcelona",
@@ -2456,10 +2456,10 @@ window.NH_LANDINGS = {
     "priority": 0.89,
     "indexable": true,
     "keyword_principal": "inmobiliaria precio fijo la verneda barcelona",
-    "badge": "La Verneda · Precio fijo · Panel",
+    "badge": "La Verneda i la Pau · 08020 · Precio fijo · Panel",
     "testimonials": true,
     "cardImage": "imagenes/santmarti1.webp",
-    "cardTeaser": "Nueva landing: agencia honorarios fijos en La Verneda."
+    "cardTeaser": "Agencia honorarios fijos en La Verneda, La Verneda i la Pau: 3.400 – 4.300 €/m²."
   },
   "inmobiliaria-precio-fijo-vila-olimpica-barcelona": {
     "slug": "inmobiliaria-precio-fijo-vila-olimpica-barcelona",

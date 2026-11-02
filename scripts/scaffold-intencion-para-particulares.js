@@ -4,6 +4,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { applyVisibleDifferentiators } = require('./intencion-micro-differentiate.js');
 
 const ROOT = path.join(__dirname, '..');
 const BARRIO_DIR = path.join(ROOT, 'content/landings/barrio');
@@ -58,7 +59,7 @@ function buildArgumento(B, intSlug, zoneSlug) {
     `<p>Pilares: <a href="/inmobiliaria-para-particulares-barcelona">particulares Barcelona</a> · <a href="/${particularSlug}">vender como particular ${barrio}</a> · <a href="/nuevahabitat-vs-idealista-particular">vs Idealista</a>.</p>` +
     `<h2>Agencia para el propietario particular en ${barrio}</h2><p>No buscas franquicia nacional ni comisión opaca: buscas importe cerrado en escritura, panel vendedor y visitas con hipoteca o liquidez contrastada antes de abrir la puerta.</p>` +
     `<h2>¿Puedo seguir publicando en Idealista?</h2><p>Sí: muchos particulares en ${barrio} combinan portal y cartera de compradores cualificados. Evitas pagar un 6% si cierras con comprador filtrado por NuevaHabitat.</p>` +
-    `<h2>Mercado local (${m2})</h2><p>Rango orientativo ${m2}; plazos habituales ${tiempo}. ${tendencia}</p><p>${perfil}</p>` +
+    `<h2>Particular en ${(B.zonas && B.zonas[0]) || barrio}: ${m2}</h2><p>Rango orientativo ${m2}; plazos habituales ${tiempo}. ${tendencia}</p><p>${perfil}</p>` +
     `<h2>Tipología en ${barrio}</h2><p>${tipologia}</p>` +
     (zonas ? `<h2>Micro-zonas: ${zonas}</h2><p>Valorar con comparables de ${cps || 'tu CP'}, no con la media de Barcelona. El particular que copia el anuncio más caro del portal suele alargar semanas sin oferta financiable.</p>` : '') +
     `<h2>Panel vendedor y documentación</h2><p>Sube nota simple, certificado energético, actas y ofertas en un solo expediente. Visitas en tus franjas, registro por cita y feedback tras cada visita.</p>` +
@@ -193,6 +194,7 @@ function buildLanding(barrioSlug) {
     form_side_text: '3.630 € solo en escritura — valoración en 24 h.',
   };
 
+  applyVisibleDifferentiators(L, B, 'pp');
   fs.writeFileSync(outPath, JSON.stringify(L, null, 2) + '\n', 'utf8');
   console.log('Wrote', intSlug);
 }

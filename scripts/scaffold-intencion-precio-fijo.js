@@ -4,6 +4,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { applyVisibleDifferentiators } = require('./intencion-micro-differentiate.js');
 
 const ROOT = path.join(__dirname, '..');
 const BARRIO_DIR = path.join(ROOT, 'content/landings/barrio');
@@ -65,10 +66,12 @@ function buildArgumento(B, slugIntencion) {
   const tipologia = B.tipologiaEdificios || '';
   const tendencia = (B.datosMercado && B.datosMercado.tendencia) || '';
 
+  const z1 = (B.zonas && B.zonas[0]) || barrio;
+  const tend = (B.datosMercado && B.datosMercado.tendencia) || '';
   return (
-    `<p>Esta es una <strong>landing nueva</strong> para captar propietarios que buscan <strong>inmobiliaria con precio fijo en ${barrio}</strong> — distinta de la guía <a href="/${venderSlug}">vender piso en ${barrio}</a>. Si tu piso ronda <strong>${fmtEuro(precio)} €</strong>, una agencia al 6% + IVA puede cobrarte más de <strong>${fmtEuro(com6)} €</strong>; <strong>NuevaHabitat</strong> cobra <strong>3.000 € + IVA (3.630 € en escritura)</strong> solo en escritura, con <strong>panel vendedor</strong> (visitas, documentación, comprador) y sin especular con tu precio de anuncio.</p>` +
+    `<p><strong>Inmobiliaria precio fijo ${barrio}</strong> (${cps || 'Barcelona'}) — foco <strong>${z1}</strong>${tend ? ': ' + tend : ''}. Distinta de <a href="/${venderSlug}">vender piso en ${barrio}</a>. Si tu piso ronda <strong>${fmtEuro(precio)} €</strong>, el 6% + IVA supera <strong>${fmtEuro(com6)} €</strong>; <strong>NuevaHabitat</strong> cobra <strong>3.000 € + IVA (3.630 € en escritura)</strong> solo en escritura, con <strong>panel vendedor</strong>.</p>` +
     `<p>Pilar Barcelona: <a href="/inmobiliaria-precio-fijo-barcelona">inmobiliaria precio fijo Barcelona</a>.</p>` +
-    `<h2>${barrio}: mercado local (${m2})</h2><p>Rango orientativo ${m2}; plazos habituales ${tiempo}. ${tendencia}</p>` +
+    `<h2>${z1}: mercado en ${barrio} (${m2})</h2><p>Rango orientativo ${m2}; plazos habituales ${tiempo}. ${tendencia}</p>` +
     `<p>${perfil}</p>` +
     `<h2>Tipología de edificios en ${barrio}</h2><p>${tipologia}</p>` +
     (zonas ? `<h2>Micro-zonas: ${zonas}</h2><p>Valorar con comparables de ${cps || 'tu CP'}, no con la media de Barcelona. Cada calle compite con anuncios a pocos minutos a pie; copiar el precio del portal vecino sin mirar planta, ascensor y reforma es el error más repetido entre particulares.</p>` : '') +
@@ -126,14 +129,14 @@ function buildLanding(barrioSlug) {
     priority: 0.89,
     origen_lead: intSlug,
     meta: {
-      title: `Inmobiliaria precio fijo ${barrio} · 3.000 € + IVA (3.630 € en escritura) en escritura · NuevaHabitat`,
-      description: `Nueva landing: agencia honorarios fijos en ${barrio}. 3.000€ + IVA solo al vender. Panel vendedor, calculadora vs 6%. ${(B.zonas || []).slice(0, 2).join(', ')}.`,
+      title: `Inmobiliaria precio fijo ${barrio} · 3.630 € · NuevaHabitat`,
+      description: `Agencia honorarios fijos en ${barrio}. 3.630 € solo al vender. Panel vendedor, calculadora vs 6%. ${(B.zonas || []).slice(0, 2).join(', ')}.`,
       keywords: kw,
     },
     hero: {
       badge: `${barrio} · Precio fijo · Panel`,
-      h1: `Inmobiliaria con precio fijo en ${barrio}: 3.000 € + IVA (3.630 € en escritura) en escritura, no 6%`,
-      lead: `¿Buscas agencia en ${zonasLead || barrio} como <strong>particular</strong>? <strong>NuevaHabitat</strong>: <strong>3.000 € + IVA (3.630 € en escritura)</strong> solo en escritura, <strong>panel vendedor</strong>, calculadora de ahorro. Guía barrio: <a href="/${B.slug}">vender en ${barrio}</a>.`,
+      h1: `Inmobiliaria con precio fijo en ${barrio}: 3.630 € en escritura, no 6%`,
+      lead: `¿Buscas agencia en ${zonasLead || barrio}? <strong>NuevaHabitat</strong>: <strong>3.630 €</strong> solo en escritura, panel vendedor. Guía: <a href="/${B.slug}">vender en ${barrio}</a>.`,
       image: heroImg,
       imageAlt: heroAlt,
     },
@@ -204,6 +207,7 @@ function buildLanding(barrioSlug) {
     form_side_text: `Cuéntanos tu piso en ${barrio}: panel, 3.000 € + IVA (3.630 € en escritura) en escritura, calculadora vs 6%.`,
   };
 
+  applyVisibleDifferentiators(L, B, 'pf');
   fs.writeFileSync(outPath, JSON.stringify(L, null, 2) + '\n', 'utf8');
   console.log('Wrote', intSlug);
 }
