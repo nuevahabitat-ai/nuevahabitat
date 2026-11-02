@@ -162,6 +162,14 @@ function validateLandings(all) {
           (all[j].cluster === 'particular' && all[i].cluster === 'intencion'));
       if (intencionParticular) continue;
 
+      const precioFijoVsParticulares =
+        fi &&
+        fj &&
+        fi !== fj &&
+        ((fi.startsWith('inmobiliaria-para-particulares-') && fj.startsWith('inmobiliaria-precio-fijo-')) ||
+          (fi.startsWith('inmobiliaria-precio-fijo-') && fj.startsWith('inmobiliaria-para-particulares-')));
+      if (precioFijoVsParticulares) continue;
+
       if (
         all[i].cluster === 'particular' &&
         all[j].cluster === 'particular' &&

@@ -85,31 +85,47 @@ window.NH_LANDING_ORDER = [
   "inmobiliaria-para-particulares-barcelona",
   "inmobiliaria-para-particulares-ciutat-vella-barcelona",
   "inmobiliaria-para-particulares-cornella-barcelona",
+  "inmobiliaria-para-particulares-diagonal-mar-barcelona",
   "inmobiliaria-para-particulares-eixample-barcelona",
   "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona",
   "inmobiliaria-para-particulares-esplugues-barcelona",
+  "inmobiliaria-para-particulares-fort-pienc-barcelona",
   "inmobiliaria-para-particulares-gracia-barcelona",
+  "inmobiliaria-para-particulares-guinardo-barcelona",
   "inmobiliaria-para-particulares-horta-barcelona",
+  "inmobiliaria-para-particulares-hostafrancs-barcelona",
   "inmobiliaria-para-particulares-l-hospitalet-barcelona",
+  "inmobiliaria-para-particulares-la-sagrera-barcelona",
   "inmobiliaria-para-particulares-les-corts-barcelona",
+  "inmobiliaria-para-particulares-montjuic-barcelona",
   "inmobiliaria-para-particulares-nou-barris-barcelona",
+  "inmobiliaria-para-particulares-pedralbes-barcelona",
   "inmobiliaria-para-particulares-poble-sec-barcelona",
   "inmobiliaria-para-particulares-poblenou-barcelona",
+  "inmobiliaria-para-particulares-roquetes-barcelona",
+  "inmobiliaria-para-particulares-sagrada-familia-barcelona",
   "inmobiliaria-para-particulares-sant-andreu-barcelona",
   "inmobiliaria-para-particulares-sant-antoni-barcelona",
   "inmobiliaria-para-particulares-sant-gervasi-barcelona",
   "inmobiliaria-para-particulares-sant-marti-barcelona",
   "inmobiliaria-para-particulares-sants-barcelona",
   "inmobiliaria-para-particulares-sarria-barcelona",
+  "inmobiliaria-para-particulares-vila-olimpica-barcelona",
   "inmobiliaria-precio-fijo-badalona-barcelona",
   "inmobiliaria-precio-fijo-barcelona",
+  "inmobiliaria-precio-fijo-barceloneta-barcelona",
+  "inmobiliaria-precio-fijo-bon-pastor-barcelona",
+  "inmobiliaria-precio-fijo-born-barcelona",
+  "inmobiliaria-precio-fijo-camp-den-grassot-barcelona",
   "inmobiliaria-precio-fijo-ciutat-vella-barcelona",
   "inmobiliaria-precio-fijo-cornella-barcelona",
   "inmobiliaria-precio-fijo-diagonal-mar-barcelona",
   "inmobiliaria-precio-fijo-eixample-barcelona",
+  "inmobiliaria-precio-fijo-el-besos-barcelona",
   "inmobiliaria-precio-fijo-el-clot-barcelona",
   "inmobiliaria-precio-fijo-esplugues-barcelona",
   "inmobiliaria-precio-fijo-fort-pienc-barcelona",
+  "inmobiliaria-precio-fijo-gotic-barcelona",
   "inmobiliaria-precio-fijo-gracia-barcelona",
   "inmobiliaria-precio-fijo-guinardo-barcelona",
   "inmobiliaria-precio-fijo-horta-barcelona",
@@ -118,10 +134,13 @@ window.NH_LANDING_ORDER = [
   "inmobiliaria-precio-fijo-la-sagrera-barcelona",
   "inmobiliaria-precio-fijo-les-corts-barcelona",
   "inmobiliaria-precio-fijo-montjuic-barcelona",
+  "inmobiliaria-precio-fijo-navas-barcelona",
   "inmobiliaria-precio-fijo-nou-barris-barcelona",
   "inmobiliaria-precio-fijo-pedralbes-barcelona",
   "inmobiliaria-precio-fijo-poble-sec-barcelona",
   "inmobiliaria-precio-fijo-poblenou-barcelona",
+  "inmobiliaria-precio-fijo-provencals-del-poblenou-barcelona",
+  "inmobiliaria-precio-fijo-raval-barcelona",
   "inmobiliaria-precio-fijo-sagrada-familia-barcelona",
   "inmobiliaria-precio-fijo-sant-andreu-barcelona",
   "inmobiliaria-precio-fijo-sant-antoni-barcelona",
@@ -129,6 +148,7 @@ window.NH_LANDING_ORDER = [
   "inmobiliaria-precio-fijo-sant-marti-barcelona",
   "inmobiliaria-precio-fijo-sants-barcelona",
   "inmobiliaria-precio-fijo-sarria-barcelona",
+  "inmobiliaria-precio-fijo-verneda-barcelona",
   "inmobiliaria-precio-fijo-vila-olimpica-barcelona",
   "particular-vendo-piso-urgente-barcelona",
   "vender-mi-piso-barcelona",
@@ -1322,6 +1342,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/barcelona1.jpeg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en Cornellà de Llobregat: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
+  "inmobiliaria-para-particulares-diagonal-mar-barcelona": {
+    "slug": "inmobiliaria-para-particulares-diagonal-mar-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Diagonal Mar",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares diagonal mar barcelona",
+    "badge": "Diagonal Mar · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona7.webp",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Diagonal Mar: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
   "inmobiliaria-para-particulares-eixample-barcelona": {
     "slug": "inmobiliaria-para-particulares-eixample-barcelona",
     "cluster": "intencion",
@@ -1358,6 +1390,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/esplugues1.jpg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en Esplugues de Llobregat: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
+  "inmobiliaria-para-particulares-fort-pienc-barcelona": {
+    "slug": "inmobiliaria-para-particulares-fort-pienc-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Fort Pienc",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares fort pienc barcelona",
+    "badge": "Fort Pienc · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample2.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Fort Pienc: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
   "inmobiliaria-para-particulares-gracia-barcelona": {
     "slug": "inmobiliaria-para-particulares-gracia-barcelona",
     "cluster": "intencion",
@@ -1369,6 +1413,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/gracia1.jpg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en Gràcia: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-guinardo-barcelona": {
+    "slug": "inmobiliaria-para-particulares-guinardo-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares El Guinardó",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares el guinardó barcelona",
+    "badge": "El Guinardó · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/horta2.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en El Guinardó: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
   "inmobiliaria-para-particulares-horta-barcelona": {
     "slug": "inmobiliaria-para-particulares-horta-barcelona",
@@ -1382,6 +1438,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/horta1.jpg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en Horta-Guinardó: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
+  "inmobiliaria-para-particulares-hostafrancs-barcelona": {
+    "slug": "inmobiliaria-para-particulares-hostafrancs-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Hostafrancs",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares hostafrancs barcelona",
+    "badge": "Hostafrancs · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/sants2.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Hostafrancs: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
   "inmobiliaria-para-particulares-l-hospitalet-barcelona": {
     "slug": "inmobiliaria-para-particulares-l-hospitalet-barcelona",
     "cluster": "intencion",
@@ -1393,6 +1461,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/hospitalet1.jpg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en L'Hospitalet: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-la-sagrera-barcelona": {
+    "slug": "inmobiliaria-para-particulares-la-sagrera-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares La Sagrera",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares la sagrera barcelona",
+    "badge": "La Sagrera · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet5.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en La Sagrera: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
   "inmobiliaria-para-particulares-les-corts-barcelona": {
     "slug": "inmobiliaria-para-particulares-les-corts-barcelona",
@@ -1406,6 +1486,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en Les Corts: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
+  "inmobiliaria-para-particulares-montjuic-barcelona": {
+    "slug": "inmobiliaria-para-particulares-montjuic-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Montjuïc",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares montjuïc barcelona",
+    "badge": "Montjuïc · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/poblesec1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Montjuïc: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
   "inmobiliaria-para-particulares-nou-barris-barcelona": {
     "slug": "inmobiliaria-para-particulares-nou-barris-barcelona",
     "cluster": "intencion",
@@ -1417,6 +1509,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/noubarris1.jpg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en Nou Barris: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-pedralbes-barcelona": {
+    "slug": "inmobiliaria-para-particulares-pedralbes-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Pedralbes",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares pedralbes barcelona",
+    "badge": "Pedralbes · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/lescorts4.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Pedralbes: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
   "inmobiliaria-para-particulares-poble-sec-barcelona": {
     "slug": "inmobiliaria-para-particulares-poble-sec-barcelona",
@@ -1441,6 +1545,30 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en Poblenou: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-roquetes-barcelona": {
+    "slug": "inmobiliaria-para-particulares-roquetes-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Roquetes",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares roquetes barcelona",
+    "badge": "Roquetes · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Roquetes: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
+  "inmobiliaria-para-particulares-sagrada-familia-barcelona": {
+    "slug": "inmobiliaria-para-particulares-sagrada-familia-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Sagrada Família",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares sagrada família barcelona",
+    "badge": "Sagrada Família · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/eixample1.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Sagrada Família: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
   "inmobiliaria-para-particulares-sant-andreu-barcelona": {
     "slug": "inmobiliaria-para-particulares-sant-andreu-barcelona",
@@ -1514,6 +1642,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Inmobiliaria para propietarios particulares en Sarrià: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
   },
+  "inmobiliaria-para-particulares-vila-olimpica-barcelona": {
+    "slug": "inmobiliaria-para-particulares-vila-olimpica-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Particulares Vila Olímpica",
+    "priority": 0.88,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria para particulares vila olímpica barcelona",
+    "badge": "Vila Olímpica · Propietario particular",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona2.jpg",
+    "cardTeaser": "Inmobiliaria para propietarios particulares en Vila Olímpica: 3.630 € solo en escritura, panel vendedor y compradores filtrados."
+  },
   "inmobiliaria-precio-fijo-badalona-barcelona": {
     "slug": "inmobiliaria-precio-fijo-badalona-barcelona",
     "cluster": "intencion",
@@ -1537,6 +1677,54 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/comercial2.jpg",
     "cardTeaser": "Agencia en Barcelona con honorarios fijos 3.000 € + IVA (3.630 €) solo al vender."
+  },
+  "inmobiliaria-precio-fijo-barceloneta-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-barceloneta-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Barceloneta",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo barceloneta barcelona",
+    "badge": "Barceloneta · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/barcelona2.jpg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en Barceloneta."
+  },
+  "inmobiliaria-precio-fijo-bon-pastor-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-bon-pastor-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Bon Pastor",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo bon pastor barcelona",
+    "badge": "Bon Pastor · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/sants2.jpg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en Bon Pastor."
+  },
+  "inmobiliaria-precio-fijo-born-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-born-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Born",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo born barcelona",
+    "badge": "Born · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/born1.jpg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en Born."
+  },
+  "inmobiliaria-precio-fijo-camp-den-grassot-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-camp-den-grassot-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Camp d'en Grassot",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo camp d'en grassot barcelona",
+    "badge": "Camp d'en Grassot · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/gracia4.jpg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en Camp d'en Grassot."
   },
   "inmobiliaria-precio-fijo-ciutat-vella-barcelona": {
     "slug": "inmobiliaria-precio-fijo-ciutat-vella-barcelona",
@@ -1586,6 +1774,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/eixample1.jpg",
     "cardTeaser": "Inmobiliaria con precio fijo en Eixample: 3.000 € + IVA (3.630 €) solo en escritura."
   },
+  "inmobiliaria-precio-fijo-el-besos-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-el-besos-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo El Besòs",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo el besòs barcelona",
+    "badge": "El Besòs · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/noubarris2.jpg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en El Besòs."
+  },
   "inmobiliaria-precio-fijo-el-clot-barcelona": {
     "slug": "inmobiliaria-precio-fijo-el-clot-barcelona",
     "cluster": "intencion",
@@ -1621,6 +1821,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/eixample2.jpg",
     "cardTeaser": "Agencia honorarios fijos en Fort Pienc."
+  },
+  "inmobiliaria-precio-fijo-gotic-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-gotic-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Gòtic",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo gòtic barcelona",
+    "badge": "Gòtic · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/gotic1.jpg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en Gòtic."
   },
   "inmobiliaria-precio-fijo-gracia-barcelona": {
     "slug": "inmobiliaria-precio-fijo-gracia-barcelona",
@@ -1718,6 +1930,18 @@ window.NH_LANDINGS = {
     "cardImage": "imagenes/poblesec1.jpg",
     "cardTeaser": "Agencia honorarios fijos en Montjuïc."
   },
+  "inmobiliaria-precio-fijo-navas-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-navas-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Navas",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo navas barcelona",
+    "badge": "Navas · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/hospitalet4.jpg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en Navas."
+  },
   "inmobiliaria-precio-fijo-nou-barris-barcelona": {
     "slug": "inmobiliaria-precio-fijo-nou-barris-barcelona",
     "cluster": "intencion",
@@ -1765,6 +1989,30 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/poblenou1.jpeg",
     "cardTeaser": "Agencia precio fijo Poblenou, Vila Olímpica, Rambla, 22@."
+  },
+  "inmobiliaria-precio-fijo-provencals-del-poblenou-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-provencals-del-poblenou-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Provençals del Poblenou",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo provençals del poblenou barcelona",
+    "badge": "Provençals del Poblenou · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/poblenou1.jpeg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en Provençals del Poblenou."
+  },
+  "inmobiliaria-precio-fijo-raval-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-raval-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo Raval",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo raval barcelona",
+    "badge": "Raval · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/raval1.jpg",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en Raval."
   },
   "inmobiliaria-precio-fijo-sagrada-familia-barcelona": {
     "slug": "inmobiliaria-precio-fijo-sagrada-familia-barcelona",
@@ -1849,6 +2097,18 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/eixample5.jpg",
     "cardTeaser": "Vender en Sarrià, Bonanova o Tres Torres con honorarios fijos 3.000 € + IVA (3.630 €) solo en escritura."
+  },
+  "inmobiliaria-precio-fijo-verneda-barcelona": {
+    "slug": "inmobiliaria-precio-fijo-verneda-barcelona",
+    "cluster": "intencion",
+    "footerLabel": "Precio fijo La Verneda",
+    "priority": 0.89,
+    "indexable": true,
+    "keyword_principal": "inmobiliaria precio fijo la verneda barcelona",
+    "badge": "La Verneda · Precio fijo · Panel",
+    "testimonials": true,
+    "cardImage": "imagenes/santmarti1.webp",
+    "cardTeaser": "Nueva landing: agencia honorarios fijos en La Verneda."
   },
   "inmobiliaria-precio-fijo-vila-olimpica-barcelona": {
     "slug": "inmobiliaria-precio-fijo-vila-olimpica-barcelona",
