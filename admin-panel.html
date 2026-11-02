@@ -6414,8 +6414,11 @@ function renderVisitasSyncBanner(sync) {
   el.style.display = 'block';
   if (sync.error) {
     el.className = 'adm-alarm-banner';
-    el.innerHTML = '<strong>Calendario Google</strong> — ' + dashEsc(sync.error) +
-      '. Añade GOOGLE_REFRESH_TOKEN en Vercel y redeploy.';
+    const miss = (sync.missing && sync.missing.length)
+      ? ' Variables: ' + sync.missing.join(', ') + '.'
+      : '';
+    el.innerHTML = '<strong>Calendario Google</strong> — ' + dashEsc(sync.error + miss) +
+      ' Vercel → proyecto <em>nuevahabitat</em> → Settings → Environment Variables → marcar <strong>Production</strong> → Redeploy. Guía: <code>docs/SETUP-GOOGLE-CALENDAR-VISITAS.md</code> en el repo.';
     return;
   }
   if (!sync.configured) {
