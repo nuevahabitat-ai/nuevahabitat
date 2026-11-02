@@ -399,6 +399,12 @@ select.adm-control{
 .pub-btn-call:hover{background:var(--gold);color:#fff}
 .pub-btn-mail{background:rgba(184,147,106,.12);color:var(--gold);border:1px solid rgba(184,147,106,.3)!important}
 .pub-btn-mail:hover{background:var(--gold);color:#fff}
+.pub-btn-quick-precio{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.35)!important}
+.pub-btn-quick-precio:hover{background:#22c55e;color:#fff}
+.pub-btn-est-res{background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.4)!important}
+.pub-btn-est-res:hover{background:#f97316;color:#fff}
+.pub-btn-est-sold{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.4)!important}
+.pub-btn-est-sold:hover{background:#ef4444;color:#fff}
 .pub-empty{text-align:center;padding:3rem;color:var(--muted)}
 .pub-empty svg{margin-bottom:1rem;opacity:.4}
 .pub-empty p{font-size:.85rem}
@@ -2120,6 +2126,33 @@ select.adm-control{
         </div>
       </div>
 
+      <!-- Modal: rebajar precio rápido (grid inmuebles) -->
+      <div id="inm-quick-precio-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="inm-quick-precio-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closeInmQuickPrecioModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel" style="max-width:420px">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="inm-quick-precio-kicker">Inmueble</div>
+              <h3 id="inm-quick-precio-title">Rebajar precio</h3>
+              <div class="comp-match-criteria" id="inm-quick-precio-sub"></div>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closeInmQuickPrecioModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body">
+            <div class="adm-field">
+              <label for="inm-quick-precio-input">Nuevo precio (€)</label>
+              <input type="number" id="inm-quick-precio-input" min="0" step="1000" inputmode="numeric"/>
+            </div>
+            <p class="text-muted" id="inm-quick-precio-hint" style="font-size:.75rem;margin-top:.5rem"></p>
+            <div id="inm-quick-precio-err" class="alert-box alert-error" style="display:none;margin-top:.5rem"></div>
+          </div>
+          <div class="dash-modal-foot">
+            <button type="button" class="adm-btn adm-btn-ghost" onclick="closeInmQuickPrecioModal()">Cancelar</button>
+            <button type="button" class="adm-btn adm-btn-gold" onclick="submitInmQuickPrecio()">Guardar precio</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Modal: avisar rebaja a visitantes del inmueble -->
       <div id="rebaja-vis-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="rebaja-vis-title" hidden>
         <div class="dash-modal-backdrop" onclick="closeRebajaVisitantesModal()"></div>
@@ -3717,15 +3750,13 @@ function formatInmueblePriceHtml(p, opts = {}){
   </div>`;
 }
 
-function enrichPayloadRebaja(payload, newPrecio){
-  if(editingPropertyId == null) return null;
-  const oldCur = editingPropertyOldPrecio;
-  const oldAnt = editingPropertyPrecioAnterior;
+/** Campos precio_anterior / rebaja; devuelve notify si bajada ≥ REBAJA_MIN_EUR */
+function applyRebajaFieldsToPayload(payload, oldCur, oldAnt, newPrecio, inmuebleId){
   let notify = null;
   if(newPrecio && oldCur && newPrecio < oldCur - REBAJA_MIN_EUR){
     payload.precio_anterior = oldCur;
     payload.precio_rebajado_at = new Date().toISOString();
-    notify = { inmuebleId: editingPropertyId, precioAnterior: oldCur, precioNuevo: newPrecio };
+    if(inmuebleId) notify = { inmuebleId, precioAnterior: oldCur, precioNuevo: newPrecio };
   } else if(newPrecio && oldAnt && newPrecio >= oldAnt){
     payload.precio_anterior = null;
     payload.precio_rebajado_at = null;
@@ -3733,6 +3764,11 @@ function enrichPayloadRebaja(payload, newPrecio){
     payload.precio_anterior = oldAnt;
   }
   return notify;
+}
+
+function enrichPayloadRebaja(payload, newPrecio){
+  if(editingPropertyId == null) return null;
+  return applyRebajaFieldsToPayload(payload, editingPropertyOldPrecio, editingPropertyPrecioAnterior, newPrecio, editingPropertyId);
 }
 
 function inmueblePublicUrl(id){
@@ -4219,9 +4255,13 @@ function renderPublications(){
             ${zona?`<span>${zona}</span>`:''}
             ${p.cartera_privada?`<span style="font-size:.65rem;color:var(--gold)">🔒 Cartera privada</span>`:''}
           </div>
+          <div class="pub-quick-actions" onclick="event.stopPropagation()">
+            <button type="button" class="pub-btn-quick-precio" onclick="openInmQuickPrecioModal('${p.id}')">Rebajar €</button>
+            ${rebajado ? `<button type="button" class="pub-btn-wa" onclick="openRebajaVisitantesModal('${p.id}')">Avisar visitantes</button>` : ''}
+            ${pubEstadoQuickButtonsHtml(p)}
+          </div>
           <div class="pub-actions">
             <button type="button" class="pub-btn-edit" data-action="edit-inmueble" data-id="${p.id}">Editar</button>
-            ${rebajado ? `<button type="button" class="pub-btn-edit" onclick="openRebajaVisitantesModal('${p.id}')">📢 Rebaja</button>` : ''}
             <button type="button" class="pub-btn-del" data-action="delete-inmueble" data-id="${p.id}">Eliminar</button>
             <button type="button" class="pub-btn-web" onclick="window.open('/inmueble-detalle?id=${p.id}','_blank')">Web</button>
           </div>
@@ -4245,6 +4285,108 @@ function pubImgPrev(id){
   pubImgState[id] = ((pubImgState[id]||0)-1+imgs.length)%imgs.length;
   document.getElementById('pub-img-'+id).src = imgs[pubImgState[id]];
 }
+
+function pubEstadoQuickButtonsHtml(p){
+  const e = p.estado || 'disponible';
+  const id = p.id;
+  const btns = [];
+  if(e !== 'reservado'){
+    btns.push(`<button type="button" class="pub-btn-est-res" onclick="quickSetInmuebleEstado('${id}','reservado')">Reservado</button>`);
+  }
+  if(e !== 'vendido'){
+    btns.push(`<button type="button" class="pub-btn-est-sold" onclick="quickSetInmuebleEstado('${id}','vendido')">Vendido</button>`);
+  }
+  if(e === 'reservado' || e === 'vendido' || e === 'retirado'){
+    btns.push(`<button type="button" class="pub-btn-call" onclick="quickSetInmuebleEstado('${id}','disponible')">Disponible</button>`);
+  }
+  return btns.join('');
+}
+
+let _inmQuickPrecioId = null;
+
+function closeInmQuickPrecioModal(){
+  const m = document.getElementById('inm-quick-precio-modal');
+  if(m){ m.classList.remove('open'); m.hidden = true; }
+  document.body.style.overflow = '';
+  _inmQuickPrecioId = null;
+}
+window.closeInmQuickPrecioModal = closeInmQuickPrecioModal;
+
+async function openInmQuickPrecioModal(inmuebleId){
+  if(!window.nhSupabase) return;
+  const p = (_pubData || []).find(x => x.id === inmuebleId);
+  if(!p){ nhToast('Inmueble no encontrado.', 'error'); return; }
+  _inmQuickPrecioId = inmuebleId;
+  const cur = p.precio != null ? Number(p.precio) : null;
+  document.getElementById('inm-quick-precio-kicker').textContent = p.ref || 'Inmueble';
+  document.getElementById('inm-quick-precio-sub').textContent = [p.titulo, cur != null ? `Precio actual: ${cur.toLocaleString('es-ES')} €` : ''].filter(Boolean).join(' · ');
+  const inp = document.getElementById('inm-quick-precio-input');
+  if(inp) inp.value = cur != null ? String(cur) : '';
+  const hint = document.getElementById('inm-quick-precio-hint');
+  if(hint) hint.textContent = `Si bajas al menos ${REBAJA_MIN_EUR.toLocaleString('es-ES')} €, se registrará rebaja y podrás avisar a visitantes.`;
+  const err = document.getElementById('inm-quick-precio-err');
+  if(err){ err.style.display = 'none'; err.textContent = ''; }
+  const m = document.getElementById('inm-quick-precio-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => inp?.focus(), 80);
+}
+window.openInmQuickPrecioModal = openInmQuickPrecioModal;
+
+async function submitInmQuickPrecio(){
+  if(!_inmQuickPrecioId || !window.nhSupabase) return;
+  const inp = document.getElementById('inm-quick-precio-input');
+  const errEl = document.getElementById('inm-quick-precio-err');
+  const newPrecio = inp ? Number(inp.value) : NaN;
+  if(!newPrecio || Number.isNaN(newPrecio) || newPrecio <= 0){
+    if(errEl){ errEl.textContent = 'Indica un precio válido.'; errEl.style.display = 'block'; }
+    return;
+  }
+  const p = (_pubData || []).find(x => x.id === _inmQuickPrecioId);
+  if(!p){
+    if(errEl){ errEl.textContent = 'Inmueble no encontrado.'; errEl.style.display = 'block'; }
+    return;
+  }
+  const oldCur = p.precio != null ? Number(p.precio) : null;
+  const oldAnt = p.precio_anterior != null ? Number(p.precio_anterior) : null;
+  if(oldCur != null && newPrecio === oldCur){
+    nhToast('El precio no ha cambiado.', 'info');
+    return;
+  }
+  const payload = { precio: newPrecio, updated_at: new Date().toISOString() };
+  const rebajaNotify = applyRebajaFieldsToPayload(payload, oldCur, oldAnt, newPrecio, _inmQuickPrecioId);
+  const { error } = await window.nhSupabase.from('inmuebles').update(payload).eq('id', _inmQuickPrecioId);
+  if(error){
+    if(errEl){ errEl.textContent = error.message; errEl.style.display = 'block'; }
+    return;
+  }
+  closeInmQuickPrecioModal();
+  nhToast('Precio actualizado.', 'success');
+  await loadPublications(true);
+  if(rebajaNotify){
+    const ahorro = rebajaNotify.precioAnterior - rebajaNotify.precioNuevo;
+    const msg = `Rebaja ${rebajaNotify.precioAnterior.toLocaleString('es-ES')} → ${rebajaNotify.precioNuevo.toLocaleString('es-ES')} € (−${ahorro.toLocaleString('es-ES')} €).\n\n¿Avisar por email y/o WhatsApp a quienes visitaron este inmueble?`;
+    if(confirm(msg)) openRebajaVisitantesModal(rebajaNotify.inmuebleId, rebajaNotify.precioAnterior, rebajaNotify.precioNuevo);
+  }
+}
+window.submitInmQuickPrecio = submitInmQuickPrecio;
+
+async function quickSetInmuebleEstado(id, estado){
+  if(!window.nhSupabase) return;
+  const labels = { disponible: 'Disponible', reservado: 'Reservado', vendido: 'Vendido', retirado: 'Retirado' };
+  const p = (_pubData || []).find(x => x.id === id);
+  const ref = p?.ref || 'Inmueble';
+  const label = labels[estado] || estado;
+  let extra = '';
+  if(estado === 'vendido') extra = '\n\nDejará de contarse en matches activos con compradores.';
+  if(!confirm(`¿Marcar ${ref} como «${label}»?${extra}`)) return;
+  const { error } = await window.nhSupabase.from('inmuebles').update({ estado, updated_at: new Date().toISOString() }).eq('id', id);
+  if(error){ nhToast('Error: ' + error.message, 'error'); return; }
+  nhToast(`${ref}: ${label}`, 'success');
+  loadPublications(true);
+}
+window.quickSetInmuebleEstado = quickSetInmuebleEstado;
 
 async function deleteProperty(id){
   if(!confirm('¿Eliminar este inmueble? Esta acción no se puede deshacer.')) return;
