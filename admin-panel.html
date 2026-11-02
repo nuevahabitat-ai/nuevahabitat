@@ -1722,6 +1722,7 @@ select.adm-control{
             <div class="wiz-section-label">Conectar Google Calendar (una vez)</div>
             <p class="text-muted" style="font-size:.78rem;line-height:1.5;margin-bottom:.75rem">Genera el refresh token en <a href="https://developers.google.com/oauthplayground/" target="_blank" rel="noopener">OAuth Playground</a> (⚙ credenciales propias, scope <code>calendar</code>, cuenta <strong>admin.nuevahabitat@gmail.com</strong>). Se guarda en Supabase; no hace falta Vercel si ya tienes <code>SUPABASE_SERVICE_ROLE_KEY</code> en producción.</p>
             <div class="adm-form-grid">
+              <div class="adm-field adm-form-col-full"><label>Client ID (mismo que en Playground ⚙)</label><input type="text" id="gcal-client-id" value="311723462282-lva0ig636e0387g12b1r51in9fceoru2.apps.googleusercontent.com" autocomplete="off" spellcheck="false"/></div>
               <div class="adm-field adm-form-col-full"><label>Client secret (GOCSPX…)</label><input type="password" id="gcal-client-secret" autocomplete="off"/></div>
               <div class="adm-field adm-form-col-full"><label>Refresh token</label><input type="password" id="gcal-refresh-token" autocomplete="off"/></div>
               <div class="adm-field adm-form-col-full"><label>Calendario ID</label><input type="text" id="gcal-calendar-id" value="admin.nuevahabitat@gmail.com"/></div>
@@ -6428,6 +6429,7 @@ function showGcalConfigBox(show) {
 
 async function saveGoogleCalendarConfig() {
   const msg = document.getElementById('gcal-config-msg');
+  const clientId = document.getElementById('gcal-client-id')?.value?.trim();
   const clientSecret = document.getElementById('gcal-client-secret')?.value?.trim();
   const refreshToken = document.getElementById('gcal-refresh-token')?.value?.trim();
   const calendarId = document.getElementById('gcal-calendar-id')?.value?.trim();
@@ -6445,7 +6447,7 @@ async function saveGoogleCalendarConfig() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${session.access_token}`,
       },
-      body: JSON.stringify({ clientSecret, refreshToken, calendarId }),
+      body: JSON.stringify({ clientId, clientSecret, refreshToken, calendarId }),
     });
     const json = await res.json().catch(() => ({}));
     if (!res.ok || !json.ok) throw new Error(json.error || `Error ${res.status}`);

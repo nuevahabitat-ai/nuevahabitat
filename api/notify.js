@@ -7,7 +7,9 @@
 import {
   createAvailabilityEvents,
   verifyGoogleCalendarConnection,
+  verifyOAuthCredentials,
 } from '../lib/server/google-calendar.js';
+import handleGoogleCalendarOAuth from './google-calendar-oauth.js';
 import { insertVisitaFromDisponibilidad, listVisitasAdminServer } from '../lib/server/visitas-api.js';
 import {
   saveGoogleCalendarIntegration,
@@ -803,12 +805,12 @@ async function handleAdminGoogleCalendarSave(req, res, body) {
     if (!saved.ok) {
       return res.status(500).json({ ok: false, error: saved.error || 'No se pudo guardar' });
     }
-    const auth = await verifyGoogleCalendarConnection();
+    const auth = await verifyOAuthCredentials({ clientId, clientSecret, refreshToken });
     return res.status(200).json({
       ok: auth.ok,
       error: auth.ok ? null : auth.error,
-      configured: auth.status?.configured,
-      source: auth.status?.source,
+      configured: true,
+      source: 'supabase',
     });
   } catch (err) {
     console.error('admin-google-calendar-save', err);
@@ -1317,13 +1319,17 @@ async function handleAccount(req, res, body) {
 ══════════════════════════════════════════════════════════════════════ */
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST')   return res.status(405).json({ error: 'Method not allowed' });
+
+  const action = req.query?.__action || req.query?.action;
+  if (action === 'google-calendar-oauth' && req.method === 'GET') {
+    return handleGoogleCalendarOAuth(req, res);
+  }
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const body = req.body || {};
-  const action = req.query?.__action || req.query?.action;
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
   if (action === 'admin-lead-create') return handleAdminLeadCreate(req, res, body);
