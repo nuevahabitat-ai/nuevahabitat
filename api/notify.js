@@ -9,7 +9,7 @@ import {
   verifyGoogleCalendarConnection,
   verifyOAuthCredentials,
 } from '../lib/server/google-calendar.js';
-import handleGoogleCalendarOAuth from './google-calendar-oauth.js';
+import handleGoogleCalendarOAuth from '../lib/server/google-calendar-oauth-handler.js';
 import { insertVisitaFromDisponibilidad, listVisitasAdminServer } from '../lib/server/visitas-api.js';
 import {
   saveGoogleCalendarIntegration,
