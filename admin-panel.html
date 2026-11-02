@@ -1726,8 +1726,9 @@ select.adm-control{
               <div class="adm-field adm-form-col-full"><label>Refresh token</label><input type="password" id="gcal-refresh-token" autocomplete="off"/></div>
               <div class="adm-field adm-form-col-full"><label>Calendario ID</label><input type="text" id="gcal-calendar-id" value="admin.nuevahabitat@gmail.com"/></div>
             </div>
-            <div class="gap-row" style="margin-top:.75rem">
-              <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveGoogleCalendarConfig()">Guardar y probar</button>
+            <div class="gap-row" style="margin-top:.75rem;flex-wrap:wrap">
+              <a class="adm-btn adm-btn-gold adm-btn-sm" href="/api/google-calendar-oauth" id="gcal-oauth-link">Conectar con Google</a>
+              <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="saveGoogleCalendarConfig()">Guardar manual (Playground)</button>
               <span id="gcal-config-msg" class="text-muted" style="font-size:.78rem"></span>
             </div>
           </div>
