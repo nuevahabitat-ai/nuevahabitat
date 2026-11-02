@@ -13,6 +13,7 @@ import {
   saveGoogleCalendarIntegration,
   defaultGoogleClientId,
 } from '../lib/server/integration-secrets.js';
+import { verifyPanelApiKey } from '../lib/server/panel-api-auth.js';
 import {
   insertLeadServer,
   normalizeLeadTipo,
@@ -731,8 +732,17 @@ async function verifyPanelAdmin(req) {
   return user;
 }
 
-async function handleAdminVisitas(req, res, body) {
+/** Sesión admin (JWT) o Bearer NH_PANEL_API_KEY (scripts / Captador). */
+async function verifyPanelAdminOrApiKey(req) {
   const admin = await verifyPanelAdmin(req);
+  if (admin) return admin;
+  const api = verifyPanelApiKey(req);
+  if (api.ok) return { api: true };
+  return null;
+}
+
+async function handleAdminVisitas(req, res, body) {
+  const admin = await verifyPanelAdminOrApiKey(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
 
   try {
@@ -751,7 +761,7 @@ async function handleAdminVisitas(req, res, body) {
 }
 
 async function handleAdminGoogleCalendarSave(req, res, body) {
-  const admin = await verifyPanelAdmin(req);
+  const admin = await verifyPanelAdminOrApiKey(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
 
   const clientSecret = String(body?.clientSecret || body?.client_secret || '').trim();

@@ -31,7 +31,7 @@ loadEnvFile();
 
 const CLIENT_ID =
   process.env.GOOGLE_CLIENT_ID ||
-  '311723462282-iva0ig636e0387g12b1r51in9fceoru2.apps.googleusercontent.com';
+  '311723462282-lva0ig636e0387g12b1r51in9fceoru2.apps.googleusercontent.com';
 const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const SB_URL = process.env.SUPABASE_URL || 'https://xxodawayoogthxnjpouq.supabase.co';
 const SB_SERVICE = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE;
