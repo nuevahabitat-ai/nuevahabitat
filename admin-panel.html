@@ -1718,6 +1718,19 @@ select.adm-control{
             </div>
           </div>
           <div id="visitas-sync-banner" style="display:none;margin-bottom:.75rem"></div>
+          <div id="gcal-config-box" class="adm-card" style="display:none;margin-bottom:1rem;padding:1rem;border:1px dashed var(--adm-border,#ddd)">
+            <div class="wiz-section-label">Conectar Google Calendar (una vez)</div>
+            <p class="text-muted" style="font-size:.78rem;line-height:1.5;margin-bottom:.75rem">Genera el refresh token en <a href="https://developers.google.com/oauthplayground/" target="_blank" rel="noopener">OAuth Playground</a> (⚙ credenciales propias, scope <code>calendar</code>, cuenta <strong>admin.nuevahabitat@gmail.com</strong>). Se guarda en Supabase; no hace falta Vercel si ya tienes <code>SUPABASE_SERVICE_ROLE_KEY</code> en producción.</p>
+            <div class="adm-form-grid">
+              <div class="adm-field adm-form-col-full"><label>Client secret (GOCSPX…)</label><input type="password" id="gcal-client-secret" autocomplete="off"/></div>
+              <div class="adm-field adm-form-col-full"><label>Refresh token</label><input type="password" id="gcal-refresh-token" autocomplete="off"/></div>
+              <div class="adm-field adm-form-col-full"><label>Calendario ID</label><input type="text" id="gcal-calendar-id" value="admin.nuevahabitat@gmail.com"/></div>
+            </div>
+            <div class="gap-row" style="margin-top:.75rem">
+              <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveGoogleCalendarConfig()">Guardar y probar</button>
+              <span id="gcal-config-msg" class="text-muted" style="font-size:.78rem"></span>
+            </div>
+          </div>
           <div id="visitas-table"><p class="text-muted">Cargando…</p></div>
         </div>
       </section>
@@ -6407,11 +6420,50 @@ function setVisitasRange(range) {
   renderVisitasTable(visitasAdminCache, visitasRangeFilter);
 }
 
+function showGcalConfigBox(show) {
+  const box = document.getElementById('gcal-config-box');
+  if (box) box.style.display = show ? 'block' : 'none';
+}
+
+async function saveGoogleCalendarConfig() {
+  const msg = document.getElementById('gcal-config-msg');
+  const clientSecret = document.getElementById('gcal-client-secret')?.value?.trim();
+  const refreshToken = document.getElementById('gcal-refresh-token')?.value?.trim();
+  const calendarId = document.getElementById('gcal-calendar-id')?.value?.trim();
+  if (!clientSecret || !refreshToken) {
+    nhToast('Pega client secret y refresh token', 'error');
+    return;
+  }
+  if (msg) msg.textContent = 'Guardando…';
+  try {
+    const { data: { session } } = await window.nhSupabase.auth.getSession();
+    if (!session?.access_token) throw new Error('Sesión no disponible');
+    const res = await fetch('/api/notify?__action=admin-google-calendar-save', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session.access_token}`,
+      },
+      body: JSON.stringify({ clientSecret, refreshToken, calendarId }),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || !json.ok) throw new Error(json.error || `Error ${res.status}`);
+    if (msg) msg.textContent = 'Conectado. Sincronizando…';
+    nhToast('Google Calendar conectado', 'success');
+    showGcalConfigBox(false);
+    await loadVisitas(true);
+  } catch (e) {
+    if (msg) msg.textContent = e.message;
+    nhToast(e.message, 'error');
+  }
+}
+
 function renderVisitasSyncBanner(sync) {
   const el = document.getElementById('visitas-sync-banner');
   if (!el) return;
-  if (!sync) { el.style.display = 'none'; return; }
+  if (!sync) { el.style.display = 'none'; showGcalConfigBox(false); return; }
   el.style.display = 'block';
+  showGcalConfigBox(!!sync.error || !sync.configured);
   if (sync.error) {
     el.className = 'adm-alarm-banner';
     const miss = (sync.missing && sync.missing.length)

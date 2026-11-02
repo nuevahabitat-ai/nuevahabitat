@@ -4,8 +4,15 @@
  * Usa Resend (resend.com) como proveedor de email.
  */
 
-import { createAvailabilityEvents } from '../lib/server/google-calendar.js';
+import {
+  createAvailabilityEvents,
+  verifyGoogleCalendarConnection,
+} from '../lib/server/google-calendar.js';
 import { insertVisitaFromDisponibilidad, listVisitasAdminServer } from '../lib/server/visitas-api.js';
+import {
+  saveGoogleCalendarIntegration,
+  defaultGoogleClientId,
+} from '../lib/server/integration-secrets.js';
 import {
   insertLeadServer,
   normalizeLeadTipo,
@@ -743,6 +750,44 @@ async function handleAdminVisitas(req, res, body) {
   }
 }
 
+async function handleAdminGoogleCalendarSave(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+
+  const clientSecret = String(body?.clientSecret || body?.client_secret || '').trim();
+  const refreshToken = String(body?.refreshToken || body?.refresh_token || '').trim();
+  const calendarId = String(body?.calendarId || body?.calendar_id || 'admin.nuevahabitat@gmail.com').trim();
+
+  if (!clientSecret || !refreshToken) {
+    return res.status(400).json({
+      ok: false,
+      error: 'clientSecret y refreshToken son obligatorios (OAuth Playground → scope calendar).',
+    });
+  }
+
+  try {
+    const saved = await saveGoogleCalendarIntegration({
+      clientId: defaultGoogleClientId(),
+      clientSecret,
+      refreshToken,
+      calendarId,
+    });
+    if (!saved.ok) {
+      return res.status(500).json({ ok: false, error: saved.error || 'No se pudo guardar' });
+    }
+    const auth = await verifyGoogleCalendarConnection();
+    return res.status(200).json({
+      ok: auth.ok,
+      error: auth.ok ? null : auth.error,
+      configured: auth.status?.configured,
+      source: auth.status?.source,
+    });
+  } catch (err) {
+    console.error('admin-google-calendar-save', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleInmuebleRebajaVisitantes(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1260,6 +1305,7 @@ export default async function handler(req, res) {
   if (action === 'admin-propietario-alquiler-update') return handleAdminPropietarioAlquilerUpdate(req, res, body);
   if (action === 'admin-propietario-alquiler-delete') return handleAdminPropietarioAlquilerDelete(req, res, body);
   if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
+  if (action === 'admin-google-calendar-save') return handleAdminGoogleCalendarSave(req, res, body);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);
   if (action === 'inmueble-rebaja-email') return handleInmuebleRebajaEmail(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
