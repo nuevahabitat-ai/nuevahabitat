@@ -31,7 +31,14 @@ Opcional: `GOOGLE_CALENDAR_ID_INFO`, `GOOGLE_CALENDAR_SYNC_DAYS_BACK` (180), `GO
 7. Copia el **`Refresh token`** (empieza por `1//` o similar).  
    Si no aparece refresh token: revoca acceso en [Google Account → Third-party apps](https://myaccount.google.com/permissions) y repite con consentimiento nuevo.
 
-## 3. Vercel
+## 3. Supabase (alternativa — recomendada si Vercel no tiene el refresh token)
+
+1. SQL Editor → pega y ejecuta `supabase/migrations/062_private_integrations.sql`.
+2. Tras deploy en producción: **Admin → Visitas** → formulario «Conectar Google Calendar» → client secret + refresh token → **Guardar y probar**.
+
+El backend lee primero variables de Vercel; si faltan, usa `private_integrations` (solo service role).
+
+## 4. Vercel
 
 1. [Vercel → nuevahabitat → Settings → Environment Variables](https://vercel.com/nuevahabitat/nuevahabitat/settings/environment-variables).
 2. Crea las cuatro variables anteriores.
@@ -39,7 +46,7 @@ Opcional: `GOOGLE_CALENDAR_ID_INFO`, `GOOGLE_CALENDAR_SYNC_DAYS_BACK` (180), `GO
 4. Sin comillas en el valor; pega el token completo en una sola línea.
 5. **Deployments → … → Redeploy** (el último deployment de `main`).
 
-## 4. Comprobar
+## 5. Comprobar
 
 1. Entra en [admin-panel](https://www.nuevahabitat.com/admin-panel) como `admin.nuevahabitat@gmail.com`.
 2. **Visitas** → **Sincronizar calendario**.
