@@ -218,6 +218,7 @@
 <!-- GALERÍA -->
 <div id="det-gallery-wrap" style="display:none;background:var(--crema)">
   <div class="container" style="padding-top:1rem;padding-bottom:1.25rem">
+    <div class="prop-gallery-host">
     <div class="prop-gallery" id="det-gallery">
       <div class="prop-gallery-main" onclick="openLightbox(0)">
         <img id="det-img-main" src="" alt="Inmueble"/>
@@ -229,6 +230,8 @@
         <img id="det-img-t2" src="" alt="Foto 3" onerror="this.parentElement.style.display='none'"/>
         <div class="gallery-count" id="det-gallery-more" style="display:none"></div>
       </div>
+    </div>
+    <div id="det-gallery-watermark" class="prop-estado-watermark" hidden aria-hidden="true"><span></span></div>
     </div>
   </div>
 </div>
@@ -612,6 +615,26 @@ function buildWaShareMsg(p, titulo, precio, loc) {
   return encodeURIComponent(msg);
 }
 
+function setDetEstadoWatermark(estado){
+  const wm = document.getElementById('det-gallery-watermark');
+  if(!wm) return;
+  const span = wm.querySelector('span');
+  wm.hidden = true;
+  wm.className = 'prop-estado-watermark';
+  wm.setAttribute('aria-hidden', 'true');
+  if(estado === 'vendido'){
+    wm.hidden = false;
+    wm.classList.add('prop-estado-watermark--vendido');
+    wm.setAttribute('aria-hidden', 'false');
+    if(span) span.textContent = 'Vendido';
+  } else if(estado === 'reservado'){
+    wm.hidden = false;
+    wm.classList.add('prop-estado-watermark--reservado');
+    wm.setAttribute('aria-hidden', 'false');
+    if(span) span.textContent = 'Reservado';
+  }
+}
+
 /* ═══════════════════════════════════════════════════════════════
    RENDER
 ═══════════════════════════════════════════════════════════════ */
@@ -697,11 +720,14 @@ function renderProperty(p){
   }
   document.getElementById('det-gallery-wrap').style.display = '';
 
-  /* ── Badge estado ── */
+  /* ── Badge estado + marca de agua ── */
   const badge = document.getElementById('det-badge');
-  const estadoMap = {disponible:'disponible',reservado:'reservada',vendido:'reservada',retirado:'reservada'};
-  badge.className = 'prop-badge ' + (estadoMap[p.estado]||'disponible');
-  badge.textContent = p.estado ? p.estado.charAt(0).toUpperCase()+p.estado.slice(1) : 'Disponible';
+  const estadoMap = {disponible:'disponible',reservado:'reservada',vendido:'vendida',retirado:'reservada'};
+  const estadoLbl = {disponible:'Disponible',reservado:'Reservado',vendido:'Vendido',retirado:'No disponible'};
+  const est = p.estado || 'disponible';
+  badge.className = 'prop-badge ' + (estadoMap[est]||'disponible');
+  badge.textContent = estadoLbl[est] || (est.charAt(0).toUpperCase()+est.slice(1));
+  setDetEstadoWatermark(est);
 
   /* ── Título y precio ── */
   document.getElementById('det-title').textContent = p.titulo || 'Sin título';

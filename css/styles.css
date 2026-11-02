@@ -972,7 +972,54 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 
   border-radius: 2px;
 }
 .prop-badge.disponible { background: var(--oro); }
-.prop-badge.reservada  { background: #555; }
+.prop-badge.reservada  { background: #f97316; }
+.prop-badge.vendida    { background: #ef4444; }
+
+/* Marca de agua vendido / reservado sobre fotos */
+.prop-gallery-host { position: relative; border-radius: var(--radius-lg); }
+.prop-gallery-host > .prop-estado-watermark { border-radius: var(--radius-lg); }
+.prop-estado-watermark {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.prop-estado-watermark[hidden] { display: none !important; }
+.prop-estado-watermark span {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 7vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transform: rotate(-16deg);
+  padding: 0.28em 0.55em;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+.prop-estado-watermark--vendido {
+  background: rgba(13, 13, 13, 0.38);
+}
+.prop-estado-watermark--vendido span {
+  background: rgba(239, 68, 68, 0.55);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+.prop-estado-watermark--reservado {
+  background: rgba(13, 13, 13, 0.32);
+}
+.prop-estado-watermark--reservado span {
+  background: rgba(249, 115, 22, 0.55);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+.prop-card-image .prop-estado-watermark span {
+  font-size: clamp(1.1rem, 5vw, 2rem);
+  border-width: 2px;
+}
 
 .prop-favorite {
   position: absolute;
