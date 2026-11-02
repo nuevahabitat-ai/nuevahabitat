@@ -170,6 +170,22 @@ function validateLandings(all) {
           (fi.startsWith('inmobiliaria-precio-fijo-') && fj.startsWith('inmobiliaria-para-particulares-')));
       if (precioFijoVsParticulares) continue;
 
+      const intencionDistintaPfEcon =
+        fi &&
+        fj &&
+        fi !== fj &&
+        ((fi.startsWith('inmobiliaria-precio-fijo-') && fj.startsWith('venta-piso-economica-')) ||
+          (fi.startsWith('venta-piso-economica-') && fj.startsWith('inmobiliaria-precio-fijo-')));
+      if (intencionDistintaPfEcon) continue;
+
+      const intencionDistintaPpEcon =
+        fi &&
+        fj &&
+        fi !== fj &&
+        ((fi.startsWith('inmobiliaria-para-particulares-') && fj.startsWith('venta-piso-economica-')) ||
+          (fi.startsWith('venta-piso-economica-') && fj.startsWith('inmobiliaria-para-particulares-')));
+      if (intencionDistintaPpEcon) continue;
+
       if (
         all[i].cluster === 'particular' &&
         all[j].cluster === 'particular' &&

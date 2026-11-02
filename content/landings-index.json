@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T08:50:14.051Z",
+  "updated": "2026-11-02T08:53:09.274Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -1154,6 +1154,36 @@
       "priority": 0.93
     },
     {
+      "slug": "venta-piso-economica-barceloneta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-bon-pastor-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-born-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-camp-de-larpa-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-camp-den-grassot-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-ciutat-vella-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -1166,7 +1196,19 @@
       "priority": 0.91
     },
     {
+      "slug": "venta-piso-economica-diagonal-mar-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-eixample-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-el-besos-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
@@ -1184,7 +1226,25 @@
       "priority": 0.91
     },
     {
+      "slug": "venta-piso-economica-fort-pienc-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-gotic-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-gracia-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-guinardo-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
@@ -1196,7 +1256,31 @@
       "priority": 0.91
     },
     {
+      "slug": "venta-piso-economica-hostafrancs-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-l-hospitalet-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-la-bordeta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-la-marina-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-la-sagrera-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
@@ -1208,7 +1292,25 @@
       "priority": 0.91
     },
     {
+      "slug": "venta-piso-economica-montjuic-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-navas-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-nou-barris-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-pedralbes-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
@@ -1221,6 +1323,30 @@
     },
     {
       "slug": "venta-piso-economica-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-provencals-del-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-raval-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-roquetes-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-sagrada-familia-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
@@ -1244,7 +1370,19 @@
       "priority": 0.91
     },
     {
+      "slug": "venta-piso-economica-sant-just-sant-joan-despi-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
       "slug": "venta-piso-economica-sant-marti-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-sant-pere-santa-caterina-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91
@@ -1257,6 +1395,36 @@
     },
     {
       "slug": "venta-piso-economica-sarria-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-tetuan-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-trinitat-vella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-vall-d-hebron-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-verneda-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-piso-economica-vila-olimpica-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.91

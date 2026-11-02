@@ -5,6 +5,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { applyVisibleDifferentiators } = require('./intencion-micro-differentiate.js');
 
 const ROOT = path.join(__dirname, '..');
 const BARRIO_DIR = path.join(ROOT, 'content/landings/barrio');
@@ -47,24 +48,57 @@ function intencionPrecioFijoSlug(barrio) {
   return `inmobiliaria-precio-fijo-${slug}-barcelona`;
 }
 
+const { extraWordsBlock } = require('./scaffold-intencion-precio-fijo.js');
+
+function extraEconomicaPadBlock(B) {
+  const barrio = B.barrio || '';
+  const z1 = (B.zonas && B.zonas[0]) || barrio;
+  const cps = (B.postalCodes || []).join(', ') || 'Barcelona';
+  return (
+    `<h2>Negociación sin presión por captación</h2><p>Al no cobrar porcentaje sobre el precio de venta, no tenemos incentivo para inflar el ticket en ${barrio}. Te asesoramos sobre ofertas reales, plazos del comprador y condiciones de arras — la decisión final sigue siendo tuya.</p>` +
+    `<h2>Mandato y exclusiva</h2><p>Explicamos por escrito duración, obligaciones y qué ocurre si vendes por tu cuenta durante el mandato. Muchos propietarios en ${z1} prefieren claridad antes de abrir la puerta; respondemos antes de la primera visita.</p>` +
+    `<h2>Revisión de precio con datos</h2><p>Si tras varias semanas no hay oferta financiada, revisamos comparables en ${cps} y ajustamos estrategia (precio, staging, horarios de visita). Venta económica no significa quedarse meses con un precio irreal.</p>` +
+    `<h2>Herencias y segundas viviendas</h2><p>Herederos, usufructo o titulares no residentes: centralizamos documentación en panel para que todos vean visitas y ofertas. Útil cuando hay varios decisores lejos de ${barrio}.</p>` +
+    `<h2>Seguridad en visitas</h2><p>Identificamos comprador y agencia antes de la cita; registramos hora y feedback. En micro-zonas demandadas como ${z1} reduce visitas repetidas de curiosos sin solvencia.</p>`
+  );
+}
+
 function buildArgumento(B, econSlug) {
   const barrio = B.barrio || B.slug.replace(/^vender-/, '');
   const venderSlug = B.slug;
   const precio = B.ejemploPrecio || 400000;
   const com6 = Math.round(precio * 0.06 * 1.21);
-  const ahorro = Math.max(com6 - 3630, 12000);
+  const ahorro = Math.max(com6 - 3630, 15000);
   const m2 = (B.datosMercado && B.datosMercado.precioM2) || '—';
-  const zonasTxt = (B.zonas || []).slice(0, 4).join(', ');
+  const tiempo = (B.datosMercado && B.datosMercado.tiempoVenta) || '55 – 90 días';
+  const zonas = (B.zonas || []).slice(0, 4).join(', ');
+  const cps = (B.postalCodes || []).join(', ');
+  const z1 = (B.zonas && B.zonas[0]) || barrio;
   const pfSlug = intencionPrecioFijoSlug(barrio);
-  const barrioCore = B.argumento_principal || '';
+  const perfil = B.perfilComprador || '';
+  const tipologia = B.tipologiaEdificios || '';
+  const tendencia = (B.datosMercado && B.datosMercado.tendencia) || '';
 
   return (
-    `<p>¿Buscas <strong>venta de piso económica en ${barrio}</strong>? No vendemos por debajo de mercado — evitas pagar <strong>${fmtEuro(com6)} €</strong> de comisión (6% + IVA sobre ${fmtEuro(precio)} €). <strong>NuevaHabitat</strong> cobra <strong>3.000 € + IVA (3.630 € en escritura)</strong> solo en escritura en ${zonasTxt || barrio}: honorarios fijos, panel vendedor y cartera de compradores cualificados.</p>` +
-    `<p><a href="/venta-piso-economica-barcelona">Venta económica Barcelona</a> · <a href="/${venderSlug}">Vender piso ${barrio}</a> · <a href="/${pfSlug}">Precio fijo ${barrio}</a></p>` +
-    `<h2>Honorarios en ${barrio}: ${fmtEuro(com6)} € vs 3.000 € + IVA (3.630 € en escritura)</h2><p>Rango local ${m2}. Ahorro orientativo <strong>${fmtEuro(ahorro)} €</strong>. <a href="#calc">Calculadora</a> con tu precio estimado.</p>` +
-    barrioCore +
-    `<h2>Panel vendedor y venta económica en ${barrio}</h2><p>Visitas registradas, documentación centralizada, compradores con solvencia verificada antes de entrar a tu casa. Cobro 3.000 € + IVA (3.630 € en escritura) únicamente si hay escritura — sin venta, 0 € de honorarios. Compara <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">agencia tradicional</a> y <a href="/nuevahabitat-vs-idealista-particular">Idealista particular</a>.</p>` +
-    `<h2>Próximo paso · ${econSlug}</h2><p>Calculadora, bloques «Qué hace NuevaHabitat» y formulario de valoración. Respuesta en 24 h laborables con condiciones por escrito.</p>`
+    `<p><strong>Venta de piso económica en ${barrio}</strong> (${cps || 'Barcelona'}) — foco <strong>${z1}</strong>${tendencia ? ': ' + tendencia : ''}. «Económica» aquí significa <strong>honorarios contenidos</strong>, no regalar el inmueble: <strong>3.000 € + IVA (3.630 € en escritura)</strong> solo en escritura frente a ~<strong>${fmtEuro(com6)} €</strong> (6% + IVA sobre ${fmtEuro(precio)} €). Distinta de <a href="/${venderSlug}">vender piso en ${barrio}</a> y de <a href="/${pfSlug}">inmobiliaria precio fijo ${barrio}</a>.</p>` +
+    `<p>Pilar ciudad: <a href="/venta-piso-economica-barcelona">venta económica Barcelona</a> · <a href="/inmobiliaria-para-particulares-barcelona">inmobiliaria para particulares</a>.</p>` +
+    `<h2>${z1}: mercado local (${m2})</h2><p>Rango orientativo ${m2}; plazos habituales ${tiempo}. ${tendencia} Ahorro en intermediación: más de <strong>${fmtEuro(ahorro)} €</strong> vs 6%. <a href="#calc">Calculadora venta económica</a>.</p>` +
+    `<p>${perfil}</p>` +
+    `<h2>Tipología de edificios en ${barrio}</h2><p>${tipologia}</p>` +
+    (zonas ? `<h2>Micro-zonas: ${zonas}</h2><p>Valorar con comparables de ${cps || 'tu CP'}, no con la media de Barcelona. En venta económica el margen lo pierdes si el precio de salida está mal — por eso priorizamos calle a calle en ${z1}.</p>` : '') +
+    `<h2>Honorarios fijos: la venta más barata en coste de agencia</h2><p>Cobro únicamente si hay escritura. Sin venta, 0 € de honorarios. Comparativa: <a href="/nuevahabitat-vs-agencia-tradicional-barcelona">NuevaHabitat vs agencia tradicional</a>, <a href="/nuevahabitat-vs-idealista-particular">vs Idealista solo</a>, <a href="/vender-como-particular-barcelona">vender como particular</a>.</p>` +
+    `<h2>Panel vendedor en ${barrio}</h2><p>Visitas registradas, calendario en tus franjas, documentación del expediente, ofertas y arras visibles. Intermediación profesional sin que el coste escale con el ticket de venta.</p><ul><li>Feedback tras cada visita.</li><li>PDF comunidad, energético, nota simple.</li><li>Comprador con solvencia antes de abrir la puerta.</li><li>Seguimiento hasta notaría desde Les Corts.</li></ul>` +
+    `<h2>Cartera de compradores (no solo portal)</h2><p>Difusión a clientes con hipoteca preaprobada o liquidez contrastada. El anuncio en portal puede complementar, pero no sustituye el filtro de solvencia — clave cuando buscas cerrar sin meses de curiosos.</p>` +
+    `<h2>Reportaje y ficha honesta</h2><p>En ${barrio} el comprador compara varios pisos el mismo fin de semana. Fotografiamos luz real y distribución; una ficha transparente acorta negociación y evita visitas inútiles.</p>` +
+    `<h2>Documentación antes de arras</h2><p>Nota simple, certificado energético, ITE si aplica, actas de comunidad y plusvalía: anticipar sorpresas evita caídas tras arras — especialmente con compradores exigentes en ${z1}.</p>` +
+    `<h2>Proceso venta económica en ${barrio}</h2><ol><li>Valoración con comparables locales.</li><li>Alta en panel vendedor.</li><li>Difusión a compradores cualificados.</li><li>Visitas en tus franjas.</li><li>Arras y documentación centralizada.</li><li>Escritura: cobro fijo solo si cierras.</li></ol>` +
+    `<h2>Hipoteca pendiente y neto real</h2><p>Plusvalía, cancelación de hipoteca y comisiones bancarias mueven el neto. <a href="/vender-piso-hipoteca-pendiente-barcelona">Guía hipoteca pendiente</a>. Te ayudamos a ordenar el expediente; la decisión fiscal sigue siendo tuya con tu gestor.</p>` +
+    `<h2>Cuándo tiene sentido la venta económica</h2><p>Si el 6% sobre ${fmtEuro(precio)} € no te cuadra, si llevas semanas en portal sin oferta financiada, o si quieres panel y registro sin exclusiva abusiva. Si solo quieres probar anuncio sin filtro, puedes empezar solo y reevaluar.</p>` +
+    `<h2>Preguntas antes de firmar</h2><p>¿Total a pagar a tu precio objetivo? ¿Solo en escritura? ¿Filtran hipoteca? ¿Panel y cartera? NuevaHabitat responde por escrito antes de empezar.</p>` +
+    `<h2>URLs distintas para Google</h2><p>Esta landing captura «venta piso económica ${barrio}»; precio fijo captura «inmobiliaria precio fijo»; la guía de barrio captura «vender piso». Contenido, calculadora y CTA alineados — sin confundir intenciones de búsqueda.</p>` +
+    extraWordsBlock(B) +
+    extraEconomicaPadBlock(B) +
+    `<h2>Próximo paso</h2><p>Formulario o WhatsApp en esta página; respuesta en 24 h. Slug SEO: ${econSlug}.</p>`
   );
 }
 
@@ -204,9 +238,12 @@ function buildLanding(barrioSlug) {
     form_side_text: `Cuéntanos barrio y situación en ${barrio} (particular, herencia, urgencia…). Te explicamos venta económica con 3.000 € + IVA (3.630 € en escritura) solo en escritura, cartera de compradores y panel vendedor — respuesta en 24 h.`,
   };
 
+  applyVisibleDifferentiators(L, B, 'econ');
   fs.writeFileSync(outPath, JSON.stringify(L, null, 2) + '\n', 'utf8');
   console.log('Wrote', econSlug);
 }
+
+module.exports = { buildLanding, buildArgumento, barrioToEconSlug };
 
 const args = process.argv.slice(2).filter((a) => a !== '--force');
 const slugs = args.length ? args : DEFAULT_BARRIOS;

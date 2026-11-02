@@ -2645,6 +2645,61 @@
       "inmobiliaria economica barcelona"
     ]
   },
+  "venta-piso-economica-barceloneta-barcelona": {
+    "keyword": "venta de piso economica barceloneta barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-barceloneta-barcelona",
+    "aliases": [
+      "vender piso barceloneta honorarios bajos",
+      "venta piso economica barceloneta",
+      "inmobiliaria economica barceloneta barcelona",
+      "vender sin pagar 6 por ciento barceloneta"
+    ]
+  },
+  "venta-piso-economica-bon-pastor-barcelona": {
+    "keyword": "venta de piso economica bon pastor barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-bon-pastor-barcelona",
+    "aliases": [
+      "vender piso bon pastor honorarios bajos",
+      "venta piso economica bon pastor",
+      "inmobiliaria economica bon pastor barcelona",
+      "vender sin pagar 6 por ciento bon pastor"
+    ]
+  },
+  "venta-piso-economica-born-barcelona": {
+    "keyword": "venta de piso economica born barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-born-barcelona",
+    "aliases": [
+      "vender piso born honorarios bajos",
+      "venta piso economica born",
+      "inmobiliaria economica born barcelona",
+      "vender sin pagar 6 por ciento born"
+    ]
+  },
+  "venta-piso-economica-camp-de-larpa-barcelona": {
+    "keyword": "venta de piso economica camp de l'arpa barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-camp-de-larpa-barcelona",
+    "aliases": [
+      "vender piso camp de l'arpa honorarios bajos",
+      "venta piso economica camp de l'arpa",
+      "inmobiliaria economica camp de l'arpa barcelona",
+      "vender sin pagar 6 por ciento camp de l'arpa"
+    ]
+  },
+  "venta-piso-economica-camp-den-grassot-barcelona": {
+    "keyword": "venta de piso economica camp d'en grassot barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-camp-den-grassot-barcelona",
+    "aliases": [
+      "vender piso camp d'en grassot honorarios bajos",
+      "venta piso economica camp d'en grassot",
+      "inmobiliaria economica camp d'en grassot barcelona",
+      "vender sin pagar 6 por ciento camp d'en grassot"
+    ]
+  },
   "venta-piso-economica-ciutat-vella-barcelona": {
     "keyword": "venta de piso economica ciutat vella barcelona",
     "cluster": "intencion",
@@ -2667,6 +2722,17 @@
       "vender sin pagar 6 por ciento cornellà de llobregat"
     ]
   },
+  "venta-piso-economica-diagonal-mar-barcelona": {
+    "keyword": "venta de piso economica diagonal mar barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-diagonal-mar-barcelona",
+    "aliases": [
+      "vender piso diagonal mar honorarios bajos",
+      "venta piso economica diagonal mar",
+      "inmobiliaria economica diagonal mar barcelona",
+      "vender sin pagar 6 por ciento diagonal mar"
+    ]
+  },
   "venta-piso-economica-eixample-barcelona": {
     "keyword": "venta de piso economica eixample barcelona",
     "cluster": "intencion",
@@ -2676,6 +2742,17 @@
       "venta piso economica eixample",
       "inmobiliaria economica eixample barcelona",
       "vender sin pagar 6 por ciento eixample"
+    ]
+  },
+  "venta-piso-economica-el-besos-barcelona": {
+    "keyword": "venta de piso economica el besòs barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-el-besos-barcelona",
+    "aliases": [
+      "vender piso el besòs honorarios bajos",
+      "venta piso economica el besòs",
+      "inmobiliaria economica el besòs barcelona",
+      "vender sin pagar 6 por ciento el besòs"
     ]
   },
   "venta-piso-economica-el-clot-la-sagrera-barcelona": {
@@ -2698,6 +2775,28 @@
       "vender sin pagar 6 por ciento esplugues de llobregat"
     ]
   },
+  "venta-piso-economica-fort-pienc-barcelona": {
+    "keyword": "venta de piso economica fort pienc barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-fort-pienc-barcelona",
+    "aliases": [
+      "vender piso fort pienc honorarios bajos",
+      "venta piso economica fort pienc",
+      "inmobiliaria economica fort pienc barcelona",
+      "vender sin pagar 6 por ciento fort pienc"
+    ]
+  },
+  "venta-piso-economica-gotic-barcelona": {
+    "keyword": "venta de piso economica gòtic barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-gotic-barcelona",
+    "aliases": [
+      "vender piso gòtic honorarios bajos",
+      "venta piso economica gòtic",
+      "inmobiliaria economica gòtic barcelona",
+      "vender sin pagar 6 por ciento gòtic"
+    ]
+  },
   "venta-piso-economica-gracia-barcelona": {
     "keyword": "venta de piso economica gràcia barcelona",
     "cluster": "intencion",
@@ -2707,6 +2806,17 @@
       "venta piso economica gràcia",
       "inmobiliaria economica gràcia barcelona",
       "vender sin pagar 6 por ciento gràcia"
+    ]
+  },
+  "venta-piso-economica-guinardo-barcelona": {
+    "keyword": "venta de piso economica el guinardó barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-guinardo-barcelona",
+    "aliases": [
+      "vender piso el guinardó honorarios bajos",
+      "venta piso economica el guinardó",
+      "inmobiliaria economica el guinardó barcelona",
+      "vender sin pagar 6 por ciento el guinardó"
     ]
   },
   "venta-piso-economica-horta-barcelona": {
@@ -2720,6 +2830,17 @@
       "vender sin pagar 6 por ciento horta-guinardó"
     ]
   },
+  "venta-piso-economica-hostafrancs-barcelona": {
+    "keyword": "venta de piso economica hostafrancs barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-hostafrancs-barcelona",
+    "aliases": [
+      "vender piso hostafrancs honorarios bajos",
+      "venta piso economica hostafrancs",
+      "inmobiliaria economica hostafrancs barcelona",
+      "vender sin pagar 6 por ciento hostafrancs"
+    ]
+  },
   "venta-piso-economica-l-hospitalet-barcelona": {
     "keyword": "venta de piso economica l'hospitalet barcelona",
     "cluster": "intencion",
@@ -2729,6 +2850,39 @@
       "venta piso economica l'hospitalet",
       "inmobiliaria economica l'hospitalet barcelona",
       "vender sin pagar 6 por ciento l'hospitalet"
+    ]
+  },
+  "venta-piso-economica-la-bordeta-barcelona": {
+    "keyword": "venta de piso economica la bordeta barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-la-bordeta-barcelona",
+    "aliases": [
+      "vender piso la bordeta honorarios bajos",
+      "venta piso economica la bordeta",
+      "inmobiliaria economica la bordeta barcelona",
+      "vender sin pagar 6 por ciento la bordeta"
+    ]
+  },
+  "venta-piso-economica-la-marina-barcelona": {
+    "keyword": "venta de piso economica la marina barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-la-marina-barcelona",
+    "aliases": [
+      "vender piso la marina honorarios bajos",
+      "venta piso economica la marina",
+      "inmobiliaria economica la marina barcelona",
+      "vender sin pagar 6 por ciento la marina"
+    ]
+  },
+  "venta-piso-economica-la-sagrera-barcelona": {
+    "keyword": "venta de piso economica la sagrera barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-la-sagrera-barcelona",
+    "aliases": [
+      "vender piso la sagrera honorarios bajos",
+      "venta piso economica la sagrera",
+      "inmobiliaria economica la sagrera barcelona",
+      "vender sin pagar 6 por ciento la sagrera"
     ]
   },
   "venta-piso-economica-les-corts-barcelona": {
@@ -2742,6 +2896,28 @@
       "vender sin pagar 6 por ciento les corts"
     ]
   },
+  "venta-piso-economica-montjuic-barcelona": {
+    "keyword": "venta de piso economica montjuïc barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-montjuic-barcelona",
+    "aliases": [
+      "vender piso montjuïc honorarios bajos",
+      "venta piso economica montjuïc",
+      "inmobiliaria economica montjuïc barcelona",
+      "vender sin pagar 6 por ciento montjuïc"
+    ]
+  },
+  "venta-piso-economica-navas-barcelona": {
+    "keyword": "venta de piso economica navas barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-navas-barcelona",
+    "aliases": [
+      "vender piso navas honorarios bajos",
+      "venta piso economica navas",
+      "inmobiliaria economica navas barcelona",
+      "vender sin pagar 6 por ciento navas"
+    ]
+  },
   "venta-piso-economica-nou-barris-barcelona": {
     "keyword": "venta de piso economica nou barris barcelona",
     "cluster": "intencion",
@@ -2751,6 +2927,17 @@
       "venta piso economica nou barris",
       "inmobiliaria economica nou barris barcelona",
       "vender sin pagar 6 por ciento nou barris"
+    ]
+  },
+  "venta-piso-economica-pedralbes-barcelona": {
+    "keyword": "venta de piso economica pedralbes barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-pedralbes-barcelona",
+    "aliases": [
+      "vender piso pedralbes honorarios bajos",
+      "venta piso economica pedralbes",
+      "inmobiliaria economica pedralbes barcelona",
+      "vender sin pagar 6 por ciento pedralbes"
     ]
   },
   "venta-piso-economica-poble-sec-barcelona": {
@@ -2773,6 +2960,50 @@
       "venta piso economica poblenou",
       "inmobiliaria economica poblenou barcelona",
       "vender sin pagar 6 por ciento poblenou"
+    ]
+  },
+  "venta-piso-economica-provencals-del-poblenou-barcelona": {
+    "keyword": "venta de piso economica provençals del poblenou barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-provencals-del-poblenou-barcelona",
+    "aliases": [
+      "vender piso provençals del poblenou honorarios bajos",
+      "venta piso economica provençals del poblenou",
+      "inmobiliaria economica provençals del poblenou barcelona",
+      "vender sin pagar 6 por ciento provençals del poblenou"
+    ]
+  },
+  "venta-piso-economica-raval-barcelona": {
+    "keyword": "venta de piso economica raval barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-raval-barcelona",
+    "aliases": [
+      "vender piso raval honorarios bajos",
+      "venta piso economica raval",
+      "inmobiliaria economica raval barcelona",
+      "vender sin pagar 6 por ciento raval"
+    ]
+  },
+  "venta-piso-economica-roquetes-barcelona": {
+    "keyword": "venta de piso economica roquetes barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-roquetes-barcelona",
+    "aliases": [
+      "vender piso roquetes honorarios bajos",
+      "venta piso economica roquetes",
+      "inmobiliaria economica roquetes barcelona",
+      "vender sin pagar 6 por ciento roquetes"
+    ]
+  },
+  "venta-piso-economica-sagrada-familia-barcelona": {
+    "keyword": "venta de piso economica sagrada família barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sagrada-familia-barcelona",
+    "aliases": [
+      "vender piso sagrada família honorarios bajos",
+      "venta piso economica sagrada família",
+      "inmobiliaria economica sagrada família barcelona",
+      "vender sin pagar 6 por ciento sagrada família"
     ]
   },
   "venta-piso-economica-sant-andreu-barcelona": {
@@ -2808,6 +3039,17 @@
       "vender sin pagar 6 por ciento sant gervasi"
     ]
   },
+  "venta-piso-economica-sant-just-sant-joan-despi-barcelona": {
+    "keyword": "venta de piso economica sant just desvern y sant joan despí barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sant-just-sant-joan-despi-barcelona",
+    "aliases": [
+      "vender piso sant just desvern y sant joan despí honorarios bajos",
+      "venta piso economica sant just desvern y sant joan despí",
+      "inmobiliaria economica sant just desvern y sant joan despí barcelona",
+      "vender sin pagar 6 por ciento sant just desvern y sant joan despí"
+    ]
+  },
   "venta-piso-economica-sant-marti-barcelona": {
     "keyword": "venta de piso economica sant martí barcelona",
     "cluster": "intencion",
@@ -2817,6 +3059,17 @@
       "venta piso economica sant martí",
       "inmobiliaria economica sant martí barcelona",
       "vender sin pagar 6 por ciento sant martí"
+    ]
+  },
+  "venta-piso-economica-sant-pere-santa-caterina-barcelona": {
+    "keyword": "venta de piso economica sant pere / santa caterina barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-sant-pere-santa-caterina-barcelona",
+    "aliases": [
+      "vender piso sant pere / santa caterina honorarios bajos",
+      "venta piso economica sant pere / santa caterina",
+      "inmobiliaria economica sant pere / santa caterina barcelona",
+      "vender sin pagar 6 por ciento sant pere / santa caterina"
     ]
   },
   "venta-piso-economica-sants-barcelona": {
@@ -2839,6 +3092,61 @@
       "venta piso economica sarrià",
       "inmobiliaria economica sarrià barcelona",
       "vender sin pagar 6 por ciento sarrià"
+    ]
+  },
+  "venta-piso-economica-tetuan-barcelona": {
+    "keyword": "venta de piso economica tetuan barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-tetuan-barcelona",
+    "aliases": [
+      "vender piso tetuan honorarios bajos",
+      "venta piso economica tetuan",
+      "inmobiliaria economica tetuan barcelona",
+      "vender sin pagar 6 por ciento tetuan"
+    ]
+  },
+  "venta-piso-economica-trinitat-vella-barcelona": {
+    "keyword": "venta de piso economica trinitat vella barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-trinitat-vella-barcelona",
+    "aliases": [
+      "vender piso trinitat vella honorarios bajos",
+      "venta piso economica trinitat vella",
+      "inmobiliaria economica trinitat vella barcelona",
+      "vender sin pagar 6 por ciento trinitat vella"
+    ]
+  },
+  "venta-piso-economica-vall-d-hebron-barcelona": {
+    "keyword": "venta de piso economica vall d'hebron barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-vall-d-hebron-barcelona",
+    "aliases": [
+      "vender piso vall d'hebron honorarios bajos",
+      "venta piso economica vall d'hebron",
+      "inmobiliaria economica vall d'hebron barcelona",
+      "vender sin pagar 6 por ciento vall d'hebron"
+    ]
+  },
+  "venta-piso-economica-verneda-barcelona": {
+    "keyword": "venta de piso economica la verneda barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-verneda-barcelona",
+    "aliases": [
+      "vender piso la verneda honorarios bajos",
+      "venta piso economica la verneda",
+      "inmobiliaria economica la verneda barcelona",
+      "vender sin pagar 6 por ciento la verneda"
+    ]
+  },
+  "venta-piso-economica-vila-olimpica-barcelona": {
+    "keyword": "venta de piso economica vila olímpica barcelona",
+    "cluster": "intencion",
+    "canonical": "/venta-piso-economica-vila-olimpica-barcelona",
+    "aliases": [
+      "vender piso vila olímpica honorarios bajos",
+      "venta piso economica vila olímpica",
+      "inmobiliaria economica vila olímpica barcelona",
+      "vender sin pagar 6 por ciento vila olímpica"
     ]
   }
 }
