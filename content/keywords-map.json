@@ -822,6 +822,56 @@
       "inmobiliaria propietarios barcelona"
     ]
   },
+  "inmobiliaria-para-particulares-barceloneta-barcelona": {
+    "keyword": "inmobiliaria para particulares barceloneta barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-barceloneta-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso barceloneta",
+      "inmobiliaria vendedores particulares barceloneta",
+      "vender piso particular con agencia barceloneta"
+    ]
+  },
+  "inmobiliaria-para-particulares-bon-pastor-barcelona": {
+    "keyword": "inmobiliaria para particulares bon pastor barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-bon-pastor-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso bon pastor",
+      "inmobiliaria vendedores particulares bon pastor",
+      "vender piso particular con agencia bon pastor"
+    ]
+  },
+  "inmobiliaria-para-particulares-born-barcelona": {
+    "keyword": "inmobiliaria para particulares born barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-born-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso born",
+      "inmobiliaria vendedores particulares born",
+      "vender piso particular con agencia born"
+    ]
+  },
+  "inmobiliaria-para-particulares-camp-de-larpa-barcelona": {
+    "keyword": "inmobiliaria para particulares camp de l'arpa barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-camp-de-larpa-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso camp de l'arpa",
+      "inmobiliaria vendedores particulares camp de l'arpa",
+      "vender piso particular con agencia camp de l'arpa"
+    ]
+  },
+  "inmobiliaria-para-particulares-camp-den-grassot-barcelona": {
+    "keyword": "inmobiliaria para particulares camp d'en grassot barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-camp-den-grassot-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso camp d'en grassot",
+      "inmobiliaria vendedores particulares camp d'en grassot",
+      "vender piso particular con agencia camp d'en grassot"
+    ]
+  },
   "inmobiliaria-para-particulares-ciutat-vella-barcelona": {
     "keyword": "inmobiliaria para particulares ciutat vella barcelona",
     "cluster": "intencion",
@@ -862,6 +912,16 @@
       "vender piso particular con agencia eixample"
     ]
   },
+  "inmobiliaria-para-particulares-el-besos-barcelona": {
+    "keyword": "inmobiliaria para particulares el besòs barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-el-besos-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso el besòs",
+      "inmobiliaria vendedores particulares el besòs",
+      "vender piso particular con agencia el besòs"
+    ]
+  },
   "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona": {
     "keyword": "inmobiliaria para particulares el clot - la sagrera barcelona",
     "cluster": "intencion",
@@ -890,6 +950,16 @@
       "agencia inmobiliaria para vender piso fort pienc",
       "inmobiliaria vendedores particulares fort pienc",
       "vender piso particular con agencia fort pienc"
+    ]
+  },
+  "inmobiliaria-para-particulares-gotic-barcelona": {
+    "keyword": "inmobiliaria para particulares gòtic barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-gotic-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso gòtic",
+      "inmobiliaria vendedores particulares gòtic",
+      "vender piso particular con agencia gòtic"
     ]
   },
   "inmobiliaria-para-particulares-gracia-barcelona": {
@@ -942,6 +1012,26 @@
       "vender piso particular con agencia l'hospitalet"
     ]
   },
+  "inmobiliaria-para-particulares-la-bordeta-barcelona": {
+    "keyword": "inmobiliaria para particulares la bordeta barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-la-bordeta-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso la bordeta",
+      "inmobiliaria vendedores particulares la bordeta",
+      "vender piso particular con agencia la bordeta"
+    ]
+  },
+  "inmobiliaria-para-particulares-la-marina-barcelona": {
+    "keyword": "inmobiliaria para particulares la marina barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-la-marina-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso la marina",
+      "inmobiliaria vendedores particulares la marina",
+      "vender piso particular con agencia la marina"
+    ]
+  },
   "inmobiliaria-para-particulares-la-sagrera-barcelona": {
     "keyword": "inmobiliaria para particulares la sagrera barcelona",
     "cluster": "intencion",
@@ -970,6 +1060,16 @@
       "agencia inmobiliaria para vender piso montjuïc",
       "inmobiliaria vendedores particulares montjuïc",
       "vender piso particular con agencia montjuïc"
+    ]
+  },
+  "inmobiliaria-para-particulares-navas-barcelona": {
+    "keyword": "inmobiliaria para particulares navas barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-navas-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso navas",
+      "inmobiliaria vendedores particulares navas",
+      "vender piso particular con agencia navas"
     ]
   },
   "inmobiliaria-para-particulares-nou-barris-barcelona": {
@@ -1010,6 +1110,26 @@
       "agencia inmobiliaria para vender piso poblenou",
       "inmobiliaria vendedores particulares poblenou",
       "vender piso particular con agencia poblenou"
+    ]
+  },
+  "inmobiliaria-para-particulares-provencals-del-poblenou-barcelona": {
+    "keyword": "inmobiliaria para particulares provençals del poblenou barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-provencals-del-poblenou-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso provençals del poblenou",
+      "inmobiliaria vendedores particulares provençals del poblenou",
+      "vender piso particular con agencia provençals del poblenou"
+    ]
+  },
+  "inmobiliaria-para-particulares-raval-barcelona": {
+    "keyword": "inmobiliaria para particulares raval barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-raval-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso raval",
+      "inmobiliaria vendedores particulares raval",
+      "vender piso particular con agencia raval"
     ]
   },
   "inmobiliaria-para-particulares-roquetes-barcelona": {
@@ -1062,6 +1182,16 @@
       "vender piso particular con agencia sant gervasi"
     ]
   },
+  "inmobiliaria-para-particulares-sant-just-sant-joan-despi-barcelona": {
+    "keyword": "inmobiliaria para particulares sant just desvern y sant joan despí barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-sant-just-sant-joan-despi-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso sant just desvern y sant joan despí",
+      "inmobiliaria vendedores particulares sant just desvern y sant joan despí",
+      "vender piso particular con agencia sant just desvern y sant joan despí"
+    ]
+  },
   "inmobiliaria-para-particulares-sant-marti-barcelona": {
     "keyword": "inmobiliaria para particulares sant martí barcelona",
     "cluster": "intencion",
@@ -1070,6 +1200,16 @@
       "agencia inmobiliaria para vender piso sant martí",
       "inmobiliaria vendedores particulares sant martí",
       "vender piso particular con agencia sant martí"
+    ]
+  },
+  "inmobiliaria-para-particulares-sant-pere-santa-caterina-barcelona": {
+    "keyword": "inmobiliaria para particulares sant pere / santa caterina barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-sant-pere-santa-caterina-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso sant pere / santa caterina",
+      "inmobiliaria vendedores particulares sant pere / santa caterina",
+      "vender piso particular con agencia sant pere / santa caterina"
     ]
   },
   "inmobiliaria-para-particulares-sants-barcelona": {
@@ -1090,6 +1230,46 @@
       "agencia inmobiliaria para vender piso sarrià",
       "inmobiliaria vendedores particulares sarrià",
       "vender piso particular con agencia sarrià"
+    ]
+  },
+  "inmobiliaria-para-particulares-tetuan-barcelona": {
+    "keyword": "inmobiliaria para particulares tetuan barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-tetuan-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso tetuan",
+      "inmobiliaria vendedores particulares tetuan",
+      "vender piso particular con agencia tetuan"
+    ]
+  },
+  "inmobiliaria-para-particulares-trinitat-vella-barcelona": {
+    "keyword": "inmobiliaria para particulares trinitat vella barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-trinitat-vella-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso trinitat vella",
+      "inmobiliaria vendedores particulares trinitat vella",
+      "vender piso particular con agencia trinitat vella"
+    ]
+  },
+  "inmobiliaria-para-particulares-vall-d-hebron-barcelona": {
+    "keyword": "inmobiliaria para particulares vall d'hebron barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-vall-d-hebron-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso vall d'hebron",
+      "inmobiliaria vendedores particulares vall d'hebron",
+      "vender piso particular con agencia vall d'hebron"
+    ]
+  },
+  "inmobiliaria-para-particulares-verneda-barcelona": {
+    "keyword": "inmobiliaria para particulares la verneda barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-para-particulares-verneda-barcelona",
+    "aliases": [
+      "agencia inmobiliaria para vender piso la verneda",
+      "inmobiliaria vendedores particulares la verneda",
+      "vender piso particular con agencia la verneda"
     ]
   },
   "inmobiliaria-para-particulares-vila-olimpica-barcelona": {
@@ -1154,6 +1334,16 @@
       "inmobiliaria honorarios fijos born",
       "vender piso particular born",
       "agencia inmobiliaria born precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-camp-de-larpa-barcelona": {
+    "keyword": "inmobiliaria precio fijo camp de l'arpa barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-camp-de-larpa-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos camp de l'arpa",
+      "vender piso particular camp de l'arpa",
+      "agencia inmobiliaria camp de l'arpa precio fijo"
     ]
   },
   "inmobiliaria-precio-fijo-camp-den-grassot-barcelona": {
@@ -1322,6 +1512,26 @@
       "vender piso area metropolitana barcelona"
     ]
   },
+  "inmobiliaria-precio-fijo-la-bordeta-barcelona": {
+    "keyword": "inmobiliaria precio fijo la bordeta barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-la-bordeta-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos la bordeta",
+      "vender piso particular la bordeta",
+      "agencia inmobiliaria la bordeta precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-la-marina-barcelona": {
+    "keyword": "inmobiliaria precio fijo la marina barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-la-marina-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos la marina",
+      "vender piso particular la marina",
+      "agencia inmobiliaria la marina precio fijo"
+    ]
+  },
   "inmobiliaria-precio-fijo-la-sagrera-barcelona": {
     "keyword": "inmobiliaria precio fijo la sagrera barcelona",
     "cluster": "intencion",
@@ -1430,6 +1640,16 @@
       "agencia inmobiliaria raval precio fijo"
     ]
   },
+  "inmobiliaria-precio-fijo-roquetes-barcelona": {
+    "keyword": "inmobiliaria precio fijo roquetes barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-roquetes-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos roquetes",
+      "vender piso particular roquetes",
+      "agencia inmobiliaria roquetes precio fijo"
+    ]
+  },
   "inmobiliaria-precio-fijo-sagrada-familia-barcelona": {
     "keyword": "inmobiliaria precio fijo sagrada família barcelona",
     "cluster": "intencion",
@@ -1476,6 +1696,16 @@
       "honorarios fijos 08021"
     ]
   },
+  "inmobiliaria-precio-fijo-sant-just-sant-joan-despi-barcelona": {
+    "keyword": "inmobiliaria precio fijo sant just desvern y sant joan despí barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sant-just-sant-joan-despi-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos sant just desvern y sant joan despí",
+      "vender piso particular sant just desvern y sant joan despí",
+      "agencia inmobiliaria sant just desvern y sant joan despí precio fijo"
+    ]
+  },
   "inmobiliaria-precio-fijo-sant-marti-barcelona": {
     "keyword": "inmobiliaria precio fijo sant martí barcelona",
     "cluster": "intencion",
@@ -1484,6 +1714,16 @@
       "inmobiliaria honorarios fijos sant martí",
       "vender piso particular sant martí",
       "agencia inmobiliaria sant martí precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-sant-pere-santa-caterina-barcelona": {
+    "keyword": "inmobiliaria precio fijo sant pere / santa caterina barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-sant-pere-santa-caterina-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos sant pere / santa caterina",
+      "vender piso particular sant pere / santa caterina",
+      "agencia inmobiliaria sant pere / santa caterina precio fijo"
     ]
   },
   "inmobiliaria-precio-fijo-sants-barcelona": {
@@ -1508,6 +1748,36 @@
       "agencia inmobiliaria bonanova",
       "vender piso tres torres",
       "inmobiliaria galvany precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-tetuan-barcelona": {
+    "keyword": "inmobiliaria precio fijo tetuan barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-tetuan-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos tetuan",
+      "vender piso particular tetuan",
+      "agencia inmobiliaria tetuan precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-trinitat-vella-barcelona": {
+    "keyword": "inmobiliaria precio fijo trinitat vella barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-trinitat-vella-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos trinitat vella",
+      "vender piso particular trinitat vella",
+      "agencia inmobiliaria trinitat vella precio fijo"
+    ]
+  },
+  "inmobiliaria-precio-fijo-vall-d-hebron-barcelona": {
+    "keyword": "inmobiliaria precio fijo vall d'hebron barcelona",
+    "cluster": "intencion",
+    "canonical": "/inmobiliaria-precio-fijo-vall-d-hebron-barcelona",
+    "aliases": [
+      "inmobiliaria honorarios fijos vall d'hebron",
+      "vender piso particular vall d'hebron",
+      "agencia inmobiliaria vall d'hebron precio fijo"
     ]
   },
   "inmobiliaria-precio-fijo-verneda-barcelona": {

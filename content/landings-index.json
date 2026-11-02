@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T08:46:51.327Z",
+  "updated": "2026-11-02T08:48:03.694Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -500,6 +500,36 @@
       "priority": 0.91
     },
     {
+      "slug": "inmobiliaria-para-particulares-barceloneta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-bon-pastor-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-born-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-camp-de-larpa-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-camp-den-grassot-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
       "slug": "inmobiliaria-para-particulares-ciutat-vella-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -524,6 +554,12 @@
       "priority": 0.88
     },
     {
+      "slug": "inmobiliaria-para-particulares-el-besos-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
       "slug": "inmobiliaria-para-particulares-el-clot-la-sagrera-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -537,6 +573,12 @@
     },
     {
       "slug": "inmobiliaria-para-particulares-fort-pienc-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-gotic-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.88
@@ -572,6 +614,18 @@
       "priority": 0.88
     },
     {
+      "slug": "inmobiliaria-para-particulares-la-bordeta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-la-marina-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
       "slug": "inmobiliaria-para-particulares-la-sagrera-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -585,6 +639,12 @@
     },
     {
       "slug": "inmobiliaria-para-particulares-montjuic-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-navas-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.88
@@ -609,6 +669,18 @@
     },
     {
       "slug": "inmobiliaria-para-particulares-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-provencals-del-poblenou-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-raval-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.88
@@ -644,7 +716,19 @@
       "priority": 0.88
     },
     {
+      "slug": "inmobiliaria-para-particulares-sant-just-sant-joan-despi-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
       "slug": "inmobiliaria-para-particulares-sant-marti-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-sant-pere-santa-caterina-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.88
@@ -657,6 +741,30 @@
     },
     {
       "slug": "inmobiliaria-para-particulares-sarria-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-tetuan-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-trinitat-vella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-vall-d-hebron-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "inmobiliaria-para-particulares-verneda-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.88
@@ -693,6 +801,12 @@
     },
     {
       "slug": "inmobiliaria-precio-fijo-born-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-camp-de-larpa-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
@@ -788,6 +902,18 @@
       "priority": 0.88
     },
     {
+      "slug": "inmobiliaria-precio-fijo-la-bordeta-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-la-marina-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-la-sagrera-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -848,6 +974,12 @@
       "priority": 0.89
     },
     {
+      "slug": "inmobiliaria-precio-fijo-roquetes-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-sagrada-familia-barcelona",
       "cluster": "intencion",
       "indexable": true,
@@ -872,7 +1004,19 @@
       "priority": 0.9
     },
     {
+      "slug": "inmobiliaria-precio-fijo-sant-just-sant-joan-despi-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
       "slug": "inmobiliaria-precio-fijo-sant-marti-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-sant-pere-santa-caterina-barcelona",
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.89
@@ -888,6 +1032,24 @@
       "cluster": "intencion",
       "indexable": true,
       "priority": 0.9
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-tetuan-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-trinitat-vella-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "inmobiliaria-precio-fijo-vall-d-hebron-barcelona",
+      "cluster": "intencion",
+      "indexable": true,
+      "priority": 0.89
     },
     {
       "slug": "inmobiliaria-precio-fijo-verneda-barcelona",
