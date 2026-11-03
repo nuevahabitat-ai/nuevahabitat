@@ -1732,6 +1732,166 @@ footer {
 .nh-landing-card:hover .nh-landing-card-media img {
   transform: scale(1.04);
 }
+
+/* ── Home: planes de venta (#planes-venta) — no poner solo en index inline (build-landings lo borra) */
+.nh-planes-hero {
+  padding: 100px 0;
+  background: var(--crema);
+  border-bottom: 1px solid var(--crema-dark);
+  scroll-margin-top: 100px;
+}
+.nh-planes-intro {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.nh-planes-intro .overline { margin-bottom: .75rem; }
+.nh-planes-intro h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin: 0 0 .75rem;
+  color: var(--negro);
+}
+.nh-planes-intro p {
+  color: var(--gris-texto);
+  line-height: 1.75;
+  margin: 0;
+  font-size: 1.02rem;
+}
+.nh-planes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+.nh-plan-card {
+  border: 1px solid var(--crema-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--blanco);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+  transition: box-shadow .22s ease, transform .22s ease, border-color .22s ease;
+}
+.nh-plan-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: rgba(184, 147, 106, .45);
+}
+.nh-plan-card-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--negro-soft);
+  flex-shrink: 0;
+}
+.nh-plan-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .35s ease;
+}
+.nh-plan-card:hover .nh-plan-card-media img {
+  transform: scale(1.04);
+}
+.nh-plan-body {
+  padding: 1.25rem 1.35rem 1.35rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.nh-plan-tag {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: .45rem;
+}
+.nh-plan-price {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: .25rem 0 .15rem;
+  color: var(--negro);
+}
+.nh-plan-sub {
+  font-size: .78rem;
+  color: var(--gris-medio);
+  margin-bottom: .75rem;
+  line-height: 1.45;
+}
+.nh-plan-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  font-size: .82rem;
+  color: var(--gris-texto);
+  line-height: 1.55;
+  display: grid;
+  gap: .35rem;
+  flex: 1;
+}
+.nh-plan-list li {
+  padding-left: 1rem;
+  position: relative;
+}
+.nh-plan-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--oro);
+  font-weight: 700;
+}
+.nh-plan-cta { margin-top: auto; }
+.nh-proceso-block {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--crema-dark);
+}
+.nh-proceso-block h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  text-align: center;
+  margin: 0 0 1.25rem;
+  color: var(--negro);
+}
+.nh-proceso-steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: .75rem;
+}
+.nh-proceso-step {
+  background: var(--blanco);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  border: 1px solid var(--crema-dark);
+  font-size: .78rem;
+  line-height: 1.5;
+  color: var(--gris-texto);
+  box-shadow: var(--shadow-sm);
+}
+.nh-proceso-step strong {
+  display: block;
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--oro);
+  margin-bottom: .35rem;
+}
+@media (max-width: 960px) {
+  .nh-planes-grid,
+  .nh-proceso-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .nh-planes-hero { padding: 4rem 0; }
+  .nh-planes-grid,
+  .nh-proceso-steps { grid-template-columns: 1fr; }
+}
+
 .nh-landing-card-body {
   display: flex;
   flex-direction: column;
