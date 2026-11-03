@@ -402,9 +402,19 @@
       if (data.ok && (data.paid || data.alreadyPaid)) {
         params.delete('session_id');
         history.replaceState({}, '', location.pathname + '?' + params.toString());
-        if (window.showToast) window.showToast('Pago confirmado. Gracias.', 'success');
-        else alert('Pago confirmado. Gracias.');
+        const msg = data.fase === 1
+          ? 'Primer pago confirmado. Ya puedes usar el panel de vendedor.'
+          : data.fase === 2
+            ? 'Segundo pago confirmado. Honorarios completados.'
+            : 'Pago confirmado. Gracias.';
+        if (window.showToast) window.showToast(msg, 'success');
+        else alert(msg);
         if (window.gtag) window.gtag('event', 'purchase', { transaction_id: sessionId });
+        if (window.nhVendedorGate) await window.nhVendedorGate.refresh();
+        if (window.nhVendedorOnboarding && window.currentUser && window.nhVendedorGate?.isActive()) {
+          const pending = await window.nhVendedorOnboarding.needsOnboarding(window.currentUser);
+          if (pending) await window.nhVendedorOnboarding.show(window.currentUser);
+        }
       }
     } catch (err) {
       console.warn('verify session', err);
@@ -449,6 +459,7 @@
 
     updateResumenBadge(row);
     bindPayButtons();
+    if (window.nhVendedorGate) await window.nhVendedorGate.refresh();
   }
 
   window.nhStripe = {

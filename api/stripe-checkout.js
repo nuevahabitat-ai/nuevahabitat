@@ -22,7 +22,8 @@ import {
   markIntegralAlquilerPaid,
   markIntegralTransferenciaPendiente,
 } from '../lib/server/supabase-server.js';
-import { notifyTransferenciaPendiente } from '../lib/server/payment-notify.js';
+import { notifyTransferenciaPendiente, notifyHonorariosPaid } from '../lib/server/payment-notify.js';
+import { mitadImporteEur } from '../lib/server/venta-planes.js';
 import { handlePanelPropietarioApi } from '../lib/server/panel-propietario-api.js';
 import {
   ALQUILER_INTEGRAL_EUR,
@@ -553,6 +554,15 @@ async function handleVerifySession(req, res) {
         paymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
         fase: 1,
       });
+      const totalEur = Number(fresh.honorarios) || DEFAULT_HONORARIOS.vendedor;
+      await notifyHonorariosPaid({
+        email: user.email,
+        nombre: fresh.nombre || user.user_metadata?.nombre,
+        tipo,
+        amount: mitadImporteEur(totalEur, 1),
+        sessionId: session.id,
+        fase: 1,
+      });
       return res.status(200).json({ ok: true, paid: true, fase: 1 });
     }
 
@@ -567,6 +577,15 @@ async function handleVerifySession(req, res) {
         paymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
         fase: 2,
       });
+      const totalEur = Number(fresh.honorarios) || DEFAULT_HONORARIOS.vendedor;
+      await notifyHonorariosPaid({
+        email: user.email,
+        nombre: fresh.nombre || user.user_metadata?.nombre,
+        tipo,
+        amount: mitadImporteEur(totalEur, 2),
+        sessionId: session.id,
+        fase: 2,
+      });
       return res.status(200).json({ ok: true, paid: true, fase: 2 });
     }
 
@@ -579,6 +598,15 @@ async function handleVerifySession(req, res) {
       recordId: fresh.id,
       sessionId: session.id,
       paymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
+    });
+
+    const totalEur = Number(fresh.honorarios) || DEFAULT_HONORARIOS[tipo];
+    await notifyHonorariosPaid({
+      email: user.email,
+      nombre: fresh.nombre || user.user_metadata?.nombre,
+      tipo,
+      amount: totalEur,
+      sessionId: session.id,
     });
 
     return res.status(200).json({ ok: true, paid: true });

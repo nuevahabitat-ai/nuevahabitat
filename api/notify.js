@@ -475,12 +475,23 @@ function tplVisitaEstadoAdmin({ nombre, email, telefono, inmueble, mensaje, extr
 function tplHonorariosPagadoCliente({ nombre, extra }) {
   const tipo = extra?.tipo === 'vendedor' ? 'venta' : 'compra';
   const amt = extra?.amount != null ? `${Number(extra.amount).toLocaleString('es-ES')} €` : '';
+  const fase = extra?.fase != null ? Number(extra.fase) : null;
+  const faseVenta =
+    fase === 1
+      ? ' Hemos activado tu servicio: ya puedes subir documentación y completar el alta de tu inmueble en el panel.'
+      : fase === 2
+        ? ' Con este segundo pago (escritura) quedan completados los honorarios de venta.'
+        : '';
   return {
-    subject: `Pago de honorarios recibido · NuevaHabitat`,
+    subject: fase === 2
+      ? `Segundo pago recibido · honorarios completados · NuevaHabitat`
+      : fase === 1
+        ? `Primer pago recibido · servicio activo · NuevaHabitat`
+        : `Pago de honorarios recibido · NuevaHabitat`,
     html: HEAD + `<div class="body">
       <div class="tag">Pago confirmado</div>
       <h1>Gracias por tu pago</h1>
-      <p class="intro">Hola <strong>${nombre || 'cliente'}</strong>, hemos recibido correctamente el pago de tus honorarios de ${tipo}${amt ? ` (<strong>${amt}</strong>)` : ''}.</p>
+      <p class="intro">Hola <strong>${nombre || 'cliente'}</strong>, hemos recibido correctamente el pago de tus honorarios de ${tipo}${amt ? ` (<strong>${amt}</strong>)` : ''}.${faseVenta}</p>
       <div class="card">
         <div class="card-title">Comprobante</div>
         <p style="font-size:.88rem;color:#555;line-height:1.6">Recibirás el recibo de Stripe en este email. También puedes ver el estado en tu panel, sección <strong>Honorarios</strong>.</p>

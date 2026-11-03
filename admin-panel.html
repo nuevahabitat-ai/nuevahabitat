@@ -7624,7 +7624,22 @@ function vendHonorariosEfectivos(v){
   };
 }
 
+function vendPlanVentaBadge(v){
+  const map = { clasico: 'Clásica', digital: 'Digital', digital_comercial_bcn: 'Dig.+Com.' };
+  const id = v.plan_venta || 'clasico';
+  return `<span class="badge" title="Plan de venta">${map[id] || id}</span>`;
+}
+
 function honorariosPagoBadgeVendedor(v){
+  const modo = v.honorarios_pago_por || 'vendedor';
+  if (modo === 'vendedor' && (v.honorarios_pago_inicial_pagado || v.honorarios_pago_final_pagado)) {
+    const fin = !!(v.honorarios_pago_final_pagado || v.honorarios_pagado);
+    const ini = !!v.honorarios_pago_inicial_pagado;
+    if (fin) return honorariosPagoBadge({ ...vendHonorariosEfectivos(v), honorarios_pagado: true });
+    if (ini) {
+      return `<span class="adm-pay-badge adm-pay-badge--ok" title="Primer 50 % cobrado">✓ 1.er 50 %</span> <span class="adm-pay-badge adm-pay-badge--pend">2.º pendiente</span>`;
+    }
+  }
   return honorariosPagoBadge(vendHonorariosEfectivos(v));
 }
 
@@ -7735,7 +7750,7 @@ async function loadVendedores(force){
   if(tbl) tbl.innerHTML = '<p class="text-muted">Cargando…</p>';
   const { data, error } = await window.nhSupabase
     .from('vendedores')
-    .select('id,nombre,email,telefono,dni,precio_minimo,inmueble_ref,descripcion,estado_expediente,comprador_id,honorarios_pago_por,honorarios,honorarios_comprador,activo,estado_operacion,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at,comprador:compradores(id,nombre,telefono,honorarios,honorarios_pagado,honorarios_transferencia_pendiente)')
+    .select('id,nombre,email,telefono,dni,precio_minimo,inmueble_ref,descripcion,estado_expediente,comprador_id,honorarios_pago_por,honorarios,honorarios_comprador,activo,estado_operacion,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,plan_venta,honorarios_pago_inicial_pagado,honorarios_pago_final_pagado,pago_final_habilitado,created_at,comprador:compradores(id,nombre,telefono,honorarios,honorarios_pagado,honorarios_transferencia_pendiente)')
     .order('created_at',{ascending:false});
   if(error){
     console.error('loadVendedores:', error);
@@ -7847,13 +7862,14 @@ function renderVendedores(){
     return;
   }
   tbl.innerHTML=`<table class="adm-table">
-    <thead><tr><th>Nombre</th><th>Estado</th><th>Teléfono</th><th>Email</th><th>Honorarios</th><th>Pago</th><th>Comprador</th><th>Precio mín.</th><th>Inmueble</th><th>Fecha</th><th></th></tr></thead>
+    <thead><tr><th>Nombre</th><th>Estado</th><th>Plan</th><th>Teléfono</th><th>Email</th><th>Honorarios</th><th>Pago</th><th>Comprador</th><th>Precio mín.</th><th>Inmueble</th><th>Fecha</th><th></th></tr></thead>
     <tbody>${cartera.map(v=>{
       const estado = vendEstadoOperacion(v);
       const rowExtra = estado === 'inactiva' ? ' vend-row-inactiva' : '';
       return `<tr class="vend-row-click${rowExtra}" onclick="openVendModal('${v.id}')">
         <td style="font-weight:600">${dashEsc(v.nombre)}</td>
         <td>${vendEstadoOperacionBadge(v)}</td>
+        <td>${vendPlanVentaBadge(v)}</td>
         <td>${dashEsc(v.telefono||'–')}</td>
         <td>${dashEsc(v.email||'–')}</td>
         <td onclick="event.stopPropagation()">${honorariosPagoBadgeVendedor(v)} ${honorariosTransferConfirmBtnVendedor(v)}</td>

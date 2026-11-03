@@ -220,6 +220,11 @@
     const file = input.files?.[0];
     const user = window.currentUser;
     if (!file || !user) return;
+    if (vendedorDocsBlocked()) {
+      toast('Activa el servicio con el primer pago en Honorarios.', 'error');
+      input.value = '';
+      return;
+    }
     if (!isAllowedFile(file)) {
       toast('Formato no permitido o archivo > 50 MB. Usa PDF, JPG, PNG, WEBP, HEIC, DOC o DOCX.', 'error');
       input.value = '';
@@ -298,8 +303,23 @@
     renderUploadSlots();
   }
 
+  function vendedorDocsBlocked() {
+    return window.userTipo === 'vendedor'
+      && window.nhVendedorGate
+      && !window.nhVendedorGate.isActive();
+  }
+
   async function load() {
     if (!window.nhSupabase || !window.currentUser?.email) return;
+    const uploadEl = document.getElementById('clienteDocsUpload');
+    if (vendedorDocsBlocked()) {
+      if (uploadEl) {
+        uploadEl.innerHTML = window.nhVendedorGate.lockedMessageHtml();
+      }
+      docsCache = [];
+      await renderLists();
+      return;
+    }
     const { data, error } = await window.nhSupabase
       .from('cliente_documentos')
       .select('*')

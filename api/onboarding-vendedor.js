@@ -1,6 +1,8 @@
 /**
  * POST /api/onboarding-vendedor — Registra inmueble del vendedor (service role).
  */
+import { vendedorServicioActivo } from '../lib/server/venta-planes.js';
+
 const SB_URL = process.env.SUPABASE_URL || 'https://xxodawayoogthxnjpouq.supabase.co';
 const SB_ANON = process.env.SUPABASE_ANON_KEY || 'sb_publishable_fZ9IgW5VfsF_Gf_zFsxqnA_jOaH2yri';
 const SB_SERVICE = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE;
@@ -68,7 +70,7 @@ export default async function handler(req, res) {
 
   try {
     const vendRes = await fetch(
-      `${SB_URL}/rest/v1/vendedores?email=ilike.${encodeURIComponent(email)}&select=id,inmueble_ref`,
+      `${SB_URL}/rest/v1/vendedores?email=ilike.${encodeURIComponent(email)}&select=id,inmueble_ref,honorarios_pagado,honorarios_pago_inicial_pagado,honorarios_pago_final_pagado`,
       { headers: svcHeaders() }
     );
     if (!vendRes.ok) throw new Error(await vendRes.text());
@@ -97,6 +99,14 @@ export default async function handler(req, res) {
         ref: vend.inmueble_ref,
         inmueble_id: inmRows?.[0]?.id || null,
         already: true,
+      });
+    }
+
+    if (!vendedorServicioActivo(vend)) {
+      return res.status(403).json({
+        ok: false,
+        error: 'Activa el servicio pagando el primer 50 % en Honorarios',
+        code: 'SERVICIO_INACTIVO',
       });
     }
 

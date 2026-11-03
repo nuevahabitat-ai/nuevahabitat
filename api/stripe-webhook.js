@@ -65,6 +65,7 @@ export default async function handler(req, res) {
       const recordId = meta.nh_record_id;
       if (recordId) {
         try {
+          const pagoFase = meta.nh_pago_fase ? Number(meta.nh_pago_fase) : null;
           await markHonorariosPaid({
             tipo,
             recordId,
@@ -72,6 +73,7 @@ export default async function handler(req, res) {
             paymentIntentId: typeof session.payment_intent === 'string'
               ? session.payment_intent
               : session.payment_intent?.id,
+            fase: pagoFase === 1 || pagoFase === 2 ? pagoFase : null,
           });
           await notifyHonorariosPaid({
             email: meta.nh_email,
@@ -79,6 +81,7 @@ export default async function handler(req, res) {
             tipo,
             amount: session.amount_total ? session.amount_total / 100 : null,
             sessionId: session.id,
+            fase: pagoFase === 1 || pagoFase === 2 ? pagoFase : null,
           });
         } catch (err) {
           console.error('stripe-webhook mark paid:', err);

@@ -179,6 +179,7 @@
     .nh-pay-chip{display:inline-block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.25rem .55rem;border-radius:20px}
     .nh-pay-chip--ok{background:rgba(34,197,94,.12);color:#15803d}
     .nh-pay-chip--pending{background:rgba(184,147,106,.15);color:var(--oro)}
+    .p-nav-btn.nh-nav-locked,.mbn-tab.nh-nav-locked{opacity:.42;cursor:not-allowed}
     .nh-pay-btn:disabled{opacity:.65;cursor:wait}
     .nh-bank-block{margin-top:.85rem;padding:1rem;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.04)}
     .nh-bank-title{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--oro);margin-bottom:.5rem}
@@ -367,6 +368,7 @@
 
         <!-- ── RESUMEN ── -->
         <div class="p-section active" id="sec-resumen">
+          <div id="nhVendGateBanner" data-only="vendedor" style="display:none;margin-bottom:1rem"></div>
           <div class="p-card">
             <div class="p-card-title">
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
@@ -744,11 +746,12 @@
 <script src="js/leads.js"></script>
 <script src="js/notify.js"></script>
 <script src="js/panel-calendar.js?v=20260727e"></script>
-<script src="js/panel-vendedor-onboarding.js?v=20260727a"></script>
+<script src="js/panel-vendedor-onboarding.js?v=20261104"></script>
 <script src="js/comprador-matching.js"></script>
 <script src="js/panel-compatibles.js"></script>
 <script src="js/venta-planes-config.js?v=20261103"></script>
-<script src="js/panel-stripe.js?v=20261103"></script>
+<script src="js/panel-stripe.js?v=20261104"></script>
+<script src="js/panel-vendedor-gate.js?v=20261104"></script>
 <script src="js/nh-pwa-install.js"></script>
 <script src="js/panel-pwa.js?v=20261003"></script>
 <script src="js/toast.js"></script>
@@ -758,7 +761,7 @@
 <script src="js/analytics-events.js"></script>
 <script src="js/seo.js"></script>
 <script src="js/main.js"></script>
-<script src="js/panel-cliente-docs.js?v=20261003"></script>
+<script src="js/panel-cliente-docs.js?v=20261104"></script>
 <script>
 /* ─── Navegación entre secciones ─────────────────────────── */
 let userTipo = 'comprador';
@@ -769,6 +772,11 @@ document.querySelectorAll('.p-nav-btn').forEach(btn => {
 
 function goPanelSection(sec, activeBtn) {
   if (!sec) return;
+  if (window.nhVendedorGate && !window.nhVendedorGate.canAccessSection(sec)) {
+    if (window.showToast) window.showToast('Paga el primer 50 % en Honorarios para activar el servicio.', 'error');
+    sec = 'honorarios';
+    activeBtn = document.querySelector('.p-nav-btn[data-sec="honorarios"]');
+  }
   if (sec === 'contratos' || sec === 'tasacion') sec = 'documentacion';
   if (sec === 'proceso' && userTipo === 'vendedor') sec = 'proceso-vendedor';
   document.querySelectorAll('.p-nav-btn').forEach(b => b.classList.remove('active'));
@@ -998,6 +1006,11 @@ async function initPanel() {
     document.getElementById('pf-dni').value = clienteRow.dni;
   }
 
+  if (window.nhStripe) {
+    await window.nhStripe.verifyReturnSession();
+    await window.nhStripe.loadHonorarios();
+  }
+
   if (tipo === 'comprador') {
     loadRecentProps();
     await loadDashboardStats('comprador');
@@ -1005,26 +1018,36 @@ async function initPanel() {
     await loadExpedienteTimeline('comprador');
     if (window.nhPanelCompatibles) await window.nhPanelCompatibles.loadCompatibles();
   } else {
-    if (window.nhVendedorOnboarding) {
+    if (window.nhVendedorGate) await window.nhVendedorGate.refresh();
+    const servicioOk = !window.nhVendedorGate || window.nhVendedorGate.isActive();
+    if (!servicioOk) {
+      goPanelSection('honorarios');
+    } else if (window.nhVendedorOnboarding) {
       const pending = await window.nhVendedorOnboarding.needsOnboarding(currentUser);
       if (pending) await window.nhVendedorOnboarding.show(currentUser);
     }
-    loadPublicacion();
+    if (servicioOk) {
+      loadPublicacion();
+      loadVisitasVendedor();
+    }
     await loadDashboardStats('vendedor');
-    loadVisitasVendedor();
     await loadExpedienteTimeline('vendedor');
   }
   window.nhPanelClienteDocs?.load();
   await initPanelCalendars(tipo);
-  if (window.nhStripe) {
-    await window.nhStripe.verifyReturnSession();
-    await window.nhStripe.loadHonorarios();
-  }
   if (window.nhPanelPwa) await window.nhPanelPwa.initPanelPwa();
 }
 
 async function initPanelCalendars(tipo) {
   if (!window.nhInitPanelCalendar || !currentUser) return;
+  if (tipo === 'vendedor' && window.nhVendedorGate && !window.nhVendedorGate.isActive()) {
+    const ph = window.nhVendedorGate.lockedPlaceholder();
+    ['panelCalendarResumen', 'panelCalendarVendedor'].forEach((id) => {
+      const root = document.getElementById(id);
+      if (root) root.innerHTML = ph;
+    });
+    return;
+  }
   let inmuebleId = null;
   if (tipo === 'vendedor' && window.nhSupabase) {
     const email = currentUser.email || '';
@@ -1262,6 +1285,10 @@ async function loadVisitas() {
 async function loadVisitasVendedor() {
   const el = document.getElementById('visitasVendedorContent');
   if (!window.nhSupabase || !currentUser || !el) return;
+  if (window.nhVendedorGate && !window.nhVendedorGate.isActive()) {
+    el.innerHTML = window.nhVendedorGate.lockedPlaceholder();
+    return;
+  }
   el.innerHTML = '<div class="p-empty"><h4 style="color:var(--gris-medio)">Cargando…</h4></div>';
 
   const email = currentUser.email || '';
@@ -1379,6 +1406,11 @@ async function removeFav(favId) {
 async function loadPublicacion() {
   const el = document.getElementById('pubContent');
   if (!el || !window.nhSupabase || !currentUser) return;
+  if (window.nhVendedorGate && !window.nhVendedorGate.isActive()) {
+    el.innerHTML = window.nhVendedorGate.lockedPlaceholder();
+    document.getElementById('statPub').textContent = '—';
+    return;
+  }
 
   const email = currentUser.email || '';
   const { data: vend } = await window.nhSupabase

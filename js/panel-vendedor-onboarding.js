@@ -6,6 +6,7 @@
 
   async function needsOnboarding(user) {
     if (!window.nhSupabase || !user?.email) return false;
+    if (window.nhVendedorGate && !window.nhVendedorGate.isActive()) return false;
     const { data, error } = await window.nhSupabase
       .from('vendedores')
       .select('inmueble_ref')
@@ -117,6 +118,9 @@
     if (errEl) errEl.style.display = 'none';
 
     try {
+      if (window.nhVendedorGate && !window.nhVendedorGate.isActive()) {
+        throw new Error('Primero paga el 50 % inicial en la sección Honorarios para activar el servicio.');
+      }
       await window.nhWaitSupabase?.();
       const result = await registrarInmueble({ nombre, telefono, direccion });
 
