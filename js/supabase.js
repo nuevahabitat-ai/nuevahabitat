@@ -345,7 +345,15 @@ window.nhAuth = {
     if (tipo === 'vendedor') {
       const { data } = await window.nhSupabase.from('vendedores').select('id').eq('email', email).maybeSingle();
       if (!data) {
-        const { error } = await window.nhSupabase.from('vendedores').insert({ nombre, email, telefono });
+        const planId = typeof window.nhVentaPlanFromStorage === 'function' ? window.nhVentaPlanFromStorage() : 'clasico';
+        const plan = window.NH_VENTA_PLANES?.[planId] || window.NH_VENTA_PLANES?.clasico;
+        const payload = { nombre, email, telefono };
+        if (plan) {
+          payload.plan_venta = plan.id;
+          payload.honorarios_base = plan.baseEur;
+          payload.honorarios = plan.totalIva;
+        }
+        const { error } = await window.nhSupabase.from('vendedores').insert(payload);
         if (error) console.error('ensureClientRecord vendedor', error);
       }
     } else {

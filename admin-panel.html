@@ -1202,6 +1202,14 @@ select.adm-control{
             <div class="adm-field"><label>Precio mínimo requerido (€)</label><input type="number" id="v-precio-min" placeholder="200000"/></div>
             <div class="adm-field"><label>Referencia inmueble vinculado</label><input type="text" id="v-ref" placeholder="NH-2026-1234"/></div>
             <div class="adm-field">
+              <label>Plan de venta</label>
+              <select id="v-plan-venta" onchange="vendOnPlanChange()">
+                <option value="clasico">Clásica · 3.500 € + IVA</option>
+                <option value="digital">Digital · 1.999 € + IVA</option>
+                <option value="digital_comercial_bcn">Digital + comercial · 2.500 € + IVA (Barcelona)</option>
+              </select>
+            </div>
+            <div class="adm-field">
               <label>Estado expediente</label>
               <select id="v-expediente">
                 <option value="registro">Registro</option>
@@ -1212,6 +1220,12 @@ select.adm-control{
                 <option value="escritura">Escritura</option>
                 <option value="cerrado">Cerrado</option>
               </select>
+            </div>
+            <div class="adm-field adm-form-col-full">
+              <label style="display:flex;align-items:center;gap:.5rem;font-weight:500">
+                <input type="checkbox" id="v-pago-final-hab"/>
+                Habilitar 2.º pago (50 % escritura) en panel del vendedor
+              </label>
             </div>
             <div class="adm-field">
               <label>Estado operación</label>
@@ -1230,7 +1244,7 @@ select.adm-control{
           <div class="vend-tab-pane" id="vend-pane-honorarios">
             <div class="wiz-section-label">¿Quién paga los honorarios?</div>
             <div class="vend-hon-pills" id="v-hon-pills">
-              <button type="button" class="vend-hon-pill vendedor" data-pago="vendedor" onclick="vendSetPagoPor('vendedor')">Solo vendedor · 3.000 € + IVA</button>
+              <button type="button" class="vend-hon-pill vendedor" data-pago="vendedor" onclick="vendSetPagoPor('vendedor')">Solo vendedor · 3.500 € + IVA</button>
               <button type="button" class="vend-hon-pill comprador" data-pago="comprador" onclick="vendSetPagoPor('comprador')">Solo comprador · 6.050 €</button>
               <button type="button" class="vend-hon-pill ambos" data-pago="ambos" onclick="vendSetPagoPor('ambos')">Ambos pagan</button>
               <button type="button" class="vend-hon-pill exento" data-pago="exento" onclick="vendSetPagoPor('exento')">Exento · 0 €</button>
@@ -7439,10 +7453,17 @@ async function toggleActivoComp(id, nuevoValor){
 /* ═══════════════════════════════════════════════════════════════
    VENDEDORES
    ══════════════════════════════════════════════════════════════ */
-const HONORARIOS_VENDEDOR_IVA = 3630;
+const HONORARIOS_VENDEDOR_IVA = 4235;
+const VEND_PLAN_BASE = { clasico: 3500, digital: 1999, digital_comercial_bcn: 2500 };
+const VEND_PLAN_TOTAL_IVA = { clasico: 4235, digital: 2418.79, digital_comercial_bcn: 3025 };
+function vendOnPlanChange(){
+  const plan = document.getElementById('v-plan-venta')?.value || 'clasico';
+  const hon = document.getElementById('v-honorarios');
+  if(hon && VEND_PLAN_TOTAL_IVA[plan]) hon.value = VEND_PLAN_TOTAL_IVA[plan];
+}
 const HONORARIOS_COMPRADOR_IVA = 6050;
 const HONORARIOS_PAGO_LABELS = {
-  vendedor: 'Solo vendedor paga (3.000 € + IVA · 3.630 € en escritura)',
+  vendedor: 'Solo vendedor paga (3.500 € + IVA · 4.235 € IVA incl.)',
   comprador: 'Solo comprador paga (6.050 € IVA incl.)',
   ambos: 'Vendedor y comprador pagan cada uno sus honorarios',
   exento: 'Operación exenta — honorarios a 0 €',
@@ -7894,6 +7915,10 @@ function editVendedor(id){
   document.getElementById('v-honorarios-comprador').value = honComp;
   document.getElementById('v-honorarios-comprador-prev').value = honComp;
   document.getElementById('v-activo').value = v.estado_operacion || (v.activo === false ? 'inactiva' : 'activa');
+  const planEl = document.getElementById('v-plan-venta');
+  if(planEl) planEl.value = v.plan_venta || 'clasico';
+  const pf = document.getElementById('v-pago-final-hab');
+  if(pf) pf.checked = !!v.pago_final_habilitado;
 }
 
 async function saveVendedor(){
@@ -7904,6 +7929,10 @@ async function saveVendedor(){
   const amounts = vendHonorariosFromModo(modo, document.getElementById('v-honorarios').value, document.getElementById('v-honorarios-comprador').value);
   const compradorId = document.getElementById('v-comprador-id').value || null;
   const estadoOp = document.getElementById('v-activo').value || 'activa';
+  const expediente = document.getElementById('v-expediente').value || 'registro';
+  const planVenta = document.getElementById('v-plan-venta')?.value || 'clasico';
+  const pagoFinalHab = document.getElementById('v-pago-final-hab')?.checked
+    || expediente === 'escritura' || expediente === 'cerrado';
   const payload = {
     nombre,
     telefono: document.getElementById('v-tel').value.trim()||null,
@@ -7912,10 +7941,13 @@ async function saveVendedor(){
     precio_minimo: parseFloat(document.getElementById('v-precio-min').value)||null,
     inmueble_ref: document.getElementById('v-ref').value.trim()||null,
     descripcion: document.getElementById('v-desc').value.trim()||null,
-    estado_expediente: document.getElementById('v-expediente').value || 'registro',
+    estado_expediente: expediente,
     estado_operacion: estadoOp,
     activo: estadoOp !== 'inactiva',
-    honorarios: amounts.vendedor,
+    plan_venta: planVenta,
+    honorarios_base: VEND_PLAN_BASE[planVenta] || null,
+    pago_final_habilitado: pagoFinalHab,
+    honorarios: amounts.vendedor || VEND_PLAN_TOTAL_IVA[planVenta] || HONORARIOS_VENDEDOR_IVA,
     honorarios_comprador: amounts.comprador,
     honorarios_pago_por: modo,
     comprador_id: compradorId,

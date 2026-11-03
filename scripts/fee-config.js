@@ -1,9 +1,9 @@
-/** Honorarios venta particulares — fuente única para build y calculadora */
-const NH_FEE_BASE_EUR = 3000;
-const NH_FEE_TOTAL_EUR = 3630; // base + 21% IVA, cobro en escritura
-const NH_FEE_LABEL = '3.000 € + IVA';
-const NH_FEE_LABEL_ESCRITURA = '3.000 € + IVA (3.630 € en escritura)';
-const NH_FEE_LABEL_COMPACT = '3.000€ + IVA';
+/** Honorarios venta particulares — fuente única para build y calculadora (plan clásico) */
+const NH_FEE_BASE_EUR = 3500;
+const NH_FEE_TOTAL_EUR = Math.round(NH_FEE_BASE_EUR * 1.21 * 100) / 100;
+const NH_FEE_LABEL = '3.500 € + IVA';
+const NH_FEE_LABEL_ESCRITURA = `3.500 € + IVA (${NH_FEE_TOTAL_EUR.toLocaleString('es-ES')} € IVA incl.)`;
+const NH_FEE_LABEL_COMPACT = '3.500€ + IVA';
 
 module.exports = {
   NH_FEE_BASE_EUR,

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NuevaHabitat — Inmobiliaria Tecnológica · Área Metropolitana de Barcelona</title>
-  <meta name="description" content="Inmobiliaria tecnológica especializada en el área metropolitana de Barcelona. Precio fijo: 3.000€ + IVA venta (3.630 € en escritura) · 5.000€ compra. Cobro solo en escritura." />
+  <meta name="description" content="Tres formas de vender en Barcelona: clásica (3.500 € + IVA), venta 100 % digital (1.999 € + IVA) y digital con comercial in situ (2.500 € + IVA). 50 % al contratar y 50 % en escritura." />
   <meta name="google-site-verification" content="qcUIeuw7ntozCztTB0FqLSlUWq0fFexeyZuYtENva80" />
   
   <!-- SEO & Open Graph -->
@@ -169,6 +169,29 @@
     .lc-nh-eco-card--dark .lc-nh-eco-link{color:var(--oro-claro)}
     #ecosistema-vendedor,#ecosistema-comprador{scroll-margin-top:100px}
     @media(max-width:768px){.lc-nh-eco-dual{grid-template-columns:1fr}}
+    .nh-planes-hero{padding:4rem 0 3.5rem;background:var(--blanco);border-bottom:1px solid var(--crema-dark)}
+    .nh-planes-intro{max-width:720px;margin:0 auto 2.5rem;text-align:center}
+    .nh-planes-intro h2{font-family:var(--font-serif);font-size:clamp(1.75rem,4vw,2.5rem);margin:0 0 .75rem;color:var(--negro)}
+    .nh-planes-intro p{color:var(--gris-texto);line-height:1.7;margin:0;font-size:1.02rem}
+    .nh-planes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2.5rem}
+    .nh-plan-card{border:1px solid var(--crema-dark);border-radius:var(--radius-lg);overflow:hidden;background:#fff;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s}
+    .nh-plan-card:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+    .nh-plan-card img{width:100%;height:160px;object-fit:cover;display:block}
+    .nh-plan-body{padding:1.25rem 1.35rem 1.35rem;flex:1;display:flex;flex-direction:column}
+    .nh-plan-tag{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--oro);margin-bottom:.35rem}
+    .nh-plan-price{font-family:var(--font-serif);font-size:1.35rem;font-weight:700;margin:.25rem 0 .15rem}
+    .nh-plan-sub{font-size:.78rem;color:var(--gris-medio);margin-bottom:.75rem}
+    .nh-plan-list{list-style:none;margin:0 0 1rem;padding:0;font-size:.82rem;color:var(--gris-texto);line-height:1.55;display:grid;gap:.35rem;flex:1}
+    .nh-plan-list li{padding-left:1rem;position:relative}
+    .nh-plan-list li::before{content:'✓';position:absolute;left:0;color:var(--oro);font-weight:700}
+    .nh-plan-cta{margin-top:auto}
+    .nh-proceso-block{margin-top:2rem}
+    .nh-proceso-block h3{font-family:var(--font-serif);font-size:1.35rem;text-align:center;margin:0 0 1.25rem}
+    .nh-proceso-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:.75rem}
+    .nh-proceso-step{background:var(--crema);border-radius:var(--radius-md);padding:1rem;border:1px solid var(--crema-dark);font-size:.78rem;line-height:1.5;color:var(--gris-texto)}
+    .nh-proceso-step strong{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--oro);margin-bottom:.35rem}
+    @media(max-width:960px){.nh-planes-grid,.nh-proceso-steps{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.nh-planes-grid,.nh-proceso-steps{grid-template-columns:1fr}}
 /* NH_ECOSYSTEM_HUB_STYLES_END */
     .lc-compare{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-sm)}
     .lc-compare th,.lc-compare td{padding:.85rem 1rem;text-align:left;border-bottom:1px solid var(--crema-dark);font-size:.875rem;vertical-align:top}
@@ -263,7 +286,7 @@
     </h1>
 
     <p class="hero-subtitle">
-      Inmobiliaria tecnológica especializada en el área metropolitana de Barcelona. Precio fijo y cobro solo en escritura. Nada por adelantado.
+      Elige cómo vender: clásica, 100 % digital o digital con comercial en Barcelona. Precio fijo + IVA · 50 % al contratar y 50 % en escritura.
     </p>
 
     <!-- Search Box -->
@@ -317,6 +340,78 @@
   </div>
 </section>
 
+<!-- ═══ PLANES DE VENTA (SEO + conversión) ═══ -->
+<section class="nh-planes-hero" id="planes-venta">
+  <div class="container">
+    <div class="nh-planes-intro fade-up">
+      <div class="hero-badge" style="display:inline-block;margin-bottom:.75rem;background:rgba(184,147,106,.12);color:var(--oro-oscuro)">Vender tu piso</div>
+      <h2>Tres servicios, un mismo panel digital</h2>
+      <p>Todos los planes incluyen expediente online, documentación, publicación en portales, cualificación de compradores y gestión hasta escritura. <strong>El servicio empieza cuando contratas y pagas el primer 50&nbsp;%</strong> (Stripe). El segundo 50&nbsp;% se paga en escritura.</p>
+    </div>
+
+    <div class="nh-planes-grid">
+      <article class="nh-plan-card fade-up">
+        <img src="imagenes/interior4.jpg" alt="Venta clásica con equipo NuevaHabitat" loading="lazy"/>
+        <div class="nh-plan-body">
+          <div class="nh-plan-tag">Clásica · Barcelona y área</div>
+          <h3 style="font-size:1.05rem;margin:0 0 .25rem">Acompañamiento integral</h3>
+          <div class="nh-plan-price">3.500 € + IVA</div>
+          <div class="nh-plan-sub">4.235 € IVA incl. · 2.117,50 € + 2.117,50 €</div>
+          <ul class="nh-plan-list">
+            <li>Equipo NH en visitas y negociación</li>
+            <li>Reportaje, vídeo y difusión nacional</li>
+            <li>Arras, notaría y seguimiento completo</li>
+          </ul>
+          <a href="/registro?tipo=vender&amp;plan=clasico" class="btn btn-outline nh-plan-cta" style="width:100%;justify-content:center">Contratar clásica</a>
+        </div>
+      </article>
+
+      <article class="nh-plan-card fade-up fade-up-delay-1">
+        <img src="imagenes/interior11.jpg" alt="Venta digital sin comisiones ocultas" loading="lazy"/>
+        <div class="nh-plan-body">
+          <div class="nh-plan-tag">Digital · bajo coste</div>
+          <h3 style="font-size:1.05rem;margin:0 0 .25rem">Agencia 100 % digital</h3>
+          <div class="nh-plan-price">1.999 € + IVA</div>
+          <div class="nh-plan-sub">2.418,79 € IVA incl. · desde Barcelona, escala nacional</div>
+          <ul class="nh-plan-list">
+            <li>NH abre expediente y publica en portales</li>
+            <li>Visitas <strong>cualificadas</strong> en tus horarios</li>
+            <li>Tú abres la puerta; NH cierra la operación</li>
+          </ul>
+          <a href="/venta-digital-barcelona" class="btn btn-gold nh-plan-cta" style="width:100%;justify-content:center">Ver venta digital</a>
+        </div>
+      </article>
+
+      <article class="nh-plan-card fade-up fade-up-delay-2">
+        <img src="imagenes/interior5.jpg" alt="Comercial NuevaHabitat visitas Barcelona" loading="lazy"/>
+        <div class="nh-plan-body">
+          <div class="nh-plan-tag">Solo Barcelona</div>
+          <h3 style="font-size:1.05rem;margin:0 0 .25rem">Digital + comercial in situ</h3>
+          <div class="nh-plan-price">2.500 € + IVA</div>
+          <div class="nh-plan-sub">3.025 € IVA incl. · comercial NH hace las visitas</div>
+          <ul class="nh-plan-list">
+            <li>Mismo proceso digital que el plan 1.999 €</li>
+            <li>Un comercial NH enseña el piso en Barcelona</li>
+            <li>Ideal si no quieres hacer visitas</li>
+          </ul>
+          <a href="/venta-comercial-barcelona" class="btn btn-outline nh-plan-cta" style="width:100%;justify-content:center">Ver plan comercial</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="nh-proceso-block">
+      <h3>Cómo funciona (los tres planes)</h3>
+      <div class="nh-proceso-steps">
+        <div class="nh-proceso-step"><strong>1 · Contrato</strong> Eliges plan y pagas 50&nbsp;% con Stripe. Se activa el servicio.</div>
+        <div class="nh-proceso-step"><strong>2 · Expediente</strong> Nota registral, documentación y preparación del anuncio (foto/vídeo).</div>
+        <div class="nh-proceso-step"><strong>3 · Publicación</strong> Difusión en portales inmobiliarios principales.</div>
+        <div class="nh-proceso-step"><strong>4 · Visitas</strong> Cualificamos compradores; visitas contigo o con comercial BCN.</div>
+        <div class="nh-proceso-step"><strong>5 · Reserva</strong> Arras, coordinación y documentación hasta notaría.</div>
+        <div class="nh-proceso-step"><strong>6 · Escritura</strong> Segundo 50&nbsp;% y firma. Panel actualizado en tiempo real.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════════════════
      TRUST BAR
@@ -335,7 +430,7 @@
         <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
         </svg>
-        Cobro solo en escritura
+        50 % contrato · 50 % escritura
       </div>
       <div class="trust-divider"></div>
       <div class="trust-item">
@@ -370,7 +465,7 @@
       <div class="cred-card fade-up">
         <div class="cred-icon">€</div>
         <h3>Precio fijo</h3>
-        <p>3.000€ + IVA venta (3.630 € en escritura) · 5.000€ compra. Sin comisión del 3%. Sabes lo que pagas desde el primer día.</p>
+        <p>Desde 1.999 € + IVA (digital) hasta 3.500 € + IVA (clásica). Compra 5.000 € + IVA. Sin comisión del 3&nbsp;%. Sabes lo que pagas desde el primer día.</p>
       </div>
       <div class="cred-card fade-up fade-up-delay-1">
         <div class="cred-icon">✓</div>

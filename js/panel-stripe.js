@@ -2,7 +2,7 @@
  * Pagos honorarios — tarjeta (Stripe) y transferencia bancaria
  */
 (function () {
-  const DEFAULTS = { comprador: 6050, vendedor: 4235 };
+  const DEFAULTS = { comprador: 6050, vendedor: 4235.0 };
   let paymentState = null;
   let bankInfo = null;
   let paying = false;
@@ -34,7 +34,7 @@
     const tabla = tipo === 'vendedor' ? 'vendedores' : 'compradores';
     const { data, error } = await window.nhSupabase
       .from(tabla)
-      .select('id,nombre,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,stripe_payment_intent_id')
+      .select('id,nombre,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,stripe_payment_intent_id,plan_venta,honorarios_pago_inicial_pagado,honorarios_pago_inicial_pagado_at,honorarios_pago_final_pagado,honorarios_pago_final_pagado_at,pago_final_habilitado,estado_expediente')
       .eq('email', email)
       .maybeSingle();
     if (error) {
@@ -113,8 +113,67 @@
     `;
   }
 
+  function vendedorPlanInfo(row) {
+    const id = row?.plan_venta || window.nhVentaPlanFromStorage?.() || 'clasico';
+    return window.NH_VENTA_PLANES?.[id] || window.NH_VENTA_PLANES?.clasico;
+  }
+
+  function vendedorPuedeFase2(row) {
+    if (!row?.honorarios_pago_inicial_pagado) return false;
+    if (row.honorarios_pago_final_pagado || row.honorarios_pagado) return false;
+    if (row.pago_final_habilitado) return true;
+    return row.estado_expediente === 'escritura' || row.estado_expediente === 'cerrado';
+  }
+
+  function vendedorServicioActivo(row) {
+    if (!row) return false;
+    if (row.honorarios_pagado && !row.honorarios_pago_inicial_pagado) return true;
+    return !!row.honorarios_pago_inicial_pagado;
+  }
+  window.nhVendedorServicioActivo = vendedorServicioActivo;
+
+  function renderVendedorSplitHtml(row) {
+    const total = Number(row?.honorarios) || DEFAULTS.vendedor;
+    const plan = vendedorPlanInfo(row);
+    const half1 = plan?.half1 ?? total / 2;
+    const half2 = plan?.half2 ?? total / 2;
+    const ini = !!row?.honorarios_pago_inicial_pagado;
+    const fin = !!(row?.honorarios_pago_final_pagado || row?.honorarios_pagado);
+    const f2ok = vendedorPuedeFase2(row);
+
+    return `
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">${plan?.label || 'Venta'}</div>
+      <div style="font-family:var(--font-serif);font-size:1.35rem;margin-bottom:.25rem">${plan?.baseLabel || ''}</div>
+      <div style="font-size:.9rem;margin-bottom:.35rem;opacity:.9">${plan?.totalLabel || formatEur(total)} · 50 % + 50 %</div>
+      <p style="font-size:.85rem;color:rgba(255,255,255,.65);margin-bottom:1rem;line-height:1.55">
+        El servicio arranca al pagar el <strong>primer 50 %</strong>. El resto se cobra en <strong>escritura</strong>.
+      </p>
+      ${!ini ? `
+        <button type="button" class="btn btn-gold nh-pay-btn" data-fase="1" style="font-size:.84rem;width:100%;justify-content:center;margin-bottom:.5rem">
+          Contratar · pagar ${formatEur(half1)} (50 %)
+        </button>
+        <p style="font-size:.72rem;color:rgba(255,255,255,.45);margin:0;text-align:center">Pago seguro con Stripe</p>
+      ` : !fin ? `
+        <div class="nh-pay-badge nh-pay-badge--done" style="margin-bottom:.75rem">✓ Primer pago recibido · servicio activo</div>
+        ${f2ok ? `
+          <button type="button" class="btn btn-gold nh-pay-btn" data-fase="2" style="font-size:.84rem;width:100%;justify-content:center;margin-bottom:.5rem">
+            Pagar en escritura · ${formatEur(half2)} (50 %)
+          </button>
+        ` : `
+          <p style="font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.5;margin:0">
+            El segundo pago se habilitará cuando programemos escritura (te avisaremos por email y aquí en el panel).
+          </p>
+        `}
+      ` : `
+        <div class="nh-pay-badge nh-pay-badge--done">✓ Honorarios completados</div>
+      `}
+    `;
+  }
+
   function renderHonorariosHtml(row) {
     const tipo = getTipo();
+    if (tipo === 'vendedor') return renderVendedorSplitHtml(row);
+
     const total = Number(row?.honorarios) || DEFAULTS[tipo];
     const { base, iva } = splitIva(total);
     const paid = !!row?.honorarios_pagado;
@@ -123,9 +182,7 @@
       : null;
     const metodo = row?.honorarios_metodo_pago === 'transferencia' ? 'transferencia' : 'tarjeta';
 
-    const subtitle = tipo === 'vendedor'
-      ? 'Honorarios fijos por la venta de tu inmueble. Tarjeta o transferencia.'
-      : 'Honorarios por el acompañamiento en la compra. Tarjeta o transferencia.';
+    const subtitle = 'Honorarios por el acompañamiento en la compra. Tarjeta o transferencia.';
 
     return `
       <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--oro);margin-bottom:.5rem">Honorarios transparentes</div>
@@ -149,6 +206,15 @@
 
   function renderSectionHtml(row) {
     const tipo = getTipo();
+    if (tipo === 'vendedor') {
+      return `
+      <div class="p-card">${renderVendedorSplitHtml(row)}</div>
+      <div class="p-card" style="background:var(--crema)">
+        <p style="font-size:.82rem;color:var(--gris-texto);line-height:1.65;margin:0">
+          Factura tras cada pago confirmado. Dudas: <a href="mailto:info@nuevahabitat.com">info@nuevahabitat.com</a>
+        </p>
+      </div>`;
+    }
     const total = Number(row?.honorarios) || DEFAULTS[tipo];
     const { base, iva } = splitIva(total);
     const paid = !!row?.honorarios_pagado;
@@ -230,12 +296,22 @@
     });
   }
 
-  async function startCheckout() {
-    if (paying || paymentState?.honorarios_pagado) return;
+  async function startCheckout(ev) {
+    const btn = ev?.currentTarget;
+    const fase = btn?.dataset?.fase ? Number(btn.dataset.fase) : null;
+    const tipo = getTipo();
+    if (paying) return;
+    if (tipo === 'vendedor') {
+      if (fase === 1 && paymentState?.honorarios_pago_inicial_pagado) return;
+      if (fase === 2 && (paymentState?.honorarios_pago_final_pagado || paymentState?.honorarios_pagado)) return;
+    } else if (paymentState?.honorarios_pagado) return;
     setPayLoading(true);
     try {
       const token = await getSessionToken();
       if (!token) throw new Error('Sesión expirada. Vuelve a iniciar sesión.');
+
+      const payload = { tipo };
+      if (tipo === 'vendedor') payload.fase = fase || 1;
 
       const res = await fetch('/api/stripe-checkout', {
         method: 'POST',
@@ -243,7 +319,7 @@
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ tipo: getTipo() }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (!res.ok || !data.ok) {
@@ -338,7 +414,10 @@
   function updateResumenBadge(row) {
     const el = document.getElementById('nhPayResumenBadge');
     if (!el) return;
-    if (row?.honorarios_pagado) {
+    const tipo = getTipo();
+    if (tipo === 'vendedor' && row?.honorarios_pago_inicial_pagado && !(row?.honorarios_pago_final_pagado || row?.honorarios_pagado)) {
+      el.innerHTML = '<span class="nh-pay-chip nh-pay-chip--ok">Servicio activo · falta pago escritura</span>';
+    } else if (row?.honorarios_pagado) {
       el.innerHTML = '<span class="nh-pay-chip nh-pay-chip--ok">Honorarios pagados</span>';
     } else if (row?.honorarios_transferencia_pendiente) {
       el.innerHTML = '<span class="nh-pay-chip nh-pay-chip--pending">Transferencia en revisión</span>';
@@ -351,7 +430,8 @@
   async function loadHonorarios() {
     const row = await fetchPaymentRow();
     paymentState = row;
-    bankInfo = row && !row.honorarios_pagado ? await fetchBankInfo() : null;
+    const needBank = getTipo() === 'comprador' && row && !row.honorarios_pagado;
+    bankInfo = needBank ? await fetchBankInfo() : null;
 
     const cardComprador = document.getElementById('honorariosCardComprador');
     const cardVendedor = document.getElementById('honorariosCardVendedor');

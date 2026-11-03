@@ -29,6 +29,10 @@ import {
   COMPRADOR_HONORARIOS_TOTAL_IVA_EUR,
   VENTA_HONORARIOS_TOTAL_IVA_EUR,
 } from '../lib/server/pricing.js';
+import {
+  mitadImporteCents,
+  vendedorPuedePagarFase2,
+} from '../lib/server/venta-planes.js';
 
 const DEFAULT_HONORARIOS = {
   comprador: COMPRADOR_HONORARIOS_TOTAL_IVA_EUR,
@@ -535,6 +539,37 @@ async function handleVerifySession(req, res) {
 
     const fresh = await fetchClienteRow(tipo, user.email);
     if (!fresh?.id) return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
+
+    const pagoFase = meta.nh_pago_fase ? Number(meta.nh_pago_fase) : null;
+
+    if (tipo === 'vendedor' && pagoFase === 1) {
+      if (fresh.honorarios_pago_inicial_pagado) {
+        return res.status(200).json({ ok: true, alreadyPaid: true, fase: 1 });
+      }
+      await markHonorariosPaid({
+        tipo,
+        recordId: fresh.id,
+        sessionId: session.id,
+        paymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
+        fase: 1,
+      });
+      return res.status(200).json({ ok: true, paid: true, fase: 1 });
+    }
+
+    if (tipo === 'vendedor' && pagoFase === 2) {
+      if (fresh.honorarios_pago_final_pagado || fresh.honorarios_pagado) {
+        return res.status(200).json({ ok: true, alreadyPaid: true, fase: 2 });
+      }
+      await markHonorariosPaid({
+        tipo,
+        recordId: fresh.id,
+        sessionId: session.id,
+        paymentIntentId: typeof session.payment_intent === 'string' ? session.payment_intent : session.payment_intent?.id,
+        fase: 2,
+      });
+      return res.status(200).json({ ok: true, paid: true, fase: 2 });
+    }
+
     if (fresh.honorarios_pagado) {
       return res.status(200).json({ ok: true, alreadyPaid: true });
     }
@@ -610,27 +645,68 @@ export default async function handler(req, res) {
   const body = req.body || {};
   const tipo = body.tipo === 'vendedor' ? 'vendedor' : 'comprador';
   const email = user.email.trim();
+  const faseReq = body.fase != null ? Number(body.fase) : 1;
 
   try {
     const row = await fetchClienteRowAsUser(tipo, email, jwt);
     if (!row) {
       return res.status(404).json({ ok: false, error: 'Expediente no encontrado' });
     }
-    if (row.honorarios_pagado) {
+
+    const totalEur = Number(row.honorarios) || DEFAULT_HONORARIOS[tipo];
+    let amountCents = eurosToCents(totalEur);
+    let pagoFaseMeta = null;
+    let productLabel = tipo === 'vendedor'
+      ? 'Honorarios NuevaHabitat — Venta de inmueble'
+      : 'Honorarios NuevaHabitat — Acompañamiento compra';
+    let desc = `Pago seguro con tarjeta · ${totalEur.toLocaleString('es-ES')} € IVA incluido`;
+
+    if (tipo === 'vendedor') {
+      if (row.honorarios_pagado && row.honorarios_pago_final_pagado) {
+        return res.status(400).json({ ok: false, error: 'Los honorarios ya están pagados', code: 'ALREADY_PAID' });
+      }
+      const fase = faseReq === 2 ? 2 : 1;
+      if (fase === 1) {
+        if (row.honorarios_pago_inicial_pagado) {
+          return res.status(400).json({ ok: false, error: 'El primer pago ya está realizado', code: 'ALREADY_PAID' });
+        }
+        amountCents = mitadImporteCents(totalEur, 1);
+        pagoFaseMeta = '1';
+        productLabel = 'NuevaHabitat — 50 % al contratar (venta)';
+        desc = `Primer pago (50 %) · ${(amountCents / 100).toLocaleString('es-ES')} € IVA incluido`;
+      } else {
+        if (!row.honorarios_pago_inicial_pagado) {
+          return res.status(400).json({ ok: false, error: 'Debes completar el primer pago antes', code: 'NEEDS_PHASE_1' });
+        }
+        if (!vendedorPuedePagarFase2(row)) {
+          return res.status(400).json({ ok: false, error: 'El pago en escritura aún no está habilitado', code: 'PHASE_2_LOCKED' });
+        }
+        if (row.honorarios_pago_final_pagado) {
+          return res.status(400).json({ ok: false, error: 'El segundo pago ya está realizado', code: 'ALREADY_PAID' });
+        }
+        amountCents = mitadImporteCents(totalEur, 2);
+        pagoFaseMeta = '2';
+        productLabel = 'NuevaHabitat — 50 % en escritura (venta)';
+        desc = `Segundo pago (50 %) · ${(amountCents / 100).toLocaleString('es-ES')} € IVA incluido`;
+      }
+    } else if (row.honorarios_pagado) {
       return res.status(400).json({ ok: false, error: 'Los honorarios ya están pagados', code: 'ALREADY_PAID' });
     }
 
-    const totalEur = Number(row.honorarios) || DEFAULT_HONORARIOS[tipo];
-    const amountCents = eurosToCents(totalEur);
     if (amountCents < 100) {
       return res.status(400).json({ ok: false, error: 'Importe inválido' });
     }
 
     const stripe = new Stripe(secretKey, { apiVersion: '2024-11-20.acacia' });
     const origin = siteOrigin(req);
-    const productLabel = tipo === 'vendedor'
-      ? 'Honorarios NuevaHabitat — Venta de inmueble'
-      : 'Honorarios NuevaHabitat — Acompañamiento compra';
+
+    const metadata = {
+      nh_tipo: tipo,
+      nh_record_id: row.id,
+      nh_user_id: user.id,
+      nh_email: email,
+    };
+    if (pagoFaseMeta) metadata.nh_pago_fase = pagoFaseMeta;
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
@@ -642,21 +718,16 @@ export default async function handler(req, res) {
           unit_amount: amountCents,
           product_data: {
             name: productLabel,
-            description: `Pago seguro con tarjeta · ${totalEur.toLocaleString('es-ES')} € IVA incluido`,
+            description: desc,
           },
         },
       }],
-      metadata: {
-        nh_tipo: tipo,
-        nh_record_id: row.id,
-        nh_user_id: user.id,
-        nh_email: email,
-      },
+      metadata,
       success_url: `${origin}/panel?tipo=${tipo}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/panel?tipo=${tipo}&pago=cancel`,
     });
 
-    return res.status(200).json({ ok: true, url: session.url, sessionId: session.id });
+    return res.status(200).json({ ok: true, url: session.url, sessionId: session.id, fase: pagoFaseMeta ? Number(pagoFaseMeta) : null });
   } catch (err) {
     console.error('stripe-checkout:', err);
     return res.status(500).json({ ok: false, error: err.message || 'Error al crear pago' });

@@ -91,6 +91,7 @@
     </div>
   </div>
 </div>
+<script src="js/venta-planes-config.js?v=20261103"></script>
 <script src="js/notify.js"></script>
 <script src="js/supabase.js"></script>
 <script>
@@ -117,6 +118,15 @@ document.addEventListener('supabase:ready', async () => {
     });
   }
   document.querySelectorAll('input[name="tipo"]').forEach((r) => r.addEventListener('change', syncTipoUi));
+  (function applyRegistroQuery(){
+    const q = new URLSearchParams(location.search);
+    const plan = q.get('plan');
+    if (plan) localStorage.setItem('nh_venta_plan', plan);
+    if (q.get('tipo') === 'vender') {
+      const rv = document.getElementById('tipoVender');
+      if (rv) rv.checked = true;
+    }
+  })();
   syncTipoUi();
 
   const form   = document.getElementById('regForm');
