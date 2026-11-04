@@ -161,29 +161,74 @@
       }
     }
 
-    if (!wrapLi.dataset.nhAlqBound) {
-      const trigger = wrapLi.querySelector('.nav-dropdown-trigger');
-      const close = () => {
-        wrapLi.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      };
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        const open = wrapLi.classList.toggle('open');
-        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-      document.addEventListener('click', (e) => {
-        if (!wrapLi.contains(e.target)) close();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') close();
-      });
-      wrapLi.dataset.nhAlqBound = '1';
+    bindNavDropdown(wrapLi, 'nhAlqBound');
+    return wrapLi;
+  }
+
+  function bindNavDropdown(wrapLi, datasetKey) {
+    if (!wrapLi || wrapLi.dataset[datasetKey]) return;
+    const trigger = wrapLi.querySelector('.nav-dropdown-trigger');
+    if (!trigger) return;
+    const close = () => {
+      wrapLi.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const open = wrapLi.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      if (!wrapLi.contains(e.target)) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+    wrapLi.dataset[datasetKey] = '1';
+  }
+
+  function mountVenderNav(ul) {
+    if (ul.querySelector('.nav-vender-wrap')) {
+      bindNavDropdown(ul.querySelector('.nav-vender-wrap'), 'nhVendBound');
+      return ul.querySelector('.nav-vender-wrap');
     }
+
+    ul.querySelectorAll('li').forEach((li) => {
+      if (li.classList.contains('nav-vender-wrap')) return;
+      const a = li.querySelector(':scope > a[href="/vender"]');
+      if (!a) return;
+      const label = (a.textContent || '').trim();
+      if (/^vender$/i.test(label) || label === 'Vender mi vivienda') li.remove();
+    });
+
+    let wrapLi = ul.querySelector('.nav-vender-wrap');
+    if (wrapLi) {
+      bindNavDropdown(wrapLi, 'nhVendBound');
+      return wrapLi;
+    }
+
+    const compradorLi = [...ul.querySelectorAll('li')].find((li) => li.querySelector('a[href="/comprar"]'));
+    wrapLi = document.createElement('li');
+    wrapLi.className = 'nav-link-dropdown nav-vender-wrap';
+    wrapLi.innerHTML = `
+      <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Vender</button>
+      <div class="nav-dropdown-menu" role="menu">
+        <a href="/vender" role="menuitem">Información general</a>
+        <a href="/venta-clasica-barcelona" role="menuitem">Venta clásica · 3.500 € + IVA</a>
+        <a href="/venta-digital-barcelona" role="menuitem">Venta 100 % digital · 1.999 € + IVA</a>
+        <a href="/venta-comercial-barcelona" role="menuitem">Digital + comercial · 2.500 € + IVA</a>
+        <a href="/#planes-venta" role="menuitem">Comparar los 3 planes</a>
+      </div>
+    `;
+    if (compradorLi) compradorLi.before(wrapLi);
+    else ul.prepend(wrapLi);
+
+    bindNavDropdown(wrapLi, 'nhVendBound');
     return wrapLi;
   }
 
   document.querySelectorAll('.nav-links').forEach(mountAlquileresNav);
+  document.querySelectorAll('.nav-links').forEach(mountVenderNav);
 
   const path = window.location.pathname.replace(/\/$/, '') || '/';
   if (
@@ -195,8 +240,39 @@
     document.querySelectorAll('.nav-alquileres-wrap').forEach((li) => li.classList.add('is-active'));
   }
 
+  if (
+    path === '/vender' ||
+    path === '/venta-clasica-barcelona' ||
+    path === '/venta-digital-barcelona' ||
+    path === '/venta-comercial-barcelona'
+  ) {
+    document.querySelectorAll('.nav-vender-wrap').forEach((li) => li.classList.add('is-active'));
+  }
+
   const mobileNav = document.getElementById('mobileNav');
   if (mobileNav) {
+    const vendMain = mobileNav.querySelector('a[href="/vender"]');
+    if (vendMain && vendMain.textContent.trim() === 'Vender' && !mobileNav.querySelector('[data-nh-vend-mobile]')) {
+      vendMain.remove();
+      const comprarLink = mobileNav.querySelector('a[href="/comprar"]');
+      const vendLinks = [
+        { href: '/vender', id: 'hub', label: 'Vender · Información general' },
+        { href: '/venta-clasica-barcelona', id: 'clasica', label: 'Vender · Venta clásica' },
+        { href: '/venta-digital-barcelona', id: 'digital', label: 'Vender · 100 % digital' },
+        { href: '/venta-comercial-barcelona', id: 'comercial', label: 'Vender · Digital + comercial' },
+        { href: '/#planes-venta', id: 'compare', label: 'Vender · Comparar planes' },
+      ];
+      let insertBefore = comprarLink;
+      vendLinks.forEach((item) => {
+        const link = document.createElement('a');
+        link.href = item.href;
+        link.dataset.nhVendMobile = item.id;
+        link.textContent = item.label;
+        if (insertBefore) mobileNav.insertBefore(link, insertBefore);
+        else mobileNav.appendChild(link);
+      });
+    }
+
     mobileNav.querySelectorAll('a[href="/administracion-alquileres"]').forEach((a) => {
       if (a.dataset.nhAlqMobile) return;
       if (a.textContent.trim() === 'Administración de alquileres') a.remove();

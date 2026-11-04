@@ -217,7 +217,16 @@
     </a>
 
     <ul class="nav-links">
-      <li><a href="/vender">Vender</a></li>
+      <li class="nav-link-dropdown nav-vender-wrap">
+        <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Vender</button>
+        <div class="nav-dropdown-menu" role="menu">
+          <a href="/vender" role="menuitem">Información general</a>
+          <a href="/venta-clasica-barcelona" role="menuitem">Venta clásica · 3.500 € + IVA</a>
+          <a href="/venta-digital-barcelona" role="menuitem">Venta 100 % digital · 1.999 € + IVA</a>
+          <a href="/venta-comercial-barcelona" role="menuitem">Digital + comercial · 2.500 € + IVA</a>
+          <a href="/#planes-venta" role="menuitem">Comparar los 3 planes</a>
+        </div>
+      </li>
       <li><a href="/comprar">Comprar</a></li>
       <li><a href="/inmuebles">Inmuebles</a></li>
       <li><a href="/hipotecas">Hipotecas</a></li>
@@ -1738,7 +1747,7 @@ document.getElementById('homeLeadForm')?.addEventListener('submit', async functi
 <script src="js/gtag-init.js"></script>
 <script src="js/analytics-events.js"></script>
 <script src="js/seo.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=20261104b"></script>
 </body>
 </html>
 
