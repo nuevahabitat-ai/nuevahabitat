@@ -14,13 +14,34 @@ function esc(s) {
     .replace(/"/g, '&quot;');
 }
 
+function portalsPublicationBlock(cityName) {
+  const city = esc(cityName);
+  return `
+<section class="lc-section nh-svc-portals" style="background:var(--blanco)">
+  <div class="container fade-up">
+    <div class="nh-svc-portals-inner">
+      <div class="nh-svc-portals-copy">
+        <span class="overline">Publicación</span>
+        <h2 class="section-title">Idealista y pisos.com</h2>
+        <p class="nh-svc-portals-lead">La publicación se hará con <strong>Idealista</strong> y con <strong>pisos.com</strong>, con lo que tendremos el máximo de clientes interesados en tu inmueble en ${city}.</p>
+        <p class="nh-svc-portals-note">A eso sumamos nuestra cartera de compradores y el filtro de solvencia antes de cada visita.</p>
+      </div>
+      <div class="nh-svc-portals-logos">
+        <img src="imagenes/portales/idealista.jpg" alt="Idealista" width="254" height="157" loading="lazy" class="nh-svc-portal-logo nh-svc-portal-logo--idealista"/>
+        <img src="imagenes/portales/pisos-com.png" alt="pisos.com" width="200" height="80" loading="lazy" class="nh-svc-portal-logo nh-svc-portal-logo--pisos"/>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
 function renderVentaDigitalPage(c) {
   const canonical = `${SITE}/${c.slug}`;
   const trad6 = tradCommission6(c.priceExample);
   const zonesList = c.zones.map((z) => `<li>${esc(z)}</li>`).join('');
   const title = `Venta 100 % digital en ${c.cityName} · 1.999 € + IVA · NuevaHabitat`;
   const kw = c.keyword_principal || `venta 100 por ciento digital ${c.cityName}`;
-  const description = `${kw}: vende en ${c.cityName} con honorarios fijos 1.999 € + IVA. Portales, panel vendedor y visitas cualificadas en tus horarios. 50 % contrato + 50 % escritura.`;
+  const description = `${kw}: vende en ${c.cityName} con honorarios fijos 1.999 € + IVA. Publicación en Idealista y pisos.com, panel vendedor y visitas cualificadas. 50 % contrato + 50 % escritura.`;
   const aliasesMeta = (c.keyword_aliases || []).slice(0, 8).join(', ');
   const trad3 = tradCommission3(c.priceExample);
   const relatedList = (c.relatedGuides || [])
@@ -88,7 +109,7 @@ function renderVentaDigitalPage(c) {
             name: `¿Qué es la venta 100 % digital en ${c.cityName}?`,
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'NuevaHabitat gestiona valoración, anuncio, portales, filtro de compradores y negociación. El propietario recibe en casa solo visitas cualificadas en horarios que marca en el panel. Honorarios fijos 1.999 € + IVA.',
+              text: 'NuevaHabitat gestiona valoración, anuncio, publicación en Idealista y pisos.com, filtro de compradores y negociación. El propietario recibe en casa solo visitas cualificadas en horarios que marca en el panel. Honorarios fijos 1.999 € + IVA.',
             },
           },
           {
@@ -144,7 +165,7 @@ function renderVentaDigitalPage(c) {
     <div class="hero-badge">${esc(c.heroBadge)}</div>
     <h1>Venta 100&nbsp;% digital en ${esc(c.cityName)}: tú en las visitas, NuevaHabitat en el resto</h1>
     <div class="nh-svc-price-chip"><strong>1.999 € + IVA</strong> · <span>50&nbsp;% contrato + 50&nbsp;% escritura</span></div>
-    <p>${c.marketLead} Publicamos en portales, <strong>cualificamos compradores</strong> y negociamos hasta escritura. Sin comisión del 3&nbsp;% ni sorpresas en factura.</p>
+    <p>${c.marketLead} Publicamos en <strong>Idealista</strong> y <strong>pisos.com</strong>, <strong>cualificamos compradores</strong> y negociamos hasta escritura. Sin comisión del 3&nbsp;% ni sorpresas en factura.</p>
     <div class="nh-svc-hero-actions">
       <a href="/registro?tipo=vender&amp;plan=digital&amp;ciudad=${encodeURIComponent(c.cityName)}" class="btn btn-gold">Contratar venta digital</a>
       <a href="/venta-digital" class="btn btn-outline-light">Ver todas las ciudades</a>
@@ -170,7 +191,7 @@ function renderVentaDigitalPage(c) {
       <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">En un piso de <strong>${c.priceExample.toLocaleString('es-ES')} €</strong>, agencia al 6&nbsp;% + IVA ≈ <strong>${trad6.toLocaleString('es-ES')} €</strong>; al 3&nbsp;% + IVA ≈ <strong>${trad3.toLocaleString('es-ES')} €</strong>. Venta digital: <strong>1.999 € + IVA</strong> — honorarios fijos, sin porcentaje sobre el precio de venta.</p>
       <ul class="lc-nh-checklist">
         <li>Expediente 100&nbsp;% online: contrato, Stripe y documentación.</li>
-        <li>Difusión en portales nacionales + compradores de cartera.</li>
+        <li>Publicación en Idealista y pisos.com + compradores de cartera.</li>
         <li>Visitas solo con solvencia contrastada; tú eliges franjas horarias.</li>
         <li>Primer 50&nbsp;% al contratar activa el servicio.</li>
       </ul>
@@ -180,6 +201,8 @@ function renderVentaDigitalPage(c) {
     </div>
   </div>
 </section>
+
+${portalsPublicationBlock(c.cityName)}
 
 <section class="lc-section" style="background:var(--crema)">
   <div class="container">
@@ -226,7 +249,7 @@ function renderVentaDigitalPage(c) {
       <h2 class="section-title">División clara del trabajo</h2>
     </div>
     <div class="nh-svc-pillar-grid fade-up">
-      <div class="nh-svc-pillar"><h3>NuevaHabitat</h3><p>Valoración, anuncio, vídeo, portales, leads, filtro financiero, negociación, arras, coordinación notaría y panel actualizado.</p></div>
+      <div class="nh-svc-pillar"><h3>NuevaHabitat</h3><p>Valoración, anuncio, vídeo, Idealista y pisos.com, leads, filtro financiero, negociación, arras, coordinación notaría y panel actualizado.</p></div>
       <div class="nh-svc-pillar"><h3>Tú en ${esc(c.cityName)}</h3><p>Marcas franjas en el calendario del panel y recibes en casa a compradores <strong>ya cualificados</strong>. Sin visitas sorpresa de curiosos.</p></div>
       <div class="nh-svc-pillar"><h3>Pago</h3><p>50&nbsp;% al contratar activa el servicio. 50&nbsp;% restante en escritura cuando cierres la venta. Honorarios fijos, no % sobre precio.</p></div>
     </div>
@@ -282,7 +305,7 @@ function renderVentaDigitalPage(c) {
     <div class="lc-steps lc-steps-6 fade-up">
       <div class="lc-step"><div class="lc-step-num">1</div><h4>Registro y 1.er pago</h4><p>Eliges plan digital, pagas 50&nbsp;% con Stripe y se activa el expediente.</p></div>
       <div class="lc-step"><div class="lc-step-num">2</div><h4>Alta del inmueble</h4><p>Dirección, documentación y nota registral en el panel.</p></div>
-      <div class="lc-step"><div class="lc-step-num">3</div><h4>Anuncio y portales</h4><p>Fotografía, vídeo y publicación con difusión nacional.</p></div>
+      <div class="lc-step"><div class="lc-step-num">3</div><h4>Anuncio y portales</h4><p>Fotografía, vídeo y publicación en Idealista y pisos.com.</p></div>
       <div class="lc-step"><div class="lc-step-num">4</div><h4>Visitas cualificadas</h4><p>Tú recibes en ${esc(c.cityName)} en las franjas que marques.</p></div>
       <div class="lc-step"><div class="lc-step-num">5</div><h4>Oferta y arras</h4><p>Negociación, reserva y contrato con comprador preparado.</p></div>
       <div class="lc-step"><div class="lc-step-num">6</div><h4>Escritura</h4><p>Segundo 50&nbsp;% y firma. Honorarios cerrados.</p></div>
@@ -305,7 +328,8 @@ ${testimonialBlock}
     <div class="text-center fade-up" style="margin-bottom:1.5rem"><h2 class="section-title">Preguntas frecuentes · venta digital ${esc(c.cityName)}</h2></div>
     <div class="nh-svc-faq fade-up">
       <details><summary>¿Tengo que hacer todas las visitas yo?</summary><p>Sí, en el plan digital tú abres la puerta en ${esc(c.cityName)}. Solo programamos compradores que cumplen criterios de solvencia e intención.</p></details>
-      <details><summary>¿Es lo mismo que publicar en Idealista como particular?</summary><p>No. Además del anuncio, filtramos demanda, negociamos, gestionamos arras y centralizamos documentación. Pagas honorarios fijos, no un 6&nbsp;% del precio de venta.</p></details>
+      <details><summary>¿En qué portales publicáis el anuncio?</summary><p>La publicación se hace con <strong>Idealista</strong> y <strong>pisos.com</strong>, para llegar al máximo de compradores interesados; además activamos nuestra cartera de demanda cualificada.</p></details>
+      <details><summary>¿Es lo mismo que publicar en Idealista como particular?</summary><p>No. Además del anuncio en Idealista y pisos.com, filtramos demanda, negociamos, gestionamos arras y centralizamos documentación. Pagas honorarios fijos, no un 6&nbsp;% del precio de venta.</p></details>
       ${c.localFaq}
       <details><summary>¿Cuándo pago el resto?</summary><p>El segundo 50&nbsp;% se cobra en escritura, cuando la operación cierra. Hasta entonces el servicio ya está activo tras el primer pago.</p></details>
     </div>

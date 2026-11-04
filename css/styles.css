@@ -2374,6 +2374,53 @@ footer {
     max-width: 360px;
     justify-content: center;
   }
+  .nh-svc-portals-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .nh-svc-portals-logos {
+    justify-content: center;
+  }
+}
+
+.nh-svc-portals-inner {
+  display: grid;
+  grid-template-columns: 1fr minmax(200px, 340px);
+  gap: 2rem;
+  align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+.nh-svc-portals-lead {
+  color: var(--gris-texto);
+  line-height: 1.75;
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+.nh-svc-portals-note {
+  color: var(--gris-texto);
+  line-height: 1.65;
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.92;
+}
+.nh-svc-portals-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+.nh-svc-portal-logo--idealista {
+  max-height: 52px;
+  width: auto;
+  border-radius: 4px;
+  display: block;
+}
+.nh-svc-portal-logo--pisos {
+  max-height: 48px;
+  width: auto;
+  display: block;
 }
 
 /* ── Nueva Hábitat Patrimonial (empresas / carteras) ── */

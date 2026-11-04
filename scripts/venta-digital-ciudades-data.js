@@ -38,12 +38,12 @@ const CIUDADES = [
       '<details><summary>¿Hay comercial NH en visitas en Barcelona?</summary><p>En el plan 100&nbsp;% digital tú recibes las visitas. Si prefieres comercial in situ en Barcelona, mira el <a href="/venta-comercial-barcelona">plan digital + comercial</a> (2.500&nbsp;€ + IVA).</p></details>' +
       '<details><summary>¿En qué barrios de Barcelona operáis?</summary><p>Barcelona ciudad y área metropolitana (L\'Hospitalet, Badalona, Cornellà, Esplugues, Sant Cugat, etc.). Guías por zona en <a href="/vender">hub vender</a> e <a href="/inmobiliaria-precio-fijo-barcelona">inmobiliaria precio fijo</a>.</p></details>',
     seoExtra: `<h2>Vender piso en Barcelona con agencia digital y precio fijo</h2>
-<p>La búsqueda <strong>venta 100 % digital Barcelona</strong> suele venir de propietarios que ya han probado portales solos y quieren <strong>intermediación profesional</strong> sin pagar un 3&nbsp;% o 6&nbsp;% sobre el precio de venta. NuevaHabitat combina difusión en Idealista y resto de portales, <strong>filtro de hipoteca</strong> antes de cada visita y <strong>panel vendedor</strong> donde ves ofertas, documentos y calendario.</p>
+<p>La búsqueda <strong>venta 100 % digital Barcelona</strong> suele venir de propietarios que ya han probado portales solos y quieren <strong>intermediación profesional</strong> sin pagar un 3&nbsp;% o 6&nbsp;% sobre el precio de venta. NuevaHabitat publica en <strong>Idealista</strong> y <strong>pisos.com</strong>, aplica <strong>filtro de hipoteca</strong> antes de cada visita y te da un <strong>panel vendedor</strong> donde ves ofertas, documentos y calendario.</p>
 <p>En Barcelona el ticket medio orientativo ronda los <strong>380.000–480.000 €</strong> según barrio; una comisión tradicional del 6&nbsp;% + IVA puede superar los <strong>30.000 €</strong>. El plan digital deja el coste en <strong>1.999 € + IVA</strong>, repartido 50&nbsp;% al contratar y 50&nbsp;% en escritura.</p>
 <h2>Qué incluye la venta digital en Barcelona</h2>
 <ul>
 <li>Valoración con comparables de cierre en tu micro-zona (Eixample no es igual que Nou Barris).</li>
-<li>Reportaje fotográfico, vídeo y publicación en portales principales.</li>
+<li>Reportaje fotográfico, vídeo y publicación en Idealista y pisos.com.</li>
 <li>Registro de cada visita en panel; tú eliges franjas (tardes, fines de semana).</li>
 <li>Negociación, arras, coordinación con banco del comprador y hasta notaría.</li>
 <li>Oficina física en Les Corts (Mejía Lequerica 42) para reuniones si lo necesitas.</li>
@@ -85,7 +85,7 @@ const CIUDADES = [
 <p>Madrid concentra millones de búsquedas de <strong>vender piso online</strong>, <strong>inmobiliaria digital</strong> y alternativas al 3&nbsp;% de honorarios. NuevaHabitat no es un portal: es agencia con <strong>precio fijo 1.999 € + IVA</strong>, cobro 50&nbsp;/&nbsp;50 y filtro de solvencia antes de abrir tu puerta.</p>
 <p>En distritos como Salamanca o Chamberí el ticket puede superar los 400.000 €; el 6&nbsp;% + IVA de una agencia clásica supera fácilmente <strong>29.000 €</strong>. El plan digital mantiene el coste cerrado aunque negocies bien el precio final.</p>
 <h2>Cómo vendemos en Madrid desde el panel</h2>
-<p>Tras el primer pago (Stripe) activamos expediente: nota simple, certificado energético, borrador de anuncio y calendario de visitas. Compradores de cartera nacional y leads de portales pasan por filtro de financiación. Tú recibes en las franjas que marques — ideal si vives en el piso o tienes horario flexible.</p>
+<p>Tras el primer pago (Stripe) activamos expediente: nota simple, certificado energético, borrador de anuncio y calendario de visitas. Publicamos en Idealista y pisos.com; compradores de cartera y leads de esos portales pasan por filtro de financiación. Tú recibes en las franjas que marques — ideal si vives en el piso o tienes horario flexible.</p>
 <h2>Municipios del área metropolitana</h2>
 <p>Getafe, Móstoles, Alcorcón, Leganés, Pozuelo, Las Rozas: mismo servicio si puedes atender visitas o un familiar autorizado. Negociación y documentación las centralizamos en el panel, sin depender de emails sueltos.</p>`,
   },
@@ -118,7 +118,7 @@ const CIUDADES = [
     ],
     localFaq:
       '<details><summary>¿Funciona para pisos en la playa o l\'Horta?</summary><p>Sí, si puedes atender visitas o delegar en un familiar. La operativa (anuncio, leads, negociación, arras) la llevamos nosotros de forma remota con el mismo panel vendedor.</p></details>' +
-      '<details><summary>¿Publicáis en portales de Valencia?</summary><p>Sí: difusión en portales nacionales y locales relevantes para captar compradores en la Comunitat Valenciana y relocation desde Madrid/Barcelona.</p></details>',
+      '<details><summary>¿Publicáis en portales de Valencia?</summary><p>Sí: anuncio en <strong>Idealista</strong> y <strong>pisos.com</strong>, más cartera de compradores, para captar demanda en la Comunitat Valenciana y relocation desde Madrid/Barcelona.</p></details>',
     seoExtra: `<h2>Inmobiliaria 100 % digital en Valencia</h2>
 <p>Valencia mezcla demanda local, teletrabajo y compradores de otras CCAA. Buscar <strong>venta digital Valencia</strong> implica querer <strong>honorarios claros</strong> y menos curiosos en visita. NuevaHabitat cualifica hipoteca o liquidez antes de agendar contigo.</p>
 <p>Con un piso orientativo de <strong>290.000 €</strong>, el 6&nbsp;% + IVA tradicional ronda <strong>21.000 €</strong>; el plan digital son <strong>1.999 € + IVA</strong> de honorarios fijos si cierras en escritura.</p>
