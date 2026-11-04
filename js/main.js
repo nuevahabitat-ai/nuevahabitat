@@ -350,8 +350,62 @@
 })();
 
 
-/* ── Menú móvil ────────────────────────────────────────────── */
+/* ── Menú móvil (landings sin hamburger: clonar .nav-links) ─── */
+function ensureServiceMobileNav() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar || document.getElementById('menuBtn')) return;
+
+  const navLinks = navbar.querySelector('.nav-links');
+  const actions = navbar.querySelector('.nav-actions');
+  if (!navLinks || !actions) return;
+
+  const burger = document.createElement('button');
+  burger.type = 'button';
+  burger.className = 'nav-hamburger';
+  burger.id = 'menuBtn';
+  burger.setAttribute('aria-label', 'Menú');
+  burger.innerHTML = '<span></span><span></span><span></span>';
+  actions.appendChild(burger);
+
+  const mobile = document.createElement('nav');
+  mobile.className = 'mobile-nav';
+  mobile.id = 'mobileNav';
+
+  const closeBtn = document.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.className = 'mobile-nav-close';
+  closeBtn.id = 'menuClose';
+  closeBtn.textContent = '✕';
+  mobile.appendChild(closeBtn);
+
+  navLinks.querySelectorAll('a').forEach((a) => {
+    const link = document.createElement('a');
+    link.href = a.getAttribute('href') || '/';
+    link.textContent = a.textContent.trim();
+    if (a.getAttribute('aria-current') === 'page') link.style.color = 'var(--oro)';
+    mobile.appendChild(link);
+  });
+
+  const cta = actions.querySelector('.nav-cta');
+  const ctaLink = document.createElement('a');
+  ctaLink.href = cta?.getAttribute('href') || '/registro';
+  ctaLink.style.color = 'var(--oro)';
+  ctaLink.textContent = `${(cta?.textContent || 'Contratar').trim()} →`;
+  mobile.appendChild(ctaLink);
+
+  if (!mobile.querySelector('a[href="/"]')) {
+    const home = document.createElement('a');
+    home.href = '/';
+    home.textContent = 'Inicio';
+    mobile.insertBefore(home, mobile.children[1] || null);
+  }
+
+  navbar.insertAdjacentElement('afterend', mobile);
+}
+
 (function () {
+  ensureServiceMobileNav();
+
   const menuBtn   = document.getElementById('menuBtn');
   const menuClose = document.getElementById('menuClose');
   const mobileNav = document.getElementById('mobileNav');

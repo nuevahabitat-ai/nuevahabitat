@@ -188,7 +188,7 @@ function renderVentaDigitalPage(c) {
       <h2 class="section-title">Zonas donde operamos en ${esc(c.cityName)}</h2>
       <p style="color:var(--gris-texto);line-height:1.7">El servicio es el mismo en toda la ciudad: valoración, anuncio profesional, filtro de leads y negociación. Ejemplos de barrios y municipios donde ya encaja el modelo digital:</p>
     </div>
-    <ul class="lc-nh-checklist fade-up" style="max-width:640px;margin:0 auto;columns:2;gap:2rem">${zonesList}</ul>
+    <ul class="lc-nh-checklist lc-nh-checklist--2col fade-up" style="max-width:640px;margin:0 auto">${zonesList}</ul>
     <p class="text-center fade-up" style="margin-top:1.5rem;font-size:.9rem;color:var(--gris-texto)">¿Tu zona no aparece? <a href="/contacto">Escríbenos</a> — confirmamos cobertura antes de contratar.</p>
   </div>
 </section>
@@ -205,8 +205,8 @@ function renderVentaDigitalPage(c) {
       <span class="overline">Comparativa de honorarios</span>
       <h2 class="section-title">Venta digital vs agencia tradicional en ${esc(c.cityName)}</h2>
     </div>
-    <div class="adm-table-wrap fade-up" style="max-width:720px;margin:0 auto">
-      <table class="adm-table" style="width:100%;background:#fff;border-radius:8px;overflow:hidden">
+    <div class="nh-svc-table-scroll fade-up" style="max-width:720px;margin:0 auto">
+      <table class="nh-svc-compare-table">
         <thead><tr><th>Modelo</th><th>Coste orientativo (${c.priceExample.toLocaleString('es-ES')} €)</th><th>Visitas</th></tr></thead>
         <tbody>
           <tr><td>Agencia ~6&nbsp;% + IVA</td><td>~${trad6.toLocaleString('es-ES')} €</td><td>Agencia</td></tr>

@@ -2306,6 +2306,76 @@ footer {
   .lc-pm-sidebar { flex-direction: row; flex-wrap: wrap; border-right: 0; border-bottom: 1px solid var(--crema-dark); }
 }
 
+.lc-nh-checklist--2col {
+  columns: 2;
+  column-gap: 2rem;
+}
+.nh-svc-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -0.25rem;
+  padding: 0 0.25rem 0.5rem;
+}
+.nh-svc-compare-table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.nh-svc-compare-table th,
+.nh-svc-compare-table td {
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--crema-dark);
+  vertical-align: top;
+}
+.nh-svc-compare-table thead th {
+  background: var(--negro);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.nh-svc-compare-table tbody tr:last-child td { border-bottom: 0; }
+
+@media (max-width: 768px) {
+  .nh-svc-hero { min-height: auto; }
+  .nh-svc-hero-inner {
+    padding: calc(var(--nav-h) + 0.75rem) 0 2.5rem;
+  }
+  .nh-svc-hero-inner h1 {
+    font-size: clamp(1.65rem, 7vw, 2.35rem);
+  }
+  .nh-svc-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nh-svc-hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+  .nh-svc-price-chip {
+    font-size: 0.82rem;
+  }
+  .nh-svc-price-chip strong {
+    font-size: 1.15rem;
+  }
+  .lc-nh-checklist--2col {
+    columns: 1;
+  }
+  .nh-svc-planes-nav a {
+    padding: 0.85rem 1rem;
+  }
+  body:has(.nh-svc-hero) .lc-section .btn.btn-gold {
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+  }
+}
+
 /* ── Nueva Hábitat Patrimonial (empresas / carteras) ── */
 .nh-pat-hero-badge {
   display: inline-block;
@@ -2902,8 +2972,8 @@ footer {
   .nav-logo .logo-name { font-size: 1rem; }
   .nav-logo .logo-sub  { font-size: .55rem; }
 
-  /* Body space for bottom nav */
-  body { padding-bottom: 66px; }
+  /* Body space for sticky mobile search (home) */
+  body:has(.mobile-search-bar) { padding-bottom: 66px; }
 
   /* Hero — app style */
   #hero { min-height: 68svh; min-height: 68vh; align-items: flex-end; }
@@ -3084,8 +3154,12 @@ footer {
   }
   .footer-bottom { flex-direction: column; text-align: center; gap: .75rem; padding: 1.25rem 0; }
 
-  /* WhatsApp float — encima del bottom nav */
-  .whatsapp-float { bottom: 78px; right: 1rem; z-index: 9990; }
+  /* WhatsApp float — encima del bottom nav (home) o safe-area (resto) */
+  .whatsapp-float { right: 1rem; z-index: 9990; }
+  body:has(.mobile-search-bar) .whatsapp-float { bottom: 78px; }
+  body:not(:has(.mobile-search-bar)) .whatsapp-float {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
   .whatsapp-btn { width: 50px; height: 50px; }
   .whatsapp-tooltip { display: none; }
 }
