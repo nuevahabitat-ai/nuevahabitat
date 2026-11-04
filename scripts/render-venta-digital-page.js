@@ -1,11 +1,8 @@
 const {
   SITE,
   FEE_BASE,
-  FEE_IVA,
-  FEE_HALF,
   tradCommission6,
   tradCommission3,
-  savingsVs6,
   otherCityLinks,
 } = require('./venta-digital-ciudades-data');
 const { testimonialsSection } = require('./landing-testimonials');
@@ -20,11 +17,10 @@ function esc(s) {
 function renderVentaDigitalPage(c) {
   const canonical = `${SITE}/${c.slug}`;
   const trad6 = tradCommission6(c.priceExample);
-  const ahorro = savingsVs6(c.priceExample);
   const zonesList = c.zones.map((z) => `<li>${esc(z)}</li>`).join('');
   const title = `Venta 100 % digital en ${c.cityName} · 1.999 € + IVA · NuevaHabitat`;
   const kw = c.keyword_principal || `venta 100 por ciento digital ${c.cityName}`;
-  const description = `${kw}: vende en ${c.cityName} con honorarios fijos 1.999 € + IVA (${FEE_IVA.toLocaleString('es-ES')} € IVA incl.). Portales, panel vendedor y visitas cualificadas en tus horarios. 50 % contrato + 50 % escritura.`;
+  const description = `${kw}: vende en ${c.cityName} con honorarios fijos 1.999 € + IVA. Portales, panel vendedor y visitas cualificadas en tus horarios. 50 % contrato + 50 % escritura.`;
   const aliasesMeta = (c.keyword_aliases || []).slice(0, 8).join(', ');
   const trad3 = tradCommission3(c.priceExample);
   const relatedList = (c.relatedGuides || [])
@@ -100,7 +96,7 @@ function renderVentaDigitalPage(c) {
             name: `¿Cuánto cuesta vender con el plan digital en ${c.cityName}?`,
             acceptedAnswer: {
               '@type': 'Answer',
-              text: `1.999 € + IVA (${FEE_IVA.toLocaleString('es-ES')} € IVA incluido): 50 % al contratar y 50 % en escritura. Sin porcentaje sobre el precio de venta.`,
+              text: '1.999 € + IVA: 50 % al contratar y 50 % en escritura. Sin porcentaje sobre el precio de venta.',
             },
           },
         ],
@@ -147,7 +143,7 @@ function renderVentaDigitalPage(c) {
     <p class="nh-breadcrumb" aria-label="Ruta" style="font-size:.75rem;color:rgba(255,255,255,.55);margin:0 0 .75rem"><a href="/" style="color:inherit">Inicio</a> · <a href="/venta-digital" style="color:inherit">Venta digital</a> · <span>${esc(c.cityName)}</span></p>
     <div class="hero-badge">${esc(c.heroBadge)}</div>
     <h1>Venta 100&nbsp;% digital en ${esc(c.cityName)}: tú en las visitas, NuevaHabitat en el resto</h1>
-    <div class="nh-svc-price-chip"><strong>1.999 € + IVA</strong> · ${FEE_IVA.toLocaleString('es-ES')} € IVA incl. · <span>50&nbsp;% contrato + 50&nbsp;% escritura</span></div>
+    <div class="nh-svc-price-chip"><strong>1.999 € + IVA</strong> · <span>50&nbsp;% contrato + 50&nbsp;% escritura</span></div>
     <p>${c.marketLead} Publicamos en portales, <strong>cualificamos compradores</strong> y negociamos hasta escritura. Sin comisión del 3&nbsp;% ni sorpresas en factura.</p>
     <div class="nh-svc-hero-actions">
       <a href="/registro?tipo=vender&amp;plan=digital&amp;ciudad=${encodeURIComponent(c.cityName)}" class="btn btn-gold">Contratar venta digital</a>
@@ -171,12 +167,12 @@ function renderVentaDigitalPage(c) {
       <h2 class="section-title">Inmobiliaria digital en ${esc(c.cityName)} con precio fijo</h2>
       <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1rem">Muchas búsquedas en Google combinan <strong>venta digital</strong>, <strong>vender piso online</strong> o <strong>inmobiliaria sin comisión porcentual</strong> con ${esc(c.cityName)}. El plan 100&nbsp;% digital de NuevaHabitat responde a eso: honorarios cerrados (<strong>${FEE_BASE} € + IVA</strong>), cobro repartido 50&nbsp;/&nbsp;50 y panel vendedor donde ves visitas, documentos y ofertas.</p>
       <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:.75rem">Mercado orientativo en ${esc(c.cityName)}: <strong>${esc(c.priceM2 || '')}</strong> · plazos habituales <strong>${esc(c.avgDays || '')}</strong>.</p>
-      <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">En un piso de <strong>${c.priceExample.toLocaleString('es-ES')} €</strong>, agencia al 6&nbsp;% + IVA ≈ <strong>${trad6.toLocaleString('es-ES')} €</strong>; al 3&nbsp;% + IVA ≈ <strong>${trad3.toLocaleString('es-ES')} €</strong>. Venta digital: <strong>${FEE_IVA.toLocaleString('es-ES')} €</strong> IVA incl. si cierras — ahorro orientativo <strong>${ahorro.toLocaleString('es-ES')} €</strong> vs 6&nbsp;%.</p>
+      <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1.25rem">En un piso de <strong>${c.priceExample.toLocaleString('es-ES')} €</strong>, agencia al 6&nbsp;% + IVA ≈ <strong>${trad6.toLocaleString('es-ES')} €</strong>; al 3&nbsp;% + IVA ≈ <strong>${trad3.toLocaleString('es-ES')} €</strong>. Venta digital: <strong>1.999 € + IVA</strong> — honorarios fijos, sin porcentaje sobre el precio de venta.</p>
       <ul class="lc-nh-checklist">
         <li>Expediente 100&nbsp;% online: contrato, Stripe y documentación.</li>
         <li>Difusión en portales nacionales + compradores de cartera.</li>
         <li>Visitas solo con solvencia contrastada; tú eliges franjas horarias.</li>
-        <li>Primer 50&nbsp;% (≈${FEE_HALF.toLocaleString('es-ES')} € IVA incl.) activa el servicio.</li>
+        <li>Primer 50&nbsp;% al contratar activa el servicio.</li>
       </ul>
     </div>
     <div class="lc-nh-split-media">
@@ -215,7 +211,7 @@ function renderVentaDigitalPage(c) {
         <tbody>
           <tr><td>Agencia ~6&nbsp;% + IVA</td><td>~${trad6.toLocaleString('es-ES')} €</td><td>Agencia</td></tr>
           <tr><td>Agencia ~3&nbsp;% + IVA</td><td>~${trad3.toLocaleString('es-ES')} €</td><td>Agencia</td></tr>
-          <tr><td><strong>NuevaHabitat digital</strong></td><td><strong>${FEE_IVA.toLocaleString('es-ES')} €</strong> IVA incl.</td><td>Tú (cualificadas)</td></tr>
+          <tr><td><strong>NuevaHabitat digital</strong></td><td><strong>1.999 € + IVA</strong></td><td>Tú (cualificadas)</td></tr>
           <tr><td>Particular solo portal</td><td>Cuota anuncio + tu tiempo</td><td>Tú (sin filtro)</td></tr>
         </tbody>
       </table>

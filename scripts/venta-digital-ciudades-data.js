@@ -39,7 +39,7 @@ const CIUDADES = [
       '<details><summary>¿En qué barrios de Barcelona operáis?</summary><p>Barcelona ciudad y área metropolitana (L\'Hospitalet, Badalona, Cornellà, Esplugues, Sant Cugat, etc.). Guías por zona en <a href="/vender">hub vender</a> e <a href="/inmobiliaria-precio-fijo-barcelona">inmobiliaria precio fijo</a>.</p></details>',
     seoExtra: `<h2>Vender piso en Barcelona con agencia digital y precio fijo</h2>
 <p>La búsqueda <strong>venta 100 % digital Barcelona</strong> suele venir de propietarios que ya han probado portales solos y quieren <strong>intermediación profesional</strong> sin pagar un 3&nbsp;% o 6&nbsp;% sobre el precio de venta. NuevaHabitat combina difusión en Idealista y resto de portales, <strong>filtro de hipoteca</strong> antes de cada visita y <strong>panel vendedor</strong> donde ves ofertas, documentos y calendario.</p>
-<p>En Barcelona el ticket medio orientativo ronda los <strong>380.000–480.000 €</strong> según barrio; una comisión tradicional del 6&nbsp;% + IVA puede superar los <strong>30.000 €</strong>. El plan digital deja el coste en <strong>1.999 € + IVA (2.418,79 € IVA incl.)</strong>, repartido 50&nbsp;% al contratar y 50&nbsp;% en escritura.</p>
+<p>En Barcelona el ticket medio orientativo ronda los <strong>380.000–480.000 €</strong> según barrio; una comisión tradicional del 6&nbsp;% + IVA puede superar los <strong>30.000 €</strong>. El plan digital deja el coste en <strong>1.999 € + IVA</strong>, repartido 50&nbsp;% al contratar y 50&nbsp;% en escritura.</p>
 <h2>Qué incluye la venta digital en Barcelona</h2>
 <ul>
 <li>Valoración con comparables de cierre en tu micro-zona (Eixample no es igual que Nou Barris).</li>
@@ -121,7 +121,7 @@ const CIUDADES = [
       '<details><summary>¿Publicáis en portales de Valencia?</summary><p>Sí: difusión en portales nacionales y locales relevantes para captar compradores en la Comunitat Valenciana y relocation desde Madrid/Barcelona.</p></details>',
     seoExtra: `<h2>Inmobiliaria 100 % digital en Valencia</h2>
 <p>Valencia mezcla demanda local, teletrabajo y compradores de otras CCAA. Buscar <strong>venta digital Valencia</strong> implica querer <strong>honorarios claros</strong> y menos curiosos en visita. NuevaHabitat cualifica hipoteca o liquidez antes de agendar contigo.</p>
-<p>Con un piso orientativo de <strong>290.000 €</strong>, el 6&nbsp;% + IVA tradicional ronda <strong>21.000 €</strong>; el plan digital se queda en <strong>2.418,79 €</strong> IVA incluido si cierras en escritura.</p>
+<p>Con un piso orientativo de <strong>290.000 €</strong>, el 6&nbsp;% + IVA tradicional ronda <strong>21.000 €</strong>; el plan digital son <strong>1.999 € + IVA</strong> de honorarios fijos si cierras en escritura.</p>
 <h2>Ruzafa, Benimaclet, Eixample valenciano</h2>
 <p>Cada micro-mercado tiene ritmo distinto: stock en Ruzafa compite con reformas; Benimaclet atrae jóvenes profesionales. Ajustamos precio de salida con comparables reales, no con el anuncio más caro del portal.</p>
 <h2>Expediente online desde el primer día</h2>
