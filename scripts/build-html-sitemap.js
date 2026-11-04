@@ -7,6 +7,7 @@ const SITE = 'https://www.nuevahabitat.com';
 const STATIC_PAGES = [
   { href: '/', label: 'Inicio' },
   { href: '/vender', label: 'Vender' },
+  { href: '/venta-digital', label: 'Venta 100 % digital' },
   { href: '/comprar', label: 'Comprar' },
   { href: '/inmuebles', label: 'Inmuebles' },
   { href: '/hipotecas', label: 'Hipotecas' },
@@ -31,12 +32,22 @@ const STATIC_BLOG = [
 ];
 
 const CLUSTER_LABELS = {
+  ventaDigital: 'Venta 100 % digital',
   barrio: 'Vender por barrio',
   situacion: 'Vender por situación',
   intencion: 'Guías para vender',
   particular: 'Vender como particular',
   comparativa: 'Comparativas',
+  alquileres: 'Alquileres',
 };
+
+const VENTA_DIGITAL_GSC = [
+  `${SITE}/venta-digital`,
+  `${SITE}/venta-digital-madrid`,
+  `${SITE}/venta-digital-barcelona`,
+  `${SITE}/venta-digital-valencia`,
+  `${SITE}/venta-digital-sevilla`,
+];
 
 function loadLandings() {
   const indexPath = path.join(ROOT, 'content', 'landings-index.json');
@@ -96,12 +107,17 @@ function buildHtml() {
     .join('\n');
 
   const gscPriority = [
-    ...landings.slice(0, 15).map((l) => `${SITE}/${l.slug}`),
-    ...STATIC_BLOG.slice(0, 10).map((s) => `${SITE}/blog/${s}`),
+    ...VENTA_DIGITAL_GSC,
+    ...landings
+      .filter((l) => l.cluster === 'ventaDigital')
+      .map((l) => `${SITE}/${l.slug}`),
+    ...landings.slice(0, 12).map((l) => `${SITE}/${l.slug}`),
+    ...STATIC_BLOG.slice(0, 8).map((s) => `${SITE}/blog/${s}`),
   ];
+  const gscUnique = [...new Set(gscPriority)];
   fs.writeFileSync(
     path.join(ROOT, 'content', 'gsc-priority-urls.txt'),
-    gscPriority.join('\n') + '\n',
+    gscUnique.join('\n') + '\n',
     'utf8'
   );
 

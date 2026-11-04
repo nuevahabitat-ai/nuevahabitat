@@ -355,6 +355,11 @@ window.NH_LANDING_ORDER = [
   "alquiler-integral-verdum-barcelona",
   "alquiler-integral-verneda-barcelona",
   "alquiler-integral-zona-universitaria-barcelona",
+  "venta-digital",
+  "venta-digital-barcelona",
+  "venta-digital-madrid",
+  "venta-digital-valencia",
+  "venta-digital-sevilla",
   "administracion-alquileres",
   "alquiler-integral",
   "administracion-alquileres-les-corts",
@@ -5082,6 +5087,51 @@ window.NH_LANDINGS = {
     "testimonials": true,
     "cardImage": "imagenes/lescorts1.jpg",
     "cardTeaser": "Alquiler integral en Zona Universitària (08028)."
+  },
+  "venta-digital": {
+    "slug": "venta-digital",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta 100 % digital · hub",
+    "keyword_principal": "venta 100 por ciento digital España",
+    "priority": 0.97,
+    "indexable": true,
+    "cardTeaser": "Plan digital 1.999 € + IVA en Madrid, Barcelona, Valencia y Sevilla. Enlaces a landings por ciudad."
+  },
+  "venta-digital-barcelona": {
+    "slug": "venta-digital-barcelona",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Barcelona",
+    "keyword_principal": "venta 100 por ciento digital Barcelona",
+    "priority": 0.96,
+    "indexable": true,
+    "cardTeaser": "Agencia digital en Barcelona y área: portales, panel y visitas del propietario. 1.999 € + IVA."
+  },
+  "venta-digital-madrid": {
+    "slug": "venta-digital-madrid",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Madrid",
+    "keyword_principal": "venta 100 por ciento digital Madrid",
+    "priority": 0.96,
+    "indexable": true,
+    "cardTeaser": "Vender piso en Madrid con honorarios fijos y expediente online. Visitas cualificadas en tus horarios."
+  },
+  "venta-digital-valencia": {
+    "slug": "venta-digital-valencia",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Valencia",
+    "keyword_principal": "venta 100 por ciento digital Valencia",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Inmobiliaria digital en Valencia y l'Horta: 1.999 € + IVA, 50 % contrato + 50 % escritura."
+  },
+  "venta-digital-sevilla": {
+    "slug": "venta-digital-sevilla",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Sevilla",
+    "keyword_principal": "venta 100 por ciento digital Sevilla",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Venta digital en Sevilla capital y área: precio fijo, panel vendedor y filtro de compradores."
   },
   "administracion-alquileres": {
     "slug": "administracion-alquileres",

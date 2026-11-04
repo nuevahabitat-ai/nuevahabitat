@@ -1,7 +1,7 @@
 /** Generado por scripts/build-landings.js — no editar a mano */
 (function () {
-  const NH_FEE = 3630;
-  const NH_FEE_LABEL = "3.000 € + IVA";
+  const NH_FEE = 4235;
+  const NH_FEE_LABEL = "3.500 € + IVA";
   const DEFAULT_PCT = 6;
 
   function formatEuro(n) {

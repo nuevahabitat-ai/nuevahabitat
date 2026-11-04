@@ -8,6 +8,14 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const MAP_PATH = path.join(ROOT, 'content', 'keywords-map.json');
 const CLUSTERS = ['barrio', 'situacion', 'intencion', 'particular', 'comparativa', 'comprador', 'alquiler'];
+const { CIUDADES } = require('./venta-digital-ciudades-data');
+
+function loadSeoStaticLandings() {
+  const p = path.join(ROOT, 'content', 'seo-static-landings.json');
+  if (!fs.existsSync(p)) return [];
+  const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+  return Array.isArray(data.landings) ? data.landings : [];
+}
 
 function loadLandings() {
   const out = [];
@@ -29,7 +37,27 @@ function main() {
   let added = 0;
   let updated = 0;
 
-  landings.forEach((L) => {
+  const allEntries = landings.concat(loadSeoStaticLandings());
+  CIUDADES.forEach((c) => {
+    allEntries.push({
+      slug: c.slug,
+      keyword_principal: c.keyword_principal,
+      keyword_aliases: c.keyword_aliases,
+      cluster: 'ventaDigital',
+    });
+  });
+  allEntries.push({
+    slug: 'venta-digital',
+    keyword_principal: 'venta 100 por ciento digital españa',
+    keyword_aliases: [
+      'vender piso online madrid barcelona',
+      'inmobiliaria digital precio fijo',
+      'agencia venta digital',
+    ],
+    cluster: 'ventaDigital',
+  });
+
+  allEntries.forEach((L) => {
     if (!L.slug || !L.keyword_principal) return;
     const kw = L.keyword_principal.toLowerCase();
     const entry = {
@@ -38,7 +66,7 @@ function main() {
       canonical: '/' + L.slug,
     };
     if (L.keyword_aliases && L.keyword_aliases.length) {
-      entry.aliases = L.keyword_aliases.slice(0, 6);
+      entry.aliases = L.keyword_aliases.slice(0, 8);
     }
     if (!map[L.slug]) {
       map[L.slug] = entry;

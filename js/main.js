@@ -219,7 +219,9 @@
       <div class="nav-dropdown-menu" role="menu">
         <a href="/vender" role="menuitem">Información general</a>
         <a href="/venta-clasica-barcelona" role="menuitem">Venta clásica · 3.500 € + IVA</a>
-        <a href="/venta-digital-barcelona" role="menuitem">Venta 100 % digital · 1.999 € + IVA</a>
+        <a href="/venta-digital" role="menuitem">Venta 100 % digital · ciudades</a>
+        <a href="/venta-digital-barcelona" role="menuitem">Digital · Barcelona</a>
+        <a href="/venta-digital-madrid" role="menuitem">Digital · Madrid</a>
         <a href="/venta-comercial-barcelona" role="menuitem">Digital + comercial · 2.500 € + IVA</a>
         <a href="/#planes-venta" role="menuitem">Comparar los 3 planes</a>
       </div>
@@ -269,7 +271,11 @@
   if (
     path === '/vender' ||
     path === '/venta-clasica-barcelona' ||
+    path === '/venta-digital' ||
     path === '/venta-digital-barcelona' ||
+    path === '/venta-digital-madrid' ||
+    path === '/venta-digital-valencia' ||
+    path === '/venta-digital-sevilla' ||
     path === '/venta-comercial-barcelona'
   ) {
     document.querySelectorAll('.nav-vender-wrap').forEach((li) => li.classList.add('is-active'));
@@ -301,7 +307,9 @@
       const vendLinks = [
         { href: '/vender', id: 'hub', label: 'Vender · Información general' },
         { href: '/venta-clasica-barcelona', id: 'clasica', label: 'Vender · Venta clásica' },
-        { href: '/venta-digital-barcelona', id: 'digital', label: 'Vender · 100 % digital' },
+        { href: '/venta-digital', id: 'digital', label: 'Vender · 100 % digital (ciudades)' },
+        { href: '/venta-digital-barcelona', id: 'digital-bcn', label: 'Vender · Digital Barcelona' },
+        { href: '/venta-digital-madrid', id: 'digital-mad', label: 'Vender · Digital Madrid' },
         { href: '/venta-comercial-barcelona', id: 'comercial', label: 'Vender · Digital + comercial' },
         { href: '/#planes-venta', id: 'compare', label: 'Vender · Comparar planes' },
       ];

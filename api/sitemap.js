@@ -24,6 +24,7 @@ function loadLandingsFromIndex() {
 }
 const STATIC = [
   '', 'vender', 'comprar', 'inmuebles', 'hipotecas',
+  'venta-digital', 'venta-digital-barcelona', 'venta-digital-madrid', 'venta-digital-valencia', 'venta-digital-sevilla',
   'administracion-alquileres', 'alquiler-integral', 'patrimonial',
   'nosotros', 'blog', 'contacto', 'mapa-del-sitio',
   'privacidad', 'aviso-legal', 'cookies'
@@ -41,10 +42,19 @@ function loadStaticBlogSlugs() {
   }
 }
 
+const VENTA_DIGITAL_PRIORITY = new Set([
+  'venta-digital',
+  'venta-digital-barcelona',
+  'venta-digital-madrid',
+  'venta-digital-valencia',
+  'venta-digital-sevilla',
+]);
+
 export default async function handler(req, res) {
-  const urls = STATIC.map(p => ({
+  const urls = STATIC.map((p) => ({
     loc: p === '' ? `${SITE}/` : `${SITE}/${p}`,
-    priority: p === '' ? '1.0' : '0.8',
+    priority: p === '' ? '1.0' : VENTA_DIGITAL_PRIORITY.has(p) ? '0.97' : '0.8',
+    changefreq: VENTA_DIGITAL_PRIORITY.has(p) ? 'weekly' : undefined,
   }));
 
   const LANDINGS = loadLandingsFromIndex();

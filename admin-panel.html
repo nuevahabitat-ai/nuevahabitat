@@ -635,6 +635,10 @@ select.adm-control{
         Compradores
         <span class="nav-alarm-dot" id="nav-comp-alarm-badge" style="display:none">0</span>
       </div>
+      <div class="adm-nav-item" data-sec="patrimonial">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        Patrimonial
+      </div>
       <div class="adm-nav-item" data-sec="vendedores">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         Operaciones
@@ -674,10 +678,6 @@ select.adm-control{
       <div class="adm-nav-item" data-sec="alquiler-seguimientos">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
         Seguimientos
-      </div>
-      <div class="adm-nav-item" data-sec="patrimonial">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-        Patrimonial
       </div>
       <div class="adm-nav-group" style="margin-top:.5rem">Finanzas</div>
       <div class="adm-nav-item" data-sec="finanzas">
@@ -766,7 +766,7 @@ select.adm-control{
           <div class="adm-card-head">
             <div>
               <h3>Hoy toca</h3>
-              <p class="text-muted" style="font-size:.75rem;margin:.35rem 0 0;font-weight:400">Leads con alarma o en seguimiento · cobros pendientes en administración e integral</p>
+              <p class="text-muted" style="font-size:.75rem;margin:.35rem 0 0;font-weight:400">Leads con alarma o en seguimiento · cobros pendientes en administración · empresas patrimoniales en seguimiento</p>
             </div>
             <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadDashboard(true)">↻ Actualizar</button>
           </div>
@@ -791,11 +791,14 @@ select.adm-control{
               </div>
             </div>
             <div class="hoy-toca-col">
-              <h4>Alquiler integral</h4>
-              <div id="hoy-toca-alq-integral"><p class="hoy-toca-empty">Cargando…</p></div>
+              <h4>Patrimonial</h4>
+              <div id="hoy-toca-patrimonial"><p class="hoy-toca-empty">Cargando…</p></div>
               <div class="hoy-toca-foot">
-                <span class="text-muted" style="font-size:.68rem" id="hoy-toca-integral-count"></span>
-                <button type="button" class="dash-panel-link" onclick="switchSection('alquiler-integral')">Ver integral</button>
+                <span class="text-muted" style="font-size:.68rem" id="hoy-toca-pat-count"></span>
+                <span style="display:flex;gap:.65rem;flex-wrap:wrap">
+                  <button type="button" class="dash-panel-link" onclick="goHoyTocaPatrimonial('alarmas')">Alarmas</button>
+                  <button type="button" class="dash-panel-link" onclick="goHoyTocaPatrimonial('seguimiento')">Ver cartera</button>
+                </span>
               </div>
             </div>
           </div>
@@ -2340,6 +2343,7 @@ select.adm-control{
           <div class="seo-stat"><div class="seo-stat-num" id="seo-st-comparativa">–</div><div class="seo-stat-label">Comparativas</div></div>
           <div class="seo-stat"><div class="seo-stat-num" id="seo-st-particular">–</div><div class="seo-stat-label">Particulares</div></div>
           <div class="seo-stat"><div class="seo-stat-num" id="seo-st-alquileres">–</div><div class="seo-stat-label">Alquileres</div></div>
+          <div class="seo-stat"><div class="seo-stat-num" id="seo-st-ventaDigital">–</div><div class="seo-stat-label">Venta digital</div></div>
         </div>
         <p class="text-muted" style="font-size:.72rem;margin:-.5rem 0 1rem" id="seo-updated-hint"></p>
 
@@ -2350,6 +2354,7 @@ select.adm-control{
           <button type="button" class="adm-subtab" data-seo-cluster="comparativa" onclick="seoSubTab('comparativa')">⚖️ Comparativas</button>
           <button type="button" class="adm-subtab" data-seo-cluster="particular" onclick="seoSubTab('particular')">👤 Particulares</button>
           <button type="button" class="adm-subtab" data-seo-cluster="alquileres" onclick="seoSubTab('alquileres')">🔑 Alquileres</button>
+          <button type="button" class="adm-subtab" data-seo-cluster="ventaDigital" onclick="seoSubTab('ventaDigital')">📱 Venta digital</button>
           <button type="button" class="adm-subtab" data-seo-cluster="all" onclick="seoSubTab('all')">Todas</button>
         </div>
 
@@ -3028,6 +3033,14 @@ function goHoyTocaLeads(mode) {
   }, 80);
 }
 window.goHoyTocaLeads = goHoyTocaLeads;
+
+function goHoyTocaPatrimonial(mode) {
+  switchSection('patrimonial');
+  setTimeout(() => {
+    filterPatEmp(mode === 'alarmas' ? 'alarmas' : 'seguimiento');
+  }, 80);
+}
+window.goHoyTocaPatrimonial = goHoyTocaPatrimonial;
 
 async function initAdmin() {
   if (_adminReady) return;
@@ -4608,7 +4621,7 @@ async function loadPropertyForEdit(id){
 /* ═══════════════════════════════════════════════════════════════
    DASHBOARD
    ══════════════════════════════════════════════════════════════ */
-const _dashCache = { inmuebles: [], leads: [], seguimientos: [], compradores: [], particulares: [] };
+const _dashCache = { inmuebles: [], leads: [], seguimientos: [], compradores: [], particulares: [], patEmp: [] };
 
 function dashEsc(s){
   return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
@@ -4932,25 +4945,34 @@ function collectHoyTocaAlqAdminItems() {
   });
 }
 
-function collectHoyTocaAlqIntegralItems() {
-  return (_alqPropData || []).filter((r) => {
-    if (alqRowServicio(r) !== 'integral') return false;
-    if (alqRowArchivado(r)) return false;
-    if (r.integral_pagado) return false;
-    return true;
-  });
+function patEmpDaysSinceContact(e) {
+  const ref = e.ultimo_contacto_at || e.created_at;
+  if (!ref) return null;
+  return Math.floor((Date.now() - new Date(ref).getTime()) / 86400000);
+}
+
+function collectHoyTocaPatEmpItems() {
+  const now = Date.now();
+  const src = (_patEmpData && _patEmpData.length) ? _patEmpData : (_dashCache.patEmp || []);
+  const items = [];
+  for (const e of src) {
+    if (e.activo === false) continue;
+    if (['cliente', 'descartado'].includes(e.estado)) continue;
+    const alarm = e.proxima_alarma_at && new Date(e.proxima_alarma_at).getTime() <= now;
+    items.push({
+      e,
+      reason: alarm ? 'alarma' : 'seguimiento',
+      priority: alarm ? 0 : 1,
+      days: patEmpDaysSinceContact(e),
+    });
+  }
+  items.sort((a, b) => a.priority - b.priority || (b.days ?? 0) - (a.days ?? 0));
+  return items;
 }
 
 function hoyTocaLeadTag(reason) {
   if (reason === 'alarma') return '<span class="hoy-toca-tag hoy-toca-tag--alarm">Alarma</span>';
   return '<span class="hoy-toca-tag hoy-toca-tag--seg">Seguimiento</span>';
-}
-
-function hoyTocaIntegralTag(r) {
-  if (r.integral_transferencia_pendiente) {
-    return '<span class="hoy-toca-tag hoy-toca-tag--seg">Transferencia</span>';
-  }
-  return '<span class="hoy-toca-tag hoy-toca-tag--pay">599 € pend.</span>';
 }
 
 function renderHoyTocaListHtml(items, renderRow, emptyMsg) {
@@ -4965,8 +4987,8 @@ function renderHoyTocaListHtml(items, renderRow, emptyMsg) {
 function renderHoyToca() {
   const leadEl = document.getElementById('hoy-toca-leads');
   const adminEl = document.getElementById('hoy-toca-alq-admin');
-  const intEl = document.getElementById('hoy-toca-alq-integral');
-  if (!leadEl || !adminEl || !intEl) return;
+  const patEl = document.getElementById('hoy-toca-patrimonial');
+  if (!leadEl || !adminEl || !patEl) return;
 
   const leadItems = collectHoyTocaLeadItems();
   leadEl.innerHTML = renderHoyTocaListHtml(
@@ -5011,23 +5033,30 @@ function renderHoyToca() {
       : 'Cobros al día';
   }
 
-  const intItems = collectHoyTocaAlqIntegralItems();
-  intEl.innerHTML = renderHoyTocaListHtml(
-    intItems,
-    (r) => `<button type="button" class="hoy-toca-item" onclick="switchSection('alquiler-integral'); setTimeout(function(){ openAlqAdminModal('${r.id}'); }, 120);">
-      ${hoyTocaIntegralTag(r)}
-      <div class="hoy-toca-item-main">
-        <div class="hoy-toca-item-title">${dashEsc(r.nombre || 'Propietario')}</div>
-        <div class="hoy-toca-item-meta">${dashEsc((r.inmueble_direccion || r.email || '').slice(0, 80))}</div>
-      </div>
-    </button>`,
-    'No hay integrales activos con pago pendiente.'
+  const patItems = collectHoyTocaPatEmpItems();
+  patEl.innerHTML = renderHoyTocaListHtml(
+    patItems,
+    (it) => {
+      const e = it.e;
+      const daysTxt = it.days != null ? `${it.days} d sin contacto` : 'Sin contacto registrado';
+      const meta = [e.contacto_nombre, e.telefono].filter(Boolean).join(' · ') || (PAT_EMP_ESTADOS[e.estado] || e.estado || '');
+      return `<button type="button" class="hoy-toca-item" onclick="switchSection('patrimonial'); setTimeout(function(){ openPatEmpModal('${e.id}'); }, 120);">
+        ${hoyTocaLeadTag(it.reason)}
+        <div class="hoy-toca-item-main">
+          <div class="hoy-toca-item-title">${dashEsc(e.empresa || 'Empresa')}</div>
+          <div class="hoy-toca-item-meta">${dashEsc(meta.slice(0, 80))} · ${dashEsc(daysTxt)}</div>
+        </div>
+      </button>`;
+    },
+    'No hay empresas patrimoniales en seguimiento. Alta en Patrimonial → + Nueva empresa.'
   );
-  const intCount = document.getElementById('hoy-toca-integral-count');
-  if (intCount) {
-    intCount.textContent = intItems.length
-      ? `${intItems.length} pago${intItems.length === 1 ? '' : 's'} por cerrar`
-      : 'Pagos al día';
+  const patCount = document.getElementById('hoy-toca-pat-count');
+  if (patCount) {
+    const al = patItems.filter((x) => x.reason === 'alarma').length;
+    const sg = patItems.filter((x) => x.reason === 'seguimiento').length;
+    patCount.textContent = patItems.length
+      ? `${patItems.length} en cartera · ${al} alarma${al === 1 ? '' : 's'} · ${sg} seguimiento`
+      : 'Sin cartera activa';
   }
 }
 window.renderHoyToca = renderHoyToca;
@@ -5056,7 +5085,7 @@ async function loadDashboard(force){
       return { data: [] };
     });
 
-    const [compradoresCount, vendedoresCount, inmCount, visCount, partCount, inmRes, segRes, compRes, partsRes, leadsPayload] = await Promise.all([
+    const [compradoresCount, vendedoresCount, inmCount, visCount, partCount, inmRes, segRes, compRes, partsRes, leadsPayload, , patRes] = await Promise.all([
       sb.from('compradores').select('*',{count:'exact',head:true}),
       sb.from('vendedores').select('*',{count:'exact',head:true}),
       sb.from('inmuebles').select('*',{count:'exact',head:true}).eq('cartera_privada',false),
@@ -5068,6 +5097,11 @@ async function loadDashboard(force){
       sb.from('particulares').select('id,titulo,direccion,precio,estado,fuente,zona,barrio,municipio,contacto_nombre,telefono,proxima_alarma_at,ultimo_contacto_at,activo').eq('activo',true).order('updated_at',{ascending:false}).limit(12),
       leadsPromise,
       fetchAlquilerPropietarios().catch((e) => { console.warn('loadDashboard alquiler', e); }),
+      sb.from('patrimonial_empresas')
+        .select('id,empresa,contacto_nombre,telefono,email,estado,ultimo_contacto_at,proxima_alarma_at,activo,procedencia,created_at,updated_at')
+        .order('updated_at', { ascending: false })
+        .then((r) => r)
+        .catch((e) => { console.warn('loadDashboard patrimonial', e); return { data: [], error: e }; }),
     ]);
 
     const leadsList = leadsPayload.data || [];
@@ -5088,6 +5122,12 @@ async function loadDashboard(force){
     _dashCache.seguimientos = segRes.data || [];
     _dashCache.compradores = compRes.data || [];
     _dashCache.particulares = partsRes.data || [];
+    if (patRes && !patRes.error) {
+      _dashCache.patEmp = patRes.data || [];
+      _patEmpData = _dashCache.patEmp;
+    } else if (patRes?.error) {
+      _dashCache.patEmp = [];
+    }
 
     const now = Date.now();
     const leadAlarms = (leadsList || []).filter(l => leadNeedsAlarm(l)).length;
@@ -6971,6 +7011,7 @@ const SEO_CLUSTER_META = {
   comparativa: { label: 'Comparativas', tabTitle: 'Landings comparativas' },
   particular:  { label: 'Particulares', tabTitle: 'Vender como particular (por barrio)' },
   alquileres:  { label: 'Alquileres', tabTitle: 'Administración y alquiler integral' },
+  ventaDigital:{ label: 'Venta 100 % digital', tabTitle: 'Venta digital por ciudad' },
   all:         { label: 'Todas', tabTitle: 'Todas las landing pages' },
 };
 let _seoCluster = 'barrio';
@@ -7004,7 +7045,7 @@ function seoLandingName(l){
 }
 
 function seoClusterBadge(cluster){
-  const labels = { barrio:'Barrio', situacion:'Situación', intencion:'Intención', comparativa:'Comparativa', particular:'Particular', alquileres:'Alquileres' };
+  const labels = { barrio:'Barrio', situacion:'Situación', intencion:'Intención', comparativa:'Comparativa', particular:'Particular', alquileres:'Alquileres', ventaDigital:'Venta digital' };
   return `<span class="seo-cluster-badge seo-cluster-badge--${cluster}">${labels[cluster]||cluster}</span>`;
 }
 
@@ -7085,7 +7126,7 @@ async function loadSeoSection(){
     return;
   }
   const list = getSeoLandingsList();
-  const counts = { barrio:0, situacion:0, intencion:0, comparativa:0, particular:0, alquileres:0 };
+  const counts = { barrio:0, situacion:0, intencion:0, comparativa:0, particular:0, alquileres:0, ventaDigital:0 };
   list.forEach(l => { if(counts[l.cluster] != null) counts[l.cluster]++; });
   const setNum = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v; };
   setNum('seo-st-total', list.length);
@@ -7094,6 +7135,8 @@ async function loadSeoSection(){
   setNum('seo-st-intencion', counts.intencion);
   setNum('seo-st-comparativa', counts.comparativa);
   setNum('seo-st-particular', counts.particular);
+  setNum('seo-st-alquileres', counts.alquileres);
+  setNum('seo-st-ventaDigital', counts.ventaDigital);
   try {
     const res = await fetch('content/landings-index.json');
     if(res.ok){
@@ -12537,6 +12580,7 @@ async function loadPatrimonialEmpresas(force) {
   } else {
     _patEmpData = data || [];
   }
+  _dashCache.patEmp = _patEmpData;
   renderPatEmpTable();
   markPanelLoaded('patrimonial');
 }

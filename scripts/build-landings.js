@@ -1075,6 +1075,12 @@ function syncVenderHub() {
 }
 
 function main() {
+  try {
+    require('./build-venta-digital-pages').main();
+  } catch (e) {
+    console.warn('build-venta-digital-pages:', e.message);
+  }
+
   const generated = loadJsonFiles(path.join(CONTENT_DIR, 'barrio'))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'situacion')))
     .concat(loadJsonFiles(path.join(CONTENT_DIR, 'intencion')))

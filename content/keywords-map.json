@@ -340,6 +340,136 @@
       "administrar renta Zona Univ."
     ]
   },
+  "administracion-alquileres": {
+    "keyword": "administración de alquileres barcelona",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres"
+  },
+  "administracion-alquileres-badalona": {
+    "keyword": "administración alquileres badalona",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-badalona"
+  },
+  "administracion-alquileres-barceloneta": {
+    "keyword": "administración alquileres la barceloneta",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-barceloneta"
+  },
+  "administracion-alquileres-ciutat-vella": {
+    "keyword": "administración alquileres ciutat vella",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-ciutat-vella"
+  },
+  "administracion-alquileres-cornella": {
+    "keyword": "administración alquileres cornellà de llobregat",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-cornella"
+  },
+  "administracion-alquileres-diagonal-mar": {
+    "keyword": "administración alquileres diagonal mar",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-diagonal-mar"
+  },
+  "administracion-alquileres-eixample": {
+    "keyword": "administración alquileres eixample",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-eixample"
+  },
+  "administracion-alquileres-el-clot": {
+    "keyword": "administración alquileres el clot",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-el-clot"
+  },
+  "administracion-alquileres-esplugues": {
+    "keyword": "administración alquileres esplugues de llobregat",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-esplugues"
+  },
+  "administracion-alquileres-fort-pienc": {
+    "keyword": "administración alquileres fort pienc",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-fort-pienc"
+  },
+  "administracion-alquileres-gracia": {
+    "keyword": "administración alquileres gràcia",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-gracia"
+  },
+  "administracion-alquileres-horta": {
+    "keyword": "administración alquileres horta-guinardó",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-horta"
+  },
+  "administracion-alquileres-l-hospitalet": {
+    "keyword": "administración alquileres l'hospitalet",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-l-hospitalet"
+  },
+  "administracion-alquileres-les-corts": {
+    "keyword": "administración alquileres les corts",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-les-corts"
+  },
+  "administracion-alquileres-nou-barris": {
+    "keyword": "administración alquileres nou barris",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-nou-barris"
+  },
+  "administracion-alquileres-pedralbes": {
+    "keyword": "administración alquileres pedralbes",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-pedralbes"
+  },
+  "administracion-alquileres-poble-sec": {
+    "keyword": "administración alquileres poble-sec",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-poble-sec"
+  },
+  "administracion-alquileres-poblenou": {
+    "keyword": "administración alquileres poblenou",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-poblenou"
+  },
+  "administracion-alquileres-sagrada-familia": {
+    "keyword": "administración alquileres sagrada família",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-sagrada-familia"
+  },
+  "administracion-alquileres-sant-andreu": {
+    "keyword": "administración alquileres sant andreu",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-sant-andreu"
+  },
+  "administracion-alquileres-sant-antoni": {
+    "keyword": "administración alquileres sant antoni",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-sant-antoni"
+  },
+  "administracion-alquileres-sant-gervasi": {
+    "keyword": "administración alquileres sant gervasi – galvany",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-sant-gervasi"
+  },
+  "administracion-alquileres-sants": {
+    "keyword": "administración alquileres sants",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-sants"
+  },
+  "administracion-alquileres-sarria": {
+    "keyword": "administración alquileres sarrià",
+    "cluster": "alquileres",
+    "canonical": "/administracion-alquileres-sarria"
+  },
+  "alquiler-integral": {
+    "keyword": "alquiler integral barcelona",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral"
+  },
+  "alquiler-integral-badalona": {
+    "keyword": "alquiler integral badalona",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-badalona"
+  },
   "alquiler-integral-barcelona": {
     "keyword": "alquiler integral barcelona",
     "cluster": "alquiler",
@@ -350,6 +480,11 @@
       "gestionar alquiler 080xx",
       "alquilar piso barcelona"
     ]
+  },
+  "alquiler-integral-barceloneta": {
+    "keyword": "alquiler integral la barceloneta",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-barceloneta"
   },
   "alquiler-integral-bon-pastor-barcelona": {
     "keyword": "alquiler integral bon pastor barcelona",
@@ -406,6 +541,11 @@
       "alquiler integral 08033"
     ]
   },
+  "alquiler-integral-ciutat-vella": {
+    "keyword": "alquiler integral ciutat vella",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-ciutat-vella"
+  },
   "alquiler-integral-congres-indians-barcelona": {
     "keyword": "alquiler integral congres indians barcelona",
     "cluster": "alquiler",
@@ -416,6 +556,21 @@
       "gestionar alquiler 08027",
       "alquilar piso congrés i els indians"
     ]
+  },
+  "alquiler-integral-cornella": {
+    "keyword": "alquiler integral cornellà de llobregat",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-cornella"
+  },
+  "alquiler-integral-diagonal-mar": {
+    "keyword": "alquiler integral diagonal mar",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-diagonal-mar"
+  },
+  "alquiler-integral-eixample": {
+    "keyword": "alquiler integral eixample",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-eixample"
   },
   "alquiler-integral-el-besos-barcelona": {
     "keyword": "alquiler integral el besos barcelona",
@@ -439,6 +594,16 @@
       "alquilar piso el carmel"
     ]
   },
+  "alquiler-integral-el-clot": {
+    "keyword": "alquiler integral el clot",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-el-clot"
+  },
+  "alquiler-integral-esplugues": {
+    "keyword": "alquiler integral esplugues de llobregat",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-esplugues"
+  },
   "alquiler-integral-esplugues-de-llobregat": {
     "keyword": "alquiler integral esplugues de llobregat",
     "cluster": "alquiler",
@@ -449,6 +614,16 @@
       "alquilar piso Esplugues",
       "alquiler integral 08950"
     ]
+  },
+  "alquiler-integral-fort-pienc": {
+    "keyword": "alquiler integral fort pienc",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-fort-pienc"
+  },
+  "alquiler-integral-gracia": {
+    "keyword": "alquiler integral gràcia",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-gracia"
   },
   "alquiler-integral-guinardo-barcelona": {
     "keyword": "alquiler integral guinardo barcelona",
@@ -461,6 +636,11 @@
       "alquiler integral 08041"
     ]
   },
+  "alquiler-integral-horta": {
+    "keyword": "alquiler integral horta-guinardó",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-horta"
+  },
   "alquiler-integral-hostafrancs-barcelona": {
     "keyword": "alquiler integral hostafrancs barcelona",
     "cluster": "alquiler",
@@ -471,6 +651,11 @@
       "alquilar piso Hostafrancs",
       "alquiler integral 08014"
     ]
+  },
+  "alquiler-integral-l-hospitalet": {
+    "keyword": "alquiler integral l'hospitalet",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-l-hospitalet"
   },
   "alquiler-integral-l-hospitalet-de-llobregat": {
     "keyword": "alquiler integral l hospitalet de llobregat",
@@ -516,6 +701,11 @@
       "alquiler integral 08027"
     ]
   },
+  "alquiler-integral-les-corts": {
+    "keyword": "alquiler integral les corts",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-les-corts"
+  },
   "alquiler-integral-montjuic-barcelona": {
     "keyword": "alquiler integral montjuic barcelona",
     "cluster": "alquiler",
@@ -537,6 +727,26 @@
       "alquilar piso Navas",
       "alquiler integral 08030"
     ]
+  },
+  "alquiler-integral-nou-barris": {
+    "keyword": "alquiler integral nou barris",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-nou-barris"
+  },
+  "alquiler-integral-pedralbes": {
+    "keyword": "alquiler integral pedralbes",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-pedralbes"
+  },
+  "alquiler-integral-poble-sec": {
+    "keyword": "alquiler integral poble-sec",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-poble-sec"
+  },
+  "alquiler-integral-poblenou": {
+    "keyword": "alquiler integral poblenou",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-poblenou"
   },
   "alquiler-integral-porta-barcelona": {
     "keyword": "alquiler integral porta barcelona",
@@ -582,6 +792,21 @@
       "alquiler integral 08020"
     ]
   },
+  "alquiler-integral-sagrada-familia": {
+    "keyword": "alquiler integral sagrada família",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-sagrada-familia"
+  },
+  "alquiler-integral-sant-andreu": {
+    "keyword": "alquiler integral sant andreu",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-sant-andreu"
+  },
+  "alquiler-integral-sant-antoni": {
+    "keyword": "alquiler integral sant antoni",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-sant-antoni"
+  },
   "alquiler-integral-sant-boi-de-llobregat": {
     "keyword": "alquiler integral sant boi de llobregat",
     "cluster": "alquiler",
@@ -593,6 +818,11 @@
       "alquiler integral 08830"
     ]
   },
+  "alquiler-integral-sant-gervasi": {
+    "keyword": "alquiler integral sant gervasi – galvany",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-sant-gervasi"
+  },
   "alquiler-integral-sant-joan-despi": {
     "keyword": "alquiler integral sant joan despi",
     "cluster": "alquiler",
@@ -603,6 +833,16 @@
       "alquilar piso Sant Joan Despí",
       "alquiler integral 08970"
     ]
+  },
+  "alquiler-integral-sants": {
+    "keyword": "alquiler integral sants",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-sants"
+  },
+  "alquiler-integral-sarria": {
+    "keyword": "alquiler integral sarrià",
+    "cluster": "alquileres",
+    "canonical": "/alquiler-integral-sarria"
   },
   "alquiler-integral-tetuan-barcelona": {
     "keyword": "alquiler integral tetuan barcelona",
@@ -799,6 +1039,11 @@
     "keyword": "cuanto vale mi piso barcelona",
     "cluster": "situacion",
     "canonical": "/cuanto-vale-mi-piso-barcelona"
+  },
+  "demo-panel-propietario-alquiler": {
+    "keyword": "panel propietario alquiler demo",
+    "cluster": "alquileres",
+    "canonical": "/demo-panel-propietario-alquiler"
   },
   "inmobiliaria-para-particulares-badalona-barcelona": {
     "keyword": "inmobiliaria para particulares badalona barcelona",
@@ -2620,6 +2865,68 @@
       "inmobiliaria honorarios fijos barcelona",
       "vender vivienda precio reducido barcelona",
       "agencia precio fijo barcelona"
+    ]
+  },
+  "venta-digital": {
+    "keyword": "venta 100 por ciento digital españa",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital",
+    "aliases": [
+      "vender piso online madrid barcelona",
+      "inmobiliaria digital precio fijo",
+      "agencia venta digital"
+    ]
+  },
+  "venta-digital-barcelona": {
+    "keyword": "venta 100 por ciento digital barcelona",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-barcelona",
+    "aliases": [
+      "vender piso online barcelona",
+      "inmobiliaria digital barcelona",
+      "agencia venta digital barcelona",
+      "vender casa sin comisión barcelona",
+      "venta piso 100 digital barcelona",
+      "vender piso particular digital barcelona"
+    ]
+  },
+  "venta-digital-madrid": {
+    "keyword": "venta 100 por ciento digital madrid",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-madrid",
+    "aliases": [
+      "vender piso online madrid",
+      "inmobiliaria digital madrid",
+      "agencia venta digital madrid",
+      "vender casa sin comisión madrid",
+      "venta piso 100 digital madrid",
+      "vender piso particular madrid digital"
+    ]
+  },
+  "venta-digital-sevilla": {
+    "keyword": "venta 100 por ciento digital sevilla",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-sevilla",
+    "aliases": [
+      "vender piso online sevilla",
+      "inmobiliaria digital sevilla",
+      "agencia venta digital sevilla",
+      "vender casa sin comisión sevilla",
+      "venta piso 100 digital sevilla",
+      "vender piso particular sevilla"
+    ]
+  },
+  "venta-digital-valencia": {
+    "keyword": "venta 100 por ciento digital valencia",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-valencia",
+    "aliases": [
+      "vender piso online valencia",
+      "inmobiliaria digital valencia",
+      "agencia venta digital valencia",
+      "vender casa sin comisión valencia",
+      "venta piso 100 digital valencia",
+      "vender piso particular valencia"
     ]
   },
   "venta-piso-economica-badalona-barcelona": {

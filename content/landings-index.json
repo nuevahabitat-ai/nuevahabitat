@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T08:53:09.274Z",
+  "updated": "2026-11-04T08:07:50.101Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -2130,6 +2130,36 @@
       "cluster": "alquiler",
       "indexable": true,
       "priority": 0.86
+    },
+    {
+      "slug": "venta-digital",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.97
+    },
+    {
+      "slug": "venta-digital-barcelona",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.96
+    },
+    {
+      "slug": "venta-digital-madrid",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.96
+    },
+    {
+      "slug": "venta-digital-valencia",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "venta-digital-sevilla",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
     },
     {
       "slug": "administracion-alquileres",
