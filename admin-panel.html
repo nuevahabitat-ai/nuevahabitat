@@ -675,6 +675,10 @@ select.adm-control{
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
         Seguimientos
       </div>
+      <div class="adm-nav-item" data-sec="patrimonial">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        Patrimonial
+      </div>
       <div class="adm-nav-group" style="margin-top:.5rem">Finanzas</div>
       <div class="adm-nav-item" data-sec="finanzas">
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -2098,6 +2102,77 @@ select.adm-control{
         <div id="alq-seg-standalone-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
       </section>
 
+      <section class="adm-section" id="sec-patrimonial">
+        <div class="adm-section-hdr">
+          <div class="adm-section-title">Patrimonial · empresas e inversores</div>
+          <div class="gap-row" style="flex-wrap:wrap">
+            <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="openPatEmpForm()">+ Nueva empresa</button>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="togglePatEmpWebLeads()">Desde lead web patrimonial</button>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadPatrimonialEmpresas(true)">↻ Actualizar</button>
+          </div>
+        </div>
+        <p class="text-muted" style="font-size:.82rem;margin:-.5rem 0 1rem;line-height:1.5">Cartera comercial manual: patrimoniales, empresas e inversores que contactáis. Registra seguimientos, alarmas y estado hasta cerrar propuesta o cliente activo.</p>
+        <div id="pat-emp-web-leads-wrap" class="adm-card" style="display:none;margin-bottom:1rem">
+          <div class="adm-card-head">
+            <h3>Leads web · /patrimonial</h3>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="loadPatEmpWebLeads()">↻ Actualizar lista</button>
+          </div>
+          <p class="text-muted" style="font-size:.78rem;padding:0 1.15rem .75rem;margin:0;line-height:1.45">Consultas del formulario con origen <code>web_patrimonial</code>. Pulsa «Crear empresa» para darlas de alta en esta cartera (sin duplicar si ya están vinculadas).</p>
+          <div id="pat-emp-web-leads-list" style="padding:0 1.15rem 1.15rem"><p class="text-muted">Cargando…</p></div>
+        </div>
+        <div class="adm-subtabs" style="margin-bottom:1rem;flex-wrap:wrap">
+          <button type="button" class="adm-subtab active" id="pat-emp-tab-todos" onclick="filterPatEmp('todos')">Todos</button>
+          <button type="button" class="adm-subtab" id="pat-emp-tab-seguimiento" onclick="filterPatEmp('seguimiento')">En seguimiento</button>
+          <button type="button" class="adm-subtab" id="pat-emp-tab-alarmas" onclick="filterPatEmp('alarmas')">Alarmas</button>
+          <button type="button" class="adm-subtab" id="pat-emp-tab-cliente" onclick="filterPatEmp('cliente')">Clientes</button>
+        </div>
+        <div id="pat-emp-form-wrap" style="display:none;margin-bottom:1rem" class="adm-card">
+          <div class="adm-card-head">
+            <h3 id="pat-emp-form-title">Nueva empresa</h3>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closePatEmpForm()">✕ Cancelar</button>
+          </div>
+          <input type="hidden" id="pat-emp-edit-id"/>
+          <div class="adm-form-grid">
+            <div class="adm-field adm-form-col-full"><label>Empresa / patrimonial *</label><input type="text" id="pat-emp-nombre" placeholder="Razón social o nombre patrimonial"/></div>
+            <div class="adm-field"><label>Persona de contacto</label><input type="text" id="pat-emp-contacto" placeholder="Nombre"/></div>
+            <div class="adm-field"><label>Teléfono</label><input type="tel" id="pat-emp-tel" placeholder="603 656 587"/></div>
+            <div class="adm-field"><label>Email</label><input type="email" id="pat-emp-email" placeholder="contacto@empresa.com"/></div>
+            <div class="adm-field"><label>N.º activos (aprox.)</label><input type="text" id="pat-emp-activos" placeholder="Ej. 6–20"/></div>
+            <div class="adm-field"><label>Estado</label>
+              <select id="pat-emp-estado">
+                <option value="nuevo">Nuevo</option>
+                <option value="contactado">Contactado</option>
+                <option value="reunion">Reunión</option>
+                <option value="propuesta">Propuesta</option>
+                <option value="cliente">Cliente</option>
+                <option value="descartado">Descartado</option>
+              </select>
+            </div>
+            <div class="adm-field"><label>Procedencia</label>
+              <select id="pat-emp-procedencia">
+                <option value="manual">Manual</option>
+                <option value="web_patrimonial">Web patrimonial</option>
+                <option value="referido">Referido</option>
+                <option value="evento">Evento</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="adm-field"><label>Zona / municipios</label><input type="text" id="pat-emp-zona" placeholder="Barcelona, L'H…"/></div>
+            <div class="adm-field adm-form-col-full"><label>Objetivo</label><input type="text" id="pat-emp-objetivo" placeholder="Administración, venta, mix…"/></div>
+            <div class="adm-field adm-form-col-full"><label>Tipos de activo</label><input type="text" id="pat-emp-tipos" placeholder="Viviendas, locales, naves…"/></div>
+            <div class="adm-field adm-form-col-full"><label>Notas internas</label><textarea id="pat-emp-notas" rows="3" placeholder="Contexto, próximos pasos…"></textarea></div>
+          </div>
+          <div class="gap-row" style="margin-top:.75rem">
+            <button type="button" class="adm-btn adm-btn-gold" onclick="savePatEmpresa()">Guardar</button>
+          </div>
+          <div id="pat-emp-form-err" class="alert-box alert-error" style="display:none;margin-top:.75rem"></div>
+        </div>
+        <div class="adm-card">
+          <div class="adm-card-head"><h3>Empresas en seguimiento</h3></div>
+          <div id="pat-emp-table"><p class="text-muted">Cargando…</p></div>
+        </div>
+      </section>
+
       <!-- Modal detalle propietario alquiler -->
       <div id="alq-admin-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="alq-modal-title" hidden>
         <div class="dash-modal-backdrop" onclick="closeAlqAdminModal()"></div>
@@ -2229,6 +2304,21 @@ select.adm-control{
           </div>
           <div class="dash-modal-body" id="part-card-body"></div>
           <div class="dash-modal-foot" id="part-card-foot"></div>
+        </div>
+      </div>
+
+      <div id="pat-emp-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="pat-emp-modal-title" hidden>
+        <div class="dash-modal-backdrop" onclick="closePatEmpModal()"></div>
+        <div class="dash-modal-panel comp-match-modal-panel" style="max-width:720px">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker" id="pat-emp-modal-kicker">Patrimonial</div>
+              <h3 id="pat-emp-modal-title">Empresa</h3>
+            </div>
+            <button type="button" class="dash-modal-close" onclick="closePatEmpModal()" aria-label="Cerrar">×</button>
+          </div>
+          <div class="dash-modal-body" id="pat-emp-modal-body"></div>
+          <div class="dash-modal-foot" id="pat-emp-modal-foot"></div>
         </div>
       </div>
 
@@ -3093,7 +3183,7 @@ function switchSection(id){
   document.getElementById('sec-'+id).classList.add('active');
   document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelector(`.adm-nav-item[data-sec="${id}"]`)?.classList.add('active');
-  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos','alquiler-admin':'Administración de alquileres','alquiler-integral':'Alquiler integral','alquiler-seguimientos':'Seguimientos alquileres',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
+  const titles = {dashboard:'Dashboard',leads:'Leads',compradores:'Compradores',vendedores:'Operaciones',inmuebles:'Inmuebles',colaboradores:'Colaboradores',visitas:'Visitas',documentos:'Documentos',seguimientos:'Seguimientos','alquiler-admin':'Administración de alquileres','alquiler-integral':'Alquiler integral','alquiler-seguimientos':'Seguimientos alquileres',patrimonial:'Patrimonial',finanzas:'Finanzas',blog:'Blog',newsletter:'Newsletter',seo:'SEO',configuraciones:'Configuraciones'};
   document.getElementById('adm-section-title').textContent = titles[id]||id;
   if(id==='dashboard')   loadDashboard();
   if(id==='leads')       loadLeads();
@@ -3107,6 +3197,7 @@ function switchSection(id){
   if(id==='alquiler-admin') loadAlquilerAdmin();
   if(id==='alquiler-integral') loadAlquilerIntegral();
   if(id==='alquiler-seguimientos') loadAlquilerSeguimientosSection();
+  if(id==='patrimonial') { loadPatrimonialEmpresas(); void loadPatEmpWebLeads(true); }
   if(id==='finanzas')     loadFinSection();
   if(id==='blog')        loadBlog();
   if(id==='newsletter')  loadNewsletter();
@@ -5802,6 +5893,7 @@ function leadOrigenLabel(origen) {
   if (origen === 'manual_admin') return 'Alta manual · panel admin';
   if (origen === 'manual_alquiler_admin') return 'Alta manual · alquiler administración';
   if (origen === 'manual_alquiler_integral') return 'Alta manual · alquiler integral';
+  if (origen === 'web_patrimonial') return 'Web · Patrimonial';
   return origen.replace(/_/g, ' ');
 }
 
@@ -12243,6 +12335,411 @@ window.alqDarDeBajaPropietario = alqDarDeBajaPropietario;
 window.alqDescartarPropietario = alqDescartarPropietario;
 window.alqReactivarPropietario = alqReactivarPropietario;
 window.alqEliminarPropietario = alqEliminarPropietario;
+
+/* ── Patrimonial · empresas ─────────────────────────────────────── */
+const PAT_EMP_ESTADOS = {
+  nuevo: 'Nuevo',
+  contactado: 'Contactado',
+  reunion: 'Reunión',
+  propuesta: 'Propuesta',
+  cliente: 'Cliente',
+  descartado: 'Descartado',
+};
+const PAT_EMP_PROC = {
+  manual: 'Manual',
+  web_patrimonial: 'Web patrimonial',
+  referido: 'Referido',
+  evento: 'Evento',
+  otro: 'Otro',
+};
+let _patEmpData = [];
+let _patEmpFilter = 'todos';
+let _patEmpModalId = null;
+let _patEmpWebLeads = [];
+let _patEmpImportedLeadIds = new Set();
+
+function parsePatEmpFromLeadNombre(nombre) {
+  const raw = String(nombre || '').trim();
+  const m = raw.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
+  if (m) return { contacto: m[1].trim(), empresa: m[2].trim() };
+  return { contacto: raw, empresa: raw || 'Sin nombre' };
+}
+
+function parsePatEmpLeadFields(l) {
+  const { contacto, empresa } = parsePatEmpFromLeadNombre(l.nombre);
+  const msg = String(l.mensaje || '').trim();
+  let numActivos = '';
+  let objetivo = '';
+  const parts = msg.split(' · ').map((s) => s.trim()).filter(Boolean);
+  parts.forEach((p) => {
+    if (/^activos:/i.test(p)) numActivos = p.replace(/^activos:\s*/i, '');
+    else if (!/^patrimonial ·/i.test(p)) objetivo = objetivo ? `${objetivo} · ${p}` : p;
+  });
+  return { contacto, empresa, numActivos, objetivo, msg };
+}
+
+function togglePatEmpWebLeads() {
+  const wrap = document.getElementById('pat-emp-web-leads-wrap');
+  if (!wrap) return;
+  const show = wrap.style.display === 'none';
+  wrap.style.display = show ? 'block' : 'none';
+  if (show) loadPatEmpWebLeads(true);
+}
+window.togglePatEmpWebLeads = togglePatEmpWebLeads;
+
+async function loadPatEmpWebLeads(silent) {
+  const box = document.getElementById('pat-emp-web-leads-list');
+  if (box && !silent) box.innerHTML = '<p class="text-muted">Cargando…</p>';
+  const { data: leads, error: errL } = await window.nhSupabase
+    .from('leads')
+    .select('id,nombre,email,telefono,mensaje,estado,created_at')
+    .eq('origen', 'web_patrimonial')
+    .order('created_at', { ascending: false })
+    .limit(80);
+  if (errL) {
+    if (box) box.innerHTML = `<p class="text-muted">Error: ${dashEsc(errL.message)}</p>`;
+    if (!silent) nhToast('No se pudieron cargar leads patrimoniales: ' + errL.message, 'error');
+    return;
+  }
+  const { data: linked, error: errE } = await window.nhSupabase
+    .from('patrimonial_empresas')
+    .select('lead_id')
+    .not('lead_id', 'is', null);
+  if (errE && !/does not exist|column/i.test(errE.message || '')) {
+    if (box) box.innerHTML = `<p class="text-muted">Error: ${dashEsc(errE.message)}</p>`;
+    return;
+  }
+  _patEmpImportedLeadIds = new Set((linked || []).map((r) => r.lead_id).filter(Boolean));
+  _patEmpWebLeads = leads || [];
+  renderPatEmpWebLeads();
+}
+window.loadPatEmpWebLeads = loadPatEmpWebLeads;
+
+function renderPatEmpWebLeads() {
+  const box = document.getElementById('pat-emp-web-leads-list');
+  if (!box) return;
+  const pending = _patEmpWebLeads.filter((l) => !_patEmpImportedLeadIds.has(l.id));
+  if (!_patEmpWebLeads.length) {
+    box.innerHTML = '<p class="text-muted">Aún no hay leads con origen web patrimonial.</p>';
+    return;
+  }
+  if (!pending.length) {
+    box.innerHTML = '<p class="text-muted">Todos los leads web patrimoniales ya están vinculados a una empresa.</p>';
+    return;
+  }
+  box.innerHTML = `<table class="adm-table"><thead><tr><th>Fecha</th><th>Contacto / empresa</th><th>Teléfono</th><th>Mensaje</th><th></th></tr></thead><tbody>${
+    pending.map((l) => {
+      const p = parsePatEmpLeadFields(l);
+      const when = l.created_at ? new Date(l.created_at).toLocaleString('es-ES') : '–';
+      const preview = (p.msg || '').slice(0, 120);
+      return `<tr>
+        <td style="font-size:.78rem;white-space:nowrap">${when}</td>
+        <td><strong>${dashEsc(p.empresa)}</strong><br><span class="text-muted" style="font-size:.75rem">${dashEsc(p.contacto)}</span></td>
+        <td>${l.telefono ? dashEsc(l.telefono) : '–'}</td>
+        <td style="font-size:.78rem;max-width:220px">${dashEsc(preview)}${(p.msg || '').length > 120 ? '…' : ''}</td>
+        <td style="white-space:nowrap">
+          <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="createPatEmpFromLead('${l.id}')">Crear empresa</button>
+        </td>
+      </tr>`;
+    }).join('')
+  }</tbody></table>`;
+}
+
+async function createPatEmpFromLead(leadId) {
+  let l = _patEmpWebLeads.find((x) => x.id === leadId);
+  if (!l) {
+    const { data } = await window.nhSupabase.from('leads').select('id,nombre,email,telefono,mensaje').eq('id', leadId).maybeSingle();
+    l = data;
+  }
+  if (!l) { nhToast('Lead no encontrado.', 'error'); return; }
+  if (_patEmpImportedLeadIds.has(leadId)) {
+    nhToast('Este lead ya está vinculado a una empresa.', 'info');
+    return;
+  }
+  const p = parsePatEmpLeadFields(l);
+  const row = {
+    empresa: p.empresa,
+    contacto_nombre: p.contacto,
+    telefono: l.telefono || null,
+    email: l.email || null,
+    num_activos: p.numActivos || null,
+    objetivo: p.objetivo || null,
+    notas: p.msg || null,
+    procedencia: 'web_patrimonial',
+    estado: 'nuevo',
+    lead_id: leadId,
+    activo: true,
+  };
+  const { data: inserted, error } = await window.nhSupabase.from('patrimonial_empresas').insert(row).select('id').single();
+  if (error) {
+    nhToast('Error al crear empresa: ' + error.message, 'error');
+    return;
+  }
+  if (p.msg) {
+    await window.nhSupabase.from('patrimonial_empresas_seguimientos').insert({
+      empresa_id: inserted.id,
+      comentario: `Alta desde lead web: ${p.msg}`,
+    });
+  }
+  nhToast('Empresa creada desde el lead web.', 'success');
+  _patEmpImportedLeadIds.add(leadId);
+  renderPatEmpWebLeads();
+  await loadPatrimonialEmpresas(true);
+  if (inserted?.id) openPatEmpModal(inserted.id);
+}
+window.createPatEmpFromLead = createPatEmpFromLead;
+
+function patEmpAlarmDate(fromIso) {
+  const days = typeof getPartAlarmDays === 'function' ? getPartAlarmDays() : 7;
+  const d = new Date(fromIso || Date.now());
+  d.setDate(d.getDate() + days);
+  return d.toISOString();
+}
+
+function filterPatEmp(f) {
+  _patEmpFilter = f;
+  ['todos', 'seguimiento', 'alarmas', 'cliente'].forEach((k) => {
+    document.getElementById('pat-emp-tab-' + k)?.classList.toggle('active', k === f);
+  });
+  renderPatEmpTable();
+}
+
+function patEmpRowsFiltered() {
+  const now = Date.now();
+  return (_patEmpData || []).filter((e) => {
+    if (e.activo === false) return false;
+    if (_patEmpFilter === 'cliente') return e.estado === 'cliente';
+    if (_patEmpFilter === 'seguimiento') return !['cliente', 'descartado'].includes(e.estado);
+    if (_patEmpFilter === 'alarmas') {
+      if (!e.proxima_alarma_at) return false;
+      return new Date(e.proxima_alarma_at).getTime() <= now;
+    }
+    if (_patEmpFilter === 'todos') return e.estado !== 'descartado';
+    return true;
+  });
+}
+
+async function loadPatrimonialEmpresas(force) {
+  if (!force && shouldSkipPanelReload('patrimonial') && _patEmpData.length) {
+    renderPatEmpTable();
+    return;
+  }
+  const box = document.getElementById('pat-emp-table');
+  if (box) box.innerHTML = '<p class="text-muted">Cargando…</p>';
+  const { data, error } = await window.nhSupabase
+    .from('patrimonial_empresas')
+    .select('id,empresa,contacto_nombre,telefono,email,num_activos,tipos_activo,zona,objetivo,procedencia,estado,notas,ultimo_contacto_at,proxima_alarma_at,activo,lead_id,created_at')
+    .order('created_at', { ascending: false });
+  if (error) {
+    console.error('loadPatrimonialEmpresas:', error);
+    nhToast('No se pudieron cargar empresas patrimoniales: ' + error.message, 'error');
+    _patEmpData = [];
+  } else {
+    _patEmpData = data || [];
+  }
+  renderPatEmpTable();
+  markPanelLoaded('patrimonial');
+}
+window.loadPatrimonialEmpresas = loadPatrimonialEmpresas;
+
+function renderPatEmpTable() {
+  const box = document.getElementById('pat-emp-table');
+  if (!box) return;
+  const rows = patEmpRowsFiltered();
+  if (!rows.length) {
+    box.innerHTML = '<p class="text-muted">Sin empresas en este filtro. Pulsa «+ Nueva empresa».</p>';
+    return;
+  }
+  const now = Date.now();
+  box.innerHTML = `<table class="adm-table"><thead><tr>
+    <th>Empresa</th><th>Contacto</th><th>Teléfono</th><th>Activos</th><th>Estado</th><th>Último contacto</th><th></th>
+  </tr></thead><tbody>${rows.map((e) => {
+    const alarm = e.proxima_alarma_at && new Date(e.proxima_alarma_at).getTime() <= now;
+    const est = PAT_EMP_ESTADOS[e.estado] || e.estado;
+    const ult = e.ultimo_contacto_at ? new Date(e.ultimo_contacto_at).toLocaleDateString('es-ES') : '–';
+    return `<tr class="${alarm ? 'row-alarm' : ''}">
+      <td><strong>${dashEsc(e.empresa || '–')}</strong>${e.zona ? `<br><span class="text-muted" style="font-size:.75rem">${dashEsc(e.zona)}</span>` : ''}</td>
+      <td>${dashEsc(e.contacto_nombre || '–')}</td>
+      <td>${e.telefono ? `<a href="tel:${telHref(e.telefono)}">${dashEsc(e.telefono)}</a>` : '–'}</td>
+      <td>${dashEsc(e.num_activos || '–')}</td>
+      <td><span class="adm-badge">${dashEsc(est)}</span>${alarm ? ' <span class="adm-badge alarm">Alarma</span>' : ''}</td>
+      <td>${ult}</td>
+      <td style="white-space:nowrap">
+        <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="openPatEmpModal('${e.id}')">Seguimiento</button>
+        <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editPatEmpresa('${e.id}')">Editar</button>
+      </td>
+    </tr>`;
+  }).join('')}</tbody></table>`;
+}
+
+function openPatEmpForm() {
+  document.getElementById('pat-emp-form-wrap').style.display = 'block';
+  document.getElementById('pat-emp-form-title').textContent = 'Nueva empresa';
+  document.getElementById('pat-emp-edit-id').value = '';
+  ['pat-emp-nombre', 'pat-emp-contacto', 'pat-emp-tel', 'pat-emp-email', 'pat-emp-activos', 'pat-emp-zona', 'pat-emp-objetivo', 'pat-emp-tipos', 'pat-emp-notas'].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('pat-emp-estado').value = 'nuevo';
+  document.getElementById('pat-emp-procedencia').value = 'manual';
+  document.getElementById('pat-emp-form-err').style.display = 'none';
+  document.getElementById('pat-emp-form-wrap').scrollIntoView({ behavior: 'smooth' });
+}
+window.openPatEmpForm = openPatEmpForm;
+
+function closePatEmpForm() {
+  document.getElementById('pat-emp-form-wrap').style.display = 'none';
+}
+window.closePatEmpForm = closePatEmpForm;
+
+function editPatEmpresa(id) {
+  const e = _patEmpData.find((x) => x.id === id);
+  if (!e) return;
+  openPatEmpForm();
+  document.getElementById('pat-emp-form-title').textContent = 'Editar empresa';
+  document.getElementById('pat-emp-edit-id').value = id;
+  document.getElementById('pat-emp-nombre').value = e.empresa || '';
+  document.getElementById('pat-emp-contacto').value = e.contacto_nombre || '';
+  document.getElementById('pat-emp-tel').value = e.telefono || '';
+  document.getElementById('pat-emp-email').value = e.email || '';
+  document.getElementById('pat-emp-activos').value = e.num_activos || '';
+  document.getElementById('pat-emp-zona').value = e.zona || '';
+  document.getElementById('pat-emp-objetivo').value = e.objetivo || '';
+  document.getElementById('pat-emp-tipos').value = e.tipos_activo || '';
+  document.getElementById('pat-emp-notas').value = e.notas || '';
+  document.getElementById('pat-emp-estado').value = e.estado || 'nuevo';
+  document.getElementById('pat-emp-procedencia').value = e.procedencia || 'manual';
+}
+window.editPatEmpresa = editPatEmpresa;
+
+async function savePatEmpresa() {
+  const errBox = document.getElementById('pat-emp-form-err');
+  const empresa = document.getElementById('pat-emp-nombre')?.value.trim();
+  if (!empresa) {
+    if (errBox) { errBox.textContent = 'Indica el nombre de la empresa o patrimonial.'; errBox.style.display = 'block'; }
+    return;
+  }
+  const id = document.getElementById('pat-emp-edit-id')?.value.trim();
+  const row = {
+    empresa,
+    contacto_nombre: document.getElementById('pat-emp-contacto')?.value.trim() || null,
+    telefono: document.getElementById('pat-emp-tel')?.value.trim() || null,
+    email: document.getElementById('pat-emp-email')?.value.trim() || null,
+    num_activos: document.getElementById('pat-emp-activos')?.value.trim() || null,
+    tipos_activo: document.getElementById('pat-emp-tipos')?.value.trim() || null,
+    zona: document.getElementById('pat-emp-zona')?.value.trim() || null,
+    objetivo: document.getElementById('pat-emp-objetivo')?.value.trim() || null,
+    procedencia: document.getElementById('pat-emp-procedencia')?.value || 'manual',
+    estado: document.getElementById('pat-emp-estado')?.value || 'nuevo',
+    notas: document.getElementById('pat-emp-notas')?.value.trim() || null,
+    activo: document.getElementById('pat-emp-estado')?.value !== 'descartado',
+  };
+  let error;
+  if (id) {
+    ({ error } = await window.nhSupabase.from('patrimonial_empresas').update(row).eq('id', id));
+  } else {
+    ({ error } = await window.nhSupabase.from('patrimonial_empresas').insert(row));
+  }
+  if (error) {
+    if (errBox) { errBox.textContent = error.message; errBox.style.display = 'block'; }
+    nhToast('Error al guardar: ' + error.message, 'error');
+    return;
+  }
+  nhToast(id ? 'Empresa actualizada.' : 'Empresa creada.', 'success');
+  closePatEmpForm();
+  await loadPatrimonialEmpresas(true);
+}
+window.savePatEmpresa = savePatEmpresa;
+
+function buildPatEmpModalHtml(e) {
+  return `
+    <p class="text-muted" style="font-size:.82rem;margin:0 0 1rem">${dashEsc(PAT_EMP_PROC[e.procedencia] || e.procedencia || '')} · ${dashEsc(PAT_EMP_ESTADOS[e.estado] || e.estado)}</p>
+    <div class="adm-form-grid" style="margin-bottom:1rem">
+      <div><span class="text-muted" style="font-size:.72rem">Contacto</span><div>${dashEsc(e.contacto_nombre || '–')}</div></div>
+      <div><span class="text-muted" style="font-size:.72rem">Teléfono</span><div>${e.telefono ? `<a href="tel:${telHref(e.telefono)}">${dashEsc(e.telefono)}</a>` : '–'}</div></div>
+      <div><span class="text-muted" style="font-size:.72rem">Email</span><div>${e.email ? `<a href="mailto:${dashEsc(e.email)}">${dashEsc(e.email)}</a>` : '–'}</div></div>
+      <div><span class="text-muted" style="font-size:.72rem">Activos</span><div>${dashEsc(e.num_activos || '–')}</div></div>
+      <div class="adm-form-col-full"><span class="text-muted" style="font-size:.72rem">Objetivo</span><div>${dashEsc(e.objetivo || '–')}</div></div>
+      ${e.notas ? `<div class="adm-form-col-full"><span class="text-muted" style="font-size:.72rem">Notas</span><div>${dashEsc(e.notas)}</div></div>` : ''}
+    </div>
+    <div class="wiz-section-label">Nuevo seguimiento</div>
+    <div class="adm-field adm-form-col-full"><textarea id="pat-emp-seg-comentario" rows="3" placeholder="Llamada con Juan, reunión, propuesta enviada…"></textarea></div>
+    <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="savePatEmpSeguimiento()">Guardar seguimiento</button>
+    <div class="wiz-section-label" style="margin-top:1.25rem">Historial</div>
+    <div id="pat-emp-seg-timeline" class="seg-timeline"><p class="text-muted">Cargando…</p></div>`;
+}
+
+async function loadPatEmpSeguimientos(empresaId) {
+  const box = document.getElementById('pat-emp-seg-timeline');
+  if (!box) return;
+  const { data, error } = await window.nhSupabase
+    .from('patrimonial_empresas_seguimientos')
+    .select('id,comentario,created_at')
+    .eq('empresa_id', empresaId)
+    .order('created_at', { ascending: false });
+  if (error || !data?.length) {
+    box.innerHTML = '<p class="text-muted">Sin seguimientos aún.</p>';
+    return;
+  }
+  box.innerHTML = data.map((s) => `
+    <div class="seg-item">
+      <time>${new Date(s.created_at).toLocaleString('es-ES')}</time>
+      <p>${dashEsc(String(s.comentario))}</p>
+    </div>`).join('');
+}
+
+async function openPatEmpModal(id) {
+  _patEmpModalId = id;
+  const e = _patEmpData.find((x) => x.id === id);
+  if (!e) return;
+  document.getElementById('pat-emp-modal-kicker').textContent = PAT_EMP_PROC[e.procedencia] || 'Patrimonial';
+  document.getElementById('pat-emp-modal-title').textContent = e.empresa || 'Empresa';
+  document.getElementById('pat-emp-modal-body').innerHTML = buildPatEmpModalHtml(e);
+  document.getElementById('pat-emp-modal-foot').innerHTML = `
+    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="editPatEmpresa('${e.id}');closePatEmpModal()">Editar ficha</button>
+    <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="closePatEmpModal()">Cerrar</button>`;
+  await loadPatEmpSeguimientos(id);
+  const m = document.getElementById('pat-emp-modal');
+  m.classList.add('open');
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+}
+window.openPatEmpModal = openPatEmpModal;
+
+function closePatEmpModal() {
+  _patEmpModalId = null;
+  const m = document.getElementById('pat-emp-modal');
+  if (m) { m.classList.remove('open'); m.hidden = true; }
+  document.body.style.overflow = '';
+}
+window.closePatEmpModal = closePatEmpModal;
+
+async function savePatEmpSeguimiento() {
+  const id = _patEmpModalId;
+  const comentario = document.getElementById('pat-emp-seg-comentario')?.value.trim();
+  if (!id || !comentario) { nhToast('Escribe un comentario de seguimiento.', 'info'); return; }
+  const now = new Date().toISOString();
+  const { error: err1 } = await window.nhSupabase.from('patrimonial_empresas_seguimientos').insert({ empresa_id: id, comentario });
+  if (err1) { nhToast('Error: ' + err1.message, 'error'); return; }
+  const cur = _patEmpData.find((x) => x.id === id);
+  const nuevoEstado = cur?.estado === 'nuevo' ? 'contactado' : cur?.estado;
+  const { error: err2 } = await window.nhSupabase.from('patrimonial_empresas').update({
+    ultimo_contacto_at: now,
+    proxima_alarma_at: patEmpAlarmDate(now),
+    estado: nuevoEstado,
+  }).eq('id', id);
+  if (err2) nhToast('Seguimiento guardado; error al actualizar alarma: ' + err2.message, 'info');
+  else nhToast('Seguimiento registrado.', 'success');
+  await loadPatrimonialEmpresas(true);
+  if (_patEmpModalId === id) {
+    const e = _patEmpData.find((x) => x.id === id);
+    if (e) {
+      document.getElementById('pat-emp-modal-body').innerHTML = buildPatEmpModalHtml(e);
+      await loadPatEmpSeguimientos(id);
+    }
+  }
+}
+window.savePatEmpSeguimiento = savePatEmpSeguimiento;
 
 /* ── Newsletter ─────────────────────────────────────────────────── */
 async function loadNewsletter(){

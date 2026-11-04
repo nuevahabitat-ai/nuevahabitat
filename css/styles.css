@@ -2465,6 +2465,69 @@ footer {
   .nh-pat-alq-nav,
   .nh-pat-audience-grid { grid-template-columns: 1fr; }
 }
+.nh-pat-juan-photo {
+  max-width: 340px;
+  margin: 0 auto;
+}
+.nh-pat-juan-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  background: var(--blanco);
+}
+.nh-pat-juan-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  margin: 0 0 .35rem;
+}
+.nh-pat-juan-role {
+  font-size: .9375rem;
+  font-weight: 600;
+  color: var(--oro-oscuro);
+  margin: 0 0 1rem;
+  line-height: 1.45;
+}
+.nh-pat-juan-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--negro);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(184, 147, 106, .35);
+}
+.nh-pat-juan-banner-label {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--oro-claro);
+  margin: 0 0 .25rem;
+}
+.nh-pat-juan-banner-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  margin: 0;
+  color: #fff;
+}
+.nh-pat-juan-banner-tel {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--oro-claro);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nh-pat-juan-banner-tel:hover { color: #fff; }
+@media (max-width: 600px) {
+  .nh-pat-juan-banner { flex-direction: column; align-items: flex-start; }
+}
 
 .nh-landing-card-body {
   display: flex;
