@@ -11,9 +11,9 @@ const PART = path.join(ROOT, 'content/landings/particular');
 const COMP = path.join(ROOT, 'content/landings/comparativa');
 const BARRIO_DIR = path.join(ROOT, 'content/landings/barrio');
 
-const FEE = '3.000 € + IVA (3.630 €)';
-const FEE_SHORT = '3.000 € + IVA (3.630 €)';
-const FEE_LINE = '3.630 €';
+const FEE = '3.500 € + IVA';
+const FEE_SHORT = '3.500 € + IVA';
+const FEE_LINE = '3.500 € + IVA';
 
 function fmtEuro(n) {
   return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');

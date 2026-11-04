@@ -24,7 +24,7 @@ const REPLACEMENTS = [
   [/com6 - 3500/g, `com6 - ${NH_FEE_TOTAL_EUR}`],
   [/ahorro = Math\.max\(com6 - 3500/g, `ahorro = Math.max(com6 - ${NH_FEE_TOTAL_EUR}`],
   [/honorarios fijos de 3\.500€ \+ IVA/gi, `honorarios fijos de ${NH_FEE_LABEL_COMPACT}`],
-  [/precio fijo 3500 euros/gi, 'precio fijo 3000 euros mas IVA 3630 escritura'],
+  [/precio fijo 3500 euros/gi, 'precio fijo 3500 euros mas IVA 3630 escritura'],
 ];
 
 let changed = 0;

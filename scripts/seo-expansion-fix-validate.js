@@ -10,8 +10,8 @@ const PART = path.join(ROOT, 'content/landings/particular');
 const COMP = path.join(ROOT, 'content/landings/comparativa');
 const BARRIO_DIR = path.join(ROOT, 'content/landings/barrio');
 
-const FEE = '3.000 € + IVA (3.630 €)';
-const FEE_LINE = '3.630 €';
+const FEE = '3.500 € + IVA';
+const FEE_LINE = '3.500 € + IVA';
 
 function stripHtml(html) {
   return (html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -125,7 +125,7 @@ function fixHabitaclia() {
     `<p>Más: <a href="/nuevahabitat-vs-idealista-particular">Idealista</a>, <a href="/nuevahabitat-vs-fotocasa-particular">Fotocasa</a>, <a href="/inmobiliaria-para-particulares-barcelona">inmobiliaria particulares</a>.</p>` +
     expandBlock({ barrio: 'Barcelona', zonas: ['Eixample', 'Gràcia', 'Sants', 'Sarrià'] }, 'comparativa');
   ensureWords(L, 900, 'comparativa');
-  L.meta.description = L.meta.description.replace(/3\.500/g, '3.630').replace(/3500/g, '3630');
+  L.meta.description = L.meta.description.replace(/3\.630/g, '3.500 € + IVA').replace(/3630/g, '3500');
   fs.writeFileSync(p, JSON.stringify(L, null, 2) + '\n', 'utf8');
   console.log('fix habitaclia');
 }

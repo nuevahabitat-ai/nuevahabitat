@@ -94,6 +94,48 @@ const PARTICULARES_DISTRITOS = [
   { slug: 'inmobiliaria-para-particulares-esplugues-barcelona', label: 'Esplugues' },
 ];
 
+/** Bloque principal en /vender: solo los 3 planes de servicio (sin landings SEO por barrio). */
+function nhVenderTresPlanesBlock() {
+  return `<section class="lc-section" id="tres-planes" style="background:var(--blanco);padding:4rem 0">
+  <div class="container">
+    <div class="text-center fade-up" style="max-width:760px;margin:0 auto 2rem">
+      <span class="overline">Servicios de venta</span>
+      <h2 class="section-title">Elige uno de los tres planes</h2>
+      <p style="color:var(--gris-texto);line-height:1.7;margin:0">Mismo panel digital, honorarios fijos + IVA y cobro 50&nbsp;% al contratar + 50&nbsp;% en escritura. Las guías por barrio y ciudad las publicamos en el <a href="/blog">blog</a>, no aquí.</p>
+    </div>
+    <div class="nh-planes-grid fade-up">
+      <article class="nh-plan-card">
+        <div class="nh-plan-card-media"><img src="imagenes/interior11.jpg" alt="Venta 100 % digital" loading="lazy" width="640" height="400"/></div>
+        <div class="nh-plan-body">
+          <div class="nh-plan-tag">Digital · 1.999 € + IVA</div>
+          <h3 style="font-family:var(--font-serif);margin:.5rem 0">Agencia 100&nbsp;% digital</h3>
+          <p style="color:var(--gris-texto);font-size:.875rem;line-height:1.55">Tú en visitas cualificadas; NH en portales, filtro y cierre.</p>
+          <a href="/venta-digital-barcelona" class="btn btn-gold nh-plan-cta" style="width:100%;justify-content:center;margin-top:1rem">Ver venta digital</a>
+        </div>
+      </article>
+      <article class="nh-plan-card">
+        <div class="nh-plan-card-media"><img src="imagenes/interior5.jpg" alt="Digital + comercial Barcelona" loading="lazy" width="640" height="400"/></div>
+        <div class="nh-plan-body">
+          <div class="nh-plan-tag">Solo Barcelona · 2.500 € + IVA</div>
+          <h3 style="font-family:var(--font-serif);margin:.5rem 0">Digital + comercial</h3>
+          <p style="color:var(--gris-texto);font-size:.875rem;line-height:1.55">Comercial NH en visitas; mismo expediente digital.</p>
+          <a href="/venta-comercial-barcelona" class="btn btn-outline nh-plan-cta" style="width:100%;justify-content:center;margin-top:1rem">Ver plan comercial</a>
+        </div>
+      </article>
+      <article class="nh-plan-card">
+        <div class="nh-plan-card-media"><img src="imagenes/interior4.jpg" alt="Venta clásica Barcelona" loading="lazy" width="640" height="400"/></div>
+        <div class="nh-plan-body">
+          <div class="nh-plan-tag">Integral · 3.500 € + IVA</div>
+          <h3 style="font-family:var(--font-serif);margin:.5rem 0">Venta clásica</h3>
+          <p style="color:var(--gris-texto);font-size:.875rem;line-height:1.55">Agente NH en visitas, negociación y cierre completo.</p>
+          <a href="/venta-clasica-barcelona" class="btn btn-outline nh-plan-cta" style="width:100%;justify-content:center;margin-top:1rem">Ver venta clásica</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>`;
+}
+
 function nhParticularesDistritosBlock() {
   const cards = PARTICULARES_DISTRITOS.map(
     (d) => `<a href="/${d.slug}" class="lc-nh-part-card"><span class="lc-nh-part-card__label">${d.label}</span><span class="lc-nh-part-card__link">Guía particular →</span></a>`
@@ -103,7 +145,7 @@ function nhParticularesDistritosBlock() {
     <div class="text-center fade-up" style="max-width:760px;margin:0 auto 2rem">
       <span class="overline">Propietario particular</span>
       <h2 class="section-title">Inmobiliaria para particulares por distrito y municipio</h2>
-      <p style="color:var(--gris-texto);line-height:1.7;margin:0">Honorarios <strong>3.000 € + IVA (3.630 € en escritura)</strong>, panel vendedor y compradores filtrados. Elige tu zona o empieza por la <a href="/inmobiliaria-para-particulares-barcelona">guía Barcelona</a>.</p>
+      <p style="color:var(--gris-texto);line-height:1.7;margin:0">Tres planes desde <strong>1.999 € + IVA</strong>, panel vendedor y compradores filtrados. Elige plan en <a href="/vender">Vender</a> o la <a href="/inmobiliaria-para-particulares-barcelona">guía Barcelona</a>.</p>
     </div>
     <div class="lc-nh-part-grid fade-up">${cards}</div>
     <p class="text-center fade-up" style="margin-top:1.75rem;font-size:.9375rem;color:var(--gris-texto)">También: <a href="/vender-como-particular-barcelona">vender como particular</a> · <a href="/inmobiliaria-precio-fijo-barcelona">precio fijo</a> · <a href="/venta-piso-economica-barcelona">venta económica en honorarios</a></p>
@@ -126,6 +168,7 @@ function nhParticularesDistritosStyles() {
 module.exports = {
   nhHomeEcosystemBundle,
   nhHomeEcosystemStyles,
+  nhVenderTresPlanesBlock,
   nhParticularesDistritosBlock,
   nhParticularesDistritosStyles,
 };

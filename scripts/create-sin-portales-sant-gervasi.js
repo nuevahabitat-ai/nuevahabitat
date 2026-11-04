@@ -22,13 +22,13 @@ L.keyword_aliases = ['vender sin idealista sant gervasi', 'off market sant gerva
 L.footerLabel = 'Sin portales Sant Gervasi';
 L.breadcrumbCurrent = 'Sin portales Sant Gervasi';
 L.origen_lead = z.slug;
-L.cardTeaser = `${z.h1.replace(/\?$/, '')}. Cartera NH, 3.630 € en escritura.`;
+L.cardTeaser = `${z.h1.replace(/\?$/, '')}. Cartera NH, 3.500 € + IVA.`;
 L.meta.title = 'Vender sin portales en Sant Gervasi · NuevaHabitat';
-L.meta.description = `${z.h1} Honorarios 3.000 € + IVA (3.630 €) solo en escritura. ${z.micro}.`;
+L.meta.description = `${z.h1} Honorarios 3.500 € + IVA solo en escritura. ${z.micro}.`;
 L.meta.keywords = z.keyword;
 L.hero.badge = 'Sant Gervasi · Sin portales';
 L.hero.h1 = z.h1;
-L.hero.lead = `<strong>NuevaHabitat</strong> en <strong>${z.barrio}</strong> (${z.micro}): cartera de compradores, panel vendedor y <strong>3.000 € + IVA (3.630 €)</strong> solo en escritura. Guía: <a href="/${z.barrioSlug}">vender en ${z.barrio}</a>.`;
+L.hero.lead = `<strong>NuevaHabitat</strong> en <strong>${z.barrio}</strong> (${z.micro}): cartera de compradores, panel vendedor y <strong>3.500 € + IVA</strong> solo en escritura. Guía: <a href="/${z.barrioSlug}">vender en ${z.barrio}</a>.`;
 L.hero.image = 'imagenes/santgervasi1.jpg';
 L.hero.imageAlt = 'Vender Sant Gervasi sin portales';
 L.calculadora.precioDefault = z.precioDefault;

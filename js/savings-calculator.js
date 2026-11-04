@@ -1,21 +1,33 @@
 /** Generado por scripts/build-landings.js — no editar a mano */
 (function () {
+  const NH_PLANS = {"digital":{"totalEur":2418.79,"label":"1.999 € + IVA"},"comercial":{"totalEur":3025,"label":"2.500 € + IVA"},"clasica":{"totalEur":4235,"label":"3.500 € + IVA"}};
+  const DEFAULT_PLAN = "clasica";
   const NH_FEE = 4235;
-  const NH_FEE_LABEL = "3.500 € + IVA";
   const DEFAULT_PCT = 6;
+
+  function planFee(key) {
+    const p = NH_PLANS[key] || NH_PLANS[DEFAULT_PLAN];
+    return p ? p.totalEur : NH_FEE;
+  }
+
+  function planLabel(key) {
+    const p = NH_PLANS[key] || NH_PLANS[DEFAULT_PLAN];
+    return p ? p.label : '';
+  }
 
   function formatEuro(n) {
     return Math.round(n).toLocaleString('es-ES') + ' €';
   }
 
-  function calc(precio, pct) {
+  function calc(precio, pct, planKey) {
     const p = Number(precio) || 420000;
     const rate = Number(pct) || DEFAULT_PCT;
+    const nhFee = planFee(planKey);
     const tradVal = Math.round(p * (rate / 100) * 1.21);
-    const saveVal = Math.max(0, tradVal - NH_FEE);
-    const total = tradVal + NH_FEE;
+    const saveVal = Math.max(0, tradVal - nhFee);
+    const total = tradVal + nhFee;
     const tradPct = Math.min(100, Math.round((tradVal / total) * 100)) || 50;
-    return { p, rate, tradVal, saveVal, tradPct, nhPct: Math.max(8, 100 - tradPct) };
+    return { p, rate, tradVal, saveVal, tradPct, nhPct: Math.max(8, 100 - tradPct), nhFee, nhLabel: planLabel(planKey) };
   }
 
   function track(eventName, params) {
@@ -37,7 +49,9 @@
     const nhBreakdown = root.querySelector('.nh-sc-breakdown-item--nh strong');
     const hint = root.querySelector('.nh-sc-save-hint');
     const pctBtns = root.querySelectorAll('.nh-sc-pct');
+    const planSelect = root.querySelector('#nh-sc-plan');
     let pct = DEFAULT_PCT;
+    let planKey = planSelect ? planSelect.value : DEFAULT_PLAN;
     let tracked = false;
 
     if (pctBtns.length) {
@@ -56,7 +70,8 @@
     }
 
     function upd() {
-      const { p, rate, tradVal, saveVal, tradPct, nhPct } = calc(range.value, pct);
+      if (planSelect) planKey = planSelect.value || DEFAULT_PLAN;
+      const { p, rate, tradVal, saveVal, tradPct, nhPct, nhLabel } = calc(range.value, pct, planKey);
       if (label) label.textContent = formatEuro(p);
       if (tradEl) tradEl.textContent = formatEuro(tradVal);
       if (tradInline) tradInline.textContent = formatEuro(tradVal);
@@ -66,8 +81,8 @@
       }
       if (barAgency) barAgency.style.width = tradPct + '%';
       if (barNh) barNh.style.width = nhPct + '%';
-      if (barNhAmt) barNhAmt.textContent = NH_FEE_LABEL;
-      if (nhBreakdown) nhBreakdown.textContent = NH_FEE_LABEL;
+      if (barNhAmt) barNhAmt.textContent = nhLabel;
+      if (nhBreakdown) nhBreakdown.textContent = nhLabel;
       if (hint) hint.textContent = 'respecto a agencia al ' + rate + '% + IVA';
       range.setAttribute('aria-valuenow', String(p));
     }
@@ -96,6 +111,17 @@
       });
     });
 
+    if (planSelect) {
+      planSelect.addEventListener('change', () => {
+        upd();
+        track('calculator_plan_change', {
+          event_category: 'engagement',
+          plan: planSelect.value,
+          precio: Number(range.value),
+        });
+      });
+    }
+
     upd();
   }
 
@@ -106,7 +132,7 @@
     }
   }
 
-  window.nhSavingsCalc = { init, calc, NH_FEE };
+  window.nhSavingsCalc = { init, calc, NH_PLANS, NH_FEE: planFee(DEFAULT_PLAN) };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

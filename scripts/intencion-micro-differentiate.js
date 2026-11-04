@@ -81,14 +81,14 @@ function applyVisibleDifferentiators(L, B, kind) {
   const com6 = Math.round(precio * 0.06 * 1.21);
 
   if (kind === 'pf') {
-    L.meta.title = `Inmobiliaria precio fijo ${barrio}${cp ? ' (' + cp + ')' : ''} · ${z1} · 3.630 € · NuevaHabitat`;
-    L.meta.description = `Agencia honorarios fijos en ${barrio}, ${z1}: ${m2}. ${tend} 3.630 € solo en escritura, panel vendedor y calculadora vs 6%.`;
+    L.meta.title = `Inmobiliaria precio fijo ${barrio}${cp ? ' (' + cp + ')' : ''} · ${z1} · 3.500 € + IVA · NuevaHabitat`;
+    L.meta.description = `Agencia honorarios fijos en ${barrio}, ${z1}: ${m2}. ${tend} 3.500 € + IVA, panel vendedor y calculadora vs 6%.`;
     L.hero.badge = `${z1}${cp ? ' · ' + cp : ''} · Precio fijo · Panel`;
-    L.hero.h1 = `Precio fijo en ${barrio} (${z1}): 3.630 € en escritura, no 6% sobre ~${ticketK}.000 €`;
-    L.hero.lead = `¿Agencia en <strong>${z1}</strong>${z2 ? ' / ' + z2 : ''} (${barrio})? <strong>${m2}</strong>, plazos ~${tiempo}. <strong>3.630 €</strong> solo al vender, panel vendedor y calculadora. <a href="/${B.slug}">Vender en ${barrio}</a>.`;
+    L.hero.h1 = `Precio fijo en ${barrio} (${z1}): 3.500 € + IVA, no 6% sobre ~${ticketK}.000 €`;
+    L.hero.lead = `¿Agencia en <strong>${z1}</strong>${z2 ? ' / ' + z2 : ''} (${barrio})? <strong>${m2}</strong>, plazos ~${tiempo}. <strong>3.500 € + IVA</strong> solo al vender, panel vendedor y calculadora. <a href="/${B.slug}">Vender en ${barrio}</a>.`;
     L.calculadora = L.calculadora || {};
     L.calculadora.precioDefault = precio;
-    L.calculadora.titulo = `Calculadora ${barrio} · ${z1}: 6% vs 3.630 €`;
+    L.calculadora.titulo = `Calculadora ${barrio} · ${z1}: 6% vs 3.500 € + IVA`;
     L.calculadora.subtitulo = `Ticket orientativo ${fmtEuro(precio)} € (${m2}). Solo cobro en escritura.`;
     if (L.como_ayudamos) {
       L.como_ayudamos.title = `${barrio}: valoración en ${z1} y precio fijo`;
@@ -110,16 +110,16 @@ function applyVisibleDifferentiators(L, B, kind) {
     L.footerLabel = `Precio fijo ${barrio}`;
     L.breadcrumbCurrent = `Precio fijo ${barrio}`;
   } else if (kind === 'pp') {
-    L.meta.title = `Inmobiliaria para particulares ${barrio} · ${z1}${cp ? ' · ' + cp : ''} · 3.630 € · NuevaHabitat`;
-    L.meta.description = `Particular en ${barrio} (${z1}): ${tend} ${m2}. Agencia 3.630 € en escritura, panel, Idealista + cartera cualificada.`;
+    L.meta.title = `Inmobiliaria para particulares ${barrio} · ${z1}${cp ? ' · ' + cp : ''} · 3.500 € + IVA · NuevaHabitat`;
+    L.meta.description = `Particular en ${barrio} (${z1}): ${tend} ${m2}. agencia 3.500 € + IVA en escritura, panel, Idealista + cartera cualificada.`;
     L.hero.badge = `${barrio} · Particular · ${z1}`;
-    L.hero.h1 = `Inmobiliaria para particulares en ${barrio}: ${z1}, 3.630 € y panel (no 6%)`;
-    L.hero.lead = `Eres <strong>particular</strong> en <strong>${z1}</strong> (${barrio}). ${m2}, ~${tiempo}. <strong>3.630 €</strong> solo en escritura, visitas con hipoteca contrastada y panel vendedor.`;
+    L.hero.h1 = `Inmobiliaria para particulares en ${barrio}: ${z1}, 3.500 € + IVA y panel (no 6%)`;
+    L.hero.lead = `Eres <strong>particular</strong> en <strong>${z1}</strong> (${barrio}). ${m2}, ~${tiempo}. <strong>3.500 € + IVA</strong> solo en escritura, visitas con hipoteca contrastada y panel vendedor.`;
     L.calculadora = L.calculadora || {};
     L.calculadora.precioDefault = precio;
     L.calculadora.titulo = `Particular ${barrio} (${z1}): neto vs comisión 6%`;
-    L.calculadora.subtitulo = `Sobre ${fmtEuro(precio)} € en ${barrio}. Compara con 3.630 € fijos en escritura.`;
-    L.cardTeaser = `Particular ${barrio}, ${z1}: agencia 3.630 €, panel y compradores filtrados (${m2}).`;
+    L.calculadora.subtitulo = `Sobre ${fmtEuro(precio)} € en ${barrio}. Compara con 3.500 € + IVA en escritura.`;
+    L.cardTeaser = `Particular ${barrio}, ${z1}: agencia 3.500 € + IVA, panel y compradores filtrados (${m2}).`;
     if (L.como_ayudamos) {
       L.como_ayudamos.title = `Particular en ${z1}: de portal a escritura`;
       L.como_ayudamos.description = tend || `Proceso claro en ${barrio}.`;
@@ -137,18 +137,18 @@ function applyVisibleDifferentiators(L, B, kind) {
     L.footerLabel = `Particulares ${barrio}`;
     L.breadcrumbCurrent = `Particulares ${barrio}`;
   } else if (kind === 'econ') {
-    L.meta.title = `Venta piso económica ${barrio}${cp ? ' (' + cp + ')' : ''} · ${z1} · 3.630 € · NuevaHabitat`;
-    L.meta.description = `Honorarios bajos en ${barrio} (${z1}): ahorra vs ${fmtEuro(com6)} € de comisión 6%. ${m2}. 3.630 € solo en escritura, panel y cartera.`;
+    L.meta.title = `Venta piso económica ${barrio}${cp ? ' (' + cp + ')' : ''} · ${z1} · 3.500 € + IVA · NuevaHabitat`;
+    L.meta.description = `Honorarios bajos en ${barrio} (${z1}): ahorra vs ${fmtEuro(com6)} € de comisión 6%. ${m2}. 3.500 € + IVA, panel y cartera.`;
     L.hero.badge = `${z1} · Venta económica · ${cp || barrio}`;
-    L.hero.h1 = `Venta económica en ${barrio} (${z1}): 3.630 € en escritura, no ~${fmtEuro(com6)} € de comisión`;
-    L.hero.lead = `¿Vendes en <strong>${z1}</strong>? Evita regalar ~<strong>${fmtEuro(com6)} €</strong> (6% + IVA). <strong>3.630 €</strong> fijos solo al vender · ${m2} · <a href="/${B.slug}">Vender ${barrio}</a>.`;
+    L.hero.h1 = `Venta económica en ${barrio} (${z1}): 3.500 € + IVA, no ~${fmtEuro(com6)} € de comisión`;
+    L.hero.lead = `¿Vendes en <strong>${z1}</strong>? Evita regalar ~<strong>${fmtEuro(com6)} €</strong> (6% + IVA). <strong>3.500 € + IVA</strong> fijos solo al vender · ${m2} · <a href="/${B.slug}">Vender ${barrio}</a>.`;
     if (L.heroStats && L.heroStats[1]) {
       L.heroStats[1].value = `~${fmtEuro(com6)} €`;
       L.heroStats[1].note = `6% + IVA sobre ${fmtEuro(precio)} €`;
     }
     L.calculadora = L.calculadora || {};
     L.calculadora.precioDefault = precio;
-    L.calculadora.titulo = `Venta económica ${barrio} · ${z1}: 6% vs 3.630 €`;
+    L.calculadora.titulo = `Venta económica ${barrio} · ${z1}: 6% vs 3.500 € + IVA`;
     L.calculadora.subtitulo = `${fmtEuro(precio)} € orientativo (${m2}).`;
     if (L.como_ayudamos) {
       L.como_ayudamos.title = `Venta económica en ${z1} (${barrio})`;

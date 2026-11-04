@@ -7,7 +7,7 @@ const path = require('path');
 
 const PART = path.join(__dirname, '..', 'content', 'landings', 'particular');
 const BARRIO = path.join(__dirname, '..', 'content', 'landings', 'barrio');
-const FEE = '3.000 € + IVA (3.630 €)';
+const FEE = '3.500 € + IVA';
 
 function wordCount(html) {
   return (html || '')

@@ -3,37 +3,20 @@ const {
   FEE_BASE,
   tradCommission6,
   tradCommission3,
-  otherCityLinks,
 } = require('./venta-digital-ciudades-data');
 const { testimonialsSection } = require('./landing-testimonials');
-
-function esc(s) {
-  return String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/"/g, '&quot;');
-}
-
-function portalsPublicationBlock(cityName) {
-  const city = esc(cityName);
-  return `
-<section class="lc-section nh-svc-portals" style="background:var(--blanco)">
-  <div class="container fade-up">
-    <div class="nh-svc-portals-inner">
-      <div class="nh-svc-portals-copy">
-        <span class="overline">Publicación</span>
-        <h2 class="section-title">Idealista y pisos.com</h2>
-        <p class="nh-svc-portals-lead">La publicación se hará con <strong>Idealista</strong> y con <strong>pisos.com</strong>, con lo que tendremos el máximo de clientes interesados en tu inmueble en ${city}.</p>
-        <p class="nh-svc-portals-note">A eso sumamos nuestra cartera de compradores y el filtro de solvencia antes de cada visita.</p>
-      </div>
-      <div class="nh-svc-portals-logos">
-        <img src="imagenes/portales/idealista.jpg" alt="Idealista" width="254" height="157" loading="lazy" class="nh-svc-portal-logo nh-svc-portal-logo--idealista"/>
-        <img src="imagenes/portales/pisos-com.png" alt="pisos.com" width="200" height="80" loading="lazy" class="nh-svc-portal-logo nh-svc-portal-logo--pisos"/>
-      </div>
-    </div>
-  </div>
-</section>`;
-}
+const {
+  esc,
+  portalsPublicationBlock,
+  audienceSection,
+  faqSection,
+  digitalStandardFaqs,
+  compareThreePlansTable,
+  includedExcludedBlock,
+  firmacertBlock,
+  gestoresStrip,
+  serviceNavLinks,
+} = require('./venta-planes-shared');
 
 function renderVentaDigitalPage(c) {
   const canonical = `${SITE}/${c.slug}`;
@@ -44,9 +27,18 @@ function renderVentaDigitalPage(c) {
   const description = `${kw}: vende en ${c.cityName} con honorarios fijos 1.999 € + IVA. Publicación en Idealista y pisos.com, panel vendedor y visitas cualificadas. 50 % contrato + 50 % escritura.`;
   const aliasesMeta = (c.keyword_aliases || []).slice(0, 8).join(', ');
   const trad3 = tradCommission3(c.priceExample);
-  const relatedList = (c.relatedGuides || [])
-    .map((g) => `<li><a href="${g.href}">${esc(g.label)}</a></li>`)
-    .join('');
+  const faqItems = digitalStandardFaqs(c.cityName);
+  const faqBlock = faqSection(`venta digital ${c.cityName}`, faqItems, c.localFaq || '');
+  const audienceBlock = audienceSection(
+    '¿Para quién?',
+    `¿Es para ti la venta digital en ${c.cityName}?`,
+    'Ahorras frente al 6&nbsp;% de agencia, controlas quién entra en casa y delegas anuncio, filtro, negociación y cierre en NuevaHabitat.',
+    [
+      { h: 'Puedes recibir visitas', p: 'Marcas franjas en el panel; solo entran compradores con solvencia revisada.' },
+      { h: 'Buscas precio fijo', p: '1.999 € + IVA, sin comisión sobre el precio de venta del piso.' },
+      { h: 'Quieres panel y firma online', p: 'Expediente, Stripe 50/50 y FIRMACERT sin depender de emails sueltos.' },
+    ]
+  );
   const testimonialBlock = testimonialsSection({
     slug: c.slug,
     cluster: 'intencion',
@@ -147,12 +139,7 @@ function renderVentaDigitalPage(c) {
 <nav id="navbar" class="scrolled" style="background:rgba(13,13,13,.97)">
   <div class="nav-inner">
     <a href="/" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">${esc(c.navSub)}</span></div></a>
-    <ul class="nav-links">
-      <li><a href="/venta-digital">100 % digital</a></li>
-      <li><a href="/venta-clasica-barcelona">Clásica</a></li>
-      <li><a href="/${c.slug}" aria-current="page">Digital · ${esc(c.cityName)}</a></li>
-      <li><a href="/vender">Hub vender</a></li>
-    </ul>
+    ${serviceNavLinks('digital')}
     <div class="nav-actions"><a href="/registro?tipo=vender&amp;plan=digital&amp;ciudad=${encodeURIComponent(c.cityName)}" class="nav-cta">Contratar</a></div>
   </div>
 </nav>
@@ -203,6 +190,8 @@ function renderVentaDigitalPage(c) {
 </section>
 
 ${portalsPublicationBlock(c.cityName)}
+
+${audienceBlock}
 
 <section class="lc-section" style="background:var(--crema)">
   <div class="container">
@@ -315,39 +304,15 @@ ${portalsPublicationBlock(c.cityName)}
 
 ${testimonialBlock}
 
-<section class="lc-section" style="background:var(--blanco)">
-  <div class="container fade-up" style="max-width:720px">
-    <span class="overline">Más información</span>
-    <h2 class="section-title">Guías relacionadas</h2>
-    <ul class="lc-nh-checklist">${relatedList}</ul>
-  </div>
-</section>
+${includedExcludedBlock('digital')}
 
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:1.5rem"><h2 class="section-title">Preguntas frecuentes · venta digital ${esc(c.cityName)}</h2></div>
-    <div class="nh-svc-faq fade-up">
-      <details><summary>¿Tengo que hacer todas las visitas yo?</summary><p>Sí, en el plan digital tú abres la puerta en ${esc(c.cityName)}. Solo programamos compradores que cumplen criterios de solvencia e intención.</p></details>
-      <details><summary>¿En qué portales publicáis el anuncio?</summary><p>La publicación se hace con <strong>Idealista</strong> y <strong>pisos.com</strong>, para llegar al máximo de compradores interesados; además activamos nuestra cartera de demanda cualificada.</p></details>
-      <details><summary>¿Es lo mismo que publicar en Idealista como particular?</summary><p>No. Además del anuncio en Idealista y pisos.com, filtramos demanda, negociamos, gestionamos arras y centralizamos documentación. Pagas honorarios fijos, no un 6&nbsp;% del precio de venta.</p></details>
-      ${c.localFaq}
-      <details><summary>¿Cuándo pago el resto?</summary><p>El segundo 50&nbsp;% se cobra en escritura, cuando la operación cierra. Hasta entonces el servicio ya está activo tras el primer pago.</p></details>
-    </div>
-  </div>
-</section>
+${firmacertBlock()}
 
-<section class="lc-section" style="background:var(--crema)">
-  <div class="container">
-    <div class="text-center fade-up" style="margin-bottom:1.25rem">
-      <h2 class="section-title">Venta 100&nbsp;% digital en otras ciudades</h2>
-      <p style="color:var(--gris-texto);max-width:560px;margin:0 auto;line-height:1.65">Mismo plan, misma plataforma. Elige tu ciudad o pide valoración sin compromiso.</p>
-    </div>
-    <div class="container nh-svc-planes-nav fade-up">
-      ${otherCityLinks(c.slug)}
-      <a href="/venta-digital"><strong>Hub nacional</strong><span>Comparativa Madrid · BCN · Valencia · Sevilla</span></a>
-    </div>
-  </div>
-</section>
+${faqBlock}
+
+${compareThreePlansTable('digital')}
+
+${gestoresStrip()}
 
 <section class="lc-section" style="background:var(--negro);color:#fff;text-align:center">
   <div class="container fade-up">
@@ -361,7 +326,7 @@ ${testimonialBlock}
   <div class="container">
     <div class="footer-top" style="grid-template-columns:1.5fr 2fr 1fr">
       <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Venta 100&nbsp;% digital en ${esc(c.cityName)} · precio fijo y panel en tiempo real.</p></div>
-      <div class="footer-col footer-col--servicios"><h4>Planes venta</h4><ul><li><a href="/venta-digital">Hub digital</a></li><li><a href="/venta-clasica-barcelona">Clásica</a></li><li><a href="/${c.slug}">Digital · ${esc(c.cityName)}</a></li></ul></div>
+      <div class="footer-col footer-col--servicios"><h4>Planes venta</h4><ul><li><a href="/venta-digital-barcelona">Digital · 1.999 € + IVA</a></li><li><a href="/venta-comercial-barcelona">Comercial · 2.500 € + IVA</a></li><li><a href="/venta-clasica-barcelona">Clásica · 3.500 € + IVA</a></li><li><a href="/vender">Hub vender</a></li></ul></div>
       <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34603656587">603 656 587</a></li><li><a href="mailto:info@nuevahabitat.com">info@nuevahabitat.com</a></li></ul></div>
     </div>
     <div class="footer-bottom"><p>© 2026 NuevaHabitat</p><div class="footer-bottom-links"><a href="/privacidad">Privacidad</a><a href="/aviso-legal">Aviso legal</a></div></div>

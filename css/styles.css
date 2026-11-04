@@ -2422,6 +2422,58 @@ footer {
   width: auto;
   display: block;
 }
+.nh-svc-compare-table--plans td:first-child {
+  min-width: 140px;
+}
+.lc-gestor-wa-strip {
+  padding: 1.35rem 0;
+  background: var(--blanco);
+  border-top: 1px solid var(--crema-dark);
+  border-bottom: 1px solid var(--crema-dark);
+}
+.lc-gestor-wa-strip__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.lc-gestor-wa-strip__text {
+  flex: 1;
+  min-width: 200px;
+  margin: 0;
+  color: var(--gris-texto);
+  line-height: 1.6;
+  font-size: 0.9375rem;
+}
+.lc-gestor-wa-strip__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.nh-sc-plan-select {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1.5px solid var(--crema-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  background: var(--blanco);
+}
+@media (max-width: 640px) {
+  .lc-gestor-wa-strip__inner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .lc-gestor-wa-strip__btns {
+    flex-direction: column;
+  }
+  .lc-gestor-wa-strip__btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 
 /* ── Nueva Hábitat Patrimonial (empresas / carteras) ── */
 .nh-pat-hero-badge {

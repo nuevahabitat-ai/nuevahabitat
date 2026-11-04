@@ -1,5 +1,5 @@
 /**
- * Expansión SEO: honorarios 3.630 €, landings faltantes, fixes enlaces, comparativa Habitaclia.
+ * Expansión SEO: Honorarios 3.500 € + IVA, landings faltantes, fixes enlaces, comparativa Habitaclia.
  * Uso: node scripts/seo-expansion-batch.js && node scripts/build-landings.js
  */
 const fs = require('fs');
@@ -11,8 +11,8 @@ const INT_DIR = path.join(ROOT, 'content/landings/intencion');
 const PART_DIR = path.join(ROOT, 'content/landings/particular');
 const COMP_DIR = path.join(ROOT, 'content/landings/comparativa');
 
-const FEE_SHORT = '3.000 € + IVA (3.630 €)';
-const FEE_LINE = '3.630 €';
+const FEE_SHORT = '3.500 € + IVA';
+const FEE_LINE = '3.500 € + IVA';
 
 function fmtEuro(n) {
   return Math.round(n).toLocaleString('es-ES');
@@ -43,9 +43,9 @@ function normalizeHonorariosInLandings() {
       t = t.replace(/3500\s*€\s*\+\s*IVA/g, FEE_SHORT);
       t = t.replace(/3\.500€\s*\+\s*IVA/g, FEE_SHORT);
       t = t.replace(/Honorarios fijos 3\.500/g, 'Honorarios fijos 3.630');
-      t = t.replace(/precio fijo 3500 euros/gi, 'precio fijo 3000 euros mas IVA');
-      t = t.replace(/com6 - 3500/g, 'com6 - 3630');
-      t = t.replace(/Math\.max\(com6 - 3500/g, 'Math.max(com6 - 3630');
+      t = t.replace(/precio fijo 3500 euros/gi, 'precio fijo 3500 euros mas IVA');
+      t = t.replace(/com6 - 3630/g, 'com6 - 4235');
+      t = t.replace(/Math\.max\(com6 - 3630/g, 'Math.max(com6 - 4235');
       if (t !== orig) {
         fs.writeFileSync(p, t, 'utf8');
         n++;
@@ -100,7 +100,7 @@ function buildPrecioFijoFromBarrio(barrioSlug, force) {
   const barrio = B.barrio || zone;
   const precio = B.ejemploPrecio || 400000;
   const com6 = Math.round(precio * 0.06 * 1.21);
-  const ahorro = Math.max(com6 - 3630, 12000);
+  const ahorro = Math.max(com6 - 4235, 12000);
   const kw = `inmobiliaria precio fijo ${barrio.toLowerCase()} barcelona`;
   const pfPara = `inmobiliaria-para-particulares-${zone}-barcelona`;
 

@@ -7,7 +7,7 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const PART = path.join(ROOT, 'content/landings/particular');
 const BARRIO = path.join(ROOT, 'content/landings/barrio');
-const FEE = '3.000 € + IVA (3.630 €)';
+const FEE = '3.500 € + IVA';
 
 const AGENCY_LINK = {
   'vender-como-particular-barceloneta-barcelona': 'inmobiliaria-para-particulares-ciutat-vella-barcelona',

@@ -10,19 +10,7 @@ const { renderVentaDigitalPage } = require('./render-venta-digital-page');
 const ROOT = path.join(__dirname, '..');
 
 function renderHub() {
-  const cards = CIUDADES.map(
-    (c) => `<a href="/${c.slug}" class="nh-plan-card fade-up" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%">
-      <div class="nh-plan-tag">100 % digital · ${c.cityName}</div>
-      <h3 style="font-family:var(--font-serif);margin:.5rem 0">Venta digital ${c.cityName}</h3>
-      <p class="nh-plan-price">${FEE_BASE} € + IVA</p>
-      <p style="color:var(--gris-texto);font-size:.875rem;line-height:1.55;flex:1">${c.areaServed}. ${c.priceM2}. ${c.avgDays}.</p>
-      <span class="btn btn-outline nh-plan-cta" style="width:100%;justify-content:center;margin-top:1rem">Ver landing SEO →</span>
-    </a>`
-  ).join('\n');
-
-  const cityLinks = CIUDADES.map(
-    (c) => `<a href="/${c.slug}"><strong>${c.cityName}</strong><span>${c.keyword_principal}</span></a>`
-  ).join('\n      ');
+  const barcelona = CIUDADES.find((c) => c.slug === 'venta-digital-barcelona') || CIUDADES[0];
 
   return `<!DOCTYPE html>
 <html lang="es">
@@ -89,14 +77,12 @@ function renderHub() {
 </section>
 
 <section class="lc-section" style="background:var(--blanco);padding:3rem 0">
-  <div class="container">
-    <div class="text-center" style="max-width:760px;margin:0 auto 2rem">
-      <h2 class="section-title">Elige tu ciudad</h2>
-      <p style="color:var(--gris-texto);line-height:1.7">Cada landing incluye mercado local orientativo, comparativa de honorarios, FAQ y enlaces al panel de registro con plan digital.</p>
+  <div class="container" style="max-width:820px">
+    <div class="text-center" style="margin:0 auto 2rem">
+      <h2 class="section-title">Página de servicio · venta digital</h2>
+      <p style="color:var(--gris-texto);line-height:1.75">Desde Barcelona operamos el plan 1.999&nbsp;€ + IVA con panel, Idealista, pisos.com y visitas que tú programas. Contenido por ciudad y barrio lo publicamos en el <a href="/blog">blog</a> (no en el hub principal de vender).</p>
     </div>
-    <div class="nh-planes-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem">
-      ${cards}
-    </div>
+    <p style="text-align:center"><a href="/${barcelona.slug}" class="btn btn-gold">Ver venta digital · ${barcelona.cityName}</a> · <a href="/vender" class="btn btn-outline">Comparar los 3 planes</a></p>
   </div>
 </section>
 
@@ -132,7 +118,9 @@ function renderHub() {
 
 <section class="lc-section" style="background:var(--negro);padding:2rem 0">
   <div class="container nh-svc-planes-nav">
-    ${cityLinks}
+    <a href="/venta-digital-barcelona" class="is-current"><strong>100 % digital</strong><span>1.999 € + IVA</span></a>
+    <a href="/venta-comercial-barcelona"><strong>Digital + comercial</strong><span>2.500 € + IVA · Barcelona</span></a>
+    <a href="/venta-clasica-barcelona"><strong>Venta clásica</strong><span>3.500 € + IVA</span></a>
   </div>
 </section>
 
