@@ -145,8 +145,9 @@
         <button type="button" class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">Alquileres</button>
         <div class="nav-dropdown-menu" role="menu">
           <a href="/acceso-alquileres" role="menuitem">Acceso panel propietario</a>
-          <a href="/administracion-alquileres" role="menuitem">Información del servicio</a>
-          <a href="/alquiler-integral" role="menuitem">Alquiler integral</a>
+          <a href="/administracion-alquileres" role="menuitem">Administración de alquileres · 59 €/mes</a>
+          <a href="/alquiler-integral" role="menuitem">Alquiler integral · 599 €</a>
+          <a href="/#planes-alquiler" role="menuitem">Ver sección alquileres (home)</a>
         </div>
       `;
       if (blogLi) blogLi.after(wrapLi);
@@ -158,6 +159,9 @@
           'afterbegin',
           '<a href="/acceso-alquileres" role="menuitem">Acceso panel propietario</a>'
         );
+      }
+      if (menu) {
+        menu.querySelectorAll('a[href="/patrimonial"]').forEach((a) => a.remove());
       }
     }
 
@@ -227,8 +231,30 @@
     return wrapLi;
   }
 
+  function mountPatrimonialNav(ul) {
+    ul.querySelectorAll('.nav-dropdown-menu a[href="/patrimonial"]').forEach((a) => a.remove());
+
+    const hasTopLevel = [...ul.children].some((li) => {
+      if (!li.matches('li')) return false;
+      if (li.classList.contains('nav-alquileres-wrap') || li.classList.contains('nav-vender-wrap')) return false;
+      const a = li.querySelector(':scope > a[href="/patrimonial"]');
+      return Boolean(a);
+    });
+    if (hasTopLevel) return;
+
+    const hipotecasLi = [...ul.querySelectorAll('li')].find((li) => li.querySelector(':scope > a[href="/hipotecas"]'));
+    const nosotrosLi = [...ul.querySelectorAll('li')].find((li) => li.querySelector(':scope > a[href="/nosotros"]'));
+    const li = document.createElement('li');
+    li.className = 'nav-patrimonial-wrap';
+    li.innerHTML = '<a href="/patrimonial">Patrimonial</a>';
+    if (hipotecasLi) hipotecasLi.after(li);
+    else if (nosotrosLi) nosotrosLi.before(li);
+    else ul.appendChild(li);
+  }
+
   document.querySelectorAll('.nav-links').forEach(mountAlquileresNav);
   document.querySelectorAll('.nav-links').forEach(mountVenderNav);
+  document.querySelectorAll('.nav-links').forEach(mountPatrimonialNav);
 
   const path = window.location.pathname.replace(/\/$/, '') || '/';
   if (
@@ -249,9 +275,26 @@
     document.querySelectorAll('.nav-vender-wrap').forEach((li) => li.classList.add('is-active'));
   }
 
+  if (path === '/patrimonial') {
+    document.querySelectorAll('.nav-patrimonial-wrap > a[href="/patrimonial"], .nav-links > li > a[href="/patrimonial"]').forEach((a) => {
+      if (a.closest('.nav-dropdown-menu')) return;
+      a.style.color = 'var(--oro)';
+    });
+    document.querySelectorAll('.nav-patrimonial-wrap').forEach((li) => li.classList.add('is-active'));
+  }
+
   const mobileNav = document.getElementById('mobileNav');
   if (mobileNav) {
     const vendMain = mobileNav.querySelector('a[href="/vender"]');
+    if (!mobileNav.querySelector('a[href="/patrimonial"]')) {
+      const nosLink = mobileNav.querySelector('a[href="/nosotros"]');
+      const patLink = document.createElement('a');
+      patLink.href = '/patrimonial';
+      patLink.textContent = 'Patrimonial';
+      if (nosLink) mobileNav.insertBefore(patLink, nosLink);
+      else mobileNav.appendChild(patLink);
+    }
+
     if (vendMain && vendMain.textContent.trim() === 'Vender' && !mobileNav.querySelector('[data-nh-vend-mobile]')) {
       vendMain.remove();
       const comprarLink = mobileNav.querySelector('a[href="/comprar"]');

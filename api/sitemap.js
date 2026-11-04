@@ -24,7 +24,7 @@ function loadLandingsFromIndex() {
 }
 const STATIC = [
   '', 'vender', 'comprar', 'inmuebles', 'hipotecas',
-  'administracion-alquileres', 'alquiler-integral',
+  'administracion-alquileres', 'alquiler-integral', 'patrimonial',
   'nosotros', 'blog', 'contacto', 'mapa-del-sitio',
   'privacidad', 'aviso-legal', 'cookies'
 ];
