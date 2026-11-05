@@ -360,6 +360,11 @@ window.NH_LANDING_ORDER = [
   "venta-digital-madrid",
   "venta-digital-valencia",
   "venta-digital-sevilla",
+  "venta-digital-malaga",
+  "venta-digital-bilbao",
+  "venta-digital-zaragoza",
+  "venta-digital-alicante",
+  "venta-digital-murcia",
   "administracion-alquileres",
   "alquiler-integral",
   "administracion-alquileres-les-corts",
@@ -419,6 +424,7 @@ window.NH_LANDING_CLUSTERS = {
   comprador: { label: 'Comprar', slugs: [] },
   alquileres: { label: 'Alquileres', slugs: [] },
   alquiler: { label: 'Alquiler por micro-barrio', slugs: [] },
+  ventaDigital: { label: 'Venta 100 % digital', slugs: [] },
 };
 window.NH_LANDINGS = {
   "vender-badalona": {
@@ -5095,7 +5101,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "venta 100 por ciento digital España",
     "priority": 0.97,
     "indexable": true,
-    "cardTeaser": "Plan digital 1.999 € + IVA en Madrid, Barcelona, Valencia y Sevilla. Enlaces a landings por ciudad."
+    "cardTeaser": "Plan digital 1.999 € + IVA en 9 ciudades (Barcelona, Madrid, Valencia, Sevilla, Málaga, Bilbao, Zaragoza, Alicante, Murcia)."
   },
   "venta-digital-barcelona": {
     "slug": "venta-digital-barcelona",
@@ -5132,6 +5138,51 @@ window.NH_LANDINGS = {
     "priority": 0.93,
     "indexable": true,
     "cardTeaser": "Venta digital en Sevilla capital y área: precio fijo, panel vendedor y filtro de compradores."
+  },
+  "venta-digital-malaga": {
+    "slug": "venta-digital-malaga",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Málaga",
+    "keyword_principal": "venta 100 por ciento digital Málaga",
+    "priority": 0.94,
+    "indexable": true,
+    "cardTeaser": "Venta digital en Málaga y Costa del Sol: 1.999 € + IVA, panel y visitas del propietario."
+  },
+  "venta-digital-bilbao": {
+    "slug": "venta-digital-bilbao",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Bilbao",
+    "keyword_principal": "venta 100 por ciento digital Bilbao",
+    "priority": 0.94,
+    "indexable": true,
+    "cardTeaser": "Inmobiliaria digital en Bilbao y área: honorarios fijos, Idealista y visitas cualificadas."
+  },
+  "venta-digital-zaragoza": {
+    "slug": "venta-digital-zaragoza",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Zaragoza",
+    "keyword_principal": "venta 100 por ciento digital Zaragoza",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Venta 100 % digital en Zaragoza: precio fijo 1.999 € + IVA y panel vendedor."
+  },
+  "venta-digital-alicante": {
+    "slug": "venta-digital-alicante",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Alicante",
+    "keyword_principal": "venta 100 por ciento digital Alicante",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Vender en Alicante con venta digital NuevaHabitat: 1.999 € + IVA y filtro de compradores."
+  },
+  "venta-digital-murcia": {
+    "slug": "venta-digital-murcia",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Murcia",
+    "keyword_principal": "venta 100 por ciento digital Murcia",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Venta digital Murcia: honorarios fijos, portales y acompañamiento hasta notaría."
   },
   "administracion-alquileres": {
     "slug": "administracion-alquileres",

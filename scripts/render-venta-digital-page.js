@@ -17,6 +17,16 @@ const {
   gestoresStrip,
   serviceNavLinks,
 } = require('./venta-planes-shared');
+const {
+  ventaDigitalExtraStyles,
+  ventaDigitalQuickGlance,
+  ventaDigitalIllustratedFlow,
+  ventaDigitalEcosystemBlock,
+  ventaDigitalPaymentBlock,
+  ventaDigitalOtherCities,
+  ventaDigitalEducationalProse,
+  ventaDigitalFullPanel,
+} = require('./venta-digital-content-blocks');
 
 function renderVentaDigitalPage(c) {
   const canonical = `${SITE}/${c.slug}`;
@@ -133,13 +143,14 @@ function renderVentaDigitalPage(c) {
   <meta property="og:image" content="${SITE}/imagenes/interior11.jpg"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+  <style>${ventaDigitalExtraStyles()}</style>
   <script type="application/ld+json" id="nh-seo-static">${jsonLd}</script>
 </head>
 <body>
 <nav id="navbar" class="scrolled" style="background:rgba(13,13,13,.97)">
   <div class="nav-inner">
     <a href="/" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">${esc(c.navSub)}</span></div></a>
-    ${serviceNavLinks('digital')}
+    ${serviceNavLinks('digital', `/${c.slug}`)}
     <div class="nav-actions"><a href="/registro?tipo=vender&amp;plan=digital&amp;ciudad=${encodeURIComponent(c.cityName)}" class="nav-cta">Contratar</a></div>
   </div>
 </nav>
@@ -168,10 +179,12 @@ function renderVentaDigitalPage(c) {
   </div>
 </section>
 
+${ventaDigitalQuickGlance(c)}
+
 <section class="lc-section" style="background:var(--blanco)">
   <div class="container lc-nh-split fade-up">
     <div>
-      <span class="overline">SEO · ${esc(c.keyword_principal)}</span>
+      <span class="overline">Plan digital · ${esc(c.cityName)}</span>
       <h2 class="section-title">Inmobiliaria digital en ${esc(c.cityName)} con precio fijo</h2>
       <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1rem">Muchas búsquedas en Google combinan <strong>venta digital</strong>, <strong>vender piso online</strong> o <strong>inmobiliaria sin comisión porcentual</strong> con ${esc(c.cityName)}. El plan 100&nbsp;% digital de NuevaHabitat responde a eso: honorarios cerrados (<strong>${FEE_BASE} € + IVA</strong>), cobro repartido 50&nbsp;/&nbsp;50 y panel vendedor donde ves visitas, documentos y ofertas.</p>
       <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:.75rem">Mercado orientativo en ${esc(c.cityName)}: <strong>${esc(c.priceM2 || '')}</strong> · plazos habituales <strong>${esc(c.avgDays || '')}</strong>.</p>
@@ -189,7 +202,13 @@ function renderVentaDigitalPage(c) {
   </div>
 </section>
 
+${ventaDigitalIllustratedFlow(c)}
+
 ${portalsPublicationBlock(c.cityName)}
+
+${ventaDigitalEcosystemBlock(c)}
+
+${ventaDigitalEducationalProse(c)}
 
 ${audienceBlock}
 
@@ -245,45 +264,9 @@ ${audienceBlock}
   </div>
 </section>
 
-<section class="lc-section lc-nh-panel" style="background:var(--crema)">
-  <div class="container">
-    <div class="lc-nh-panel-grid fade-up">
-      <div>
-        <span class="overline">Panel del vendedor</span>
-        <h2 class="section-title">Calendario de visitas en ${esc(c.cityName)}</h2>
-        <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1rem">En el plan digital el calendario es la pieza clave: indicas cuándo puedes recibir visitas en tu vivienda y el equipo solo agenda compradores que pasaron el filtro de hipoteca o liquidez.</p>
-        <ul class="lc-nh-panel-list">
-          <li><strong>Honorarios</strong> — ves el 50&nbsp;% pagado y cuándo se habilita el pago en escritura.</li>
-          <li><strong>Documentación</strong> — nota simple, certificados y escrituras en un solo sitio.</li>
-          <li><strong>Visitas</strong> — ficha por visita: quién viene, agente y resultado.</li>
-          <li><strong>Publicación</strong> — estado del anuncio y enlace a tu ficha cuando esté activa.</li>
-        </ul>
-        <a href="/registro?tipo=vender&amp;plan=digital&amp;ciudad=${encodeURIComponent(c.cityName)}" class="btn btn-gold">Crear cuenta y pagar 1.er 50&nbsp;%</a>
-      </div>
-      <div class="lc-pm-wrap" aria-hidden="true">
-        <div class="lc-pm-header">
-          <div class="lc-pm-brand"><span class="lc-pm-logo">NH</span><span>Nueva Habitat <small>Panel · Digital · ${esc(c.cityName)}</small></span></div>
-          <div class="lc-pm-user"><span class="lc-pm-avatar">LP</span><span>Propietario · ${esc(c.cityName)}</span></div>
-        </div>
-        <div class="lc-pm-body">
-          <div class="lc-pm-sidebar">
-            <div class="lc-pm-nav active">Resumen</div>
-            <div class="lc-pm-nav">Honorarios</div>
-            <div class="lc-pm-nav">Visitas</div>
-            <div class="lc-pm-nav">Documentación</div>
-          </div>
-          <div class="lc-pm-main">
-            <div class="lc-pm-card">
-              <div class="lc-pm-card-title">Próximas visitas (tú en casa)</div>
-              <div class="lc-pm-visit"><span>Mar 18 · 19:00</span><strong>Comprador — hipoteca preaprobada</strong></div>
-              <div class="lc-pm-visit"><span>Sáb 20 · 11:30</span><strong>Pareja — 2.ª visita</strong></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+${ventaDigitalPaymentBlock()}
+
+${ventaDigitalFullPanel(c)}
 
 <section class="lc-section" style="background:var(--crema)">
   <div class="container">
@@ -313,6 +296,8 @@ ${faqBlock}
 ${compareThreePlansTable('digital')}
 
 ${gestoresStrip()}
+
+${ventaDigitalOtherCities(c)}
 
 <section class="lc-section" style="background:var(--negro);color:#fff;text-align:center">
   <div class="container fade-up">

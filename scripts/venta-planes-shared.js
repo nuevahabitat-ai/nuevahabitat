@@ -80,10 +80,10 @@ function faqSection(cityLabel, faqs, extraHtml = '') {
 </section>`;
 }
 
-function serviceNavLinks(currentPlan) {
+function serviceNavLinks(currentPlan, digitalHref = '/venta-digital-barcelona') {
   const links = [
     { href: '/venta-clasica-barcelona', label: 'Clásica', key: 'clasica' },
-    { href: '/venta-digital-barcelona', label: 'Digital', key: 'digital' },
+    { href: digitalHref, label: 'Digital', key: 'digital' },
     { href: '/venta-comercial-barcelona', label: 'Digital + comercial', key: 'comercial' },
   ];
   const lis = links

@@ -2877,6 +2877,19 @@
       "agencia venta digital"
     ]
   },
+  "venta-digital-alicante": {
+    "keyword": "venta 100 por ciento digital alicante",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-alicante",
+    "aliases": [
+      "vender piso online alicante",
+      "inmobiliaria digital alicante",
+      "agencia venta digital alicante",
+      "vender casa sin comisión alicante",
+      "venta piso 100 digital alicante",
+      "vender piso particular alicante"
+    ]
+  },
   "venta-digital-barcelona": {
     "keyword": "venta 100 por ciento digital barcelona",
     "cluster": "ventaDigital",
@@ -2890,6 +2903,19 @@
       "vender piso particular digital barcelona"
     ]
   },
+  "venta-digital-bilbao": {
+    "keyword": "venta 100 por ciento digital bilbao",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-bilbao",
+    "aliases": [
+      "vender piso online bilbao",
+      "inmobiliaria digital bilbao",
+      "agencia venta digital bilbao",
+      "vender casa sin comisión bilbao",
+      "venta piso 100 digital bilbao",
+      "vender piso particular bilbao"
+    ]
+  },
   "venta-digital-madrid": {
     "keyword": "venta 100 por ciento digital madrid",
     "cluster": "ventaDigital",
@@ -2901,6 +2927,32 @@
       "vender casa sin comisión madrid",
       "venta piso 100 digital madrid",
       "vender piso particular madrid digital"
+    ]
+  },
+  "venta-digital-malaga": {
+    "keyword": "venta 100 por ciento digital málaga",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-malaga",
+    "aliases": [
+      "vender piso online malaga",
+      "inmobiliaria digital malaga",
+      "agencia venta digital malaga",
+      "vender casa sin comisión malaga",
+      "venta piso 100 digital malaga",
+      "vender piso particular malaga digital"
+    ]
+  },
+  "venta-digital-murcia": {
+    "keyword": "venta 100 por ciento digital murcia",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-murcia",
+    "aliases": [
+      "vender piso online murcia",
+      "inmobiliaria digital murcia",
+      "agencia venta digital murcia",
+      "vender casa sin comisión murcia",
+      "venta piso 100 digital murcia",
+      "vender piso particular murcia"
     ]
   },
   "venta-digital-sevilla": {
@@ -2927,6 +2979,19 @@
       "vender casa sin comisión valencia",
       "venta piso 100 digital valencia",
       "vender piso particular valencia"
+    ]
+  },
+  "venta-digital-zaragoza": {
+    "keyword": "venta 100 por ciento digital zaragoza",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-zaragoza",
+    "aliases": [
+      "vender piso online zaragoza",
+      "inmobiliaria digital zaragoza",
+      "agencia venta digital zaragoza",
+      "vender casa sin comisión zaragoza",
+      "venta piso 100 digital zaragoza",
+      "vender piso particular zaragoza"
     ]
   },
   "venta-piso-economica-badalona-barcelona": {

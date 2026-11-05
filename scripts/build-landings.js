@@ -1049,6 +1049,7 @@ function writeLandingsJs(allMap, order) {
     "  comprador: { label: 'Comprar', slugs: [] },",
     "  alquileres: { label: 'Alquileres', slugs: [] },",
     "  alquiler: { label: 'Alquiler por micro-barrio', slugs: [] },",
+    "  ventaDigital: { label: 'Venta 100 % digital', slugs: [] },",
     '};',
     'window.NH_LANDINGS = ' + JSON.stringify(allMap, null, 2) + ';',
     'Object.keys(window.NH_LANDINGS).forEach(function(slug){',

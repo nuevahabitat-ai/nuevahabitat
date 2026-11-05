@@ -165,6 +165,201 @@ const CIUDADES = [
 <h2>Proceso transparente</h2>
 <p>50&nbsp;% al contratar activa publicación y gestión de leads. 50&nbsp;% en escritura solo si vendes. Sin venta, no hay segundo cobro de agencia más allá del servicio ya activado tras el primer pago (condiciones en contrato).</p>`,
   },
+  {
+    slug: 'venta-digital-malaga',
+    cityName: 'Málaga',
+    navSub: 'Málaga',
+    keyword_principal: 'venta 100 por ciento digital Málaga',
+    keyword_aliases: [
+      'vender piso online malaga',
+      'inmobiliaria digital malaga',
+      'agencia venta digital malaga',
+      'vender casa sin comisión malaga',
+      'venta piso 100 digital malaga',
+      'vender piso particular malaga digital',
+    ],
+    priority: 0.94,
+    areaServed: 'Málaga capital y Costa del Sol occidental',
+    heroBadge: 'Plan digital · Málaga y área',
+    marketLead:
+      'Centro histórico, Teatinos, El Palo o Rincón de la Victoria: mismo expediente online, portales nacionales y visitas en tus horarios — sin pagar un 3&nbsp;% sobre el precio de venta.',
+    zones: ['Centro', 'Teatinos', 'La Malagueta', 'El Palo', 'Carretera de Cádiz', 'Ronda', 'Torremolinos', 'Rincón de la Victoria'],
+    priceExample: 310000,
+    priceM2: '2.400 – 4.200 €/m² (orientativo 2026)',
+    avgDays: '55 – 100 días',
+    cardTeaser: 'Venta digital en Málaga y Costa del Sol: 1.999 € + IVA, panel y visitas del propietario.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital España' },
+      { href: '/venta-digital-sevilla', label: 'Venta digital Sevilla' },
+      { href: '/vender', label: 'Hub vender' },
+    ],
+    localFaq:
+      '<details><summary>¿Atendéis la Costa del Sol?</summary><p>El plan digital cubre Málaga capital y municipios cercanos donde puedas recibir visitas cualificadas (Torremolinos, Rincón, Benalmádena, etc.). Lo confirmamos en valoración.</p></details>' +
+      '<details><summary>¿Hay mucha demanda internacional en Málaga?</summary><p>Sí; por eso filtramos solvencia antes de visita. Tú controlas calendario; nosotros negociación y documentación en panel.</p></details>',
+    seoExtra: `<h2>Vender piso en Málaga con inmobiliaria digital</h2>
+<p>Málaga combina mercado local, segunda residencia y compradores europeos. Buscar <strong>venta 100 % digital Málaga</strong> suele significar querer <strong>honorarios fijos</strong> frente al 6&nbsp;% de agencia de barrio. NuevaHabitat publica en Idealista y pisos.com, filtra hipoteca y tú recibes solo visitas preparadas.</p>
+<p>Con un ticket orientativo de <strong>310.000 €</strong>, el 6&nbsp;% + IVA tradicional supera <strong>22.000 €</strong>; el plan digital son <strong>1.999 € + IVA</strong> repartidos 50&nbsp;/&nbsp;50.</p>
+<h2>Teatinos, centro y litoral</h2>
+<p>No mezclamos comparables de chalet en Rincón con piso en Carretera de Cádiz: el pricing y el reportaje cambian. El panel centraliza documentación para arras sin sorpresas.</p>
+<h2>Teletrabajo y plazos</h2>
+<p>Muchos vendedores siguen viviendo en el piso: marcas franjas concretas en calendario y evitas sábados perdidos con curiosos sin financiación.</p>`,
+  },
+  {
+    slug: 'venta-digital-bilbao',
+    cityName: 'Bilbao',
+    navSub: 'Bilbao',
+    keyword_principal: 'venta 100 por ciento digital Bilbao',
+    keyword_aliases: [
+      'vender piso online bilbao',
+      'inmobiliaria digital bilbao',
+      'agencia venta digital bilbao',
+      'vender casa sin comisión bilbao',
+      'venta piso 100 digital bilbao',
+      'vender piso particular bilbao',
+    ],
+    priority: 0.94,
+    areaServed: 'Bilbao, Bizkaia y área metropolitana',
+    heroBadge: 'Plan digital · Bilbao y área',
+    marketLead:
+      'Abando, Indautxu, Deusto, Basurto o Getxo: precio fijo 1.999&nbsp;€ + IVA, publicación en portales, filtro de compradores y negociación remota con panel vendedor.',
+    zones: ['Abando', 'Indautxu', 'Deusto', 'Basurto', 'Rekalde', 'Santutxu', 'Getxo', 'Portugalete'],
+    priceExample: 340000,
+    priceM2: '3.000 – 4.800 €/m² (orientativo 2026)',
+    avgDays: '50 – 95 días',
+    cardTeaser: 'Inmobiliaria digital en Bilbao y área: honorarios fijos, Idealista y visitas cualificadas.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-madrid', label: 'Venta digital Madrid' },
+      { href: '/vender', label: 'Información vendedores' },
+    ],
+    localFaq:
+      '<details><summary>¿Operáis en municipios del Gran Bilbao?</summary><p>Sí, si puedes atender visitas en Getxo, Barakaldo, Portugalete u otros. Expediente y negociación son los mismos que en Barcelona o Madrid.</p></details>' +
+      '<details><summary>¿Documentación en euskera o castellano?</summary><p>Gestionamos expediente en castellano; coordinamos con notaría y banco del comprador en la CAE como en cualquier operación estatal.</p></details>',
+    seoExtra: `<h2>Venta digital de vivienda en Bilbao</h2>
+<p>El mercado bilbaíno es sensible al pricing inicial y al estado de finca y comunidad. <strong>Vender piso online Bilbao</strong> con NuevaHabitat mantiene <strong>1.999 € + IVA</strong> cerrados y filtra compradores antes de cada visita.</p>
+<p>Sobre <strong>340.000 €</strong>, una comisión del 6&nbsp;% + IVA ronda <strong>24.600 €</strong>; el plan digital evita que los honorarios crezcan si negocias bien el precio final.</p>
+<h2>Indautxu y expansión hacia margen derecha</h2>
+<p>Compradores comparan parking, ITE y derramas. Subimos actas y certificados al panel antes de abrir visitas masivas.</p>
+<h2>Mismo panel que el resto de España</h2>
+<p>Contrato digital, Stripe 50/50 y seguimiento con Daniel o Sebastián desde Barcelona — sin depender de cadenas de email sueltas.</p>`,
+  },
+  {
+    slug: 'venta-digital-zaragoza',
+    cityName: 'Zaragoza',
+    navSub: 'Zaragoza',
+    keyword_principal: 'venta 100 por ciento digital Zaragoza',
+    keyword_aliases: [
+      'vender piso online zaragoza',
+      'inmobiliaria digital zaragoza',
+      'agencia venta digital zaragoza',
+      'vender casa sin comisión zaragoza',
+      'venta piso 100 digital zaragoza',
+      'vender piso particular zaragoza',
+    ],
+    priority: 0.93,
+    areaServed: 'Zaragoza capital y área metropolitana',
+    heroBadge: 'Plan digital · Zaragoza',
+    marketLead:
+      'Centro, Delicias, Valdespartera, Las Fuentes o Utebo: vende con agencia digital, portales nacionales y tú en las visitas cualificadas.',
+    zones: ['Centro', 'Delicias', 'Actur', 'Valdespartera', 'Las Fuentes', 'San José', 'Utebo', 'Cuarte de Huerva'],
+    priceExample: 220000,
+    priceM2: '1.800 – 2.800 €/m² (orientativo 2026)',
+    avgDays: '60 – 105 días',
+    cardTeaser: 'Venta 100 % digital en Zaragoza: precio fijo 1.999 € + IVA y panel vendedor.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-valencia', label: 'Venta digital Valencia' },
+      { href: '/vender', label: 'Hub vender' },
+    ],
+    localFaq:
+      '<details><summary>¿Cubrís Utebo y Cuarte?</summary><p>Sí, dentro del plan digital si puedes recibir visitas. Confirmamos en la valoración inicial.</p></details>' +
+      '<details><summary>¿Publicáis en Idealista Zaragoza?</summary><p>Anuncio en Idealista y pisos.com con reportaje profesional; leads pasan por filtro de solvencia.</p></details>',
+    seoExtra: `<h2>Inmobiliaria digital en Zaragoza sin comisión porcentual</h2>
+<p>Zaragoza mueve mucho stock de <strong>primera vivienda</strong> y herencias. El modelo <strong>venta 100 % digital</strong> encaja cuando quieres honorarios claros: <strong>1.999 € + IVA</strong>, no un 3&nbsp;% sobre el precio.</p>
+<p>En <strong>220.000 €</strong>, el 6&nbsp;% + IVA supera <strong>15.900 €</strong>; el ahorro frente a agencia tradicional es evidente aunque el ticket sea moderado.</p>
+<h2>Valdespartera vs casco antiguo</h2>
+<p>Comprador joven vs familia en ensanche: cambian titular del anuncio y comparables. Valoramos con cierres reales, no solo anuncios activos.</p>
+<h2>Expediente remoto</h2>
+<p>Ideal si trabajas fuera de Zaragoza pero un familiar puede abrir en visitas filtradas: todo lo demás lo ves en panel.</p>`,
+  },
+  {
+    slug: 'venta-digital-alicante',
+    cityName: 'Alicante',
+    navSub: 'Alicante',
+    keyword_principal: 'venta 100 por ciento digital Alicante',
+    keyword_aliases: [
+      'vender piso online alicante',
+      'inmobiliaria digital alicante',
+      'agencia venta digital alicante',
+      'vender casa sin comisión alicante',
+      'venta piso 100 digital alicante',
+      'vender piso particular alicante',
+    ],
+    priority: 0.93,
+    areaServed: 'Alicante capital y área metropolitana',
+    heroBadge: 'Plan digital · Alicante',
+    marketLead:
+      'Centro, Playa de San Juan, Cabo de las Huertas, San Blas o Elche: mismos portales, mismo panel y visitas en franjas que tú marcas.',
+    zones: ['Centro', 'Playa de San Juan', 'Cabo de las Huertas', 'San Blas', 'Carolinas', 'San Gabriel', 'Elche', 'San Juan de Alicante'],
+    priceExample: 275000,
+    priceM2: '2.100 – 3.600 €/m² (orientativo 2026)',
+    avgDays: '55 – 100 días',
+    cardTeaser: 'Vender en Alicante con venta digital NuevaHabitat: 1.999 € + IVA y filtro de compradores.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-valencia', label: 'Venta digital Valencia' },
+      { href: '/venta-digital-murcia', label: 'Venta digital Murcia' },
+    ],
+    localFaq:
+      '<details><summary>¿Incluye playa y Elche?</summary><p>Cubrimos Alicante capital y municipios del área si puedes atender visitas cualificadas. Playa de San Juan y Elche se confirman en valoración.</p></details>' +
+      '<details><summary>¿Compradores internacionales?</summary><p>Frecuentes en litoral; por eso verificamos solvencia antes de agendar contigo.</p></details>',
+    seoExtra: `<h2>Venta 100 % digital en Alicante</h2>
+<p>Alicante mezcla residente todo el año, segunda residencia y compradores de otras CCAA. <strong>Vender piso online Alicante</strong> con precio fijo evita exclusivas largas y comisiones opacas.</p>
+<p>Sobre <strong>275.000 €</strong>, el 6&nbsp;% + IVA ronda <strong>19.900 €</strong>; honorarios NuevaHabitat: <strong>1.999 € + IVA</strong> en escritura si cierras.</p>
+<h2>Playa vs centro</h2>
+<p>El comprador de línea de playa no es el de Carolinas Altas: segmentamos anuncio y difusión. Reportaje profesional incluido.</p>
+<h2>Panel y FIRMACERT</h2>
+<p>Arras y reservas con trazabilidad; menos riesgo que gestionar todo como particular en portal.</p>`,
+  },
+  {
+    slug: 'venta-digital-murcia',
+    cityName: 'Murcia',
+    navSub: 'Murcia',
+    keyword_principal: 'venta 100 por ciento digital Murcia',
+    keyword_aliases: [
+      'vender piso online murcia',
+      'inmobiliaria digital murcia',
+      'agencia venta digital murcia',
+      'vender casa sin comisión murcia',
+      'venta piso 100 digital murcia',
+      'vender piso particular murcia',
+    ],
+    priority: 0.93,
+    areaServed: 'Murcia capital y área metropolitana',
+    heroBadge: 'Plan digital · Murcia',
+    marketLead:
+      'Centro, El Carmen, Vistabella, Churra o Molina de Segura: agencia digital con 1.999&nbsp;€ + IVA, Idealista, pisos.com y tú en visitas filtradas.',
+    zones: ['Centro', 'El Carmen', 'Vistabella', 'La Flota', 'San Andrés', 'Churra', 'Molina de Segura', 'Alcantarilla'],
+    priceExample: 240000,
+    priceM2: '1.700 – 2.600 €/m² (orientativo 2026)',
+    avgDays: '60 – 110 días',
+    cardTeaser: 'Venta digital Murcia: honorarios fijos, portales y acompañamiento hasta notaría.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-alicante', label: 'Venta digital Alicante' },
+      { href: '/vender', label: 'Hub vender' },
+    ],
+    localFaq:
+      '<details><summary>¿Atendéis Molina de Segura o Alcantarilla?</summary><p>Sí en plan digital si puedes recibir visitas. Misma operativa remota que en otras capitales.</p></details>' +
+      '<details><summary>¿Cuándo pago?</summary><p>50&nbsp;% al contratar (activa servicio) y 50&nbsp;% en escritura. Sin porcentaje sobre precio de venta.</p></details>',
+    seoExtra: `<h2>Vender piso en Murcia con agencia 100 % digital</h2>
+<p>Murcia capital y área metropolitana tienen tickets contenidos pero plazos que se alargan si el anuncio atrae curiosos. <strong>Inmobiliaria digital Murcia</strong> con NuevaHabitat = <strong>1.999 € + IVA</strong> y filtro previo a cada visita.</p>
+<p>En <strong>240.000 €</strong>, ahorras más de <strong>15.000 €</strong> frente a un 6&nbsp;% + IVA tradicional.</p>
+<h2>Universidad y familias</h2>
+<p>Compradores jóvenes comparan metro bus y metros útiles; familias priorizan colegios y parking. Ajustamos ficha comercial al perfil real del activo.</p>
+<h2>Herencias y varios titulares</h2>
+<p>Panel único para documentación y ofertas; útil cuando varios herederos deben alinearse antes de rebajar precio.</p>`,
+  },
 ];
 
 function tradCommission6(price) {

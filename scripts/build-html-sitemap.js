@@ -32,7 +32,7 @@ const STATIC_BLOG = [
 ];
 
 const CLUSTER_LABELS = {
-  ventaDigital: 'Venta 100 % digital',
+  ventaDigital: 'Venta 100 % digital (nacional)',
   barrio: 'Vender por barrio',
   situacion: 'Vender por situación',
   intencion: 'Guías para vender',
@@ -41,12 +41,10 @@ const CLUSTER_LABELS = {
   alquileres: 'Alquileres',
 };
 
+const { CIUDADES: VD_CIUDADES } = require('./venta-digital-ciudades-data');
 const VENTA_DIGITAL_GSC = [
   `${SITE}/venta-digital`,
-  `${SITE}/venta-digital-madrid`,
-  `${SITE}/venta-digital-barcelona`,
-  `${SITE}/venta-digital-valencia`,
-  `${SITE}/venta-digital-sevilla`,
+  ...VD_CIUDADES.map((c) => `${SITE}/${c.slug}`),
 ];
 
 function loadLandings() {

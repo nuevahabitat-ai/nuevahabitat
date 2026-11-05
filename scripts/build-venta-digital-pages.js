@@ -6,26 +6,44 @@ const fs = require('fs');
 const path = require('path');
 const { CIUDADES, SITE, FEE_BASE, FEE_IVA } = require('./venta-digital-ciudades-data');
 const { renderVentaDigitalPage } = require('./render-venta-digital-page');
+const {
+  ventaDigitalExtraStyles,
+  ventaDigitalQuickGlanceHub,
+  ventaDigitalIllustratedFlow,
+} = require('./venta-digital-content-blocks');
 
 const ROOT = path.join(__dirname, '..');
 
 function renderHub() {
   const barcelona = CIUDADES.find((c) => c.slug === 'venta-digital-barcelona') || CIUDADES[0];
+  const cityNames = CIUDADES.map((c) => c.cityName);
+  const cityListShort =
+    cityNames.length <= 6
+      ? cityNames.join(', ')
+      : `${cityNames.slice(0, 5).join(', ')} y ${cityNames.length - 5} más`;
+  const cityGrid = CIUDADES.map(
+    (c) =>
+      `<a href="/${c.slug}" class="nh-vd-city-link"><strong>${c.cityName}</strong><span>1.999 € + IVA · venta digital</span></a>`
+  ).join('\n      ');
+  const heroCityBtns = CIUDADES.slice(0, 4)
+    .map((c) => `<a href="/${c.slug}" class="btn btn-outline-light">${c.cityName}</a>`)
+    .join('\n      ');
 
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Venta 100 % digital · Madrid, Barcelona, Valencia, Sevilla · 1.999 € + IVA · NuevaHabitat</title>
-  <meta name="description" content="Vende con agencia 100 % digital en Madrid, Barcelona, Valencia y Sevilla. Honorarios fijos 1.999 € + IVA · publicación en Idealista y pisos.com y visitas cualificadas. 50 % al contratar y 50 % en escritura."/>
-  <meta name="keywords" content="venta 100 por ciento digital, vender piso online madrid barcelona valencia sevilla, inmobiliaria digital precio fijo, nueva habitat venta digital"/>
+  <title>Venta 100 % digital · ${cityNames.length} ciudades · 1.999 € + IVA · NuevaHabitat</title>
+  <meta name="description" content="Vende con agencia 100 % digital en ${cityListShort}. Honorarios fijos 1.999 € + IVA · Idealista y pisos.com · visitas cualificadas. 50 % al contratar y 50 % en escritura."/>
+  <meta name="keywords" content="venta 100 por ciento digital, vender piso online españa, inmobiliaria digital precio fijo, nueva habitat venta digital ${cityNames.slice(0, 8).join(' ').toLowerCase()}"/>
   <link rel="canonical" href="${SITE}/venta-digital"/>
   <meta property="og:title" content="Venta 100 % digital · NuevaHabitat"/>
-  <meta property="og:description" content="Plan digital en cuatro ciudades: precio fijo, panel vendedor y sin comisión del 3 %."/>
+  <meta property="og:description" content="Plan digital en ${cityNames.length} ciudades: precio fijo, panel vendedor y sin comisión del 3 %."/>
   <meta property="og:url" content="${SITE}/venta-digital"/>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="icon" type="image/png" href="imagenes/Logo/logosinfondo2.png"/>
+  <style>${ventaDigitalExtraStyles()}</style>
   <script type="application/ld+json" id="nh-seo-static">${JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
@@ -33,7 +51,7 @@ function renderHub() {
         '@type': 'CollectionPage',
         name: 'Venta 100 % digital · NuevaHabitat',
         url: `${SITE}/venta-digital`,
-        description: 'Landings SEO venta digital Madrid Barcelona Valencia Sevilla',
+        description: `Landings SEO venta digital · ${cityListShort}`,
       },
       {
         '@type': 'ItemList',
@@ -65,18 +83,34 @@ function renderHub() {
   <div class="nh-svc-hero-overlay"></div>
   <div class="container nh-svc-hero-inner fade-up">
     <div class="hero-badge">SEO · venta 100 % digital · España</div>
-    <h1>Venta 100&nbsp;% digital en Madrid, Barcelona, Valencia y Sevilla</h1>
+    <h1>Venta 100&nbsp;% digital en ${cityListShort}</h1>
     <div class="nh-svc-price-chip"><strong>${FEE_BASE} € + IVA</strong> · <span>50&nbsp;% contrato + 50&nbsp;% escritura</span></div>
     <p>Un solo plan nacional: NuevaHabitat publica en <strong>Idealista</strong> y <strong>pisos.com</strong>, filtra compradores con hipoteca o liquidez y negocia hasta escritura. <strong>Tú recibes las visitas cualificadas</strong> en tu ciudad. Sin comisión del 3&nbsp;% sobre el precio de venta.</p>
     <div class="nh-svc-hero-actions">
       <a href="/registro?tipo=vender&amp;plan=digital" class="btn btn-gold">Contratar venta digital</a>
-      <a href="/venta-digital-barcelona" class="btn btn-outline-light">Barcelona</a>
-      <a href="/venta-digital-madrid" class="btn btn-outline-light">Madrid</a>
+      ${heroCityBtns}
+      <a href="#ciudades" class="btn btn-outline-light">Todas las ciudades</a>
     </div>
   </div>
 </section>
 
-<section class="lc-section" style="background:var(--blanco);padding:3rem 0">
+${ventaDigitalQuickGlanceHub()}
+${ventaDigitalIllustratedFlow({ cityName: 'España', slug: 'venta-digital', priceExample: 350000 })}
+
+<section class="lc-section" id="ciudades" style="background:var(--blanco);padding:3rem 0">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:2rem">
+      <span class="overline">SEO nacional</span>
+      <h2 class="section-title">Venta digital por ciudad</h2>
+      <p style="color:var(--gris-texto);max-width:640px;margin:.75rem auto 0;line-height:1.7">Mismo plan <strong>1.999 € + IVA</strong> en toda España donde puedas recibir visitas cualificadas. Elige tu ciudad:</p>
+    </div>
+    <div class="nh-svc-planes-nav nh-vd-city-grid" style="flex-wrap:wrap;justify-content:center;gap:.75rem">
+      ${cityGrid}
+    </div>
+  </div>
+</section>
+
+<section class="lc-section" style="background:var(--crema);padding:3rem 0">
   <div class="container" style="max-width:820px">
     <div class="text-center" style="margin:0 auto 2rem">
       <h2 class="section-title">Página de servicio · venta digital</h2>
