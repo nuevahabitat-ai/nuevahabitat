@@ -360,6 +360,643 @@ const CIUDADES = [
 <h2>Herencias y varios titulares</h2>
 <p>Panel único para documentación y ofertas; útil cuando varios herederos deben alinearse antes de rebajar precio.</p>`,
   },
+  {
+    slug: 'venta-digital-palma',
+    cityName: 'Palma',
+    navSub: 'Palma',
+    keyword_principal: 'venta 100 por ciento digital Palma',
+    keyword_aliases: [
+      'vender piso online palma mallorca',
+      'inmobiliaria digital palma',
+      'agencia venta digital mallorca',
+      'vender casa sin comisión palma',
+      'venta piso 100 digital mallorca',
+      'vender piso particular palma',
+    ],
+    priority: 0.93,
+    areaServed: 'Palma y área de la bahía (Mallorca)',
+    heroBadge: 'Plan digital · Palma',
+    marketLead:
+      'Ciutat, Son Armadams, Calatrava o Playa de Palma: mismo expediente online, Idealista y pisos.com, y visitas que tú programas con compradores ya filtrados.',
+    zones: ['Ciutat Antiga', 'Jaume III', 'Son Armadams', 'Genova', 'Playa de Palma', 'Coll den Rabassa', 'Palmanova', 'Calvià'],
+    priceExample: 385000,
+    priceM2: '3.200 – 5.500 €/m² (orientativo 2026)',
+    avgDays: '55 – 100 días',
+    cardTeaser: 'Venta digital en Palma y Mallorca: 1.999 € + IVA, panel y visitas del propietario.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-valencia', label: 'Venta digital Valencia' },
+      { href: '/venta-digital-barcelona', label: 'Venta digital Barcelona' },
+    ],
+    localFaq:
+      '<details><summary>¿Trabajáis en toda Mallorca?</summary><p>El plan digital funciona donde puedas recibir visitas cualificadas (Palma, calvià, etc.). Confirmamos cobertura en valoración.</p></details>' +
+      '<details><summary>¿Compradores internacionales?</summary><p>Frecuentes; revisamos solvencia y plazo antes de cada visita.</p></details>',
+    seoExtra: `<h2>Vender piso en Palma con inmobiliaria digital</h2>
+<p>Mallorca combina demanda local, nacional y europea. <strong>Venta 100 % digital Palma</strong> mantiene <strong>1.999 € + IVA</strong> fijos y evita pagar 3&nbsp;–&nbsp;6&nbsp;% sobre un ticket que en zonas céntricas supera con facilidad los 350.000&nbsp;€.</p>
+<h2>Son Armadams vs Playa de Palma</h2>
+<p>No mezclamos comparables de segunda residencia con vivienda habitual: el pricing y el anuncio cambian. NuevaHabitat valora con cierres reales de tu micro-zona.</p>
+<h2>Panel y remoto</h2>
+<p>Si no resides todo el año en la isla, coordinamos visitas en franjas concretas y llevas el expediente desde el móvil.</p>`,
+  },
+  {
+    slug: 'venta-digital-las-palmas',
+    cityName: 'Las Palmas de Gran Canaria',
+    navSub: 'Las Palmas',
+    keyword_principal: 'venta 100 por ciento digital Las Palmas',
+    keyword_aliases: [
+      'vender piso online las palmas',
+      'inmobiliaria digital gran canaria',
+      'agencia venta digital las palmas',
+      'vender casa sin comisión las palmas',
+      'venta piso 100 digital gran canaria',
+      'vender piso particular las palmas',
+    ],
+    priority: 0.93,
+    areaServed: 'Las Palmas de Gran Canaria y área metropolitana',
+    heroBadge: 'Plan digital · Las Palmas',
+    marketLead:
+      'Las Canteras, Guanarteme, Vegueta o Telde: precio fijo 1.999&nbsp;€ + IVA, difusión en portales y tú en visitas con solvencia revisada.',
+    zones: ['Las Canteras', 'Guanarteme', 'Vegueta', 'Alcaravaneras', 'Schamann', 'Tafira', 'Telde', 'Vecindario'],
+    priceExample: 260000,
+    priceM2: '2.300 – 4.000 €/m² (orientativo 2026)',
+    avgDays: '60 – 110 días',
+    cardTeaser: 'Venta digital Las Palmas: honorarios fijos, Idealista y compradores filtrados.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-santa-cruz-de-tenerife', label: 'Venta digital Tenerife' },
+      { href: '/venta-digital-malaga', label: 'Venta digital Málaga' },
+    ],
+    localFaq:
+      '<details><summary>¿Incluís sur de Gran Canaria?</summary><p>Sí si puedes atender visitas (Telde, Vecindario…). Lo validamos al inicio.</p></details>' +
+      '<details><summary>¿Idealista Canarias?</summary><p>Publicación en Idealista y pisos.com con reportaje; leads pasan por filtro.</p></details>',
+    seoExtra: `<h2>Vender piso en Las Palmas sin comisión porcentual</h2>
+<p>El mercado canario mueve segundas residencias y compradores insulares. <strong>Vender piso online Las Palmas</strong> con NuevaHabitat = intermediación con <strong>honorarios cerrados</strong>, no un porcentaje opaco.</p>
+<h2>Zona costera vs interior urbano</h2>
+<p>Las Canteras y Guanarteme no compiten en el mismo comprador que Schamann: ajustamos ficha y precio de salida.</p>
+<h2>Visitas en tu calendario</h2>
+<p>Filtramos antes de agendar; evitas turistas curiosos sin financiación.</p>`,
+  },
+  {
+    slug: 'venta-digital-santa-cruz-de-tenerife',
+    cityName: 'Santa Cruz de Tenerife',
+    navSub: 'Santa Cruz',
+    keyword_principal: 'venta 100 por ciento digital Santa Cruz de Tenerife',
+    keyword_aliases: [
+      'vender piso online santa cruz tenerife',
+      'inmobiliaria digital tenerife',
+      'agencia venta digital santa cruz',
+      'vender casa sin comisión tenerife',
+      'venta piso 100 digital tenerife',
+      'vender piso particular santa cruz',
+    ],
+    priority: 0.93,
+    areaServed: 'Santa Cruz de Tenerife y área metropolitana',
+    heroBadge: 'Plan digital · Santa Cruz',
+    marketLead:
+      'Centro, Rambla, La Laguna o El Rosario: mismo panel, portales nacionales y negociación hasta escritura con visitas que tú recibes.',
+    zones: ['Centro', 'Zona Rambla', 'Añaza', 'Único', 'La Laguna', 'El Rosario', 'Tacoronte', 'Puerto de la Cruz'],
+    priceExample: 255000,
+    priceM2: '2.200 – 3.900 €/m² (orientativo 2026)',
+    avgDays: '60 – 110 días',
+    cardTeaser: 'Venta digital Tenerife · Santa Cruz: 1.999 € + IVA y panel vendedor.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-las-palmas', label: 'Venta digital Las Palmas' },
+      { href: '/vender', label: 'Hub vender' },
+    ],
+    localFaq:
+      '<details><summary>¿Atendéis La Laguna y norte?</summary><p>Sí en plan digital si puedes recibir visitas cualificadas. Confirmamos desplazamientos del comprador.</p></details>',
+    seoExtra: `<h2>Inmobiliaria digital en Santa Cruz de Tenerife</h2>
+<p>Tenerife mezcla mercado insular y compradores de península. El plan <strong>venta 100 % digital</strong> mantiene <strong>1.999 € + IVA</strong> aunque el precio final suba o baje tras negociación.</p>
+<h2>Precio y comparables</h2>
+<p>Valoramos con cierres por barrio; no usamos solo el anuncio más alto del portal.</p>
+<h2>Remoto + visitas locales</h2>
+<p>Gestión desde panel; tú abres en las franjas que marcas.</p>`,
+  },
+  {
+    slug: 'venta-digital-vigo',
+    cityName: 'Vigo',
+    navSub: 'Vigo',
+    keyword_principal: 'venta 100 por ciento digital Vigo',
+    keyword_aliases: [
+      'vender piso online vigo',
+      'inmobiliaria digital vigo',
+      'agencia venta digital vigo',
+      'vender casa sin comisión vigo',
+      'venta piso 100 digital vigo',
+      'vender piso particular vigo',
+    ],
+    priority: 0.92,
+    areaServed: 'Vigo y área metropolitana (Pontevedra)',
+    heroBadge: 'Plan digital · Vigo',
+    marketLead:
+      'Casco, Coya, Navia o Redondela: agencia digital con portales, cartera y filtro antes de cada visita en tu domicilio.',
+    zones: ['Casco', 'Coya', 'Navia', 'Teis', 'Valadares', 'Cambre', 'Redondela', 'Porriño'],
+    priceExample: 235000,
+    priceM2: '1.900 – 2.900 €/m² (orientativo 2026)',
+    avgDays: '55 – 105 días',
+    cardTeaser: 'Venta digital Vigo: precio fijo 1.999 € + IVA, Idealista y panel.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-a-coruna', label: 'Venta digital A Coruña' },
+      { href: '/vender', label: 'Hub vender' },
+    ],
+    localFaq:
+      '<details><summary>¿Cubrís comarca de Vigo?</summary><p>Sí si puedes recibir visitas (Redondela, Porriño…). Lo confirmamos en valoración.</p></details>',
+    seoExtra: `<h2>Vender piso en Vigo con precio fijo</h2>
+<p>Galicia mueve demanda conservadora en financiación: por eso <strong>filtramos antes de visita</strong>. <strong>Venta digital Vigo</strong> evita comisiones del 6&nbsp;% sobre tickets orientativos de 200.000–280.000&nbsp;€.</p>
+<h2>Puerto vs ensanche</h2>
+<p>Cambia el comprador (inversión, joven, familiar). Ajustamos reportaje y titular del anuncio.</p>`,
+  },
+  {
+    slug: 'venta-digital-a-coruna',
+    cityName: 'A Coruña',
+    navSub: 'A Coruña',
+    keyword_principal: 'venta 100 por ciento digital A Coruña',
+    keyword_aliases: [
+      'vender piso online a coruña',
+      'inmobiliaria digital coruña',
+      'agencia venta digital coruña',
+      'vender casa sin comisión coruña',
+      'venta piso 100 digital a coruña',
+      'vender piso particular coruña',
+    ],
+    priority: 0.92,
+    areaServed: 'A Coruña y comarca',
+    heroBadge: 'Plan digital · A Coruña',
+    marketLead:
+      'Centro, Os Castros, Eiris o Oza: venta con honorarios 1.999&nbsp;€ + IVA y expediente online hasta notaría.',
+    zones: ['Centro', 'Os Castros', 'Los Rosales', 'Eiris', 'Oza', 'Culleredo', 'Oleiros', 'Sada'],
+    priceExample: 245000,
+    priceM2: '2.000 – 3.200 €/m² (orientativo 2026)',
+    avgDays: '55 – 100 días',
+    cardTeaser: 'Venta digital A Coruña: inmobiliaria online con visitas cualificadas.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-vigo', label: 'Venta digital Vigo' },
+      { href: '/vender', label: 'Hub vender' },
+    ],
+    localFaq:
+      '<details><summary>¿Atendéis Oleiros y metrópoli?</summary><p>Sí en digital si puedes abrir en visitas. Mismos portales y panel.</p></details>',
+    seoExtra: `<h2>Venta 100 % digital en A Coruña</h2>
+<p>La Coruña combina mercado local y compradores por traslado laboral. <strong>Inmobiliaria digital</strong> con NuevaHabitat centraliza negociación y documentos: menos fricción que gestionar todo como particular.</p>
+<h2>Casco vs ampliación</h2>
+<p>ITE, ascensor y orientación marcan el ticket. Subimos documentación al panel antes de abrir puerta.</p>`,
+  },
+  {
+    slug: 'venta-digital-cordoba',
+    cityName: 'Córdoba',
+    navSub: 'Córdoba',
+    keyword_principal: 'venta 100 por ciento digital Córdoba',
+    keyword_aliases: [
+      'vender piso online cordoba',
+      'inmobiliaria digital cordoba',
+      'agencia venta digital cordoba',
+      'vender casa sin comisión cordoba',
+      'venta piso 100 digital cordoba',
+      'vender piso particular cordoba',
+    ],
+    priority: 0.92,
+    areaServed: 'Córdoba capital y área metropolitana',
+    heroBadge: 'Plan digital · Córdoba',
+    marketLead:
+      'Centro histórico, Ciudad Jardín, Sector Sur o El Brillante: publicación profesional, filtro y tú en visitas en tus franjas.',
+    zones: ['Judería', 'Centro', 'Ciudad Jardín', 'Sector Sur', 'El Brillante', 'Asomadilla', 'Santa Cruz', 'Villafranca'],
+    priceExample: 225000,
+    priceM2: '1.900 – 2.800 €/m² (orientativo 2026)',
+    avgDays: '60 – 105 días',
+    cardTeaser: 'Venta digital Córdoba: 1.999 € + IVA, panel y portales.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-sevilla', label: 'Venta digital Sevilla' },
+      { href: '/venta-digital-malaga', label: 'Venta digital Málaga' },
+    ],
+    localFaq:
+      '<details><summary>¿Idealista Córdoba?</summary><p>Sí, más pisos.com y cartera con filtro previo.</p></details>',
+    seoExtra: `<h2>Vender piso en Córdoba con agencia digital</h2>
+<p>Patrimonio y fincas con patios atraen perfiles distintos a las ampliaciones modernas. Segmentamos anuncio y comparables por tipología, no por capital genérica.</p>
+<p>Honorarios <strong>1.999 € + IVA</strong> sin porcentaje sobre el precio cerrado.</p>`,
+  },
+  {
+    slug: 'venta-digital-granada',
+    cityName: 'Granada',
+    navSub: 'Granada',
+    keyword_principal: 'venta 100 por ciento digital Granada',
+    keyword_aliases: [
+      'vender piso online granada',
+      'inmobiliaria digital granada',
+      'agencia venta digital granada',
+      'vender casa sin comisión granada',
+      'venta piso 100 digital granada',
+      'vender piso particular granada',
+    ],
+    priority: 0.92,
+    areaServed: 'Granada capital y vega',
+    heroBadge: 'Plan digital · Granada',
+    marketLead:
+      'Albaicín, Realejo, Zaidín o Armilla: venta digital con Idealista, cartera y visitas solo con hipoteca o liquidez OK.',
+    zones: ['Albaicín', 'Realejo', 'Centro', 'Zaidín', 'Bola de Oro', 'La Chana', 'Armilla', 'Las Gabias'],
+    priceExample: 230000,
+    priceM2: '1.900 – 2.900 €/m² (orientativo 2026)',
+    avgDays: '60 – 110 días',
+    cardTeaser: 'Venta digital Granada: honorarios fijos y filtro de compradores.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-malaga', label: 'Venta digital Málaga' },
+      { href: '/venta-digital-cordoba', label: 'Venta digital Córdoba' },
+    ],
+    localFaq:
+      '<details><summary>¿Turismo y segunda residencia?</summary><p>Sí; por eso contratamos solvencia antes de visita.</p></details>',
+    seoExtra: `<h2>Inmobiliaria 100 % digital en Granada</h2>
+<p>El comprador del Albaicín no es el de la vega: precisamos en ficha y en valoración. <strong>Venta 100 % digital Granada</strong> mantiene coste fijo aunque el precio final se negocie.</p>
+<h2>Estudiantes y familias</h2>
+<p>Explicitamos uso y rendimiento según zona para atraer el perfil adecuado.</p>`,
+  },
+  {
+    slug: 'venta-digital-valladolid',
+    cityName: 'Valladolid',
+    navSub: 'Valladolid',
+    keyword_principal: 'venta 100 por ciento digital Valladolid',
+    keyword_aliases: [
+      'vender piso online valladolid',
+      'inmobiliaria digital valladolid',
+      'agencia venta digital valladolid',
+      'vender casa sin comisión valladolid',
+      'venta piso 100 digital valladolid',
+      'vender piso particular valladolid',
+    ],
+    priority: 0.92,
+    areaServed: 'Valladolid capital y área metropolitana',
+    heroBadge: 'Plan digital · Valladolid',
+    marketLead:
+      'Centro, Delicias, Parquesol o Laguna: mismos portales, mismo panel y tú en visitas con horarios claros.',
+    zones: ['Centro', 'Huerta del Rey', 'Parquesol', 'Delicias', 'La Overuela', 'Pajarillos', 'Laguna', 'Simancas'],
+    priceExample: 210000,
+    priceM2: '1.600 – 2.400 €/m² (orientativo 2026)',
+    avgDays: '65 – 115 días',
+    cardTeaser: 'Venta digital Valladolid: 1.999 € + IVA y expediente online.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-madrid', label: 'Venta digital Madrid' },
+      { href: '/venta-digital-bilbao', label: 'Venta digital Bilbao' },
+    ],
+    localFaq:
+      '<details><summary>¿Ave y compradores de Madrid?</summary><p>Frecuentes; agenda visitas en franjas y filtramos antes de abrir.</p></details>',
+    seoExtra: `<h2>Venta digital de vivienda en Valladolid</h2>
+<p>Mercado interior con tickets moderados pero comisiones porcentuales caras en relación al precio. <strong>1.999 € + IVA</strong> deja el coste predecible.</p>
+<h2>Centro vs ensanche</h2>
+<p>Comparables por finca y ascensor, no solo €/m² medio de provincia.</p>`,
+  },
+  {
+    slug: 'venta-digital-pamplona',
+    cityName: 'Pamplona',
+    navSub: 'Pamplona',
+    keyword_principal: 'venta 100 por ciento digital Pamplona',
+    keyword_aliases: [
+      'vender piso online pamplona',
+      'inmobiliaria digital pamplona',
+      'agencia venta digital pamplona iruña',
+      'vender casa sin comisión pamplona',
+      'venta piso 100 digital navarra',
+      'vender piso particular pamplona',
+    ],
+    priority: 0.92,
+    areaServed: 'Pamplona-Iruña y comarca',
+    heroBadge: 'Plan digital · Pamplona',
+    marketLead:
+      'Casco viejo, Rochapea, Yamaguchi o Barañáin: precio fijo, portales y compradores cualificados antes de cada visita.',
+    zones: ['Casco viejo', 'Rochapea', 'Milagrosa', 'Yamaguchi', 'Echavacoiz', 'Barañáin', 'Burlada', 'Huarte'],
+    priceExample: 295000,
+    priceM2: '2.700 – 4.100 €/m² (orientativo 2026)',
+    avgDays: '50 – 95 días',
+    cardTeaser: 'Venta digital Pamplona: panel, Idealista y visitas filtradas.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-bilbao', label: 'Venta digital Bilbao' },
+      { href: '/venta-digital-san-sebastian', label: 'Venta digital San Sebastián' },
+    ],
+    localFaq:
+      '<details><summary>¿Compradores con hipoteca?</summary><p>Sí; verificamos antes de agendar en tu calendario.</p></details>',
+    seoExtra: `<h2>Vender piso en Pamplona con honorarios fijos</h2>
+<p>Pamplona tiene mercado tensionado en determinadas zonas: el 6&nbsp;% + IVA sobre 300.000&nbsp;€ duele. El plan digital mantiene <strong>1.999 € + IVA</strong>.</p>
+<h2>Rochapea vs casco</h2>
+<p>Diferente comprador y estado de finca. Ajustamos argumentario y reportaje.</p>`,
+  },
+  {
+    slug: 'venta-digital-san-sebastian',
+    cityName: 'San Sebastián',
+    navSub: 'Donostia',
+    keyword_principal: 'venta 100 por ciento digital San Sebastián',
+    keyword_aliases: [
+      'vender piso online san sebastian',
+      'inmobiliaria digital donostia',
+      'agencia venta digital gipuzkoa',
+      'vender casa sin comisión donostia',
+      'venta piso 100 digital san sebastian',
+      'vender piso particular gipuzkoa',
+    ],
+    priority: 0.92,
+    areaServed: 'Donostia-San Sebastián y comarca',
+    heroBadge: 'Plan digital · San Sebastián',
+    marketLead:
+      'Centro, Gros, Amara o Antiguo: venta digital con precio fijo; tú en visitas y NuevaHabitat en marketing y cierre.',
+    zones: ['Parte Vieja', 'Gros', 'Centro', 'Amara', 'Antiguo', 'Loiola', 'Pasajes', 'Hernani'],
+    priceExample: 455000,
+    priceM2: '4.500 – 7.000 €/m² (orientativo 2026)',
+    avgDays: '50 – 90 días',
+    cardTeaser: 'Venta digital San Sebastián: 1.999 € + IVA frente a comisión porcentual.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-bilbao', label: 'Venta digital Bilbao' },
+      { href: '/venta-digital-pamplona', label: 'Venta digital Pamplona' },
+    ],
+    localFaq:
+      '<details><summary>¿Ticket alto y negociación?</summary><p>Honorarios siguen siendo 1.999&nbsp;€ + IVA; no un % del precio final.</p></details>',
+    seoExtra: `<h2>Venta 100 % digital en Donostia</h2>
+<p>En zonas prime el 3&nbsp;%–6&nbsp;% de agencia representa decenas de miles de euros. El modelo NuevaHabitat con <strong>honorarios fijos</strong> mantiene coste predecible.</p>
+<h2>Comprador local e internacional</h2>
+<p>Filtramos capacidad de pago y plazo antes de visita; tú controlas franjas en el panel.</p>`,
+  },
+  {
+    slug: 'venta-digital-gijon',
+    cityName: 'Gijón',
+    navSub: 'Gijón',
+    keyword_principal: 'venta 100 por ciento digital Gijón',
+    keyword_aliases: [
+      'vender piso online gijon',
+      'inmobiliaria digital gijon',
+      'agencia venta digital asturias',
+      'vender casa sin comisión gijon',
+      'venta piso 100 digital asturias',
+      'vender piso particular gijon',
+    ],
+    priority: 0.91,
+    areaServed: 'Gijón y área central de Asturias',
+    heroBadge: 'Plan digital · Gijón',
+    marketLead:
+      'Cimadevilla, Natahoyo, Llarena o Somió: publicación profesional, filtro de compradores y tú abres en las franjas del panel.',
+    zones: ['Cimadevilla', 'Centro', 'Natahoyo', 'La Calzada', 'Deva', 'Somió', 'Monteana', 'Villaviciosa'],
+    priceExample: 195000,
+    priceM2: '1.500 – 2.400 €/m² (orientativo 2026)',
+    avgDays: '60 – 115 días',
+    cardTeaser: 'Venta digital Gijón: 1.999 € + IVA, Idealista y visitas filtradas.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-oviedo', label: 'Venta digital Oviedo' },
+      { href: '/venta-digital-bilbao', label: 'Venta digital Bilbao' },
+    ],
+    localFaq:
+      '<details><summary>¿Incluye zona rural o concejos?</summary><p>Sí en plan digital si puedes recibir visitas; confirmamos desplazamientos del comprador.</p></details>',
+    seoExtra: `<h2>Vender piso en Gijón con agencia digital</h2>
+<p>Asturias tiene demanda mixta (local, Madrid, norte). <strong>Venta 100 % digital Gijón</strong> mantiene <strong>1.999 € + IVA</strong> sin porcentaje sobre el precio cerrado.</p>
+<h2>Casco vs ensanche</h2>
+<p>Alturas, ascensor y estado de fachada cambian el perfil del comprador: lo reflejamos en ficha y reportaje.</p>`,
+  },
+  {
+    slug: 'venta-digital-oviedo',
+    cityName: 'Oviedo',
+    navSub: 'Oviedo',
+    keyword_principal: 'venta 100 por ciento digital Oviedo',
+    keyword_aliases: [
+      'vender piso online oviedo',
+      'inmobiliaria digital oviedo',
+      'agencia venta digital oviedo',
+      'vender casa sin comisión asturias',
+      'venta piso 100 digital oviedo',
+      'vender piso particular oviedo',
+    ],
+    priority: 0.91,
+    areaServed: 'Oviedo capital y área urbana',
+    heroBadge: 'Plan digital · Oviedo',
+    marketLead:
+      'Centro, El Naranco, Teatinos o Lugones: mismo panel, portales y negociación hasta escritura con visitas que gestionas tú.',
+    zones: ['Centro', 'El Naranco', 'Teatinos', 'Pumard', 'Buenavista', 'Colloto', 'Lugones', 'Siero'],
+    priceExample: 210000,
+    priceM2: '1.600 – 2.500 €/m² (orientativo 2026)',
+    avgDays: '60 – 110 días',
+    cardTeaser: 'Venta digital Oviedo: honorarios fijos y expediente online.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-gijon', label: 'Venta digital Gijón' },
+      { href: '/venta-digital-valladolid', label: 'Venta digital Valladolid' },
+    ],
+    localFaq:
+      '<details><summary>¿Compradores desde otras provincias?</summary><p>Frecuentes; agendamos con criterio y filtro de solvencia antes de abrir.</p></details>',
+    seoExtra: `<h2>Inmobiliaria digital en Oviedo</h2>
+<p>Oviedo mueve mercado estable con tickets moderados: una comisión del 6&nbsp;% + IVA pesa mucho en relación al precio. El plan digital deja el coste cerrado en <strong>1.999 € + IVA</strong>.</p>
+<h2>Universidad y familias</h2>
+<p>Ajustamos mensaje según uso (inversión, vivienda habitual, herencia) para atraer leads serios.</p>`,
+  },
+  {
+    slug: 'venta-digital-santander',
+    cityName: 'Santander',
+    navSub: 'Santander',
+    keyword_principal: 'venta 100 por ciento digital Santander',
+    keyword_aliases: [
+      'vender piso online santander',
+      'inmobiliaria digital cantabria',
+      'agencia venta digital santander',
+      'vender casa sin comisión cantabria',
+      'venta piso 100 digital santander',
+      'vender piso particular santander',
+    ],
+    priority: 0.91,
+    areaServed: 'Santander y bahía',
+    heroBadge: 'Plan digital · Santander',
+    marketLead:
+      'Centro, Sardinero, Peñacastillo o El Alisal: venta digital con filtro, Idealista y tú en visitas en tu calendario.',
+    zones: ['Centro', 'Perines', 'El Alisal', 'Sardinero', 'Cueto', 'Peñacastillo', 'Valdenoja', 'Santa Cruz de Bezana'],
+    priceExample: 265000,
+    priceM2: '2.400 – 3.600 €/m² (orientativo 2026)',
+    avgDays: '55 – 100 días',
+    cardTeaser: 'Venta digital Santander: 1.999 € + IVA y panel vendedor.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-bilbao', label: 'Venta digital Bilbao' },
+      { href: '/venta-digital-vigo', label: 'Venta digital Vigo' },
+    ],
+    localFaq:
+      '<details><summary>¿Segunda residencia en la bahía?</summary><p>Sí; por eso verificamos solvencia y plazo antes de cada visita.</p></details>',
+    seoExtra: `<h2>Venta digital de vivienda en Santander</h2>
+<p>La bahía concentra vistas y turismo residencial: necesitas anuncio sólido y menos curiosos en casa. <strong>Inmobiliaria digital</strong> con NuevaHabitat combina portales, cartera y filtro.</p>
+<h2>Honorarios fijos</h2>
+<p><strong>1.999 € + IVA</strong> en dos pagos 50/50, sin comisión sobre el precio final.</p>`,
+  },
+  {
+    slug: 'venta-digital-burgos',
+    cityName: 'Burgos',
+    navSub: 'Burgos',
+    keyword_principal: 'venta 100 por ciento digital Burgos',
+    keyword_aliases: [
+      'vender piso online burgos',
+      'inmobiliaria digital burgos',
+      'agencia venta digital burgos',
+      'vender casa sin comisión burgos',
+      'venta piso 100 digital burgos',
+      'vender piso particular burgos',
+    ],
+    priority: 0.91,
+    areaServed: 'Burgos capital y comarca',
+    heroBadge: 'Plan digital · Burgos',
+    marketLead:
+      'Centro histórico, Gamonal, Parque o Villimar: precio fijo, portales nacionales y negociación centralizada en el panel.',
+    zones: ['Centro', 'Gamonal', 'San Pedro', 'Villimar', 'Parque', 'Fuentes Blancas', 'Aranda de Duero', 'Miranda de Ebro'],
+    priceExample: 185000,
+    priceM2: '1.400 – 2.200 €/m² (orientativo 2026)',
+    avgDays: '65 – 120 días',
+    cardTeaser: 'Venta digital Burgos: precio fijo y filtro antes de visita.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-valladolid', label: 'Venta digital Valladolid' },
+      { href: '/venta-digital-bilbao', label: 'Venta digital Bilbao' },
+    ],
+    localFaq:
+      '<details><summary>¿Aranda o Miranda?</summary><p>Plan digital si puedes recibir visitas; confirmamos en valoración.</p></details>',
+    seoExtra: `<h2>Vender piso en Burgos sin comisión porcentual</h2>
+<p>Mercado interior con rotación más lenta si el anuncio atrae poca demanda cualificada. <strong>Venta 100 % digital Burgos</strong> suma difusión profesional y filtro previo.</p>
+<h2>Centro vs ensanche</h2>
+<p>Comparables por finca y estado, no solo €/m² medio provincial.</p>`,
+  },
+  {
+    slug: 'venta-digital-leon',
+    cityName: 'León',
+    navSub: 'León',
+    keyword_principal: 'venta 100 por ciento digital León',
+    keyword_aliases: [
+      'vender piso online leon',
+      'inmobiliaria digital leon',
+      'agencia venta digital leon',
+      'vender casa sin comisión leon',
+      'venta piso 100 digital leon',
+      'vender piso particular leon',
+    ],
+    priority: 0.91,
+    areaServed: 'León capital y alfoz',
+    heroBadge: 'Plan digital · León',
+    marketLead:
+      'Casco, Eras de Renueva, Pinilla o La Lastra: agencia digital remota, tú en visitas y mismo expediente Stripe + panel.',
+    zones: ['Casco', 'Eras de Renueva', 'Pinilla', 'La Lastra', 'La Palomera', 'Villaobispo', 'San Andrés del Rabanedo', 'Valverde'],
+    priceExample: 175000,
+    priceM2: '1.300 – 2.000 €/m² (orientativo 2026)',
+    avgDays: '65 – 120 días',
+    cardTeaser: 'Venta digital León: 1.999 € + IVA, Idealista y panel.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-valladolid', label: 'Venta digital Valladolid' },
+      { href: '/venta-digital-burgos', label: 'Venta digital Burgos' },
+    ],
+    localFaq:
+      '<details><summary>¿Piso heredado o varios titulares?</summary><p>Panel único para documentos y ofertas; alineamos pasos antes de bajar precio.</p></details>',
+    seoExtra: `<h2>Inmobiliaria digital en León</h2>
+<p>León compite con oferta dispersa en portales: sin filtro, se alargan visitas vacías. NuevaHabitat publica en <strong>Idealista y pisos.com</strong> y revisa hipoteca o liquidez antes de agendar.</p>
+<h2>Coste predecible</h2>
+<p>Honorarios <strong>1.999 € + IVA</strong>, sin porcentaje sobre el precio de venta.</p>`,
+  },
+  {
+    slug: 'venta-digital-salamanca',
+    cityName: 'Salamanca',
+    navSub: 'Salamanca',
+    keyword_principal: 'venta 100 por ciento digital Salamanca',
+    keyword_aliases: [
+      'vender piso online salamanca',
+      'inmobiliaria digital salamanca',
+      'agencia venta digital salamanca',
+      'vender casa sin comisión salamanca',
+      'venta piso 100 digital salamanca',
+      'vender piso particular salamanca',
+    ],
+    priority: 0.91,
+    areaServed: 'Salamanca capital y alfoz',
+    heroBadge: 'Plan digital · Salamanca',
+    marketLead:
+      'Centro histórico, Garrido, Parque o Santa Marta: venta digital con demanda universitaria y turística filtrada antes de cada visita.',
+    zones: ['Centro', 'Arrabal', 'Garrido Norte', 'Garrido Sur', 'San José', 'Parque', 'Villares', 'Carbajosa'],
+    priceExample: 215000,
+    priceM2: '1.700 – 2.800 €/m² (orientativo 2026)',
+    avgDays: '60 – 110 días',
+    cardTeaser: 'Venta digital Salamanca: honorarios fijos y compradores cualificados.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-valladolid', label: 'Venta digital Valladolid' },
+      { href: '/venta-digital-madrid', label: 'Venta digital Madrid' },
+    ],
+    localFaq:
+      '<details><summary>¿Inversión y alquiler vacacional?</summary><p>Explicitamos uso en ficha para atraer el perfil adecuado y filtramos curiosos.</p></details>',
+    seoExtra: `<h2>Vender piso en Salamanca con precio fijo</h2>
+<p>Patrimonio y zona universitaria atraen perfiles distintos. <strong>Venta 100 % digital Salamanca</strong> segmenta mensaje y comparables sin cobrar un % del precio final.</p>
+<h2>Panel y pagos</h2>
+<p>50&nbsp;% al contratar y 50&nbsp;% en escritura; sin sorpresas si negociais el precio.</p>`,
+  },
+  {
+    slug: 'venta-digital-logrono',
+    cityName: 'Logroño',
+    navSub: 'Logroño',
+    keyword_principal: 'venta 100 por ciento digital Logroño',
+    keyword_aliases: [
+      'vender piso online logroño',
+      'inmobiliaria digital logroño',
+      'agencia venta digital la rioja',
+      'vender casa sin comisión logroño',
+      'venta piso 100 digital logroño',
+      'vender piso particular la rioja',
+    ],
+    priority: 0.91,
+    areaServed: 'Logroño y comarca',
+    heroBadge: 'Plan digital · Logroño',
+    marketLead:
+      'Centro, Gran Vía, Yagüe o La Chabola de la Grajera: publicación, filtro y visitas en tus horarios con expediente online.',
+    zones: ['Centro', 'Gran Vía', 'Zabalgana', 'Yagüe', 'Madre de Dios', 'La Laurel', 'La Chabola de la Grajera', 'Lardero'],
+    priceExample: 205000,
+    priceM2: '1.700 – 2.600 €/m² (orientativo 2026)',
+    avgDays: '60 – 115 días',
+    cardTeaser: 'Venta digital Logroño: 1.999 € + IVA y portales nacionales.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-pamplona', label: 'Venta digital Pamplona' },
+      { href: '/venta-digital-bilbao', label: 'Venta digital Bilbao' },
+    ],
+    localFaq:
+      '<details><summary>¿Compradores desde País Vasco o Navarra?</summary><p>Frecuentes; coordinamos franjas y filtro de financiación.</p></details>',
+    seoExtra: `<h2>Venta digital en Logroño (La Rioja)</h2>
+<p>Logroño recibe flujo regional y nacional. Con NuevaHabitat evitas comisiones porcentuales sobre tickets que rondan 180.000–240.000&nbsp;€ en muchas zonas: <strong>honorarios fijos 1.999 € + IVA</strong>.</p>
+<h2>Ribera y barrios nuevos</h2>
+<p>Comparables por antigüedad y garaje; no solo superficie bruta.</p>`,
+  },
+  {
+    slug: 'venta-digital-tarragona',
+    cityName: 'Tarragona',
+    navSub: 'Tarragona',
+    keyword_principal: 'venta 100 por ciento digital Tarragona',
+    keyword_aliases: [
+      'vender piso online tarragona',
+      'inmobiliaria digital tarragona',
+      'agencia venta digital tarragona',
+      'vender casa sin comisión tarragona',
+      'venta piso 100 digital camp de tarragona',
+      'vender piso particular tarragona',
+    ],
+    priority: 0.91,
+    areaServed: 'Tarragona ciudad y Camp de Tarragona',
+    heroBadge: 'Plan digital · Tarragona',
+    marketLead:
+      'Part Alta, Eixample, Campclar o Salou: mismos portales que en Barcelona, visitas que marcas tú y negociación hasta notaría.',
+    zones: ['Part Alta', 'Eixample', 'Campclar', 'Bonavista', 'Les Gavarres', 'Reus', 'Vila-seca', 'Salou'],
+    priceExample: 240000,
+    priceM2: '1.900 – 3.200 €/m² (orientativo 2026)',
+    avgDays: '55 – 105 días',
+    cardTeaser: 'Venta digital Tarragona: plan fijo 1.999 € + IVA y panel.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-barcelona', label: 'Venta digital Barcelona' },
+      { href: '/venta-digital-valencia', label: 'Venta digital Valencia' },
+    ],
+    localFaq:
+      '<details><summary>¿Costa Dorada y Reus?</summary><p>Sí en digital si puedes recibir visitas cualificadas; confirmamos en valoración.</p></details>',
+    seoExtra: `<h2>Inmobiliaria digital en Tarragona</h2>
+<p>Camp de Tarragona mezcla vivienda habitual, playa y inversión. <strong>Venta 100 % digital Tarragona</strong> alinea ficha y fotos al perfil real del comprador y mantiene <strong>1.999 € + IVA</strong> aunque el precio final cambie.</p>
+<h2>Comparables locales</h2>
+<p>No usamos solo anuncios caros del portal: miramos cierres por zona y tipología.</p>`,
+  },
 ];
 
 function tradCommission6(price) {

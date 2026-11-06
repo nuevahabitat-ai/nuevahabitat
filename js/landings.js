@@ -365,6 +365,24 @@ window.NH_LANDING_ORDER = [
   "venta-digital-zaragoza",
   "venta-digital-alicante",
   "venta-digital-murcia",
+  "venta-digital-palma",
+  "venta-digital-las-palmas",
+  "venta-digital-santa-cruz-de-tenerife",
+  "venta-digital-vigo",
+  "venta-digital-a-coruna",
+  "venta-digital-cordoba",
+  "venta-digital-granada",
+  "venta-digital-valladolid",
+  "venta-digital-pamplona",
+  "venta-digital-san-sebastian",
+  "venta-digital-gijon",
+  "venta-digital-oviedo",
+  "venta-digital-santander",
+  "venta-digital-burgos",
+  "venta-digital-leon",
+  "venta-digital-salamanca",
+  "venta-digital-logrono",
+  "venta-digital-tarragona",
   "administracion-alquileres",
   "alquiler-integral",
   "administracion-alquileres-les-corts",
@@ -5101,7 +5119,7 @@ window.NH_LANDINGS = {
     "keyword_principal": "venta 100 por ciento digital España",
     "priority": 0.97,
     "indexable": true,
-    "cardTeaser": "Plan digital 1.999 € + IVA en 9 ciudades (Barcelona, Madrid, Valencia, Sevilla, Málaga, Bilbao, Zaragoza, Alicante, Murcia)."
+    "cardTeaser": "Plan digital 1.999 € + IVA en 27 ciudades (España peninsular e islas: ver hub venta-digital)."
   },
   "venta-digital-barcelona": {
     "slug": "venta-digital-barcelona",
@@ -5183,6 +5201,168 @@ window.NH_LANDINGS = {
     "priority": 0.93,
     "indexable": true,
     "cardTeaser": "Venta digital Murcia: honorarios fijos, portales y acompañamiento hasta notaría."
+  },
+  "venta-digital-palma": {
+    "slug": "venta-digital-palma",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Palma",
+    "keyword_principal": "venta 100 por ciento digital Palma",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Venta digital en Palma y Mallorca: 1.999 € + IVA, panel y visitas del propietario."
+  },
+  "venta-digital-las-palmas": {
+    "slug": "venta-digital-las-palmas",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Las Palmas",
+    "keyword_principal": "venta 100 por ciento digital Las Palmas",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Venta digital Las Palmas: honorarios fijos, Idealista y compradores filtrados."
+  },
+  "venta-digital-santa-cruz-de-tenerife": {
+    "slug": "venta-digital-santa-cruz-de-tenerife",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Santa Cruz de Tenerife",
+    "keyword_principal": "venta 100 por ciento digital Santa Cruz de Tenerife",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Venta digital Tenerife · Santa Cruz: 1.999 € + IVA y panel vendedor."
+  },
+  "venta-digital-vigo": {
+    "slug": "venta-digital-vigo",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Vigo",
+    "keyword_principal": "venta 100 por ciento digital Vigo",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "Venta digital Vigo: precio fijo 1.999 € + IVA, Idealista y panel."
+  },
+  "venta-digital-a-coruna": {
+    "slug": "venta-digital-a-coruna",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · A Coruña",
+    "keyword_principal": "venta 100 por ciento digital A Coruña",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "Venta digital A Coruña: inmobiliaria online con visitas cualificadas."
+  },
+  "venta-digital-cordoba": {
+    "slug": "venta-digital-cordoba",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Córdoba",
+    "keyword_principal": "venta 100 por ciento digital Córdoba",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "Venta digital Córdoba: 1.999 € + IVA, panel y portales."
+  },
+  "venta-digital-granada": {
+    "slug": "venta-digital-granada",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Granada",
+    "keyword_principal": "venta 100 por ciento digital Granada",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "Venta digital Granada: honorarios fijos y filtro de compradores."
+  },
+  "venta-digital-valladolid": {
+    "slug": "venta-digital-valladolid",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Valladolid",
+    "keyword_principal": "venta 100 por ciento digital Valladolid",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "Venta digital Valladolid: 1.999 € + IVA y expediente online."
+  },
+  "venta-digital-pamplona": {
+    "slug": "venta-digital-pamplona",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Pamplona",
+    "keyword_principal": "venta 100 por ciento digital Pamplona",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "Venta digital Pamplona: panel, Idealista y visitas filtradas."
+  },
+  "venta-digital-san-sebastian": {
+    "slug": "venta-digital-san-sebastian",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · San Sebastián",
+    "keyword_principal": "venta 100 por ciento digital San Sebastián",
+    "priority": 0.92,
+    "indexable": true,
+    "cardTeaser": "Venta digital San Sebastián: 1.999 € + IVA frente a comisión porcentual."
+  },
+  "venta-digital-gijon": {
+    "slug": "venta-digital-gijon",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Gijón",
+    "keyword_principal": "venta 100 por ciento digital Gijón",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Venta digital Gijón: 1.999 € + IVA, Idealista y visitas filtradas."
+  },
+  "venta-digital-oviedo": {
+    "slug": "venta-digital-oviedo",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Oviedo",
+    "keyword_principal": "venta 100 por ciento digital Oviedo",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Venta digital Oviedo: honorarios fijos y expediente online."
+  },
+  "venta-digital-santander": {
+    "slug": "venta-digital-santander",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Santander",
+    "keyword_principal": "venta 100 por ciento digital Santander",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Venta digital Santander: 1.999 € + IVA y panel vendedor."
+  },
+  "venta-digital-burgos": {
+    "slug": "venta-digital-burgos",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Burgos",
+    "keyword_principal": "venta 100 por ciento digital Burgos",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Venta digital Burgos: precio fijo y filtro antes de visita."
+  },
+  "venta-digital-leon": {
+    "slug": "venta-digital-leon",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · León",
+    "keyword_principal": "venta 100 por ciento digital León",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Venta digital León: 1.999 € + IVA, Idealista y panel."
+  },
+  "venta-digital-salamanca": {
+    "slug": "venta-digital-salamanca",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Salamanca",
+    "keyword_principal": "venta 100 por ciento digital Salamanca",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Venta digital Salamanca: honorarios fijos y compradores cualificados."
+  },
+  "venta-digital-logrono": {
+    "slug": "venta-digital-logrono",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Logroño",
+    "keyword_principal": "venta 100 por ciento digital Logroño",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Venta digital Logroño: 1.999 € + IVA y portales nacionales."
+  },
+  "venta-digital-tarragona": {
+    "slug": "venta-digital-tarragona",
+    "cluster": "ventaDigital",
+    "footerLabel": "Venta digital · Tarragona",
+    "keyword_principal": "venta 100 por ciento digital Tarragona",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Venta digital Tarragona: plan fijo 1.999 € + IVA y panel."
   },
   "administracion-alquileres": {
     "slug": "administracion-alquileres",

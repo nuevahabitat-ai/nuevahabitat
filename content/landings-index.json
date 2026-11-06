@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05T08:11:59.856Z",
+  "updated": "2026-11-06T13:47:14.300Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -2190,6 +2190,114 @@
       "cluster": "ventaDigital",
       "indexable": true,
       "priority": 0.93
+    },
+    {
+      "slug": "venta-digital-palma",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "venta-digital-las-palmas",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "venta-digital-santa-cruz-de-tenerife",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "venta-digital-vigo",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
+      "slug": "venta-digital-a-coruna",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
+      "slug": "venta-digital-cordoba",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
+      "slug": "venta-digital-granada",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
+      "slug": "venta-digital-valladolid",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
+      "slug": "venta-digital-pamplona",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
+      "slug": "venta-digital-san-sebastian",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.92
+    },
+    {
+      "slug": "venta-digital-gijon",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-oviedo",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-santander",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-burgos",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-leon",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-salamanca",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-logrono",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-tarragona",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
     },
     {
       "slug": "administracion-alquileres",

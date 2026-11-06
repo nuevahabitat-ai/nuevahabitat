@@ -2293,6 +2293,7 @@ footer {
 @media (max-width: 960px) {
   .lc-nh-split,
   .lc-nh-panel-grid,
+  .lc-nh-compradores-grid,
   .nh-svc-compare-2,
   .nh-svc-pillar-grid,
   .nh-svc-planes-nav { grid-template-columns: 1fr; }
@@ -2381,6 +2382,37 @@ footer {
   .nh-svc-portals-logos {
     justify-content: center;
   }
+  .nh-vd-glance-card img,
+  .nh-vd-flow-item img {
+    height: auto;
+    min-height: 100px;
+    max-height: 160px;
+  }
+  .nh-svc-faq summary {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body:has(.nh-svc-hero) .lc-nh-split.nh-vd-edu-split {
+    grid-template-columns: 1fr;
+  }
+  body:has(.nh-svc-hero) .lc-nh-split.nh-vd-edu-split .lc-nh-split-media {
+    order: 2;
+  }
+  body:has(.nh-svc-hero) .lc-nh-compare-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -0.25rem;
+    padding: 0 0.25rem 0.5rem;
+  }
+  body:has(.nh-svc-hero) .lc-nh-compare-table {
+    min-width: 520px;
+  }
+  body:has(.nh-svc-hero) .whatsapp-float {
+    bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  }
 }
 
 .nh-svc-portals-inner {
@@ -2422,6 +2454,136 @@ footer {
   width: auto;
   display: block;
 }
+
+/* Venta 100 % digital · módulos ilustrados (global, móvil incluido) */
+.nh-vd-glance {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.nh-vd-glance-card {
+  background: #fff;
+  border: 1px solid var(--crema-dark);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.nh-vd-glance-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+.nh-vd-glance-card div {
+  padding: 1rem 1.1rem 1.15rem;
+  flex: 1;
+}
+.nh-vd-glance-card strong {
+  display: block;
+  font-size: .9375rem;
+  color: var(--negro);
+  margin-bottom: .35rem;
+}
+.nh-vd-glance-card p {
+  font-size: .8125rem;
+  color: var(--gris-texto);
+  margin: 0;
+  line-height: 1.55;
+}
+.nh-vd-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.nh-vd-flow-item { text-align: center; }
+.nh-vd-flow-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: .75rem;
+  border: 1px solid var(--crema-dark);
+}
+.nh-vd-flow-item span {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--negro);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+.nh-vd-flow-item h3 {
+  font-size: .9375rem;
+  margin: 0 0 .35rem;
+  color: var(--negro);
+}
+.nh-vd-flow-item p {
+  font-size: .8125rem;
+  color: var(--gris-texto);
+  margin: 0;
+  line-height: 1.5;
+}
+.nh-vd-pay-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.nh-vd-pay-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  border: 1px solid var(--crema-dark);
+  text-align: center;
+}
+.nh-vd-pay-card img {
+  width: 100%;
+  max-width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0 auto .75rem;
+  display: block;
+}
+.nh-vd-pay-card strong {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--oro-oscuro);
+}
+.nh-svc-planes-nav.nh-vd-city-grid {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+.nh-svc-planes-nav.nh-vd-city-grid a {
+  background: var(--crema);
+  border-color: var(--crema-dark);
+}
+.nh-svc-planes-nav.nh-vd-city-grid strong {
+  color: var(--negro);
+}
+.nh-svc-planes-nav.nh-vd-city-grid span {
+  color: var(--gris-texto);
+}
+.nh-svc-planes-nav.nh-vd-city-grid a.is-current {
+  border-color: var(--oro);
+  background: rgba(184, 147, 106, .12);
+}
+.lc-nh-split.nh-vd-edu-split .lc-nh-split-media { order: 0; }
+@media (max-width: 960px) {
+  .nh-vd-glance,
+  .nh-vd-flow { grid-template-columns: repeat(2, 1fr); }
+  .nh-svc-planes-nav.nh-vd-city-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .nh-vd-glance,
+  .nh-vd-flow,
+  .nh-vd-pay-split { grid-template-columns: 1fr; }
+}
+
 .nh-svc-compare-table--plans td:first-child {
   min-width: 140px;
 }

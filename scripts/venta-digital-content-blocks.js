@@ -14,33 +14,9 @@ function landingContext(c) {
   };
 }
 
+/** Estilos panel mockup (nh-vd-* viven en css/styles.css para móvil global). */
 function ventaDigitalExtraStyles() {
-  return (
-    nhPlatformStyles() +
-    `
-    .nh-vd-glance{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-    .nh-vd-glance-card{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column}
-    .nh-vd-glance-card img{width:100%;height:120px;object-fit:cover}
-    .nh-vd-glance-card div{padding:1rem 1.1rem 1.15rem;flex:1}
-    .nh-vd-glance-card strong{display:block;font-size:.9375rem;color:var(--negro);margin-bottom:.35rem}
-    .nh-vd-glance-card p{font-size:.8125rem;color:var(--gris-texto);margin:0;line-height:1.55}
-    .nh-vd-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
-    .nh-vd-flow-item{text-align:center}
-    .nh-vd-flow-item img{width:100%;height:140px;object-fit:cover;border-radius:var(--radius-md);margin-bottom:.75rem;border:1px solid var(--crema-dark)}
-    .nh-vd-flow-item span{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--negro);color:#fff;font-size:.75rem;font-weight:700;margin-bottom:.5rem}
-    .nh-vd-flow-item h3{font-size:.9375rem;margin:0 0 .35rem;color:var(--negro)}
-    .nh-vd-flow-item p{font-size:.8125rem;color:var(--gris-texto);margin:0;line-height:1.5}
-    .nh-vd-pay-split{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:720px;margin:0 auto}
-    .nh-vd-pay-card{background:#fff;border-radius:var(--radius-md);padding:1.25rem;border:1px solid var(--crema-dark);text-align:center}
-    .nh-vd-pay-card img{width:100%;max-width:200px;height:120px;object-fit:cover;border-radius:8px;margin:0 auto .75rem;display:block}
-    .nh-vd-pay-card strong{font-family:var(--font-serif);font-size:1.35rem;color:var(--oro-oscuro)}
-    .nh-vd-city-strip{display:flex;flex-wrap:wrap;gap:.65rem;justify-content:center;margin-top:1.5rem}
-    .nh-vd-city-strip a{font-size:.8125rem;padding:.45rem .85rem;border-radius:999px;border:1px solid var(--crema-dark);color:var(--negro);text-decoration:none;background:#fff}
-    .nh-vd-city-strip a:hover{border-color:var(--oro);color:var(--oro-oscuro)}
-    @media(max-width:900px){.nh-vd-glance,.nh-vd-flow{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:560px){.nh-vd-glance,.nh-vd-flow,.nh-vd-pay-split{grid-template-columns:1fr}}
-  `
-  );
+  return nhPlatformStyles();
 }
 
 function ventaDigitalQuickGlanceHub() {
@@ -159,7 +135,7 @@ function ventaDigitalEcosystemBlock(c) {
     </div>
     <div class="lc-nh-compare-wrap fade-up" style="margin-top:2rem">
       <h3 class="lc-nh-compare-title" style="color:#fff">Portal solo vs. venta digital NuevaHabitat</h3>
-      <div style="overflow-x:auto">
+      <div class="nh-svc-table-scroll">
         <table class="lc-compare lc-nh-compare-table">
           <thead><tr><th></th><th>Particular en portal</th><th>Plan digital ${city}</th></tr></thead>
           <tbody>
@@ -218,11 +194,11 @@ function ventaDigitalOtherCities(c) {
 function ventaDigitalEducationalProse(c) {
   const city = esc(c.cityName);
   return `<section class="lc-section" style="background:var(--blanco)">
-  <div class="container lc-nh-split fade-up">
-    <div class="lc-nh-split-media" style="order:2">
+  <div class="container lc-nh-split nh-vd-edu-split fade-up">
+    <div class="lc-nh-split-media">
       <img src="imagenes/interior13.jpg" alt="Interior vivienda venta digital ${city}" loading="lazy" width="800" height="600"/>
     </div>
-    <div style="order:1">
+    <div>
       <span class="overline">Para el propietario</span>
       <h2 class="section-title">Cómo se siente vender en digital en ${city}</h2>
       <p style="color:var(--gris-texto);line-height:1.75;margin-bottom:1rem">Contratas una <strong>agencia con precio fijo</strong>, no un paquete de anuncio. Desde el móvil ves quién viene, qué ofertas hay y qué falta en documentación. Las visitas las haces tú — con la tranquilidad de que no es un desconocido sin banco detrás.</p>

@@ -104,7 +104,7 @@ ${ventaDigitalIllustratedFlow({ cityName: 'España', slug: 'venta-digital', pric
       <h2 class="section-title">Venta digital por ciudad</h2>
       <p style="color:var(--gris-texto);max-width:640px;margin:.75rem auto 0;line-height:1.7">Mismo plan <strong>1.999 € + IVA</strong> en toda España donde puedas recibir visitas cualificadas. Elige tu ciudad:</p>
     </div>
-    <div class="nh-svc-planes-nav nh-vd-city-grid" style="flex-wrap:wrap;justify-content:center;gap:.75rem">
+    <div class="nh-svc-planes-nav nh-vd-city-grid">
       ${cityGrid}
     </div>
   </div>
