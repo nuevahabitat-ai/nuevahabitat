@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Importar Idealista – Nueva Habitat</title>
+<meta name="robots" content="noindex,nofollow"/>
+<link rel="preconnect" href="https://xxodawayoogthxnjpouq.supabase.co" crossorigin/>
+<style>
+:root{--gold:#b8936a;--black:#0d0d0d;--surface:#1a1a1a;--surface2:#242424;--border:#2e2e2e;--text:#e8e0d5;--muted:#888;--green:#22c55e;--red:#ef4444;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:var(--black);color:var(--text);min-height:100vh;padding:1.25rem}
+.wrap{max-width:720px;margin:0 auto}
+h1{font-size:1.35rem;margin-bottom:.35rem}
+.sub{color:var(--muted);font-size:.85rem;line-height:1.5;margin-bottom:1.25rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.15rem;margin-bottom:1rem}
+label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:.35rem}
+input[type=file],input[type=email],input[type=password]{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.55rem .75rem;border-radius:6px;font-size:.85rem}
+.row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:flex-end;margin-top:.75rem}
+.btn{border:none;border-radius:6px;padding:.6rem 1rem;font-size:.85rem;font-weight:600;cursor:pointer}
+.btn-gold{background:var(--gold);color:#111}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+#login-card .btn-gold{width:100%;margin-top:.65rem}
+#preview,#result{font-size:.8rem;line-height:1.55;margin-top:.85rem}
+#result.ok{color:var(--green)}
+#result.err{color:var(--red)}
+a{color:var(--gold)}
+code{font-size:.78rem;background:var(--surface2);padding:.1rem .35rem;border-radius:4px}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <p class="sub"><a href="/admin-panel">← Panel admin</a></p>
+  <h1>Importar clientes Idealista</h1>
+  <p class="sub">
+    Sube <strong>CSV</strong> (recomendado) o Excel (.xls/.xlsx). Clave: <strong>teléfono</strong>.
+    Vincula cada anuncio con <code>idealista_id</code> en el inmueble NH para presupuesto y avisos de rebaja.
+  </p>
+
+  <div class="card hidden" id="login-card">
+    <p class="sub" style="margin:0 0 .75rem">Inicia sesión con tu usuario del panel.</p>
+    <label for="adm-email">Email</label>
+    <input type="email" id="adm-email" autocomplete="username"/>
+    <label for="adm-pass" style="margin-top:.65rem">Contraseña</label>
+    <input type="password" id="adm-pass" autocomplete="current-password"/>
+    <button type="button" class="btn btn-gold" id="adm-login-btn">Entrar</button>
+    <p id="login-err" class="sub err hidden" style="margin-top:.65rem"></p>
+  </div>
+
+  <div class="card hidden" id="import-card">
+    <label for="idealista-file">Archivo CSV o Excel</label>
+    <input type="file" id="idealista-file" accept=".csv,.txt,.xls,.xlsx"/>
+    <div class="row">
+      <button type="button" class="btn btn-gold" id="idealista-import-btn" disabled>Importar compradores</button>
+      <a class="btn btn-ghost" href="/docs/plantilla-idealista-compradores.csv" download>Descargar plantilla CSV</a>
+    </div>
+    <div id="preview" class="sub hidden"></div>
+    <div id="result" class="hidden"></div>
+  </div>
+</div>
+<script src="js/supabase.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/admin-import-idealista-page.js"></script>
+</body>
+</html>

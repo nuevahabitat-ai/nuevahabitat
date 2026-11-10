@@ -325,6 +325,10 @@
       "headers": [{ "key": "Cache-Control", "value": "no-store, max-age=0" }]
     },
     {
+      "source": "/admin-import-idealista",
+      "headers": [{ "key": "Cache-Control", "value": "no-store, max-age=0" }]
+    },
+    {
       "source": "/panel",
       "headers": [{ "key": "Cache-Control", "value": "no-store, max-age=0" }]
     },
