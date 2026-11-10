@@ -1,0 +1,12 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const panel = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'admin-panel.html');
+let s = fs.readFileSync(panel, 'utf8');
+const a = s.indexOf('function rebajaVisMatchFiltersHtml');
+const b = s.indexOf('async function refreshRebajaVisitantesModal()', a);
+let block = s.slice(a, b);
+block = block.replace(/\\`/g, '`').replace(/\\\$\{/g, '${');
+s = s.slice(0, a) + block + s.slice(b);
+fs.writeFileSync(panel, s);
+console.log('fixed');
