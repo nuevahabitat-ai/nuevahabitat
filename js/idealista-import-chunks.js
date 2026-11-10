@@ -6,7 +6,10 @@ window.mergeIdealistaImportStats = function (acc, part) {
     ok: true,
     compradoresCreados: 0,
     compradoresActualizados: 0,
+    compradoresDuplicadosOmitidos: 0,
     interesesRegistrados: 0,
+    interesesDuplicadosOmitidos: 0,
+    filasDuplicadasArchivo: 0,
     sinVinculoInmueble: 0,
     idealistaSinMatch: [],
     errores: [],
@@ -14,7 +17,10 @@ window.mergeIdealistaImportStats = function (acc, part) {
   if (!part) return out;
   out.compradoresCreados += part.compradoresCreados || 0;
   out.compradoresActualizados += part.compradoresActualizados || 0;
+  out.compradoresDuplicadosOmitidos += part.compradoresDuplicadosOmitidos || 0;
   out.interesesRegistrados += part.interesesRegistrados || 0;
+  out.interesesDuplicadosOmitidos += part.interesesDuplicadosOmitidos || 0;
+  out.filasDuplicadasArchivo += part.filasDuplicadasArchivo || 0;
   out.sinVinculoInmueble += part.sinVinculoInmueble || 0;
   const extra = part.idealistaSinMatch || [];
   const set = new Set([...(out.idealistaSinMatch || []), ...extra]);

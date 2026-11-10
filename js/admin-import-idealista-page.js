@@ -151,7 +151,7 @@
           if (btn) btn.textContent = `Importando ${done}/${total}…`;
         },
       });
-      const msg = `Creados ${json.compradoresCreados}, actualizados ${json.compradoresActualizados}, intereses ${json.interesesRegistrados}.`;
+      const msg = `Creados ${json.compradoresCreados}, duplicados comprador ${json.compradoresDuplicadosOmitidos || 0}, intereses nuevos ${json.interesesRegistrados}, duplicados interés ${json.interesesDuplicadosOmitidos || 0}.`;
       window.nhToast?.(msg, 'success', 9000);
       if (result) {
         result.classList.remove('hidden', 'err');
