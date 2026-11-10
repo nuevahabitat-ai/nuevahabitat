@@ -146,16 +146,11 @@
         showLogin(true);
         throw new Error('Sesión caducada — vuelve a entrar');
       }
-      const res = await fetch('/api/notify?__action=admin-import-idealista-compradores', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + session.access_token,
+      const json = await window.importIdealistaCompradoresChunked(rows, session.access_token, {
+        onProgress(done, total) {
+          if (btn) btn.textContent = `Importando ${done}/${total}…`;
         },
-        body: JSON.stringify({ rows }),
       });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json.ok) throw new Error(json.error || 'Error en importación');
       const msg = `Creados ${json.compradoresCreados}, actualizados ${json.compradoresActualizados}, intereses ${json.interesesRegistrados}.`;
       window.nhToast?.(msg, 'success', 9000);
       if (result) {

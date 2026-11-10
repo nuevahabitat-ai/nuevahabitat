@@ -141,16 +141,11 @@
     try {
       const { data: { session } } = await window.nhSupabase.auth.getSession();
       if (!session?.access_token) throw new Error('Sesión no válida');
-      const res = await fetch('/api/notify?__action=admin-import-idealista-compradores', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + session.access_token,
+      const json = await window.importIdealistaCompradoresChunked(idealistaRows, session.access_token, {
+        onProgress(done, total) {
+          if (btn) btn.textContent = `Importando ${done}/${total}…`;
         },
-        body: JSON.stringify({ rows: idealistaRows }),
       });
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json.ok) throw new Error(json.error || 'Error en importación');
       const ids = (json.idealistaSinMatch || []).slice(0, 12).join(', ');
       const extra = ids ? ` Refs sin inmueble NH vinculado: ${ids}${json.idealistaSinMatch.length > 12 ? '…' : ''}.` : '';
       window.nhToast?.(`Creados ${json.compradoresCreados}, actualizados ${json.compradoresActualizados}, intereses ${json.interesesRegistrados}.${extra}`, 'success', 9000);
