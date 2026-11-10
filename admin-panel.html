@@ -1116,7 +1116,7 @@ select.adm-control{
           </div>
           <div class="adm-field" style="min-width:180px;flex:1">
             <label for="cf-zona">Zona</label>
-            <input type="text" id="cf-zona" list="cf-zona-list" placeholder="Eixample, Gràcia…"/>
+            <input type="search" id="cf-zona" list="cf-zona-list" placeholder="Eixample, Gràcia…" autocomplete="off" autocorrect="off" spellcheck="false" name="nh_comp_zona_filter" data-lpignore="true"/>
             <datalist id="cf-zona-list"></datalist>
           </div>
           <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="clearCompFilters()">Limpiar filtros</button>
@@ -2832,6 +2832,7 @@ select.adm-control{
 <script src="js/idealista-import-chunks.js"></script>
 <script src="js/admin-idealista-compradores-import.js"></script>
 <script src="js/admin-operaciones-delete.js"></script>
+<script src="js/admin-comp-filters-autofill.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
    ADMIN PANEL – NuevaHabitat
