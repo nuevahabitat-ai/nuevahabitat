@@ -3284,7 +3284,7 @@ function setWizFromParticularBanner(p){
 }
 
 function clearWizardForm(){
-  ['w-prop-nombre','w-prop-tel','w-prop-email','w-ref','w-titulo','w-precio','w-calle','w-numero',
+  ['w-prop-nombre','w-prop-tel','w-prop-email','w-ref','w-idealista-id','w-titulo','w-precio','w-calle','w-numero',
    'w-pisopuerta','w-cp','w-municipio','w-zona','w-dorm','w-banos','w-aseos','w-m2util','w-m2const',
    'w-m2terr','w-m2parc','w-desc','mo-video-url'].forEach(id=>{
     const el=document.getElementById(id);
@@ -4186,7 +4186,7 @@ let _pubData = [];
 async function fetchPubData(){
   const { data, error } = await window.nhSupabase
     .from('inmuebles')
-    .select('id,ref,titulo,precio,precio_anterior,precio_rebajado_at,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,cartera_privada,created_at')
+    .select('id,ref,titulo,precio,precio_anterior,precio_rebajado_at,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,cartera_privada,idealista_id,created_at')
     .order('created_at', { ascending:false });
   if(error){
     console.error('fetchPubData:', error);
