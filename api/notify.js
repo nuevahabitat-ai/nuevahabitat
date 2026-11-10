@@ -856,7 +856,14 @@ async function handleInmuebleRebajaVisitantes(req, res, body) {
   const precioNuevo = body?.precio_nuevo != null ? Number(body.precio_nuevo) : null;
   if (!inmuebleId) return res.status(400).json({ ok: false, error: 'inmuebleId requerido' });
   try {
-    const visitantes = await listVisitantesInmuebleServer(inmuebleId);
+    const matchOpts = {
+      idealista_id: body?.idealista_id ?? body?.idealistaId ?? null,
+      inmueble_ref: body?.inmueble_ref ?? body?.inmuebleRef ?? null,
+      include_visitas: body?.include_visitas !== false && body?.includeVisitas !== false,
+      include_interes_idealista: body?.include_interes_idealista !== false && body?.includeInteresIdealista !== false,
+      include_interes_nh_ref: body?.include_interes_nh_ref !== false && body?.includeInteresNhRef !== false,
+    };
+    const visitantes = await listVisitantesInmuebleServer(inmuebleId, matchOpts);
     let sent = { email: [], whatsapp: [] };
     if (precioNuevo != null && !Number.isNaN(precioNuevo)) {
       sent = await fetchRebajaAvisosSent(inmuebleId, precioNuevo);

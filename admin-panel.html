@@ -9366,13 +9366,23 @@ function buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo){
   return tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? '').trim();
 }
 
-async function fetchRebajaVisitantesApi(inmuebleId, precioNuevo){
+function rebajaVisitantesMatchOpts(){
+  if(!_rebajaVisState) return {};
+  return {
+    idealista_id: document.getElementById('rebaja-match-idealista')?.value?.trim() || _rebajaVisState.inm.idealista_id || null,
+    inmueble_ref: document.getElementById('rebaja-match-nh-ref')?.value?.trim() || _rebajaVisState.inm.ref || null,
+    include_visitas: document.getElementById('rebaja-match-ch-vis')?.checked !== false,
+    include_interes_idealista: document.getElementById('rebaja-match-ch-ideal')?.checked !== false,
+    include_interes_nh_ref: document.getElementById('rebaja-match-ch-nhref')?.checked !== false,
+  };
+}
+async function fetchRebajaVisitantesApi(inmuebleId, precioNuevo, matchOpts){
   const { data: { session } } = await window.nhSupabase.auth.getSession();
   if(!session?.access_token) throw new Error('Sesión no disponible');
   const res = await fetch('/api/notify?__action=inmueble-rebaja-visitantes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
-    body: JSON.stringify({ inmuebleId, precio_nuevo: precioNuevo }),
+    body: JSON.stringify({ inmuebleId, precio_nuevo: precioNuevo, ...(matchOpts || rebajaVisitantesMatchOpts()) }),
   });
   const json = await res.json().catch(() => ({}));
   if(!res.ok || !json.ok) throw new Error(json.error || `Error ${res.status}`);
@@ -9418,7 +9428,7 @@ async function refreshRebajaVisitantesModal(){
   const body = document.getElementById('rebaja-vis-body');
   if(body) body.innerHTML = '<p class="text-muted">Cargando visitantes…</p>';
   try {
-    const json = await fetchRebajaVisitantesApi(_rebajaVisState.inm.id, _rebajaVisState.precioNuevo);
+    const json = await fetchRebajaVisitantesApi(_rebajaVisState.inm.id, _rebajaVisState.precioNuevo, rebajaVisitantesMatchOpts());
     _rebajaVisState.visitantes = (json.visitantes || []).map(v => ({
       ...v,
       comprador_id: matchCompradorIdForVisitor(v),
