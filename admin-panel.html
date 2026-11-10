@@ -765,7 +765,31 @@ select.adm-control{
           </div>
         </div>
 
-        <div class="adm-card" style="margin-bottom:1.25rem">
+        <div class="dash-grid dash-grid--principal">
+          <div class="dash-panel">
+            <div class="dash-panel-head">
+              <h3>Últimos inmuebles publicados</h3>
+              <button type="button" class="dash-panel-link" onclick="switchSection('inmuebles')">Ver todos</button>
+            </div>
+            <div class="dash-panel-body" id="dash-inm-list"><div class="dash-empty">Cargando…</div></div>
+          </div>
+          <div class="dash-panel">
+            <div class="dash-panel-head">
+              <h3>Últimos seguimientos</h3>
+              <button type="button" class="dash-panel-link" onclick="switchSection('seguimientos')">Ver todos</button>
+            </div>
+            <div class="dash-panel-body" id="dash-seg-list"><div class="dash-empty">Cargando…</div></div>
+          </div>
+          <div class="dash-panel">
+            <div class="dash-panel-head">
+              <h3>Últimos compradores</h3>
+              <button type="button" class="dash-panel-link" onclick="switchSection('compradores')">Ver todos</button>
+            </div>
+            <div class="dash-panel-body" id="dash-comp-list"><div class="dash-empty">Cargando…</div></div>
+          </div>
+        </div>
+
+        <div class="adm-card dash-hoy-toca" style="margin-bottom:1.25rem">
           <div class="adm-card-head">
             <div>
               <h3>Hoy toca</h3>
@@ -807,35 +831,12 @@ select.adm-control{
           </div>
         </div>
 
-        <div class="dash-grid">
-          <div class="dash-panel">
-            <div class="dash-panel-head">
-              <h3>Últimos inmuebles publicados</h3>
-              <button type="button" class="dash-panel-link" onclick="switchSection('inmuebles')">Ver todos</button>
-            </div>
-            <div class="dash-panel-body" id="dash-inm-list"><div class="dash-empty">Cargando…</div></div>
+        <div class="dash-panel dash-panel--leads-bottom" style="margin-bottom:1rem">
+          <div class="dash-panel-head">
+            <h3>Últimos leads</h3>
+            <button type="button" class="dash-panel-link" onclick="switchSection('leads')">Ver todos</button>
           </div>
-          <div class="dash-panel">
-            <div class="dash-panel-head">
-              <h3>Últimos leads</h3>
-              <button type="button" class="dash-panel-link" onclick="switchSection('leads')">Ver todos</button>
-            </div>
-            <div class="dash-panel-body" id="dash-leads-list"><div class="dash-empty">Cargando…</div></div>
-          </div>
-          <div class="dash-panel">
-            <div class="dash-panel-head">
-              <h3>Últimos seguimientos</h3>
-              <button type="button" class="dash-panel-link" onclick="switchSection('seguimientos')">Ver todos</button>
-            </div>
-            <div class="dash-panel-body" id="dash-seg-list"><div class="dash-empty">Cargando…</div></div>
-          </div>
-          <div class="dash-panel">
-            <div class="dash-panel-head">
-              <h3>Últimos compradores</h3>
-              <button type="button" class="dash-panel-link" onclick="switchSection('compradores')">Ver todos</button>
-            </div>
-            <div class="dash-panel-body" id="dash-comp-list"><div class="dash-empty">Cargando…</div></div>
-          </div>
+          <div class="dash-panel-body" id="dash-leads-list"><div class="dash-empty">Cargando…</div></div>
         </div>
 
         <div class="adm-card" id="dash-match-wrap" style="display:none;margin-top:0">
@@ -961,6 +962,7 @@ select.adm-control{
 
       <!-- ══ COMPRADORES ═══════════════════════════════════════ -->
       <section class="adm-section" id="sec-compradores">
+        <p class="text-muted" style="font-size:.75rem;margin:0 0 .75rem"><a href="/admin-import-idealista" style="color:var(--gold)">Importar CSV/Excel Idealista →</a></p>
         <div class="adm-section-hdr">
           <div class="adm-section-title">Compradores</div>
           <button class="adm-btn adm-btn-gold" onclick="openCompForm()">+ Nuevo comprador</button>
@@ -2830,6 +2832,7 @@ select.adm-control{
 <script src="js/toast.js"></script>
 <script src="js/nh-pwa-install.js"></script>
 <script src="js/admin-leads-notify.js"></script>
+<script src="js/admin-idealista-compradores-import.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════════
    ADMIN PANEL – NuevaHabitat

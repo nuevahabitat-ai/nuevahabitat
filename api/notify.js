@@ -46,6 +46,7 @@ import {
   fetchRebajaAvisosSent,
   insertRebajaAviso,
 } from '../lib/server/inmueble-rebaja-api.js';
+import { importIdealistaCompradores } from '../lib/server/idealista-compradores-import.js';
 
 function normLeadEmail(e) {
   return String(e || '').trim().toLowerCase();
@@ -829,6 +830,25 @@ async function handleAdminGoogleCalendarSave(req, res, body) {
   }
 }
 
+async function handleAdminImportIdealistaCompradores(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const rows = body?.rows;
+  if (!Array.isArray(rows) || !rows.length) {
+    return res.status(400).json({ ok: false, error: 'Se requiere un array rows con el Excel parseado' });
+  }
+  if (rows.length > 5000) {
+    return res.status(400).json({ ok: false, error: 'Máximo 5000 filas por importación' });
+  }
+  try {
+    const result = await importIdealistaCompradores(rows);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-import-idealista-compradores', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleInmuebleRebajaVisitantes(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1352,6 +1372,7 @@ export default async function handler(req, res) {
   if (action === 'admin-visitas') return handleAdminVisitas(req, res, body);
   if (action === 'admin-google-calendar-save') return handleAdminGoogleCalendarSave(req, res, body);
   if (action === 'admin-google-calendar-clear') return handleAdminGoogleCalendarClear(req, res);
+  if (action === 'admin-import-idealista-compradores') return handleAdminImportIdealistaCompradores(req, res, body);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);
   if (action === 'inmueble-rebaja-email') return handleInmuebleRebajaEmail(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);

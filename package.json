@@ -9,6 +9,8 @@
     "validate:landings": "node scripts/build-landings.js",
     "validate:jsonld": "node scripts/validate-jsonld.js",
     "seed:blog": "node scripts/seed-blog-supabase.js",
-    "alta:comprador": "node scripts/alta-comprador-cli.js"
+    "alta:comprador": "node scripts/alta-comprador-cli.js",
+    "idealista:csv": "node scripts/xls-to-csv-idealista.mjs",
+    "idealista:import": "node scripts/import-idealista-compradores-cli.mjs"
   }
 }
