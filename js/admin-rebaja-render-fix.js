@@ -38,34 +38,9 @@
     renderRebajaVisitantesList.__nhCompatFix = true;
   }
 
-  function patchRefresh() {
-    if (typeof refreshRebajaVisitantesModal !== 'function' || refreshRebajaVisitantesModal.__nhCompatFix) return;
-    const orig = refreshRebajaVisitantesModal;
-    refreshRebajaVisitantesModal = async function () {
-      await orig();
-      if (_rebajaVisState && !_rebajaVisState.meta && typeof fetchRebajaVisitantesApi === 'function') {
-        try {
-          const json = await fetchRebajaVisitantesApi(
-            _rebajaVisState.inm.id,
-            _rebajaVisState.precioNuevo,
-            rebajaVisitantesMatchOpts()
-          );
-          _rebajaVisState.meta = json.meta || null;
-        } catch (_) { /* noop */ }
-      }
-    };
-    refreshRebajaVisitantesModal.__nhCompatFix = true;
-  }
-
   function boot() {
     patchRender();
-    patchRefresh();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => setTimeout(boot, 0));
-  } else {
-    setTimeout(boot, 0);
-  }
-  setTimeout(boot, 3000);
+  boot();
 })();
