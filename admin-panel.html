@@ -9422,7 +9422,8 @@ function renderRebajaVisitantesList(state){
   if(!visitantes.length){
     const meta = state.meta;
     const hint = meta ? `Visitas NH: ${meta.visitas||0} · Idealista (tabla): ${meta.interes||0} · notas import: ${meta.notas||0}${meta.warn ? ' · '+meta.warn : ''}` : '';
-    return filters + `<p class="text-muted">Ningún contacto con estos filtros. Los <strong>${compatN} compradores</strong> del botón 🎯 son compatibles por presupuesto; activa <strong>Compradores compatibles</strong> o importa contactos Idealista con ref. <strong>112985423</strong>.</p>${hint ? '<p class="text-muted" style="font-size:.72rem;margin-top:.5rem">'+hint+'</p>' : ''}`;
+    const idealRef = (document.getElementById('rebaja-match-idealista')?.value || '').trim() || inm?.idealista_id || '—';
+    return filters + `<p class="text-muted">Ningún contacto para este piso: solo aparecen <strong>visitas NH</strong> o quienes consultaron en Idealista (ref. <strong>${idealRef}</strong>). Importa de nuevo el Excel Idealista o revisa migración 066.</p>${hint ? '<p class="text-muted" style="font-size:.72rem;margin-top:.5rem">'+hint+'</p>' : ''}`;
   }
   const rows = visitantes.map(v => {
     const key = rebajaContactKey(v);
