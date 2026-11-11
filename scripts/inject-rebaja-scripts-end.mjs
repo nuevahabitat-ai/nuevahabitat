@@ -13,9 +13,11 @@ s = s.replace(/<script src="js\/admin-rebaja-idealista-client\.js"><\/script>\s*
 s = s.replace(/<script src="js\/admin-rebaja-render-fix\.js"><\/script>\s*/g, '');
 
 if (!s.includes('admin-rebaja-render-fix.js')) {
-  s = s.replace('</script>\n</body>', `</script>\n${block}</body>`);
+  const bodyClose = s.lastIndexOf('</body>');
+  if (bodyClose === -1) throw new Error('</body> not found');
+  s = s.slice(0, bodyClose) + block + s.slice(bodyClose);
   fs.writeFileSync(panel, s);
-  console.log('rebaja scripts at end of body OK');
+  console.log('rebaja scripts before </body> OK');
 } else {
   console.log('already OK');
 }

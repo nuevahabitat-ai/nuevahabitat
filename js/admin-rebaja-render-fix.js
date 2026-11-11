@@ -8,7 +8,7 @@
       typeof rebajaVisMatchFiltersHtml === 'function' ? rebajaVisMatchFiltersHtml(inm) : '';
     const meta = state.meta;
     const hint = meta
-      ? `Visitas NH: ${meta.visitas || 0} · API interes: ${meta.interes || 0} · API notas: ${meta.notas || 0} · Panel Idealista: ${meta.clientIdealista ?? '?'}${meta.warn ? ' · ' + meta.warn : ''}`
+      ? `Visitas NH: ${meta.visitas || 0} · filas interés: ${meta.interesRows ?? meta.interes ?? 0} · en panel: ${meta.clientIdealista ?? 0} · memoria: ${meta.memCache ?? 0}${meta.backfill ? ' · backfill+' + meta.backfill.created : ''}${meta.warn ? ' · ' + meta.warn : ''}`
       : 'Sin datos del servidor (¿caché? Pulsa Actualizar lista).';
     const idealRef =
       (document.getElementById('rebaja-match-idealista')?.value || '').trim() ||
@@ -57,13 +57,31 @@
           ...v,
           comprador_id: matchCompradorIdForVisitor(v),
         }));
+        if (typeof loadCompradores === 'function' && typeof _compData !== 'undefined' && !_compData.length) {
+          await loadCompradores(true);
+        }
         let merged = apiRows;
         if (window.nhFetchIdealistaRebajaClient && window.nhSupabase) {
-          const client = await window.nhFetchIdealistaRebajaClient(
+          let client = await window.nhFetchIdealistaRebajaClient(
             window.nhSupabase,
             _rebajaVisState.inm,
             opts
           );
+          const idealistaId = client.meta?.idealistaId;
+          const idealistaOnly = (client.visitantes || []).filter(
+            (v) => v.fuente === 'idealista_import' || v.fuente === 'idealista_notas'
+          );
+          if (!idealistaOnly.length && idealistaId && window.nhBackfillIdealistaInteres) {
+            const bf = await window.nhBackfillIdealistaInteres(idealistaId);
+            if (bf?.created > 0) {
+              client = await window.nhFetchIdealistaRebajaClient(
+                window.nhSupabase,
+                _rebajaVisState.inm,
+                opts
+              );
+            }
+            if (bf) client.meta = { ...client.meta, backfill: bf };
+          }
           merged = window.nhMergeRebajaVisitantes
             ? window.nhMergeRebajaVisitantes(apiRows, client.visitantes)
             : [...apiRows, ...(client.visitantes || [])];

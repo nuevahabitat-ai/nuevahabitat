@@ -1,5 +1,5 @@
 /**
- * Contactos rebaja desde Supabase (sesión admin) — mismo idealista_id + mismo piso.
+ * Contactos rebaja Idealista (sesión admin): tabla interés + notas + _compData en memoria.
  */
 (function () {
   function normalizeIdealistaId(val) {
@@ -22,11 +22,62 @@
     return 'c:' + (v.comprador_id || v.visita_id);
   }
 
+  async function loadCompradoresByIds(supabase, ids) {
+    const uniq = [...new Set(ids.filter(Boolean))];
+    if (!uniq.length) return new Map();
+    const { data, error } = await supabase
+      .from('compradores')
+      .select('id,nombre,email,telefono,notas')
+      .in('id', uniq)
+      .limit(500);
+    if (error) return new Map();
+    const map = new Map();
+    for (const c of data || []) map.set(c.id, c);
+    return map;
+  }
+
+  function pushFromComprador(c, out, seen, extra) {
+    if (!c) return;
+    const row = {
+      visita_id: extra.visita_id,
+      nombre: c.nombre || '',
+      email: c.email || '',
+      telefono: c.telefono || '',
+      estado: 'realizada',
+      fecha_hora: extra.fecha_hora || null,
+      comprador_id: c.id,
+      fuente: extra.fuente,
+    };
+    if (!row.email && !row.telefono) return;
+    const key = contactKey(row);
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push(row);
+  }
+
+  function scanCompDataMemory(idealistaId, nhRef, out, seen) {
+    const list = typeof _compData !== 'undefined' && _compData ? _compData : [];
+    let n = 0;
+    for (const c of list) {
+      const notas = String(c.notas || '');
+      if (!notas.includes(idealistaId) && !notas.includes('Idealista ' + idealistaId)) continue;
+      if (nhRef && notas.includes('NH-') && notas.includes(nhRef) === false) {
+        const hasId = notas.includes(idealistaId);
+        if (!hasId) continue;
+      }
+      pushFromComprador(c, out, seen, {
+        visita_id: `mem:${c.id}:${idealistaId}`,
+        fuente: 'idealista_notas',
+      });
+      n += 1;
+    }
+    return n;
+  }
+
   async function fetchIdealistaRebajaClient(supabase, inm, opts) {
-    const meta = { clientIdealista: 0, clientError: null };
+    const meta = { clientIdealista: 0, clientError: null, memCache: 0, interesRows: 0 };
     if (!supabase) return { visitantes: [], meta };
-  const useIdealista = opts?.include_interes_idealista !== false;
-  if (!useIdealista) return { visitantes: [], meta };
+    if (opts?.include_interes_idealista === false) return { visitantes: [], meta };
 
     const idealistaId = normalizeIdealistaId(
       opts?.idealista_id ||
@@ -43,46 +94,30 @@
     const out = [];
     const seen = new Set();
 
-    function push(c, extra) {
-      if (!c) return;
-      const row = {
-        visita_id: extra.visita_id,
-        nombre: c.nombre || '',
-        email: c.email || '',
-        telefono: c.telefono || '',
-        estado: 'realizada',
-        fecha_hora: extra.fecha_hora || null,
-        comprador_id: c.id || extra.comprador_id,
-        fuente: extra.fuente,
-      };
-      if (!row.email && !row.telefono) return;
-      const key = contactKey(row);
-      if (seen.has(key)) return;
-      seen.add(key);
-      out.push(row);
-    }
-
-    const sel =
-      'comprador_id,idealista_id,inmueble_id,inmueble_ref,fecha_contacto,compradores(id,nombre,email,telefono)';
+    const interesSel = 'comprador_id,idealista_id,inmueble_id,inmueble_ref,fecha_contacto';
 
     const { data: byIdealista, error: e1 } = await supabase
       .from('comprador_inmueble_interes')
-      .select(sel)
+      .select(interesSel)
       .eq('idealista_id', idealistaId)
       .limit(500);
 
     if (e1) {
-      if (/does not exist|schema cache|PGRST/i.test(e1.message || '')) {
-        meta.clientError = 'Tabla comprador_inmueble_interes no existe — ejecuta migración 066 en Supabase.';
+      if (/does not exist|schema cache|could not find/i.test(e1.message || '')) {
+        meta.clientError = 'Tabla comprador_inmueble_interes: ' + e1.message;
       } else {
         meta.clientError = e1.message;
       }
     } else {
+      meta.interesRows = (byIdealista || []).length;
+      const cmap = await loadCompradoresByIds(
+        supabase,
+        (byIdealista || []).map((r) => r.comprador_id)
+      );
       for (const r of byIdealista || []) {
         if (normalizeIdealistaId(r.idealista_id) !== idealistaId) continue;
-        push(r.compradores, {
+        pushFromComprador(cmap.get(r.comprador_id), out, seen, {
           visita_id: `idealista:${r.comprador_id}:${idealistaId}`,
-          comprador_id: r.comprador_id,
           fecha_hora: r.fecha_contacto,
           fuente: 'idealista_import',
         });
@@ -92,39 +127,57 @@
     if (inmuebleId && opts?.include_interes_nh_ref !== false) {
       const { data: byInm } = await supabase
         .from('comprador_inmueble_interes')
-        .select(sel)
+        .select(interesSel)
         .eq('inmueble_id', inmuebleId)
         .limit(300);
+      const cmap = await loadCompradoresByIds(
+        supabase,
+        (byInm || []).map((r) => r.comprador_id)
+      );
       for (const r of byInm || []) {
         if (r.idealista_id && normalizeIdealistaId(r.idealista_id) !== idealistaId) continue;
-        push(r.compradores, {
+        pushFromComprador(cmap.get(r.comprador_id), out, seen, {
           visita_id: `idealista:${r.comprador_id}:${r.idealista_id || 'nh'}`,
-          comprador_id: r.comprador_id,
           fecha_hora: r.fecha_contacto,
           fuente: 'idealista_import',
         });
       }
     }
 
-    const { data: notasRows } = await supabase
+    const { data: notasRows, error: e2 } = await supabase
       .from('compradores')
       .select('id,nombre,email,telefono,notas')
       .ilike('notas', '%' + idealistaId + '%')
-      .limit(300);
+      .limit(400);
 
+    if (e2) meta.clientError = meta.clientError || e2.message;
     for (const c of notasRows || []) {
-      const n = String(c.notas || '');
-      if (!n.includes(idealistaId) && !n.includes('Idealista ' + idealistaId)) continue;
-      if (!n.includes(idealistaId)) continue;
-      push(c, {
+      if (!String(c.notas || '').includes(idealistaId)) continue;
+      pushFromComprador(c, out, seen, {
         visita_id: `notas:${c.id}:${idealistaId}`,
         fuente: 'idealista_notas',
       });
     }
 
+    meta.memCache = scanCompDataMemory(idealistaId, nhRef, out, seen);
     meta.clientIdealista = out.length;
     meta.idealistaId = idealistaId;
     return { visitantes: out, meta };
+  }
+
+  async function backfillIdealistaInteres(idealistaId) {
+    const { data: { session } } = await window.nhSupabase.auth.getSession();
+    if (!session?.access_token) return null;
+    const res = await fetch('/api/notify?__action=admin-backfill-idealista-interes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + session.access_token,
+      },
+      body: JSON.stringify({ idealista_id: idealistaId }),
+    });
+    const json = await res.json().catch(() => ({}));
+    return res.ok && json.ok ? json : null;
   }
 
   function mergeVisitantes(apiList, clientList) {
@@ -141,4 +194,5 @@
 
   window.nhFetchIdealistaRebajaClient = fetchIdealistaRebajaClient;
   window.nhMergeRebajaVisitantes = mergeVisitantes;
+  window.nhBackfillIdealistaInteres = backfillIdealistaInteres;
 })();

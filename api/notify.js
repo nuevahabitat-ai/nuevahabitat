@@ -47,6 +47,7 @@ import {
   insertRebajaAviso,
 } from '../lib/server/inmueble-rebaja-api.js';
 import { importIdealistaCompradores } from '../lib/server/idealista-compradores-import.js';
+import { backfillInteresFromCompradorNotas } from '../lib/server/idealista-interes-backfill.js';
 import { deleteVendedorPermanent } from '../lib/server/vendedores-delete-api.js';
 
 function normLeadEmail(e) {
@@ -864,6 +865,20 @@ async function handleAdminImportIdealistaCompradores(req, res, body) {
   }
 }
 
+async function handleAdminBackfillIdealistaInteres(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const result = await backfillInteresFromCompradorNotas({
+      idealista_id: body?.idealista_id ?? body?.idealistaId ?? null,
+    });
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-backfill-idealista-interes', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleInmuebleRebajaVisitantes(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1401,6 +1416,7 @@ export default async function handler(req, res) {
   if (action === 'admin-google-calendar-clear') return handleAdminGoogleCalendarClear(req, res);
   if (action === 'admin-delete-vendedor') return handleAdminDeleteVendedor(req, res, body);
   if (action === 'admin-import-idealista-compradores') return handleAdminImportIdealistaCompradores(req, res, body);
+  if (action === 'admin-backfill-idealista-interes') return handleAdminBackfillIdealistaInteres(req, res, body);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);
   if (action === 'inmueble-rebaja-email') return handleInmuebleRebajaEmail(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);
