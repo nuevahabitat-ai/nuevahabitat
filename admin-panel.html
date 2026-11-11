@@ -9436,7 +9436,7 @@ function rebajaVisMatchFiltersHtml(inm){
   const cv = document.getElementById('rebaja-match-ch-vis');
   const ci = document.getElementById('rebaja-match-ch-ideal');
   const cn = document.getElementById('rebaja-match-ch-nhref');
-  const chVis = cv ? cv.checked : true;
+  const chVis = cv ? cv.checked : false;
   const chIdeal = ci ? ci.checked : true;
   const chNh = cn ? cn.checked : true;
   return `
@@ -9511,7 +9511,7 @@ async function openRebajaVisitantesModal(inmuebleId, precioAnterior, precioNuevo
   }
   _rebajaVisState = { inm, precioAnterior: prev, precioNuevo: nuevo, visitantes: [], alreadySent: { email: new Set(), whatsapp: new Set() } };
   document.getElementById('rebaja-vis-kicker').textContent = inm.ref || 'Inmueble';
-  document.getElementById('rebaja-vis-title').textContent = 'Avisar rebaja a visitantes';
+  document.getElementById('rebaja-vis-title').textContent = 'Avisar rebaja — contactos Idealista';
   document.getElementById('rebaja-vis-sub').textContent = [
     inm.titulo,
     `${prev.toLocaleString('es-ES')} → ${nuevo.toLocaleString('es-ES')} €`,

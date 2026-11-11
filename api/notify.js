@@ -48,6 +48,7 @@ import {
 } from '../lib/server/inmueble-rebaja-api.js';
 import { importIdealistaCompradores } from '../lib/server/idealista-compradores-import.js';
 import { backfillInteresFromCompradorNotas } from '../lib/server/idealista-interes-backfill.js';
+import { getIdealistaRebajaContacts } from '../lib/server/rebaja-idealista-contacts.js';
 import { deleteVendedorPermanent } from '../lib/server/vendedores-delete-api.js';
 
 function normLeadEmail(e) {
@@ -905,10 +906,30 @@ async function handleInmuebleRebajaVisitantes(req, res, body) {
         console.warn('rebaja backfill', e.message);
       }
     }
-    const { visitantes, meta } = await listVisitantesInmuebleServer(inmuebleId, matchOpts);
-    meta.serviceRole = !!(process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE);
+    const idealistaRows = await getIdealistaRebajaContacts(idealistaId || matchOpts.idealista_id, inmuebleId);
+    let visitantes = [...(idealistaRows.visitantes || [])];
+    let meta = { ...(idealistaRows.meta || {}), fuente: 'idealista_id' };
+    if (matchOpts.include_visitas !== false) {
+      const nh = await listVisitantesInmuebleServer(inmuebleId, {
+        ...matchOpts,
+        include_interes_idealista: false,
+        include_interes_nh_ref: false,
+      });
+      const seen = new Set(
+        visitantes.map((v) => v.comprador_id || v.telefono || v.email)
+      );
+      for (const v of nh.visitantes || []) {
+        const k = v.comprador_id || v.telefono || v.email;
+        if (k && seen.has(k)) continue;
+        seen.add(k);
+        visitantes.push(v);
+      }
+      meta.visitas = nh.meta?.visitas || 0;
+    }
     if (!meta.serviceRole) {
-      meta.warn = (meta.warn ? meta.warn + ' · ' : '') + 'Falta SUPABASE_SERVICE_ROLE_KEY en Vercel (API no lee Supabase).';
+      meta.warn =
+        (meta.warn ? meta.warn + ' · ' : '') +
+        'Falta SUPABASE_SERVICE_ROLE_KEY en Vercel — usa «Sincronizar» o comprueba compradores en notas.';
     }
     let sent = { email: [], whatsapp: [] };
     if (precioNuevo != null && !Number.isNaN(precioNuevo)) {
