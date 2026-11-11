@@ -871,6 +871,7 @@ async function handleAdminBackfillIdealistaInteres(req, res, body) {
   try {
     const result = await backfillInteresFromCompradorNotas({
       idealista_id: body?.idealista_id ?? body?.idealistaId ?? null,
+      inmueble_ref: body?.inmueble_ref ?? body?.inmuebleRef ?? null,
     });
     return res.status(200).json(result);
   } catch (err) {
@@ -896,7 +897,10 @@ async function handleInmuebleRebajaVisitantes(req, res, body) {
     const idealistaId = matchOpts.idealista_id;
     if (idealistaId) {
       try {
-        await backfillInteresFromCompradorNotas({ idealista_id: idealistaId });
+        await backfillInteresFromCompradorNotas({
+          idealista_id: idealistaId,
+          inmueble_ref: matchOpts.inmueble_ref,
+        });
       } catch (e) {
         console.warn('rebaja backfill', e.message);
       }

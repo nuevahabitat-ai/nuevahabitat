@@ -58,7 +58,7 @@
     return (
       filters +
       `<p class="text-muted"><strong>0 contactos</strong> con ref. Idealista <strong>${idealRef}</strong> (solo quienes escribieron por <em>ese</em> anuncio).</p>` +
-      `<p class="text-muted" style="font-size:.78rem;margin-top:.5rem">Importa el CSV de Idealista (botón abajo). En tu archivo hay ~100 filas con esta ref.; sin import no hay lista.</p>` +
+      `<p class="text-muted" style="font-size:.78rem;margin-top:.5rem">Primero pulsa <strong>Sincronizar sin reimportar</strong> (usa las notas del import anterior). Solo si sigue vacío: import parcial de esta ref.</p>` +
       `<p class="text-muted" style="font-size:.72rem;margin-top:.4rem">${hint}</p>`
     );
   }
@@ -137,7 +137,8 @@
           (rows.length
             ? '<button type="button" class="adm-btn adm-btn-gold" onclick="sendRebajaVisitantesBatch()">Enviar avisos</button>'
             : '') +
-          '<button type="button" class="adm-btn adm-btn-gold" onclick="typeof openIdealistaImportModal===\'function\'&&openIdealistaImportModal()">Importar CSV Idealista</button>';
+          '<button type="button" class="adm-btn adm-btn-gold" onclick="nhSyncIdealistaSinReimportar()">Sincronizar sin reimportar</button>' +
+          '<button type="button" class="adm-btn adm-btn-ghost" onclick="nhImportIdealistaSoloEstaRef()">Solo esta ref. (CSV)</button>';
       }
     } catch (e) {
       if (body) body.innerHTML = '<p class="text-muted">Error: ' + e.message + '</p>';
