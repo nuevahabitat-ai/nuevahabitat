@@ -1,52 +1,146 @@
 /**
- * Evita que el navegador rellene el filtro Zona (compradores) con email/contraseña.
+ * Evita autofill de email/contraseña en filtros "Zona" y campos similares del panel.
  */
 (function () {
+  const ZONE_IDS = [
+    'cf-zona', 'if-zona', 'pf-zona', 'c-zona', 'w-zona',
+    'part-zona', 'lead-man-inmueble',
+  ];
+
   function looksLikeEmail(s) {
-    return /@/.test(String(s || ''));
+    const t = String(s || '').trim();
+    return t.includes('@') || /\.(com|es|gmail|hotmail|outlook)\b/i.test(t);
   }
 
-  function fixZonaInput() {
-    const el = document.getElementById('cf-zona');
-    if (!el) return;
-    el.type = 'search';
+  function hardenInput(el) {
+    if (!el || el.dataset.nhNoAutofill === '1') return;
+    el.dataset.nhNoAutofill = '1';
+    if (el.id === 'cf-zona' || el.id === 'if-zona' || el.id === 'pf-zona') {
+      el.type = 'search';
+    }
     el.setAttribute('autocomplete', 'off');
     el.setAttribute('autocorrect', 'off');
     el.setAttribute('spellcheck', 'false');
     el.setAttribute('data-lpignore', 'true');
     el.setAttribute('data-1p-ignore', 'true');
-    el.setAttribute('name', 'nh_comp_zona_filter');
-    el.setAttribute('inputmode', 'search');
-    if (looksLikeEmail(el.value)) {
-      el.value = '';
-      if (typeof renderCompradores === 'function') renderCompradores();
+    el.setAttribute('data-form-type', 'other');
+    el.setAttribute('name', `nh_filter_${el.id || 'zona'}`);
+    if (!el.dataset.nhReadonlyTrap) {
+      el.dataset.nhReadonlyTrap = '1';
+      el.setAttribute('readonly', 'readonly');
+      el.addEventListener('focus', () => {
+        el.removeAttribute('readonly');
+      });
+      el.addEventListener('blur', () => {
+        if (!el.value) el.setAttribute('readonly', 'readonly');
+      });
     }
   }
 
-  function wrapGetCompFilterValues() {
-    if (typeof getCompFilterValues !== 'function' || getCompFilterValues.__nhZonaFix) return;
-    const orig = getCompFilterValues;
-    getCompFilterValues = function () {
-      const f = orig();
-      if (looksLikeEmail(f.zona)) {
-        fixZonaInput();
-        f.zona = '';
-      }
+  function sanitizeEl(el) {
+    if (!el) return false;
+    if (looksLikeEmail(el.value)) {
+      el.value = '';
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      return true;
+    }
+    return false;
+  }
+
+  function sanitizeAll() {
+    let changed = false;
+    ZONE_IDS.forEach((id) => {
+      if (sanitizeEl(document.getElementById(id))) changed = true;
+    });
+    document.querySelectorAll('#comp-filter-bar input, #if-filter-bar input, #pf-filter-bar input')
+      .forEach((el) => {
+        if (el.type === 'text' || el.type === 'search') {
+          if (sanitizeEl(el)) changed = true;
+        }
+      });
+    if (changed) {
+      if (typeof renderCompradores === 'function') renderCompradores();
+      if (typeof renderPublications === 'function') renderPublications();
+      if (typeof renderParticulares === 'function') renderParticulares();
+    }
+  }
+
+  function stripEmailFromFilterGetter(origFn) {
+    return function () {
+      const f = origFn();
+      if (f.zona && looksLikeEmail(f.zona)) f.zona = '';
       return f;
     };
-    getCompFilterValues.__nhZonaFix = true;
+  }
+
+  function patchFilterGetters() {
+    if (typeof getCompFilterValues === 'function' && !getCompFilterValues.__nhNoMail) {
+      const o = getCompFilterValues;
+      getCompFilterValues = stripEmailFromFilterGetter(o);
+      getCompFilterValues.__nhNoMail = true;
+    }
+    if (typeof getInmFilterValues === 'function' && !getInmFilterValues.__nhNoMail) {
+      const o = getInmFilterValues;
+      getInmFilterValues = stripEmailFromFilterGetter(o);
+      getInmFilterValues.__nhNoMail = true;
+    }
+    if (typeof getPartFilterValues === 'function' && !getPartFilterValues.__nhNoMail) {
+      const o = getPartFilterValues;
+      getPartFilterValues = stripEmailFromFilterGetter(o);
+      getPartFilterValues.__nhNoMail = true;
+    }
+  }
+
+  function patchClearCompFilters() {
+    if (typeof clearCompFilters !== 'function' || clearCompFilters.__nhNoMail) return;
+    const orig = clearCompFilters;
+    clearCompFilters = function () {
+      orig();
+      sanitizeAll();
+    };
+    clearCompFilters.__nhNoMail = true;
+  }
+
+  function observeSection() {
+    const sec = document.getElementById('sec-compradores');
+    if (!sec || sec.dataset.nhAutofillObs) return;
+    sec.dataset.nhAutofillObs = '1';
+    const obs = new MutationObserver(() => sanitizeAll());
+    obs.observe(sec, { subtree: true, attributes: true, attributeFilter: ['value'] });
+    let n = 0;
+    const iv = setInterval(() => {
+      sanitizeAll();
+      if (++n > 15) clearInterval(iv);
+    }, 2000);
   }
 
   function boot() {
-    fixZonaInput();
-    wrapGetCompFilterValues();
-    document.getElementById('cf-zona')?.addEventListener('focus', fixZonaInput);
+    ZONE_IDS.forEach((id) => hardenInput(document.getElementById(id)));
+    document.querySelectorAll('#comp-filter-bar input[type="text"],#comp-filter-bar input[type="search"],#comp-filter-bar input[type="tel"]')
+      .forEach(hardenInput);
+    patchFilterGetters();
+    patchClearCompFilters();
+    sanitizeAll();
+    observeSection();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    boot();
-    setTimeout(boot, 400);
-    setTimeout(boot, 1500);
+    setTimeout(boot, 0);
+    setTimeout(boot, 500);
+    setTimeout(boot, 2000);
+    setTimeout(boot, 5000);
   });
-  if (document.readyState !== 'loading') boot();
+  if (document.readyState !== 'loading') setTimeout(boot, 0);
+
+  const origSwitch = window.switchSection;
+  if (typeof origSwitch === 'function' && !origSwitch.__nhNoMail) {
+    window.switchSection = function (name) {
+      const r = origSwitch.apply(this, arguments);
+      if (name === 'compradores' || name === 'inmuebles' || name === 'seguimientos') {
+        setTimeout(boot, 100);
+      }
+      return r;
+    };
+    window.switchSection.__nhNoMail = true;
+  }
 })();

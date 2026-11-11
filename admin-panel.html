@@ -1082,7 +1082,7 @@ select.adm-control{
         </div>
 
         <!-- Filtros criterios -->
-        <div class="adm-filter-bar" id="comp-filter-bar">
+        <form id="comp-filter-form" id="comp-filter-bar" class="adm-filter-bar" autocomplete="off" onsubmit="return false" style="display:flex;flex-wrap:wrap;gap:inherit;align-items:flex-end">
           <div class="adm-field" style="min-width:140px">
             <label for="cf-telefono">Teléfono</label>
             <input type="tel" id="cf-telefono" inputmode="numeric" autocomplete="off" placeholder="612… o +34…"/>
@@ -1121,7 +1121,7 @@ select.adm-control{
           </div>
           <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="clearCompFilters()">Limpiar filtros</button>
           <span class="adm-filter-count" id="comp-filter-count"></span>
-        </div>
+        </form>
 
         <!-- Grid de compradores -->
         <div id="comp-grid" class="pub-grid"><p class="text-muted">Cargando…</p></div>
