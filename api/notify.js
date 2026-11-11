@@ -878,12 +878,17 @@ async function handleInmuebleRebajaVisitantes(req, res, body) {
       include_interes_idealista: body?.include_interes_idealista !== false && body?.includeInteresIdealista !== false,
       include_interes_nh_ref: body?.include_interes_nh_ref !== false && body?.includeInteresNhRef !== false,
     };
-    const visitantes = await listVisitantesInmuebleServer(inmuebleId, matchOpts);
+    const { visitantes, meta } = await listVisitantesInmuebleServer(inmuebleId, matchOpts);
     let sent = { email: [], whatsapp: [] };
     if (precioNuevo != null && !Number.isNaN(precioNuevo)) {
       sent = await fetchRebajaAvisosSent(inmuebleId, precioNuevo);
     }
-    return res.status(200).json({ ok: true, visitantes, alreadySent: { email: [...sent.email], whatsapp: [...sent.whatsapp] } });
+    return res.status(200).json({
+      ok: true,
+      visitantes,
+      meta,
+      alreadySent: { email: [...sent.email], whatsapp: [...sent.whatsapp] },
+    });
   } catch (err) {
     console.error('inmueble-rebaja-visitantes', err);
     return res.status(500).json({ ok: false, error: err.message });

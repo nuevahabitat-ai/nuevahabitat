@@ -9367,6 +9367,7 @@ function buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo){
   return tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? '').trim();
 }
 
+
 function rebajaVisitantesMatchOpts(){
   if(!_rebajaVisState) return {};
   return {
@@ -9419,7 +9420,9 @@ function renderRebajaVisitantesList(state){
   const emailSent = new Set(alreadySent?.email || []);
   const waSent = new Set(alreadySent?.whatsapp || []);
   if(!visitantes.length){
-    return filters + '<p class="text-muted">Ningún visitante con estos filtros. Escribe la <strong>ref. Idealista</strong> del portal (aunque aún no esté en la ficha) y pulsa <strong>Actualizar lista</strong>.</p>';
+    const meta = state.meta;
+    const hint = meta ? `Visitas NH: ${meta.visitas||0} · Idealista (tabla): ${meta.interes||0} · notas import: ${meta.notas||0}${meta.warn ? ' · '+meta.warn : ''}` : '';
+    return filters + `<p class="text-muted">Ningún contacto con estos filtros. Los <strong>${compatN} compradores</strong> del botón 🎯 son compatibles por presupuesto; activa <strong>Compradores compatibles</strong> o importa contactos Idealista con ref. <strong>112985423</strong>.</p>${hint ? '<p class="text-muted" style="font-size:.72rem;margin-top:.5rem">'+hint+'</p>' : ''}`;
   }
   const rows = visitantes.map(v => {
     const key = rebajaContactKey(v);
@@ -9428,7 +9431,7 @@ function renderRebajaVisitantesList(state){
     const emDone = emailSent.has(key);
     const waDone = waSent.has(key);
     const sub = [v.email, v.telefono].filter(Boolean).join(' · ') || 'Sin contacto';
-    const fuente = v.fuente === 'idealista_import' ? ' · Idealista' : '';
+    const fuente = v.fuente === 'idealista_import' ? ' · Idealista' : v.fuente === 'idealista_notas' ? ' · Idealista (notas)' : '';
     return `<div class="comp-match-row" style="align-items:flex-start">
       <label style="display:flex;gap:.6rem;flex:1;cursor:pointer">
         <input type="checkbox" class="rebaja-vis-cb" data-key="${key.replace(/"/g,'')}" ${(emOk || waOk) ? 'checked' : ''} ${(!emOk && !waOk) ? 'disabled' : ''}/>
