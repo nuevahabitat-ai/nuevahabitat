@@ -8,8 +8,8 @@
       typeof rebajaVisMatchFiltersHtml === 'function' ? rebajaVisMatchFiltersHtml(inm) : '';
     const meta = state.meta;
     const hint = meta
-      ? `Visitas NH: ${meta.visitas || 0} · Idealista (tabla): ${meta.interes || 0} · notas import: ${meta.notas || 0}${meta.warn ? ' · ' + meta.warn : ''}`
-      : '';
+      ? `Visitas NH: ${meta.visitas || 0} · Idealista (tabla): ${meta.interes || 0} · notas import: ${meta.notas || 0}${meta.warn ? ' · ' + meta.warn : ''}${meta.interesQuery ? ' · query:' + meta.interesQuery : ''}`
+      : 'Sin datos del servidor (¿caché? Pulsa Actualizar lista).';
     const idealRef =
       (document.getElementById('rebaja-match-idealista')?.value || '').trim() ||
       inm?.idealista_id ||
