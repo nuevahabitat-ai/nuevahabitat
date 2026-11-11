@@ -9368,6 +9368,43 @@ function buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo){
 }
 
 
+
+function nhNormalizeIdealistaId(val){
+  if(val==null||val==='') return null;
+  const s=String(val).trim();
+  const d=s.match(/\d{6,}/);
+  if(d) return d[0];
+  const n=Number(s);
+  return Number.isFinite(n)&&n>0?String(Math.trunc(n)):null;
+}
+function nhCompradoresMemoriaIdealista(idealistaId){
+  const id=nhNormalizeIdealistaId(idealistaId);
+  if(!id) return [];
+  return (_compData||[]).filter(c=>{
+    const n=String(c.notas||'');
+    return n.includes(id)&&((c.telefono||'').trim()||(c.email||'').trim());
+  }).map(c=>({
+    visita_id:'mem:'+c.id+':'+id,
+    nombre:c.nombre||'',
+    email:c.email||'',
+    telefono:c.telefono||'',
+    estado:'realizada',
+    comprador_id:c.id,
+    fuente:'idealista_notas',
+  }));
+}
+function nhMergeRebajaVisitantesLista(apiList, extra){
+  const seen=new Set();
+  const out=[];
+  for(const v of [...(apiList||[]),...(extra||[])]){
+    const key=(v.email||'').trim().toLowerCase()||String(v.telefono||'').replace(/\D/g,'').slice(-9)||v.visita_id;
+    if(!key||seen.has(key)) continue;
+    seen.add(key);
+    out.push(v);
+  }
+  return out;
+}
+
 function rebajaVisitantesMatchOpts(){
   if(!_rebajaVisState) return {};
   return {
@@ -9423,7 +9460,7 @@ function renderRebajaVisitantesList(state){
     const meta = state.meta;
     const hint = meta ? `Visitas NH: ${meta.visitas||0} · Idealista (tabla): ${meta.interes||0} · notas import: ${meta.notas||0}${meta.warn ? ' · '+meta.warn : ''}` : '';
     const idealRef = (document.getElementById('rebaja-match-idealista')?.value || '').trim() || inm?.idealista_id || '—';
-    return filters + `<p class="text-muted">Ningún contacto para este piso: solo aparecen <strong>visitas NH</strong> o quienes consultaron en Idealista (ref. <strong>${idealRef}</strong>). Importa de nuevo el Excel Idealista o revisa migración 066.</p>${hint ? '<p class="text-muted" style="font-size:.72rem;margin-top:.5rem">'+hint+'</p>' : ''}`;
+    return filters + `<p class="text-muted"><strong>Sin contactos Idealista</strong> para este anuncio (ref. en el campo). Importa el CSV de Idealista con el botón del pie del modal (ref. <strong>${idealRef}</strong>). Importa de nuevo el Excel Idealista o revisa migración 066.</p>${hint ? '<p class="text-muted" style="font-size:.72rem;margin-top:.5rem">'+hint+'</p>' : ''}`;
   }
   const rows = visitantes.map(v => {
     const key = rebajaContactKey(v);
@@ -9454,28 +9491,10 @@ function renderRebajaVisitantesList(state){
 }
 
 async function refreshRebajaVisitantesModal(){
+  if(window.__nhRefreshRebajaVisitantes) return window.__nhRefreshRebajaVisitantes();
   if(!_rebajaVisState) return;
   const body = document.getElementById('rebaja-vis-body');
-  if(body) body.innerHTML = '<p class="text-muted">Cargando visitantes…</p>';
-  try {
-    const json = await fetchRebajaVisitantesApi(_rebajaVisState.inm.id, _rebajaVisState.precioNuevo, rebajaVisitantesMatchOpts());
-    _rebajaVisState.visitantes = (json.visitantes || []).map(v => ({
-      ...v,
-      comprador_id: matchCompradorIdForVisitor(v),
-    }));
-    _rebajaVisState.alreadySent = {
-      email: new Set(json.alreadySent?.email || []),
-      whatsapp: new Set(json.alreadySent?.whatsapp || []),
-    };
-    if(body) body.innerHTML = renderRebajaVisitantesList(_rebajaVisState);
-    const foot = document.getElementById('rebaja-vis-foot');
-    if(foot){
-      foot.innerHTML = `<button type="button" class="adm-btn adm-btn-ghost" onclick="closeRebajaVisitantesModal()">Cerrar</button>
-        <button type="button" class="adm-btn adm-btn-gold" onclick="sendRebajaVisitantesBatch()">Enviar avisos</button>`;
-    }
-  } catch(e){
-    if(body) body.innerHTML = `<p class="text-muted">Error: ${e.message}</p>`;
-  }
+  if(body) body.innerHTML = '<p class="text-muted">Cargando… (actualiza con Ctrl+F5 si no hay lista)</p>';
 }
 
 async function openRebajaVisitantesModal(inmuebleId, precioAnterior, precioNuevo){

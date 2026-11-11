@@ -1,123 +1,152 @@
 /**
- * Parche lista vacía rebaja (compatN) si el HTML en caché aún es viejo.
+ * Lógica rebaja Idealista (no editar admin-panel.html a mano).
  */
 (function () {
+  function nhNormalizeIdealistaId(val) {
+    if (val == null || val === '') return null;
+    const s = String(val).trim();
+    const d = s.match(/\d{6,}/);
+    if (d) return d[0];
+    const n = Number(s);
+    return Number.isFinite(n) && n > 0 ? String(Math.trunc(n)) : null;
+  }
+
+  function nhCompradoresMemoriaIdealista(idealistaId) {
+    const id = nhNormalizeIdealistaId(idealistaId);
+    if (!id || typeof _compData === 'undefined') return [];
+    return (_compData || [])
+      .filter((c) => {
+        const n = String(c.notas || '');
+        return n.includes(id) && ((c.telefono || '').trim() || (c.email || '').trim());
+      })
+      .map((c) => ({
+        visita_id: 'mem:' + c.id + ':' + id,
+        nombre: c.nombre || '',
+        email: c.email || '',
+        telefono: c.telefono || '',
+        estado: 'realizada',
+        comprador_id: c.id,
+        fuente: 'idealista_notas',
+      }));
+  }
+
+  function mergeList(a, b) {
+    const seen = new Set();
+    const out = [];
+    for (const v of [...(a || []), ...(b || [])]) {
+      const key =
+        (v.email || '').trim().toLowerCase() ||
+        String(v.telefono || '').replace(/\D/g, '').slice(-9) ||
+        v.visita_id;
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      out.push(v);
+    }
+    return out;
+  }
+
   function safeEmptyList(state) {
     const inm = state.inm;
     const filters =
       typeof rebajaVisMatchFiltersHtml === 'function' ? rebajaVisMatchFiltersHtml(inm) : '';
-    const meta = state.meta;
-    const hint = meta
-      ? `Visitas NH: ${meta.visitas || 0} · filas interés: ${meta.interesRows ?? meta.interes ?? 0} · en panel: ${meta.clientIdealista ?? 0} · memoria: ${meta.memCache ?? 0}${meta.backfill ? ' · backfill+' + meta.backfill.created : ''}${meta.warn ? ' · ' + meta.warn : ''}`
-      : 'Sin datos del servidor (¿caché? Pulsa Actualizar lista).';
+    const meta = state.meta || {};
     const idealRef =
-      (document.getElementById('rebaja-match-idealista')?.value || '').trim() ||
+      nhNormalizeIdealistaId(document.getElementById('rebaja-match-idealista')?.value) ||
       inm?.idealista_id ||
       '—';
+    const hint = `API interés: ${meta.interes ?? 0} · notas API: ${meta.notas ?? 0} · panel: ${meta.clientIdealista ?? 0} · memoria: ${meta.memoria ?? 0}${meta.warn ? ' · ' + meta.warn : ''}${meta.serviceRole === false ? ' · Falta SUPABASE_SERVICE_ROLE_KEY en Vercel' : ''}`;
     return (
       filters +
-      `<p class="text-muted">Ningún contacto para este piso: solo <strong>visitas NH</strong> o consultas Idealista (ref. <strong>${idealRef}</strong>).</p>` +
-      (hint ? `<p class="text-muted" style="font-size:.72rem;margin-top:.5rem">${hint}</p>` : '')
+      `<p class="text-muted"><strong>0 contactos</strong> con ref. Idealista <strong>${idealRef}</strong> (solo quienes escribieron por <em>ese</em> anuncio).</p>` +
+      `<p class="text-muted" style="font-size:.78rem;margin-top:.5rem">Importa el CSV de Idealista (botón abajo). En tu archivo hay ~100 filas con esta ref.; sin import no hay lista.</p>` +
+      `<p class="text-muted" style="font-size:.72rem;margin-top:.4rem">${hint}</p>`
     );
   }
 
-  function patchRender() {
-    if (typeof renderRebajaVisitantesList !== 'function' || renderRebajaVisitantesList.__nhCompatFix) return;
-    const orig = renderRebajaVisitantesList;
-    renderRebajaVisitantesList = function (state) {
-      if (!state?.visitantes?.length) {
-        try {
-          const html = orig(state);
-          if (state.meta || /Visitas NH:/.test(html)) return html;
-          return safeEmptyList(state);
-        } catch (e) {
-          if (/compatN|is not defined/i.test(String(e?.message || e))) return safeEmptyList(state);
-          throw e;
-        }
+  async function nhRefreshRebajaVisitantesImpl() {
+    if (!_rebajaVisState) return;
+    const body = document.getElementById('rebaja-vis-body');
+    if (body) body.innerHTML = '<p class="text-muted">Buscando contactos Idealista…</p>';
+    try {
+      if (typeof loadCompradores === 'function' && (!window._compData || !_compData.length)) {
+        await loadCompradores(true);
       }
-      return orig(state);
-    };
-    renderRebajaVisitantesList.__nhCompatFix = true;
-  }
+      const opts =
+        typeof rebajaVisitantesMatchOpts === 'function' ? rebajaVisitantesMatchOpts() : {};
+      const idealistaId = nhNormalizeIdealistaId(
+        opts.idealista_id ||
+          document.getElementById('rebaja-match-idealista')?.value ||
+          _rebajaVisState.inm.idealista_id
+      );
+      const json = await fetchRebajaVisitantesApi(
+        _rebajaVisState.inm.id,
+        _rebajaVisState.precioNuevo,
+        opts
+      );
+      let rows = (json.visitantes || []).map((v) => ({
+        ...v,
+        comprador_id: typeof matchCompradorIdForVisitor === 'function' ? matchCompradorIdForVisitor(v) : v.comprador_id,
+      }));
 
-  function patchRefresh() {
-    if (typeof refreshRebajaVisitantesModal !== 'function' || refreshRebajaVisitantesModal.__nhMetaFix) return;
-    refreshRebajaVisitantesModal = async function () {
-      if (!_rebajaVisState) return;
-      const body = document.getElementById('rebaja-vis-body');
-      if (body) body.innerHTML = '<p class="text-muted">Cargando visitantes…</p>';
-      try {
-        const json = await fetchRebajaVisitantesApi(
-          _rebajaVisState.inm.id,
-          _rebajaVisState.precioNuevo,
-          rebajaVisitantesMatchOpts()
+      if (window.nhFetchIdealistaRebajaClient && window.nhSupabase) {
+        let client = await window.nhFetchIdealistaRebajaClient(
+          window.nhSupabase,
+          _rebajaVisState.inm,
+          opts
         );
-        const opts = rebajaVisitantesMatchOpts();
-        const apiRows = (json.visitantes || []).map((v) => ({
-          ...v,
-          comprador_id: matchCompradorIdForVisitor(v),
-        }));
-        if (typeof loadCompradores === 'function' && typeof _compData !== 'undefined' && !_compData.length) {
-          await loadCompradores(true);
-        }
-        let merged = apiRows;
-        if (window.nhFetchIdealistaRebajaClient && window.nhSupabase) {
-          let client = await window.nhFetchIdealistaRebajaClient(
-            window.nhSupabase,
-            _rebajaVisState.inm,
-            opts
-          );
-          const idealistaId = client.meta?.idealistaId;
-          const idealistaOnly = (client.visitantes || []).filter(
-            (v) => v.fuente === 'idealista_import' || v.fuente === 'idealista_notas'
-          );
-          if (!idealistaOnly.length && idealistaId && window.nhBackfillIdealistaInteres) {
-            const bf = await window.nhBackfillIdealistaInteres(idealistaId);
-            if (bf?.created > 0) {
-              client = await window.nhFetchIdealistaRebajaClient(
-                window.nhSupabase,
-                _rebajaVisState.inm,
-                opts
-              );
-            }
-            if (bf) client.meta = { ...client.meta, backfill: bf };
+        rows = mergeList(rows, client.visitantes);
+        if (!(client.visitantes || []).length && idealistaId && window.nhBackfillIdealistaInteres) {
+          const bf = await window.nhBackfillIdealistaInteres(idealistaId);
+          if (bf?.created > 0) {
+            client = await window.nhFetchIdealistaRebajaClient(
+              window.nhSupabase,
+              _rebajaVisState.inm,
+              opts
+            );
+            rows = mergeList(rows, client.visitantes);
           }
-          merged = window.nhMergeRebajaVisitantes
-            ? window.nhMergeRebajaVisitantes(apiRows, client.visitantes)
-            : [...apiRows, ...(client.visitantes || [])];
-          _rebajaVisState.meta = {
-            ...(json.meta || {}),
-            ...(client.meta || {}),
-            warn:
-              (json.meta && json.meta.warn) ||
-              (client.meta && client.meta.clientError) ||
-              null,
-          };
-        } else {
-          _rebajaVisState.meta = json.meta || null;
+          json.meta = { ...(json.meta || {}), backfill: bf };
         }
-        _rebajaVisState.visitantes = merged;
-        _rebajaVisState.alreadySent = {
-          email: new Set(json.alreadySent?.email || []),
-          whatsapp: new Set(json.alreadySent?.whatsapp || []),
-        };
-        if (body) body.innerHTML = renderRebajaVisitantesList(_rebajaVisState);
-        const foot = document.getElementById('rebaja-vis-foot');
-        if (foot) {
-          foot.innerHTML = `<button type="button" class="adm-btn adm-btn-ghost" onclick="closeRebajaVisitantesModal()">Cerrar</button>
-        <button type="button" class="adm-btn adm-btn-gold" onclick="sendRebajaVisitantesBatch()">Enviar avisos</button>`;
-        }
-      } catch (e) {
-        if (body) body.innerHTML = `<p class="text-muted">Error: ${e.message}</p>`;
+        Object.assign(json.meta || {}, client.meta || {});
       }
-    };
-    refreshRebajaVisitantesModal.__nhMetaFix = true;
+
+      rows = mergeList(rows, nhCompradoresMemoriaIdealista(idealistaId));
+      _rebajaVisState.meta = {
+        ...(json.meta || {}),
+        memoria: nhCompradoresMemoriaIdealista(idealistaId).length,
+        idealistaId,
+        total: rows.length,
+      };
+      _rebajaVisState.visitantes = rows;
+      _rebajaVisState.alreadySent = {
+        email: new Set(json.alreadySent?.email || []),
+        whatsapp: new Set(json.alreadySent?.whatsapp || []),
+      };
+
+      if (body) {
+        if (rows.length && typeof renderRebajaVisitantesList === 'function') {
+          body.innerHTML = renderRebajaVisitantesList(_rebajaVisState);
+        } else {
+          body.innerHTML = safeEmptyList(_rebajaVisState);
+        }
+      }
+      const foot = document.getElementById('rebaja-vis-foot');
+      if (foot) {
+        foot.innerHTML =
+          '<button type="button" class="adm-btn adm-btn-ghost" onclick="closeRebajaVisitantesModal()">Cerrar</button>' +
+          (rows.length
+            ? '<button type="button" class="adm-btn adm-btn-gold" onclick="sendRebajaVisitantesBatch()">Enviar avisos</button>'
+            : '') +
+          '<button type="button" class="adm-btn adm-btn-gold" onclick="typeof openIdealistaImportModal===\'function\'&&openIdealistaImportModal()">Importar CSV Idealista</button>';
+      }
+    } catch (e) {
+      if (body) body.innerHTML = '<p class="text-muted">Error: ' + e.message + '</p>';
+    }
   }
 
-  function boot() {
-    patchRender();
-    patchRefresh();
-  }
+  window.__nhRefreshRebajaVisitantes = nhRefreshRebajaVisitantesImpl;
 
-  boot();
+  window.refreshRebajaVisitantesModal = function () {
+    return window.__nhRefreshRebajaVisitantes();
+  };
 })();

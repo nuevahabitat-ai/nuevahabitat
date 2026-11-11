@@ -893,7 +893,19 @@ async function handleInmuebleRebajaVisitantes(req, res, body) {
       include_interes_idealista: body?.include_interes_idealista !== false && body?.includeInteresIdealista !== false,
       include_interes_nh_ref: body?.include_interes_nh_ref !== false && body?.includeInteresNhRef !== false,
     };
+    const idealistaId = matchOpts.idealista_id;
+    if (idealistaId) {
+      try {
+        await backfillInteresFromCompradorNotas({ idealista_id: idealistaId });
+      } catch (e) {
+        console.warn('rebaja backfill', e.message);
+      }
+    }
     const { visitantes, meta } = await listVisitantesInmuebleServer(inmuebleId, matchOpts);
+    meta.serviceRole = !!(process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE);
+    if (!meta.serviceRole) {
+      meta.warn = (meta.warn ? meta.warn + ' · ' : '') + 'Falta SUPABASE_SERVICE_ROLE_KEY en Vercel (API no lee Supabase).';
+    }
     let sent = { email: [], whatsapp: [] };
     if (precioNuevo != null && !Number.isNaN(precioNuevo)) {
       sent = await fetchRebajaAvisosSent(inmuebleId, precioNuevo);
