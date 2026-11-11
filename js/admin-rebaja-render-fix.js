@@ -27,7 +27,9 @@
     renderRebajaVisitantesList = function (state) {
       if (!state?.visitantes?.length) {
         try {
-          return orig(state);
+          const html = orig(state);
+          if (state.meta || /Visitas NH:/.test(html)) return html;
+          return safeEmptyList(state);
         } catch (e) {
           if (/compatN|is not defined/i.test(String(e?.message || e))) return safeEmptyList(state);
           throw e;
@@ -38,8 +40,43 @@
     renderRebajaVisitantesList.__nhCompatFix = true;
   }
 
+  function patchRefresh() {
+    if (typeof refreshRebajaVisitantesModal !== 'function' || refreshRebajaVisitantesModal.__nhMetaFix) return;
+    refreshRebajaVisitantesModal = async function () {
+      if (!_rebajaVisState) return;
+      const body = document.getElementById('rebaja-vis-body');
+      if (body) body.innerHTML = '<p class="text-muted">Cargando visitantes…</p>';
+      try {
+        const json = await fetchRebajaVisitantesApi(
+          _rebajaVisState.inm.id,
+          _rebajaVisState.precioNuevo,
+          rebajaVisitantesMatchOpts()
+        );
+        _rebajaVisState.meta = json.meta || null;
+        _rebajaVisState.visitantes = (json.visitantes || []).map((v) => ({
+          ...v,
+          comprador_id: matchCompradorIdForVisitor(v),
+        }));
+        _rebajaVisState.alreadySent = {
+          email: new Set(json.alreadySent?.email || []),
+          whatsapp: new Set(json.alreadySent?.whatsapp || []),
+        };
+        if (body) body.innerHTML = renderRebajaVisitantesList(_rebajaVisState);
+        const foot = document.getElementById('rebaja-vis-foot');
+        if (foot) {
+          foot.innerHTML = `<button type="button" class="adm-btn adm-btn-ghost" onclick="closeRebajaVisitantesModal()">Cerrar</button>
+        <button type="button" class="adm-btn adm-btn-gold" onclick="sendRebajaVisitantesBatch()">Enviar avisos</button>`;
+        }
+      } catch (e) {
+        if (body) body.innerHTML = `<p class="text-muted">Error: ${e.message}</p>`;
+      }
+    };
+    refreshRebajaVisitantesModal.__nhMetaFix = true;
+  }
+
   function boot() {
     patchRender();
+    patchRefresh();
   }
 
   boot();
