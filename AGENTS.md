@@ -21,6 +21,12 @@ Para crear compradores desde Gemini, Claude o scripts sin abrir el admin:
 
 Traducir lenguaje natural del operador a JSON y hacer POST. Consultar `GET /api/compradores?activo=true&limit=50` antes de crear para evitar duplicados por teléfono.
 
+## Inferencia criterios compradores (`presupuesto_min` / migración 068)
+
+- **Docs:** [docs/SYNC-INFER-CRITERIOS.md](docs/SYNC-INFER-CRITERIOS.md)
+- **CLI:** `node scripts/sync-infer-compradores.mjs` (`.env.local` con `SUPABASE_SERVICE_ROLE_KEY`)
+- **VPS Captador:** `python scripts/run-infer-from-vps-env.py --write-env` (lee `/opt/captador/.env`, no commitear keys)
+
 ## Deploy
 
 - Push: cuenta `nuevahabitat-ai`, remote `origin`. Antes de `git push`: `gh auth switch -u nuevahabitat-ai` (o `powershell -File scripts/push-nuevahabitat.ps1`) — si no, GitHub devuelve 403 con otra cuenta activa.

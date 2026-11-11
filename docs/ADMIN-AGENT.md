@@ -1,6 +1,6 @@
 # Asistente IA panel (Gemini)
 
-- **UI:** botón **✦ Asistente** (abajo derecha) en admin-panel.
+- **UI:** pestaña **✦ IA** arriba a la derecha (como leads); al pulsar, modal compacto para chatear.
 - **API:** `POST /api/notify?__action=admin-agent-chat` (JWT admin).
 - **Env:** `GEMINI_API_KEY` en Vercel (producción) y `.env.local` (local).
 

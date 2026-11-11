@@ -1,9 +1,10 @@
 /**
- * Asistente IA panel (Gemini + tools servidor).
+ * Asistente IA panel — pestaña superior + modal compacto (estilo leads dock).
  */
 (function () {
   const STORAGE = 'nh_agent_history_v1';
   let _open = false;
+  let _sending = false;
 
   function sectionContext() {
     const sec =
@@ -27,43 +28,109 @@
     sessionStorage.setItem(STORAGE, JSON.stringify(h.slice(-20)));
   }
 
+  function injectStyles() {
+    if (document.getElementById('nh-agent-styles')) return;
+    const s = document.createElement('style');
+    s.id = 'nh-agent-styles';
+    s.textContent = `
+.nh-agent-dock{position:fixed;top:3.15rem;right:0;z-index:7355;display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.55rem .45rem .55rem .65rem;background:rgba(184,147,106,.94);color:#1a1208;border:none;border-radius:10px 0 0 10px;cursor:pointer;box-shadow:-4px 0 18px rgba(0,0,0,.35);font-size:.62rem;font-weight:800;letter-spacing:.06em;line-height:1.15;max-width:3.1rem;text-transform:uppercase}
+.nh-agent-dock-icon{font-size:1rem;line-height:1}
+.nh-agent-dock[hidden],.nh-agent-dock.is-open{display:none}
+#nh-agent-modal.dash-modal{align-items:flex-start;justify-content:flex-end;padding:3.25rem .6rem 1rem}
+#nh-agent-modal .dash-modal-backdrop{background:rgba(0,0,0,.45)}
+#nh-agent-modal .dash-modal-panel{width:min(400px,100%);max-height:min(72vh,560px);border-color:rgba(184,147,106,.35)}
+#nh-agent-modal .dash-modal-head{background:rgba(184,147,106,.08);padding:.85rem 1rem}
+#nh-agent-modal .dash-modal-body{padding:.75rem 1rem;font-size:.82rem;line-height:1.45;display:flex;flex-direction:column;gap:.5rem;min-height:180px}
+#nh-agent-messages{flex:1;overflow:auto;min-height:120px;max-height:min(42vh,340px)}
+.nh-agent-msg{margin-bottom:.65rem}
+.nh-agent-msg-label{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.nh-agent-msg-body{margin:.2rem 0 0;white-space:pre-wrap}
+#nh-agent-input{font-size:.82rem;min-height:4.2rem;resize:vertical}
+@media (max-width:720px){
+  .nh-agent-dock{top:auto;bottom:5.5rem;border-radius:10px 0 0 10px}
+  #nh-agent-modal.dash-modal{align-items:flex-end;justify-content:center;padding:.75rem}
+}`;
+    document.head.appendChild(s);
+  }
+
   function ensureUi() {
+    injectStyles();
     if (document.getElementById('nh-agent-root')) return;
     const root = document.createElement('div');
     root.id = 'nh-agent-root';
     root.innerHTML = `
-      <button type="button" id="nh-agent-fab" class="adm-btn adm-btn-gold" title="Asistente IA Nueva Hábitat" style="position:fixed;bottom:1.25rem;right:1.25rem;z-index:12000;border-radius:999px;padding:.65rem 1rem;box-shadow:0 4px 20px rgba(0,0,0,.35)">✦ Asistente</button>
-      <motion id="nh-agent-drawer" style="display:none;position:fixed;right:0;top:0;bottom:0;width:min(420px,100vw);z-index:11999;background:var(--bg-card,#1a1a1a);border-left:1px solid rgba(255,255,255,.08);flex-direction:column;box-shadow:-8px 0 32px rgba(0,0,0,.4)">
-      </div>`;
-    // fix typo motion -> div
-    root.innerHTML = `
-      <button type="button" id="nh-agent-fab" class="adm-btn adm-btn-gold" title="Asistente IA Nueva Hábitat" style="position:fixed;bottom:1.25rem;right:1.25rem;z-index:12000;border-radius:999px;padding:.65rem 1rem;box-shadow:0 4px 20px rgba(0,0,0,.35)">✦ Asistente</button>
-      <div id="nh-agent-drawer" hidden style="position:fixed;right:0;top:0;bottom:0;width:min(420px,100vw);z-index:11999;background:var(--bg-card,#1a1a1a);border-left:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;box-shadow:-8px 0 32px rgba(0,0,0,.4)">
-        <div style="padding:.85rem 1rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center">
-          <strong style="font-size:.9rem">Asistente NH</strong>
-          <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" id="nh-agent-close">✕</button>
-        </div>
-        <div id="nh-agent-messages" style="flex:1;overflow:auto;padding:1rem;font-size:.82rem;line-height:1.45"></div>
-        <div style="padding:.75rem;border-top:1px solid rgba(255,255,255,.08)">
-          <textarea id="nh-agent-input" rows="3" class="adm-control" placeholder="Ej.: Busca comprador Ramon y completa criterios desde sus notas…" style="width:100%;font-size:.82rem;margin-bottom:.5rem"></textarea>
-          <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" id="nh-agent-send">Enviar</button>
+      <button type="button" id="nh-agent-dock" class="nh-agent-dock" aria-label="Abrir asistente IA" title="Asistente IA Nueva Hábitat">
+        <span class="nh-agent-dock-icon" aria-hidden="true">✦</span>
+        <span>IA</span>
+      </button>
+      <div id="nh-agent-modal" class="dash-modal" role="dialog" aria-modal="true" aria-labelledby="nh-agent-title" hidden>
+        <div class="dash-modal-backdrop" data-nh-agent-minimize></div>
+        <div class="dash-modal-panel">
+          <div class="dash-modal-head">
+            <div>
+              <div class="dash-modal-kicker">Panel NH</div>
+              <h3 id="nh-agent-title">Asistente</h3>
+            </div>
+            <button type="button" class="dash-modal-close" id="nh-agent-close" aria-label="Minimizar">×</button>
+          </div>
+          <div class="dash-modal-body">
+            <div id="nh-agent-messages"></div>
+            <textarea id="nh-agent-input" rows="3" class="adm-control" placeholder="Ej.: Abre Ramon Ros, infiere criterios y ve compatibles…"></textarea>
+          </div>
+          <div class="dash-modal-foot">
+            <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" id="nh-agent-send" style="flex:1">Enviar</button>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" data-nh-agent-minimize>Minimizar</button>
+          </div>
         </div>
       </div>`;
     document.body.appendChild(root);
-    document.getElementById('nh-agent-fab').onclick = () => toggleAgent(true);
-    document.getElementById('nh-agent-close').onclick = () => toggleAgent(false);
+
+    document.getElementById('nh-agent-dock').onclick = () => openAgentModal();
+    document.getElementById('nh-agent-close').onclick = () => closeAgentModal();
+    root.querySelectorAll('[data-nh-agent-minimize]').forEach((el) => {
+      el.addEventListener('click', () => closeAgentModal());
+    });
     document.getElementById('nh-agent-send').onclick = () => sendAgentMessage();
-    document.getElementById('nh-agent-input').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) sendAgentMessage();
+    const input = document.getElementById('nh-agent-input');
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendAgentMessage();
+      }
     });
     renderMessages(loadHistory());
   }
 
+  function openAgentModal() {
+    ensureUi();
+    _open = true;
+    const modal = document.getElementById('nh-agent-modal');
+    const dock = document.getElementById('nh-agent-dock');
+    if (modal) {
+      modal.removeAttribute('hidden');
+      modal.classList.add('open');
+    }
+    if (dock) dock.classList.add('is-open');
+    setTimeout(() => document.getElementById('nh-agent-input')?.focus(), 80);
+  }
+
+  function closeAgentModal() {
+    _open = false;
+    const modal = document.getElementById('nh-agent-modal');
+    const dock = document.getElementById('nh-agent-dock');
+    if (modal) {
+      modal.classList.remove('open');
+      modal.setAttribute('hidden', '');
+    }
+    if (dock) dock.classList.remove('is-open');
+  }
+
   function toggleAgent(on) {
     ensureUi();
-    _open = on !== undefined ? on : !_open;
-    const d = document.getElementById('nh-agent-drawer');
-    if (d) d.hidden = !_open;
+    if (on === true) openAgentModal();
+    else if (on === false) closeAgentModal();
+    else if (_open) closeAgentModal();
+    else openAgentModal();
   }
 
   function renderMessages(history) {
@@ -71,13 +138,13 @@
     if (!el) return;
     if (!history.length) {
       el.innerHTML =
-        '<p class="text-muted">Pregunta o pide acciones en compradores y seguimientos. Usa la sección abierta como contexto.</p>';
+        '<p class="text-muted" style="margin:0">Pide buscar compradores, inferir criterios, anotar o ir a una sección. Uso la vista abierta como contexto.</p>';
       return;
     }
     el.innerHTML = history
       .map(
         (m) =>
-          `<div style="margin-bottom:.75rem"><span class="text-muted" style="font-size:.68rem">${m.role === 'user' ? 'Tú' : 'Asistente'}</span><p style="margin:.25rem 0 0;white-space:pre-wrap">${escapeHtml(m.content)}</p></div>`,
+          `<div class="nh-agent-msg"><div class="nh-agent-msg-label">${m.role === 'user' ? 'Tú' : 'Asistente'}</div><p class="nh-agent-msg-body">${escapeHtml(m.content)}</p></div>`,
       )
       .join('');
     el.scrollTop = el.scrollHeight;
@@ -90,7 +157,46 @@
       .replace(/>/g, '&gt;');
   }
 
+  function dedupeActions(actions) {
+    const seen = new Set();
+    return (actions || []).filter((a) => {
+      const k = JSON.stringify(a);
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+  }
+
+  function applyPanelActions(actions) {
+    const list = dedupeActions(actions);
+    if (!list.length) return;
+    for (const a of list) {
+      if (a.type === 'goto_section' && a.section && typeof switchSection === 'function') {
+        switchSection(a.section);
+      }
+      if (a.type === 'refresh_compradores' && typeof loadCompradores === 'function') {
+        loadCompradores(true);
+      }
+      if (a.type === 'open_comprador' && a.id) {
+        if (typeof switchSection === 'function') switchSection('compradores');
+        setTimeout(() => window.openCompCardModal?.(a.id), 350);
+      }
+      if (a.type === 'compatibles_comprador' && a.id && typeof showCompatiblesForComprador === 'function') {
+        if (typeof switchSection === 'function') switchSection('compradores');
+        setTimeout(() => showCompatiblesForComprador(a.id), 400);
+      }
+      if (a.type === 'refresh_particulares') {
+        if (typeof loadParticulares === 'function') loadParticulares();
+      }
+      if (a.type === 'open_particular' && a.id) {
+        if (typeof switchSection === 'function') switchSection('seguimientos');
+        setTimeout(() => window.openPartCardModal?.(a.id), 350);
+      }
+    }
+  }
+
   async function sendAgentMessage() {
+    if (_sending) return;
     ensureUi();
     const input = document.getElementById('nh-agent-input');
     const text = input?.value?.trim();
@@ -106,7 +212,10 @@
     history.push({ role: 'user', content: text });
     renderMessages(history);
     input.value = '';
-    nhToast?.('Pensando…', 'info', 4000);
+    _sending = true;
+    const sendBtn = document.getElementById('nh-agent-send');
+    if (sendBtn) sendBtn.disabled = true;
+    nhToast?.('Pensando…', 'info', 3500);
     try {
       const res = await fetch('/api/notify?__action=admin-agent-chat', {
         method: 'POST',
@@ -125,18 +234,20 @@
       history.push({ role: 'assistant', content: json.reply || 'Sin respuesta.' });
       saveHistory(history);
       renderMessages(history);
-      if (typeof loadCompradores === 'function' && /comprador|ficha|criterio/i.test(text)) {
-        loadCompradores(true);
-      }
+      applyPanelActions(json.panelActions);
     } catch (e) {
       nhToast?.(e.message || 'Error asistente', 'error', 8000);
       history.pop();
       saveHistory(history);
       renderMessages(history);
+    } finally {
+      _sending = false;
+      if (sendBtn) sendBtn.disabled = false;
     }
   }
 
   window.nhToggleAdminAgent = toggleAgent;
+  window.nhOpenAdminAgent = openAgentModal;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ensureUi);
   else ensureUi();
 })();

@@ -14,14 +14,29 @@ for (const name of ['.env.local', '.env']) {
   }
 }
 const captador = path.join(root, '..', 'Captador', '.env');
-if (!process.env.SUPABASE_SERVICE_ROLE_KEY && fs.existsSync(captador)) {
-  const m = fs.readFileSync(captador, 'utf8').match(/^NH_SUPABASE_SERVICE_KEY="?([^"\r\n]+)"?/m);
-  if (m) process.env.SUPABASE_SERVICE_ROLE_KEY = m[1];
+function pickServiceRole() {
+  return (
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_SERVICE_ROLE ||
+    process.env.NH_SUPABASE_SERVICE_KEY
+  );
+}
+if (!pickServiceRole() && fs.existsSync(captador)) {
+  const raw = fs.readFileSync(captador, 'utf8');
+  const m = raw.match(/^NH_SUPABASE_SERVICE_KEY="?([^"\r\n]+)"?/m);
+  if (m?.[1]?.length > 20) process.env.SUPABASE_SERVICE_ROLE_KEY = m[1];
+  const u = raw.match(/^NH_SUPABASE_URL="?([^"\r\n]+)"?/m);
+  if (u?.[1]) process.env.SUPABASE_URL = u[1];
   if (!process.env.SUPABASE_URL) process.env.SUPABASE_URL = 'https://xxodawayoogthxnjpouq.supabase.co';
+}
+if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  process.env.SUPABASE_SERVICE_ROLE_KEY = pickServiceRole();
 }
 
 if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
-  console.error('Sin SUPABASE_SERVICE_ROLE_KEY');
+  console.error(
+    'Sin SUPABASE_SERVICE_ROLE_KEY — define en .env.local o ejecuta: python scripts/run-infer-from-vps-env.py --write-env',
+  );
   process.exit(1);
 }
 
