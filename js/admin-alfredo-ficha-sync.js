@@ -85,8 +85,48 @@
     }
   }
 
+  async function nhSyncPresupuestoCompradores() {
+    if (!window.nhSupabase) return;
+    const {
+      data: { session },
+    } = await window.nhSupabase.auth.getSession();
+    if (!session?.access_token) {
+      nhToast?.('Sesión no disponible', 'error');
+      return;
+    }
+    if (
+      !confirm(
+        '¿Rellenar presupuesto máximo desde Idealista / notas?\n\nVincula interés, infiere desde pisos consultados (los sin precio en anuncio pueden quedar pendientes).',
+      )
+    )
+      return;
+    nhToast?.('Calculando presupuestos…', 'info', 12000);
+    try {
+      const res = await fetch('/api/notify?__action=admin-sync-presupuesto-compradores', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + session.access_token,
+        },
+        body: JSON.stringify({}),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.ok) throw new Error(json.error || res.status);
+      const inf = json.inferencia || {};
+      nhToast?.(
+        `Presupuestos: ${inf.updated ?? 0} actualizado(s), ${inf.skipped ?? 0} pendientes (sin precio anuncio)`,
+        'success',
+        10000,
+      );
+      if (typeof loadCompradores === 'function') loadCompradores(true);
+    } catch (e) {
+      nhToast?.(e.message || 'Error', 'error', 8000);
+    }
+  }
+
   window.nhSyncAlfredoFichasDesdeNotas = nhSyncAlfredoFichasDesdeNotas;
   window.nhInferCriteriosDesdePisos = nhInferCriteriosDesdePisos;
+  window.nhSyncPresupuestoCompradores = nhSyncPresupuestoCompradores;
 
   function injectBtn() {
     const hdr = document.querySelector('#sec-compradores .adm-section-hdr');
@@ -104,8 +144,15 @@
     btn2.textContent = '◎ Criterios desde pisos';
     btn2.title = 'Precio min/max, hab., ascensor… desde anuncios que han contactado';
     btn2.onclick = () => nhInferCriteriosDesdePisos();
+    const btn3 = document.createElement('button');
+    btn3.type = 'button';
+    btn3.className = 'adm-btn adm-btn-ghost';
+    btn3.textContent = '€ Presupuestos Idealista';
+    btn3.title = 'presupuesto_max desde anuncio consultado (idealista / NH vinculado)';
+    btn3.onclick = () => nhSyncPresupuestoCompradores();
     const gold = hdr.querySelector('.adm-btn-gold');
     if (gold) {
+      hdr.insertBefore(btn3, gold);
       hdr.insertBefore(btn2, gold);
       hdr.insertBefore(btn, gold);
     } else hdr.appendChild(btn);
