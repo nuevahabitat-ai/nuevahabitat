@@ -18,6 +18,13 @@ Body:
 }
 ```
 
-Herramientas: buscar/ver/actualizar comprador, notas, inferencia criterios, listar/anotar particulares.
+Herramientas (datos reales + panel):
+
+- **Métricas:** `obtener_resumen_panel` (evita inventar “15 compradores”).
+- **Compradores:** buscar, listar, ver, actualizar, anotar, inferir criterios, enriquecer desde notas.
+- **Inmuebles / particulares:** buscar inmuebles, listar/anotar particulares.
+- **UI:** ir a sección, abrir ficha, compatibles, refrescar vista.
+
+Roadmap: más acciones (visitas, leads email, wizard inmueble) vía herramientas nuevas sin exponer service role al navegador.
 
 No sustituye a Alfredo/José en VPS; mismo Supabase con reglas de no borrar.

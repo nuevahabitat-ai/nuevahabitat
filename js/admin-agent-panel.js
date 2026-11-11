@@ -171,6 +171,14 @@
     const list = dedupeActions(actions);
     if (!list.length) return;
     for (const a of list) {
+      if (a.type === 'refresh_view' && a.target) {
+        const t = a.target;
+        if (t === 'dashboard' && typeof loadDashboard === 'function') loadDashboard();
+        if (t === 'compradores' && typeof loadCompradores === 'function') loadCompradores(true);
+        if (t === 'seguimientos' && typeof loadParticulares === 'function') loadParticulares();
+        if (t === 'inmuebles' && typeof loadPublications === 'function') loadPublications();
+        if (t === 'leads' && typeof loadLeads === 'function') loadLeads();
+      }
       if (a.type === 'goto_section' && a.section && typeof switchSection === 'function') {
         switchSection(a.section);
       }
@@ -235,6 +243,10 @@
       saveHistory(history);
       renderMessages(history);
       applyPanelActions(json.panelActions);
+      if (json.panelActions?.length) nhToast?.('Actualicé la vista del panel', 'info', 2500);
+      if (json.toolCalls > 0 && !json.panelActions?.length) {
+        nhToast?.(`Listo (${json.toolCalls} acción/es en base de datos)`, 'success', 3000);
+      }
     } catch (e) {
       nhToast?.(e.message || 'Error asistente', 'error', 8000);
       history.pop();
