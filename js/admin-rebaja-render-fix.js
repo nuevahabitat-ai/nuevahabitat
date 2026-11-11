@@ -8,7 +8,7 @@
       typeof rebajaVisMatchFiltersHtml === 'function' ? rebajaVisMatchFiltersHtml(inm) : '';
     const meta = state.meta;
     const hint = meta
-      ? `Visitas NH: ${meta.visitas || 0} · Idealista (tabla): ${meta.interes || 0} · notas import: ${meta.notas || 0}${meta.warn ? ' · ' + meta.warn : ''}${meta.interesQuery ? ' · query:' + meta.interesQuery : ''}`
+      ? `Visitas NH: ${meta.visitas || 0} · API interes: ${meta.interes || 0} · API notas: ${meta.notas || 0} · Panel Idealista: ${meta.clientIdealista ?? '?'}${meta.warn ? ' · ' + meta.warn : ''}`
       : 'Sin datos del servidor (¿caché? Pulsa Actualizar lista).';
     const idealRef =
       (document.getElementById('rebaja-match-idealista')?.value || '').trim() ||
@@ -52,11 +52,33 @@
           _rebajaVisState.precioNuevo,
           rebajaVisitantesMatchOpts()
         );
-        _rebajaVisState.meta = json.meta || null;
-        _rebajaVisState.visitantes = (json.visitantes || []).map((v) => ({
+        const opts = rebajaVisitantesMatchOpts();
+        const apiRows = (json.visitantes || []).map((v) => ({
           ...v,
           comprador_id: matchCompradorIdForVisitor(v),
         }));
+        let merged = apiRows;
+        if (window.nhFetchIdealistaRebajaClient && window.nhSupabase) {
+          const client = await window.nhFetchIdealistaRebajaClient(
+            window.nhSupabase,
+            _rebajaVisState.inm,
+            opts
+          );
+          merged = window.nhMergeRebajaVisitantes
+            ? window.nhMergeRebajaVisitantes(apiRows, client.visitantes)
+            : [...apiRows, ...(client.visitantes || [])];
+          _rebajaVisState.meta = {
+            ...(json.meta || {}),
+            ...(client.meta || {}),
+            warn:
+              (json.meta && json.meta.warn) ||
+              (client.meta && client.meta.clientError) ||
+              null,
+          };
+        } else {
+          _rebajaVisState.meta = json.meta || null;
+        }
+        _rebajaVisState.visitantes = merged;
         _rebajaVisState.alreadySent = {
           email: new Set(json.alreadySent?.email || []),
           whatsapp: new Set(json.alreadySent?.whatsapp || []),
