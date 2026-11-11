@@ -155,6 +155,11 @@ window.nhMatching = {
 
     let score = 0;
 
+    const precio = Number(inmueble.precio);
+    const pMin = comprador.presupuesto_min != null ? Number(comprador.presupuesto_min) : null;
+    if (Number.isFinite(pMin) && pMin > 0 && Number.isFinite(precio) && precio < pMin) {
+      return { match: false, score: 0, reasons: ['Por debajo del rango buscado'] };
+    }
     const sp = this.scorePresupuesto(comprador.presupuesto_max, inmueble.precio);
     if (sp === -999) return { match: false, score: 0, reasons: ['Fuera de presupuesto'] };
     score += sp;

@@ -48,6 +48,12 @@ import {
 } from '../lib/server/inmueble-rebaja-api.js';
 import { importIdealistaCompradores } from '../lib/server/idealista-compradores-import.js';
 import { backfillInteresFromCompradorNotas } from '../lib/server/idealista-interes-backfill.js';
+import {
+  enrichAllCompradoresFromNotas,
+  enrichFromExcelRows,
+} from '../lib/server/alfredo-ficha-enrich.js';
+import { inferAllCompradoresCriterios, inferCompradorCriterios } from '../lib/server/comprador-infer-criterios.js';
+import { runAdminAgentChat } from '../lib/server/admin-agent.js';
 import { getIdealistaRebajaContacts } from '../lib/server/rebaja-idealista-contacts.js';
 import { deleteVendedorPermanent } from '../lib/server/vendedores-delete-api.js';
 
@@ -881,6 +887,74 @@ async function handleAdminBackfillIdealistaInteres(req, res, body) {
   }
 }
 
+async function handleAdminAgentChat(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const message = String(body?.message || '').trim();
+  if (!message) return res.status(400).json({ ok: false, error: 'message requerido' });
+  try {
+    const result = await runAdminAgentChat({
+      message,
+      history: body?.history,
+      context: body?.context || { section: body?.section },
+    });
+    if (!result.ok) return res.status(503).json(result);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-agent-chat', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
+async function handleAdminInferCompradorCriterios(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const dryRun = body?.dryRun === true || body?.dry_run === true;
+  const margen = body?.margen != null ? Number(body.margen) : undefined;
+  const opts = { dryRun, margen };
+  try {
+    if (body?.compradorId || body?.comprador_id) {
+      const id = body.compradorId || body.comprador_id;
+      const { SB_URL, svcHeaders } = await import('../lib/server/supabase-server.js');
+      const r = await fetch(
+        `${SB_URL}/rest/v1/compradores?id=eq.${encodeURIComponent(id)}&select=*`,
+        { headers: svcHeaders() },
+      );
+      const rows = await r.json();
+      const c = rows?.[0];
+      if (!c) return res.status(404).json({ ok: false, error: 'Comprador no encontrado' });
+      const result = await inferCompradorCriterios(c, opts);
+      return res.status(200).json({ ok: true, ...result });
+    }
+    const stats = await inferAllCompradoresCriterios(opts);
+    return res.status(200).json({ ok: true, stats });
+  } catch (err) {
+    console.error('admin-infer-comprador-criterios', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
+async function handleAdminEnrichAlfredoFichas(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const dryRun = body?.dryRun === true || body?.dry_run === true;
+  const opts = { dryRun };
+  try {
+    if (Array.isArray(body?.rows) && body.rows.length) {
+      if (body.rows.length > 500) {
+        return res.status(400).json({ ok: false, error: 'Máximo 500 filas por petición' });
+      }
+      const stats = await enrichFromExcelRows(body.rows, opts);
+      return res.status(200).json({ ok: true, mode: 'rows', stats });
+    }
+    const stats = await enrichAllCompradoresFromNotas(opts);
+    return res.status(200).json({ ok: true, mode: 'all', stats });
+  } catch (err) {
+    console.error('admin-enrich-alfredo-fichas', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleInmuebleRebajaVisitantes(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1454,6 +1528,9 @@ export default async function handler(req, res) {
   if (action === 'admin-delete-vendedor') return handleAdminDeleteVendedor(req, res, body);
   if (action === 'admin-import-idealista-compradores') return handleAdminImportIdealistaCompradores(req, res, body);
   if (action === 'admin-backfill-idealista-interes') return handleAdminBackfillIdealistaInteres(req, res, body);
+  if (action === 'admin-enrich-alfredo-fichas') return handleAdminEnrichAlfredoFichas(req, res, body);
+  if (action === 'admin-infer-comprador-criterios') return handleAdminInferCompradorCriterios(req, res, body);
+  if (action === 'admin-agent-chat') return handleAdminAgentChat(req, res, body);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);
   if (action === 'inmueble-rebaja-email') return handleInmuebleRebajaEmail(req, res, body);
   if (action === 'resend-lead-admin') return handleResendLeadAdmin(req, res, body);

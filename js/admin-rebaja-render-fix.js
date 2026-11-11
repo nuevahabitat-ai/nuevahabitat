@@ -15,6 +15,46 @@
     return window._compData || [];
   }
 
+  function nhTel9(telefono) {
+    const d = String(telefono || '').replace(/\D/g, '');
+    return d.length >= 9 ? d.slice(-9) : d;
+  }
+
+  function nhCompradorForRebajaVisitor(v) {
+    const data = nhGetCompData();
+    if (v?.comprador_id) {
+      const byId = data.find((x) => x.id === v.comprador_id);
+      if (byId) return byId;
+    }
+    const t = nhTel9(v?.telefono);
+    if (t) {
+      const byTel = data.find((x) => nhTel9(x.telefono) === t);
+      if (byTel) return byTel;
+    }
+    const em = String(v?.email || '')
+      .trim()
+      .toLowerCase();
+    if (em) {
+      const byEm = data.find((x) => (x.email || '').trim().toLowerCase() === em);
+      if (byEm) return byEm;
+    }
+    return null;
+  }
+
+  function enrichRebajaVisitor(v) {
+    const c = nhCompradorForRebajaVisitor(v);
+    if (!c) return v;
+    return {
+      ...v,
+      comprador_id: v.comprador_id || c.id,
+      nombre: (c.nombre || v.nombre || '').trim(),
+      telefono: (v.telefono || c.telefono || '').trim(),
+      email: (v.email || c.email || '').trim(),
+    };
+  }
+
+  window.nhEnrichRebajaVisitor = enrichRebajaVisitor;
+
   function resolveIdealistaId(inm) {
     const fromInput = document.getElementById('rebaja-match-idealista')?.value;
     return (
@@ -71,19 +111,33 @@
       }));
   }
 
+  function mergeRebajaKey(v) {
+    const t = nhTel9(v.telefono);
+    if (t.length >= 9) return 't:' + t;
+    const em = String(v.email || '')
+      .trim()
+      .toLowerCase();
+    if (em) return 'e:' + em;
+    if (v.comprador_id) return 'c:' + v.comprador_id;
+    return 'v:' + (v.visita_id || '');
+  }
+
+  function mergeVisitorRows(existing, incoming) {
+    const score = (x) =>
+      (x.comprador_id ? 4 : 0) + (x.fuente === 'idealista_notas' ? 2 : 0) + ((x.nombre || '').trim() ? 1 : 0);
+    const base = score(incoming) >= score(existing) ? { ...existing, ...incoming } : { ...incoming, ...existing };
+    return enrichRebajaVisitor(base);
+  }
+
   function mergeList(a, b) {
-    const seen = new Set();
-    const out = [];
+    const map = new Map();
     for (const v of [...(a || []), ...(b || [])]) {
-      const key =
-        v.comprador_id ||
-        String(v.telefono || '').replace(/\D/g, '').slice(-9) ||
-        String(v.email || '').trim().toLowerCase();
-      if (!key || seen.has(key)) continue;
-      seen.add(key);
-      out.push(v);
+      const key = mergeRebajaKey(v);
+      if (!key || key === 'v:') continue;
+      const prev = map.get(key);
+      map.set(key, prev ? mergeVisitorRows(prev, v) : enrichRebajaVisitor(v));
     }
-    return out;
+    return [...map.values()];
   }
 
   function pintarFiltros(inm) {
@@ -158,7 +212,7 @@
       enSupabase: desdeSb.length,
       total: rows.length,
     };
-    _rebajaVisState.visitantes = rows;
+    _rebajaVisState.visitantes = rows.map(enrichRebajaVisitor);
     _rebajaVisState.alreadySent = {
       email: new Set(json.alreadySent?.email || []),
       whatsapp: new Set(json.alreadySent?.whatsapp || []),

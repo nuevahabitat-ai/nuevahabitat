@@ -999,6 +999,7 @@ select.adm-control{
           <hr class="divider"/>
           <div class="wiz-section-label">Criterios de búsqueda</div>
           <div class="adm-form-grid">
+            <div class="adm-field"><label>Presupuesto mínimo (€)</label><input type="number" id="c-presupuesto-min" placeholder="250000" step="1000"/><small class="text-muted" style="font-size:.68rem">Inferido: ~50.000 € bajo el máx. de pisos consultados</small></div>
             <div class="adm-field"><label>Presupuesto máximo (€)</label><input type="number" id="c-presupuesto" placeholder="300000"/></div>
             <div class="adm-field">
               <label>Tipo de inmueble</label>
@@ -2831,6 +2832,8 @@ select.adm-control{
 <script src="js/admin-leads-notify.js"></script>
 <script src="js/idealista-import-chunks.js"></script>
 <script src="js/admin-idealista-compradores-import.js"></script>
+<script src="js/admin-alfredo-ficha-sync.js"></script>
+<script src="js/admin-agent-panel.js"></script>
 <script src="js/admin-operaciones-delete.js"></script>
 <script src="js/admin-comp-filters-autofill.js"></script>
 <script>
@@ -3936,7 +3939,8 @@ let _compMatchState = null;
 
 function compMatchCriteriaText(c){
   const parts = [];
-  if(c.presupuesto_max) parts.push(`≤ ${Number(c.presupuesto_max).toLocaleString('es-ES')} €`);
+  if(c.presupuesto_min != null && c.presupuesto_max != null) parts.push(`${Number(c.presupuesto_min).toLocaleString('es-ES')}–${Number(c.presupuesto_max).toLocaleString('es-ES')} €`);
+  else if(c.presupuesto_max) parts.push(`≤ ${Number(c.presupuesto_max).toLocaleString('es-ES')} €`);
   if(c.habitaciones_min) parts.push(`min. ${c.habitaciones_min} hab.`);
   if(c.ascensor) parts.push('ascensor indispensable');
   else if(c.planta_max_sin_ascensor != null && c.planta_max_sin_ascensor !== ''){
@@ -4125,7 +4129,7 @@ async function ensurePubData(){
 
 async function ensureCompData(){
   if(_compData.length && _compData[0]?.telefono !== undefined) return _compData;
-  const cols = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas';
+  const cols = 'id,nombre,email,telefono,activo,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas';
   let { data, error } = await window.nhSupabase
     .from('compradores')
     .select(cols)
@@ -7334,9 +7338,9 @@ async function loadCompradores(force){
   _compVisible = NH_GRID_PAGE;
   const grid = document.getElementById('comp-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
-  const colsFull = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
-  const colsBase = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
-  const colsHonorarios = 'id,nombre,email,telefono,activo,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,created_at';
+  const colsFull = 'id,nombre,email,telefono,activo,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
+  const colsBase = 'id,nombre,email,telefono,activo,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
+  const colsHonorarios = 'id,nombre,email,telefono,activo,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,created_at';
   const colsMinimal = 'id,nombre,email,telefono,activo,presupuesto_max,habitaciones_min,ascensor,zona_buscada,notas,created_at';
   try {
     let { data, error } = await nhPromiseTimeout(
@@ -7546,6 +7550,7 @@ async function saveComprador(){
     email:           document.getElementById('c-email').value.trim()||null,
     dni:             document.getElementById('c-dni').value.trim()||null,
     activo:          document.getElementById('c-activo').checked,
+    presupuesto_min:  parseFloat(document.getElementById('c-presupuesto-min')?.value) || null,
     presupuesto_max:  parseFloat(document.getElementById('c-presupuesto').value)||null,
     tipo_inmueble:    document.getElementById('c-tipo').value||null,
     habitaciones_min: parseInt(document.getElementById('c-hab').value)||null,
@@ -9836,6 +9841,7 @@ function buildCompCardDetailHtml(c){
   const alarm = compNeedsAlarm(c);
   const matchN = countMatchesForComprador(c);
   const fields = [
+    ['Presupuesto mín.', c.presupuesto_min != null ? Number(c.presupuesto_min).toLocaleString('es-ES') + ' €' : '—'],
     ['Presupuesto máx.', c.presupuesto_max != null ? Number(c.presupuesto_max).toLocaleString('es-ES') + ' €' : '—'],
     ['Tipo', c.tipo_inmueble || '—'],
     ['Habitaciones mín.', c.habitaciones_min || '—'],
@@ -12864,6 +12870,7 @@ async function loadNewsletter(){
 <script src="js/admin-rebaja-idealista-client.js"></script>
 <script src="js/admin-rebaja-sync-btn.js"></script>
 <script src="js/admin-rebaja-render-fix.js"></script>
+<script src="js/admin-rebaja-nombre-fix.js"></script>
 </body>
 </html>
 

@@ -11,6 +11,7 @@
     "seed:blog": "node scripts/seed-blog-supabase.js",
     "alta:comprador": "node scripts/alta-comprador-cli.js",
     "idealista:csv": "node scripts/xls-to-csv-idealista.mjs",
-    "idealista:import": "node scripts/import-idealista-compradores-cli.mjs"
+    "idealista:import": "node scripts/import-idealista-compradores-cli.mjs",
+    "alfredo:fichas": "node scripts/sync-alfredo-fichas.mjs"
   }
 }
