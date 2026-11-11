@@ -52,7 +52,7 @@
     ZONE_IDS.forEach((id) => {
       if (sanitizeEl(document.getElementById(id))) changed = true;
     });
-    document.querySelectorAll('#comp-filter-bar input, #if-filter-bar input, #pf-filter-bar input')
+    document.querySelectorAll('#comp-filter-bar input, #inm-filter-bar input, #pf-filter-bar input')
       .forEach((el) => {
         if (el.type === 'text' || el.type === 'search') {
           if (sanitizeEl(el)) changed = true;
@@ -101,27 +101,45 @@
     clearCompFilters.__nhNoMail = true;
   }
 
-  function observeSection() {
-    const sec = document.getElementById('sec-compradores');
+  function observeSection(secId) {
+    const sec = document.getElementById(secId);
     if (!sec || sec.dataset.nhAutofillObs) return;
     sec.dataset.nhAutofillObs = '1';
     const obs = new MutationObserver(() => sanitizeAll());
     obs.observe(sec, { subtree: true, attributes: true, attributeFilter: ['value'] });
+  }
+
+  function watchAutofillPoll() {
     let n = 0;
     const iv = setInterval(() => {
       sanitizeAll();
-      if (++n > 15) clearInterval(iv);
-    }, 2000);
+      if (++n > 20) clearInterval(iv);
+    }, 1500);
+  }
+
+  function patchClearInmFilters() {
+    if (typeof clearInmFilters !== 'function' || clearInmFilters.__nhNoMail) return;
+    const orig = clearInmFilters;
+    clearInmFilters = function () {
+      orig();
+      const z = document.getElementById('if-zona');
+      if (z && looksLikeEmail(z.value)) z.value = '';
+      sanitizeAll();
+    };
+    clearInmFilters.__nhNoMail = true;
   }
 
   function boot() {
     ZONE_IDS.forEach((id) => hardenInput(document.getElementById(id)));
-    document.querySelectorAll('#comp-filter-bar input[type="text"],#comp-filter-bar input[type="search"],#comp-filter-bar input[type="tel"]')
+    document.querySelectorAll('#comp-filter-bar input[type="text"],#comp-filter-bar input[type="search"],#comp-filter-bar input[type="tel"],#inm-filter-bar input[type="text"],#inm-filter-bar input[type="search"]')
       .forEach(hardenInput);
     patchFilterGetters();
     patchClearCompFilters();
+    patchClearInmFilters();
     sanitizeAll();
-    observeSection();
+    observeSection('sec-compradores');
+    observeSection('sec-inmuebles');
+    watchAutofillPoll();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -138,6 +156,7 @@
       const r = origSwitch.apply(this, arguments);
       if (name === 'compradores' || name === 'inmuebles' || name === 'seguimientos') {
         setTimeout(boot, 100);
+        watchAutofillPoll();
       }
       return r;
     };

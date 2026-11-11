@@ -1353,7 +1353,7 @@ select.adm-control{
             <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="clearInmMatchMode()">✕ Salir del cruce</button>
           </div>
 
-          <div class="adm-filter-bar" id="inm-filter-bar">
+          <form class="adm-filter-bar" id="inm-filter-bar" autocomplete="off" onsubmit="return false" style="display:flex;flex-wrap:wrap;gap:inherit;align-items:flex-end">
             <div class="adm-field">
               <label for="if-precio-min">Precio mín. (€)</label>
               <input type="number" id="if-precio-min" min="0" step="5000" placeholder="150.000"/>
@@ -1401,12 +1401,12 @@ select.adm-control{
             </div>
             <div class="adm-field" style="min-width:180px;flex:1">
               <label for="if-zona">Zona</label>
-              <input type="text" id="if-zona" list="if-zona-list" placeholder="Barrio, municipio…"/>
+              <input type="search" id="if-zona" list="if-zona-list" placeholder="Barrio, municipio…" autocomplete="off" autocorrect="off" spellcheck="false" name="nh_inm_zona_filter" data-lpignore="true" data-1p-ignore="true"/>
               <datalist id="if-zona-list"></datalist>
             </div>
             <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="clearInmFilters()">Limpiar filtros</button>
             <span class="adm-filter-count" id="inm-filter-count"></span>
-          </div>
+          </form>
 
           <div class="pub-grid" id="pub-grid">
             <div class="pub-empty">
