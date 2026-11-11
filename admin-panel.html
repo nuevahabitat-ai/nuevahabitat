@@ -7367,6 +7367,7 @@ async function loadCompradores(force){
       _compData = [];
     } else {
       _compData = data || [];
+      window._compData = _compData;
       invalidateMatchCounts();
     }
   } catch (err) {

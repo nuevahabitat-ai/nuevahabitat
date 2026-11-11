@@ -11,10 +11,18 @@
     return Number.isFinite(n) && n > 0 ? String(Math.trunc(n)) : null;
   }
 
+  function nhGetCompData() {
+    try {
+      if (typeof _compData !== 'undefined' && _compData) return _compData;
+    } catch (_) { /* otro scope */ }
+    return window._compData || [];
+  }
+
   function nhCompradoresMemoriaIdealista(idealistaId) {
     const id = nhNormalizeIdealistaId(idealistaId);
-    if (!id || typeof _compData === 'undefined') return [];
-    return (_compData || [])
+    if (!id) return [];
+    const list = nhGetCompData();
+    return list
       .filter((c) => {
         const n = String(c.notas || '');
         return n.includes(id) && ((c.telefono || '').trim() || (c.email || '').trim());
@@ -57,7 +65,7 @@
     const hint = `API interés: ${meta.interes ?? 0} · notas API: ${meta.notas ?? 0} · panel: ${meta.clientIdealista ?? 0} · memoria: ${meta.memoria ?? 0}${meta.warn ? ' · ' + meta.warn : ''}${meta.serviceRole === false ? ' · Falta SUPABASE_SERVICE_ROLE_KEY en Vercel' : ''}`;
     return (
       filters +
-      `<p class="text-muted"><strong>0 contactos</strong> con ref. Idealista <strong>${idealRef}</strong> (solo quienes escribieron por <em>ese</em> anuncio).</p>` +
+      `<p class="text-muted"><strong>0 contactos</strong> con ref. Idealista <strong>${idealRef}</strong>. En Compradores solo cuentan las fichas cuyas notas incluyen <em>esa</em> ref. (p. ej. <code>Idealista ${idealRef}</code>), no otras como 112932462.</p>` +
       `<p class="text-muted" style="font-size:.78rem;margin-top:.5rem">Primero pulsa <strong>Sincronizar sin reimportar</strong> (usa las notas del import anterior). Solo si sigue vacío: import parcial de esta ref.</p>` +
       `<p class="text-muted" style="font-size:.72rem;margin-top:.4rem">${hint}</p>`
     );
@@ -68,7 +76,7 @@
     const body = document.getElementById('rebaja-vis-body');
     if (body) body.innerHTML = '<p class="text-muted">Buscando contactos Idealista…</p>';
     try {
-      if (typeof loadCompradores === 'function' && (!window._compData || !_compData.length)) {
+      if (typeof loadCompradores === 'function' && !nhGetCompData().length) {
         await loadCompradores(true);
       }
       const opts =
@@ -78,15 +86,18 @@
           document.getElementById('rebaja-match-idealista')?.value ||
           _rebajaVisState.inm.idealista_id
       );
+      const memFirst = nhCompradoresMemoriaIdealista(idealistaId);
+      let rows = [...memFirst];
+
       const json = await fetchRebajaVisitantesApi(
         _rebajaVisState.inm.id,
         _rebajaVisState.precioNuevo,
         opts
       );
-      let rows = (json.visitantes || []).map((v) => ({
+      rows = mergeList(rows, (json.visitantes || []).map((v) => ({
         ...v,
         comprador_id: typeof matchCompradorIdForVisitor === 'function' ? matchCompradorIdForVisitor(v) : v.comprador_id,
-      }));
+      })));
 
       if (window.nhFetchIdealistaRebajaClient && window.nhSupabase) {
         let client = await window.nhFetchIdealistaRebajaClient(
@@ -110,10 +121,10 @@
         Object.assign(json.meta || {}, client.meta || {});
       }
 
-      rows = mergeList(rows, nhCompradoresMemoriaIdealista(idealistaId));
       _rebajaVisState.meta = {
         ...(json.meta || {}),
-        memoria: nhCompradoresMemoriaIdealista(idealistaId).length,
+        memoria: memFirst.length,
+        enFichaIdealista: memFirst.length,
         idealistaId,
         total: rows.length,
       };
