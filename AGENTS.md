@@ -40,3 +40,5 @@ Traducir lenguaje natural del operador a JSON y hacer POST. Consultar `GET /api/
 ## Secretos (solo Vercel, nunca en repo)
 
 `NH_PANEL_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_*`, `RESEND_API_KEY`
+
+**Gemini asistente:** preferible `node scripts/setup-gemini-integration.mjs` → `private_integrations.gemini_api_key` (funciona en Vercel sin `GEMINI_API_KEY` en el dashboard).

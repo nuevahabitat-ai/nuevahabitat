@@ -2,7 +2,11 @@
 
 - **UI:** pestaña **✦ IA** arriba a la derecha (como leads); al pulsar, modal compacto para chatear.
 - **API:** `POST /api/notify?__action=admin-agent-chat` (JWT admin).
-- **Env:** `GEMINI_API_KEY` en Vercel (producción) y `.env.local` (local).
+- **Env:** `GEMINI_API_KEY` en Vercel **o** en Supabase (`private_integrations.gemini_api_key`):
+  ```bash
+  node scripts/setup-gemini-integration.mjs
+  ```
+  Modelo por defecto: `gemini-3-flash-preview` (Google AI Studio / clave `AQ.…`).
 
 Body:
 
