@@ -337,3 +337,12 @@
   wrapBuildCompCard();
   setTimeout(patchCompGrid, 0);
 })();
+
+(function () {
+  if (document.querySelector('script[data-nh-admin-seo-patrimonial]')) return;
+  var s = document.createElement('script');
+  s.src = 'js/admin-seo-patrimonial.js';
+  s.dataset.nhAdminSeoPatrimonial = '1';
+  s.async = false;
+  document.body.appendChild(s);
+})();
