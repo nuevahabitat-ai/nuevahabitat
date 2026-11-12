@@ -941,6 +941,20 @@ async function handleAdminCompradorPrecioPiso(req, res, body) {
   }
 }
 
+async function handleAdminIdealistaPreciosBulk(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const { getIdealistaPreciosBulk } = await import('../lib/server/idealista-precios-bulk.js');
+    const ids = Array.isArray(body?.idealista_ids) ? body.idealista_ids : body?.ids;
+    const result = await getIdealistaPreciosBulk(ids);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-idealista-precios-bulk', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminInferCompradorCriterios(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1566,6 +1580,7 @@ export default async function handler(req, res) {
   if (action === 'admin-enrich-alfredo-fichas') return handleAdminEnrichAlfredoFichas(req, res, body);
   if (action === 'admin-sync-presupuesto-compradores') return handleAdminSyncPresupuestoCompradores(req, res, body);
   if (action === 'admin-comprador-precio-piso') return handleAdminCompradorPrecioPiso(req, res, body);
+  if (action === 'admin-idealista-precios-bulk') return handleAdminIdealistaPreciosBulk(req, res, body);
   if (action === 'admin-infer-comprador-criterios') return handleAdminInferCompradorCriterios(req, res, body);
   if (action === 'admin-agent-chat') return handleAdminAgentChat(req, res, body);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);

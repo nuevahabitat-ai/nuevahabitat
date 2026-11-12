@@ -5,7 +5,6 @@
   var STYLE_ID = 'nh-comp-presupuesto-ui-style';
   var _precioPisoByCompId = new Map();
   var _enriching = false;
-  var _enrichedOnce = false;
 
   function injectStyle() {
     if (document.getElementById(STYLE_ID)) return;
@@ -43,6 +42,43 @@
 
   function getCompData() {
     return typeof _compData !== 'undefined' ? _compData : window._compData || [];
+  }
+
+  function idealistaIdsFromNotas(notas) {
+    var ids = [];
+    var text = String(notas || '');
+    var re = /idealista\s+(\d{6,})/gi;
+    var m;
+    while ((m = re.exec(text))) ids.push(m[1]);
+    return ids;
+  }
+
+  function primaryIdealistaId(c) {
+    var ids = idealistaIdsFromNotas(c.notas);
+    return ids.length ? ids[0] : null;
+  }
+
+  function applyPrecioToComprador(c, precio) {
+    if (!c || !(precio >= 40000)) return;
+    var max = Math.round(precio);
+    var min = Math.max(0, max - 50000);
+    _precioPisoByCompId.set(c.id, max);
+    if (c.presupuesto_max == null || Number(c.presupuesto_max) <= 0) {
+      c.presupuesto_max = max;
+      c.presupuesto_min = min;
+    }
+  }
+
+  async function persistPrecioComprador(c) {
+    if (!c || !window.nhSupabase || !(c.presupuesto_max >= 40000)) return;
+    var body = {
+      presupuesto_max: c.presupuesto_max,
+      presupuesto_min: c.presupuesto_min != null ? c.presupuesto_min : Math.max(0, c.presupuesto_max - 50000),
+    };
+    var { error } = await window.nhSupabase.from('compradores').update(body).eq('id', c.id);
+    if (error) {
+      await window.nhSupabase.from('compradores').update({ presupuesto_max: body.presupuesto_max }).eq('id', c.id);
+    }
   }
 
   function localPrecioPiso(c) {
@@ -96,41 +132,113 @@
     var data = getCompData();
     if (!data.length) return;
     _enriching = true;
+  var need = data.filter(function (c) {
+      return !(c.presupuesto_max >= 40000);
+    });
+    if (!need.length) {
+      _enriching = false;
+      patchCompGrid();
+      return;
+    }
     try {
       var session = (await window.nhSupabase.auth.getSession()).data.session;
       if (!session || !session.access_token) return;
-      var ids = data.map(function (c) {
+
+      var compIds = need.map(function (c) {
         return c.id;
       });
-      var res = await fetch('/api/notify?__action=admin-comprador-precio-piso', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + session.access_token,
-        },
-        body: JSON.stringify({ ids: ids, all: true, limit: 250, persist: true }),
+      var idealistaIds = new Set();
+      var compToIid = new Map();
+      need.forEach(function (c) {
+        var iid = primaryIdealistaId(c);
+        if (iid) {
+          idealistaIds.add(iid);
+          compToIid.set(c.id, iid);
+        }
       });
-      var json = await res.json().catch(function () {
-        return {};
-      });
-      if (json && json.precios) {
-        Object.keys(json.precios).forEach(function (id) {
-          var p = Number(json.precios[id]);
-          if (p > 0) {
-            _precioPisoByCompId.set(id, p);
-            var row = data.find(function (x) {
-              return x.id === id;
-            });
-            if (row && (row.presupuesto_max == null || row.presupuesto_max === 0)) row.presupuesto_max = p;
-          }
+
+      var priceByIid = new Map();
+
+      var chunks = function (arr, n) {
+        var out = [];
+        for (var i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
+        return out;
+      };
+
+      if (compIds.length) {
+        for (var ci = 0; ci < compIds.length; ci += 80) {
+          var cChunk = compIds.slice(ci, ci + 80);
+          var { data: interRows } = await window.nhSupabase
+            .from('comprador_inmueble_interes')
+            .select('comprador_id,idealista_id,precio_consultado')
+            .in('comprador_id', cChunk);
+          (interRows || []).forEach(function (row) {
+            if (row.precio_consultado >= 40000) {
+              var comp = data.find(function (x) {
+                return x.id === row.comprador_id;
+              });
+              if (comp) applyPrecioToComprador(comp, row.precio_consultado);
+            }
+            if (row.idealista_id) idealistaIds.add(String(row.idealista_id));
+          });
+        }
+      }
+
+      var iidList = [...idealistaIds];
+      for (var ii = 0; ii < iidList.length; ii += 40) {
+        var iChunk = iidList.slice(ii, ii + 40);
+        var { data: inmRows } = await window.nhSupabase
+          .from('inmuebles')
+          .select('idealista_id,precio')
+          .in('idealista_id', iChunk);
+        (inmRows || []).forEach(function (inm) {
+          if (inm.precio >= 40000) priceByIid.set(String(inm.idealista_id), Number(inm.precio));
         });
       }
-      _enrichedOnce = true;
-      if (json && json.updated > 0 && typeof loadCompradores === 'function') {
-        loadCompradores(true);
+
+      var missingIids = iidList.filter(function (id) {
+        return !priceByIid.has(String(id));
+      });
+      if (missingIids.length) {
+        var res = await fetch('/api/notify?__action=admin-idealista-precios-bulk', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + session.access_token,
+          },
+          body: JSON.stringify({ idealista_ids: missingIids }),
+        });
+        var json = await res.json().catch(function () {
+          return {};
+        });
+        if (json && json.precios) {
+          Object.keys(json.precios).forEach(function (id) {
+            var p = Number(json.precios[id]);
+            if (p >= 40000) priceByIid.set(String(id), p);
+          });
+        }
       }
+
+      var toSave = [];
+      need.forEach(function (c) {
+        if (c.presupuesto_max >= 40000) return;
+        var iid = compToIid.get(c.id);
+        if (!iid) return;
+        var p = priceByIid.get(String(iid));
+        if (p) {
+          applyPrecioToComprador(c, p);
+          toSave.push(c);
+        }
+      });
+
+      for (var si = 0; si < toSave.length; si++) {
+        await persistPrecioComprador(toSave[si]);
+      }
+
+      patchCompGrid();
+      if (typeof renderCompradores === 'function') renderCompradores();
     } catch (e) {
-      console.warn('enrichPreciosPisoFromApi', e);
+      console.warn('enrichPreciosPiso', e);
     } finally {
       _enriching = false;
     }
@@ -203,12 +311,7 @@
       if (after === 'async') {
         return Promise.resolve(ret).then(function () {
           patchCompGrid();
-          if (!_enrichedOnce) {
-            return enrichPreciosPisoFromApi().then(function () {
-              patchCompGrid();
-              if (typeof renderCompradores === 'function') renderCompradores();
-            });
-          }
+          return enrichPreciosPisoFromApi();
         });
       }
       patchCompGrid();
