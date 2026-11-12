@@ -2890,6 +2890,19 @@
       "vender piso particular coruña"
     ]
   },
+  "venta-digital-albacete": {
+    "keyword": "venta 100 por ciento digital albacete",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-albacete",
+    "aliases": [
+      "vender piso online albacete",
+      "inmobiliaria digital albacete",
+      "agencia venta digital albacete",
+      "vender casa sin comisión castilla la mancha",
+      "venta piso 100 digital albacete",
+      "vender piso particular albacete"
+    ]
+  },
   "venta-digital-alicante": {
     "keyword": "venta 100 por ciento digital alicante",
     "cluster": "ventaDigital",
@@ -2901,6 +2914,32 @@
       "vender casa sin comisión alicante",
       "venta piso 100 digital alicante",
       "vender piso particular alicante"
+    ]
+  },
+  "venta-digital-almeria": {
+    "keyword": "venta 100 por ciento digital almería",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-almeria",
+    "aliases": [
+      "vender piso online almeria",
+      "inmobiliaria digital almeria",
+      "agencia venta digital almeria",
+      "vender casa sin comisión almeria",
+      "venta piso 100 digital almeria",
+      "vender piso particular almeria"
+    ]
+  },
+  "venta-digital-badajoz": {
+    "keyword": "venta 100 por ciento digital badajoz",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-badajoz",
+    "aliases": [
+      "vender piso online badajoz",
+      "inmobiliaria digital badajoz",
+      "agencia venta digital badajoz",
+      "vender casa sin comisión extremadura",
+      "venta piso 100 digital badajoz",
+      "vender piso particular badajoz"
     ]
   },
   "venta-digital-barcelona": {
@@ -2942,6 +2981,45 @@
       "vender piso particular burgos"
     ]
   },
+  "venta-digital-caceres": {
+    "keyword": "venta 100 por ciento digital cáceres",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-caceres",
+    "aliases": [
+      "vender piso online caceres",
+      "inmobiliaria digital caceres",
+      "agencia venta digital caceres",
+      "vender casa sin comisión extremadura",
+      "venta piso 100 digital caceres",
+      "vender piso particular caceres"
+    ]
+  },
+  "venta-digital-cadiz": {
+    "keyword": "venta 100 por ciento digital cádiz",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-cadiz",
+    "aliases": [
+      "vender piso online cadiz",
+      "inmobiliaria digital cadiz",
+      "agencia venta digital cadiz",
+      "vender casa sin comisión cadiz",
+      "venta piso 100 digital cadiz",
+      "vender piso particular cadiz"
+    ]
+  },
+  "venta-digital-castellon": {
+    "keyword": "venta 100 por ciento digital castellón",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-castellon",
+    "aliases": [
+      "vender piso online castellon",
+      "inmobiliaria digital castellon de la plana",
+      "agencia venta digital castellon",
+      "vender casa sin comisión castellon",
+      "venta piso 100 digital castellon",
+      "vender piso particular castellon"
+    ]
+  },
   "venta-digital-cordoba": {
     "keyword": "venta 100 por ciento digital córdoba",
     "cluster": "ventaDigital",
@@ -2968,6 +3046,19 @@
       "vender piso particular gijon"
     ]
   },
+  "venta-digital-girona": {
+    "keyword": "venta 100 por ciento digital girona",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-girona",
+    "aliases": [
+      "vender piso online girona",
+      "inmobiliaria digital girona",
+      "agencia venta digital girona",
+      "vender casa sin comisión girona",
+      "venta piso 100 digital girona",
+      "vender piso particular girona"
+    ]
+  },
   "venta-digital-granada": {
     "keyword": "venta 100 por ciento digital granada",
     "cluster": "ventaDigital",
@@ -2979,6 +3070,45 @@
       "vender casa sin comisión granada",
       "venta piso 100 digital granada",
       "vender piso particular granada"
+    ]
+  },
+  "venta-digital-huelva": {
+    "keyword": "venta 100 por ciento digital huelva",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-huelva",
+    "aliases": [
+      "vender piso online huelva",
+      "inmobiliaria digital huelva",
+      "agencia venta digital huelva",
+      "vender casa sin comisión huelva",
+      "venta piso 100 digital huelva",
+      "vender piso particular huelva"
+    ]
+  },
+  "venta-digital-jaen": {
+    "keyword": "venta 100 por ciento digital jaén",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-jaen",
+    "aliases": [
+      "vender piso online jaen",
+      "inmobiliaria digital jaen",
+      "agencia venta digital jaen",
+      "vender casa sin comisión jaen",
+      "venta piso 100 digital jaen",
+      "vender piso particular jaen"
+    ]
+  },
+  "venta-digital-jerez": {
+    "keyword": "venta 100 por ciento digital jerez",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-jerez",
+    "aliases": [
+      "vender piso online jerez",
+      "inmobiliaria digital jerez de la frontera",
+      "agencia venta digital jerez",
+      "vender casa sin comisión jerez",
+      "venta piso 100 digital jerez",
+      "vender piso particular jerez"
     ]
   },
   "venta-digital-las-palmas": {
@@ -3005,6 +3135,19 @@
       "vender casa sin comisión leon",
       "venta piso 100 digital leon",
       "vender piso particular leon"
+    ]
+  },
+  "venta-digital-lleida": {
+    "keyword": "venta 100 por ciento digital lleida",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-lleida",
+    "aliases": [
+      "vender piso online lleida",
+      "inmobiliaria digital lleida",
+      "agencia venta digital lerida",
+      "vender casa sin comisión lleida",
+      "venta piso 100 digital lleida",
+      "vender piso particular lleida"
     ]
   },
   "venta-digital-logrono": {
@@ -3174,6 +3317,19 @@
       "vender casa sin comisión tarragona",
       "venta piso 100 digital camp de tarragona",
       "vender piso particular tarragona"
+    ]
+  },
+  "venta-digital-toledo": {
+    "keyword": "venta 100 por ciento digital toledo",
+    "cluster": "ventaDigital",
+    "canonical": "/venta-digital-toledo",
+    "aliases": [
+      "vender piso online toledo",
+      "inmobiliaria digital toledo",
+      "agencia venta digital castilla la mancha",
+      "vender casa sin comisión toledo",
+      "venta piso 100 digital toledo",
+      "vender piso particular toledo"
     ]
   },
   "venta-digital-valencia": {

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06T13:47:14.300Z",
+  "updated": "2026-11-12T08:12:25.724Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -2295,6 +2295,78 @@
     },
     {
       "slug": "venta-digital-tarragona",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-almeria",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-cadiz",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-huelva",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "venta-digital-jaen",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "venta-digital-badajoz",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "venta-digital-caceres",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "venta-digital-toledo",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-albacete",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "venta-digital-lleida",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-girona",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-castellon",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "venta-digital-jerez",
       "cluster": "ventaDigital",
       "indexable": true,
       "priority": 0.91

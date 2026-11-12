@@ -997,6 +997,426 @@ const CIUDADES = [
 <h2>Comparables locales</h2>
 <p>No usamos solo anuncios caros del portal: miramos cierres por zona y tipología.</p>`,
   },
+  {
+    slug: 'venta-digital-almeria',
+    cityName: 'Almería',
+    navSub: 'Almería',
+    keyword_principal: 'venta 100 por ciento digital Almería',
+    keyword_aliases: [
+      'vender piso online almeria',
+      'inmobiliaria digital almeria',
+      'agencia venta digital almeria',
+      'vender casa sin comisión almeria',
+      'venta piso 100 digital almeria',
+      'vender piso particular almeria',
+    ],
+    priority: 0.91,
+    areaServed: 'Almería capital y Poniente',
+    heroBadge: 'Plan digital · Almería',
+    marketLead:
+      'Centro, La Chanca, Torrecárdenas o Roquetas de Mar: honorarios fijos 1.999&nbsp;€ + IVA, Idealista, pisos.com y visitas en el calendario que marcas en el panel.',
+    zones: ['Centro', 'La Chanca', 'Torrecárdenas', 'Nueva Andalucía', 'El Zapillo', 'Roquetas de Mar', 'El Ejido', 'Adra'],
+    priceExample: 195000,
+    priceM2: '1.500 – 2.400 €/m² (orientativo 2026)',
+    avgDays: '60 – 115 días',
+    cardTeaser: 'Venta digital Almería: 1.999 € + IVA, panel y filtro de compradores.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-granada', label: 'Venta digital Granada' },
+      { href: '/venta-digital-murcia', label: 'Venta digital Murcia' },
+    ],
+    localFaq:
+      '<details><summary>¿Poniente y costa?</summary><p>El plan digital funciona donde puedas recibir visitas cualificadas (Roquetas, El Ejido, etc.). Lo confirmamos en valoración.</p></details>' +
+      '<details><summary>¿Compradores de otras provincias?</summary><p>Frecuentes en litoral; verificamos hipoteca o liquidez antes de cada visita.</p></details>',
+    seoExtra: `<h2>Vender piso en Almería con inmobiliaria digital</h2>
+<p>Almería mezcla vivienda habitual, inversión en Poniente y compradores que llegan desde Murcia o Granada. <strong>Venta 100 % digital Almería</strong> mantiene <strong>1.999 € + IVA</strong> sin comisión sobre el precio de cierre.</p>
+<h2>Centro vs litoral</h2>
+<p>No publicamos con comparables de Roquetas si vendes en el centro: el comprador y el pricing cambian. Reportaje profesional y filtro previo a cada visita.</p>`,
+  },
+  {
+    slug: 'venta-digital-cadiz',
+    cityName: 'Cádiz',
+    navSub: 'Cádiz',
+    keyword_principal: 'venta 100 por ciento digital Cádiz',
+    keyword_aliases: [
+      'vender piso online cadiz',
+      'inmobiliaria digital cadiz',
+      'agencia venta digital cadiz',
+      'vender casa sin comisión cadiz',
+      'venta piso 100 digital cadiz',
+      'vender piso particular cadiz',
+    ],
+    priority: 0.91,
+    areaServed: 'Cádiz capital y Bahía de Cádiz',
+    heroBadge: 'Plan digital · Cádiz',
+    marketLead:
+      'Casco antiguo, El Rosario, La Unión o San Fernando: expediente online, portales nacionales y tú en visitas con compradores ya filtrados.',
+    zones: ['Casco antiguo', 'El Rosario', 'Alameda', 'El Pópulo', 'San Fernando', 'Puerto Real', 'Chiclana', 'El Puerto de Santa María'],
+    priceExample: 245000,
+    priceM2: '2.000 – 3.400 €/m² (orientativo 2026)',
+    avgDays: '55 – 105 días',
+    cardTeaser: 'Venta digital Cádiz y bahía: honorarios fijos y panel vendedor.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-sevilla', label: 'Venta digital Sevilla' },
+      { href: '/venta-digital-malaga', label: 'Venta digital Málaga' },
+    ],
+    localFaq:
+      '<details><summary>¿Incluye San Fernando o El Puerto?</summary><p>Sí en plan digital si puedes recibir visitas. Misma operativa remota que en otras capitales.</p></details>' +
+      '<details><summary>¿Casco histórico con particularidades?</summary><p>Gestionamos expediente con la documentación habitual de fincas antiguas; negociación y arras en panel.</p></details>',
+    seoExtra: `<h2>Inmobiliaria 100 % digital en Cádiz</h2>
+<p>La bahía concentra demanda de primera vivienda, segunda residencia y traslados laborales. Buscar <strong>vender piso online Cádiz</strong> suele significar querer honorarios claros frente al 6&nbsp;% + IVA tradicional.</p>
+<p>En <strong>245.000 €</strong>, el plan digital son <strong>1.999 € + IVA</strong> repartidos 50&nbsp;/&nbsp;50.</p>
+<h2>Casco vs ensanche</h2>
+<p>Orientación, alturas y estado de fachada condicionan el ticket; valoramos con comparables de tu calle, no solo medias provinciales.</p>`,
+  },
+  {
+    slug: 'venta-digital-huelva',
+    cityName: 'Huelva',
+    navSub: 'Huelva',
+    keyword_principal: 'venta 100 por ciento digital Huelva',
+    keyword_aliases: [
+      'vender piso online huelva',
+      'inmobiliaria digital huelva',
+      'agencia venta digital huelva',
+      'vender casa sin comisión huelva',
+      'venta piso 100 digital huelva',
+      'vender piso particular huelva',
+    ],
+    priority: 0.9,
+    areaServed: 'Huelva capital y área metropolitana',
+    heroBadge: 'Plan digital · Huelva',
+    marketLead:
+      'Centro, Ciudad Jardín, El Torrejón o Punta Umbría: precio fijo 1.999&nbsp;€ + IVA, filtro de solvencia y negociación hasta escritura.',
+    zones: ['Centro', 'Ciudad Jardín', 'El Torrejón', 'Marismas del Odiel', 'La Orden', 'Aljaraque', 'Moguer', 'Punta Umbría'],
+    priceExample: 185000,
+    priceM2: '1.400 – 2.200 €/m² (orientativo 2026)',
+    avgDays: '65 – 120 días',
+    cardTeaser: 'Venta digital Huelva: 1.999 € + IVA, Idealista y visitas filtradas.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-sevilla', label: 'Venta digital Sevilla' },
+      { href: '/venta-digital-cadiz', label: 'Venta digital Cádiz' },
+    ],
+    localFaq:
+      '<details><summary>¿Costa de la Luz?</summary><p>Cubrimos municipios cercanos si puedes atender visitas cualificadas. Confirmamos en la valoración inicial.</p></details>',
+    seoExtra: `<h2>Venta digital de vivienda en Huelva</h2>
+<p>Huelva capital y área mueven tickets moderados donde una comisión del 6&nbsp;% + IVA pesa desproporcionadamente. <strong>Honorarios fijos 1.999 € + IVA</strong> dejan el coste predecible.</p>
+<h2>Panel y plazos</h2>
+<p>Contrato digital, publicación en portales y calendario de visitas que tú controlas desde el móvil.</p>`,
+  },
+  {
+    slug: 'venta-digital-jaen',
+    cityName: 'Jaén',
+    navSub: 'Jaén',
+    keyword_principal: 'venta 100 por ciento digital Jaén',
+    keyword_aliases: [
+      'vender piso online jaen',
+      'inmobiliaria digital jaen',
+      'agencia venta digital jaen',
+      'vender casa sin comisión jaen',
+      'venta piso 100 digital jaen',
+      'vender piso particular jaen',
+    ],
+    priority: 0.9,
+    areaServed: 'Jaén capital y comarca',
+    heroBadge: 'Plan digital · Jaén',
+    marketLead:
+      'Centro, Plaza de la Constitución, La Magdalena o Martos: agencia digital con portales nacionales y visitas solo con financiación revisada.',
+    zones: ['Centro', 'La Magdalena', 'Belén', 'San Juan de Dios', 'El Valle', 'Mengíbar', 'Martos', 'Linares'],
+    priceExample: 165000,
+    priceM2: '1.200 – 1.900 €/m² (orientativo 2026)',
+    avgDays: '70 – 125 días',
+    cardTeaser: 'Venta digital Jaén: precio fijo y compradores cualificados.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-granada', label: 'Venta digital Granada' },
+      { href: '/venta-digital-cordoba', label: 'Venta digital Córdoba' },
+    ],
+    localFaq:
+      '<details><summary>¿Linares y Martos?</summary><p>Sí en digital si puedes recibir visitas. Leads y negociación centralizados en panel.</p></details>',
+    seoExtra: `<h2>Vender piso en Jaén sin comisión porcentual</h2>
+<p>Mercado interior con rotación que se alarga si el anuncio atrae curiosos. NuevaHabitat filtra antes de agendar y mantiene <strong>1.999 € + IVA</strong> aunque negociéis el precio final.</p>
+<h2>Herencias y varios titulares</h2>
+<p>Útil cuando varios propietarios deben alinearse: documentos y ofertas en un solo expediente online.</p>`,
+  },
+  {
+    slug: 'venta-digital-badajoz',
+    cityName: 'Badajoz',
+    navSub: 'Badajoz',
+    keyword_principal: 'venta 100 por ciento digital Badajoz',
+    keyword_aliases: [
+      'vender piso online badajoz',
+      'inmobiliaria digital badajoz',
+      'agencia venta digital badajoz',
+      'vender casa sin comisión extremadura',
+      'venta piso 100 digital badajoz',
+      'vender piso particular badajoz',
+    ],
+    priority: 0.9,
+    areaServed: 'Badajoz capital y área metropolitana',
+    heroBadge: 'Plan digital · Badajoz',
+    marketLead:
+      'Centro, San Fernando, El Pilar o Valverde de Leganés: mismos portales, mismo panel y tú abres en las franjas que marques.',
+    zones: ['Centro', 'San Fernando', 'El Pilar', 'La Estación', 'Ronda del Pilar', 'Valverde de Leganés', 'Mérida', 'Montijo'],
+    priceExample: 175000,
+    priceM2: '1.300 – 2.000 €/m² (orientativo 2026)',
+    avgDays: '65 – 120 días',
+    cardTeaser: 'Venta digital Badajoz: 1.999 € + IVA y expediente online.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-caceres', label: 'Venta digital Cáceres' },
+      { href: '/venta-digital-sevilla', label: 'Venta digital Sevilla' },
+    ],
+    localFaq:
+      '<details><summary>¿Atendéis Mérida?</summary><p>En plan digital sí, si puedes recibir visitas cualificadas. Confirmamos cobertura al inicio.</p></details>',
+    seoExtra: `<h2>Inmobiliaria digital en Badajoz</h2>
+<p>Extremadura mueve demanda local y compradores que comparan con Cáceres o Sevilla. <strong>Venta 100 % digital Badajoz</strong> combina difusión profesional y filtro de solvencia.</p>
+<p>Sobre <strong>175.000 €</strong>, ahorras más de <strong>11.000 €</strong> frente a un 6&nbsp;% + IVA tradicional.</p>`,
+  },
+  {
+    slug: 'venta-digital-caceres',
+    cityName: 'Cáceres',
+    navSub: 'Cáceres',
+    keyword_principal: 'venta 100 por ciento digital Cáceres',
+    keyword_aliases: [
+      'vender piso online caceres',
+      'inmobiliaria digital caceres',
+      'agencia venta digital caceres',
+      'vender casa sin comisión extremadura',
+      'venta piso 100 digital caceres',
+      'vender piso particular caceres',
+    ],
+    priority: 0.9,
+    areaServed: 'Cáceres capital y comarca',
+    heroBadge: 'Plan digital · Cáceres',
+    marketLead:
+      'Casco antiguo, San Jorge, El Rosario o Valdesalor: precio fijo, reportaje profesional y visitas con hipoteca o liquidez revisada.',
+    zones: ['Casco antiguo', 'San Jorge', 'El Rosario', 'Río Seco', 'Valdesalor', 'Plasencia', 'Trujillo', 'Miajadas'],
+    priceExample: 168000,
+    priceM2: '1.250 – 2.000 €/m² (orientativo 2026)',
+    avgDays: '70 – 125 días',
+    cardTeaser: 'Venta digital Cáceres: honorarios fijos y panel vendedor.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-badajoz', label: 'Venta digital Badajoz' },
+      { href: '/venta-digital-salamanca', label: 'Venta digital Salamanca' },
+    ],
+    localFaq:
+      '<details><summary>¿Plasencia y comarca?</summary><p>Sí si puedes atender visitas; operativa remota idéntica a otras capitales.</p></details>',
+    seoExtra: `<h2>Venta 100 % digital en Cáceres</h2>
+<p>Patrimonio y ensanches modernos atraen compradores distintos: ajustamos anuncio y comparables. Honorarios <strong>1.999 € + IVA</strong>, no porcentaje sobre venta.</p>`,
+  },
+  {
+    slug: 'venta-digital-toledo',
+    cityName: 'Toledo',
+    navSub: 'Toledo',
+    keyword_principal: 'venta 100 por ciento digital Toledo',
+    keyword_aliases: [
+      'vender piso online toledo',
+      'inmobiliaria digital toledo',
+      'agencia venta digital castilla la mancha',
+      'vender casa sin comisión toledo',
+      'venta piso 100 digital toledo',
+      'vender piso particular toledo',
+    ],
+    priority: 0.91,
+    areaServed: 'Toledo capital y área metropolitana',
+    heroBadge: 'Plan digital · Toledo',
+    marketLead:
+      'Casco, Santa Bárbara, Azucaica o Talavera de la Reina: venta digital con Idealista, cartera y filtro antes de cada visita.',
+    zones: ['Casco', 'Santa Bárbara', 'Azucaica', 'Palomarejos', 'Ensanche', 'Talavera de la Reina', 'Illescas', 'Torrijos'],
+    priceExample: 198000,
+    priceM2: '1.400 – 2.300 €/m² (orientativo 2026)',
+    avgDays: '60 – 115 días',
+    cardTeaser: 'Venta digital Toledo: 1.999 € + IVA y compradores filtrados.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-madrid', label: 'Venta digital Madrid' },
+      { href: '/venta-digital-albacete', label: 'Venta digital Albacete' },
+    ],
+    localFaq:
+      '<details><summary>¿Compradores desde Madrid?</summary><p>Frecuentes por AVE y teletrabajo; filtramos solvencia antes de abrir tu puerta.</p></details>' +
+      '<details><summary>¿Talavera o sur de provincia?</summary><p>Plan digital si puedes recibir visitas; lo validamos en valoración.</p></details>',
+    seoExtra: `<h2>Vender piso en Toledo con agencia digital</h2>
+<p>Toledo recibe demanda mixta: familiar local, teletrabajo desde Madrid y turismo residencial en casco. <strong>Venta 100 % digital Toledo</strong> mantiene coste cerrado en <strong>1.999 € + IVA</strong>.</p>
+<h2>Casco vs periferia</h2>
+<p>Diferente regulación de fincas y expectativas de precio: segmentamos ficha comercial al activo real.</p>`,
+  },
+  {
+    slug: 'venta-digital-albacete',
+    cityName: 'Albacete',
+    navSub: 'Albacete',
+    keyword_principal: 'venta 100 por ciento digital Albacete',
+    keyword_aliases: [
+      'vender piso online albacete',
+      'inmobiliaria digital albacete',
+      'agencia venta digital albacete',
+      'vender casa sin comisión castilla la mancha',
+      'venta piso 100 digital albacete',
+      'vender piso particular albacete',
+    ],
+    priority: 0.9,
+    areaServed: 'Albacete capital y área metropolitana',
+    heroBadge: 'Plan digital · Albacete',
+    marketLead:
+      'Centro, Carretas, Feria o La Paz: publicación en portales, panel vendedor y visitas en franjas que tú defines.',
+    zones: ['Centro', 'Carretas', 'Feria', 'Industriales', 'La Paz', 'Villafranca', 'Hellín', 'Villarrobledo'],
+    priceExample: 155000,
+    priceM2: '1.100 – 1.800 €/m² (orientativo 2026)',
+    avgDays: '70 – 125 días',
+    cardTeaser: 'Venta digital Albacete: precio fijo y portales nacionales.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-valencia', label: 'Venta digital Valencia' },
+      { href: '/venta-digital-murcia', label: 'Venta digital Murcia' },
+    ],
+    localFaq:
+      '<details><summary>¿Hellín o Villarrobledo?</summary><p>Sí en digital con visitas locales. Confirmamos en valoración.</p></details>',
+    seoExtra: `<h2>Inmobiliaria 100 % digital en Albacete</h2>
+<p>Tickets contenidos pero plazos largos si no hay filtro de compradores. NuevaHabitat publica profesionalmente y revisa financiación antes de cada visita.</p>`,
+  },
+  {
+    slug: 'venta-digital-lleida',
+    cityName: 'Lleida',
+    navSub: 'Lleida',
+    keyword_principal: 'venta 100 por ciento digital Lleida',
+    keyword_aliases: [
+      'vender piso online lleida',
+      'inmobiliaria digital lleida',
+      'agencia venta digital lerida',
+      'vender casa sin comisión lleida',
+      'venta piso 100 digital lleida',
+      'vender piso particular lleida',
+    ],
+    priority: 0.91,
+    areaServed: 'Lleida capital y comarca',
+    heroBadge: 'Plan digital · Lleida',
+    marketLead:
+      'Centre històric, Pardinyes, Cappont o Mollerussa: mismos portales que en Barcelona, precio fijo y negociación en panel.',
+    zones: ['Centre històric', 'Pardinyes', 'Cappont', 'Balafia', 'Segrià', 'Mollerussa', 'Tàrrega', 'Balaguer'],
+    priceExample: 178000,
+    priceM2: '1.350 – 2.100 €/m² (orientativo 2026)',
+    avgDays: '60 – 115 días',
+    cardTeaser: 'Venta digital Lleida: 1.999 € + IVA y visitas cualificadas.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-barcelona', label: 'Venta digital Barcelona' },
+      { href: '/venta-digital-tarragona', label: 'Venta digital Tarragona' },
+    ],
+    localFaq:
+      '<details><summary>¿Cataluña y castellano en expediente?</summary><p>Gestionamos en castellano; anuncios pueden adaptarse bilingüe si el activo lo requiere.</p></details>',
+    seoExtra: `<h2>Venta digital de piso en Lleida</h2>
+<p>Lleida conecta con Aragón y Barcelona: compradores comparan precios entre provincias. <strong>1.999 € + IVA</strong> fijos independientemente del ticket final.</p>
+<h2>Segrià y comarca</h2>
+<p>Valoramos con cierres locales, no solo medias autonómicas.</p>`,
+  },
+  {
+    slug: 'venta-digital-girona',
+    cityName: 'Girona',
+    navSub: 'Girona',
+    keyword_principal: 'venta 100 por ciento digital Girona',
+    keyword_aliases: [
+      'vender piso online girona',
+      'inmobiliaria digital girona',
+      'agencia venta digital girona',
+      'vender casa sin comisión girona',
+      'venta piso 100 digital girona',
+      'vender piso particular girona',
+    ],
+    priority: 0.91,
+    areaServed: 'Girona ciudad y comarca',
+    heroBadge: 'Plan digital · Girona',
+    marketLead:
+      'Barri Vell, Devesa, Montjuïc o Salt: venta digital con honorarios fijos; tú en visitas y NuevaHabitat en marketing y cierre.',
+    zones: ['Barri Vell', 'Devesa', 'Montjuïc', 'Pedret', 'Fontajau', 'Salt', 'Sarrià de Ter', 'Platja d\'Aro'],
+    priceExample: 285000,
+    priceM2: '2.400 – 3.800 €/m² (orientativo 2026)',
+    avgDays: '55 – 100 días',
+    cardTeaser: 'Venta digital Girona: panel, Idealista y filtro de compradores.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-barcelona', label: 'Venta digital Barcelona' },
+      { href: '/venta-digital-tarragona', label: 'Venta digital Tarragona' },
+    ],
+    localFaq:
+      '<details><summary>¿Costa Brava y Platja d\'Aro?</summary><p>Plan digital si puedes recibir visitas cualificadas; confirmamos en valoración.</p></details>' +
+      '<details><summary>¿Compradores internacionales?</summary><p>Frecuentes; revisamos solvencia y plazo antes de cada visita.</p></details>',
+    seoExtra: `<h2>Vender piso en Girona con precio fijo</h2>
+<p>Girona mezcla residente, teletrabajo desde Barcelona y compradores europeos. El 6&nbsp;% + IVA sobre 280.000&nbsp;€ supera <strong>20.000 €</strong>; el plan digital mantiene <strong>1.999 € + IVA</strong>.</p>
+<h2>Casco vs periferia</h2>
+<p>Parking, ascensor y estado de finca marcan el perfil del comprador: lo reflejamos en reportaje y titular del anuncio.</p>`,
+  },
+  {
+    slug: 'venta-digital-castellon',
+    cityName: 'Castellón de la Plana',
+    navSub: 'Castellón',
+    keyword_principal: 'venta 100 por ciento digital Castellón',
+    keyword_aliases: [
+      'vender piso online castellon',
+      'inmobiliaria digital castellon de la plana',
+      'agencia venta digital castellon',
+      'vender casa sin comisión castellon',
+      'venta piso 100 digital castellon',
+      'vender piso particular castellon',
+    ],
+    priority: 0.91,
+    areaServed: 'Castellón de la Plana y comarca',
+    heroBadge: 'Plan digital · Castellón',
+    marketLead:
+      'Centro, Grao, Benimaclet castellonense o Vila-real: Idealista, pisos.com y visitas en horarios que marcas en el panel.',
+    zones: ['Centro', 'Grao', 'Zona Nord', 'La Salera', 'Ronda Este', 'Vila-real', 'Borriol', 'Almassora'],
+    priceExample: 198000,
+    priceM2: '1.500 – 2.500 €/m² (orientativo 2026)',
+    avgDays: '60 – 110 días',
+    cardTeaser: 'Venta digital Castellón: 1.999 € + IVA y panel vendedor.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-valencia', label: 'Venta digital Valencia' },
+      { href: '/venta-digital-tarragona', label: 'Venta digital Tarragona' },
+    ],
+    localFaq:
+      '<details><summary>¿Plana Baixa y Grao?</summary><p>Sí en digital si puedes recibir visitas. Misma operativa que Valencia o Tarragona.</p></details>',
+    seoExtra: `<h2>Inmobiliaria digital en Castellón de la Plana</h2>
+<p>Castellón compite con Valencia y Tarragona por el mismo comprador AVE. <strong>Venta 100 % digital</strong> cualifica demanda antes de saturar tu agenda.</p>
+<h2>Grao vs centro</h2>
+<p>Segmentamos comparables y mensaje comercial por micro-zona.</p>`,
+  },
+  {
+    slug: 'venta-digital-jerez',
+    cityName: 'Jerez de la Frontera',
+    navSub: 'Jerez',
+    keyword_principal: 'venta 100 por ciento digital Jerez',
+    keyword_aliases: [
+      'vender piso online jerez',
+      'inmobiliaria digital jerez de la frontera',
+      'agencia venta digital jerez',
+      'vender casa sin comisión jerez',
+      'venta piso 100 digital jerez',
+      'vender piso particular jerez',
+    ],
+    priority: 0.91,
+    areaServed: 'Jerez de la Frontera y Bahía de Cádiz',
+    heroBadge: 'Plan digital · Jerez',
+    marketLead:
+      'Centro, La Plata, La Milagrosa o El Puerto: precio fijo 1.999&nbsp;€ + IVA, filtro de compradores y negociación hasta notaría.',
+    zones: ['Centro', 'La Plata', 'La Milagrosa', 'Picaduey', 'El Brillante', 'El Puerto de Santa María', 'Sanlúcar', 'Chiclana'],
+    priceExample: 210000,
+    priceM2: '1.600 – 2.600 €/m² (orientativo 2026)',
+    avgDays: '55 – 105 días',
+    cardTeaser: 'Venta digital Jerez: honorarios fijos, portales y panel.',
+    relatedGuides: [
+      { href: '/venta-digital', label: 'Hub venta digital' },
+      { href: '/venta-digital-cadiz', label: 'Venta digital Cádiz' },
+      { href: '/venta-digital-sevilla', label: 'Venta digital Sevilla' },
+    ],
+    localFaq:
+      '<details><summary>¿Diferencia con vender en Cádiz capital?</summary><p>Mismo plan y honorarios; ajustamos comparables y anuncio al mercado jerezano.</p></details>',
+    seoExtra: `<h2>Venta 100 % digital en Jerez de la Frontera</h2>
+<p>Jerez mueve volumen de primera vivienda y herencias en la bahía. NuevaHabitat evita comisiones opacas con <strong>1.999 € + IVA</strong> y filtro previo a cada visita.</p>
+<h2>Compradores de Sevilla y Cádiz</h2>
+<p>Comparan precio y plazo: negociación centralizada en panel sin hilos de email perdidos.</p>`,
+  },
 ];
 
 function tradCommission6(price) {

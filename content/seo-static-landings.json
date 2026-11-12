@@ -8,7 +8,7 @@
       "keyword_principal": "venta 100 por ciento digital España",
       "priority": 0.97,
       "indexable": true,
-      "cardTeaser": "Plan digital 1.999 € + IVA en 27 ciudades (España peninsular e islas: ver hub venta-digital)."
+      "cardTeaser": "Plan digital 1.999 € + IVA en 39 ciudades (España peninsular e islas: ver hub venta-digital)."
     },
     {
       "slug": "venta-digital-barcelona",
@@ -252,6 +252,114 @@
       "priority": 0.91,
       "indexable": true,
       "cardTeaser": "Venta digital Tarragona: plan fijo 1.999 € + IVA y panel."
+    },
+    {
+      "slug": "venta-digital-almeria",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Almería",
+      "keyword_principal": "venta 100 por ciento digital Almería",
+      "priority": 0.91,
+      "indexable": true,
+      "cardTeaser": "Venta digital Almería: 1.999 € + IVA, panel y filtro de compradores."
+    },
+    {
+      "slug": "venta-digital-cadiz",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Cádiz",
+      "keyword_principal": "venta 100 por ciento digital Cádiz",
+      "priority": 0.91,
+      "indexable": true,
+      "cardTeaser": "Venta digital Cádiz y bahía: honorarios fijos y panel vendedor."
+    },
+    {
+      "slug": "venta-digital-huelva",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Huelva",
+      "keyword_principal": "venta 100 por ciento digital Huelva",
+      "priority": 0.9,
+      "indexable": true,
+      "cardTeaser": "Venta digital Huelva: 1.999 € + IVA, Idealista y visitas filtradas."
+    },
+    {
+      "slug": "venta-digital-jaen",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Jaén",
+      "keyword_principal": "venta 100 por ciento digital Jaén",
+      "priority": 0.9,
+      "indexable": true,
+      "cardTeaser": "Venta digital Jaén: precio fijo y compradores cualificados."
+    },
+    {
+      "slug": "venta-digital-badajoz",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Badajoz",
+      "keyword_principal": "venta 100 por ciento digital Badajoz",
+      "priority": 0.9,
+      "indexable": true,
+      "cardTeaser": "Venta digital Badajoz: 1.999 € + IVA y expediente online."
+    },
+    {
+      "slug": "venta-digital-caceres",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Cáceres",
+      "keyword_principal": "venta 100 por ciento digital Cáceres",
+      "priority": 0.9,
+      "indexable": true,
+      "cardTeaser": "Venta digital Cáceres: honorarios fijos y panel vendedor."
+    },
+    {
+      "slug": "venta-digital-toledo",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Toledo",
+      "keyword_principal": "venta 100 por ciento digital Toledo",
+      "priority": 0.91,
+      "indexable": true,
+      "cardTeaser": "Venta digital Toledo: 1.999 € + IVA y compradores filtrados."
+    },
+    {
+      "slug": "venta-digital-albacete",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Albacete",
+      "keyword_principal": "venta 100 por ciento digital Albacete",
+      "priority": 0.9,
+      "indexable": true,
+      "cardTeaser": "Venta digital Albacete: precio fijo y portales nacionales."
+    },
+    {
+      "slug": "venta-digital-lleida",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Lleida",
+      "keyword_principal": "venta 100 por ciento digital Lleida",
+      "priority": 0.91,
+      "indexable": true,
+      "cardTeaser": "Venta digital Lleida: 1.999 € + IVA y visitas cualificadas."
+    },
+    {
+      "slug": "venta-digital-girona",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Girona",
+      "keyword_principal": "venta 100 por ciento digital Girona",
+      "priority": 0.91,
+      "indexable": true,
+      "cardTeaser": "Venta digital Girona: panel, Idealista y filtro de compradores."
+    },
+    {
+      "slug": "venta-digital-castellon",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Castellón",
+      "keyword_principal": "venta 100 por ciento digital Castellón",
+      "priority": 0.91,
+      "indexable": true,
+      "cardTeaser": "Venta digital Castellón: 1.999 € + IVA y panel vendedor."
+    },
+    {
+      "slug": "venta-digital-jerez",
+      "cluster": "ventaDigital",
+      "footerLabel": "Venta digital · Jerez",
+      "keyword_principal": "venta 100 por ciento digital Jerez",
+      "priority": 0.91,
+      "indexable": true,
+      "cardTeaser": "Venta digital Jerez: honorarios fijos, portales y panel."
     },
     {
       "slug": "administracion-alquileres",
