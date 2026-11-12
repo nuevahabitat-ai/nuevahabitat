@@ -9,6 +9,7 @@ const ROOT = path.join(__dirname, '..');
 const MAP_PATH = path.join(ROOT, 'content', 'keywords-map.json');
 const CLUSTERS = ['barrio', 'situacion', 'intencion', 'particular', 'comparativa', 'comprador', 'alquiler'];
 const { CIUDADES } = require('./venta-digital-ciudades-data');
+const { ZONAS: PATRIMONIAL_ZONAS } = require('./patrimonial-zonas-data');
 
 function loadSeoStaticLandings() {
   const p = path.join(ROOT, 'content', 'seo-static-landings.json');
@@ -45,6 +46,25 @@ function main() {
       keyword_aliases: c.keyword_aliases,
       cluster: 'ventaDigital',
     });
+  });
+  PATRIMONIAL_ZONAS.forEach((z) => {
+    allEntries.push({
+      slug: z.slug,
+      keyword_principal: z.keyword_principal,
+      keyword_aliases: z.keyword_aliases,
+      cluster: 'patrimonial',
+    });
+  });
+  allEntries.push({
+    slug: 'patrimonial',
+    keyword_principal: 'administración fincas empresas patrimoniales Barcelona',
+    keyword_aliases: [
+      'gestión cartera inmuebles empresa',
+      'sociedad patrimonial locales alquiler',
+      'administrador fincas inversores',
+      'nueva habitat patrimonial',
+    ],
+    cluster: 'patrimonial',
   });
   allEntries.push({
     slug: 'venta-digital',

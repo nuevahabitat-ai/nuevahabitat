@@ -1050,6 +1050,7 @@ function writeLandingsJs(allMap, order) {
     "  alquileres: { label: 'Alquileres', slugs: [] },",
     "  alquiler: { label: 'Alquiler por micro-barrio', slugs: [] },",
     "  ventaDigital: { label: 'Venta 100 % digital', slugs: [] },",
+    "  patrimonial: { label: 'Patrimonial · empresas', slugs: [] },",
     '};',
     'window.NH_LANDINGS = ' + JSON.stringify(allMap, null, 2) + ';',
     'Object.keys(window.NH_LANDINGS).forEach(function(slug){',
@@ -1117,6 +1118,11 @@ function main() {
     require('./build-venta-planes-barcelona').main();
   } catch (e) {
     console.warn('build-venta-planes-barcelona:', e.message);
+  }
+  try {
+    require('./build-patrimonial-pages').main();
+  } catch (e) {
+    console.warn('build-patrimonial-pages:', e.message);
   }
 
   const generated = loadJsonFiles(path.join(CONTENT_DIR, 'barrio'))

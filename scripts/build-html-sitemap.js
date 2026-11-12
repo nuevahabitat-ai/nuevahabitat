@@ -33,6 +33,7 @@ const STATIC_BLOG = [
 
 const CLUSTER_LABELS = {
   ventaDigital: 'Venta 100 % digital (nacional)',
+  patrimonial: 'Patrimonial · empresas y carteras',
   barrio: 'Vender por barrio',
   situacion: 'Vender por situación',
   intencion: 'Guías para vender',

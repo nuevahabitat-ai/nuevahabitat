@@ -395,6 +395,23 @@ window.NH_LANDING_ORDER = [
   "venta-digital-girona",
   "venta-digital-castellon",
   "venta-digital-jerez",
+  "patrimonial",
+  "patrimonial-eixample-barcelona",
+  "patrimonial-gracia-barcelona",
+  "patrimonial-les-corts-barcelona",
+  "patrimonial-sants-barcelona",
+  "patrimonial-sarria-barcelona",
+  "patrimonial-sant-marti-barcelona",
+  "patrimonial-poblenou-barcelona",
+  "patrimonial-ciutat-vella-barcelona",
+  "patrimonial-sant-andreu-barcelona",
+  "patrimonial-nou-barris-barcelona",
+  "patrimonial-horta-barcelona",
+  "patrimonial-l-hospitalet-barcelona",
+  "patrimonial-badalona-barcelona",
+  "patrimonial-madrid",
+  "patrimonial-valencia",
+  "patrimonial-zaragoza",
   "administracion-alquileres",
   "alquiler-integral",
   "administracion-alquileres-les-corts",
@@ -455,6 +472,7 @@ window.NH_LANDING_CLUSTERS = {
   alquileres: { label: 'Alquileres', slugs: [] },
   alquiler: { label: 'Alquiler por micro-barrio', slugs: [] },
   ventaDigital: { label: 'Venta 100 % digital', slugs: [] },
+  patrimonial: { label: 'Patrimonial · empresas', slugs: [] },
 };
 window.NH_LANDINGS = {
   "vender-badalona": {
@@ -5483,6 +5501,159 @@ window.NH_LANDINGS = {
     "priority": 0.91,
     "indexable": true,
     "cardTeaser": "Venta digital Jerez: honorarios fijos, portales y panel."
+  },
+  "patrimonial": {
+    "slug": "patrimonial",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · hub",
+    "keyword_principal": "administración fincas empresas patrimoniales Barcelona",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Carteras B2B: viviendas, locales, naves. 16 zonas Barcelona + España."
+  },
+  "patrimonial-eixample-barcelona": {
+    "slug": "patrimonial-eixample-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Eixample",
+    "keyword_principal": "administración fincas empresas Eixample Barcelona",
+    "priority": 0.9,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Eixample: gestión de cartera viviendas, locales y oficinas para empresas."
+  },
+  "patrimonial-gracia-barcelona": {
+    "slug": "patrimonial-gracia-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Gràcia",
+    "keyword_principal": "gestión patrimonio inmobiliario Gràcia empresas",
+    "priority": 0.89,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Gràcia: cartera mixta y un interlocutor para empresas."
+  },
+  "patrimonial-les-corts-barcelona": {
+    "slug": "patrimonial-les-corts-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Les Corts",
+    "keyword_principal": "administración patrimonial Les Corts empresas",
+    "priority": 0.91,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Les Corts: sede NH y gestión de cartera en el distrito."
+  },
+  "patrimonial-sants-barcelona": {
+    "slug": "patrimonial-sants-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Sants",
+    "keyword_principal": "administración fincas Sants empresas Barcelona",
+    "priority": 0.88,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Sants: cartera residencial y comercial coordinada."
+  },
+  "patrimonial-sarria-barcelona": {
+    "slug": "patrimonial-sarria-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Sarrià",
+    "keyword_principal": "gestión patrimonial Sarrià empresas Barcelona",
+    "priority": 0.89,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Sarrià: carteras prime y family offices."
+  },
+  "patrimonial-sant-marti-barcelona": {
+    "slug": "patrimonial-sant-marti-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Sant Martí",
+    "keyword_principal": "administración patrimonial Sant Martí empresas",
+    "priority": 0.89,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Sant Martí: Poblenou, 22@ y litoral."
+  },
+  "patrimonial-poblenou-barcelona": {
+    "slug": "patrimonial-poblenou-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Poblenou",
+    "keyword_principal": "gestión patrimonial Poblenou empresas",
+    "priority": 0.88,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Poblenou: cartera cerca de 22@."
+  },
+  "patrimonial-ciutat-vella-barcelona": {
+    "slug": "patrimonial-ciutat-vella-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Ciutat Vella",
+    "keyword_principal": "administración fincas Ciutat Vella empresas",
+    "priority": 0.88,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Ciutat Vella: cartera en casco histórico."
+  },
+  "patrimonial-sant-andreu-barcelona": {
+    "slug": "patrimonial-sant-andreu-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Sant Andreu",
+    "keyword_principal": "gestión patrimonial Sant Andreu empresas",
+    "priority": 0.87,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Sant Andreu: cartera residencial y comercial."
+  },
+  "patrimonial-nou-barris-barcelona": {
+    "slug": "patrimonial-nou-barris-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Nou Barris",
+    "keyword_principal": "administración patrimonial Nou Barris",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Nou Barris: carteras de alquiler en el distrito."
+  },
+  "patrimonial-horta-barcelona": {
+    "slug": "patrimonial-horta-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Horta",
+    "keyword_principal": "gestión patrimonial Horta Guinardó empresas",
+    "priority": 0.87,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Horta-Guinardó: gestión de cartera en el distrito."
+  },
+  "patrimonial-l-hospitalet-barcelona": {
+    "slug": "patrimonial-l-hospitalet-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · L'Hospitalet",
+    "keyword_principal": "administración fincas L Hospitalet empresas",
+    "priority": 0.88,
+    "indexable": true,
+    "cardTeaser": "Patrimonial L'Hospitalet: cartera en el primer cinturón."
+  },
+  "patrimonial-badalona-barcelona": {
+    "slug": "patrimonial-badalona-barcelona",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Badalona",
+    "keyword_principal": "gestión patrimonial Badalona empresas",
+    "priority": 0.87,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Badalona: gestión de cartera en el litoral."
+  },
+  "patrimonial-madrid": {
+    "slug": "patrimonial-madrid",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Madrid",
+    "keyword_principal": "administración patrimonial inmobiliaria Madrid empresas",
+    "priority": 0.88,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Madrid: gestión de cartera con operador Barcelona."
+  },
+  "patrimonial-valencia": {
+    "slug": "patrimonial-valencia",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Valencia",
+    "keyword_principal": "gestión patrimonial inmobiliaria Valencia empresas",
+    "priority": 0.86,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Valencia: cartera y reporting centralizado."
+  },
+  "patrimonial-zaragoza": {
+    "slug": "patrimonial-zaragoza",
+    "cluster": "patrimonial",
+    "footerLabel": "Patrimonial · Zaragoza",
+    "keyword_principal": "administración patrimonial Zaragoza empresas",
+    "priority": 0.85,
+    "indexable": true,
+    "cardTeaser": "Patrimonial Zaragoza: gestión de cartera para empresas."
   },
   "administracion-alquileres": {
     "slug": "administracion-alquileres",

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-12T08:12:25.724Z",
+  "updated": "2026-11-12T08:28:17.394Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -2370,6 +2370,108 @@
       "cluster": "ventaDigital",
       "indexable": true,
       "priority": 0.91
+    },
+    {
+      "slug": "patrimonial",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "patrimonial-eixample-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.9
+    },
+    {
+      "slug": "patrimonial-gracia-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "patrimonial-les-corts-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.91
+    },
+    {
+      "slug": "patrimonial-sants-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "patrimonial-sarria-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "patrimonial-sant-marti-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.89
+    },
+    {
+      "slug": "patrimonial-poblenou-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "patrimonial-ciutat-vella-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "patrimonial-sant-andreu-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "patrimonial-nou-barris-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "patrimonial-horta-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "patrimonial-l-hospitalet-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "patrimonial-badalona-barcelona",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.87
+    },
+    {
+      "slug": "patrimonial-madrid",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.88
+    },
+    {
+      "slug": "patrimonial-valencia",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.86
+    },
+    {
+      "slug": "patrimonial-zaragoza",
+      "cluster": "patrimonial",
+      "indexable": true,
+      "priority": 0.85
     },
     {
       "slug": "administracion-alquileres",

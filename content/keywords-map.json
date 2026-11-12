@@ -2117,6 +2117,191 @@
       "vender piso urgente particular barcelona"
     ]
   },
+  "patrimonial": {
+    "keyword": "administración fincas empresas patrimoniales barcelona",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial",
+    "aliases": [
+      "gestión cartera inmuebles empresa",
+      "sociedad patrimonial locales alquiler",
+      "administrador fincas inversores",
+      "nueva habitat patrimonial"
+    ]
+  },
+  "patrimonial-badalona-barcelona": {
+    "keyword": "gestión patrimonial badalona empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-badalona-barcelona",
+    "aliases": [
+      "administración fincas Badalona",
+      "patrimonial alquiler Badalona",
+      "cartera inmuebles Litoral",
+      "empresa locales Badalona"
+    ]
+  },
+  "patrimonial-ciutat-vella-barcelona": {
+    "keyword": "administración fincas ciutat vella empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-ciutat-vella-barcelona",
+    "aliases": [
+      "patrimonial Gòtic locales",
+      "gestión cartera Raval empresa",
+      "sociedad patrimonial Born Barcelona",
+      "administrador fincas Barceloneta"
+    ]
+  },
+  "patrimonial-eixample-barcelona": {
+    "keyword": "administración fincas empresas eixample barcelona",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-eixample-barcelona",
+    "aliases": [
+      "gestión patrimonial Eixample",
+      "sociedad patrimonial pisos alquiler Barcelona",
+      "administrador fincas locales Eixample",
+      "cartera inmuebles empresa Eixample",
+      "gestión locales comerciales Eixample",
+      "family office inmuebles Barcelona centro"
+    ]
+  },
+  "patrimonial-gracia-barcelona": {
+    "keyword": "gestión patrimonio inmobiliario gràcia empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-gracia-barcelona",
+    "aliases": [
+      "administración fincas Gracia Barcelona",
+      "patrimonial locales alquiler Gracia",
+      "empresa gestión pisos Gracia",
+      "cartera viviendas sociedad patrimonial Gracia",
+      "administrador fincas Gracia"
+    ]
+  },
+  "patrimonial-horta-barcelona": {
+    "keyword": "gestión patrimonial horta guinardó empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-horta-barcelona",
+    "aliases": [
+      "administración fincas Horta Barcelona",
+      "patrimonial Vall d'Hebron",
+      "cartera alquiler El Carmel empresa"
+    ]
+  },
+  "patrimonial-l-hospitalet-barcelona": {
+    "keyword": "administración fincas l hospitalet empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-l-hospitalet-barcelona",
+    "aliases": [
+      "gestión patrimonial Hospitalet",
+      "sociedad patrimonial Llobregat",
+      "cartera locales Hospitalet",
+      "administrador fincas Bellvitge"
+    ]
+  },
+  "patrimonial-les-corts-barcelona": {
+    "keyword": "administración patrimonial les corts empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-les-corts-barcelona",
+    "aliases": [
+      "gestión inmuebles empresa Les Corts",
+      "sociedad patrimonial Barcelona Les Corts",
+      "administrador fincas oficinas Les Corts",
+      "cartera alquiler Les Corts"
+    ]
+  },
+  "patrimonial-madrid": {
+    "keyword": "administración patrimonial inmobiliaria madrid empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-madrid",
+    "aliases": [
+      "gestión cartera inmuebles Madrid sociedad patrimonial",
+      "administrador fincas empresa Madrid",
+      "family office inmuebles Madrid Barcelona operador",
+      "gestión alquileres cartera Madrid"
+    ]
+  },
+  "patrimonial-nou-barris-barcelona": {
+    "keyword": "administración patrimonial nou barris",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-nou-barris-barcelona",
+    "aliases": [
+      "gestión pisos alquiler Nou Barris empresa",
+      "sociedad patrimonial Verdum",
+      "cartera inmuebles Nou Barris"
+    ]
+  },
+  "patrimonial-poblenou-barcelona": {
+    "keyword": "gestión patrimonial poblenou empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-poblenou-barcelona",
+    "aliases": [
+      "administración fincas Poblenou",
+      "patrimonial locales 22 Barcelona",
+      "cartera inmuebles tecnológico Poblenou",
+      "alquiler empresas Poblenou"
+    ]
+  },
+  "patrimonial-sant-andreu-barcelona": {
+    "keyword": "gestión patrimonial sant andreu empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-sant-andreu-barcelona",
+    "aliases": [
+      "administración fincas Sant Andreu",
+      "patrimonial alquiler Fabra i Coats",
+      "cartera inmuebles Sant Andreu"
+    ]
+  },
+  "patrimonial-sant-marti-barcelona": {
+    "keyword": "administración patrimonial sant martí empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-sant-marti-barcelona",
+    "aliases": [
+      "gestión inmuebles Poblenou empresa",
+      "patrimonial 22@ locales",
+      "cartera alquiler Sant Martí",
+      "administrador fincas Diagonal Mar"
+    ]
+  },
+  "patrimonial-sants-barcelona": {
+    "keyword": "administración fincas sants empresas barcelona",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-sants-barcelona",
+    "aliases": [
+      "patrimonial alquiler Sants",
+      "gestión locales Sants Badal",
+      "cartera inmuebles Sants Montjuïc",
+      "sociedad patrimonial Sants"
+    ]
+  },
+  "patrimonial-sarria-barcelona": {
+    "keyword": "gestión patrimonial sarrià empresas barcelona",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-sarria-barcelona",
+    "aliases": [
+      "administración fincas Sant Gervasi",
+      "family office Sarria Barcelona",
+      "cartera viviendas alquiler Sarria",
+      "patrimonial Pedralbes locales"
+    ]
+  },
+  "patrimonial-valencia": {
+    "keyword": "gestión patrimonial inmobiliaria valencia empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-valencia",
+    "aliases": [
+      "administración fincas cartera Valencia",
+      "patrimonial alquiler Valencia",
+      "operador inmuebles Valencia Barcelona"
+    ]
+  },
+  "patrimonial-zaragoza": {
+    "keyword": "administración patrimonial zaragoza empresas",
+    "cluster": "patrimonial",
+    "canonical": "/patrimonial-zaragoza",
+    "aliases": [
+      "gestión cartera inmuebles Zaragoza",
+      "sociedad patrimonial Zaragoza",
+      "administrador fincas empresa Zaragoza"
+    ]
+  },
   "vender-como-particular-badalona-barcelona": {
     "keyword": "vender piso particular badalona",
     "cluster": "particular",
