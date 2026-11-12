@@ -219,7 +219,17 @@
       const extra = ids ? ` Refs sin inmueble NH: ${ids}${json.idealistaSinMatch.length > 12 ? '…' : ''}.` : '';
       const dupC = json.compradoresDuplicadosOmitidos || 0;
       const dupI = json.interesesDuplicadosOmitidos || 0;
-      window.nhToast?.(`Creados ${json.compradoresCreados}, dup. compradores ${dupC}, intereses nuevos ${json.interesesRegistrados}, dup. intereses ${dupI}.${extra}`, 'success', 9000);
+      const fc = json.fichasCompletadas;
+      const fcTxt = fc
+        ? ` Fichas con precio: ${fc.completadas}/${fc.total}.`
+        : json.cacheAnuncios
+          ? ` Anuncios en caché: ${json.cacheAnuncios.enCache}/${json.cacheAnuncios.solicitados}.`
+          : '';
+      window.nhToast?.(
+        `Creados ${json.compradoresCreados}, dup. compradores ${dupC}, intereses nuevos ${json.interesesRegistrados}, dup. intereses ${dupI}.${fcTxt}${extra}`,
+        'success',
+        11000,
+      );
       if (result) {
         result.style.display = 'block';
         result.className = 'alert-box alert-info';

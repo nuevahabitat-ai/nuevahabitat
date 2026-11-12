@@ -102,21 +102,24 @@
       return;
     nhToast?.('Calculando presupuestos…', 'info', 12000);
     try {
+      nhToast?.('Descargando precios Idealista y completando fichas…', 'info', 25000);
       const res = await fetch('/api/notify?__action=admin-sync-presupuesto-compradores', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + session.access_token,
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ maxScrape: 55 }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) throw new Error(json.error || res.status);
+      const idealista = json.idealista || {};
       const inf = json.inferencia || {};
+      const fc = idealista.fichas || {};
       nhToast?.(
-        `Presupuestos: ${inf.updated ?? 0} actualizado(s), ${inf.skipped ?? 0} pendientes (sin precio anuncio)`,
+        `Fichas: ${fc.completadas ?? 0}/${fc.total ?? 0} con presupuesto · caché ${idealista.warm?.enCache ?? '?'}/${idealista.warm?.solicitados ?? '?'}. Inferencia extra: ${inf.updated ?? 0} actualizado(s).`,
         'success',
-        10000,
+        12000,
       );
       if (typeof loadCompradores === 'function') loadCompradores(true);
     } catch (e) {
