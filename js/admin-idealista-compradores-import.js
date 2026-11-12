@@ -280,10 +280,20 @@
 
   window.compTelLast9 = telDigits;
 
+  function loadWizardIdealistaColocacion() {
+    if (document.querySelector('script[data-nh-wizard-idealista-coloc]')) return;
+    const s = document.createElement('script');
+    s.src = 'js/admin-wizard-idealista-colocacion.js?v=' + encodeURIComponent('20261112');
+    s.dataset.nhWizardIdealistaColoc = '1';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+
   function boot() {
     ensureModal();
     injectHeaderButton();
     injectIdealistaIdField();
+    loadWizardIdealistaColocacion();
   }
 
   document.addEventListener('DOMContentLoaded', boot);

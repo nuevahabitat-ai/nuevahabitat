@@ -11,7 +11,11 @@ Fuentes (en orden): inmueble NH vinculado · `precio_consultado` en interés · 
 
 ## Import Idealista (.xls)
 
-Si el export incluye columna **PRECIO** / **PRECIO ANUNCIO**, el import la usa para `presupuesto_max` y `precio_consultado`.
+Si el export incluye columna **PRECIO** / **PRECIO ANUNCIO**, el import la usa para `presupuesto_max` y `precio_consultado` y alimenta la **caché** por `idealista_id`. Sin columna, intenta leer € en descripción/mensaje.
+
+## Colocación en wizard (inmuebles)
+
+Campo **Ref. Idealista**: al salir del campo rellena **precio** desde caché/NH; al **publicar/guardar**, un script externo persiste `idealista_id` en el inmueble (sin tocar `admin-panel.html`).
 
 ## Pendientes («Sin vincular NH»)
 
