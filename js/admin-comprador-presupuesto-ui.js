@@ -70,11 +70,23 @@
   }
 
   function presupuestoHtml(c) {
-    var piso = localPrecioPiso(c);
-    if (piso == null) return '';
+    var min = c.presupuesto_min != null ? Number(c.presupuesto_min) : null;
+    var max = c.presupuesto_max != null ? Number(c.presupuesto_max) : null;
+    var line = '';
+    if (min != null && max != null && min > 0 && max >= min) {
+      line = Number(min).toLocaleString('es-ES') + ' – ' + Number(max).toLocaleString('es-ES') + ' €';
+    } else if (max != null && max > 0) {
+      line = Number(max).toLocaleString('es-ES') + ' €';
+    } else {
+      var piso = localPrecioPiso(c);
+      if (piso == null) return '';
+      var inferredMin = Math.max(0, piso - 50000);
+      line =
+        Number(inferredMin).toLocaleString('es-ES') + ' – ' + Number(piso).toLocaleString('es-ES') + ' €';
+    }
     return (
       '<div class="adm-comp-compraventa nh-comp-presupuesto-block"><small>Precio compraventa (piso)</small>' +
-      esc(Number(piso).toLocaleString('es-ES') + ' €') +
+      esc(line) +
       '</div>'
     );
   }
