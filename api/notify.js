@@ -922,6 +922,25 @@ async function handleAdminSyncPresupuestoCompradores(req, res, body) {
   }
 }
 
+async function handleAdminCompradorPrecioPiso(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const { batchPrecioPisoCompradores } = await import('../lib/server/comprador-precio-piso.js');
+    const result = await batchPrecioPisoCompradores({
+      ids: Array.isArray(body?.ids) ? body.ids : undefined,
+      onlySinPresupuesto: body?.all !== true,
+      limit: body?.limit,
+      persist: body?.persist === true,
+      skipScrape: body?.skipScrape !== false,
+    });
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-comprador-precio-piso', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminInferCompradorCriterios(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1546,6 +1565,7 @@ export default async function handler(req, res) {
   if (action === 'admin-backfill-idealista-interes') return handleAdminBackfillIdealistaInteres(req, res, body);
   if (action === 'admin-enrich-alfredo-fichas') return handleAdminEnrichAlfredoFichas(req, res, body);
   if (action === 'admin-sync-presupuesto-compradores') return handleAdminSyncPresupuestoCompradores(req, res, body);
+  if (action === 'admin-comprador-precio-piso') return handleAdminCompradorPrecioPiso(req, res, body);
   if (action === 'admin-infer-comprador-criterios') return handleAdminInferCompradorCriterios(req, res, body);
   if (action === 'admin-agent-chat') return handleAdminAgentChat(req, res, body);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);
