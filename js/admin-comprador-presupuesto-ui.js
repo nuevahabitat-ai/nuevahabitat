@@ -115,7 +115,7 @@
       }
       _enrichedOnce = true;
       if (json && json.updated > 0 && typeof loadCompradores === 'function') {
-        /* datos guardados en BD; opcional recarga silenciosa */
+        loadCompradores(true);
       }
     } catch (e) {
       console.warn('enrichPreciosPisoFromApi', e);
