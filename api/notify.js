@@ -947,8 +947,15 @@ async function handleAdminIdealistaPreciosBulk(req, res, body) {
   try {
     const { getIdealistaPreciosBulk } = await import('../lib/server/idealista-precios-bulk.js');
     const ids = Array.isArray(body?.idealista_ids) ? body.idealista_ids : body?.ids;
+    if (body?.warm === true && ids?.length) {
+      const { warmIdealistaPrecioCache } = await import('../lib/server/idealista-listing-snapshot.js');
+      await warmIdealistaPrecioCache(ids, {
+        maxScrape: Math.min(Number(body?.maxScrape) || 3, 8),
+        delayMs: 250,
+      });
+    }
     const result = await getIdealistaPreciosBulk(ids);
-    return res.status(200).json(result);
+    return res.status(200).json({ ok: true, ...result });
   } catch (err) {
     console.error('admin-idealista-precios-bulk', err);
     return res.status(500).json({ ok: false, error: err.message });

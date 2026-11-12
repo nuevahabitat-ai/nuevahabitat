@@ -13,11 +13,13 @@ Plantilla vacía: [`docs/plantilla-idealista-compradores.csv`](plantilla-idealis
 
 `REF. IDEALISTA`, `REF. CLIENTE`, `DESCRIPCIÓN`, `USUARIO`, `ORIGEN`, `ESTADO`, `EMAIL`, `TELÉFONO`, `MENSAJE`, `TIPO DE MENSAJE`, `FECHA`, `IDIOMA`
 
+Opcional (recomendado si Idealista bloquea el scrape): **`PRECIO`** o **`PRECIO ANUNCIO`** (precio de venta del anuncio). Si no viene en columna, el import intenta leer € en descripción/mensaje.
+
 La clave de deduplicación es **teléfono** (comprador activo).
 
 ## Vínculo con inmuebles NH
 
-En cada inmueble del panel, rellena **Ref. Idealista** (`idealista_id` en Supabase) igual que la columna `REF. IDEALISTA` del Excel. Así se calcula **presupuesto máximo** y aparecen en **avisos de rebaja**.
+En cada inmueble del panel (wizard **Nuevo inmueble**), coloca **Ref. Idealista** (`idealista_id` en Supabase) igual que la columna `REF. IDEALISTA` del Excel. Si el campo **precio** está vacío, el panel intenta rellenarlo desde la caché Idealista al salir del campo. Así se calcula **presupuesto máximo** en compradores y aparecen en **avisos de rebaja**.
 
 Requiere migración `supabase/migrations/066_compradores_idealista_import.sql` aplicada en Supabase.
 
