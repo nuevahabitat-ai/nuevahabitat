@@ -6,6 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const { CIUDADES, SITE, FEE_BASE, FEE_IVA } = require('./venta-digital-ciudades-data');
 const { renderVentaDigitalPage } = require('./render-venta-digital-page');
+const { VENDE_PISO_1900_LANDINGS } = require('./vende-piso-1900-data');
+const { renderVendePiso1900Page } = require('./render-vende-piso-1900-page');
 const {
   ventaDigitalExtraStyles,
   ventaDigitalQuickGlanceHub,
@@ -147,6 +149,7 @@ ${ventaDigitalIllustratedFlow({ cityName: 'España', slug: 'venta-digital', pric
       <li>Negociación, arras y coordinación hasta notaría.</li>
     </ul>
     <p style="margin-top:1rem"><a href="/venta-clasica-barcelona">Venta clásica</a> (visitas NH) · <a href="/venta-comercial-barcelona">Digital + comercial</a> (solo Barcelona)</p>
+    <p style="margin-top:.75rem;font-size:.9rem;color:var(--gris-texto)">¿Buscas <strong>vender por ~1.900 €</strong>? Guías con pasos ilustrados: <a href="/vende-tu-piso-por-1900-euros">España</a> · <a href="/vende-tu-piso-por-1900-euros-barcelona">Barcelona</a> · <a href="/vende-tu-piso-por-1900-euros-madrid">Madrid</a> · <a href="/vende-tu-piso-por-1900-euros-valencia">Valencia</a> (mismo plan 1.999&nbsp;€ + IVA).</p>
   </div>
 </section>
 
@@ -186,6 +189,11 @@ function main() {
   });
   fs.writeFileSync(path.join(ROOT, 'venta-digital.html'), renderHub(), 'utf8');
   console.log('Built venta-digital.html (hub)');
+  VENDE_PISO_1900_LANDINGS.forEach((L) => {
+    const out1900 = path.join(ROOT, `${L.slug}.html`);
+    fs.writeFileSync(out1900, renderVendePiso1900Page(L, VENDE_PISO_1900_LANDINGS), 'utf8');
+    console.log('Built', L.slug + '.html (línea ~1.900 €)');
+  });
 }
 
 if (require.main === module) main();

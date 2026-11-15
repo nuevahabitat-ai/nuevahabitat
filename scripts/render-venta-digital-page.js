@@ -32,16 +32,36 @@ function renderVentaDigitalPage(c) {
   const canonical = `${SITE}/${c.slug}`;
   const trad6 = tradCommission6(c.priceExample);
   const zonesList = c.zones.map((z) => `<li>${esc(z)}</li>`).join('');
-  const title = `Venta 100 % digital en ${c.cityName} · 1.999 € + IVA · NuevaHabitat`;
+  const title = c.pageTitle
+    ? `${c.pageTitle} · NuevaHabitat`
+    : `Venta 100 % digital en ${c.cityName} · 1.999 € + IVA · NuevaHabitat`;
   const kw = c.keyword_principal || `venta 100 por ciento digital ${c.cityName}`;
-  const description = `${kw}: vende en ${c.cityName} con honorarios fijos 1.999 € + IVA. Publicación en Idealista y pisos.com, panel vendedor y visitas cualificadas. 50 % contrato + 50 % escritura.`;
+  const description =
+    c.metaDescription ||
+    `${kw}: vende en ${c.cityName} con honorarios fijos 1.999 € + IVA. Publicación en Idealista y pisos.com, panel vendedor y visitas cualificadas. 50 % contrato + 50 % escritura.`;
   const aliasesMeta = (c.keyword_aliases || []).slice(0, 8).join(', ');
   const trad3 = tradCommission3(c.priceExample);
   const faqItems = digitalStandardFaqs(c.cityName);
   const faqBlock = faqSection(`venta digital ${c.cityName}`, faqItems, c.localFaq || '');
+  const registroCiudad = c.registroCiudad != null ? c.registroCiudad : c.cityName;
+  const registroCiudadQS =
+    registroCiudad === '' ? '' : `&amp;ciudad=${encodeURIComponent(registroCiudad)}`;
+  const breadcrumbThird = c.breadcrumbLabel || c.cityName;
+  const h1 =
+    c.heroH1 ||
+    `Venta 100&nbsp;% digital en ${esc(c.cityName)}: tú en las visitas, NuevaHabitat en el resto`;
+  const plansNav =
+    c.planesNavHtml ||
+    `<section class="lc-section" style="background:var(--negro);padding:2.5rem 0">
+  <div class="container nh-svc-planes-nav">
+    <a href="/venta-clasica-barcelona"><strong>Venta clásica</strong><span>3.500 € + IVA · equipo NH en visitas</span></a>
+    <a href="/${c.slug}" class="is-current"><strong>100 % digital · ${esc(c.cityName)}</strong><span>1.999 € + IVA · visitas en tus horarios</span></a>
+    <a href="/venta-comercial-barcelona"><strong>Digital + comercial</strong><span>2.500 € + IVA · Barcelona in situ</span></a>
+  </div>
+</section>`;
   const audienceBlock = audienceSection(
     '¿Para quién?',
-    `¿Es para ti la venta digital en ${c.cityName}?`,
+    c.audienceTitle || `¿Es para ti la venta digital en ${c.cityName}?`,
     'Ahorras frente al 6&nbsp;% de agencia, controlas quién entra en casa y delegas anuncio, filtro, negociación y cierre en NuevaHabitat.',
     [
       { h: 'Puedes recibir visitas', p: 'Marcas franjas en el panel; solo entran compradores con solvencia revisada.' },
@@ -55,7 +75,7 @@ function renderVentaDigitalPage(c) {
     footerLabel: c.cityName,
   });
   const waText = encodeURIComponent(
-    `Hola, quiero información sobre venta 100 % digital NuevaHabitat en ${c.cityName}`
+    c.waText || `Hola, quiero información sobre venta 100 % digital NuevaHabitat en ${c.cityName}`
   );
 
   const jsonLd = JSON.stringify({
@@ -151,7 +171,7 @@ function renderVentaDigitalPage(c) {
   <div class="nav-inner">
     <a href="/" class="nav-logo"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><div class="nav-logo-divider"></div><div class="logo-text"><span class="logo-name">Nueva Habitat</span><span class="logo-sub">${esc(c.navSub)}</span></div></a>
     ${serviceNavLinks('digital', `/${c.slug}`)}
-    <div class="nav-actions"><a href="/registro?tipo=vender&amp;plan=digital&amp;ciudad=${encodeURIComponent(c.cityName)}" class="nav-cta">Contratar</a></div>
+    <div class="nav-actions"><a href="/registro?tipo=vender&amp;plan=digital${registroCiudadQS}" class="nav-cta">Contratar</a></div>
   </div>
 </nav>
 
@@ -159,25 +179,19 @@ function renderVentaDigitalPage(c) {
   <div class="nh-svc-hero-bg" style="background-image:url('imagenes/interior11.jpg')"></div>
   <div class="nh-svc-hero-overlay"></div>
   <div class="container nh-svc-hero-inner fade-up">
-    <p class="nh-breadcrumb" aria-label="Ruta" style="font-size:.75rem;color:rgba(255,255,255,.55);margin:0 0 .75rem"><a href="/" style="color:inherit">Inicio</a> · <a href="/venta-digital" style="color:inherit">Venta digital</a> · <span>${esc(c.cityName)}</span></p>
+    <p class="nh-breadcrumb" aria-label="Ruta" style="font-size:.75rem;color:rgba(255,255,255,.55);margin:0 0 .75rem"><a href="/" style="color:inherit">Inicio</a> · <a href="/venta-digital" style="color:inherit">Venta digital</a> · <span>${esc(breadcrumbThird)}</span></p>
     <div class="hero-badge">${esc(c.heroBadge)}</div>
-    <h1>Venta 100&nbsp;% digital en ${esc(c.cityName)}: tú en las visitas, NuevaHabitat en el resto</h1>
+    <h1>${h1}</h1>
     <div class="nh-svc-price-chip"><strong>1.999 € + IVA</strong> · <span>50&nbsp;% contrato + 50&nbsp;% escritura</span></div>
     <p>${c.marketLead} Publicamos en <strong>Idealista</strong> y <strong>pisos.com</strong>, <strong>cualificamos compradores</strong> y negociamos hasta escritura. Sin comisión del 3&nbsp;% ni sorpresas en factura.</p>
     <div class="nh-svc-hero-actions">
-      <a href="/registro?tipo=vender&amp;plan=digital&amp;ciudad=${encodeURIComponent(c.cityName)}" class="btn btn-gold">Contratar venta digital</a>
+      <a href="/registro?tipo=vender&amp;plan=digital${registroCiudadQS}" class="btn btn-gold">Contratar venta digital</a>
       <a href="/venta-digital" class="btn btn-outline-light">Ver todas las ciudades</a>
     </div>
   </div>
 </section>
 
-<section class="lc-section" style="background:var(--negro);padding:2.5rem 0">
-  <div class="container nh-svc-planes-nav">
-    <a href="/venta-clasica-barcelona"><strong>Venta clásica</strong><span>3.500 € + IVA · equipo NH en visitas</span></a>
-    <a href="/${c.slug}" class="is-current"><strong>100 % digital · ${esc(c.cityName)}</strong><span>1.999 € + IVA · visitas en tus horarios</span></a>
-    <a href="/venta-comercial-barcelona"><strong>Digital + comercial</strong><span>2.500 € + IVA · Barcelona in situ</span></a>
-  </div>
-</section>
+${plansNav}
 
 ${ventaDigitalQuickGlance(c)}
 
@@ -301,16 +315,16 @@ ${ventaDigitalOtherCities(c)}
 
 <section class="lc-section" style="background:var(--negro);color:#fff;text-align:center">
   <div class="container fade-up">
-    <h2 class="section-title" style="color:#fff;margin-bottom:1rem">Empieza la venta digital en ${esc(c.cityName)}</h2>
+    <h2 class="section-title" style="color:#fff;margin-bottom:1rem">${esc(c.ctaSectionTitle || `Empieza la venta digital en ${c.cityName}`)}</h2>
     <p style="color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 1.5rem;line-height:1.65">Registro, contrato online y primer pago en minutos. Sin comisión oculta sobre el precio de tu piso.</p>
-    <a href="/registro?tipo=vender&amp;plan=digital&amp;ciudad=${encodeURIComponent(c.cityName)}" class="btn btn-gold">Contratar · 1.999 € + IVA</a>
+    <a href="/registro?tipo=vender&amp;plan=digital${registroCiudadQS}" class="btn btn-gold">Contratar · 1.999 € + IVA</a>
   </div>
 </section>
 
 <footer>
   <div class="container">
     <div class="footer-top" style="grid-template-columns:1.5fr 2fr 1fr">
-      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>Venta 100&nbsp;% digital en ${esc(c.cityName)} · precio fijo y panel en tiempo real.</p></div>
+      <div class="footer-brand"><img src="imagenes/Logo/logosinfondo2.png" alt="NuevaHabitat"/><p>${esc(c.footerBlurb || `Venta 100\u00a0% digital en ${c.cityName} · precio fijo y panel en tiempo real.`)}</p></div>
       <div class="footer-col footer-col--servicios"><h4>Planes venta</h4><ul><li><a href="/venta-digital-barcelona">Digital · 1.999 € + IVA</a></li><li><a href="/venta-comercial-barcelona">Comercial · 2.500 € + IVA</a></li><li><a href="/venta-clasica-barcelona">Clásica · 3.500 € + IVA</a></li><li><a href="/vender">Hub vender</a></li></ul></div>
       <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+34603656587">603 656 587</a></li><li><a href="mailto:info@nuevahabitat.com">info@nuevahabitat.com</a></li></ul></div>
     </div>

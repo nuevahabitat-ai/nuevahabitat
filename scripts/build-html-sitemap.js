@@ -45,6 +45,10 @@ const CLUSTER_LABELS = {
 const { CIUDADES: VD_CIUDADES } = require('./venta-digital-ciudades-data');
 const VENTA_DIGITAL_GSC = [
   `${SITE}/venta-digital`,
+  `${SITE}/vende-tu-piso-por-1900-euros`,
+  `${SITE}/vende-tu-piso-por-1900-euros-barcelona`,
+  `${SITE}/vende-tu-piso-por-1900-euros-madrid`,
+  `${SITE}/vende-tu-piso-por-1900-euros-valencia`,
   ...VD_CIUDADES.map((c) => `${SITE}/${c.slug}`),
 ];
 

@@ -356,6 +356,10 @@ window.NH_LANDING_ORDER = [
   "alquiler-integral-verneda-barcelona",
   "alquiler-integral-zona-universitaria-barcelona",
   "venta-digital",
+  "vende-tu-piso-por-1900-euros",
+  "vende-tu-piso-por-1900-euros-barcelona",
+  "vende-tu-piso-por-1900-euros-madrid",
+  "vende-tu-piso-por-1900-euros-valencia",
   "venta-digital-barcelona",
   "venta-digital-madrid",
   "venta-digital-valencia",
@@ -5150,6 +5154,42 @@ window.NH_LANDINGS = {
     "priority": 0.97,
     "indexable": true,
     "cardTeaser": "Plan digital 1.999 € + IVA en 39 ciudades (España peninsular e islas: ver hub venta-digital)."
+  },
+  "vende-tu-piso-por-1900-euros": {
+    "slug": "vende-tu-piso-por-1900-euros",
+    "cluster": "ventaDigital",
+    "footerLabel": "Vende tu piso · ~1.900 €",
+    "keyword_principal": "vende tu piso por 1900 euros",
+    "priority": 0.95,
+    "indexable": true,
+    "cardTeaser": "Línea SEO precio fijo: 8 pasos ilustrados + checklist de acciones (plan 1.999 € + IVA)."
+  },
+  "vende-tu-piso-por-1900-euros-barcelona": {
+    "slug": "vende-tu-piso-por-1900-euros-barcelona",
+    "cluster": "ventaDigital",
+    "footerLabel": "Vende tu piso · BCN ~1.900 €",
+    "keyword_principal": "vende tu piso por 1900 euros barcelona",
+    "priority": 0.94,
+    "indexable": true,
+    "cardTeaser": "Guía ilustrada Barcelona: mismas 25 acciones del plan digital 1.999 € + IVA."
+  },
+  "vende-tu-piso-por-1900-euros-madrid": {
+    "slug": "vende-tu-piso-por-1900-euros-madrid",
+    "cluster": "ventaDigital",
+    "footerLabel": "Vende tu piso · MAD ~1.900 €",
+    "keyword_principal": "vende tu piso por 1900 euros madrid",
+    "priority": 0.94,
+    "indexable": true,
+    "cardTeaser": "Guía ilustrada Madrid: checklist y pasos del plan digital fijo."
+  },
+  "vende-tu-piso-por-1900-euros-valencia": {
+    "slug": "vende-tu-piso-por-1900-euros-valencia",
+    "cluster": "ventaDigital",
+    "footerLabel": "Vende tu piso · VLC ~1.900 €",
+    "keyword_principal": "vende tu piso por 1900 euros valencia",
+    "priority": 0.94,
+    "indexable": true,
+    "cardTeaser": "Guía ilustrada Valencia: misma operativa venta 100 % digital."
   },
   "venta-digital-barcelona": {
     "slug": "venta-digital-barcelona",

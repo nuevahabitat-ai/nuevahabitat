@@ -2302,6 +2302,26 @@
       "administrador fincas empresa Zaragoza"
     ]
   },
+  "vende-tu-piso-por-1900-euros": {
+    "keyword": "vende tu piso por 1900 euros",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros"
+  },
+  "vende-tu-piso-por-1900-euros-barcelona": {
+    "keyword": "vende tu piso por 1900 euros barcelona",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros-barcelona"
+  },
+  "vende-tu-piso-por-1900-euros-madrid": {
+    "keyword": "vende tu piso por 1900 euros madrid",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros-madrid"
+  },
+  "vende-tu-piso-por-1900-euros-valencia": {
+    "keyword": "vende tu piso por 1900 euros valencia",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros-valencia"
+  },
   "vender-como-particular-badalona-barcelona": {
     "keyword": "vender piso particular badalona",
     "cluster": "particular",

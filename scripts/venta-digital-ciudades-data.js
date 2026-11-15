@@ -49,7 +49,8 @@ const CIUDADES = [
 <li>Oficina física en Les Corts (Mejía Lequerica 42) para reuniones si lo necesitas.</li>
 </ul>
 <h2>Digital vs clásica vs digital + comercial</h2>
-<p>Si no puedes hacer visitas, valora <a href="/venta-clasica-barcelona">venta clásica</a> (equipo NH en casa) o <a href="/venta-comercial-barcelona">digital + comercial</a> solo en Barcelona. Si quieres máximo ahorro y control del calendario, el plan 100&nbsp;% digital es el adecuado.</p>`,
+<p>Si no puedes hacer visitas, valora <a href="/venta-clasica-barcelona">venta clásica</a> (equipo NH en casa) o <a href="/venta-comercial-barcelona">digital + comercial</a> solo en Barcelona. Si quieres máximo ahorro y control del calendario, el plan 100&nbsp;% digital es el adecuado.</p>
+<p>Búsqueda por precio: <a href="/vende-tu-piso-por-1900-euros-barcelona">vende tu piso por 1.900 euros Barcelona</a> — guía con pasos ilustrados (mismo servicio 1.999&nbsp;€ + IVA).</p>`,
   },
   {
     slug: 'venta-digital-madrid',
@@ -87,7 +88,8 @@ const CIUDADES = [
 <h2>Cómo vendemos en Madrid desde el panel</h2>
 <p>Tras el primer pago (Stripe) activamos expediente: nota simple, certificado energético, borrador de anuncio y calendario de visitas. Publicamos en Idealista y pisos.com; compradores de cartera y leads de esos portales pasan por filtro de financiación. Tú recibes en las franjas que marques — ideal si vives en el piso o tienes horario flexible.</p>
 <h2>Municipios del área metropolitana</h2>
-<p>Getafe, Móstoles, Alcorcón, Leganés, Pozuelo, Las Rozas: mismo servicio si puedes atender visitas o un familiar autorizado. Negociación y documentación las centralizamos en el panel, sin depender de emails sueltos.</p>`,
+<p>Getafe, Móstoles, Alcorcón, Leganés, Pozuelo, Las Rozas: mismo servicio si puedes atender visitas o un familiar autorizado. Negociación y documentación las centralizamos en el panel, sin depender de emails sueltos.</p>
+<p>Búsqueda por precio: <a href="/vende-tu-piso-por-1900-euros-madrid">vende tu piso por 1.900 euros Madrid</a> — guía con pasos ilustrados (mismo servicio 1.999&nbsp;€ + IVA).</p>`,
   },
   {
     slug: 'venta-digital-valencia',
@@ -125,7 +127,8 @@ const CIUDADES = [
 <h2>Ruzafa, Benimaclet, Eixample valenciano</h2>
 <p>Cada micro-mercado tiene ritmo distinto: stock en Ruzafa compite con reformas; Benimaclet atrae jóvenes profesionales. Ajustamos precio de salida con comparables reales, no con el anuncio más caro del portal.</p>
 <h2>Expediente online desde el primer día</h2>
-<p>Contrato digital, primer 50&nbsp;% con tarjeta, subida de documentos y seguimiento por panel y WhatsApp con tu gestor. Misma plataforma que usan vendedores en Barcelona y Madrid.</p>`,
+<p>Contrato digital, primer 50&nbsp;% con tarjeta, subida de documentos y seguimiento por panel y WhatsApp con tu gestor. Misma plataforma que usan vendedores en Barcelona y Madrid.</p>
+<p>Búsqueda por precio: <a href="/vende-tu-piso-por-1900-euros-valencia">vende tu piso por 1.900 euros Valencia</a> — guía con pasos ilustrados (mismo servicio 1.999&nbsp;€ + IVA).</p>`,
   },
   {
     slug: 'venta-digital-sevilla',
