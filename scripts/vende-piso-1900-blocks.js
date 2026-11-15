@@ -116,10 +116,34 @@ function nhVp1900Styles() {
 .nh-vp1900-cities a{display:inline-flex;flex-direction:column;padding:.65rem 1rem;background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);font-size:.8125rem;text-decoration:none;color:inherit;min-width:140px}
 .nh-vp1900-cities a.is-current{border-color:var(--oro);box-shadow:0 0 0 1px var(--oro)}
 .nh-vp1900-cities a strong{color:var(--negro)}
+.nh-vp1900-pilars{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.nh-vp1900-pilar{background:#fff;border:1px solid var(--crema-dark);border-radius:var(--radius-md);overflow:hidden}
+.nh-vp1900-pilar img{width:100%;height:140px;object-fit:cover;display:block}
+.nh-vp1900-pilar div{padding:1rem;font-size:.8125rem;line-height:1.55;color:var(--gris-texto)}
+.nh-vp1900-pilar strong{display:block;color:var(--negro);margin-bottom:.35rem}
+.nh-vp1900-compact{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+.nh-vp1900-compact-card{background:var(--crema);border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--crema-dark)}
+.nh-vp1900-compact-card img{width:100%;height:160px;object-fit:cover}
+.nh-vp1900-compact-card div{padding:1rem}
+.nh-vp1900-split{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.nh-vp1900-split-col{background:#fff;border-radius:var(--radius-lg);padding:1.5rem;border:1px solid var(--crema-dark)}
+.nh-vp1900-split-col img{width:100%;border-radius:var(--radius-md);margin-bottom:1rem;aspect-ratio:16/10;object-fit:cover}
+.nh-vp1900-myths{display:grid;gap:.75rem;max-width:720px;margin:0 auto}
+.nh-vp1900-myth{border-left:4px solid var(--oro);padding:.85rem 1rem;background:#fff;border-radius:0 var(--radius-md) var(--radius-md) 0;border:1px solid var(--crema-dark);border-left:4px solid #c2410c}
+.nh-vp1900-myth strong{color:var(--negro)}
+.nh-vp1900-zones{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin:1.25rem 0}
+.nh-vp1900-zone-tag{padding:.45rem .85rem;background:var(--negro);color:#fff;border-radius:999px;font-size:.8125rem}
+.nh-vp1900-text-steps{counter-reset:vpstep;max-width:680px;margin:0 auto;padding:0;list-style:none}
+.nh-vp1900-text-steps li{counter-increment:vpstep;padding:.75rem 0 .75rem 3rem;position:relative;border-bottom:1px solid var(--crema-dark);line-height:1.55;color:var(--gris-texto)}
+.nh-vp1900-text-steps li::before{content:counter(vpstep);position:absolute;left:0;top:.7rem;width:2rem;height:2rem;border-radius:50%;background:var(--oro);color:var(--negro);font-weight:700;font-size:.85rem;display:grid;place-items:center}
+.nh-vp1900-hero--centered .nh-vp1900-hero-media{display:none}
+.nh-vp1900-hero--centered{grid-template-columns:1fr;max-width:820px;margin:0 auto;text-align:center}
+.nh-vp1900-hero--centered .nh-svc-hero-actions{justify-content:center}
 @media(max-width:900px){
   .nh-vp1900-hero{grid-template-columns:1fr;padding-top:3rem}
   .nh-vp1900-savings{grid-template-columns:1fr}
   .nh-vp1900-step,.nh-vp1900-step:nth-child(even){grid-template-columns:1fr;direction:ltr}
+  .nh-vp1900-pilars,.nh-vp1900-compact,.nh-vp1900-split{grid-template-columns:1fr}
 }
 `;
 }
@@ -142,13 +166,22 @@ function savingsStrip(c) {
   </div>`;
 }
 
-function illustratedJourneyBlock(c) {
+function illustratedJourneyBlock(c, opts = {}) {
   const city = esc(c.cityLabel || c.cityName);
-  const steps = JOURNEY_STEPS.map((s, i) => {
+  const pool = opts.stepIndexes
+    ? opts.stepIndexes.map((i) => JOURNEY_STEPS[i]).filter(Boolean)
+    : JOURNEY_STEPS;
+  const title =
+    opts.title ||
+    `8 pasos ilustrados: de contratar a escritura${city !== 'España' ? ` en ${city}` : ''}`;
+  const intro =
+    opts.intro ||
+    'Esta landing no es un folleto genérico: es la <strong>misma operativa</strong> que el plan venta digital, explicada acción por acción con fotos reales del proceso NuevaHabitat (panel, gestores, portales y cierre).';
+  const steps = pool.map((s, i) => {
     const tu = s.tu.replace('en el piso', `en ${city === 'España' ? 'tu ciudad' : city}`);
     return `<article class="nh-vp1900-step fade-up">
       <div>
-        <div class="nh-vp1900-step-num">Paso ${i + 1} de ${JOURNEY_STEPS.length}</div>
+        <div class="nh-vp1900-step-num">Paso ${i + 1} de ${pool.length}</div>
         <h3>${esc(s.title)}</h3>
         <div class="nh-vp1900-dual">
           <span><strong style="color:var(--negro)">NuevaHabitat:</strong> ${s.nh}</span>
@@ -163,8 +196,8 @@ function illustratedJourneyBlock(c) {
   <div class="container">
     <div class="text-center fade-up" style="max-width:720px;margin:0 auto 2.5rem">
       <span class="overline">Recorrido visual</span>
-      <h2 class="section-title">8 pasos ilustrados: de contratar a escritura${city !== 'España' ? ` en ${city}` : ''}</h2>
-      <p style="color:var(--gris-texto);line-height:1.75">Esta landing no es un folleto genérico: es la <strong>misma operativa</strong> que el plan venta digital, explicada acción por acción con fotos reales del proceso NuevaHabitat (panel, gestores, portales y cierre).</p>
+      <h2 class="section-title">${title}</h2>
+      <p style="color:var(--gris-texto);line-height:1.75">${intro}</p>
     </div>
     <div class="nh-vp1900-timeline">${steps}</div>
   </div>
@@ -206,8 +239,145 @@ function citySwitcherBlock(currentSlug, landings) {
   return `<div class="nh-vp1900-cities">${links}</div>`;
 }
 
+function mythsRealityBlock(c) {
+  const city = esc(c.cityLabel || c.cityName);
+  const myths = c.myths || [
+    { myth: '«1.900 €» es solo publicar en Idealista', fact: 'Es el plan digital completo: valoración, foto, filtro, negociación y escritura (1.999 € + IVA en contrato).' },
+    { myth: 'Sin comisión = sin agencia', fact: 'Hay intermediación profesional; el ahorro está en no pagar 3–6 % sobre el precio de venta.' },
+    { myth: 'Las visitas las hace cualquiera', fact: `Solo entran compradores con solvencia revisada; tú abres en ${city === 'España' ? 'tu ciudad' : city} en tus franjas.` },
+  ];
+  const rows = myths
+    .map(
+      (m) =>
+        `<div class="nh-vp1900-myth"><strong>Mito:</strong> ${m.myth}<br/><strong style="color:#15803d">Realidad:</strong> ${m.fact}</div>`
+    )
+    .join('');
+  return `<section class="lc-section" style="background:var(--blanco)">
+  <div class="container fade-up">
+    <div class="text-center" style="max-width:640px;margin:0 auto 1.5rem">
+      <span class="overline">Antes de contratar</span>
+      <h2 class="section-title">Lo que muchos confunden al buscar «vender por 1.900 €»</h2>
+    </div>
+    <div class="nh-vp1900-myths">${rows}</div>
+  </div>
+</section>`;
+}
+
+function pillarsPhotoBlock(c) {
+  const city = esc(c.cityLabel || c.cityName);
+  const items = c.pillars || [
+    { img: 'imagenes/equipo1.jpg', t: 'Precio cerrado', p: `1.999 € + IVA en ${city}; sin % sobre el precio de venta.` },
+    { img: 'imagenes/comercial1.jpg', t: 'Portales + cartera', p: 'Idealista, pisos.com y demanda filtrada.' },
+    { img: 'imagenes/agente inmobiliario1.jpg', t: 'Visitas tuyas', p: 'Solo compradores preparados en tu calendario.' },
+    { img: 'imagenes/firma1.jpg', t: 'Hasta escritura', p: 'Arras, panel y coordinación notarial.' },
+  ];
+  const cards = items
+    .map(
+      (it) =>
+        `<article class="nh-vp1900-pilar"><img src="${it.img}" alt="${esc(it.t)}" loading="lazy"/><div><strong>${esc(it.t)}</strong><p style="margin:0">${it.p}</p></div></article>`
+    )
+    .join('');
+  return `<section class="lc-section" style="background:var(--crema)">
+  <div class="container fade-up">
+    <div class="text-center" style="max-width:720px;margin:0 auto 1.25rem">
+      <span class="overline">En 4 fotos</span>
+      <h2 class="section-title">Qué compras cuando no quieres pagar comisión del 6 %</h2>
+    </div>
+    <div class="nh-vp1900-pilars">${cards}</div>
+  </div>
+</section>`;
+}
+
+function compactJourneyBlock(c) {
+  const city = esc(c.cityLabel || c.cityName);
+  const idx = c.compactStepIndexes || [0, 3, 5, 7];
+  const cards = idx
+    .map((i) => JOURNEY_STEPS[i])
+    .filter(Boolean)
+    .map(
+      (s, n) =>
+        `<article class="nh-vp1900-compact-card fade-up"><img src="${s.img}" alt="${esc(s.title)}" loading="lazy"/><div><strong>Paso ${n + 1} · ${esc(s.title)}</strong><p style="margin:.5rem 0 0;font-size:.8125rem;color:var(--gris-texto)">${esc(s.nh)}</p></div></article>`
+    )
+    .join('');
+  return `<section class="lc-section" style="background:var(--blanco)" id="pasos-ilustrados">
+  <div class="container fade-up">
+    <div class="text-center" style="max-width:720px;margin:0 auto 1.5rem">
+      <span class="overline">Resumen visual</span>
+      <h2 class="section-title">4 momentos clave para vender en ${city}</h2>
+      <p style="color:var(--gris-texto);line-height:1.7">Versión condensada del proceso completo (25 acciones en el checklist). Mismo plan digital 1.999&nbsp;€ + IVA.</p>
+    </div>
+    <div class="nh-vp1900-compact">${cards}</div>
+  </div>
+</section>`;
+}
+
+function teamSplitBlock(c) {
+  const city = esc(c.cityLabel || c.cityName);
+  return `<section class="lc-section" style="background:var(--crema)">
+  <div class="container fade-up">
+    <div class="text-center" style="max-width:720px;margin:0 auto 1.5rem">
+      <span class="overline">División del trabajo</span>
+      <h2 class="section-title">Quién hace qué en ${city} (plan ~1.900 €)</h2>
+    </div>
+    <div class="nh-vp1900-split">
+      <div class="nh-vp1900-split-col">
+        <img src="imagenes/danielhernandez.jpg" alt="Gestor NuevaHabitat" loading="lazy"/>
+        <h3 style="margin:0 0 .75rem">NuevaHabitat</h3>
+        <ul class="lc-nh-checklist" style="font-size:.875rem">
+          <li>Valoración, anuncio, Idealista y pisos.com</li>
+          <li>Filtro hipoteca/liquidez y agenda de visitas</li>
+          <li>Negociación, arras, FIRMACERT y notaría</li>
+          <li>Panel vendedor actualizado 24/7</li>
+        </ul>
+      </div>
+      <div class="nh-vp1900-split-col">
+        <img src="imagenes/interior4.jpg" alt="Propietario en visita" loading="lazy"/>
+        <h3 style="margin:0 0 .75rem">Tú en ${city}</h3>
+        <ul class="lc-nh-checklist" style="font-size:.875rem">
+          <li>Recibir compradores cualificados en casa</li>
+          <li>Marcar franjas en el panel (tardes/fines de semana)</li>
+          <li>Facilitar documentación y firmar arras/escritura</li>
+          <li>Pagar 50 % al contratar y 50 % al cerrar venta</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>`;
+}
+
+function zonesSpotlightBlock(c) {
+  const city = esc(c.cityLabel || c.cityName);
+  const zones = (c.zones || []).slice(0, 12);
+  const tags = zones.map((z) => `<span class="nh-vp1900-zone-tag">${esc(z)}</span>`).join('');
+  return `<section class="lc-section" style="background:var(--negro);color:#fff">
+  <div class="container text-center fade-up">
+    <span class="overline" style="color:var(--oro)">Cobertura ${city}</span>
+    <h2 class="section-title light">¿Vendes en alguna de estas zonas?</h2>
+    <p style="color:rgba(255,255,255,.75);max-width:640px;margin:.75rem auto;line-height:1.7">${esc(c.areaServed || city)} — mismo honorario fijo donde puedas atender visitas.</p>
+    <div class="nh-vp1900-zones">${tags}</div>
+    <p style="margin-top:1.25rem;font-size:.875rem;color:rgba(255,255,255,.6)">Mercado: <strong style="color:#fff">${esc(c.priceM2 || '')}</strong> · plazos ${esc(c.avgDays || '')}</p>
+  </div>
+</section>`;
+}
+
+function textOnlyStepsBlock(c) {
+  const city = esc(c.cityLabel || c.cityName);
+  const items = JOURNEY_STEPS.map((s) => `<li><strong>${esc(s.title)}</strong> — ${esc(s.nh)}</li>`).join('');
+  return `<section class="lc-section" style="background:var(--blanco)" id="pasos-ilustrados">
+  <div class="container fade-up">
+    <div class="text-center" style="max-width:640px;margin:0 auto 1.25rem">
+      <span class="overline">Proceso en lista</span>
+      <h2 class="section-title">8 fases del servicio en ${city} (sin sorpresas)</h2>
+    </div>
+    <ol class="nh-vp1900-text-steps">${items}</ol>
+    <p class="text-center" style="margin-top:1.5rem;font-size:.875rem"><a href="#todas-las-acciones">Ver las ${ALL_ACTIONS.length} acciones detalladas</a></p>
+  </div>
+</section>`;
+}
+
 function angleIntroBlock(c) {
   const city = esc(c.cityLabel || c.cityName);
+  if (c.angleIntroHtml) return c.angleIntroHtml;
   return `<section class="lc-section" style="background:var(--negro);color:#fff">
   <div class="container fade-up" style="max-width:820px;margin:0 auto;text-align:center">
     <span class="overline" style="color:var(--oro)">Enfoque distinto</span>
@@ -215,6 +385,26 @@ function angleIntroBlock(c) {
     <p style="color:rgba(255,255,255,.78);line-height:1.8;font-size:1.02rem">Aquí el eje es <strong>transparencia de acciones</strong>: qué hace la agencia, qué haces tú y en qué foto del proceso estás. El precio que ves en Google (~1.900–1.990&nbsp;€) se traduce en <strong>1.999 € + IVA</strong> en contrato — sin porcentaje sobre el precio de venta${city !== 'España' ? ` en ${city}` : ''}.</p>
   </div>
 </section>`;
+}
+
+function composeVariantBody(c) {
+  const v = c.layoutVariant || 'guia';
+  const journeyFull = () => illustratedJourneyBlock(c, c.journeyOpts);
+  const actions = () => allActionsBlock(c);
+  switch (v) {
+    case 'checklist-first':
+      return `${actions()}${mythsRealityBlock(c)}${journeyFull()}`;
+    case 'pilares':
+      return `${pillarsPhotoBlock(c)}${journeyFull()}${actions()}`;
+    case 'compact4':
+      return `${compactJourneyBlock(c)}${actions()}`;
+    case 'split-equipo':
+      return `${teamSplitBlock(c)}${journeyFull()}${actions()}`;
+    case 'zonas-texto':
+      return `${zonesSpotlightBlock(c)}${textOnlyStepsBlock(c)}${actions()}`;
+    default:
+      return `${angleIntroBlock(c)}${journeyFull()}${actions()}`;
+  }
 }
 
 module.exports = {
@@ -226,4 +416,11 @@ module.exports = {
   allActionsBlock,
   citySwitcherBlock,
   angleIntroBlock,
+  composeVariantBody,
+  mythsRealityBlock,
+  pillarsPhotoBlock,
+  compactJourneyBlock,
+  teamSplitBlock,
+  zonesSpotlightBlock,
+  textOnlyStepsBlock,
 };

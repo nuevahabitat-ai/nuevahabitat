@@ -149,7 +149,7 @@ ${ventaDigitalIllustratedFlow({ cityName: 'España', slug: 'venta-digital', pric
       <li>Negociación, arras y coordinación hasta notaría.</li>
     </ul>
     <p style="margin-top:1rem"><a href="/venta-clasica-barcelona">Venta clásica</a> (visitas NH) · <a href="/venta-comercial-barcelona">Digital + comercial</a> (solo Barcelona)</p>
-    <p style="margin-top:.75rem;font-size:.9rem;color:var(--gris-texto)">¿Buscas <strong>vender por ~1.900 €</strong>? Guías con pasos ilustrados: <a href="/vende-tu-piso-por-1900-euros">España</a> · <a href="/vende-tu-piso-por-1900-euros-barcelona">Barcelona</a> · <a href="/vende-tu-piso-por-1900-euros-madrid">Madrid</a> · <a href="/vende-tu-piso-por-1900-euros-valencia">Valencia</a> (mismo plan 1.999&nbsp;€ + IVA).</p>
+    <p style="margin-top:.75rem;font-size:.9rem;color:var(--gris-texto)">Guías SEO «~1.900 €» (diseño distinto por ciudad): <a href="/vende-tu-piso-por-1900-euros">España</a> · <a href="/vende-tu-piso-por-1900-euros-barcelona">BCN</a> · <a href="/vende-tu-piso-por-1900-euros-madrid">MAD</a> · <a href="/vende-tu-piso-por-1900-euros-valencia">VLC</a> · <a href="/vende-tu-piso-por-1900-euros-sevilla">Sevilla</a> · <a href="/vende-tu-piso-por-1900-euros-malaga">Málaga</a> · <a href="/vende-tu-piso-por-1900-euros-cadiz">Cádiz</a> · <a href="/vende-tu-piso-por-1900-euros-bilbao">Bilbao</a> · <a href="/vende-tu-piso-por-1900-euros-zaragoza">Zaragoza</a>.</p>
   </div>
 </section>
 
@@ -194,6 +194,11 @@ function main() {
     fs.writeFileSync(out1900, renderVendePiso1900Page(L, VENDE_PISO_1900_LANDINGS), 'utf8');
     console.log('Built', L.slug + '.html (línea ~1.900 €)');
   });
+  try {
+    require('./sync-seo-static-index').syncSeoStaticIndex();
+  } catch (e) {
+    console.warn('sync-seo-static-index:', e.message);
+  }
 }
 
 if (require.main === module) main();

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T19:13:47.381Z",
+  "updated": "2026-11-15T12:31:41.811Z",
   "landings": [
     {
       "slug": "vender-piso-ciutat-vella-barcelona",
@@ -2160,6 +2160,36 @@
       "cluster": "ventaDigital",
       "indexable": true,
       "priority": 0.94
+    },
+    {
+      "slug": "vende-tu-piso-por-1900-euros-sevilla",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "vende-tu-piso-por-1900-euros-malaga",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "vende-tu-piso-por-1900-euros-cadiz",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "vende-tu-piso-por-1900-euros-bilbao",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
+    },
+    {
+      "slug": "vende-tu-piso-por-1900-euros-zaragoza",
+      "cluster": "ventaDigital",
+      "indexable": true,
+      "priority": 0.93
     },
     {
       "slug": "venta-digital-barcelona",

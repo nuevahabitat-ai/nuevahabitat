@@ -1,4 +1,4 @@
-/** Generado por scripts/build-landings.js — no editar a mano */
+/** Generado por scripts/build-landings.js / sync-seo-static-index.js */
 window.NH_LANDING_ORDER = [
   "vender-piso-ciutat-vella-barcelona",
   "vender-eixample",
@@ -360,6 +360,11 @@ window.NH_LANDING_ORDER = [
   "vende-tu-piso-por-1900-euros-barcelona",
   "vende-tu-piso-por-1900-euros-madrid",
   "vende-tu-piso-por-1900-euros-valencia",
+  "vende-tu-piso-por-1900-euros-sevilla",
+  "vende-tu-piso-por-1900-euros-malaga",
+  "vende-tu-piso-por-1900-euros-cadiz",
+  "vende-tu-piso-por-1900-euros-bilbao",
+  "vende-tu-piso-por-1900-euros-zaragoza",
   "venta-digital-barcelona",
   "venta-digital-madrid",
   "venta-digital-valencia",
@@ -6135,6 +6140,51 @@ window.NH_LANDINGS = {
     "priority": 0.86,
     "indexable": true,
     "cardTeaser": "599 € IVA incluido · pago único · captación y cierre en Sagrada Família."
+  },
+  "vende-tu-piso-por-1900-euros-sevilla": {
+    "slug": "vende-tu-piso-por-1900-euros-sevilla",
+    "cluster": "ventaDigital",
+    "footerLabel": "Vender Sevilla · ~1.900 €",
+    "keyword_principal": "vender piso sevilla sin comision 1900 euros",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Sevilla: checklist primero + mitos vs realidad · plan 1.999 € + IVA."
+  },
+  "vende-tu-piso-por-1900-euros-malaga": {
+    "slug": "vende-tu-piso-por-1900-euros-malaga",
+    "cluster": "ventaDigital",
+    "footerLabel": "Inmobiliaria barata · Málaga",
+    "keyword_principal": "inmobiliaria barata malaga vender piso 1900",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Málaga: 4 pilares en foto + pasos ilustrados."
+  },
+  "vende-tu-piso-por-1900-euros-cadiz": {
+    "slug": "vende-tu-piso-por-1900-euros-cadiz",
+    "cluster": "ventaDigital",
+    "footerLabel": "Vende Cádiz · ~1.900 €",
+    "keyword_principal": "vender casa cadiz honorarios cerrados 1900 euros",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Cádiz: 4 pasos visuales compactos + checklist."
+  },
+  "vende-tu-piso-por-1900-euros-bilbao": {
+    "slug": "vende-tu-piso-por-1900-euros-bilbao",
+    "cluster": "ventaDigital",
+    "footerLabel": "Precio fijo · Bilbao",
+    "keyword_principal": "agencia precio fijo bilbao vender piso 1900",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Bilbao: NH vs propietario con fotos + proceso."
+  },
+  "vende-tu-piso-por-1900-euros-zaragoza": {
+    "slug": "vende-tu-piso-por-1900-euros-zaragoza",
+    "cluster": "ventaDigital",
+    "footerLabel": "Zaragoza · menos 2.000 € gestión",
+    "keyword_principal": "vender piso zaragoza menos 2000 euros gestion",
+    "priority": 0.93,
+    "indexable": true,
+    "cardTeaser": "Zaragoza: zonas destacadas + fases en lista."
   }
 };
 Object.keys(window.NH_LANDINGS).forEach(function(slug){

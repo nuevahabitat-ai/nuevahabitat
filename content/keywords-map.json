@@ -2312,15 +2312,40 @@
     "cluster": "ventaDigital",
     "canonical": "/vende-tu-piso-por-1900-euros-barcelona"
   },
+  "vende-tu-piso-por-1900-euros-bilbao": {
+    "keyword": "agencia precio fijo bilbao vender piso 1900",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros-bilbao"
+  },
+  "vende-tu-piso-por-1900-euros-cadiz": {
+    "keyword": "vender casa cadiz honorarios cerrados 1900 euros",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros-cadiz"
+  },
   "vende-tu-piso-por-1900-euros-madrid": {
     "keyword": "vende tu piso por 1900 euros madrid",
     "cluster": "ventaDigital",
     "canonical": "/vende-tu-piso-por-1900-euros-madrid"
   },
+  "vende-tu-piso-por-1900-euros-malaga": {
+    "keyword": "inmobiliaria barata malaga vender piso 1900",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros-malaga"
+  },
+  "vende-tu-piso-por-1900-euros-sevilla": {
+    "keyword": "vender piso sevilla sin comision 1900 euros",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros-sevilla"
+  },
   "vende-tu-piso-por-1900-euros-valencia": {
     "keyword": "vende tu piso por 1900 euros valencia",
     "cluster": "ventaDigital",
     "canonical": "/vende-tu-piso-por-1900-euros-valencia"
+  },
+  "vende-tu-piso-por-1900-euros-zaragoza": {
+    "keyword": "vender piso zaragoza menos 2000 euros gestion",
+    "cluster": "ventaDigital",
+    "canonical": "/vende-tu-piso-por-1900-euros-zaragoza"
   },
   "vender-como-particular-badalona-barcelona": {
     "keyword": "vender piso particular badalona",

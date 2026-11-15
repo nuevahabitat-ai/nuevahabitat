@@ -22,7 +22,7 @@ const {
   illustratedJourneyBlock,
   allActionsBlock,
   citySwitcherBlock,
-  angleIntroBlock,
+  composeVariantBody,
 } = require('./vende-piso-1900-blocks');
 
 function panelContext(c) {
@@ -56,6 +56,11 @@ function renderVendePiso1900Page(c, allLandings) {
     c.heroH1 ||
     'Vende tu piso por 1.900 euros: guía ilustrada del plan digital (1.999 € + IVA)';
   const landings = allLandings || [c];
+  const heroRowClass = `nh-vp1900-hero nh-svc-hero-inner fade-up${c.heroClass ? ` ${c.heroClass}` : ''}`;
+  const heroSavings = c.hideHeroSavings ? '' : savingsStrip(c);
+  const ctaPrimary = esc(c.heroCtaPrimary || '#pasos-ilustrados');
+  const ctaPrimaryLabel = esc(c.heroCtaPrimaryLabel || 'Ver pasos ilustrados');
+  const variantBody = composeVariantBody(c);
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -140,7 +145,7 @@ function renderVendePiso1900Page(c, allLandings) {
 <section class="nh-svc-hero" style="min-height:auto;padding-bottom:0">
   <div class="nh-svc-hero-bg" style="background-image:url('${heroImg}')"></div>
   <div class="nh-svc-hero-overlay"></div>
-  <div class="container nh-vp1900-hero nh-svc-hero-inner fade-up">
+  <div class="container ${heroRowClass}">
     <div>
       <p class="nh-breadcrumb" aria-label="Ruta" style="font-size:.75rem;color:rgba(255,255,255,.55);margin:0 0 .75rem"><a href="/" style="color:inherit">Inicio</a> · <a href="/venta-digital" style="color:inherit">Venta digital</a> · <span>${esc(c.breadcrumbLabel || c.cityName)}</span></p>
       <div class="hero-badge">${esc(c.heroBadge || '')}</div>
@@ -148,20 +153,18 @@ function renderVendePiso1900Page(c, allLandings) {
       <div class="nh-svc-price-chip"><strong>1.999 € + IVA</strong> · <span>50&nbsp;% contrato + 50&nbsp;% escritura · mismo servicio digital</span></div>
       <p class="lc-nh-lead" style="margin-top:1rem">${c.marketLead || ''}</p>
       <div class="nh-svc-hero-actions" style="margin-top:1.25rem">
-        <a href="#pasos-ilustrados" class="btn btn-outline-light">Ver pasos ilustrados</a>
+        <a href="${ctaPrimary}" class="btn btn-outline-light">${ctaPrimaryLabel}</a>
         <a href="#todas-las-acciones" class="btn btn-outline-light">Lista de ${ALL_ACTIONS.length} acciones</a>
         <a href="/registro?tipo=vender&amp;plan=digital${registroCiudadQS}" class="btn btn-gold">Contratar</a>
       </div>
-      ${savingsStrip(c)}
+      ${heroSavings}
     </div>
     <div class="nh-vp1900-hero-media" aria-hidden="true"><img src="${heroImg}" alt="" loading="eager" width="800" height="600"/></div>
   </div>
 </section>
 
 ${citySwitchSection}
-${angleIntroBlock(c)}
-${illustratedJourneyBlock(c)}
-${allActionsBlock(c)}
+${variantBody}
 ${portalsPublicationBlock(cityPub)}
 
 <section class="lc-section" style="background:var(--crema)">

@@ -49,6 +49,11 @@ const VENTA_DIGITAL_GSC = [
   `${SITE}/vende-tu-piso-por-1900-euros-barcelona`,
   `${SITE}/vende-tu-piso-por-1900-euros-madrid`,
   `${SITE}/vende-tu-piso-por-1900-euros-valencia`,
+  `${SITE}/vende-tu-piso-por-1900-euros-sevilla`,
+  `${SITE}/vende-tu-piso-por-1900-euros-malaga`,
+  `${SITE}/vende-tu-piso-por-1900-euros-cadiz`,
+  `${SITE}/vende-tu-piso-por-1900-euros-bilbao`,
+  `${SITE}/vende-tu-piso-por-1900-euros-zaragoza`,
   ...VD_CIUDADES.map((c) => `${SITE}/${c.slug}`),
 ];
 

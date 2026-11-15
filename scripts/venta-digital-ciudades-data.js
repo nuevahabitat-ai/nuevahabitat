@@ -166,7 +166,8 @@ const CIUDADES = [
 <h2>Triana, Nervión, Los Remedios</h2>
 <p>Barrios con personalidad distinta: en Triana el comprador valora estado y terraza; en Nervión, parking y conexión. Publicamos con reportaje profesional y filtramos visitas para no saturar tu agenda.</p>
 <h2>Proceso transparente</h2>
-<p>50&nbsp;% al contratar activa publicación y gestión de leads. 50&nbsp;% en escritura solo si vendes. Sin venta, no hay segundo cobro de agencia más allá del servicio ya activado tras el primer pago (condiciones en contrato).</p>`,
+<p>50&nbsp;% al contratar activa publicación y gestión de leads. 50&nbsp;% en escritura solo si vendes. Sin venta, no hay segundo cobro de agencia más allá del servicio ya activado tras el primer pago (condiciones en contrato).</p>
+<p>Guía alternativa: <a href="/vende-tu-piso-por-1900-euros-sevilla">vender en Sevilla sin comisión del 6 %</a> (checklist + mitos · 1.999&nbsp;€ + IVA).</p>`,
   },
   {
     slug: 'venta-digital-malaga',
@@ -205,7 +206,8 @@ const CIUDADES = [
 <h2>Teatinos, centro y litoral</h2>
 <p>No mezclamos comparables de chalet en Rincón con piso en Carretera de Cádiz: el pricing y el reportaje cambian. El panel centraliza documentación para arras sin sorpresas.</p>
 <h2>Teletrabajo y plazos</h2>
-<p>Muchos vendedores siguen viviendo en el piso: marcas franjas concretas en calendario y evitas sábados perdidos con curiosos sin financiación.</p>`,
+<p>Muchos vendedores siguen viviendo en el piso: marcas franjas concretas en calendario y evitas sábados perdidos con curiosos sin financiación.</p>
+<p>Guía alternativa: <a href="/vende-tu-piso-por-1900-euros-malaga">inmobiliaria barata Málaga (~1.900 €)</a> con 4 pilares en foto.</p>`,
   },
   {
     slug: 'venta-digital-bilbao',
@@ -244,7 +246,8 @@ const CIUDADES = [
 <h2>Indautxu y expansión hacia margen derecha</h2>
 <p>Compradores comparan parking, ITE y derramas. Subimos actas y certificados al panel antes de abrir visitas masivas.</p>
 <h2>Mismo panel que el resto de España</h2>
-<p>Contrato digital, Stripe 50/50 y seguimiento con Daniel o Sebastián desde Barcelona — sin depender de cadenas de email sueltas.</p>`,
+<p>Contrato digital, Stripe 50/50 y seguimiento con Daniel o Sebastián desde Barcelona — sin depender de cadenas de email sueltas.</p>
+<p>Guía alternativa: <a href="/vende-tu-piso-por-1900-euros-bilbao">agencia precio fijo Bilbao</a> (NH vs propietario ilustrado).</p>`,
   },
   {
     slug: 'venta-digital-zaragoza',
@@ -283,7 +286,8 @@ const CIUDADES = [
 <h2>Valdespartera vs casco antiguo</h2>
 <p>Comprador joven vs familia en ensanche: cambian titular del anuncio y comparables. Valoramos con cierres reales, no solo anuncios activos.</p>
 <h2>Expediente remoto</h2>
-<p>Ideal si trabajas fuera de Zaragoza pero un familiar puede abrir en visitas filtradas: todo lo demás lo ves en panel.</p>`,
+<p>Ideal si trabajas fuera de Zaragoza pero un familiar puede abrir en visitas filtradas: todo lo demás lo ves en panel.</p>
+<p>Guía alternativa: <a href="/vende-tu-piso-por-1900-euros-zaragoza">vender por menos de 2.000 € de gestión</a> (zonas + fases en lista).</p>`,
   },
   {
     slug: 'venta-digital-alicante',
@@ -1071,7 +1075,8 @@ const CIUDADES = [
 <p>La bahía concentra demanda de primera vivienda, segunda residencia y traslados laborales. Buscar <strong>vender piso online Cádiz</strong> suele significar querer honorarios claros frente al 6&nbsp;% + IVA tradicional.</p>
 <p>En <strong>245.000 €</strong>, el plan digital son <strong>1.999 € + IVA</strong> repartidos 50&nbsp;/&nbsp;50.</p>
 <h2>Casco vs ensanche</h2>
-<p>Orientación, alturas y estado de fachada condicionan el ticket; valoramos con comparables de tu calle, no solo medias provinciales.</p>`,
+<p>Orientación, alturas y estado de fachada condicionan el ticket; valoramos con comparables de tu calle, no solo medias provinciales.</p>
+<p>Guía alternativa: <a href="/vende-tu-piso-por-1900-euros-cadiz">vender en Cádiz con honorarios cerrados</a> (4 pasos visuales).</p>`,
   },
   {
     slug: 'venta-digital-huelva',
