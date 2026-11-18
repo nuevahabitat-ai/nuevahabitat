@@ -19,8 +19,8 @@ for (const name of ['.env.local', '.env']) {
   }
 }
 
-import { SB_URL, svcHeaders } from '../lib/server/supabase-server.js';
-import { upsertIdealistaPrecioCache } from '../lib/server/idealista-precio-cache.js';
+const { SB_URL, svcHeaders } = await import('../lib/server/supabase-server.js');
+const { upsertIdealistaPrecioCache } = await import('../lib/server/idealista-precio-cache.js');
 
 function parsePrecio(html) {
   const m =
