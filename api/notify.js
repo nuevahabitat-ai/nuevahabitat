@@ -42,7 +42,7 @@ import { getUserFromJwt } from '../lib/server/supabase-server.js';
 import { purgeClientAccount } from '../lib/server/account-delete.js';
 import { getPropietarioAlquilerById } from '../lib/server/propietarios-alquiler-admin-api.js';
 import {
-  listVisitantesInmuebleServer,
+  listRebajaRecipients,
   fetchRebajaAvisosSent,
   insertRebajaAviso,
 } from '../lib/server/inmueble-rebaja-api.js';
@@ -54,7 +54,6 @@ import {
 } from '../lib/server/alfredo-ficha-enrich.js';
 import { inferAllCompradoresCriterios, inferCompradorCriterios } from '../lib/server/comprador-infer-criterios.js';
 import { runAdminAgentChat } from '../lib/server/admin-agent.js';
-import { getIdealistaRebajaContacts } from '../lib/server/rebaja-idealista-contacts.js';
 import { deleteVendedorPermanent } from '../lib/server/vendedores-delete-api.js';
 
 function normLeadEmail(e) {
@@ -1040,42 +1039,24 @@ async function handleInmuebleRebajaVisitantes(req, res, body) {
       include_visitas: body?.include_visitas !== false && body?.includeVisitas !== false,
       include_interes_idealista: body?.include_interes_idealista !== false && body?.includeInteresIdealista !== false,
       include_interes_nh_ref: body?.include_interes_nh_ref !== false && body?.includeInteresNhRef !== false,
+      include_compatibles: body?.include_compatibles !== false && body?.includeCompatibles !== false,
     };
     const idealistaId = matchOpts.idealista_id;
-    if (idealistaId) {
+    if (idealistaId || matchOpts.inmueble_ref) {
       try {
         await backfillInteresFromCompradorNotas({
-          idealista_id: idealistaId,
+          idealista_id: idealistaId || undefined,
           inmueble_ref: matchOpts.inmueble_ref,
         });
       } catch (e) {
         console.warn('rebaja backfill', e.message);
       }
     }
-    const idealistaRows = await getIdealistaRebajaContacts(idealistaId || matchOpts.idealista_id, inmuebleId);
-    let visitantes = [...(idealistaRows.visitantes || [])];
-    let meta = { ...(idealistaRows.meta || {}), fuente: 'idealista_id' };
-    if (matchOpts.include_visitas !== false) {
-      const nh = await listVisitantesInmuebleServer(inmuebleId, {
-        ...matchOpts,
-        include_interes_idealista: false,
-        include_interes_nh_ref: false,
-      });
-      const seen = new Set(
-        visitantes.map((v) => v.comprador_id || v.telefono || v.email)
-      );
-      for (const v of nh.visitantes || []) {
-        const k = v.comprador_id || v.telefono || v.email;
-        if (k && seen.has(k)) continue;
-        seen.add(k);
-        visitantes.push(v);
-      }
-      meta.visitas = nh.meta?.visitas || 0;
-    }
+    const { visitantes, meta } = await listRebajaRecipients(inmuebleId, matchOpts);
     if (!meta.serviceRole) {
       meta.warn =
         (meta.warn ? meta.warn + ' · ' : '') +
-        'Falta SUPABASE_SERVICE_ROLE_KEY en Vercel — usa «Sincronizar» o comprueba compradores en notas.';
+        'Falta SUPABASE_SERVICE_ROLE_KEY en Vercel — revisa variables del proyecto.';
     }
     let sent = { email: [], whatsapp: [] };
     if (precioNuevo != null && !Number.isNaN(precioNuevo)) {

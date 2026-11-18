@@ -1,5 +1,5 @@
 /**
- * Rebaja: lista automática = compradores con este idealista_id en notas / interés.
+ * Rebaja: lista vía API unificada (visitas NH + Idealista + ref. NH + compatibles).
  */
 (function () {
   function nhNormalizeIdealistaId(val) {
@@ -8,16 +8,16 @@
     return d ? d[0] : null;
   }
 
+  function nhTel9(telefono) {
+    const d = String(telefono || '').replace(/\D/g, '');
+    return d.length >= 9 ? d.slice(-9) : d;
+  }
+
   function nhGetCompData() {
     try {
       if (typeof _compData !== 'undefined' && _compData?.length) return _compData;
     } catch (_) {}
     return window._compData || [];
-  }
-
-  function nhTel9(telefono) {
-    const d = String(telefono || '').replace(/\D/g, '');
-    return d.length >= 9 ? d.slice(-9) : d;
   }
 
   function nhCompradorForRebajaVisitor(v) {
@@ -55,78 +55,15 @@
 
   window.nhEnrichRebajaVisitor = enrichRebajaVisitor;
 
-  function resolveIdealistaId(inm) {
-    const fromInput = document.getElementById('rebaja-match-idealista')?.value;
-    return (
-      nhNormalizeIdealistaId(fromInput) ||
-      nhNormalizeIdealistaId(inm?.idealista_id) ||
-      null
-    );
-  }
-
-  /** Busca en fichas del panel (notas / historial Idealista import) */
-  function buscarCompradoresPorIdealistaEnFicha(idealistaId) {
-    const id = nhNormalizeIdealistaId(idealistaId);
-    if (!id) return [];
-    const re = new RegExp('Idealista\\s*' + id + '\\b|\\b' + id + '\\b', 'i');
-    return nhGetCompData()
-      .filter((c) => {
-        const notas = String(c.notas || '');
-        if (!notas.includes(id) && !re.test(notas)) return false;
-        return (c.telefono || '').trim() || (c.email || '').trim();
-      })
-      .map((c) => ({
-        visita_id: 'ficha:' + c.id + ':' + id,
-        nombre: c.nombre || '',
-        email: c.email || '',
-        telefono: c.telefono || '',
-        estado: 'realizada',
-        comprador_id: c.id,
-        fuente: 'idealista_notas',
-      }));
-  }
-
-  async function buscarCompradoresPorIdealistaSupabase(idealistaId) {
-    const id = nhNormalizeIdealistaId(idealistaId);
-    if (!id || !window.nhSupabase) return [];
-    const { data, error } = await window.nhSupabase
-      .from('compradores')
-      .select('id,nombre,email,telefono,notas')
-      .ilike('notas', '%' + id + '%')
-      .limit(500);
-    if (error) {
-      console.warn('rebaja supabase compradores', error.message);
-      return [];
-    }
-    return (data || [])
-      .filter((c) => String(c.notas || '').includes(id) && (c.telefono || c.email))
-      .map((c) => ({
-        visita_id: 'sb:' + c.id + ':' + id,
-        nombre: c.nombre || '',
-        email: c.email || '',
-        telefono: c.telefono || '',
-        estado: 'realizada',
-        comprador_id: c.id,
-        fuente: 'idealista_notas',
-      }));
-  }
-
   function mergeRebajaKey(v) {
+    if (v.comprador_id) return 'c:' + v.comprador_id;
     const t = nhTel9(v.telefono);
     if (t.length >= 9) return 't:' + t;
     const em = String(v.email || '')
       .trim()
       .toLowerCase();
     if (em) return 'e:' + em;
-    if (v.comprador_id) return 'c:' + v.comprador_id;
     return 'v:' + (v.visita_id || '');
-  }
-
-  function mergeVisitorRows(existing, incoming) {
-    const score = (x) =>
-      (x.comprador_id ? 4 : 0) + (x.fuente === 'idealista_notas' ? 2 : 0) + ((x.nombre || '').trim() ? 1 : 0);
-    const base = score(incoming) >= score(existing) ? { ...existing, ...incoming } : { ...incoming, ...existing };
-    return enrichRebajaVisitor(base);
   }
 
   function mergeList(a, b) {
@@ -135,7 +72,8 @@
       const key = mergeRebajaKey(v);
       if (!key || key === 'v:') continue;
       const prev = map.get(key);
-      map.set(key, prev ? mergeVisitorRows(prev, v) : enrichRebajaVisitor(v));
+      const row = enrichRebajaVisitor(prev ? { ...prev, ...v } : v);
+      map.set(key, row);
     }
     return [...map.values()];
   }
@@ -144,75 +82,79 @@
     return typeof rebajaVisMatchFiltersHtml === 'function' ? rebajaVisMatchFiltersHtml(inm) : '';
   }
 
+  function mergeClientCompatibles(inm, rows, includeCompat) {
+    if (!includeCompat || typeof getMatchesForInmuebleObj !== 'function') return rows;
+    const extra = getMatchesForInmuebleObj(inm).map((c) => ({
+      visita_id: 'client_compat:' + c.id,
+      nombre: c.nombre || '',
+      email: c.email || '',
+      telefono: c.telefono || '',
+      estado: 'realizada',
+      comprador_id: c.id,
+      fuente: 'compatible',
+    }));
+    return mergeList(rows, extra);
+  }
+
   async function nhRefreshRebajaVisitantesImpl() {
     if (!_rebajaVisState) return;
     const body = document.getElementById('rebaja-vis-body');
     const inm = _rebajaVisState.inm;
 
     if (body) {
-      body.innerHTML = pintarFiltros(inm) + '<p class="text-muted" style="margin-top:.75rem">Buscando en compradores…</p>';
+      body.innerHTML = pintarFiltros(inm) + '<p class="text-muted" style="margin-top:.75rem">Cargando audiencia…</p>';
     }
 
     if (typeof loadCompradores === 'function') {
       await loadCompradores(true);
     }
 
-    const idealistaId = resolveIdealistaId(inm);
-    if (!idealistaId) {
+    const idealistaId =
+      nhNormalizeIdealistaId(document.getElementById('rebaja-match-idealista')?.value) ||
+      nhNormalizeIdealistaId(inm?.idealista_id);
+
+    const opts =
+      typeof rebajaVisitantesMatchOpts === 'function'
+        ? rebajaVisitantesMatchOpts()
+        : {
+            idealista_id: idealistaId,
+            inmueble_ref: inm?.ref || null,
+            include_visitas: true,
+            include_interes_idealista: true,
+            include_interes_nh_ref: true,
+            include_compatibles: true,
+          };
+
+    opts.idealista_id = idealistaId || opts.idealista_id;
+    opts.inmueble_ref = document.getElementById('rebaja-match-nh-ref')?.value?.trim() || inm?.ref || opts.inmueble_ref;
+    opts.include_visitas = document.getElementById('rebaja-match-ch-vis')?.checked !== false;
+    opts.include_interes_idealista = document.getElementById('rebaja-match-ch-ideal')?.checked !== false;
+    opts.include_interes_nh_ref = document.getElementById('rebaja-match-ch-nhref')?.checked !== false;
+    opts.include_compatibles = document.getElementById('rebaja-match-ch-compat')?.checked !== false;
+
+    let json = { visitantes: [], meta: {}, alreadySent: { email: [], whatsapp: [] } };
+    try {
+      json = await fetchRebajaVisitantesApi(_rebajaVisState.inm.id, _rebajaVisState.precioNuevo, opts);
+    } catch (e) {
+      console.warn('rebaja API', e);
       if (body) {
         body.innerHTML =
           pintarFiltros(inm) +
-          '<p class="text-muted" style="margin-top:.75rem">Pon la <strong>ref. Idealista</strong> del piso en el campo de arriba y pulsa <strong>Actualizar lista</strong>.</p>';
+          `<p class="text-muted" style="margin-top:.75rem;color:#b91c1c">Error al cargar: ${(e.message || e).toString().replace(/</g, '')}</p>`;
       }
       return;
     }
 
-    const desdeFicha = buscarCompradoresPorIdealistaEnFicha(idealistaId);
-    const desdeSb = await buscarCompradoresPorIdealistaSupabase(idealistaId);
-    let rows = mergeList(desdeFicha, desdeSb);
+    let rows = mergeClientCompatibles(inm, (json.visitantes || []).map(enrichRebajaVisitor), opts.include_compatibles);
 
-    let json = { visitantes: [], meta: {}, alreadySent: { email: [], whatsapp: [] } };
-    try {
-      const opts =
-        typeof rebajaVisitantesMatchOpts === 'function'
-          ? rebajaVisitantesMatchOpts()
-          : { idealista_id: idealistaId };
-      json = await fetchRebajaVisitantesApi(_rebajaVisState.inm.id, _rebajaVisState.precioNuevo, {
-        ...opts,
-        idealista_id: idealistaId,
-        include_interes_idealista: true,
-        include_visitas: document.getElementById('rebaja-match-ch-vis')?.checked === true,
-      });
-      rows = mergeList(
-        rows,
-        (json.visitantes || []).map((v) => ({
-          ...v,
-          comprador_id:
-            typeof matchCompradorIdForVisitor === 'function'
-              ? matchCompradorIdForVisitor(v)
-              : v.comprador_id,
-        }))
-      );
-    } catch (e) {
-      console.warn('rebaja API', e);
+    if (idealistaId && inm?.id) {
+      const pubList = typeof _pubData !== 'undefined' && _pubData ? _pubData : window._pubData || [];
+      const p = pubList.find((x) => x.id === inm.id);
+      if (p) p.idealista_id = idealistaId;
+      if (_rebajaVisState.inm) _rebajaVisState.inm.idealista_id = idealistaId;
     }
-
-    if (!rows.length && window.nhBackfillIdealistaInteres) {
-      await window.nhBackfillIdealistaInteres(idealistaId);
-      rows = mergeList(
-        buscarCompradoresPorIdealistaEnFicha(idealistaId),
-        await buscarCompradoresPorIdealistaSupabase(idealistaId)
-      );
-    }
-
-    _rebajaVisState.meta = {
-      ...(json.meta || {}),
-      idealistaId,
-      enFicha: desdeFicha.length,
-      enSupabase: desdeSb.length,
-      total: rows.length,
-    };
-    _rebajaVisState.visitantes = rows.map(enrichRebajaVisitor);
+    _rebajaVisState.meta = { ...(json.meta || {}), total: rows.length, idealistaId };
+    _rebajaVisState.visitantes = rows;
     _rebajaVisState.alreadySent = {
       email: new Set(json.alreadySent?.email || []),
       whatsapp: new Set(json.alreadySent?.whatsapp || []),
@@ -222,10 +164,12 @@
       if (rows.length && typeof renderRebajaVisitantesList === 'function') {
         body.innerHTML = renderRebajaVisitantesList(_rebajaVisState);
       } else {
+        const m = json.meta || {};
         body.innerHTML =
           pintarFiltros(inm) +
-          `<p class="text-muted" style="margin-top:.75rem">Ningún comprador con <strong>Idealista ${idealistaId}</strong> en notas (revisados ${nhGetCompData().length} en panel).</p>` +
-          `<p class="text-muted" style="font-size:.72rem">Ficha: ${desdeFicha.length} · Supabase: ${desdeSb.length}. ¿Importaste el CSV de ese anuncio?</p>`;
+          `<p class="text-muted" style="margin-top:.75rem">Ningún contacto con los filtros activos.</p>` +
+          `<p class="text-muted" style="font-size:.72rem">Visitas NH: ${m.visitas || 0} · Interés: ${m.interes || 0} · Notas: ${m.notas || 0} · Compatibles: ${m.compatibles || 0}</p>` +
+          `<p class="text-muted" style="font-size:.72rem">Revisa Visitas del inmueble, import Idealista o activa «Compatibles».</p>`;
       }
     }
 
@@ -236,17 +180,10 @@
         (rows.length
           ? '<button type="button" class="adm-btn adm-btn-gold" onclick="sendRebajaVisitantesBatch()">Enviar avisos</button>'
           : '') +
-        '<button type="button" class="adm-btn adm-btn-ghost" onclick="nhSyncIdealistaSinReimportar()">Sincronizar</button>' +
+        '<button type="button" class="adm-btn adm-btn-ghost" onclick="nhSyncIdealistaSinReimportar()">Sincronizar notas</button>' +
+        '<button type="button" class="adm-btn adm-btn-ghost" onclick="nhImportIdealistaSoloEstaRef()">Importar CSV (esta ref.)</button>' +
         '<button type="button" class="adm-btn adm-btn-ghost" onclick="refreshRebajaVisitantesModal()">↻ Actualizar lista</button>';
     }
-  }
-
-  const origOpen = window.openRebajaVisitantesModal;
-  if (typeof origOpen === 'function' && !origOpen.__nhAutoIdealista) {
-    window.openRebajaVisitantesModal = async function () {
-      await origOpen.apply(this, arguments);
-    };
-    window.openRebajaVisitantesModal.__nhAutoIdealista = true;
   }
 
   window.__nhRefreshRebajaVisitantes = nhRefreshRebajaVisitantesImpl;
