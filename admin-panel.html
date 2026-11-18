@@ -1911,6 +1911,7 @@ select.adm-control{
           <button class="adm-subtab" id="part-tab-nuevo" onclick="filterParticulares('nuevo')">Nuevos</button>
           <button class="adm-subtab" id="part-tab-contactado" onclick="filterParticulares('contactado')">Contactados</button>
           <button class="adm-subtab" id="part-tab-captado" onclick="filterParticulares('captado')">Captados</button>
+          <button class="adm-subtab" id="part-tab-descartado" onclick="filterParticulares('descartado')">Descartados <span id="part-tab-descartado-n" class="adm-tab-badge" style="display:none"></span></button>
         </div>
 
         <div id="vend-seg-wrap" style="display:none;margin-bottom:1rem" class="adm-card">
@@ -1959,6 +1960,31 @@ select.adm-control{
             <label for="pf-zona">Zona</label>
             <input type="text" id="pf-zona" list="pf-zona-list" placeholder="Barrio, municipio…"/>
             <datalist id="pf-zona-list"></datalist>
+          </div>
+          <div class="adm-field" style="min-width:130px">
+            <label for="pf-fuente">Fuente</label>
+            <select id="pf-fuente">
+              <option value="">Todas</option>
+              <option value="kelify">Kelify</option>
+              <option value="idealista">Idealista</option>
+              <option value="fotocasa">Fotocasa</option>
+              <option value="manual">Manual</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="adm-field" style="min-width:100px">
+            <label for="pf-m2-min">m² mín.</label>
+            <input type="number" id="pf-m2-min" min="0" step="5" placeholder="60"/>
+          </div>
+          <div class="adm-field" style="min-width:168px">
+            <label for="pf-orden">Orden</label>
+            <select id="pf-orden">
+              <option value="reciente">Más recientes</option>
+              <option value="antiguo">Más antiguos</option>
+              <option value="contacto_reciente">Último contacto</option>
+              <option value="precio_desc">Precio ↓</option>
+              <option value="precio_asc">Precio ↑</option>
+            </select>
           </div>
           <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="clearPartFilters()">Limpiar filtros</button>
           <span class="adm-filter-count" id="part-filter-count"></span>
@@ -6634,7 +6660,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('change', renderPublicationsDebounced);
   });
 
-  ['pf-telefono','pf-precio-min','pf-precio-max','pf-hab','pf-ascensor','pf-zona'].forEach(id => {
+  ['pf-telefono','pf-precio-min','pf-precio-max','pf-hab','pf-ascensor','pf-zona','pf-fuente','pf-m2-min','pf-orden'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
     el.addEventListener('input', renderParticularesDebounced);
@@ -9350,10 +9376,22 @@ function rebajaContactKey(v){
 
 function matchCompradorIdForVisitor(v){
   if(v.comprador_id) return v.comprador_id;
+  if(typeof nhEnrichRebajaVisitor === 'function'){
+    const e = nhEnrichRebajaVisitor(v);
+    if(e.comprador_id) return e.comprador_id;
+  }
   const em = (v.email || '').trim().toLowerCase();
-  if(!em) return null;
-  const c = (_compData || []).find(x => (x.email || '').trim().toLowerCase() === em);
-  return c?.id || null;
+  if(em){
+    const c = (_compData || []).find(x => (x.email || '').trim().toLowerCase() === em);
+    if(c?.id) return c.id;
+  }
+  const digits = String(v.telefono || '').replace(/\D/g,'');
+  const tel9 = digits.length >= 9 ? digits.slice(-9) : digits;
+  if(tel9){
+    const c = (_compData || []).find(x => String(x.telefono || '').replace(/\D/g,'').slice(-9) === tel9);
+    return c?.id || null;
+  }
+  return null;
 }
 
 function buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo){
@@ -9419,6 +9457,7 @@ function rebajaVisitantesMatchOpts(){
     include_visitas: document.getElementById('rebaja-match-ch-vis')?.checked !== false,
     include_interes_idealista: document.getElementById('rebaja-match-ch-ideal')?.checked !== false,
     include_interes_nh_ref: document.getElementById('rebaja-match-ch-nhref')?.checked !== false,
+    include_compatibles: document.getElementById('rebaja-match-ch-compat')?.checked !== false,
   };
 }
 async function fetchRebajaVisitantesApi(inmuebleId, precioNuevo, matchOpts){
@@ -9441,9 +9480,11 @@ function rebajaVisMatchFiltersHtml(inm){
   const cv = document.getElementById('rebaja-match-ch-vis');
   const ci = document.getElementById('rebaja-match-ch-ideal');
   const cn = document.getElementById('rebaja-match-ch-nhref');
-  const chVis = cv ? cv.checked : false;
+  const chCompat = document.getElementById('rebaja-match-ch-compat');
+  const chVis = cv ? cv.checked : true;
   const chIdeal = ci ? ci.checked : true;
   const chNh = cn ? cn.checked : true;
+  const chCmp = chCompat ? chCompat.checked : true;
   return `
     <div class="adm-form-grid" style="margin-bottom:.85rem;grid-template-columns:1fr 1fr">
       <div class="adm-field"><label>Ref. NH</label><input type="text" id="rebaja-match-nh-ref" class="adm-control" value="${nhRef}" readonly/></div>
@@ -9453,6 +9494,7 @@ function rebajaVisMatchFiltersHtml(inm){
       <label><input type="checkbox" id="rebaja-match-ch-vis" ${chVis?'checked':''}/> Visitas NH</label>
       <label><input type="checkbox" id="rebaja-match-ch-ideal" ${chIdeal?'checked':''}/> Contactos Idealista</label>
       <label><input type="checkbox" id="rebaja-match-ch-nhref" ${chNh?'checked':''}/> Por ref. NH</label>
+      <label><input type="checkbox" id="rebaja-match-ch-compat" ${chCmp?'checked':''}/> Compatibles (precio/zona)</label>
       <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="refreshRebajaVisitantesModal()">↻ Actualizar lista</button>
     </div>`;
 }
@@ -9464,7 +9506,7 @@ function renderRebajaVisitantesList(state){
   const waSent = new Set(alreadySent?.whatsapp || []);
   if(!visitantes.length){
     const meta = state.meta;
-    const hint = meta ? `Visitas NH: ${meta.visitas||0} · Idealista (tabla): ${meta.interes||0} · notas import: ${meta.notas||0}${meta.warn ? ' · '+meta.warn : ''}` : '';
+    const hint = meta ? `Visitas NH: ${meta.visitas||0} · Interés: ${meta.interes||0} · Notas: ${meta.notas||0} · Compatibles: ${meta.compatibles||0}${meta.warn ? ' · '+meta.warn : ''}` : '';
     const idealRef = (document.getElementById('rebaja-match-idealista')?.value || '').trim() || inm?.idealista_id || '—';
     return filters + `<p class="text-muted"><strong>Sin contactos Idealista</strong> para este anuncio (ref. en el campo). Importa el CSV de Idealista con el botón del pie del modal (ref. <strong>${idealRef}</strong>). Importa de nuevo el Excel Idealista o revisa migración 066.</p>${hint ? '<p class="text-muted" style="font-size:.72rem;margin-top:.5rem">'+hint+'</p>' : ''}`;
   }
@@ -9475,7 +9517,15 @@ function renderRebajaVisitantesList(state){
     const emDone = emailSent.has(key);
     const waDone = waSent.has(key);
     const sub = [v.email, v.telefono].filter(Boolean).join(' · ') || 'Sin contacto';
-    const fuente = v.fuente === 'idealista_import' ? ' · Idealista' : v.fuente === 'idealista_notas' ? ' · Idealista (notas)' : '';
+    const fuenteLbl = {
+      visita_nh: ' · Visita NH',
+      idealista_import: ' · Idealista',
+      idealista_notas: ' · Idealista (notas)',
+      nh_notas: ' · NH (notas)',
+      nh_idealista_notas: ' · NH + Idealista',
+      compatible: ' · Compatible (precio/zona)',
+    };
+    const fuente = fuenteLbl[v.fuente] || (v.fuente ? ' · ' + v.fuente : '');
     return `<div class="comp-match-row" style="align-items:flex-start">
       <label style="display:flex;gap:.6rem;flex:1;cursor:pointer">
         <input type="checkbox" class="rebaja-vis-cb" data-key="${key.replace(/"/g,'')}" ${(emOk || waOk) ? 'checked' : ''} ${(!emOk && !waOk) ? 'disabled' : ''}/>
@@ -9516,7 +9566,7 @@ async function openRebajaVisitantesModal(inmuebleId, precioAnterior, precioNuevo
   }
   _rebajaVisState = { inm, precioAnterior: prev, precioNuevo: nuevo, visitantes: [], alreadySent: { email: new Set(), whatsapp: new Set() } };
   document.getElementById('rebaja-vis-kicker').textContent = inm.ref || 'Inmueble';
-  document.getElementById('rebaja-vis-title').textContent = 'Avisar rebaja — contactos Idealista';
+  document.getElementById('rebaja-vis-title').textContent = 'Avisar rebaja — visitas, Idealista y compatibles';
   document.getElementById('rebaja-vis-sub').textContent = [
     inm.titulo,
     `${prev.toLocaleString('es-ES')} → ${nuevo.toLocaleString('es-ES')} €`,
@@ -9988,30 +10038,57 @@ function updateCompAlarmUI(){
   }
 }
 
+function sortParticularesList(list, orden){
+  const copy = [...list];
+  const ts = (p) => new Date(p.created_at || 0).getTime();
+  const tc = (p) => new Date(p.ultimo_contacto_at || p.created_at || 0).getTime();
+  const pr = (p) => (p.precio != null ? Number(p.precio) : NaN);
+  switch(orden || 'reciente'){
+    case 'antiguo': return copy.sort((a, b) => ts(a) - ts(b));
+    case 'contacto_reciente': return copy.sort((a, b) => tc(b) - tc(a));
+    case 'precio_asc': return copy.sort((a, b) => (pr(a) || Infinity) - (pr(b) || Infinity));
+    case 'precio_desc': return copy.sort((a, b) => (pr(b) || -1) - (pr(a) || -1));
+    default: return copy.sort((a, b) => ts(b) - ts(a));
+  }
+}
+
+function updatePartDescartadosTabBadge(){
+  const n = (_partData || []).filter(p => p.estado === 'descartado').length;
+  const el = document.getElementById('part-tab-descartado-n');
+  if(!el) return;
+  if(n > 0){ el.style.display = 'inline-flex'; el.textContent = n > 99 ? '99+' : String(n); }
+  else el.style.display = 'none';
+}
+
 function filterParticularesList(list){
   let filtered = list;
   if(_partFilter === 'alarmas') filtered = filtered.filter(partNeedsAlarm);
+  else if(_partFilter === 'descartado') filtered = filtered.filter(p => p.estado === 'descartado');
+  else if(_partFilter === 'todos') filtered = filtered.filter(p => p.estado !== 'descartado');
   else if(_partFilter !== 'todos') filtered = filtered.filter(p => p.estado === _partFilter);
 
   const f = getPartFilterValues();
-  if(!partBarFiltersActive(f)) return filtered;
-
-  return filtered.filter(p => {
-    if(f.precioMin != null && (p.precio == null || Number(p.precio) < f.precioMin)) return false;
-    if(f.precioMax != null && (p.precio == null || Number(p.precio) > f.precioMax)) return false;
-    if(f.habitaciones){
-      const minHab = parseInt(f.habitaciones, 10);
-      if(!p.habitaciones || Number(p.habitaciones) < minHab) return false;
-    }
-    if(f.ascensor === 'si' && partInferAscensor(p) !== true) return false;
-    if(f.ascensor === 'no' && partInferAscensor(p) !== false) return false;
-    if(f.zona){
-      const zonaHay = `${p.zona||''} ${p.barrio||''} ${p.municipio||''} ${p.titulo||''} ${p.direccion||''}`.toLowerCase();
-      if(!zonaHay.includes(f.zona) && !f.zona.split(/[,·\s]+/).some(t => t.length >= 3 && zonaHay.includes(t))) return false;
-    }
-    if(f.telefono && !phoneMatchesFilter(p.telefono, f.telefono)) return false;
-    return true;
-  });
+  if(partBarFiltersActive(f)){
+    filtered = filtered.filter(p => {
+      if(f.precioMin != null && (p.precio == null || Number(p.precio) < f.precioMin)) return false;
+      if(f.precioMax != null && (p.precio == null || Number(p.precio) > f.precioMax)) return false;
+      if(f.m2Min != null && (p.m2 == null || Number(p.m2) < f.m2Min)) return false;
+      if(f.fuente && (p.fuente || '') !== f.fuente) return false;
+      if(f.habitaciones){
+        const minHab = parseInt(f.habitaciones, 10);
+        if(!p.habitaciones || Number(p.habitaciones) < minHab) return false;
+      }
+      if(f.ascensor === 'si' && partInferAscensor(p) !== true) return false;
+      if(f.ascensor === 'no' && partInferAscensor(p) !== false) return false;
+      if(f.zona){
+        const zonaHay = `${p.zona||''} ${p.barrio||''} ${p.municipio||''} ${p.titulo||''} ${p.direccion||''}`.toLowerCase();
+        if(!zonaHay.includes(f.zona) && !f.zona.split(/[,·\s]+/).some(t => t.length >= 3 && zonaHay.includes(t))) return false;
+      }
+      if(f.telefono && !phoneMatchesFilter(p.telefono, f.telefono)) return false;
+      return true;
+    });
+  }
+  return sortParticularesList(filtered, f.orden);
 }
 
 function partInferAscensor(p){
@@ -10024,10 +10101,14 @@ function partInferAscensor(p){
 function getPartFilterValues(){
   const precioMin = parseFloat(document.getElementById('pf-precio-min')?.value);
   const precioMax = parseFloat(document.getElementById('pf-precio-max')?.value);
+  const m2Min = parseFloat(document.getElementById('pf-m2-min')?.value);
   return {
     telefono: (document.getElementById('pf-telefono')?.value || '').trim(),
     precioMin: Number.isFinite(precioMin) ? precioMin : null,
     precioMax: Number.isFinite(precioMax) ? precioMax : null,
+    m2Min: Number.isFinite(m2Min) ? m2Min : null,
+    fuente: document.getElementById('pf-fuente')?.value || '',
+    orden: document.getElementById('pf-orden')?.value || 'reciente',
     habitaciones: document.getElementById('pf-hab')?.value || '',
     ascensor: document.getElementById('pf-ascensor')?.value || '',
     zona: (document.getElementById('pf-zona')?.value || '').trim().toLowerCase(),
@@ -10035,7 +10116,7 @@ function getPartFilterValues(){
 }
 
 function partBarFiltersActive(f){
-  return !!(f.telefono || f.precioMin || f.precioMax || f.habitaciones || f.ascensor || f.zona);
+  return !!(f.telefono || f.precioMin || f.precioMax || f.m2Min || f.fuente || f.habitaciones || f.ascensor || f.zona);
 }
 
 function updatePartZonaDatalist(){
@@ -10116,6 +10197,7 @@ async function loadParticulares(force){
   }
   updatePartAlarmUI();
   updatePartZonaDatalist();
+  updatePartDescartadosTabBadge();
   renderParticulares();
   markPanelLoaded('particulares');
   void loadVendSeguimientoOps();
@@ -10124,7 +10206,7 @@ async function loadParticulares(force){
 function filterParticulares(f){
   _partVisible = NH_GRID_PAGE;
   _partFilter = f;
-  ['operaciones','todos','alarmas','nuevo','contactado','captado'].forEach(k=>{
+  ['operaciones','todos','alarmas','nuevo','contactado','captado','descartado'].forEach(k=>{
     document.getElementById('part-tab-'+k)?.classList.toggle('active', k===f);
   });
   const partWrap = document.getElementById('part-particulares-wrap');
@@ -10145,10 +10227,6 @@ function renderPartEstadoBar(id, estado){
 }
 
 async function setParticularEstado(id, accion){
-  if(accion === 'descartado'){
-    await deleteParticular(id, true);
-    return;
-  }
   const p = _partData.find(x => x.id === id);
   if(!p) return;
   if(p.estado === accion){
@@ -10157,20 +10235,34 @@ async function setParticularEstado(id, accion){
   }
   const now = new Date().toISOString();
   const updates = { estado: accion };
-  if(accion === 'contactado'){
+  if(accion === 'descartado'){
+    Object.assign(updates, { activo: false, proxima_alarma_at: null });
+  } else if(accion === 'contactado'){
+    if(p.activo === false) updates.activo = true;
     updates.ultimo_contacto_at = now;
     updates.proxima_alarma_at = partAlarmDate(now);
+  } else if(p.activo === false){
+    updates.activo = true;
   }
   const { error } = await window.nhSupabase.from('particulares').update(updates).eq('id', id);
   if(error){ nhToast('Error: '+error.message, 'error'); return; }
   await window.nhSupabase.from('particulares_seguimientos').insert({
     particular_id: id,
-    comentario: `Estado: ${PART_ESTADOS[accion]||accion}`,
+    comentario: accion === 'descartado'
+      ? 'Estado: Descartado — archivado (vendido, arras o sin interés).'
+      : `Estado: ${PART_ESTADOS[accion]||accion}`,
   });
+  if(accion === 'descartado'){
+    nhToast('Movido a Descartados. El historial se conserva.', 'success');
+    if(_partDetailId === id) closePartDetail();
+    if(_partCardModalId === id) closePartCardModal();
+    await loadParticulares(true);
+    return;
+  }
   nhToast(`Marcado como ${PART_ESTADOS[accion]}.`, 'success');
   await loadParticulares();
   if(_partDetailId === id) await openPartDetail(id);
-  if(accion === 'captado'){
+    if(accion === 'captado'){
     const p = _partData.find(x => x.id === id);
     if(p){
       await ensureCompData();
@@ -10636,9 +10728,12 @@ function renderParticulares(){
   if(!grid) return;
   let tabList = _partData;
   if(_partFilter === 'alarmas') tabList = tabList.filter(partNeedsAlarm);
+  else if(_partFilter === 'descartado') tabList = tabList.filter(p => p.estado === 'descartado');
+  else if(_partFilter === 'todos') tabList = tabList.filter(p => p.estado !== 'descartado');
   else if(_partFilter !== 'todos') tabList = tabList.filter(p => p.estado === _partFilter);
 
   const list = filterParticularesList(_partData);
+  updatePartDescartadosTabBadge();
   updatePartFilterCount(list.length, _partData.length, tabList.length);
   updatePartAlarmUI();
   if(!list.length){
