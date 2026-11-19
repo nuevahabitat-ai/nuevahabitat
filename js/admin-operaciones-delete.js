@@ -85,6 +85,15 @@
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) throw new Error(json.error || 'No se pudo eliminar');
+      if (typeof bustPanelCache === 'function') bustPanelCache('vendedores');
+      if (Array.isArray(window._vendData)) {
+        window._vendData = window._vendData.filter((x) => String(x.id) !== String(id));
+        window._vendSeguimientoData = (window._vendSeguimientoData || []).filter(
+          (x) => String(x.id) !== String(id),
+        );
+        if (typeof renderVendedores === 'function') renderVendedores();
+        if (typeof renderVendSeguimientoSection === 'function') renderVendSeguimientoSection();
+      }
       window.nhToast?.(json.warned || 'Operación eliminada', json.warned ? 'info' : 'success');
       if (typeof loadVendedores === 'function') await loadVendedores(true);
     } catch (e) {
