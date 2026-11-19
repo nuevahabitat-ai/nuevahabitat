@@ -1078,7 +1078,7 @@ select.adm-control{
         <div class="adm-subtabs" style="margin-bottom:.75rem">
           <button class="adm-subtab active" id="ctab-todos"   onclick="filterCompradores('todos')">Todos</button>
           <button class="adm-subtab"         id="ctab-activos" onclick="filterCompradores('activos')">Activos</button>
-          <button class="adm-subtab"         id="ctab-inactivos" onclick="filterCompradores('inactivos')">Inactivos</button>
+          <button class="adm-subtab"         id="ctab-descartados" onclick="filterCompradores('descartados')">Descartados <span id="ctab-descartados-n" class="adm-tab-badge" style="display:none"></span></button>
           <button class="adm-subtab"         id="ctab-alarmas" onclick="filterCompradores('alarmas')">⏰ Alarmas</button>
         </div>
 
@@ -2880,8 +2880,10 @@ select.adm-control{
 <script src="js/supabase.js"></script>
 <script src="js/comprador-matching.js"></script>
 <script src="js/toast.js"></script>
+<script src="js/admin-whatsapp-open.js"></script>
 <script src="js/nh-pwa-install.js"></script>
 <script src="js/admin-leads-notify.js"></script>
+<script src="js/admin-leads-stats.js"></script>
 <script src="js/idealista-import-chunks.js"></script>
 <script src="js/admin-idealista-compradores-import.js"></script>
 <script src="js/admin-alfredo-ficha-sync.js"></script>
@@ -4195,8 +4197,7 @@ async function sendCompMatchWhatsApp(){
   const sentSet = _compMatchState.alreadySentInmuebleIds || new Set();
   const selected = getSelectedCompMatches().filter(p => !sentSet.has(String(p.id)));
   if(!selected.length){ nhToast('Selecciona inmuebles pendientes (sin WhatsApp previo).', 'info'); return; }
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildCompWhatsAppMsg(c, selected))}`;
-  window.open(url, '_blank', 'noopener');
+  nhOpenWhatsApp(c.telefono, buildCompWhatsAppMsg(c, selected));
   for(const inm of selected){
     await recordCompradorWaAviso(c, inm, null);
   }
@@ -4988,7 +4989,7 @@ function openDashModal(tipo, id){
       <button type="button" class="adm-btn adm-btn-green adm-btn-sm" onclick="dashWhatsAppComprador('${c.id}')">WhatsApp</button>` : ''}
       <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeDashModal(); dashEditComprador('${c.id}')">Editar</button>
       <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="closeDashModal(); switchSection('compradores'); setTimeout(()=>openCompForm(),80)">Añadir comprador</button>
-      <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="dashDeleteComprador('${c.id}')">Eliminar</button>`;
+      <button type="button" class="adm-btn adm-btn-red adm-btn-sm" onclick="dashDeleteComprador('${c.id}')">Descartar</button>`;
   }
 
   document.getElementById('dash-modal-kicker').textContent = kicker;
@@ -5902,6 +5903,7 @@ async function logLeadContactSeguimiento(leadId, label, channel) {
   }
   updateLeadAlarmUI();
   renderLeadsView();
+    if (typeof renderLeadStats === 'function') renderLeadStats();
   renderDashLeads(_dashCache.leads);
 }
 
@@ -5967,8 +5969,7 @@ async function sendSelectedLeadWhatsApp() {
     nhToast('Teléfono no válido.', 'error');
     return;
   }
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(bodyPlain)}`;
-  window.open(url, '_blank', 'noopener');
+  nhOpenWhatsApp(l.telefono, bodyPlain);
   await logLeadContactSeguimiento(l.id, tpl.label, 'whatsapp');
   nhToast('WhatsApp abierto con el mensaje preparado.', 'success', 5000);
   closeLeadEmailModal();
@@ -6539,6 +6540,7 @@ function renderLeadsView() {
   const tbl = document.getElementById('leads-table');
   if (!tbl) return;
   renderLeadsCounts();
+  if (typeof renderLeadStats === 'function') renderLeadStats();
   if (!list.length) { tbl.innerHTML = '<p class="text-muted">Sin leads con estos filtros.</p>'; return; }
   tbl.innerHTML = renderLeadsTable(list, true) + renderLeadsCards(list);
 }
@@ -6548,7 +6550,7 @@ async function loadLeads(){
     if (!_alqPropData.length) {
       try { await fetchAlquilerPropietarios(); } catch (_) { /* gestionados / seguimientos alquiler */ }
     }
-    const payload = await fetchAdminLeads({ purge: false, limit: 300 });
+    const payload = await fetchAdminLeads({ purge: false, limit: 1000 });
     _leadsData = payload.data || [];
   } catch (err) {
     console.error('loadLeads', err);
@@ -7336,11 +7338,30 @@ function compFiltersActive(f){
   return !!(f.telefono || f.precioMin || f.precioMax || f.habitaciones || f.ascensor || f.zona);
 }
 
+
+function compIsDescartado(c){
+  return !!(c && (c.descartado_at || c.activo === false));
+}
+
+function updateCompDescartadosTabBadge(){
+  const n = (_compData || []).filter(compIsDescartado).length;
+  const el = document.getElementById('ctab-descartados-n');
+  if(!el) return;
+  if(n){
+    el.style.display = 'inline-flex';
+    el.textContent = n > 99 ? '99+' : String(n);
+  } else {
+    el.style.display = 'none';
+  }
+}
+
 function filterCompradoresList(list){
   const f = getCompFilterValues();
   return list.filter(c => {
+    const desc = compIsDescartado(c);
+    if(_compFilter === 'descartados') return desc;
+    if(desc) return false;
     if(_compFilter==='activos' && !c.activo) return false;
-    if(_compFilter==='inactivos' && c.activo) return false;
     if(_compFilter==='alarmas' && !compNeedsAlarm(c)) return false;
     if(f.precioMin != null){
       if(c.presupuesto_max == null || Number(c.presupuesto_max) < f.precioMin) return false;
@@ -7439,10 +7460,8 @@ function buildCompWhatsAppMsg(c, inmuebles, templateKey){
 function admWhatsAppComprador(id){
   const c = _compData.find(x => x.id === id);
   if(!c){ nhToast('Comprador no encontrado', 'error'); return; }
-  const phone = normalizePhoneWa(c.telefono);
-  if(!phone){ nhToast('Este comprador no tiene teléfono.', 'info'); return; }
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(buildCompWhatsAppMsg(c, null, 'seguimiento'))}`;
-  window.open(url, '_blank', 'noopener');
+  if(!normalizePhoneWa(c.telefono)){ nhToast('Este comprador no tiene teléfono.', 'info'); return; }
+  nhOpenWhatsApp(c.telefono, buildCompWhatsAppMsg(c, null, 'seguimiento'));
   markCompradorContactado(id, 'WhatsApp (seguimiento) enviado.').then(() => loadCompradores());
 }
 
@@ -7474,7 +7493,7 @@ async function loadCompradores(force){
   _compVisible = NH_GRID_PAGE;
   const grid = document.getElementById('comp-grid');
   if(grid) grid.innerHTML = '<p class="text-muted" style="padding:1rem">Cargando…</p>';
-  const colsFull = 'id,nombre,email,telefono,activo,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
+  const colsFull = 'id,nombre,email,telefono,activo,descartado_at,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,ultimo_contacto_at,proxima_alarma_at,created_at';
   const colsBase = 'id,nombre,email,telefono,activo,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,honorarios_metodo_pago,honorarios_transferencia_pendiente,honorarios_transferencia_at,created_at';
   const colsHonorarios = 'id,nombre,email,telefono,activo,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,honorarios,honorarios_pagado,honorarios_pagado_at,created_at';
   const colsMinimal = 'id,nombre,email,telefono,activo,presupuesto_max,habitaciones_min,ascensor,zona_buscada,notas,created_at';
@@ -7484,6 +7503,10 @@ async function loadCompradores(force){
       28000,
       'Compradores'
     );
+    if(error && /descartado_at/.test(error.message)){
+      const colsNoDesc = colsFull.replace(',descartado_at', '');
+      ({ data, error } = await window.nhSupabase.from('compradores').select(colsNoDesc).order('created_at',{ascending:false}));
+    }
     if(error && /ultimo_contacto_at|proxima_alarma_at/.test(error.message)){
       ({ data, error } = await window.nhSupabase.from('compradores').select(colsBase).order('created_at',{ascending:false}));
     }
@@ -7518,6 +7541,7 @@ async function loadCompradores(force){
   }
   updateCompZonaDatalist();
   updateCompAlarmUI();
+  updateCompDescartadosTabBadge();
   try {
     renderCompradores();
   } catch (renderErr) {
@@ -7532,7 +7556,7 @@ async function loadCompradores(force){
 function filterCompradores(f){
   _compVisible = NH_GRID_PAGE;
   _compFilter = f;
-  ['todos','activos','inactivos','alarmas'].forEach(k=>{
+  ['todos','activos','descartados','alarmas'].forEach(k=>{
     document.getElementById('ctab-'+k)?.classList.toggle('active', k===f);
   });
   renderCompradores();
@@ -7569,7 +7593,7 @@ function renderCompradores(){
             ${matchN ? `<button type="button" class="adm-match-badge adm-match-badge-btn" title="Ver inmuebles compatibles" onclick="event.stopPropagation();openCompMatchModal('${c.id}')">🎯 ${matchN} compatible${matchN===1?'':'s'}</button>` : ''}
             ${honorariosPagoBadge(c)}
             ${honorariosTransferConfirmBtn('comprador', c)}
-            <span class="badge ${c.activo?'badge-ok':'badge-warn'}">${c.activo?'Activo':'Inactivo'}</span>
+            <span class="badge ${compIsDescartado(c)?'':(c.activo?'badge-ok':'badge-warn')}">${compIsDescartado(c)?'Descartado':'Activo'}</span>
           </div>
         </div>
         <div class="pub-title">${dashEsc(c.nombre)}</div>
@@ -7599,8 +7623,8 @@ function renderCompradores(){
           <button type="button" class="pub-btn-web" onclick="openCompCardModal('${c.id}')">Historial</button>
           <button class="pub-btn-web" onclick="openCompMatchModal('${c.id}')">Ver compatibles</button>
           <button class="pub-btn-edit" onclick="editComprador('${c.id}')">Editar</button>
-          <button class="pub-btn-del"  onclick="deleteComprador('${c.id}')">Eliminar</button>
-          <button class="pub-btn-web"  onclick="toggleActivoComp('${c.id}',${!c.activo})">${c.activo?'Pausar':'Activar'}</button>
+          <button class="pub-btn-del"  onclick="descartarComprador('${c.id}')">${compIsDescartado(c)?'En descartados':'Descartar'}</button>
+          ${compIsDescartado(c)?`<button class=\"pub-btn-web\"  onclick=\"reactivarComprador('${c.id}')\">Reactivar</button>`:''}
         </div>
       </div>
     </div>`;
@@ -7720,17 +7744,38 @@ async function saveComprador(){
   loadCompradores(true);
 }
 
-async function deleteComprador(id){
-  if(!confirm('¿Eliminar este comprador?')) return;
-  await window.nhSupabase.from('compradores').delete().eq('id',id);
+async function descartarComprador(id){
+  const c = _compData.find(x => x.id === id);
+  if(c && compIsDescartado(c)) return;
+  if(!confirm('¿Descartar este comprador? Quedará en la pestaña Descartados (no se borra).')) return;
+  const now = new Date().toISOString();
+  const patch = { activo: false, descartado_at: now, proxima_alarma_at: null };
+  let { error } = await window.nhSupabase.from('compradores').update(patch).eq('id', id);
+  if(error && /descartado_at/.test(error.message)){
+    ({ error } = await window.nhSupabase.from('compradores').update({ activo: false, proxima_alarma_at: null }).eq('id', id));
+    if(!error) nhToast('Descartado (aplica migración 071 en Supabase para fecha).', 'info');
+  }
+  if(error){ nhToast('Error: '+error.message, 'error'); return; }
   bustPanelCache(['compradores', 'dashboard']);
   loadCompradores(true);
+  filterCompradores('descartados');
 }
+async function deleteComprador(id){ await descartarComprador(id); }
 
-async function toggleActivoComp(id, nuevoValor){
-  await window.nhSupabase.from('compradores').update({activo:nuevoValor}).eq('id',id);
+async function reactivarComprador(id){
+  const patch = { activo: true, descartado_at: null };
+  let { error } = await window.nhSupabase.from('compradores').update(patch).eq('id', id);
+  if(error && /descartado_at/.test(error.message)){
+    ({ error } = await window.nhSupabase.from('compradores').update({ activo: true }).eq('id', id));
+  }
+  if(error){ nhToast('Error: '+error.message, 'error'); return; }
   bustPanelCache('compradores');
   loadCompradores(true);
+  filterCompradores('activos');
+}
+async function toggleActivoComp(id, nuevoValor){
+  if(nuevoValor) await reactivarComprador(id);
+  else await descartarComprador(id);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -8509,7 +8554,7 @@ function admWhatsAppColaborador(id){
   const phone = normalizePhoneWa(c.telefono);
   if(!phone){ nhToast('Teléfono no válido.', 'error'); return; }
   const msg = `Hola, soy de NuevaHabitat. Contacto con ${c.nombre} (${COLAB_TIPOS[c.tipo]||c.tipo}). ¿Podemos hablar?`;
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  nhOpenWhatsApp(phone, msg);
 }
 
 function admCallColaborador(id){
@@ -9394,7 +9439,7 @@ async function openCapturaWaForComprador(comprador){
   const phone = normalizePhoneWa(comprador.telefono);
   if(!phone){ nhToast('Sin teléfono válido.', 'info'); return; }
   const msg = buildCompWhatsAppMsg(comprador, [_capturaCompState.inmueble]);
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  nhOpenWhatsApp(phone, msg);
   await recordCompradorWaAviso(comprador, _capturaCompState.inmueble, _capturaCompState.particularId);
   sent.add(String(comprador.id));
   await refreshCapturaCompradoresModalBody();
@@ -9751,7 +9796,7 @@ async function sendRebajaWaOne(visitaId){
   if(!phone){ nhToast('Sin teléfono válido.', 'info'); return; }
   const { inm, precioAnterior, precioNuevo } = _rebajaVisState;
   const msg = buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo);
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  nhOpenWhatsApp(phone, msg);
   await recordRebajaWaAviso(v, inm, precioNuevo);
   await refreshRebajaVisitantesModal();
 }
@@ -9804,7 +9849,7 @@ async function sendRebajaVisitantesBatch(){
       const v = waList[i];
       const phone = normalizePhoneWa(v.telefono);
       const msg = buildRebajaWhatsAppMsg(v, inm, precioAnterior, precioNuevo);
-      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+      nhOpenWhatsApp(phone, msg);
       await recordRebajaWaAviso(v, inm, precioNuevo);
     }
     nhToast(`WhatsApp preparado para ${waList.length} visitante(s).`, 'success', 6000);
@@ -9937,7 +9982,7 @@ function partNeedsAlarm(p){
 
 function compNeedsAlarm(c){
   if(!getPanelAlarmConfig().compAlarmsEnabled) return false;
-  if(!c?.activo) return false;
+  if(!c?.activo || compIsDescartado(c)) return false;
   const { ultimo, proxima } = getCompradorContactState(c);
   if(!ultimo) return true;
   const alarmAt = proxima || (() => {
@@ -10013,7 +10058,7 @@ function buildCompCardDetailHtml(c){
     ['Zona', c.zona_buscada || '—'],
     ['Teléfono', c.telefono || '—'],
     ['Email', c.email || '—'],
-    ['Estado', c.activo ? 'Activo' : 'Inactivo'],
+    ['Estado', compIsDescartado(c) ? 'Descartado' : 'Activo'],
   ];
   const days = compDaysWithoutFollowUp(c);
   return `
@@ -10392,7 +10437,7 @@ async function admWhatsAppParticularTemplate(id, templateKey){
   const phone = normalizePhoneWa(p.telefono);
   if(!phone){ nhToast('Teléfono no válido.', 'error'); return; }
   const msg = previewPartWaTemplate(templateKey, p);
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  nhOpenWhatsApp(phone, msg);
   const label = PART_WA_TPL_LABELS[templateKey] || templateKey;
   await markParticularContactado(id, `WhatsApp (${label}) enviado.`);
   await loadParticulares();
@@ -10404,7 +10449,7 @@ async function admWhatsAppParticular(id){
   if(!p?.telefono){ nhToast('Sin teléfono.', 'info'); return; }
   const phone = normalizePhoneWa(p.telefono);
   if(!phone){ nhToast('Teléfono no válido.', 'error'); return; }
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(PART_WA_NORMAL_MSG)}`, '_blank', 'noopener');
+  nhOpenWhatsApp(phone, PART_WA_NORMAL_MSG);
   await markParticularContactado(id, 'WhatsApp (contacto normal) enviado.');
   await loadParticulares();
   if(_partCardModalId === id) await refreshPartCardModal();
@@ -12352,7 +12397,7 @@ function renderAlqAdminModalBody() {
       ? `<a class="adm-btn adm-btn-ghost adm-btn-sm" href="/panel-propietario" target="_blank" rel="noopener">Panel Nueva Hábitat</a>`
       : `<span class="text-muted" style="font-size:.72rem;max-width:240px;line-height:1.35;text-align:left">Sin panel NH · ${escAlq(procedenciaLabel(row.procedencia))}</span>`;
     foot.innerHTML = `
-      ${wa ? `<a class="adm-btn adm-btn-green adm-btn-sm" href="https://wa.me/${wa}" target="_blank" rel="noopener">WhatsApp</a>` : ''}
+      ${wa ? `<a class="adm-btn adm-btn-green adm-btn-sm" href="#" onclick="nhOpenWhatsApp('${wa}',''); return false;">WhatsApp</a>` : ''}
       ${row.email && !String(row.email).includes('@leads.nuevahabitat.local') ? `<a class="adm-btn adm-btn-ghost adm-btn-sm" href="mailto:${escAlq(row.email)}">Email</a>` : ''}
       ${panelBtn}
       ${saveEstadoBtn}${savePropBtn}${saveInmBtn}${saveInqBtn}${saveDocBtn}${saveNotasBtn}`;
