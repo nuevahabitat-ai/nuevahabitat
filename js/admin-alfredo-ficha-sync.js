@@ -117,10 +117,11 @@
       const inf = json.inferencia || {};
       const fc = idealista.fichas || {};
       const batch = json.batch || {};
+      const porId = json.porIdealistaId || {};
       nhToast?.(
-        `Compraventa: ${fc.completadas ?? 0}/${fc.total ?? 0} fichas · ${batch.updated ?? 0} extra · caché ${idealista.warm?.enCache ?? '?'}/${idealista.warm?.solicitados ?? '?'}. Interés backfill: +${json.backfill?.created ?? 0}.`,
+        `Por ID Idealista: ${porId.actualizados ?? 0} actualizado(s) (${porId.idsConPrecio ?? '?'}/${porId.idsUnicos ?? '?'} precios). Fichas: ${fc.completadas ?? 0}/${fc.total ?? 0}. Sin precio: ${porId.sinPrecio ?? 0}.`,
         'success',
-        14000,
+        16000,
       );
       if (typeof loadCompradores === 'function') loadCompradores(true);
     } catch (e) {
