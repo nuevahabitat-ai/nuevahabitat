@@ -96,7 +96,7 @@
     }
     if (
       !confirm(
-        '¿Rellenar presupuesto máximo desde Idealista / notas?\n\nVincula interés, infiere desde pisos consultados (los sin precio en anuncio pueden quedar pendientes).',
+        '¿Rellenar precio compraventa en compradores Idealista?\n\nMáximo = precio del anuncio consultado · Mínimo = máximo − 50.000 €.\n\nRevisa caché Idealista / intereses y actualiza fichas sin rango.',
       )
     )
       return;
@@ -109,17 +109,18 @@
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + session.access_token,
         },
-        body: JSON.stringify({ maxScrape: 55 }),
+        body: JSON.stringify({ maxScrape: 80, limit: 500, all: true }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) throw new Error(json.error || res.status);
       const idealista = json.idealista || {};
       const inf = json.inferencia || {};
       const fc = idealista.fichas || {};
+      const batch = json.batch || {};
       nhToast?.(
-        `Fichas: ${fc.completadas ?? 0}/${fc.total ?? 0} con presupuesto · caché ${idealista.warm?.enCache ?? '?'}/${idealista.warm?.solicitados ?? '?'}. Inferencia extra: ${inf.updated ?? 0} actualizado(s).`,
+        `Compraventa: ${fc.completadas ?? 0}/${fc.total ?? 0} fichas · ${batch.updated ?? 0} extra · caché ${idealista.warm?.enCache ?? '?'}/${idealista.warm?.solicitados ?? '?'}. Interés backfill: +${json.backfill?.created ?? 0}.`,
         'success',
-        12000,
+        14000,
       );
       if (typeof loadCompradores === 'function') loadCompradores(true);
     } catch (e) {
@@ -150,8 +151,8 @@
     const btn3 = document.createElement('button');
     btn3.type = 'button';
     btn3.className = 'adm-btn adm-btn-ghost';
-    btn3.textContent = '€ Presupuestos Idealista';
-    btn3.title = 'presupuesto_max desde anuncio consultado (idealista / NH vinculado)';
+    btn3.textContent = '€ Compraventa Idealista';
+    btn3.title = 'Rellena presupuesto máx/mín (−50k) desde anuncios consultados e import';
     btn3.onclick = () => nhSyncPresupuestoCompradores();
     const gold = hdr.querySelector('.adm-btn-gold');
     if (gold) {

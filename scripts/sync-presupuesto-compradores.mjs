@@ -22,16 +22,12 @@ for (const name of ['.env.local', '.env']) {
 const dryRun = process.argv.includes('--dry-run');
 const all = process.argv.includes('--all');
 
-const { backfillInteresFromCompradorNotas } = await import('../lib/server/idealista-interes-backfill.js');
-const { inferAllCompradoresCriterios } = await import('../lib/server/comprador-infer-criterios.js');
+const { runSyncPresupuestoCompradores } = await import('../lib/server/sync-presupuesto-compradores.js');
 
-console.log('Backfill interés desde notas…');
-const bf = await backfillInteresFromCompradorNotas({});
-console.log(JSON.stringify({ backfill: bf }, null, 2));
-
-const stats = await inferAllCompradoresCriterios({
+const result = await runSyncPresupuestoCompradores({
   dryRun,
-  onlySinPresupuesto: !all,
+  all: true,
+  maxScrape: 80,
   limit: 500,
 });
-console.log(JSON.stringify({ inferencia: stats }, null, 2));
+console.log(JSON.stringify(result, null, 2));
