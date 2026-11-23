@@ -81,7 +81,7 @@
         </div>
         <div class="dash-modal-body">
           <p class="text-muted" style="font-size:.78rem;line-height:1.55;margin-bottom:1rem">
-            Sube el export del portal (CSV o Excel). Compradores <strong>activos</strong> por teléfono. Para presupuesto y rebajas, rellena <strong>Ref. Idealista</strong> en cada inmueble NH.
+            Sube el export del portal (CSV o Excel). Compradores <strong>activos</strong> por teléfono. Cada import fija <strong>precio compraventa</strong>: máximo = precio del anuncio consultado, mínimo = máximo − 50.000 €. Recomendado: columna <strong>PRECIO</strong> en el Excel (Idealista a veces bloquea el scrape). Migraciones Supabase <strong>066–070</strong> si aún no están aplicadas.
           </p>
           <div class="adm-field">
             <label for="comp-idealista-file">Archivo</label>
@@ -233,7 +233,7 @@
       if (result) {
         result.style.display = 'block';
         result.className = 'alert-box alert-info';
-        result.innerHTML = `Creados: <strong>${json.compradoresCreados}</strong> · Compradores ya existían: <strong>${dupC}</strong> · Intereses nuevos: <strong>${json.interesesRegistrados}</strong> · Intereses duplicados: <strong>${dupI}</strong> · Ref. NH en piso: según <code>idealista_id</code> en inmueble · Sin vínculo: <strong>${json.sinVinculoInmueble || 0}</strong>${json.errores?.length ? '<br><span style="font-size:.75rem">' + json.errores.map((e) => String(e)).join('<br>') + '</span>' : ''}`;
+        result.innerHTML = `Creados: <strong>${json.compradoresCreados}</strong> · Compradores ya existían: <strong>${dupC}</strong> · Intereses nuevos: <strong>${json.interesesRegistrados}</strong> · Intereses duplicados: <strong>${dupI}</strong> · Sin precio detectado: <strong>${json.sinPrecioEnImport || 0}</strong> · Sin vínculo NH: <strong>${json.sinVinculoInmueble || 0}</strong>${json.avisoMigraciones ? `<br><strong style="color:var(--gold)">${json.avisoMigraciones}</strong>` : ''}${json.errores?.length ? '<br><span style="font-size:.75rem">' + json.errores.map((e) => String(e)).join('<br>') + '</span>' : ''}`;
       }
       if (typeof bustPanelCache === 'function') bustPanelCache(['compradores', 'dashboard']);
       if (typeof loadCompradores === 'function') loadCompradores(true);
