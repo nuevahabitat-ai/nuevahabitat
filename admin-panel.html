@@ -285,6 +285,8 @@ select.adm-control{
 .comp-match-open:hover{border-color:var(--gold);color:var(--gold)}
 .comp-match-toolbar{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-bottom:.5rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
 .comp-match-toolbar label{display:flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--text);cursor:pointer}
+.captura-comp-orden{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--muted)}
+.captura-comp-orden select{font-size:.72rem;padding:.28rem .45rem;border-radius:5px;border:1px solid var(--border);background:var(--surface);color:var(--text);max-width:11.5rem}
 .comp-match-criteria{font-size:.75rem;color:var(--muted);line-height:1.5;margin-top:.25rem}
 .part-tpl-pick-list{display:flex;flex-direction:column;gap:.75rem}
 .part-tpl-pick-item{border:1px solid var(--border);border-radius:8px;padding:.85rem 1rem;cursor:pointer;transition:border-color .2s,background .2s}
@@ -1135,6 +1137,16 @@ select.adm-control{
             <label for="cf-zona">Zona</label>
             <input type="search" id="cf-zona" list="cf-zona-list" placeholder="Eixample, Gràcia…" autocomplete="off" autocorrect="off" spellcheck="false" name="nh_comp_zona_filter" data-lpignore="true"/>
             <datalist id="cf-zona-list"></datalist>
+          </div>
+          <div class="adm-field" style="min-width:168px">
+            <label for="cf-orden">Orden</label>
+            <select id="cf-orden">
+              <option value="reciente">Más recientes</option>
+              <option value="antiguo">Más antiguos</option>
+              <option value="contacto_reciente">Último contacto</option>
+              <option value="presupuesto_desc">Presupuesto ↓</option>
+              <option value="presupuesto_asc">Presupuesto ↑</option>
+            </select>
           </div>
           <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="clearCompFilters()">Limpiar filtros</button>
           <span class="adm-filter-count" id="comp-filter-count"></span>
@@ -4242,7 +4254,10 @@ function showCompatiblesInGrid(id){
 window.showCompatiblesInGrid = showCompatiblesInGrid;
 
 function getMatchesForInmueble(inmueble, compradores){
-  return (compradores || _compData || []).filter(c => matchCompradorInmueble(c, inmueble));
+  return (compradores || _compData || [])
+    .filter(c => c.activo !== false && !compIsDescartado(c) && matchCompradorInmueble(c, inmueble))
+    .slice()
+    .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime());
 }
 
 function pushMatchAlert(alert){
@@ -4280,11 +4295,17 @@ async function ensurePubData(){
 
 async function ensureCompData(){
   if(_compData.length && _compData[0]?.telefono !== undefined) return _compData;
-  const cols = 'id,nombre,email,telefono,activo,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas';
+  const cols = 'id,nombre,email,telefono,activo,descartado_at,presupuesto_min,presupuesto_max,tipo_inmueble,habitaciones_min,ascensor,planta_max_sin_ascensor,balcon_terraza_indispensable,m2_min,banos_min,exterior_indispensable,zona_buscada,notas,ultimo_contacto_at,created_at';
   let { data, error } = await window.nhSupabase
     .from('compradores')
     .select(cols)
     .order('created_at', { ascending: false });
+  if(error && /descartado_at|ultimo_contacto_at/.test(error.message)){
+    ({ data, error } = await window.nhSupabase
+      .from('compradores')
+      .select(cols.replace(',descartado_at', '').replace(',ultimo_contacto_at', ''))
+      .order('created_at', { ascending: false }));
+  }
   if(error && /planta_max_sin_ascensor/.test(error.message)){
     ({ data, error } = await window.nhSupabase
       .from('compradores')
@@ -6774,7 +6795,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const renderPublicationsDebounced = nhDebounce(renderPublications, 240);
   const renderParticularesDebounced = nhDebounce(renderParticulares, 240);
 
-  ['cf-telefono','cf-precio-min','cf-precio-max','cf-hab','cf-ascensor','cf-zona'].forEach(id => {
+  ['cf-telefono','cf-precio-min','cf-precio-max','cf-hab','cf-ascensor','cf-zona','cf-orden'].forEach(id => {
     const el = document.getElementById(id);
     if(!el) return;
     el.addEventListener('input', renderCompradoresDebounced);
@@ -7347,6 +7368,7 @@ function getCompFilterValues(){
     habitaciones: document.getElementById('cf-hab')?.value || '',
     ascensor: document.getElementById('cf-ascensor')?.value || '',
     zona: (document.getElementById('cf-zona')?.value || '').trim().toLowerCase(),
+    orden: document.getElementById('cf-orden')?.value || 'reciente',
   };
 }
 
@@ -7371,9 +7393,61 @@ function updateCompDescartadosTabBadge(){
   }
 }
 
+function sortCompradoresList(list, orden, sentSet){
+  const copy = [...list];
+  const ts = (c) => new Date(c.created_at || 0).getTime();
+  const tc = (c) => new Date(c.ultimo_contacto_at || c.created_at || 0).getTime();
+  const pr = (c) => (c.presupuesto_max != null ? Number(c.presupuesto_max) : NaN);
+  if(orden === 'pendientes' && sentSet){
+    return copy.sort((a, b) => {
+      const pa = sentSet.has(String(a.id)) ? 1 : 0;
+      const pb = sentSet.has(String(b.id)) ? 1 : 0;
+      if(pa !== pb) return pa - pb;
+      return ts(b) - ts(a);
+    });
+  }
+  switch(orden || 'reciente'){
+    case 'antiguo': return copy.sort((a, b) => ts(a) - ts(b));
+    case 'contacto_reciente': return copy.sort((a, b) => tc(b) - tc(a));
+    case 'presupuesto_asc': return copy.sort((a, b) => (pr(a) || Infinity) - (pr(b) || Infinity));
+    case 'presupuesto_desc': return copy.sort((a, b) => (pr(b) || -1) - (pr(a) || -1));
+    default: return copy.sort((a, b) => ts(b) - ts(a));
+  }
+}
+
+function getCapturaCompOrden(){
+  const sel = document.getElementById('captura-comp-orden');
+  if(sel?.value) return sel.value;
+  try { return sessionStorage.getItem('nh_captura_comp_orden') || 'reciente'; } catch(e){ return 'reciente'; }
+}
+
+function applyCapturaCompSortFilter(matches, orden, sentSet){
+  let list = (matches || []).slice();
+  const now = Date.now();
+  if(orden === 'filtro_30d'){
+    const cut = now - 30 * 864e5;
+    list = list.filter(c => c.created_at && new Date(c.created_at).getTime() >= cut);
+    orden = 'reciente';
+  } else if(orden === 'filtro_7d'){
+    const cut = now - 7 * 864e5;
+    list = list.filter(c => c.created_at && new Date(c.created_at).getTime() >= cut);
+    orden = 'reciente';
+  }
+  return sortCompradoresList(list, orden, sentSet);
+}
+
+function onCapturaCompOrdenChange(){
+  const sel = document.getElementById('captura-comp-orden');
+  if(sel){
+    try { sessionStorage.setItem('nh_captura_comp_orden', sel.value); } catch(e){}
+  }
+  refreshCapturaCompradoresModalBody();
+}
+window.onCapturaCompOrdenChange = onCapturaCompOrdenChange;
+
 function filterCompradoresList(list){
   const f = getCompFilterValues();
-  return list.filter(c => {
+  const filtered = list.filter(c => {
     const desc = compIsDescartado(c);
     if(_compFilter === 'descartados') return desc;
     if(desc) return false;
@@ -7398,6 +7472,7 @@ function filterCompradoresList(list){
     if(f.telefono && !phoneMatchesFilter(c.telefono, f.telefono)) return false;
     return true;
   });
+  return sortCompradoresList(filtered, f.orden);
 }
 
 function updateCompZonaDatalist(){
@@ -7428,6 +7503,8 @@ function clearCompFilters(){
   const asc = document.getElementById('cf-ascensor');
   if(hab) hab.value = '';
   if(asc) asc.value = '';
+  const orden = document.getElementById('cf-orden');
+  if(orden) orden.value = 'reciente';
   renderCompradores();
 }
 
@@ -9177,7 +9254,7 @@ function particularAsInmueble(p, inmueble){
 }
 
 function getMatchesForInmuebleObj(inmueble){
-  return (_compData || []).filter(c => matchCompradorInmueble(c, inmueble));
+  return getMatchesForInmueble(inmueble);
 }
 
 async function logParticularSeguimientoAuto(particularId, comentario){
@@ -9303,25 +9380,48 @@ async function recordCompradorWaAviso(comprador, inm, particularId){
   await markCompradorContactado(comprador.id);
 }
 
-function renderCapturaCompradoresList(matches, alreadySentIds){
-  if(!matches.length){
-    return `<p class="text-muted">No hay compradores activos que encajen con este inmueble ahora mismo.</p>`;
-  }
+function renderCapturaCompradoresList(matches, alreadySentIds, opts = {}){
   const sentSet = alreadySentIds instanceof Set ? alreadySentIds : new Set(alreadySentIds || []);
+  const orden = opts.orden || getCapturaCompOrden();
+  const ordenOpts = [
+    ['reciente', 'Más recientes'],
+    ['contacto_reciente', 'Último contacto'],
+    ['filtro_7d', 'Altas últimos 7 días'],
+    ['filtro_30d', 'Altas últimos 30 días'],
+    ['pendientes', 'Pendientes primero'],
+    ['antiguo', 'Más antiguos'],
+  ];
+  const ordenSel = ordenOpts.map(([v, lab]) => `<option value="${v}"${v===orden?' selected':''}>${lab}</option>`).join('');
+  const baseTotal = opts.baseTotal != null ? opts.baseTotal : matches.length;
+  if(!matches.length){
+    const filtroActivo = orden === 'filtro_7d' || orden === 'filtro_30d';
+    return `
+      <div class="comp-match-toolbar">
+        <label class="captura-comp-orden">Orden <select id="captura-comp-orden" onchange="onCapturaCompOrdenChange()">${ordenSel}</select></label>
+      </div>
+      <p class="text-muted">${filtroActivo && baseTotal
+        ? `Ningún comprador compatible con alta en el periodo seleccionado (${baseTotal} en total).`
+        : 'No hay compradores activos que encajen con este inmueble ahora mismo.'}</p>`;
+  }
   const pending = matches.filter(c => !sentSet.has(String(c.id)));
   const sentCount = matches.length - pending.length;
   const withPhone = matches.filter(c => normalizePhoneWa(c.telefono));
   const withPhonePending = pending.filter(c => normalizePhoneWa(c.telefono)).length;
   const withoutPhone = matches.length - withPhone.length;
+  const filtroHint = (orden === 'filtro_7d' || orden === 'filtro_30d') && baseTotal > matches.length
+    ? ` · ${matches.length} de ${baseTotal} compatibles`
+    : '';
   return `
     <div class="comp-match-toolbar">
       <label><input type="checkbox" id="captura-comp-all" ${withPhonePending ? 'checked' : ''} onchange="toggleCapturaCompAll(this.checked)"/> Seleccionar pendientes con teléfono (${withPhonePending})</label>
-      <span class="text-muted" style="font-size:.72rem">${withPhone.length} con teléfono · ${sentCount} ya avisado${sentCount===1?'':'s'}${withoutPhone ? ` · ${withoutPhone} sin teléfono` : ''}</span>
+      <label class="captura-comp-orden">Orden <select id="captura-comp-orden" onchange="onCapturaCompOrdenChange()">${ordenSel}</select></label>
+      <span class="text-muted" style="font-size:.72rem">${withPhone.length} con teléfono · ${sentCount} ya avisado${sentCount===1?'':'s'}${withoutPhone ? ` · ${withoutPhone} sin teléfono` : ''}${filtroHint}</span>
     </div>
     <div class="comp-match-list" id="captura-comp-list">
       ${matches.map(c => {
         const sent = sentSet.has(String(c.id));
         const hasPhone = !!normalizePhoneWa(c.telefono);
+        const alta = c.created_at ? admAltaWhenText(c.created_at, { label: 'Alta' }) : '';
         return `
         <label class="comp-match-item${sent ? ' already-wa-sent' : ''}">
           <input type="checkbox" class="captura-comp-cb" data-id="${c.id}" ${sent || !hasPhone ? 'disabled' : 'checked'} onchange="syncCapturaCompAllCheckbox()"/>
@@ -9332,6 +9432,7 @@ function renderCapturaCompradoresList(matches, alreadySentIds){
               c.habitaciones_min ? 'min. '+c.habitaciones_min+' hab.' : '',
               c.zona_buscada || '',
               hasPhone ? c.telefono : 'Sin teléfono',
+              alta,
               sent ? 'Ya avisado por WhatsApp' : '',
             ].filter(Boolean).join(' · '))}</span>
           </div>
@@ -9346,15 +9447,17 @@ async function refreshCapturaCompradoresModalBody(){
   const { inmueble, particularId, matches } = _capturaCompState;
   const key = capturaInmuebleWaKey(inmueble, particularId);
   const map = new Map(matches.map(c => [String(c.id), c]));
+  const orden = getCapturaCompOrden();
   const alreadySent = await fetchCompradoresAlreadyWaNotified(matches.map(c => c.id), key, map);
   _capturaCompState.alreadySentIds = alreadySent;
   _capturaCompState.waKey = key;
-  document.getElementById('captura-comp-body').innerHTML = renderCapturaCompradoresList(matches, alreadySent);
+  const displayMatches = applyCapturaCompSortFilter(matches, orden, alreadySent);
+  document.getElementById('captura-comp-body').innerHTML = renderCapturaCompradoresList(displayMatches, alreadySent, { orden, baseTotal: matches.length });
   const foot = document.getElementById('captura-comp-foot');
-  const withPhone = matches.filter(c => normalizePhoneWa(c.telefono));
+  const withPhone = displayMatches.filter(c => normalizePhoneWa(c.telefono));
   const pendingPhone = withPhone.filter(c => !alreadySent.has(String(c.id)));
   const sentWithPhone = withPhone.filter(c => alreadySent.has(String(c.id)));
-  const withoutPhone = matches.filter(c => !normalizePhoneWa(c.telefono));
+  const withoutPhone = displayMatches.filter(c => !normalizePhoneWa(c.telefono));
   let statusMsg = '';
   if(!withPhone.length){
     statusMsg = `<span class="text-muted" style="font-size:.78rem">Ningún comprador compatible tiene teléfono en ficha. <strong>No se ha enviado WhatsApp</strong> de este piso.</span>`;
