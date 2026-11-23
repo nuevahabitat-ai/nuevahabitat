@@ -977,6 +977,33 @@ async function handleAdminFinalizeIdealistaFichas(req, res, body) {
   }
 }
 
+async function handleAdminLinkIdealistaAuto(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const { autoLinkIdealistaInmuebles } = await import('../lib/server/link-idealista-inmuebles.js');
+    const result = await autoLinkIdealistaInmuebles({
+      dryRun: body?.dryRun === true,
+      onlySinId: body?.onlySinId !== false,
+      rules: body?.rules,
+      minScore: body?.minScore,
+    });
+    if (!body?.dryRun && result.vinculados > 0 && body?.syncCompradores !== false) {
+      const { backfillPresupuestoByIdealistaIds } = await import(
+        '../lib/server/comprador-presupuesto-idealista-id.js'
+      );
+      result.presupuesto = await backfillPresupuestoByIdealistaIds({
+        limit: 500,
+        maxScrape: 60,
+      });
+    }
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-link-idealista-auto', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminInferCompradorCriterios(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1586,6 +1613,7 @@ export default async function handler(req, res) {
   if (action === 'admin-comprador-precio-piso') return handleAdminCompradorPrecioPiso(req, res, body);
   if (action === 'admin-idealista-precios-bulk') return handleAdminIdealistaPreciosBulk(req, res, body);
   if (action === 'admin-finalize-idealista-fichas') return handleAdminFinalizeIdealistaFichas(req, res, body);
+  if (action === 'admin-link-idealista-auto') return handleAdminLinkIdealistaAuto(req, res, body);
   if (action === 'admin-infer-comprador-criterios') return handleAdminInferCompradorCriterios(req, res, body);
   if (action === 'admin-agent-chat') return handleAdminAgentChat(req, res, body);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);
