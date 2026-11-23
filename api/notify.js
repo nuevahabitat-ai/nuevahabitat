@@ -977,6 +977,26 @@ async function handleAdminFinalizeIdealistaFichas(req, res, body) {
   }
 }
 
+async function handleAdminAutoPresupuestoCompradores(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const { runAutoPresupuestoCompradores } = await import('../lib/server/auto-presupuesto-compradores.js');
+    const result = await runAutoPresupuestoCompradores({
+      dryRun: body?.dryRun === true,
+      maxScrape: body?.maxScrape ?? 100,
+      limit: body?.limit ?? 500,
+      compradorIds: body?.compradorIds || body?.comprador_ids,
+      skipLinkInmuebles: body?.skipLinkInmuebles === true,
+      skipScrape: body?.skipScrape === true,
+    });
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-auto-presupuesto-compradores', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminLinkIdealistaAuto(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -988,13 +1008,12 @@ async function handleAdminLinkIdealistaAuto(req, res, body) {
       rules: body?.rules,
       minScore: body?.minScore,
     });
-    if (!body?.dryRun && result.vinculados > 0 && body?.syncCompradores !== false) {
-      const { backfillPresupuestoByIdealistaIds } = await import(
-        '../lib/server/comprador-presupuesto-idealista-id.js'
-      );
-      result.presupuesto = await backfillPresupuestoByIdealistaIds({
+    if (!body?.dryRun && body?.syncCompradores !== false) {
+      const { runAutoPresupuestoCompradores } = await import('../lib/server/auto-presupuesto-compradores.js');
+      result.presupuesto = await runAutoPresupuestoCompradores({
+        skipLinkInmuebles: true,
+        maxScrape: 80,
         limit: 500,
-        maxScrape: 60,
       });
     }
     return res.status(200).json(result);
@@ -1614,6 +1633,7 @@ export default async function handler(req, res) {
   if (action === 'admin-idealista-precios-bulk') return handleAdminIdealistaPreciosBulk(req, res, body);
   if (action === 'admin-finalize-idealista-fichas') return handleAdminFinalizeIdealistaFichas(req, res, body);
   if (action === 'admin-link-idealista-auto') return handleAdminLinkIdealistaAuto(req, res, body);
+  if (action === 'admin-auto-presupuesto-compradores') return handleAdminAutoPresupuestoCompradores(req, res, body);
   if (action === 'admin-infer-comprador-criterios') return handleAdminInferCompradorCriterios(req, res, body);
   if (action === 'admin-agent-chat') return handleAdminAgentChat(req, res, body);
   if (action === 'inmueble-rebaja-visitantes') return handleInmuebleRebajaVisitantes(req, res, body);

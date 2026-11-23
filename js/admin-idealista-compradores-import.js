@@ -236,6 +236,9 @@
         result.innerHTML = `Creados: <strong>${json.compradoresCreados}</strong> · Compradores ya existían: <strong>${dupC}</strong> · Intereses nuevos: <strong>${json.interesesRegistrados}</strong> · Intereses duplicados: <strong>${dupI}</strong> · Sin precio detectado: <strong>${json.sinPrecioEnImport || 0}</strong> · Sin vínculo NH: <strong>${json.sinVinculoInmueble || 0}</strong>${json.avisoMigraciones ? `<br><strong style="color:var(--gold)">${json.avisoMigraciones}</strong>` : ''}${json.errores?.length ? '<br><span style="font-size:.75rem">' + json.errores.map((e) => String(e)).join('<br>') + '</span>' : ''}`;
       }
       if (typeof bustPanelCache === 'function') bustPanelCache(['compradores', 'dashboard']);
+      if (typeof nhAutoPresupuestoCompradoresOnLoad === 'function') {
+        nhAutoPresupuestoCompradoresOnLoad(null, { force: true });
+      }
       if (typeof loadCompradores === 'function') loadCompradores(true);
     } catch (e) {
       window.nhToast?.(e.message, 'error', 7000);

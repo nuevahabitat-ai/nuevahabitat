@@ -2916,6 +2916,7 @@ select.adm-control{
 <script src="js/admin-idealista-compradores-import.js"></script>
 <script src="js/admin-alfredo-ficha-sync.js"></script>
 <script src="js/admin-link-idealista-auto.js"></script>
+<script src="js/admin-compradores-auto-presupuesto.js"></script>
 <script src="js/admin-agent-panel.js"></script>
 <script src="js/admin-operaciones-delete.js"></script>
 <script src="js/admin-comp-filters-autofill.js"></script>
@@ -7643,6 +7644,9 @@ async function loadCompradores(force){
     if (grid) {
       grid.innerHTML = '<p class="text-muted" style="padding:1rem">Error al mostrar compradores. Recarga la página.</p>';
     }
+  }
+  if (typeof nhAutoPresupuestoCompradoresOnLoad === 'function') {
+    nhAutoPresupuestoCompradoresOnLoad(_compData, { force: !!force });
   }
   markPanelLoaded('compradores');
 }
