@@ -6,12 +6,15 @@
   const MIN_INTERVAL_MS = 4 * 60 * 1000;
   let inflight = false;
 
-  function needsCompraventa(c) {
+  function needsSyncAnuncio(c) {
     if (!c || c.activo === false) return false;
-    if (c.presupuesto_max != null && c.presupuesto_min != null) return false;
     const n = String(c.notas || '');
-    if (/idealista/i.test(n) || /\[idealista\s+import\]/i.test(n)) return true;
-    if (/idealista\s+\d{6,}/i.test(n)) return true;
+    const esIdealista =
+      /idealista/i.test(n) || /\[idealista\s+import\]/i.test(n) || /idealista\s+\d{6,}/i.test(n);
+    if (!esIdealista) return false;
+    if (c.presupuesto_max == null || c.presupuesto_min == null) return true;
+    if (c.habitaciones_min == null || c.m2_min == null || c.banos_min == null) return true;
+    if (c.ascensor == null) return true;
     return false;
   }
 
@@ -19,7 +22,7 @@
     if (inflight) return;
     const force = opts?.force === true;
     const list = compData || window._compData || [];
-    if (!list.length || !list.some(needsCompraventa)) return;
+    if (!list.length || !list.some(needsSyncAnuncio)) return;
     const last = parseInt(sessionStorage.getItem(KEY) || '0', 10);
     if (!force && Date.now() - last < MIN_INTERVAL_MS) return;
   if (!window.nhSupabase) return;
@@ -44,7 +47,7 @@
       const n = json.actualizados ?? json.porIdealistaId?.actualizados ?? 0;
       if (n > 0) {
         nhToast?.(
-          `Compraventa actualizada en ${n} comprador(es) desde anuncios Idealista.`,
+          `Ficha compraventa y criterios actualizados en ${n} comprador(es) desde el anuncio.`,
           'success',
           6000,
         );
