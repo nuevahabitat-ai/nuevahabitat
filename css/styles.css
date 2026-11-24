@@ -2265,8 +2265,9 @@ footer {
 }
 .nh-svc-planes-nav a:hover { border-color: var(--oro); background: rgba(255, 255, 255, .1); }
 .nh-svc-planes-nav a.is-current { border-color: var(--oro); background: rgba(184, 147, 106, .15); }
-.nh-svc-planes-nav strong { display: block; font-size: .95rem; margin-bottom: .25rem; color: #fff; }
-.nh-svc-planes-nav span { font-size: .78rem; color: rgba(255, 255, 255, .65); line-height: 1.45; }
+/* Fondo oscuro (plan actual): nav de 3 planes. Ciudades en crema → nh-vd-city-grid */
+.nh-svc-planes-nav:not(.nh-vd-city-grid) strong { display: block; font-size: .95rem; margin-bottom: .25rem; color: #fff; }
+.nh-svc-planes-nav:not(.nh-vd-city-grid) span { font-size: .78rem; color: rgba(255, 255, 255, .65); line-height: 1.45; }
 .nh-svc-faq {
   max-width: 720px;
   margin: 0 auto;
@@ -2341,80 +2342,6 @@ footer {
 }
 .nh-svc-compare-table tbody tr:last-child td { border-bottom: 0; }
 
-@media (max-width: 768px) {
-  .nh-svc-hero { min-height: auto; }
-  .nh-svc-hero-inner {
-    padding: calc(var(--nav-h) + 0.75rem) 0 2.5rem;
-  }
-  .nh-svc-hero-inner h1 {
-    font-size: clamp(1.65rem, 7vw, 2.35rem);
-  }
-  .nh-svc-hero-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-  .nh-svc-hero-actions .btn {
-    width: 100%;
-    justify-content: center;
-    min-height: 48px;
-  }
-  .nh-svc-price-chip {
-    font-size: 0.82rem;
-  }
-  .nh-svc-price-chip strong {
-    font-size: 1.15rem;
-  }
-  .lc-nh-checklist--2col {
-    columns: 1;
-  }
-  .nh-svc-planes-nav a {
-    padding: 0.85rem 1rem;
-  }
-  body:has(.nh-svc-hero) .lc-section .btn.btn-gold {
-    width: 100%;
-    max-width: 360px;
-    justify-content: center;
-  }
-  .nh-svc-portals-inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .nh-svc-portals-logos {
-    justify-content: center;
-  }
-  .nh-vd-glance-card img,
-  .nh-vd-flow-item img {
-    height: auto;
-    min-height: 100px;
-    max-height: 160px;
-  }
-  .nh-svc-faq summary {
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-  body:has(.nh-svc-hero) .lc-nh-split.nh-vd-edu-split {
-    grid-template-columns: 1fr;
-  }
-  body:has(.nh-svc-hero) .lc-nh-split.nh-vd-edu-split .lc-nh-split-media {
-    order: 2;
-  }
-  body:has(.nh-svc-hero) .lc-nh-compare-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 0 -0.25rem;
-    padding: 0 0.25rem 0.5rem;
-  }
-  body:has(.nh-svc-hero) .lc-nh-compare-table {
-    min-width: 520px;
-  }
-  body:has(.nh-svc-hero) .whatsapp-float {
-    bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
-  }
-}
-
 .nh-svc-portals-inner {
   display: grid;
   grid-template-columns: 1fr minmax(200px, 340px);
@@ -2453,6 +2380,114 @@ footer {
   max-height: 48px;
   width: auto;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .nh-svc-hero { min-height: auto; }
+  .nh-svc-hero-inner {
+    padding: calc(var(--nav-h) + 1.1rem) 0 2.5rem;
+  }
+  .nh-svc-hero-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(13, 13, 13, .94) 0%,
+      rgba(13, 13, 13, .72) 50%,
+      rgba(13, 13, 13, .55) 100%
+    );
+  }
+  .nh-svc-hero-inner > p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .nh-svc-hero-inner h1 {
+    font-size: clamp(1.65rem, 7vw, 2.35rem);
+  }
+  .nh-svc-hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nh-svc-hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+  .nh-svc-price-chip {
+    font-size: 0.82rem;
+  }
+  .nh-svc-price-chip strong {
+    font-size: 1.15rem;
+  }
+  .lc-nh-checklist--2col {
+    columns: 1;
+  }
+  .nh-svc-planes-nav a {
+    padding: 0.85rem 1rem;
+  }
+  body:has(.nh-svc-hero) .lc-section .btn.btn-gold {
+    width: 100%;
+    max-width: 360px;
+    justify-content: center;
+  }
+  .nh-svc-portals-inner {
+    grid-template-columns: 1fr;
+    gap: 1.35rem;
+    text-align: center;
+    max-width: 100%;
+  }
+  .nh-svc-portals-copy {
+    text-align: center;
+    min-width: 0;
+  }
+  .nh-svc-portals-copy .section-title {
+    text-align: center;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: manual;
+  }
+  .nh-svc-portals-lead,
+  .nh-svc-portals-note {
+    text-align: center;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nh-svc-portals-logos {
+    justify-content: center;
+    gap: 1rem 1.5rem;
+  }
+  .nh-svc-portal-logo--idealista { max-height: 46px; }
+  .nh-svc-portal-logo--pisos { max-height: 42px; }
+  .nh-vd-glance-card img,
+  .nh-vd-flow-item img {
+    height: auto;
+    min-height: 100px;
+    max-height: 160px;
+  }
+  .nh-svc-faq summary {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body:has(.nh-svc-hero) .lc-nh-split.nh-vd-edu-split {
+    grid-template-columns: 1fr;
+  }
+  body:has(.nh-svc-hero) .lc-nh-split.nh-vd-edu-split .lc-nh-split-media {
+    order: 2;
+  }
+  body:has(.nh-svc-hero) .lc-nh-compare-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -0.25rem;
+    padding: 0 0.25rem 0.5rem;
+  }
+  body:has(.nh-svc-hero) .lc-nh-compare-table {
+    min-width: 520px;
+  }
+  body:has(.nh-svc-hero) .whatsapp-float {
+    bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  }
 }
 
 /* Venta 100 % digital · módulos ilustrados (global, móvil incluido) */
@@ -2561,6 +2596,11 @@ footer {
 .nh-svc-planes-nav.nh-vd-city-grid a {
   background: var(--crema);
   border-color: var(--crema-dark);
+  color: var(--negro);
+}
+.nh-svc-planes-nav.nh-vd-city-grid a:hover {
+  background: rgba(184, 147, 106, .14);
+  border-color: var(--oro);
 }
 .nh-svc-planes-nav.nh-vd-city-grid strong {
   color: var(--negro);
@@ -2576,7 +2616,10 @@ footer {
 @media (max-width: 960px) {
   .nh-vd-glance,
   .nh-vd-flow { grid-template-columns: repeat(2, 1fr); }
-  .nh-svc-planes-nav.nh-vd-city-grid { grid-template-columns: 1fr; }
+  .nh-svc-planes-nav.nh-vd-city-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
 }
 @media (max-width: 560px) {
   .nh-vd-glance,
@@ -2586,6 +2629,119 @@ footer {
 
 .nh-svc-compare-table--plans td:first-child {
   min-width: 140px;
+}
+
+/* Tablas comparativas · tarjetas en pantallas estrechas */
+@media (max-width: 600px) {
+  .nh-svc-table-scroll {
+    overflow-x: visible;
+    max-width: 100%;
+  }
+  .nh-svc-table-scroll .nh-svc-compare-table,
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table {
+    display: block;
+    min-width: 0;
+    width: 100%;
+    border: 0;
+    background: transparent;
+  }
+  .nh-svc-table-scroll .nh-svc-compare-table thead,
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .nh-svc-table-scroll .nh-svc-compare-table tbody,
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table tbody {
+    display: block;
+  }
+  .nh-svc-table-scroll .nh-svc-compare-table tr,
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table tr {
+    display: block;
+    margin-bottom: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: var(--blanco);
+    border: 1px solid var(--crema-dark);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+  }
+  .nh-svc-table-scroll .nh-svc-compare-table td,
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table td {
+    display: block;
+    width: 100%;
+    padding: 0.2rem 0;
+    border: 0;
+    text-align: left;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  .nh-svc-table-scroll .nh-svc-compare-table td:first-child,
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table td:first-child {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--crema-dark);
+  }
+  .nh-svc-table-scroll .nh-svc-compare-table td:not(:first-child)::before,
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table td:not(:first-child)::before {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gris-medio);
+    margin-bottom: 0.1rem;
+  }
+  .nh-svc-table-scroll .nh-svc-compare-table tr td:nth-child(2)::before { content: 'Coste / Plan'; }
+  .nh-svc-table-scroll .nh-svc-compare-table tr td:nth-child(3)::before { content: 'Visitas'; }
+  .nh-svc-table-scroll .nh-svc-compare-table--plans tr td:nth-child(2)::before { content: 'Honorarios'; }
+  .nh-svc-table-scroll .nh-svc-compare-table--plans tr td:nth-child(3)::before { content: 'Visitas'; }
+  .nh-svc-table-scroll .nh-svc-compare-table--plans tr td:nth-child(4)::before { content: 'Negociación'; }
+  .nh-svc-table-scroll .nh-svc-compare-table--plans tr td:nth-child(5)::before { content: 'Cobertura'; }
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table tr td:nth-child(2)::before { content: 'Particular en portal'; }
+  .nh-svc-table-scroll .lc-compare.lc-nh-compare-table tr td:nth-child(3)::before { content: 'Plan digital'; }
+}
+
+/* Guías vende-tu-piso ~1.900 € — responsive global (inline por página + esto) */
+@media (max-width: 768px) {
+  .nh-vp1900-hero {
+    grid-template-columns: 1fr !important;
+    padding: calc(var(--nav-h) + 0.5rem) 0 2rem;
+    gap: 1.25rem;
+  }
+  .nh-vp1900-hero-media { max-height: 220px; }
+  .nh-vp1900-hero-media img { object-position: center 40%; }
+  .nh-vp1900-savings { grid-template-columns: 1fr; gap: 0.65rem; }
+  .nh-vp1900-cities {
+    gap: 0.5rem;
+    justify-content: stretch;
+  }
+  .nh-vp1900-cities a {
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: 0;
+    min-height: 48px;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .nh-vp1900-actions-wrap {
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-md);
+  }
+  .nh-vp1900-actions {
+    font-size: 0.75rem;
+    min-width: 520px;
+  }
+  .nh-vp1900-actions th,
+  .nh-vp1900-actions td {
+    padding: 0.5rem 0.45rem;
+  }
 }
 .lc-gestor-wa-strip {
   padding: 1.35rem 0;
@@ -3337,16 +3493,14 @@ footer {
   }
   .footer-col { display: none; }
   .footer-brand {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    column-gap: .85rem;
-    row-gap: .65rem;
-    align-items: start;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.65rem;
     width: 100%;
   }
   .footer-brand img {
-    grid-row: 1 / span 2;
     height: 52px;
     width: auto;
     margin: 0;
@@ -3354,8 +3508,9 @@ footer {
   .footer-brand p {
     max-width: none;
     margin: 0;
-    line-height: 1.45;
-    font-size: .8125rem;
+    line-height: 1.5;
+    font-size: .875rem;
+    width: 100%;
   }
   .footer-social {
     grid-column: 1 / -1;
@@ -3396,22 +3551,29 @@ footer {
     line-height: 1.45;
   }
   .footer-trust-logos {
-    justify-content: flex-start;
-    gap: .45rem .55rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
+    gap: 0.55rem 0.65rem;
+    width: 100%;
   }
   .footer-trust-logos img {
-    height: 64px;
-    max-width: 118px;
-    padding: 5px 7px;
+    height: 58px;
+    width: 100%;
+    max-width: 100%;
+    padding: 6px 8px;
     border-radius: 8px;
+    box-sizing: border-box;
   }
   .footer-trust-logos img.footer-trust-wide {
-    max-width: min(168px, 44vw);
-    height: 52px;
+    grid-column: 1 / -1;
+    max-width: min(280px, 92vw);
+    height: 50px;
+    justify-self: center;
   }
   .footer-trust-logos img.footer-trust-tall {
-    height: 64px;
-    max-width: 64px;
+    height: 58px;
+    max-width: 100%;
   }
   .footer-bottom { flex-direction: column; text-align: center; gap: .75rem; padding: 1.25rem 0; }
 
@@ -5019,7 +5181,85 @@ a.blog-card:hover .blog-card-img img{transform:scale(1.04)}
 
   .section-title {
     font-size: clamp(1.45rem, 5.5vw, 2rem);
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: manual;
+    line-height: 1.22;
+  }
+
+  .lc-nh-prose {
+    font-size: 1rem;
+    line-height: 1.72;
+    padding: 0 0.15rem;
+  }
+  .lc-nh-prose h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    color: var(--negro);
+    margin: 1.75rem 0 0.85rem;
+    line-height: 1.25;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+  .lc-nh-prose h2:first-child { margin-top: 0; }
+  .lc-nh-prose p { margin: 0 0 1rem; }
+  .lc-nh-prose ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.15rem;
+  }
+  .lc-nh-prose li { margin-bottom: 0.45rem; line-height: 1.6; }
+
+  body:has(.whatsapp-float) {
+    padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nh-svc-planes-nav.nh-vd-city-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .nh-svc-planes-nav.nh-vd-city-grid a {
+    padding: 0.8rem 0.75rem;
+    min-height: 48px;
+  }
+  .nh-svc-planes-nav.nh-vd-city-grid strong {
+    font-size: 0.9rem;
+  }
+  .nh-svc-planes-nav.nh-vd-city-grid span {
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  .nh-svc-table-scroll {
+    margin-left: -0.15rem;
+    margin-right: -0.15rem;
+    padding-bottom: 0.35rem;
+    scrollbar-width: thin;
+  }
+  .nh-svc-compare-table {
+    min-width: 0;
+    width: 100%;
+    font-size: 0.8125rem;
+  }
+  .nh-svc-compare-table th,
+  .nh-svc-compare-table td {
+    padding: 0.55rem 0.5rem;
+    line-height: 1.45;
+  }
+  .nh-svc-compare-table th {
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+
+  .lc-nh-compare-wrap .nh-svc-table-scroll,
+  .lc-nh-compare-wrap {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .lc-nh-compare-wrap .lc-compare,
+  .lc-nh-compare-table {
+    min-width: 0;
+    width: 100%;
+    font-size: 0.8125rem;
   }
 }
 
