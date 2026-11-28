@@ -337,11 +337,5 @@
       "source": "/sw-site.js",
       "headers": [{ "key": "Cache-Control", "value": "no-cache, max-age=0" }]
     }
-  ],
-  "crons": [
-    {
-      "path": "/api/cron-presupuesto-compradores",
-      "schedule": "0 7 * * *"
-    }
   ]
 }

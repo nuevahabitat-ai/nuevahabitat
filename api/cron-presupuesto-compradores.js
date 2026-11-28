@@ -1,5 +1,6 @@
 /**
- * Cron Vercel: compraventa automática compradores Idealista (cada 2 h).
+ * Compraventa automática compradores Idealista (invocación manual o scheduler externo).
+ * Sin entrada en vercel.json: Hobby no admite crons frecuentes y falla el deploy.
  */
 export default async function handler(req, res) {
   const auth = req.headers.authorization || req.headers['authorization'] || '';
