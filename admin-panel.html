@@ -898,7 +898,7 @@ select.adm-control{
             <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem">
               <div id="leads-counts" class="text-muted" style="font-size:.78rem"></div>
               <div class="gap-row" style="justify-content:flex-end;flex-wrap:wrap">
-                <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" id="lead-sync-gmail-btn" onclick="syncGmailLeads()">📥 Importar correos Gmail</button>
+                <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" id="lead-sync-gmail-btn" onclick="syncGmailLeads()">📥 Importar correos (Resend)</button>
                 <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="openLeadForm()">+ Nuevo lead</button>
                 <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendAllFormLeadEmails()">Reenviar avisos → admin e info</button>
               </div>
@@ -6189,7 +6189,7 @@ window.sendSelectedLeadWhatsApp = sendSelectedLeadWhatsApp;
 async function syncGmailLeads(opts = {}) {
   const btn = document.getElementById('lead-sync-gmail-btn');
   const silent = opts.silent === true;
-  if (!silent && !confirm('¿Importar correos recientes de admin.nuevahabitat@gmail.com como leads nuevos?')) return;
+  if (!silent && !confirm('¿Importar correos recibidos en Resend (y Gmail si está configurado) como leads?')) return;
   const { data: { session } } = await window.nhSupabase.auth.getSession();
   if (!session?.access_token) {
     nhToast('Sesión no válida', 'error');
@@ -6197,27 +6197,30 @@ async function syncGmailLeads(opts = {}) {
   }
   if (btn) { btn.disabled = true; btn.textContent = 'Importando…'; }
   try {
-    const res = await fetch('/api/notify?__action=admin-sync-gmail-leads', {
+    const res = await fetch('/api/notify?__action=admin-sync-inbound-leads', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + session.access_token,
       },
-      body: JSON.stringify({ maxMessages: 35 }),
+      body: JSON.stringify({ maxMessages: 50, gmailMax: 25 }),
     });
     const json = await res.json().catch(() => ({}));
-    if (!res.ok || json.ok === false) throw new Error(json.error || 'Error al leer Gmail');
-  if (json.creados) {
-      nhToast(`Gmail: ${json.creados} lead(s) nuevos (${json.revisados} revisados).`, 'success', 8000);
+    if (!res.ok || json.ok === false) throw new Error(json.error || json.resend?.error || 'Error al importar correos');
+    const n = json.creados || 0;
+    const r = json.resend || {};
+    const g = json.gmail || {};
+    if (n) {
+      nhToast(`Correos → ${n} lead(s) nuevo(s). Resend: ${r.creados || 0}, Gmail: ${g.creados || 0}.`, 'success', 9000);
     } else {
-      nhToast(`Gmail: nada nuevo (${json.revisados || 0} revisados, ${json.omitidos || 0} omitidos).`, 'info', 6000);
+      nhToast(`Nada nuevo. Resend revisados: ${r.revisados || 0}, Gmail: ${g.revisados || 0}.`, 'info', 7000);
     }
-    if (json.errores?.length) console.warn('gmail leads', json.errores);
+    if (r.errores?.length || g.errores?.length) console.warn('inbound leads', r.errores, g.errores);
     await loadLeads();
   } catch (e) {
-    nhToast(e.message || 'No se pudo importar Gmail', 'error', 9000);
+    nhToast(e.message || 'No se pudo importar', 'error', 9000);
   } finally {
-    if (btn) { btn.disabled = false; btn.textContent = '📥 Importar correos Gmail'; }
+    if (btn) { btn.disabled = false; btn.textContent = '📥 Importar correos (Resend)'; }
   }
 }
 window.syncGmailLeads = syncGmailLeads;
@@ -6325,7 +6328,8 @@ function leadOrigenLabel(origen) {
   if (origen === 'manual_admin') return 'Alta manual · panel admin';
   if (origen === 'manual_alquiler_admin') return 'Alta manual · alquiler administración';
   if (origen === 'manual_alquiler_integral') return 'Alta manual · alquiler integral';
-  if (origen === 'gmail_inbound') return 'Correo · admin.nuevahabitat@gmail.com';
+  if (origen === 'resend_inbound') return 'Correo · Resend (dominio NH)';
+  if (origen === 'gmail_inbound') return 'Correo · Gmail admin';
   if (origen === 'web_patrimonial') return 'Web · Patrimonial';
   return origen.replace(/_/g, ' ');
 }

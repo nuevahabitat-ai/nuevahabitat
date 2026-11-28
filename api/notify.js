@@ -1276,6 +1276,97 @@ async function handleAdminSyncGmailLeads(req, res, body) {
   }
 }
 
+async function handleAdminSyncResendInbound(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const { syncResendInboundLeads } = await import('../lib/server/resend-inbound-leads.js');
+    const result = await syncResendInboundLeads({ maxMessages: body?.maxMessages ?? 50 });
+    if (result.ok === false) return res.status(503).json(result);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-sync-resend-inbound', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
+/** Resend + Gmail (prioridad Resend). */
+async function handleAdminSyncInboundLeads(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const { syncResendInboundLeads } = await import('../lib/server/resend-inbound-leads.js');
+    const { syncGmailInboundLeads } = await import('../lib/server/gmail-inbound-leads.js');
+    const resend = await syncResendInboundLeads({ maxMessages: body?.maxMessages ?? 50 });
+    let gmail = { ok: false, skipped: true, creados: 0, revisados: 0 };
+    if (body?.gmail !== false) {
+      gmail = await syncGmailInboundLeads({ maxMessages: body?.gmailMax ?? 25 });
+    }
+    const creados = (resend.creados || 0) + (gmail.creados || 0);
+    return res.status(200).json({
+      ok: true,
+      creados,
+      resend,
+      gmail,
+    });
+  } catch (err) {
+    console.error('admin-sync-inbound-leads', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
+async function readRawBody(req) {
+  if (typeof req.body === 'string') return Buffer.from(req.body);
+  if (Buffer.isBuffer(req.body)) return req.body;
+  if (req.body && typeof req.body === 'object') return Buffer.from(JSON.stringify(req.body));
+  const chunks = [];
+  for await (const chunk of req) chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+  return Buffer.concat(chunks);
+}
+
+/** Webhook Resend `email.received` → lead (configurar en dashboard Resend). */
+async function handleResendInboundWebhook(req, res) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return res.status(503).json({ ok: false, error: 'RESEND_API_KEY missing' });
+  let event;
+  try {
+    const raw = await readRawBody(req);
+    const payload = raw.toString('utf8');
+    const secret = process.env.RESEND_WEBHOOK_SECRET;
+    if (secret && req.headers['svix-signature']) {
+      try {
+        const { Webhook } = await import('svix');
+        const wh = new Webhook(secret);
+        event = wh.verify(payload, {
+          'svix-id': req.headers['svix-id'],
+          'svix-timestamp': req.headers['svix-timestamp'],
+          'svix-signature': req.headers['svix-signature'],
+        });
+      } catch (e) {
+        console.error('resend-webhook verify', e.message);
+        return res.status(400).json({ ok: false, error: 'Invalid webhook signature' });
+      }
+    } else {
+      event = JSON.parse(payload);
+    }
+  } catch (e) {
+    return res.status(400).json({ ok: false, error: e.message });
+  }
+  if (event?.type !== 'email.received') {
+    return res.status(200).json({ ok: true, ignored: event?.type });
+  }
+  const emailId = event.data?.email_id;
+  if (!emailId) return res.status(200).json({ ok: true, ignored: 'no email_id' });
+  try {
+    const { processResendWebhookReceived } = await import('../lib/server/resend-inbound-leads.js');
+    const result = await processResendWebhookReceived(emailId);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('resend-inbound-webhook', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminLeads(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1713,6 +1804,9 @@ export default async function handler(req, res) {
 
   const body = req.body || {};
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
+  if (action === 'resend-inbound-webhook') return handleResendInboundWebhook(req, res);
+  if (action === 'admin-sync-inbound-leads') return handleAdminSyncInboundLeads(req, res, body);
+  if (action === 'admin-sync-resend-inbound') return handleAdminSyncResendInbound(req, res, body);
   if (action === 'admin-sync-gmail-leads') return handleAdminSyncGmailLeads(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
   if (action === 'admin-lead-create') return handleAdminLeadCreate(req, res, body);

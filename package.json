@@ -2,7 +2,8 @@
   "name": "nuevahabitat",
   "private": true,
   "dependencies": {
-    "stripe": "^17.7.0"
+    "stripe": "^17.7.0",
+    "svix": "^2.11.1"
   },
   "scripts": {
     "build:landings": "node scripts/build-landings.js",

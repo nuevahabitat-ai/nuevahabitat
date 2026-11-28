@@ -1,3 +1,8 @@
+# Leads desde Gmail (alternativa)
+
+> **Recomendado si usáis Resend:** [RESEND-INBOUND-LEADS.md](./RESEND-INBOUND-LEADS.md)  
+> Reenvía `admin.nuevahabitat@gmail.com` → `leads@nuevahabitat.com` y usa Receiving + webhook.
+
 # Leads desde correo (admin.nuevahabitat@gmail.com)
 
 ## Cómo funciona hoy
