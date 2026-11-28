@@ -989,6 +989,7 @@ async function handleAdminAutoPresupuestoCompradores(req, res, body) {
       compradorIds: body?.compradorIds || body?.comprador_ids,
       skipLinkInmuebles: body?.skipLinkInmuebles === true,
       skipScrape: body?.skipScrape === true,
+      forceAll: body?.forceAll === true || body?.force === true,
     });
     return res.status(200).json(result);
   } catch (err) {

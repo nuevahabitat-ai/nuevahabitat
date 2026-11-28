@@ -85,6 +85,40 @@
     }
   }
 
+  async function nhForzarPreciosCompradores() {
+    if (!window.nhSupabase) return;
+    const {
+      data: { session },
+    } = await window.nhSupabase.auth.getSession();
+    if (!session?.access_token) {
+      nhToast?.('Sesión no disponible', 'error');
+      return;
+    }
+    nhToast?.('Forzando precios compraventa en todos los compradores sin rango…', 'info', 20000);
+    try {
+      const res = await fetch('/api/notify?__action=admin-sync-presupuesto-compradores', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + session.access_token,
+        },
+        body: JSON.stringify({ maxScrape: 150, limit: 500, all: true, forceAll: true }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.ok) throw new Error(json.error || res.status);
+      const porId = json.porIdealistaId || {};
+      const batch = json.batch || {};
+      nhToast?.(
+        `Precios forzados: ${porId.actualizados ?? 0} por ID Idealista · ${batch.updated ?? 0} por ficha piso · quedan sin precio: ${porId.sinPrecio ?? '?'}.`,
+        'success',
+        12000,
+      );
+      if (typeof loadCompradores === 'function') loadCompradores(true);
+    } catch (e) {
+      nhToast?.(e.message || 'Error', 'error', 8000);
+    }
+  }
+
   async function nhSyncPresupuestoCompradores() {
     if (!window.nhSupabase) return;
     const {
@@ -132,6 +166,7 @@
   window.nhSyncAlfredoFichasDesdeNotas = nhSyncAlfredoFichasDesdeNotas;
   window.nhInferCriteriosDesdePisos = nhInferCriteriosDesdePisos;
   window.nhSyncPresupuestoCompradores = nhSyncPresupuestoCompradores;
+  window.nhForzarPreciosCompradores = nhForzarPreciosCompradores;
 
   function injectBtn() {
     const hdr = document.querySelector('#sec-compradores .adm-section-hdr');
@@ -155,12 +190,20 @@
     btn3.textContent = '€ Compraventa Idealista';
     btn3.title = 'Rellena presupuesto máx/mín (−50k) desde anuncios consultados e import';
     btn3.onclick = () => nhSyncPresupuestoCompradores();
-    const gold = hdr.querySelector('.adm-btn-gold');
+    const btnForce = document.createElement('button');
+    btnForce.type = 'button';
+    btnForce.className = 'adm-btn adm-btn-gold';
+    btnForce.dataset.nhForcePrecios = '1';
+    btnForce.textContent = '⚡ Forzar precios';
+    btnForce.title = 'Rellena presupuesto mín./máx. en todos los compradores activos que aún muestran sin dato';
+    btnForce.onclick = () => nhForzarPreciosCompradores();
+    const gold = hdr.querySelector('.adm-btn-gold:not([data-nh-force-precios])');
     if (gold) {
+      hdr.insertBefore(btnForce, gold);
       hdr.insertBefore(btn3, gold);
       hdr.insertBefore(btn2, gold);
       hdr.insertBefore(btn, gold);
-    } else hdr.appendChild(btn);
+    } else hdr.appendChild(btnForce);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectBtn);

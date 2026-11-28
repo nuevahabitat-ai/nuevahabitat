@@ -26,9 +26,9 @@
     return n >= 40000 && n <= 15000000 ? n : null;
   }
 
-  function precioFromNotas(notas) {
+  function preciosFromNotas(notas) {
     var text = String(notas || '');
-    if (!text.trim()) return null;
+    if (!text.trim()) return [];
     var prices = [];
     var m;
     var re = /(\d{1,3}(?:\.\d{3})+|\d{5,7})\s*€/g;
@@ -36,6 +36,11 @@
       var p = parseEuroAmount(m[1]);
       if (p) prices.push(p);
     }
+    return prices;
+  }
+
+  function precioFromNotas(notas) {
+    var prices = preciosFromNotas(notas);
     if (!prices.length) return null;
     return Math.max.apply(null, prices);
   }
@@ -141,12 +146,40 @@
     );
   }
 
+  async function enrichFromNotasLocales(need) {
+    var toSave = [];
+    need.forEach(function (c) {
+      if (c.presupuesto_max >= 40000 && c.presupuesto_min >= 40000) return;
+      var prices = preciosFromNotas(c.notas);
+      if (!prices.length) return;
+      var agg = aggregatePresupuesto(prices);
+      if (!agg) return;
+      applyPrecioToComprador(c, agg.presupuesto_max, agg.presupuesto_min);
+      toSave.push(c);
+    });
+    for (var i = 0; i < toSave.length; i++) {
+      await persistPrecioComprador(toSave[i]);
+    }
+    return toSave.length;
+  }
+
   async function enrichPreciosPisoFromApi() {
     if (_enriching || !window.nhSupabase) return;
     var data = getCompData();
     if (!data.length) return;
     _enriching = true;
     var need = data.filter(function (c) {
+      if (c.activo === false) return false;
+      return !(c.presupuesto_max >= 40000) || c.presupuesto_min == null || Number(c.presupuesto_min) <= 0;
+    });
+    if (!need.length) {
+      _enriching = false;
+      patchCompGrid();
+      return;
+    }
+    await enrichFromNotasLocales(need);
+    need = getCompData().filter(function (c) {
+      if (c.activo === false) return false;
       return !(c.presupuesto_max >= 40000) || c.presupuesto_min == null || Number(c.presupuesto_min) <= 0;
     });
     if (!need.length) {

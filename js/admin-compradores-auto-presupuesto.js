@@ -3,19 +3,19 @@
  */
 (function () {
   const KEY = 'nh_auto_presupuesto_ts';
-  const MIN_INTERVAL_MS = 4 * 60 * 1000;
+  const MIN_INTERVAL_MS = 90 * 1000;
   let inflight = false;
 
   function needsSyncAnuncio(c) {
     if (!c || c.activo === false) return false;
+  const sinRango =
+      c.presupuesto_max == null ||
+      Number(c.presupuesto_max) < 40000 ||
+      c.presupuesto_min == null ||
+      Number(c.presupuesto_min) < 40000;
+    if (!sinRango) return false;
     const n = String(c.notas || '');
-    const esIdealista =
-      /idealista/i.test(n) || /\[idealista\s+import\]/i.test(n) || /idealista\s+\d{6,}/i.test(n);
-    if (!esIdealista) return false;
-    if (c.presupuesto_max == null || c.presupuesto_min == null) return true;
-    if (c.habitaciones_min == null || c.m2_min == null || c.banos_min == null) return true;
-    if (c.ascensor == null) return true;
-    return false;
+    return /idealista/i.test(n) || /\d{1,3}(?:\.\d{3})+\s*€/.test(n);
   }
 
   async function nhAutoPresupuestoCompradoresOnLoad(compData, opts) {
@@ -39,7 +39,7 @@
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + session.access_token,
         },
-        body: JSON.stringify({ maxScrape: 80, limit: 500 }),
+        body: JSON.stringify({ maxScrape: 120, limit: 500, forceAll: true }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) return;

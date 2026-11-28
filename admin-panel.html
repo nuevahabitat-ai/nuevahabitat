@@ -7666,7 +7666,10 @@ async function loadCompradores(force){
     }
   }
   if (typeof nhAutoPresupuestoCompradoresOnLoad === 'function') {
-    nhAutoPresupuestoCompradoresOnLoad(_compData, { force: !!force });
+    const sinPrecio = (_compData || []).some(
+      (c) => c.activo !== false && (c.presupuesto_max == null || c.presupuesto_min == null),
+    );
+    nhAutoPresupuestoCompradoresOnLoad(_compData, { force: !!force || sinPrecio });
   }
   markPanelLoaded('compradores');
 }
