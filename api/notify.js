@@ -905,6 +905,58 @@ async function handleAdminAgentChat(req, res, body) {
   }
 }
 
+async function handleAdminInmuebleIdealistaSync(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const { syncCompradoresAfterInmuebleIdealistaLink } = await import(
+      '../lib/server/sync-compradores-inmueble-idealista.js'
+    );
+    const ids = [body?.idealista_id, body?.idealista_id_2, body?.idealistaId, body?.idealistaId2]
+      .filter(Boolean);
+    const result = await syncCompradoresAfterInmuebleIdealistaLink({
+      inmuebleId: body?.inmueble_id ?? body?.inmuebleId,
+      idealistaIds: ids.length ? ids : body?.idealistaIds,
+    });
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-inmueble-idealista-sync', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
+async function handleAdminDeleteInmueble(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  const id = body?.inmueble_id ?? body?.inmuebleId ?? body?.id;
+  if (!id) return res.status(400).json({ ok: false, error: 'inmueble_id requerido' });
+  const { SB_URL, svcHeaders } = await import('../lib/server/supabase-server.js');
+  try {
+    await fetch(`${SB_URL}/rest/v1/leads?inmueble_id=eq.${encodeURIComponent(id)}`, {
+      method: 'PATCH',
+      headers: svcHeaders('return=minimal'),
+      body: JSON.stringify({ inmueble_id: null }),
+    });
+    await fetch(`${SB_URL}/rest/v1/visitas?inmueble_id=eq.${encodeURIComponent(id)}`, {
+      method: 'PATCH',
+      headers: svcHeaders('return=minimal'),
+      body: JSON.stringify({ inmueble_id: null }),
+    });
+    const del = await fetch(`${SB_URL}/rest/v1/inmuebles?id=eq.${encodeURIComponent(id)}`, {
+      method: 'DELETE',
+      headers: svcHeaders('return=minimal'),
+    });
+    if (!del.ok) {
+      const t = await del.text();
+      return res.status(500).json({ ok: false, error: t || 'No se pudo eliminar' });
+    }
+    return res.status(200).json({ ok: true, deleted: id });
+  } catch (err) {
+    console.error('admin-delete-inmueble', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminSyncPresupuestoCompradores(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1649,6 +1701,8 @@ export default async function handler(req, res) {
   if (action === 'admin-import-idealista-compradores') return handleAdminImportIdealistaCompradores(req, res, body);
   if (action === 'admin-backfill-idealista-interes') return handleAdminBackfillIdealistaInteres(req, res, body);
   if (action === 'admin-enrich-alfredo-fichas') return handleAdminEnrichAlfredoFichas(req, res, body);
+  if (action === 'admin-inmueble-idealista-sync') return handleAdminInmuebleIdealistaSync(req, res, body);
+  if (action === 'admin-delete-inmueble') return handleAdminDeleteInmueble(req, res, body);
   if (action === 'admin-sync-presupuesto-compradores') return handleAdminSyncPresupuestoCompradores(req, res, body);
   if (action === 'admin-comprador-precio-piso') return handleAdminCompradorPrecioPiso(req, res, body);
   if (action === 'admin-idealista-precios-bulk') return handleAdminIdealistaPreciosBulk(req, res, body);

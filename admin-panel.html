@@ -3455,12 +3455,41 @@ async function saveInmIdealistaId(inmuebleId){
     return;
   }
   const p = (_pubData || []).find(x => x.id === inmuebleId);
+  const prevId = p ? nhNormalizeIdealistaId(p.idealista_id) : null;
+  const prevId2 = p ? nhNormalizeIdealistaId(p.idealista_id_2) : null;
   if(p){ p.idealista_id = id; p.idealista_id_2 = id2; }
   syncInmIdealistaInputs(inmuebleId, id, id2);
-  nhToast(id || id2 ? `ID Idealista vinculado a ${p?.ref || 'inmueble'}.` : 'IDs Idealista quitados.', 'success');
+  const newlyLinked = (id && id !== prevId) || (id2 && id2 !== prevId2);
+  if(newlyLinked && (id || id2) && (p?.precio != null && Number(p.precio) >= 40000)){
+    try {
+      const { data: { session } } = await window.nhSupabase.auth.getSession();
+      if(session?.access_token){
+        const res = await fetch('/api/notify?__action=admin-inmueble-idealista-sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token },
+          body: JSON.stringify({ inmueble_id: inmuebleId, idealista_id: id, idealista_id_2: id2 }),
+        });
+        const json = await res.json().catch(() => ({}));
+        const n = json.actualizados ?? 0;
+        nhToast(
+          (id || id2 ? `ID Idealista vinculado a ${p?.ref || 'inmueble'}.` : '') +
+            (n ? ` ${n} comprador(es) con precio compraventa actualizado.` : ''),
+          'success',
+          8000,
+        );
+      } else {
+        nhToast(id || id2 ? `ID Idealista vinculado a ${p?.ref || 'inmueble'}.` : 'IDs Idealista quitados.', 'success');
+      }
+    } catch (_) {
+      nhToast(id || id2 ? `ID Idealista vinculado a ${p?.ref || 'inmueble'}.` : 'IDs Idealista quitados.', 'success');
+    }
+  } else {
+    nhToast(id || id2 ? `ID Idealista vinculado a ${p?.ref || 'inmueble'}.` : 'IDs Idealista quitados.', 'success');
+  }
   renderPublications();
   if(inmIdealistaTabVisible()) renderInmIdealistaTab();
   if(typeof bustPanelCache === 'function') bustPanelCache(['compradores', 'dashboard']);
+  if(newlyLinked) { try { loadCompradores(true); } catch (_) {} }
 }
 window.saveInmIdealistaId = saveInmIdealistaId;
 window.renderInmIdealistaTab = renderInmIdealistaTab;
@@ -4801,10 +4830,39 @@ async function quickSetInmuebleEstado(id, estado){
 window.quickSetInmuebleEstado = quickSetInmuebleEstado;
 
 async function deleteProperty(id){
-  if(!confirm('¿Eliminar este inmueble? Esta acción no se puede deshacer.')) return;
-  const { error } = await window.nhSupabase.from('inmuebles').delete().eq('id',id);
-  if(error){ nhToast('Error: '+error.message); return; }
-  loadPublications();
+  const p = (_pubData || []).find(x => x.id === id);
+  const ref = p?.ref || 'este inmueble';
+  if(!confirm(`¿Eliminar ${ref}? Los leads y visitas vinculados se desvinculan (no se borran).`)) return;
+  try {
+    const { data: { session } } = await window.nhSupabase.auth.getSession();
+    const token = session?.access_token;
+  const { error: eLead } = await window.nhSupabase.from('leads').update({ inmueble_id: null }).eq('inmueble_id', id);
+    if(eLead) console.warn('unlink leads', eLead);
+    const { error: eVis } = await window.nhSupabase.from('visitas').update({ inmueble_id: null }).eq('inmueble_id', id);
+    if(eVis) console.warn('unlink visitas', eVis);
+    let { error } = await window.nhSupabase.from('inmuebles').delete().eq('id', id);
+    if(error && /foreign key|leads_inmueble/i.test(error.message) && token){
+      const res = await fetch('/api/notify?__action=admin-delete-inmueble', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify({ inmueble_id: id }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if(!res.ok || !json.ok) throw new Error(json.error || error.message);
+      error = null;
+    }
+    if(error) throw error;
+    nhToast('Inmueble eliminado.', 'success');
+    loadPublications(true);
+    if(typeof bustPanelCache === 'function') bustPanelCache(['inmuebles', 'leads', 'dashboard']);
+  } catch(err){
+    const msg = String(err.message || err);
+    if(/leads_inmueble_id_fkey|foreign key/i.test(msg)){
+      nhToast('No se puede borrar: hay leads u otras filas vinculadas. Vuelve a intentar tras actualizar el panel (F5) o revisa Leads.', 'error', 9000);
+    } else {
+      nhToast('Error: ' + msg, 'error');
+    }
+  }
 }
 function editProperty(id){
   if(!id){ nhToast('ID de inmueble no válido'); return; }
