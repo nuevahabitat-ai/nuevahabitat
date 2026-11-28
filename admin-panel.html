@@ -3382,8 +3382,8 @@ function syncInmIdealistaInputs(inmuebleId, id, id2){
     ['idl2', id2],
   ];
   for (const [suffix, val] of pairs) {
-  for (const prefix of ['inm-' + suffix + '-', 'inm-card-' + suffix + '-']) {
-    const el = document.getElementById(prefix + inmuebleId);
+    for (const prefix of ['inm-' + suffix + '-', 'inm-card-' + suffix + '-']) {
+      const el = document.getElementById(prefix + inmuebleId);
       if (el) el.value = val || '';
     }
   }
