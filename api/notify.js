@@ -1259,11 +1259,37 @@ async function handleInmuebleRebajaEmail(req, res, body) {
   return res.status(200).json({ ok: true, sent, errors });
 }
 
+async function handleAdminSyncGmailLeads(req, res, body) {
+  const admin = await verifyPanelAdmin(req);
+  if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
+  try {
+    const { syncGmailInboundLeads } = await import('../lib/server/gmail-inbound-leads.js');
+    const result = await syncGmailInboundLeads({
+      maxMessages: body?.maxMessages ?? 30,
+      q: body?.q,
+    });
+    if (result.ok === false) return res.status(result.gmailStatus === 403 ? 503 : 500).json(result);
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('admin-sync-gmail-leads', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminLeads(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
 
   try {
+    let gmail = null;
+    if (body?.syncGmail === true) {
+      try {
+        const { syncGmailInboundLeads } = await import('../lib/server/gmail-inbound-leads.js');
+        gmail = await syncGmailInboundLeads({ maxMessages: 20 });
+      } catch (e) {
+        gmail = { ok: false, error: e.message };
+      }
+    }
     let purge = null;
     if (body?.purge) {
       purge = await purgeNonFormularioLeadsServer();
@@ -1277,7 +1303,7 @@ async function handleAdminLeads(req, res, body) {
     }
     const propietarios = await listPropietariosAlquilerServer();
     const data = mergePropietariosIntoLeads(leads, propietarios);
-    return res.status(200).json({ ok: true, data, purge });
+    return res.status(200).json({ ok: true, data, purge, gmail });
   } catch (err) {
     console.error('admin-leads', err);
     return res.status(500).json({ ok: false, error: err.message });
@@ -1687,6 +1713,7 @@ export default async function handler(req, res) {
 
   const body = req.body || {};
   if (action === 'insert-lead') return handleInsertLead(req, res, body);
+  if (action === 'admin-sync-gmail-leads') return handleAdminSyncGmailLeads(req, res, body);
   if (action === 'admin-leads') return handleAdminLeads(req, res, body);
   if (action === 'admin-lead-create') return handleAdminLeadCreate(req, res, body);
   if (action === 'admin-alq-promote-lead') return handleAdminAlqPromoteLead(req, res, body);

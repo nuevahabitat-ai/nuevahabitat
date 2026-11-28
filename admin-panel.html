@@ -893,11 +893,12 @@ select.adm-control{
           <div class="adm-card-head">
             <div>
               <h3>Leads recibidos</h3>
-              <p class="text-muted" style="font-size:.82rem;margin:.35rem 0 0">Formularios web y altas en panel · clic en una fila para ver el detalle completo</p>
+              <p class="text-muted" style="font-size:.82rem;margin:.35rem 0 0">Formularios web, correo a <strong>admin.nuevahabitat@gmail.com</strong> y altas manuales · clic en una fila para el detalle</p>
             </div>
             <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem">
               <div id="leads-counts" class="text-muted" style="font-size:.78rem"></div>
               <div class="gap-row" style="justify-content:flex-end;flex-wrap:wrap">
+                <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" id="lead-sync-gmail-btn" onclick="syncGmailLeads()">📥 Importar correos Gmail</button>
                 <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="openLeadForm()">+ Nuevo lead</button>
                 <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" onclick="resendAllFormLeadEmails()">Reenviar avisos → admin e info</button>
               </div>
@@ -6185,6 +6186,42 @@ async function sendSelectedLeadWhatsApp() {
 }
 window.sendSelectedLeadWhatsApp = sendSelectedLeadWhatsApp;
 
+async function syncGmailLeads(opts = {}) {
+  const btn = document.getElementById('lead-sync-gmail-btn');
+  const silent = opts.silent === true;
+  if (!silent && !confirm('¿Importar correos recientes de admin.nuevahabitat@gmail.com como leads nuevos?')) return;
+  const { data: { session } } = await window.nhSupabase.auth.getSession();
+  if (!session?.access_token) {
+    nhToast('Sesión no válida', 'error');
+    return;
+  }
+  if (btn) { btn.disabled = true; btn.textContent = 'Importando…'; }
+  try {
+    const res = await fetch('/api/notify?__action=admin-sync-gmail-leads', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + session.access_token,
+      },
+      body: JSON.stringify({ maxMessages: 35 }),
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok || json.ok === false) throw new Error(json.error || 'Error al leer Gmail');
+  if (json.creados) {
+      nhToast(`Gmail: ${json.creados} lead(s) nuevos (${json.revisados} revisados).`, 'success', 8000);
+    } else {
+      nhToast(`Gmail: nada nuevo (${json.revisados || 0} revisados, ${json.omitidos || 0} omitidos).`, 'info', 6000);
+    }
+    if (json.errores?.length) console.warn('gmail leads', json.errores);
+    await loadLeads();
+  } catch (e) {
+    nhToast(e.message || 'No se pudo importar Gmail', 'error', 9000);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = '📥 Importar correos Gmail'; }
+  }
+}
+window.syncGmailLeads = syncGmailLeads;
+
 async function resendAllFormLeadEmails() {
   if (!confirm('¿Reenviar un email de aviso por cada lead de formulario a admin.nuevahabitat@gmail.com e info@nuevahabitat.com?')) return;
   const { data: { session } } = await window.nhSupabase.auth.getSession();
@@ -6288,6 +6325,7 @@ function leadOrigenLabel(origen) {
   if (origen === 'manual_admin') return 'Alta manual · panel admin';
   if (origen === 'manual_alquiler_admin') return 'Alta manual · alquiler administración';
   if (origen === 'manual_alquiler_integral') return 'Alta manual · alquiler integral';
+  if (origen === 'gmail_inbound') return 'Correo · admin.nuevahabitat@gmail.com';
   if (origen === 'web_patrimonial') return 'Web · Patrimonial';
   return origen.replace(/_/g, ' ');
 }
