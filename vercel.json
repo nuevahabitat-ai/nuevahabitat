@@ -341,7 +341,7 @@
   "crons": [
     {
       "path": "/api/cron-presupuesto-compradores",
-      "schedule": "0 */2 * * *"
+      "schedule": "0 7 * * *"
     }
   ]
 }
