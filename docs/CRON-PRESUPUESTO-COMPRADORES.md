@@ -13,4 +13,4 @@ curl -sS -H "Authorization: Bearer $CRON_SECRET" \
   "https://www.nuevahabitat.com/api/cron-presupuesto-compradores"
 ```
 
-El endpoint `/api/cron-presupuesto-compradores` sigue existiendo; solo se eliminó el disparo programado en Vercel.
+La URL es un **rewrite** a `notify` (no hay fichero `api/cron-*.js` aparte: el plan Hobby solo permite 12 funciones). Ver `docs/VERCEL-HOBBY-LIMITES.md`.

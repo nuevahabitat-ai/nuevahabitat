@@ -977,6 +977,26 @@ async function handleAdminFinalizeIdealistaFichas(req, res, body) {
   }
 }
 
+/** Scheduler externo (CRON_SECRET); no cuenta como función Vercel aparte. */
+async function handleCronPresupuestoCompradores(req, res) {
+  const secret = process.env.CRON_SECRET;
+  const auth = req.headers?.authorization || req.headers?.Authorization || '';
+  if (secret && auth !== `Bearer ${secret}`) {
+    return res.status(401).json({ ok: false, error: 'Unauthorized' });
+  }
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return res.status(503).json({ ok: false, error: 'Sin Supabase' });
+  }
+  try {
+    const { runAutoPresupuestoCompradores } = await import('../lib/server/auto-presupuesto-compradores.js');
+    const result = await runAutoPresupuestoCompradores({ maxScrape: 60, limit: 500 });
+    return res.status(200).json(result);
+  } catch (err) {
+    console.error('cron-presupuesto-compradores', err);
+    return res.status(500).json({ ok: false, error: err.message });
+  }
+}
+
 async function handleAdminAutoPresupuestoCompradores(req, res, body) {
   const admin = await verifyPanelAdmin(req);
   if (!admin) return res.status(403).json({ ok: false, error: 'No autorizado' });
@@ -1634,6 +1654,7 @@ export default async function handler(req, res) {
   if (action === 'admin-idealista-precios-bulk') return handleAdminIdealistaPreciosBulk(req, res, body);
   if (action === 'admin-finalize-idealista-fichas') return handleAdminFinalizeIdealistaFichas(req, res, body);
   if (action === 'admin-link-idealista-auto') return handleAdminLinkIdealistaAuto(req, res, body);
+  if (action === 'cron-presupuesto-compradores') return handleCronPresupuestoCompradores(req, res);
   if (action === 'admin-auto-presupuesto-compradores') return handleAdminAutoPresupuestoCompradores(req, res, body);
   if (action === 'admin-infer-comprador-criterios') return handleAdminInferCompradorCriterios(req, res, body);
   if (action === 'admin-agent-chat') return handleAdminAgentChat(req, res, body);
