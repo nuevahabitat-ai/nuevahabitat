@@ -193,7 +193,21 @@
 
   async function runImport() {
     if (!idealistaRows.length) return;
-    if (!confirm(`¿Importar ${idealistaRows.length} filas como compradores Idealista?`)) return;
+    const importables = idealistaRows.filter((r) => {
+      if (!telDigits(r['TELÉFONO'] || r.TELEFONO || r.telefono)) return false;
+      return String(r.USUARIO || r.usuario || r.nombre || '').trim();
+    });
+    if (!importables.length) {
+      window.nhToast?.('No hay filas con teléfono y nombre (USUARIO).', 'error');
+      return;
+    }
+    const phones = new Set(importables.map((r) => telDigits(r['TELÉFONO'] || r.TELEFONO || r.telefono)));
+    const msg =
+      `¿Importar ${importables.length} fila(s) → hasta ${phones.size} comprador(es) por teléfono?\n` +
+      (idealistaRows.length > importables.length
+        ? `(${idealistaRows.length - importables.length} fila(s) del Excel se omiten: sin teléfono o sin nombre.)`
+        : 'Los que ya existan en el panel se actualizan (mismo teléfono), no se duplican.');
+    if (!confirm(msg)) return;
     const btn = document.getElementById('comp-idealista-import-btn');
     const result = document.getElementById('comp-idealista-result');
     if (btn) {
