@@ -1530,6 +1530,11 @@ select.adm-control{
                     <p class="text-muted" style="font-size:.68rem;margin-top:.25rem;line-height:1.35">Mismo ID que en el export de contactos del portal.</p>
                   </div>
                   <div class="adm-field">
+                    <label for="w-idealista-id-2">ID Idealista (2.º anuncio)</label>
+                    <input type="text" id="w-idealista-id-2" inputmode="numeric" placeholder="Opcional"/>
+                    <p class="text-muted" style="font-size:.68rem;margin-top:.25rem;line-height:1.35">Si el inmueble tiene dos anuncios activos en Idealista.</p>
+                  </div>
+                  <div class="adm-field">
                     <label>Tipo *</label>
                     <select id="w-tipo">
                       <option value="piso">Piso</option>
@@ -3338,7 +3343,7 @@ function renderInmIdealistaTab(){
   const stats = document.getElementById('inm-idl-stats');
   if(!wrap) return;
   const data = _pubData || [];
-  const con = data.filter(p => nhNormalizeIdealistaId(p.idealista_id)).length;
+  const con = data.filter(p => nhNormalizeIdealistaId(p.idealista_id) || nhNormalizeIdealistaId(p.idealista_id_2)).length;
   const sin = data.length - con;
   if(stats) stats.textContent = data.length ? `${con} con ID · ${sin} sin vincular` : 'Carga inmuebles desde Publicaciones…';
   const q = (document.getElementById('inm-idl-search')?.value || '').trim().toLowerCase();
@@ -3346,7 +3351,7 @@ function renderInmIdealistaTab(){
   let list = data.slice().sort((a,b) => String(a.ref||'').localeCompare(String(b.ref||''), 'es'));
   if(fil === 'sin') list = list.filter(p => !nhNormalizeIdealistaId(p.idealista_id));
   if(fil === 'con') list = list.filter(p => nhNormalizeIdealistaId(p.idealista_id));
-  if(q) list = list.filter(p => [p.ref,p.titulo,p.municipio,p.barrio,String(p.idealista_id||'')].join(' ').toLowerCase().includes(q));
+  if(q) list = list.filter(p => [p.ref,p.titulo,p.municipio,p.barrio,String(p.idealista_id||''),String(p.idealista_id_2||'')].join(' ').toLowerCase().includes(q));
   if(!list.length){
     wrap.innerHTML = '<p class="text-muted" style="padding:1rem 0">Ningún inmueble coincide.</p>';
     return;
@@ -3354,6 +3359,7 @@ function renderInmIdealistaTab(){
   const rows = list.map(p => {
     const id = p.id;
     const iid = dashEsc(p.idealista_id || '');
+    const iid2 = dashEsc(p.idealista_id_2 || '');
     const ref = dashEsc(p.ref || '—');
     const tit = dashEsc((p.titulo || '').slice(0, 72));
     const est = dashEsc(p.estado || '');
@@ -3363,7 +3369,10 @@ function renderInmIdealistaTab(){
       <td style="white-space:nowrap;font-weight:600;color:var(--gold)">${ref}</td>
       <td style="max-width:280px">${tit}</td>
       <td><span class="badge badge-warn" style="font-size:.65rem">${est}</span></td>
-      <td><input type="text" class="adm-control" id="inm-idl-${id}" value="${iid}" placeholder="112985423" inputmode="numeric" style="min-width:9.5rem" onkeydown="if(event.key==='Enter'){event.preventDefault();saveInmIdealistaId('${id}')}"/></td>
+      <td>
+        <input type="text" class="adm-control" id="inm-idl-${id}" value="${iid}" placeholder="ID 1" inputmode="numeric" style="min-width:7.5rem;margin-bottom:.25rem" onkeydown="if(event.key==='Enter'){event.preventDefault();saveInmIdealistaId('${id}')}"/>
+        <input type="text" class="adm-control" id="inm-idl2-${id}" value="${iid2}" placeholder="ID 2" inputmode="numeric" style="min-width:7.5rem"/>
+      </td>
       <td style="white-space:nowrap;display:flex;gap:.35rem;flex-wrap:wrap;align-items:center">
         <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" onclick="saveInmIdealistaId('${id}')">Guardar</button>
         ${linkBtn}
@@ -3378,17 +3387,25 @@ function renderInmIdealistaTab(){
 async function saveInmIdealistaId(inmuebleId){
   if(!window.nhSupabase) return;
   const inp = document.getElementById('inm-idl-' + inmuebleId);
+  const inp2 = document.getElementById('inm-idl2-' + inmuebleId);
   const id = nhNormalizeIdealistaId(inp?.value);
-  const payload = { idealista_id: id, updated_at: new Date().toISOString() };
+  const id2 = nhNormalizeIdealistaId(inp2?.value);
+  if(id && id2 && id === id2){
+    nhToast('Los dos ID Idealista deben ser distintos.', 'error');
+    return;
+  }
+  const payload = { idealista_id: id, idealista_id_2: id2, updated_at: new Date().toISOString() };
   const { error } = await window.nhSupabase.from('inmuebles').update(payload).eq('id', inmuebleId);
   if(error){
-    const msg = /unique|duplicate|23505/i.test(error.message) ? 'Ese ID ya está en otro inmueble NH.' : error.message;
+    const msg = /unique|duplicate|23505/i.test(error.message) || /idealista_id_2/i.test(error.message)
+      ? 'Ese ID ya está en otro inmueble NH.'
+      : error.message;
     nhToast('No se guardó: ' + msg, 'error');
     return;
   }
   const p = (_pubData || []).find(x => x.id === inmuebleId);
-  if(p) p.idealista_id = id;
-  nhToast(id ? `ID Idealista ${id} vinculado a ${p?.ref || 'inmueble'}.` : 'ID Idealista quitado.', 'success');
+  if(p){ p.idealista_id = id; p.idealista_id_2 = id2; }
+  nhToast(id || id2 ? `ID Idealista vinculado a ${p?.ref || 'inmueble'}.` : 'IDs Idealista quitados.', 'success');
   renderPublications();
   if(inmIdealistaTabVisible()) renderInmIdealistaTab();
 }
@@ -3443,7 +3460,7 @@ function setWizFromParticularBanner(p){
 }
 
 function clearWizardForm(){
-  ['w-prop-nombre','w-prop-tel','w-prop-email','w-ref','w-idealista-id','w-titulo','w-precio','w-calle','w-numero',
+  ['w-prop-nombre','w-prop-tel','w-prop-email','w-ref','w-idealista-id','w-idealista-id-2','w-titulo','w-precio','w-calle','w-numero',
    'w-pisopuerta','w-cp','w-municipio','w-zona','w-dorm','w-banos','w-aseos','w-m2util','w-m2const',
    'w-m2terr','w-m2parc','w-desc','mo-video-url'].forEach(id=>{
     const el=document.getElementById(id);
@@ -3690,6 +3707,7 @@ async function publishProperty(){
       cartera_privada:  chk('w-cartera'),
       destacado:        chk('w-destacado'),
       idealista_id:     nhNormalizeIdealistaId(txt('w-idealista-id')),
+      idealista_id_2:   nhNormalizeIdealistaId(txt('w-idealista-id-2')),
       propietario_nombre:   txt('w-prop-nombre'),
       propietario_telefono: txt('w-prop-tel'),
       propietario_email:    txt('w-prop-email'),
@@ -4366,7 +4384,7 @@ let _pubData = [];
 async function fetchPubData(){
   const { data, error } = await window.nhSupabase
     .from('inmuebles')
-    .select('id,ref,titulo,precio,precio_anterior,precio_rebajado_at,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,cartera_privada,idealista_id,created_at')
+    .select('id,ref,titulo,precio,precio_anterior,precio_rebajado_at,tipo,estado,imagen_principal,habitaciones,banos,m2_utiles,m2_construidos,m2_terraza,barrio,municipio,planta,ascensor,balcon,terraza,orientacion,cartera_privada,idealista_id,idealista_id_2,created_at')
     .order('created_at', { ascending:false });
   if(error){
     console.error('fetchPubData:', error);
@@ -4543,7 +4561,7 @@ function renderPublications(){
           <img src="${img}" alt="${titleSafe}" id="pub-img-${p.id}" loading="lazy" decoding="async" onerror="this.src='imagenes/interior1.jpg'"/>
         </div>
         <div class="pub-body">
-          <div class="pub-ref">${p.ref||'NH'} · ${(p.tipo||'piso').toUpperCase()}${p.idealista_id ? ` · <span title="Vinculado a Idealista" style="color:var(--gold-dim)">ID ${dashEsc(p.idealista_id)}</span>` : ` · <span title="Sin ID — pestaña ID Idealista" style="opacity:.55">Sin ID portal</span>`}</div>
+          <div class="pub-ref">${p.ref||'NH'} · ${(p.tipo||'piso').toUpperCase()}${(p.idealista_id || p.idealista_id_2) ? ` · <span title="Vinculado a Idealista" style="color:var(--gold-dim)">ID ${dashEsc([p.idealista_id,p.idealista_id_2].filter(Boolean).join(' / '))}</span>` : ` · <span title="Sin ID — pestaña ID Idealista" style="opacity:.55">Sin ID portal</span>`}</div>
           <div class="pub-title">${p.titulo||'Sin título'}</div>
           <div style="display:flex;align-items:center;gap:.6rem;margin:.3rem 0 .5rem;flex-wrap:wrap">
             ${priceHtml}
@@ -4727,6 +4745,8 @@ async function loadPropertyForEdit(id){
   document.getElementById('w-ref').value = p.ref || '';
   const wIdeal = document.getElementById('w-idealista-id');
   if(wIdeal) wIdeal.value = p.idealista_id || '';
+  const wIdeal2 = document.getElementById('w-idealista-id-2');
+  if(wIdeal2) wIdeal2.value = p.idealista_id_2 || '';
   document.getElementById('w-titulo').value = p.titulo || '';
   document.getElementById('w-precio').value = p.precio || '';
   editingPropertyOldPrecio = parseFloat(p.precio) || 0;

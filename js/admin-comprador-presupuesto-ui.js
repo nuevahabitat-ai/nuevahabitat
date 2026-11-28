@@ -58,15 +58,26 @@
     return ids.length ? ids[0] : null;
   }
 
-  function applyPrecioToComprador(c, precio) {
+  function aggregatePresupuesto(precios) {
+    var valid = (precios || []).filter(function (p) {
+      return p >= 40000;
+    });
+    if (!valid.length) return null;
+    var max = Math.max.apply(null, valid);
+    var min = valid.length > 1 ? Math.min.apply(null, valid) : Math.max(0, max - 50000);
+    return { presupuesto_max: max, presupuesto_min: min };
+  }
+
+  function applyPrecioToComprador(c, precio, precioMin) {
     if (!c || !(precio >= 40000)) return;
     var max = Math.round(precio);
-    var min = Math.max(0, max - 50000);
+    var min =
+      precioMin != null && precioMin >= 40000
+        ? Math.round(precioMin)
+        : Math.max(0, max - 50000);
     _precioPisoByCompId.set(c.id, max);
-    if (c.presupuesto_max == null || Number(c.presupuesto_max) <= 0) {
-      c.presupuesto_max = max;
-      c.presupuesto_min = min;
-    }
+    c.presupuesto_max = max;
+    c.presupuesto_min = min;
   }
 
   async function persistPrecioComprador(c) {
@@ -90,7 +101,10 @@
       var idM = String(c.notas || '').match(/Idealista\s+(\d{6,})/i);
       if (idM) {
         var inm = _pubData.find(function (p) {
-          return String(p.idealista_id || '') === idM[1];
+          return (
+            String(p.idealista_id || '') === idM[1] ||
+            String(p.idealista_id_2 || '') === idM[1]
+          );
         });
         if (inm && inm.precio != null) return Number(inm.precio);
       }
@@ -132,8 +146,8 @@
     var data = getCompData();
     if (!data.length) return;
     _enriching = true;
-  var need = data.filter(function (c) {
-      return !(c.presupuesto_max >= 40000);
+    var need = data.filter(function (c) {
+      return !(c.presupuesto_max >= 40000) || c.presupuesto_min == null || Number(c.presupuesto_min) <= 0;
     });
     if (!need.length) {
       _enriching = false;
@@ -165,20 +179,17 @@
         return out;
       };
 
+      var allInterRows = [];
       if (compIds.length) {
         for (var ci = 0; ci < compIds.length; ci += 80) {
           var cChunk = compIds.slice(ci, ci + 80);
-          var { data: interRows } = await window.nhSupabase
+          var interRes = await window.nhSupabase
             .from('comprador_inmueble_interes')
             .select('comprador_id,idealista_id,precio_consultado')
             .in('comprador_id', cChunk);
-          (interRows || []).forEach(function (row) {
-            if (row.precio_consultado >= 40000) {
-              var comp = data.find(function (x) {
-                return x.id === row.comprador_id;
-              });
-              if (comp) applyPrecioToComprador(comp, row.precio_consultado);
-            }
+          var interRows = interRes.data || [];
+          allInterRows = allInterRows.concat(interRows);
+          interRows.forEach(function (row) {
             if (row.idealista_id) idealistaIds.add(String(row.idealista_id));
           });
         }
@@ -187,12 +198,18 @@
       var iidList = [...idealistaIds];
       for (var ii = 0; ii < iidList.length; ii += 40) {
         var iChunk = iidList.slice(ii, ii + 40);
-        var { data: inmRows } = await window.nhSupabase
+        var inmRes1 = await window.nhSupabase
           .from('inmuebles')
-          .select('idealista_id,precio')
+          .select('idealista_id,idealista_id_2,precio')
           .in('idealista_id', iChunk);
-        (inmRows || []).forEach(function (inm) {
-          if (inm.precio >= 40000) priceByIid.set(String(inm.idealista_id), Number(inm.precio));
+        var inmRes2 = await window.nhSupabase
+          .from('inmuebles')
+          .select('idealista_id,idealista_id_2,precio')
+          .in('idealista_id_2', iChunk);
+        (inmRes1.data || []).concat(inmRes2.data || []).forEach(function (inm) {
+          if (!(inm.precio >= 40000)) return;
+          if (inm.idealista_id) priceByIid.set(String(inm.idealista_id), Number(inm.precio));
+          if (inm.idealista_id_2) priceByIid.set(String(inm.idealista_id_2), Number(inm.precio));
         });
       }
 
@@ -219,14 +236,31 @@
         }
       }
 
+      var compPrecios = new Map();
+      need.forEach(function (c) {
+        compPrecios.set(c.id, []);
+      });
+      allInterRows.forEach(function (row) {
+        if (!compPrecios.has(row.comprador_id)) return;
+        if (row.precio_consultado >= 40000) compPrecios.get(row.comprador_id).push(Number(row.precio_consultado));
+        if (row.idealista_id) {
+          var px = priceByIid.get(String(row.idealista_id));
+          if (px) compPrecios.get(row.comprador_id).push(px);
+        }
+      });
       var toSave = [];
       need.forEach(function (c) {
-        if (c.presupuesto_max >= 40000) return;
-        var iid = compToIid.get(c.id);
-        if (!iid) return;
-        var p = priceByIid.get(String(iid));
-        if (p) {
-          applyPrecioToComprador(c, p);
+        var prices = compPrecios.get(c.id) || [];
+        if (!prices.length) {
+          var iid = compToIid.get(c.id);
+          if (iid) {
+            var p = priceByIid.get(String(iid));
+            if (p) prices.push(p);
+          }
+        }
+        var agg = aggregatePresupuesto(prices);
+        if (agg) {
+          applyPrecioToComprador(c, agg.presupuesto_max, agg.presupuesto_min);
           toSave.push(c);
         }
       });

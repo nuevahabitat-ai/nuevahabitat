@@ -9,6 +9,10 @@
 
 Plantilla vacía: [`docs/plantilla-idealista-compradores.csv`](plantilla-idealista-compradores.csv)
 
+- **Nombre obligatorio**: columna `USUARIO` — filas con teléfono pero sin nombre no se importan.
+- **Presupuesto**: un anuncio → máx. = precio y mín. = máx. − 50.000 €; varios anuncios del mismo comprador → mín. y máx. del rango de precios consultados.
+- **Inmuebles NH**: pueden guardar **dos** ID Idealista (`idealista_id` + `idealista_id_2`, migración 073); el import y el matching resuelven cualquiera de los dos.
+
 ## Columnas del export Idealista
 
 `REF. IDEALISTA`, `REF. CLIENTE`, `DESCRIPCIÓN`, `USUARIO`, `ORIGEN`, `ESTADO`, `EMAIL`, `TELÉFONO`, `MENSAJE`, `TIPO DE MENSAJE`, `FECHA`, `IDIOMA`

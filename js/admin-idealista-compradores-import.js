@@ -81,7 +81,7 @@
         </div>
         <div class="dash-modal-body">
           <p class="text-muted" style="font-size:.78rem;line-height:1.55;margin-bottom:1rem">
-            Sube el export del portal (CSV o Excel). Compradores <strong>activos</strong> por teléfono. Cada import fija <strong>precio compraventa</strong>: máximo = precio del anuncio consultado, mínimo = máximo − 50.000 €. Recomendado: columna <strong>PRECIO</strong> en el Excel (Idealista a veces bloquea el scrape). Migraciones Supabase <strong>066–070</strong> si aún no están aplicadas.
+            Sube el export del portal (CSV o Excel). Compradores <strong>activos</strong> por teléfono con <strong>nombre obligatorio</strong> (filas sin USUARIO no se importan). <strong>Precio compraventa</strong> agregado: un anuncio → máx. y máx. − 50.000 €; varios anuncios → mín. y máx. del rango. Migraciones <strong>066–073</strong> si aún no están aplicadas.
           </p>
           <div class="adm-field">
             <label for="comp-idealista-file">Archivo</label>
@@ -172,11 +172,19 @@
         idealistaRows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { defval: '' });
       }
       const conTel = idealistaRows.filter((r) => telDigits(r['TELÉFONO'] || r.TELEFONO || r.telefono)).length;
+      const conNombre = idealistaRows.filter((r) => {
+        if (!telDigits(r['TELÉFONO'] || r.TELEFONO || r.telefono)) return false;
+        return String(r.USUARIO || r.usuario || r.nombre || '').trim();
+      }).length;
+      const sinNombre = conTel - conNombre;
       if (preview) {
         preview.style.display = 'block';
-        preview.innerHTML = `<strong>${idealistaRows.length}</strong> filas · <strong>${conTel}</strong> con teléfono importable.`;
+        preview.innerHTML =
+          `<strong>${idealistaRows.length}</strong> filas · <strong>${conNombre}</strong> importables (teléfono + nombre)` +
+          (sinNombre ? ` · <span style="color:var(--warn,#e8a84b)">${sinNombre} omitidas sin nombre</span>` : '') +
+          '.';
       }
-      if (btn) btn.disabled = !conTel;
+      if (btn) btn.disabled = !conNombre;
     } catch (e) {
       window.nhToast?.('Error leyendo archivo: ' + e.message, 'error');
       if (preview) preview.style.display = 'none';
@@ -233,7 +241,7 @@
       if (result) {
         result.style.display = 'block';
         result.className = 'alert-box alert-info';
-        result.innerHTML = `Creados: <strong>${json.compradoresCreados}</strong> · Compradores ya existían: <strong>${dupC}</strong> · Intereses nuevos: <strong>${json.interesesRegistrados}</strong> · Intereses duplicados: <strong>${dupI}</strong> · Sin precio detectado: <strong>${json.sinPrecioEnImport || 0}</strong> · Sin vínculo NH: <strong>${json.sinVinculoInmueble || 0}</strong>${json.avisoMigraciones ? `<br><strong style="color:var(--gold)">${json.avisoMigraciones}</strong>` : ''}${json.errores?.length ? '<br><span style="font-size:.75rem">' + json.errores.map((e) => String(e)).join('<br>') + '</span>' : ''}`;
+        result.innerHTML = `Creados: <strong>${json.compradoresCreados}</strong> · Compradores ya existían: <strong>${dupC}</strong> · Intereses nuevos: <strong>${json.interesesRegistrados}</strong> · Intereses duplicados: <strong>${dupI}</strong> · Omitidas sin nombre: <strong>${json.filasOmitidasSinNombre || 0}</strong> · Sin precio detectado: <strong>${json.sinPrecioEnImport || 0}</strong> · Sin vínculo NH: <strong>${json.sinVinculoInmueble || 0}</strong>${json.avisoMigraciones ? `<br><strong style="color:var(--gold)">${json.avisoMigraciones}</strong>` : ''}${json.errores?.length ? '<br><span style="font-size:.75rem">' + json.errores.map((e) => String(e)).join('<br>') + '</span>' : ''}`;
       }
       if (typeof bustPanelCache === 'function') bustPanelCache(['compradores', 'dashboard']);
       if (typeof nhAutoPresupuestoCompradoresOnLoad === 'function') {
