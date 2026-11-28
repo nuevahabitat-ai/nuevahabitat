@@ -394,6 +394,12 @@ select.adm-control{
 .wiz-from-part{display:none;margin-bottom:1rem;padding:.75rem 1rem;border-radius:8px;border:1px solid rgba(184,147,106,.35);background:rgba(184,147,106,.08);font-size:.82rem;line-height:1.5;color:var(--text)}
 .wiz-from-part strong{color:var(--gold)}
 .wiz-from-part a{color:var(--gold-light)}
+.pub-idealista-block{margin-top:.55rem;padding:.55rem .65rem;border-radius:6px;background:var(--surface2);border:1px solid var(--border)}
+.pub-idealista-block--missing{border-color:rgba(184,147,106,.45);background:rgba(184,147,106,.06)}
+.pub-idealista-block-label{font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.35rem}
+.pub-idealista-inputs{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.4rem}
+.pub-idealista-inputs .adm-control{flex:1;min-width:5.5rem;font-size:.72rem;padding:.35rem .45rem}
+.pub-idealista-actions{display:flex;flex-wrap:wrap;gap:.3rem;align-items:center}
 .pub-quick-actions{display:flex;gap:.35rem;margin-top:.45rem;flex-wrap:wrap}
 .pub-quick-actions a,.pub-quick-actions button{padding:.38rem .6rem;font-size:.68rem;border-radius:5px;border:none;font-weight:600;text-decoration:none;cursor:pointer;transition:all .2s;white-space:nowrap}
 .pub-btn-wa{background:rgba(37,211,102,.12);color:#25d366;border:1px solid rgba(37,211,102,.35)!important}
@@ -3338,6 +3344,51 @@ function inmIdealistaTabVisible(){
   const el = document.getElementById('inm-idealista');
   return el && el.style.display !== 'none';
 }
+/** ID Idealista en cada tarjeta de Publicaciones (sin abrir el wizard). */
+function pubIdealistaBlockHtml(p){
+  if(!p?.id) return '';
+  const id = p.id;
+  const iid = dashEsc(p.idealista_id || '');
+  const iid2 = dashEsc(p.idealista_id_2 || '');
+  const has = !!(nhNormalizeIdealistaId(p.idealista_id) || nhNormalizeIdealistaId(p.idealista_id_2));
+  const link = nhNormalizeIdealistaId(p.idealista_id);
+  const linkBtn = link
+    ? `<a href="https://www.idealista.com/inmueble/${link}/" target="_blank" rel="noopener" class="adm-btn adm-btn-ghost adm-btn-sm" style="font-size:.65rem;padding:.3rem .45rem">Idealista</a>`
+    : '';
+  const hint = has ? '' : '<span style="font-size:.62rem;color:var(--muted);display:block;margin-bottom:.25rem">Sin ID — import y precios comprador no vinculan este NH.</span>';
+  return `<div class="pub-idealista-block${has ? '' : ' pub-idealista-block--missing'}" onclick="event.stopPropagation()">
+    <div class="pub-idealista-block-label">🔗 ID Idealista (portal)</div>
+    ${hint}
+    <div class="pub-idealista-inputs">
+      <input type="text" class="adm-control" id="inm-card-idl-${id}" value="${iid}" placeholder="ID 1" inputmode="numeric" title="Ref. Idealista del anuncio" onkeydown="if(event.key==='Enter'){event.preventDefault();saveInmIdealistaId('${id}')}"/>
+      <input type="text" class="adm-control" id="inm-card-idl2-${id}" value="${iid2}" placeholder="ID 2 (opc.)" inputmode="numeric" title="Segundo anuncio del mismo piso" onkeydown="if(event.key==='Enter'){event.preventDefault();saveInmIdealistaId('${id}')}"/>
+    </div>
+    <div class="pub-idealista-actions">
+      <button type="button" class="adm-btn adm-btn-gold adm-btn-sm" style="font-size:.65rem;padding:.32rem .5rem" onclick="saveInmIdealistaId('${id}')">Guardar ID</button>
+      ${linkBtn}
+      <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" style="font-size:.65rem;padding:.32rem .45rem" onclick="editProperty('${id}')">Editar inmueble</button>
+    </div>
+  </div>`;
+}
+window.pubIdealistaBlockHtml = pubIdealistaBlockHtml;
+
+function getInmIdealistaField(inmuebleId, suffix){
+  return document.getElementById('inm-' + suffix + '-' + inmuebleId)
+    || document.getElementById('inm-card-' + suffix + '-' + inmuebleId);
+}
+function syncInmIdealistaInputs(inmuebleId, id, id2){
+  const pairs = [
+    ['idl', id],
+    ['idl2', id2],
+  ];
+  for (const [suffix, val] of pairs) {
+  for (const prefix of ['inm-' + suffix + '-', 'inm-card-' + suffix + '-']) {
+    const el = document.getElementById(prefix + inmuebleId);
+      if (el) el.value = val || '';
+    }
+  }
+}
+
 function renderInmIdealistaTab(){
   const wrap = document.getElementById('inm-idl-table-wrap');
   const stats = document.getElementById('inm-idl-stats');
@@ -3386,8 +3437,8 @@ function renderInmIdealistaTab(){
 }
 async function saveInmIdealistaId(inmuebleId){
   if(!window.nhSupabase) return;
-  const inp = document.getElementById('inm-idl-' + inmuebleId);
-  const inp2 = document.getElementById('inm-idl2-' + inmuebleId);
+  const inp = getInmIdealistaField(inmuebleId, 'idl');
+  const inp2 = getInmIdealistaField(inmuebleId, 'idl2');
   const id = nhNormalizeIdealistaId(inp?.value);
   const id2 = nhNormalizeIdealistaId(inp2?.value);
   if(id && id2 && id === id2){
@@ -3405,9 +3456,11 @@ async function saveInmIdealistaId(inmuebleId){
   }
   const p = (_pubData || []).find(x => x.id === inmuebleId);
   if(p){ p.idealista_id = id; p.idealista_id_2 = id2; }
+  syncInmIdealistaInputs(inmuebleId, id, id2);
   nhToast(id || id2 ? `ID Idealista vinculado a ${p?.ref || 'inmueble'}.` : 'IDs Idealista quitados.', 'success');
   renderPublications();
   if(inmIdealistaTabVisible()) renderInmIdealistaTab();
+  if(typeof bustPanelCache === 'function') bustPanelCache(['compradores', 'dashboard']);
 }
 window.saveInmIdealistaId = saveInmIdealistaId;
 window.renderInmIdealistaTab = renderInmIdealistaTab;
@@ -4613,6 +4666,7 @@ function renderPublications(){
             ${zona?`<span>${zona}</span>`:''}
             ${p.cartera_privada?`<span style="font-size:.65rem;color:var(--gold)">🔒 Cartera privada</span>`:''}
           </div>
+          ${pubIdealistaBlockHtml(p)}
           <div class="pub-quick-actions" onclick="event.stopPropagation()">
             <button type="button" class="pub-btn-quick-precio" onclick="openInmQuickPrecioModal('${p.id}')">Rebajar €</button>
             ${rebajado ? `<button type="button" class="pub-btn-wa" onclick="openRebajaVisitantesModal('${p.id}')">Avisar visitantes</button>` : ''}
